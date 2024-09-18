@@ -1,0 +1,3 @@
+function GET_RANDOM_COLOR(a){console.log(a);return '00000000000000000000000000000000'}
+
+
