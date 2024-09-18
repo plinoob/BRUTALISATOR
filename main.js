@@ -1,7 +1,7 @@
 function cl(a){if(arguments.length!=1) a=[...arguments];console.log(a)}
 
 function addScript( src ) {
-
+	cl("addscript",src);
 	fetch(src)
 	  .then(response => response.text())
 	  .then(html => {
@@ -20,7 +20,7 @@ function addScript( src ) {
 const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/main/"
 
 var url = window.location.href.split("/")
-
+cl(url)
 if(url[url.length-1] == ""){url.pop();}
 
 if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
