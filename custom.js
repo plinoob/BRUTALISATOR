@@ -14,7 +14,7 @@ fetch(window.location.href)
 	var num = codeSource.split(pos+jsfile);
 	if(num.length != 2){cl("trouve pas le .js",pos+jsfile);return}
 	
-	mid = num[1].split(end)[0];
+	var mid = num[1].split(end)[0];
 	
 	cl("fetching : ",jsfile+mid+end);
 	fetch(jsfile+mid+".js")
