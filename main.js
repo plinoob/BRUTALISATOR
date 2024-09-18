@@ -17,7 +17,7 @@ function addScript( src ) {
 	}
 
 
-const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/539bcc944bc4332b71987f14ba1e3393ffe2fa59/"
+const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/main/"
 
 var url = window.location.href.split("/")
 
