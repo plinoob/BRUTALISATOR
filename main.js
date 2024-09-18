@@ -21,6 +21,7 @@ const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/mai
 
 var url = window.location.href.split("/")
 
+if(url[url.length-1] == ""){url.pop();}
 
 if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
 
