@@ -20,7 +20,8 @@ function addScript( src ) {
 const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/main/"
 
 var url = window.location.href.split("/")
-url.shift().shift()
+url.shift()
+url.shift()
 if(url[url.length-1] == ""){url.pop();}
 
 if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
