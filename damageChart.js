@@ -64,8 +64,11 @@ const observer = new MutationObserver((mutationsList) => {
 			div({0:allDIV,17:getChocFromTeam(teams[1])})
 			
 			insertDivAfterElement(allDIV[0],findFirstParentDiv(findTextInDOM("Cellule de ","span")));
-		    $(findTextInDOM(VERSION,"p")).remove();
-			$(document.querySelector('[role="alert"]')).remove();
+			
+		    $(findTextInDOM("Plus de jeux EternalTwin","p")).css("visibility","hidden");
+		    $(findTextInDOM(VERSION,"p")).css("visibility","hidden");
+			$(document.querySelector('[role="alert"]')).css("visibility","hidden");
+			 
         }
       }
     });
