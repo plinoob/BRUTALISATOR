@@ -22,6 +22,10 @@ const observer = new MutationObserver((mutationsList) => {
           node.style.display = 'none';
 		  
 		  analyzeText(fightLog);
+		  
+		  var allDIV = div({0:body,17="HAHAHAHA\nHHEHHDEHF",9:uni([textBoxCSS,baseCSS])});
+			insertDivAfterElement(allDIV,findFirstParentDiv(findTextInDOM("Cellule de ","p")));
+
         }
       }
     });
