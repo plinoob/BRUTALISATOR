@@ -25,6 +25,7 @@ const element = document.querySelector('[aria-label="Afficher/masquer les logs"]
 // Vérifier si l'élément existe, puis simuler un clic
 if (element) {
   element.click();
+  console.log("clicked !!!");
 } else {
   console.log("Élément non trouvé");
 }
