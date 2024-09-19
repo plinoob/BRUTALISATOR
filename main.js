@@ -138,7 +138,7 @@ const ERROR_VERSION = "Mauvaise version de 💪BRUTALISATOR : "+VERSION+")"
 const ERROR_WEBSITE = "Utilise 💪BRUTALISATOR sur une page Labrute !"
 
 
-if(!(window.location.href.startswith("https://"+"b"+"rut"))){alert(ERROR_WEBSITE);throw new Error(ERROR_WEBSITE);}
+if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alert(ERROR_WEBSITE);throw new Error(ERROR_WEBSITE);}
 if(!isTextInDOM(VERSION,"p")){alert(ERROR_VERSION);throw new Error(ERROR_VERSION);};
 
 var url = window.location.href.split("/")
