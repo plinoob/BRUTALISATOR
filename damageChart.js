@@ -2,7 +2,7 @@ var fightLog = ""
 
 
 // Créer un observer qui surveille les changements dans le DOM
-const observer = new MutationObserver((mutationsList) => {
+var observer = new MutationObserver((mutationsList) => {
   for (const mutation of mutationsList) {
     // Parcourir les nouveaux nœuds ajoutés
     mutation.addedNodes.forEach(node => {
@@ -68,7 +68,9 @@ const observer = new MutationObserver((mutationsList) => {
 		    $(findTextInDOM("Plus de jeux EternalTwin","p")).css("visibility","hidden");
 		    $(findTextInDOM(VERSION,"p")).css("visibility","hidden");
 			$(document.querySelector('[role="alert"]')).css("visibility","hidden");
-			 
+		
+
+			observer.disconnect();
         }
       }
     });
@@ -88,7 +90,7 @@ var pre_team2 = {}
 	
 
 function getClanNames(){
-const rows = document.querySelectorAll('tr');
+var rows = document.querySelectorAll('tr');
 
 // Parcourir chaque élément <tr>
 rows.forEach(row => {
@@ -242,7 +244,7 @@ function analyzeText(text){
 if(FIGHT_TYPE == "war") getClanNames();
 else{getBrutesNames();}
 // Récupérer l'élément avec l'attribut aria-label="Afficher/masquer les logs"
-const element = document.querySelector('[aria-label="Afficher/masquer les logs"]');
+var element = document.querySelector('[aria-label="Afficher/masquer les logs"]');
 
 // Vérifier si l'élément existe, puis simuler un clic
 if (element) {
