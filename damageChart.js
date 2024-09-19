@@ -32,7 +32,7 @@ const observer = new MutationObserver((mutationsList) => {
         // Vérifier si la div contient des balises <p>
         const pElements = node.querySelectorAll('p');
         
-        if (fightLog=="") {dvgdssdfg
+        if (fightLog=="") {hahahahahaha
           // Loguer le contenu de chaque balise <p>
           pElements.forEach(p => {
             console.log('Contenu de la balise <p>:', p.innerText);
