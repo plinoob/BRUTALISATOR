@@ -17,7 +17,16 @@ function addScript( src ) {
 	}
 
 
-const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/main/";
+const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/main/"
+
+var url = window.location.href.split("/")
+url.shift()
+url.shift()
+if(url[url.length-1] == ""){url.pop();}
+
+if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
+
+else if(url.length>2 && url[2] == "fight"){addScript(BRUTALISATOR+"damageChart.js")}
 
 function cl(a){if(arguments.length!=1) a=[...arguments];console.log(a)}
 
@@ -38,14 +47,5 @@ function addScript( src ) {
 	}
 
 
-const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/main/"
-
-var url = window.location.href.split("/")
-url.shift()
-url.shift()
-if(url[url.length-1] == ""){url.pop();}
-
-if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
-
-else if(url.length>2 && url[2] == "fight"){addScript(BRUTALISATOR+"damageChart.js")}
+const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/main/";
 
