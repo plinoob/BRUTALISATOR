@@ -136,10 +136,11 @@ const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+B
 const VERSION = "v2.72.4"
 const ERROR_VERSION = "Mauvaise version de 💪BRUTALISATOR : "+VERSION+")"
 const ERROR_WEBSITE = "Utilise 💪BRUTALISATOR sur une page Labrute !"
+const NOTHING_TO_DO = "Il n'y a pas encore de fonctionnalité pour cette page ! \n\n============== FONCTIONNALITÉS ==============\n\n• Page de création : Customisation de l'apparence et choix du maître\n• Page de combat : Récapitulatif des dommages"
+function alertAndStop(error){alert(error);throw new Error(error);}
 
-
-if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alert(ERROR_WEBSITE);throw new Error(ERROR_WEBSITE);}
-if(!isTextInDOM(VERSION,"p")){alert(ERROR_VERSION);throw new Error(ERROR_VERSION);};
+if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alertAndStop(ERROR_WEBSITE);}
+if(!isTextInDOM(VERSION,"p")){alertAndStop(ERROR_VERSION);};
 
 var url = window.location.href.split("/")
 url.shift()
@@ -151,7 +152,7 @@ var FIGHT_TYPE
 
 if(url[url.length-1] == ""){url.pop();}
 
-if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
+//if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
 
 if(url.length>2 && url[2] == "fight"){FIGHT_TYPE = "fight"}
 if(url.length>4 && url[4] == "war"){FIGHT_TYPE = "war"}
