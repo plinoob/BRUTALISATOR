@@ -14,7 +14,7 @@ const observer = new MutationObserver((mutationsList) => {
         if (fightLog=="") {
           // Loguer le contenu de chaque balise <p>
           pElements.forEach(p => {
-            console.log('Contenu de la balise <p>:', p.innerText);
+            //console.log('Contenu de la balise <p>:', p.innerText);
 			fightLog += p.innerText+"\n"
           });
           
@@ -35,34 +35,71 @@ observer.observe(document.body, {
 });
 
 
-// Récupérer l'élément avec l'attribut aria-label="Afficher/masquer les logs"
-const element = document.querySelector('[aria-label="Afficher/masquer les logs"]');
 
-// Vérifier si l'élément existe, puis simuler un clic
-if (element) {
-  element.click();setTimeout(function(){element.click();},200)
-} else {
-  console.log("LOGS non trouvés");
+function getClanNames(){
+const rows = document.querySelectorAll('tr');
+
+// Parcourir chaque élément <tr>
+rows.forEach(row => {
+  // Récupérer les deux premiers <td> du <tr>
+  const tds = row.querySelectorAll('td');
+
+  if (tds.length >= 2) {
+    // Pour chacun des deux premiers <td>
+    for (let i = 0; i < 2; i++) {
+      const td = tds[i];
+      
+      // Récupérer le premier <p> dans le <td>
+      const p = td.querySelector('p');
+      
+      if (p) {
+        // Afficher le contenu du <p>
+        console.log(`Contenu du <p> dans le ${i + 1}er <td> :`, p.textContent);
+      } else {
+        console.log(`Pas de <p> dans le ${i + 1}er <td>`);
+      }
+    }
+  }
+});
+
 }
 
 
+
+
+
+var pre_team1 = {}
+var pre_team2 = {}
+	
+var team1 = {}
+var team2 = {}
+var names = []
+	
+var renforts = {}
+var teams = [team1,team2,renforts]
+	
+function decentName(name){var nom;if(parseInt(name).toString() == name){ nom= " "+name}else{nom= name};if(names.indexOf(nom)==-1){names.push(nom)};return nom}
+
 function analyzeText(text){
 	
-	var names_with_num = ["Armiv1","Armiv2","MGE-2Gaul"]
 	
 	var chart = {}
-	var t1 = {}
-	var t2 = {}
+
+	
+
+	var currentTeam = team1
 	
 	var lines=text.split("\n")
-	for(var l of lines){
-		
+	for(var l of lines){if(l=="" || l=="\r")continue;
+	
 		var brute = l.split(" est arrivé !")
 		if(brute.length>1){
-			var nom = brute[0]
-			if(parseInt(nom).toString() == nom) nom = " "+nom;
-			((Object.keys(t1).length<7)?t1:t2)[nom] = 0
+			var nom = decentName(brute[0])
+			
+			if(nom in pre_team1){currentTeam = team1}else if(nom in pre_team2){currentTeam = team2};
+			currentTeam[nom] = 0;
 		}
+		else{currentTeam = renforts}
 		
 		
 		
@@ -86,7 +123,7 @@ function analyzeText(text){
 		if(vamp.length>1){
 			var dmg=parseInt(vamp[1].split(" infligeant ")[1].split(" ")[0])
 			var roxeur = vamp[0];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
-			console.log("vamp "+dmg)
+			//console.log("vamp "+dmg)
 			chart[roxeur] = (chart[roxeur] || 0) + dmg
 			continue
 		}
@@ -96,7 +133,7 @@ function analyzeText(text){
 			var bomb = bomb[0].split(" a infligé ")
 			var dmg=bomb[1].split(", ").reduce((acc, val) => acc + parseInt(val, 10), 0);
 			var roxeur = bomb[0];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
-			console.log("bomb "+dmg)
+			//console.log("bomb "+dmg)
 			chart[roxeur] = (chart[roxeur] || 0) + dmg
 			continue
 		}
@@ -105,14 +142,13 @@ function analyzeText(text){
 		if(rox.length>1){
 			var dmg=parseInt(rox[1].split(" ")[0])
 			var roxeur = rox[0];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
-			console.log("_ "+dmg)
+			//console.log("_ "+dmg)
 			chart[roxeur] = (chart[roxeur] || 0) + dmg
 			continue
 		}
-		if(/\d/.test(names_with_num.reduce((acc, name) => acc.replace(new RegExp(name, 'g'), ''), l))) console.log("SUS "+l)
+		if(/\d/.test(names.reduce((acc, name) => acc.replace(new RegExp(name, 'g'), ''), l))) console.log("SUS "+l)
 	}
-	
-	for(var i of [t1,t2]) {
+	for(var i of teams) {
 		for(var j in i) i[j] = chart[j] || 0
 		var sorted = Object.entries(i).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {
   result[key] = value;
@@ -123,3 +159,13 @@ function analyzeText(text){
 		console.log("")
 		}
 	}
+getClanNames();
+// Récupérer l'élément avec l'attribut aria-label="Afficher/masquer les logs"
+const element = document.querySelector('[aria-label="Afficher/masquer les logs"]');
+
+// Vérifier si l'élément existe, puis simuler un clic
+if (element) {
+  element.click();setTimeout(function(){element.click();},200)
+} else {
+  console.log("LOGS non trouvés");
+}
