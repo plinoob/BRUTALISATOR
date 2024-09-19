@@ -34,7 +34,11 @@ observer.observe(document.body, {
   subtree: true
 });
 
+function decentName(name){var nom;if(parseInt(name).toString() == name){ nom= " "+name}else{nom= name};if(names.indexOf(nom)==-1){names.push(nom)};return nom}
 
+var pre_team1 = {}
+var pre_team2 = {}
+	
 
 function getClanNames(){
 const rows = document.querySelectorAll('tr');
@@ -54,7 +58,8 @@ rows.forEach(row => {
       
       if (p) {
         // Afficher le contenu du <p>
-        console.log(`Contenu du <p> dans le ${i + 1}er <td> :`, p.textContent);
+        if(i==0){pre_team1[decentName(p.textContent)]=0}
+		else{pre_team2[decentName(p.textContent)]=0}
       } else {
         console.log(`Pas de <p> dans le ${i + 1}er <td>`);
       }
@@ -66,11 +71,15 @@ rows.forEach(row => {
 
 function getBrutesNames(){
 const spans = document.querySelectorAll('span');
-
+var nbBrutes = 0
 // Parcourir chaque élément <tr>
 spans.forEach(spans => {
 	var spanText = span.textContent.split("Cellule de ");
-	if(spanText.length>1){console.log("BRUTE : ",spanText[1]);}
+	if(spanText.length>1){console.log("BRUTE : ",spanText[1]);
+	nbBrutes++;
+	if(nbBrutes>1){pre_team2[decentName(spanText[1])]=0}else{pre_team1[decentName(spanText[1])]=0}
+	
+	}
 	
 });
 
@@ -78,9 +87,7 @@ spans.forEach(spans => {
 
 
 
-var pre_team1 = {}
-var pre_team2 = {}
-	
+
 var team1 = {}
 var team2 = {}
 var names = []
@@ -88,7 +95,6 @@ var names = []
 var renforts = {}
 var teams = [team1,team2,renforts]
 	
-function decentName(name){var nom;if(parseInt(name).toString() == name){ nom= " "+name}else{nom= name};if(names.indexOf(nom)==-1){names.push(nom)};return nom}
 
 function analyzeText(text){
 	
@@ -156,7 +162,7 @@ function analyzeText(text){
 			chart[roxeur] = (chart[roxeur] || 0) + dmg
 			continue
 		}
-		if(/\d/.test(names.reduce((acc, name) => acc.replace(new RegExp(name, 'g'), ''), l))) console.log("SUS "+l)
+		if(/\d/.test(names.reduce((acc, name) => acc.replace(new RegExp(" "+name, 'g'), '').replace(new RegExp(name, 'g'), ''), l))) console.log("SUS "+l)
 	}
 	for(var i of teams) {
 		for(var j in i) i[j] = chart[j] || 0
@@ -171,7 +177,7 @@ function analyzeText(text){
 	}
 	
 if(FIGHT_TYPE == "war") getClanNames();
-else{getBrutesNames}
+else{getBrutesNames();}
 // Récupérer l'élément avec l'attribut aria-label="Afficher/masquer les logs"
 const element = document.querySelector('[aria-label="Afficher/masquer les logs"]');
 
