@@ -24,7 +24,7 @@ const observer = new MutationObserver((mutationsList) => {
 		  analyzeText(fightLog);
 		  
 			function getTextFromTeam(team){var s = "";
-			for(var i of team){var bruteSTR = "<b>"+i[0]+"</b> "+i[1]+" "+i[2]+"\n"
+			for(var i of team){var bruteSTR = " <b>"+i[0]+"</b>    "+i[1]+""+i[2]+"\n"
 			s+=bruteSTR
 			}
 			return s}
@@ -33,7 +33,9 @@ const observer = new MutationObserver((mutationsList) => {
 			var team2TEXT = getTextFromTeam(teams[1])
 			var team3TEXT = getTextFromTeam(teams[2])
 
-			var allDIV = div({0:body,26:1,9:uni([{  display: "flex","flex-direction": "line",  gap: (teams[1].length==0)?"250px":"50px"},textBoxCSS,baseCSS])})
+			var allDIV = div({0:body,26:1,9:uni([{  color:"rgb(115, 61, 44)","font-size":"0.821429rem",
+			"margin-left": "40px",display: "flex","flex-direction": "line",  gap: (teams[1].length==0)?"250px":"50px"},
+			textBoxCSS,baseCSS])})
 			var team1DIV = div({0:allDIV,17:team1TEXT})
 			var team3DIV = div({0:allDIV,17:team3TEXT})
 			var team2DIV = div({0:allDIV,17:team2TEXT})
