@@ -43,20 +43,20 @@ const observer = new MutationObserver((mutationsList) => {
 
 			var allDIV = div({0:body,26:1,9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
-			textBoxCSS,baseCSS,{"margin": "16 40"}])})
+			textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
 			
 			div({0:allDIV,17:getNamesFromTeam(teams[0])})
 			div({0:allDIV,17:"   "})
 			div({0:allDIV,17:getDamageFromTeam(teams[0])})
 			div({0:allDIV,17:" "})
 			div({0:allDIV,17:getChocFromTeam(teams[0])})
-			div({0:allDIV,17:(teams[2].length==0)?"          ":"                    "})
+			div({0:allDIV,17:(teams[2].length==0)?"      ":"               "})
 			div({0:allDIV,17:getNamesFromTeam(teams[2])})
 			div({0:allDIV,17:"   "})
 			div({0:allDIV,17:getDamageFromTeam(teams[2])})
 			div({0:allDIV,17:" "})
 			div({0:allDIV,17:getChocFromTeam(teams[2])})
-			div({0:allDIV,17:(teams[2].length==0)?"          ":"                    "})
+			div({0:allDIV,17:(teams[2].length==0)?"      ":"               "})
 			div({0:allDIV,17:getNamesFromTeam(teams[1])})
 			div({0:allDIV,17:"   "})
 			div({0:allDIV,17:getDamageFromTeam(teams[1])})
