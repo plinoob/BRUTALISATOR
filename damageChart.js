@@ -19,6 +19,29 @@ function addScript( src ) {
 
 const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/main/";
 
+const observer = new MutationObserver((mutationsList) => {
+  for (const mutation of mutationsList) {
+    // Vérifier si des balises <p> ont été ajoutées
+    mutation.addedNodes.forEach(node => {
+      if (node.nodeName === 'P') {
+        // Loguer le contenu de la balise <p>
+        console.log('Nouvelle balise <p> ajoutée:', node.innerText);
+
+        // Rendre la balise invisible
+        node.style.display = 'none';
+      }
+    });
+  }
+});
+
+// Configurer l'observer pour surveiller les ajouts d'enfants dans tout le document
+observer.observe(document.body, {
+  childList: true,
+  subtree: true
+});
+
+
+
 // Récupérer l'élément avec l'attribut aria-label="Afficher/masquer les logs"
 const element = document.querySelector('[aria-label="Afficher/masquer les logs"]');
 
