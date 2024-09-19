@@ -23,24 +23,52 @@ const observer = new MutationObserver((mutationsList) => {
 		  
 		  analyzeText(fightLog);
 		  
-			function getTextFromTeam(team){var s = "";
-			for(var i of team){var bruteSTR = " <b>"+i[0]+'</b>    <font color="rgb(115, 61, 44)">'+i[1]+"</font>"+i[2]+"\n"
+			function getNamesFromTeam(team){var s = "";
+			for(var i of team){var bruteSTR = " <b>"+i[0]+'</b>'+"\n"
+			s+=bruteSTR
+			}
+			return s}
+			
+			function getDamageFromTeam(team){var s = "";
+			for(var i of team){var bruteSTR = '<font font-weight= "400" color="rgb(140, 81, 64)">'+i[1]+"</font>"+"\n"
 			s+=bruteSTR
 			}
 			return s}
 
-			var team1TEXT = getTextFromTeam(teams[0])
+			function getChocFromTeam(team){var s = "";
+			for(var i of team){var bruteSTR = i[2]"\n"
+			s+=bruteSTR
+			}
+			return s}
+
+			var team1TEXT = 
 			var team2TEXT = getTextFromTeam(teams[1])
 			var team3TEXT = getTextFromTeam(teams[2])
 
 			var allDIV = div({0:body,26:1,9:uni([{ "font-size":"0.821429rem",
-			"margin-left": "40px",display: "flex","flex-direction": "line",  gap: (teams[1].length==0)?"250px":"50px"},
+			"margin": "16 40",display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS])})
-			var team1DIV = div({0:allDIV,17:team1TEXT})
-			var team3DIV = div({0:allDIV,17:team3TEXT})
-			var team2DIV = div({0:allDIV,17:team2TEXT})
+			
+			div({0:allDIV,17:getNamesFromTeam(teams[0])})
+			div({0:allDIV,17:" "})
+			div({0:allDIV,17:getDamageFromTeam(teams[0])})
+			div({0:allDIV,17:" "})
+			div({0:allDIV,17:getChocFromTeam(teams[0])})
+			
+			div({0:allDIV,17:getNamesFromTeam(teams[2])})
+			div({0:allDIV,17:" "})
+			div({0:allDIV,17:getDamageFromTeam(teams[2])})
+			div({0:allDIV,17:" "})
+			div({0:allDIV,17:getChocFromTeam(teams[2])})
+			
+			div({0:allDIV,17:getNamesFromTeam(teams[1])})
+			div({0:allDIV,17:" "})
+			div({0:allDIV,17:getDamageFromTeam(teams[1])})
+			div({0:allDIV,17:" "})
+			div({0:allDIV,17:getChocFromTeam(teams[1])})
+			
 			insertDivAfterElement(allDIV[0],findFirstParentDiv(findTextInDOM("Cellule de ","span")));
-
+		    $(findTextInDOM(VERSION,"p")).remove();
         }
       }
     });
@@ -203,7 +231,7 @@ function analyzeText(text){
 		for(var i in sorted) {
 			
 			var choc = (Math.round((sorted[i]-parseInt(sorted[i])) * 1000)==0)?"":"  ("+Math.round((sorted[i]-parseInt(sorted[i])) * 1000)+" choc)";
-			choc=choc.replace("(1 choc)","💥").replace("(2 choc)","💥💥").replace("(3 choc)","💥💥💥").replace(" choc)","💥").replace("(","")
+			choc=choc.replace("(1 choc)","💥").replace("(2 choc)","💥💥").replace("(3 choc)","💥💥💥").replace(" choc)","💥").replace("(","  ")
 			teams[team_number].push(
 			[i.replace(" ",""),parseInt(sorted[i]),choc
 	])}
