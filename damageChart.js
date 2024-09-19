@@ -30,7 +30,7 @@ const observer = new MutationObserver((mutationsList) => {
 			return s}
 			
 			function getDamageFromTeam(team){var s = "";
-			for(var i of team){var bruteSTR = '<b color="rgb(140, 81, 64)">'+i[1]+"</b>"+"\n"
+			for(var i of team){var bruteSTR = '<font color="rgb(140, 81, 64)"><b>'+i[1]+"</b></font>"+"\n"
 			s+=bruteSTR
 			}
 			return s}
