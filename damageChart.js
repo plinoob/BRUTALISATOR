@@ -64,7 +64,17 @@ rows.forEach(row => {
 
 }
 
+function getBrutesNames(){
+const spans = document.querySelectorAll('span');
 
+// Parcourir chaque élément <tr>
+spans.forEach(spans => {
+	var spanText = span.textContent.split("Cellule de ");
+	if(spanText.length>1){console.log("BRUTE : ",spanText[1]);}
+	
+});
+
+}
 
 
 
@@ -161,7 +171,7 @@ function analyzeText(text){
 	}
 	
 if(FIGHT_TYPE == "war") getClanNames();
-
+else{getBrutesNames}
 // Récupérer l'élément avec l'attribut aria-label="Afficher/masquer les logs"
 const element = document.querySelector('[aria-label="Afficher/masquer les logs"]');
 
