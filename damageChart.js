@@ -50,13 +50,13 @@ const observer = new MutationObserver((mutationsList) => {
 			div({0:allDIV,17:getDamageFromTeam(teams[0])})
 			div({0:allDIV,17:" "})
 			div({0:allDIV,17:getChocFromTeam(teams[0])})
-			div({0:allDIV,17:(teams[2].length==0)?"      ":"               "})
+			div({0:allDIV,17:(teams[2].length==0)?"   ":"             "})
 			div({0:allDIV,17:getNamesFromTeam(teams[2])})
 			div({0:allDIV,17:"   "})
 			div({0:allDIV,17:getDamageFromTeam(teams[2])})
 			div({0:allDIV,17:" "})
 			div({0:allDIV,17:getChocFromTeam(teams[2])})
-			div({0:allDIV,17:(teams[2].length==0)?"      ":"               "})
+			div({0:allDIV,17:(teams[2].length==0)?"   ":"             "})
 			div({0:allDIV,17:getNamesFromTeam(teams[1])})
 			div({0:allDIV,17:"   "})
 			div({0:allDIV,17:getDamageFromTeam(teams[1])})
@@ -231,7 +231,7 @@ function analyzeText(text){
 		for(var i in sorted) {
 			
 			var choc = (Math.round((sorted[i]-parseInt(sorted[i])) * 1000)==0)?"":"  ("+Math.round((sorted[i]-parseInt(sorted[i])) * 1000)+" choc)";
-			choc=choc.replace("(1 choc)","💥").replace("(2 choc)","💥💥").replace("(3 choc)","💥💥💥").replace(" choc)","💥").replace("(","  ")
+			choc=choc.replace("(1 choc)","  💥").replace("(2 choc)"," 💥💥").replace("(3 choc)","💥💥💥").replace(" choc)","</b>💥").replace("(","  <b>")
 			teams[team_number].push(
 			[i.replace(" ",""),parseInt(sorted[i]),choc
 	])}
