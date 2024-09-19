@@ -38,14 +38,15 @@ function addScript( src ) {
 function findTextInDOM(text,balise) {
   // Récupérer tous les éléments de la page
   const elements = document.querySelectorAll(balise);
-  
+  var found = false
   // Parcourir tous les éléments et vérifier leur texte
   elements.forEach(element => {
     if (element.textContent.includes(text)) {
       console.log('Élément trouvé :', element.textContent);
-	  return true
+	  found = true
     }
   });
+  return found;
 }
 
 
