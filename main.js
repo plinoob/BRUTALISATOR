@@ -1,24 +1,3 @@
-
-
-const VERSION = "v2.72.4"
-const ERROR = "Mauvaise version (version de 💪BRUTALISATOR : "+VERSION+")"
-
-if(!findTextInDOM("v2.72.4","p")){alert(ERROR);throw new Error(ERROR);};
-
-var url = window.location.href.split("/")
-url.shift()
-url.shift()
-
-
-
-
-
-if(url[url.length-1] == ""){url.pop();}
-
-if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
-
-if(url.length>2 && url[2] == "fight"){addScript(BRUTALISATOR+"damageChart.js")}
-
 function cl(a){if(arguments.length!=1) a=[...arguments];console.log(a)}
 
 function addScript( src ) {
@@ -54,4 +33,25 @@ function findTextInDOM(text,balise) {
 
 
 const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/main/";
+
+
+
+const VERSION = "v2.72.4"
+const ERROR = "Mauvaise version (version de 💪BRUTALISATOR : "+VERSION+")"
+
+if(!findTextInDOM("v2.72.4","p")){alert(ERROR);throw new Error(ERROR);};
+
+var url = window.location.href.split("/")
+url.shift()
+url.shift()
+
+
+
+
+
+if(url[url.length-1] == ""){url.pop();}
+
+if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
+
+if(url.length>2 && url[2] == "fight"){addScript(BRUTALISATOR+"damageChart.js")}
 

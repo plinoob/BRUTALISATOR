@@ -1,6 +1,3 @@
-function GET_RANDOM_COLOR(a){console.log(a);return '00000000000000000000000000000000'}
-
-
 function cl(a){if(arguments.length!=1) a=[...arguments];console.log(a)}
 
 function addScript( src ) {
@@ -36,6 +33,9 @@ function findTextInDOM(text,balise) {
 
 
 const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/main/";
+
+function GET_RANDOM_COLOR(a){console.log(a);return '00000000000000000000000000000000'}
+
 
 colors = {
     male: {
