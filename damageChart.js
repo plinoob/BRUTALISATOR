@@ -18,11 +18,10 @@ function addScript( src ) {
 
 
 const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/main/";
-
 const observer = new MutationObserver((mutationsList) => {
   for (const mutation of mutationsList) {
     // Vérifier si des balises <p> ont été ajoutées
-    mutation.addedNodes.forEach(node => {
+    mutation.addedNodes.forEach(node => {console.log(node);
       if (node.nodeName === 'P') {
         // Loguer le contenu de la balise <p>
         console.log('Nouvelle balise <p> ajoutée:', node.innerText);
