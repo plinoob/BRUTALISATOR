@@ -23,8 +23,21 @@ const observer = new MutationObserver((mutationsList) => {
 		  
 		  analyzeText(fightLog);
 		  
-		  var allDIV = div({0:body,17="HAHAHAHA\nHHEHHDEHF",9:uni([textBoxCSS,baseCSS])});
-			insertDivAfterElement(allDIV,findFirstParentDiv(findTextInDOM("Cellule de ","p")));
+			function getTextFromTeam(team){var s = "";
+			for(var i of team){var bruteSTR = i[0]+" "+i[1]+" "+i[2]+"\n"
+			s+=bruteSTR
+			}
+			return s}
+
+			var team1TEXT = getTextFromTeam(teams[0])
+			var team2TEXT = getTextFromTeam(teams[1])
+			var team3TEXT = getTextFromTeam(teams[2])
+
+			var allDIV = div({0:body,26:1,9:uni([{  display: "flex","flex-direction": "line",  gap: "50px"},textBoxCSS,baseCSS])})
+			var team1DIV = div({0:allDIV,17:team1TEXT})
+			var team2DIV = div({0:allDIV,17:team2TEXT})
+			var team3DIV = div({0:allDIV,17:team3TEXT})
+			insertDivAfterElement(allDIV[0],findFirstParentDiv(findTextInDOM("Cellule de ","p")));
 
         }
       }
