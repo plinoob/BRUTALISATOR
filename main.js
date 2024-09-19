@@ -129,14 +129,14 @@ const textBoxCSS = {color: "rgb(176, 107, 79)",
     margin: "16px 8px",
 padding: "0px"}
 
-const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/main/";
+const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+BRANCHE+"/";
 
 
 
 const VERSION = "v2.72.4"
 const ERROR = "Mauvaise version (version de 💪BRUTALISATOR : "+VERSION+")"
 
-if(!isTextInDOM("v2.72.4","p")){alert(ERROR);throw new Error(ERROR);};
+if(!isTextInDOM(VERSION,"p")){alert(ERROR);throw new Error(ERROR);};
 
 var url = window.location.href.split("/")
 url.shift()

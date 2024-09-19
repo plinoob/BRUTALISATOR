@@ -129,7 +129,7 @@ const textBoxCSS = {color: "rgb(176, 107, 79)",
     margin: "16px 8px",
 padding: "0px"}
 
-const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/main/";
+const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+BRANCHE+"/";
 
 function GET_RANDOM_COLOR(a){console.log(a);return '00000000000000000000000000000000'}
 
