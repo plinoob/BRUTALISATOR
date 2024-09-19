@@ -36,7 +36,7 @@ const observer = new MutationObserver((mutationsList) => {
 			return s}
 
 			function getChocFromTeam(team){var s = "";
-			for(var i of team){var bruteSTR = i[2]"\n"
+			for(var i of team){var bruteSTR = '<font text-align="center">'+i[2]+"</font>"+"\n"
 			s+=bruteSTR
 			}
 			return s}
