@@ -136,7 +136,7 @@ const BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+B
 const VERSION = "v2.72.4"
 const ERROR_VERSION = "Mauvaise version de 💪BRUTALISATOR : "+VERSION+")"
 const ERROR_WEBSITE = "Utilise 💪BRUTALISATOR sur une page Labrute !"
-const NOTHING_TO_DO = "Il n'y a pas encore de fonctionnalité pour cette page ! \n\n============== FONCTIONNALITÉS ==============\n\n• Création de brute : Customisation de l'apparence et choix du maître\n\n• En combat : Récapitulatif des dommages"
+const NOTHING_TO_DO = "💪BRUTALISATOR n'a pas encore de fonctionnalité pour cette page ! \n\n============== FONCTIONNALITÉS ==============\n\n• Création de brute : Customisation de l'apparence et choix du maître\n\n• En combat : Récapitulatif des dommages"
 function alertAndStop(error){alert(error);throw new Error(error);}
 
 if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alertAndStop(ERROR_WEBSITE);}
