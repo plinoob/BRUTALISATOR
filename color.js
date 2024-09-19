@@ -107,7 +107,7 @@ function findFirstParentDiv(element) {
   return null; // Si aucun parent <div> n'est trouvé
 }
 
-function insertDivAfterElement(referenceDiv,newDiv) {
+function insertDivAfterElement(newDiv,referenceDiv) {
   if (referenceDiv) {
 
     // Insérer la nouvelle div juste après la div parent trouvée

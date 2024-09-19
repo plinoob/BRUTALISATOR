@@ -24,7 +24,7 @@ const observer = new MutationObserver((mutationsList) => {
 		  analyzeText(fightLog);
 		  
 			function getTextFromTeam(team){var s = "";
-			for(var i of team){var bruteSTR = i[0]+" "+i[1]+" "+i[2]+"\n"
+			for(var i of team){var bruteSTR = "<b>"+i[0]+"</b> "+i[1]+" "+i[2]+"\n"
 			s+=bruteSTR
 			}
 			return s}
