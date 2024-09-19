@@ -127,6 +127,15 @@ function analyzeText(text){
 			continue
 		}
 		
+		var choc =  l.split(" a brisé le bouclier")
+		if(choc.length>1){
+			var boubou = choc[0].split(" ");
+			var roxeur = boubou[boubou.length-1];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
+			//console.log("choc "+dmg)
+			chart[roxeur] = (chart[roxeur] || 0) + 0.001
+			continue
+		}
+		
 		var vol =  l.split(" a volé ")
 		if(vol.length>1){
 			var roxeur = vol[0];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
@@ -162,16 +171,20 @@ function analyzeText(text){
 			chart[roxeur] = (chart[roxeur] || 0) + dmg
 			continue
 		}
-		if(/\d/.test(names.reduce((acc, name) => acc.replace(new RegExp(" "+name, 'g'), '').replace(new RegExp(name, 'g'), ''), l))) console.log("SUS "+l)
+		if(/\d/.test(names.reduce((acc, name) => acc.replace(new RegExp(name.replace(" ",""), 'g'), ''), l))) console.log("SUS "+l)
 	}
-	for(var i of teams) {
-		for(var j in i) i[j] = chart[j] || 0
-		var sorted = Object.entries(i).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {
+	for(var team of teams) {
+		for(var j in team) team[j] = chart[j] || 0
+		var sorted = Object.entries(team).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {
   result[key] = value;
   return result;
 }, {})
-		for(var i in sorted) console.log(i,parseInt(sorted[i]),
-		(Math.round((sorted[i]-parseInt(sorted[i])) * 1000)==0)?"":"  ("+Math.round((sorted[i]-parseInt(sorted[i])) * 1000)+" choc)")
+		
+		teams[team] = []
+		for(var i in sorted) {
+			teams[team].push(
+			[i.replace(" ",""),parseInt(sorted[i]),
+	(Math.round((sorted[i]-parseInt(sorted[i])) * 1000)==0)?"":"  ("+Math.round((sorted[i]-parseInt(sorted[i])) * 1000)+" choc)"])}
 		console.log("")
 		}
 	}
