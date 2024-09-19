@@ -190,18 +190,21 @@ function analyzeText(text){
 		}
 		if(/\d/.test(names.reduce((acc, name) => acc.replace(new RegExp(name.replace(" ",""), 'g'), ''), l))) console.log("SUS "+l)
 	}
-	for(var team of teams) {
+	for(var team_number in teams) {var team = teams[team_number];
 		for(var j in team) team[j] = chart[j] || 0
 		var sorted = Object.entries(team).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {
   result[key] = value;
   return result;
 }, {})
 		
-		teams[team] = []
+		teams[team_number] = []
 		for(var i in sorted) {
-			teams[team].push(
-			[i.replace(" ",""),parseInt(sorted[i]),
-	(Math.round((sorted[i]-parseInt(sorted[i])) * 1000)==0)?"":"  ("+Math.round((sorted[i]-parseInt(sorted[i])) * 1000)+" choc)"])}
+			
+			var choc = (Math.round((sorted[i]-parseInt(sorted[i])) * 1000)==0)?"":"  ("+Math.round((sorted[i]-parseInt(sorted[i])) * 1000)+" choc)";
+			choc=choc.replace("(1 choc)","💥").replace("(2 choc)","💥💥").replace("(3 choc)","💥💥💥").replace(" choc)","💥").replace("(","")
+			teams[team_number].push(
+			[i.replace(" ",""),parseInt(sorted[i]),choc
+	])}
 		console.log("")
 		}
 	}
