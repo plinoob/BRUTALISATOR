@@ -158,4 +158,4 @@ if(url.length>2 && url[2] == "fight"){FIGHT_TYPE = "fight"}
 if(url.length>6 && url[4] == "war" && url[6] == "fight"){FIGHT_TYPE = "war"}
 if(FIGHT_TYPE){addScript(BRUTALISATOR+"damageChart.js")}
 
-alertAndStop(NOTHING_TO_DO)
+else{alertAndStop(NOTHING_TO_DO)}
