@@ -3,7 +3,7 @@
 const VERSION = "v2.72.4"
 const ERROR = "Mauvaise version (version de 💪BRUTALISATOR : "+VERSION+")"
 
-if(!findTextInDOM("v2.72.4")){alert(ERROR);throw new Error(ERROR);};
+if(!findTextInDOM("v2.72.4","p")){alert(ERROR);throw new Error(ERROR);};
 
 var url = window.location.href.split("/")
 url.shift()
@@ -35,9 +35,9 @@ function addScript( src ) {
 
 	}
 
-function findTextInDOM(text) {
+function findTextInDOM(text,balise) {
   // Récupérer tous les éléments de la page
-  const elements = document.querySelectorAll('*');
+  const elements = document.querySelectorAll(balise);
   
   // Parcourir tous les éléments et vérifier leur texte
   elements.forEach(element => {

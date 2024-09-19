@@ -19,9 +19,9 @@ function addScript( src ) {
 
 	}
 
-function findTextInDOM(text) {
+function findTextInDOM(text,balise) {
   // Récupérer tous les éléments de la page
-  const elements = document.querySelectorAll('*');
+  const elements = document.querySelectorAll(balise);
   
   // Parcourir tous les éléments et vérifier leur texte
   elements.forEach(element => {
