@@ -26,3 +26,5 @@ if(url[url.length-1] == ""){url.pop();}
 
 if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
 
+else if(url.length>2 && url[2] == "fight"){addScript(BRUTALISATOR+"damageChart.js")}
+
