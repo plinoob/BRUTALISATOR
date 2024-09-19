@@ -41,10 +41,6 @@ const observer = new MutationObserver((mutationsList) => {
 			}
 			return s}
 
-			var team1TEXT = 
-			var team2TEXT = getTextFromTeam(teams[1])
-			var team3TEXT = getTextFromTeam(teams[2])
-
 			var allDIV = div({0:body,26:1,9:uni([{ "font-size":"0.821429rem",
 			"margin": "16 40",display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS])})
@@ -69,6 +65,7 @@ const observer = new MutationObserver((mutationsList) => {
 			
 			insertDivAfterElement(allDIV[0],findFirstParentDiv(findTextInDOM("Cellule de ","span")));
 		    $(findTextInDOM(VERSION,"p")).remove();
+			$(document.querySelector('[role="alert"]')).remove();
         }
       }
     });
