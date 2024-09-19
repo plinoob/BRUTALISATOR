@@ -74,7 +74,7 @@ const spans = document.querySelectorAll('span');
 var nbBrutes = 0
 // Parcourir chaque élément <tr>
 spans.forEach(spans => {
-	var spanText = span.textContent.split("Cellule de ");
+	var spanText = spans.textContent.split("Cellule de ");
 	if(spanText.length>1){console.log("BRUTE : ",spanText[1]);
 	nbBrutes++;
 	if(nbBrutes>1){pre_team2[decentName(spanText[1])]=0}else{pre_team1[decentName(spanText[1])]=0}
