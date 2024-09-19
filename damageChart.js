@@ -159,7 +159,9 @@ function analyzeText(text){
 		console.log("")
 		}
 	}
-getClanNames();
+	
+if(FIGHT_TYPE == "war") getClanNames();
+
 // Récupérer l'élément avec l'attribut aria-label="Afficher/masquer les logs"
 const element = document.querySelector('[aria-label="Afficher/masquer les logs"]');
 
