@@ -798,7 +798,7 @@ function createTable() {
     
 	var Grid = []
 	var colorINDEX = 0
-	for(i in availableBodyParts[GENDER]){
+	for(var i in availableBodyParts[GENDER]){
 	
 		var bodyPartCount = availableBodyParts[GENDER][i]+1
 		var bodyPart = bodyParts[i]
