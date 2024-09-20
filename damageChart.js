@@ -69,7 +69,7 @@ var observer = new MutationObserver((mutationsList) => {
 		    $(findTextInDOM(VERSION,"p")).css("visibility","hidden");
 			$(document.querySelector('[role="alert"]')).css("visibility","hidden");
 		
-
+			stopLoading();
 			observer.disconnect();
         }
       }

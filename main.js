@@ -16,7 +16,7 @@ var fediv={
 24:function(a,b,c){c.css("font-size",a[b])},
 20:function(a,b,c){c.attr("title",a[b])},
 21:function(a,b,c){c.attr("placeholder",a[b])},
-22:function(a,b,c){c.attr("src",src(a[b]))},
+22:function(a,b,c){c.attr("src",a[b])},
 23:function(a,b,c){c.css("color",a[b])},
 26:function(a,b,c){if(a[b]===0){a[b]="nowrap"}else if(a[b]===1){a[b]="pre"};c.css("white-space",a[b])},
 27:function(a,b,c){c.attr("type",a[b])},
@@ -115,6 +115,38 @@ function insertDivAfterElement(newDiv,referenceDiv) {
   }
 }
 
+function addStyle(styleString) {
+  const style = document.createElement('style');
+  style.textContent = styleString;
+  document.head.append(style);
+}
+addStyle(`		#shuriken {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#shuriken-image {
+  animation: organic-rotation 3s infinite;
+}
+
+@keyframes organic-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1080deg);
+  }
+}
+
+#shuriken-image {
+  animation-timing-function: cubic-bezier(0.42, 0.2, 0.44, 0.8); /* Courbe personnalisée */
+}
+	`)
+	
+var shurikenDIV = div({0:body,4:["33px","33px","",""],1:"shuriken"})
+div({0:shurikenDIV,2:"img",22:shuriken,1:"shuriken-image"})
+function stopLoading(){$(shurikenDIV).css("display","none")}
 var baseCSS = {	"font-family": "Roboto, Helvetica, Arial, sans-serif",
     "font-weight": "400",
     "font-size": "1rem",
