@@ -911,7 +911,7 @@ createTable();
 			if(end_body.length != 2) return;
 			options.body = start_body[0]+'"colors":"'+"00000000000000000000000000000000"+'","master"'+end_body[1];
 
-			if(false)return originalFetch.apply(this, arguments);
+			if(url=="/api/user/authenticate?")return originalFetch.apply(this, arguments);
         }
         else {
             console.log('Intercepted GET request:', {
