@@ -280,7 +280,6 @@ var url = window.location.href.split("/")
 url.shift()
 url.shift()
 
-var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
 
 var FIGHT_TYPE = 0
 

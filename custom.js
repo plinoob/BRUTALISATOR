@@ -135,7 +135,7 @@ fetch(window.location.href)
 		js = js.join(newColor);
 		
 		js=js.split(bodyflag);
-		
+		cl(js.length,"BODY FOUND");
 		for(var i in js){
 			if(i==js.length-1)break;
 			while(!js[i].endsWith(",")){js[i]=js[i].substring(0, js[i].length - 1);}

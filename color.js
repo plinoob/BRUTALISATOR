@@ -669,11 +669,11 @@ cursor:pointer;
 }`)
 
 
-var getChoosedBody = function(gender){ setGender(gender);var res = generateBodyString(BODY);checkBody("Ambryal",GENDER,res);return res}
+var getChoosedBody = function(gender){cl("BODY CALLED"); setGender(gender);var res = generateBodyString(BODY);checkBody("Ambryal",GENDER,res);return res}
 
 
 
-var getChoosedColors = function(gender) {setGender(gender)
+var getChoosedColors = function(gender) {cl("COLOR CALLED"); setGender(gender);
     var col0 = COLORS[0];
     var col0a = col0;
     var col0c = col0;
@@ -737,7 +737,7 @@ var BODY = {};makeRandomBody();
 var MASTER = ""
 
 
-function setGender(gender){if(GENDER!=gender){GENDER = gender;makeRandomColors();makeRandomBody();createTable()}}
+function setGender(gender){cl("GENDER : ",GENDER,gender);if(GENDER!=gender){GENDER = gender;makeRandomColors();makeRandomBody();createTable()}}
 
 
 function createCell(cell,i,j,l){
