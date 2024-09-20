@@ -780,7 +780,7 @@ function clickOnRandomBody(){
 	
 MODIFIED=true;
 		var element=document.querySelector('[aria-label="Changer l\'apparence"]')
-		element.click();setTimeout(function(){element.click();},10);
+		element.click();setTimeout(function(){element.click();},100);
 	
 }
 
