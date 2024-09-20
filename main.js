@@ -185,10 +185,13 @@ var FIGHT_TYPE = 0
 
 if(url[url.length-1] == ""){url.pop();}
 
-if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
-else if(url.length>2 && url[2] == "fight"){FIGHT_TYPE = "fight"}
+if(url.length>2 && url[2] == "fight"){FIGHT_TYPE = "fight"}
 if(url.length>6 && url[4] == "war" && url[6] == "fight"){FIGHT_TYPE = "war"}
-if(FIGHT_TYPE){addScript(BRUTALISATOR+"damageChart.js")}
+
+
+
+if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
+else if(FIGHT_TYPE){addScript(BRUTALISATOR+"damageChart.js")}
 
 else{alertAndStop(NOTHING_TO_DO)}var Gender = {
   male: 'male',
