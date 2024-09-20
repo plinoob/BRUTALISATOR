@@ -741,7 +741,7 @@ var MODIFIED = false
 
 function setGender(gender){if(GENDER!=gender){if(MODIFIED){MODIFIED=false;GENDER_BODY[GENDER] = BODY;GENDER_COLORS[GENDER] = COLORS;}
 GENDER = gender;if(!(gender in GENDER_BODY)){makeRandomColors();makeRandomBody()}
-else{BODY = GENDER_BODY[gender];COLORS = GENDER_COLORS[gender]};createTable()}}
+else{BODY = GENDER_BODY[gender];COLORS = GENDER_COLORS[gender]}};createTable()}
 
 
 function createCell(cell,i,j,l){
@@ -773,7 +773,7 @@ function clickOnRandomColors(){
 MODIFIED=true;
 		var element=document.querySelector('[aria-label="Changer les couleurs"]')
 		element.click();
-	
+
 }
 
 function clickOnRandomBody(){
@@ -781,6 +781,7 @@ function clickOnRandomBody(){
 MODIFIED=true;
 		var element=document.querySelector('[aria-label="Changer l\'apparence"]')
 		element.click();setTimeout(function(){element.click();},100);
+
 	
 }
 
@@ -798,8 +799,8 @@ div({15:0,6:{click:function(){makeRandomColors();clickOnRandomColors()}},1:"pale
 			textBoxCSS,baseCSS])})
 			
 $("#randomBody").remove()
-div({15:0,6:{click:function(){makeRandomBody();clickOnRandomBody()}},1:"randomBody",18:.6,13:5000000,0:body,26:1,4:[27,"","",30],17:"🎲",24:66,9:uni([{ "font-size":"0.821429rem"},
-			textBoxCSS,baseCSS])})
+div({18:0.6,17:"🎲",0:div({15:0,6:{click:function(){makeRandomBody();clickOnRandomBody()}},1:"randomBody",13:5000000,0:body,26:1,4:[27,"","",30],24:66,9:uni([{ "font-size":"0.821429rem"},
+textBoxCSS,baseCSS])})})
 			
 			
 function createDynamicDivs() {
