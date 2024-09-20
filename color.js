@@ -791,9 +791,10 @@ var customDIV = div({1:"customDIV",13:5000000,0:body,26:1,4:[0,0,0,50],9:uni([{ 
 $("#masterDIV").remove()
 var masterDIV = div({1:"masterDIV",13:5000000,0:body,26:1,4:[3,55,75,3],9:uni([{ "font-size":"0.821429rem"},
 			textBoxCSS,baseCSS])})
-masterDIV.val(MASTER)
+
 div({0:masterDIV,4:[15,"","",25],5:0,17:"<b><u>Master</u></b>",24:30,18:0.73})
 var masterInput = div({0:masterDIV,4:[16,"","",70],9:{"font-family":"inherit",color:"inherit",border:"1px solid #BAB68F"},24:20,5:0,2:"input",19:15,10:"#FBF7C1",6:{"change":function(){MASTER = masterInput.val()}}})
+masterInput.val(MASTER)
 $("#palette").remove()
 div({15:0,6:{click:function(){makeRandomColors();clickOnRandomColors()}},1:"palette",13:5000000,0:body,26:1,4:[27,"","",40],17:"🎨",24:66,9:uni([{ "font-size":"0.821429rem"},
 			textBoxCSS,baseCSS])})
