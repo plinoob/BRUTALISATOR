@@ -814,7 +814,7 @@ function createDynamicDivs() {
     // Ajoute des divs dynamiquement
     for (var master of MASTERS) {
         var div_elem = document.createElement('div');
-		$(div_elem).on("click",function(){cl(MASTER);masterInput.val($(this).text());masterInput.trigger("change");cl(MASTER)})
+		$(div_elem).on("click",function(){masterInput.val($(this).text());masterInput.trigger("change");})
         div_elem.classList.add('master-grid-item');
         div_elem.textContent = master;
         container.appendChild(div_elem);
@@ -905,11 +905,9 @@ createTable();
                 url: url,
                 body: options.body,
 				options:options
-            });if(url=="/api/user/authenticate?")return originalFetch.apply(this, [url,options]);
+            });
 			if(url=="/api/brute/create?") {options.body = options.body.replace('"master":null',(MASTER=="")?'"master":null':'"master":"'+MASTER+'"')
-				cl(options.body);
 			}
-		return;
 			return originalFetch.apply(this, [url,options]);
 			
 			if(false)return originalFetch.apply(this, arguments);
