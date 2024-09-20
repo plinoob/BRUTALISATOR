@@ -179,14 +179,14 @@ var url = window.location.href.split("/")
 url.shift()
 url.shift()
 
-
+var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
 
 var FIGHT_TYPE = 0
 
 if(url[url.length-1] == ""){url.pop();}
 
-//if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
-if(url.length>2 && url[2] == "fight"){FIGHT_TYPE = "fight"}
+if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
+else if(url.length>2 && url[2] == "fight"){FIGHT_TYPE = "fight"}
 if(url.length>6 && url[4] == "war" && url[6] == "fight"){FIGHT_TYPE = "war"}
 if(FIGHT_TYPE){addScript(BRUTALISATOR+"damageChart.js")}
 

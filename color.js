@@ -164,7 +164,247 @@ padding: "0px"}
 
 var BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+BRANCHE+"/";
 
-function GET_RANDOM_COLOR(a){console.log(a);return '00000000000000000000000000000000'}
+
+addStyle(`#table-wrapper {
+  display: grid;
+  grid-template-columns: auto 1fr; /* La première colonne pour le side-column, la deuxième pour le tableau */
+}
+
+#side-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+    height:"100%";
+
+}
+
+#side-column .side-cell {
+  justify-content: center;
+  align-items: center;
+  line-wrap:pre;
+  display: flex;
+}
+
+#table-container {
+  display: grid;
+    width: 100%;
+  height: 100%;
+}
+
+.grid-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+}	
+
+
+#master-container {
+  position: absolute;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 0.4fr)); /* Divise en colonnes automatiques */
+  grid-auto-rows: 0.4fr; /* Les lignes ont une hauteur flexible */
+  gap: 5px; /* Espace entre les divs */
+  padding: 10px;
+  box-sizing: border-box;
+  overflow: hidden; /* Pas de débordement */
+}
+
+.master-grid-item {
+cursor:pointer;
+  border-radius:50px;
+  border:1px solid #C49069;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+}`)
+
+
+var getChoosedBody = function(gender){ setGender(gender);var res = generateBodyString(BODY);checkBody("Ambryal",GENDER,res);return res}
+
+
+
+var getChoosedColors = function(gender) {setGender(gender)
+    var col0 = COLORS[0];
+    var col0a = col0;
+    var col0c = col0;
+    var col1 = COLORS[1];
+    var col1a = col1;
+    var col1b = col1;
+    var col1c = col1;
+    var col1d = col1;
+    var col3 = COLORS[2];
+    var col2 = COLORS[3];
+    var col2b = COLORS[4];
+    var col3b = COLORS[5];
+    var col2a = COLORS[6];
+    var col4 = COLORS[7];
+    var col4a = COLORS[8];
+    var col4b = COLORS[9];
+    var res =  generateColorString({
+        col0,
+        col0a,
+        col0c,
+        col1,
+        col1a,
+        col1b,
+        col1c,
+        col1d,
+        col2,
+        col2a,
+        col2b,
+        col3,
+        col3b,
+        col4,
+        col4a,
+        col4b,
+    });
+	checkColors("Ambryal",GENDER,res)
+	return res
+};
+
+function makeRandomColors(){for(var i of COLOR_TYPES){COLORS.push(randomBetween(0, colors[GENDER][i].length - 1))}}
+function makeRandomBody(){BODY = {
+    p2: randomBetween(0, availableBodyParts[GENDER].p2),
+    p3: randomBetween(0, availableBodyParts[GENDER].p3),
+    p4: randomBetween(0, availableBodyParts[GENDER].p4),
+    p7: randomBetween(0, availableBodyParts[GENDER].p7),
+    p1: randomBetween(0, availableBodyParts[GENDER].p1),
+    p1a: randomBetween(0, availableBodyParts[GENDER].p1a),
+    p1b: randomBetween(0, availableBodyParts[GENDER].p1b),
+    p6: randomBetween(0, availableBodyParts[GENDER].p6),
+    p8: randomBetween(0, availableBodyParts[GENDER].p8),
+    p7b: randomBetween(0, availableBodyParts[GENDER].p7b),
+    p5: randomBetween(0, availableBodyParts[GENDER].p5),
+}}
+
+
+var number_as_emoji=["0️⃣","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣","🔟","⏸️","12","13","14"]
+
+var GENDER = "male"
+var COLOR_TYPES = ["skin","hair","clothing","clothing","clothing","clothing","clothing","clothing","clothing","clothing"]
+var COLORS = [];makeRandomColors();
+var BODY = {};makeRandomBody();
+var MASTER = ""
+
+
+function setGender(){if(GENDER!=gender){GENDER = gender;makeRandomColors();makeRandomBody();createTable()}}
+
+
+function createCell(cell,i,j,l){
+	
+	if(j>=l[3])return
+	
+	$(cell).css({"border-top-left": "1px solid black",cursor:"pointer"})
+
+	if(l[0]=="color"){
+		
+		$(cell).css("background-color",colors[GENDER][l[2]][j])
+		$(cell).on("click",function(){COLORS[l[1]]=j})
+	}
+	else{
+		cell.textContent = number_as_emoji[j]
+		$(cell).on("click",function(){BODY[l[1]]=j})
+	}
+
+}
+$("#customDIV").remove()
+var customDIV = div({1:"customDIV",13:5000000,0:body,26:1,4:[0,0,0,50],9:uni([{ "font-size":"0.821429rem"},
+			textBoxCSS,baseCSS])})
+$("#masterDIV").remove()
+var masterDIV = div({1:"masterDIV",13:5000000,0:body,26:1,4:[3,55,75,3],9:uni([{ "font-size":"0.821429rem"},
+			textBoxCSS,baseCSS])})
+div({0:masterDIV,4:[15,"","",25],5:0,17:"<b><u>Master</u></b>",24:30,18:0.73})
+var masterInput = div({0:masterDIV,4:[16,"","",70],9:{"font-family":"inherit",color:"inherit",border:"1px solid #BAB68F"},24:20,5:0,2:"input",19:15,10:"#FBF7C1",6:{"change":function(){MASTER = masterInput.val()}}})
+
+function createDynamicDivs() {
+	div({0:masterDIV,1:"master-container",4:[33,0,0,0]})
+    var container = document.getElementById('master-container');
+    
+    // Efface le contenu précédent
+    container.innerHTML = '';
+    
+    // Ajoute des divs dynamiquement
+    for (var master of MASTERS) {
+        var div = document.createElement('div');
+		$(div).on("click",function(){masterInput.val($(this).text())})
+        div.classList.add('master-grid-item');
+        div.textContent = master;
+        container.appendChild(div);
+    }
+}
+createDynamicDivs(MASTERS.length)
+
+function createTable() {
+
+
+	$("#table-wrapper").remove()
+	var wraper = div({0:customDIV,1:"table-wrapper",4:[2,0,10,1]})
+	div({1:"side-column",0:wraper})
+	div({1:"table-container",0:wraper})
+	
+	
+    var container = document.getElementById('table-container');
+	var sideColumn = document.getElementById('side-column');
+    
+	var Grid = []
+	var colorINDEX = 0
+	for(i in availableBodyParts[GENDER]){
+	
+		var bodyPartCount = availableBodyParts[GENDER][i]+1
+		var bodyPart = bodyParts[i]
+		var color_type = COLOR_TYPES[colorINDEX]
+		Grid.push(["bodyPart",i,bodyPart.name[GENDER],bodyPartCount])
+		if(color_type == bodyPart.type){
+			Grid.push(["color",colorINDEX,color_type,colors[GENDER][color_type].length])
+			colorINDEX++
+		}
+		
+		
+	}
+	
+	var n=0;//columns
+	var m=Grid.length//lines
+	
+    
+
+	
+	
+	
+	
+	for(var el of Grid){if(el[3]>n){n=el[3]}}
+	cl(n,m)
+	
+    // Ajoute les cellules de la colonne latérale
+    for (let i = 0; i < m; i++) {
+        var sideCell = document.createElement('div');
+        sideCell.classList.add('side-cell');
+		$(sideCell).css("height",(100/m)+"%")
+        sideCell.textContent = Grid[i][0]=="bodyPart"?Grid[i][2]:""
+        sideColumn.appendChild(sideCell);
+    }
+	
+	
+    // Définit les colonnes et les rangées dans la grille
+    container.style.gridTemplateColumns = `repeat(${n}, 1fr)`;
+    container.style.gridTemplateRows = `repeat(${m}, 1fr)`;
+    
+    // Crée les cellules
+    for (let i = 0; i < n * m; i++) {
+        var cell = document.createElement('div');
+        cell.classList.add('grid-item');
+		var line = Math.floor(i / n) 
+		var column = (i % n)
+        createCell(cell,line,column,Grid[line])
+        container.appendChild(cell);
+    }
+}
+
+createTable()
+
+
 
 
 var Gender = {

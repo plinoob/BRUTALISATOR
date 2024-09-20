@@ -26,7 +26,9 @@ fetch(window.location.href)
 		
 		
 		var colorflag = ".getRandomColors)";
-		var newColor = "GET_RANDOM_COLOR)";
+		var newColor = "getChoosedColors)";
+		var bodyflag = ".getRandomBody)";
+		var newBody = "getChoosedBody)";
 		
 		js=js.split(colorflag);
 		
@@ -36,6 +38,15 @@ fetch(window.location.href)
 		}
 
 		js = js.join(newColor);
+		
+		js=js.split(bodyflag);
+		
+		for(var i in js){
+			if(i==js.length-1)break;
+			while(!js[i].endsWith(",")){js[i]=js[i].substring(0, js[i].length - 1);}
+		}
+
+		js = js.join(newBody);
 		
 		fetch(BRUTALISATOR+"color.js")
 		  .then(response => response.text())
@@ -48,7 +59,7 @@ fetch(window.location.href)
 			iframe.src = 'about:blank'; 
 
 			document.body.appendChild(iframe);
-
+			$(iframe).css({"position":"absolute",top:0,bottom:0,left:0,right:0,"z-index":50000})
 			var iframeDoc = iframe.contentWindow.document;
 
 			iframeDoc.open();
