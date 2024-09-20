@@ -40,8 +40,8 @@ var observer = new MutationObserver((mutationsList) => {
 			s+=bruteSTR
 			}
 			return s}
-
-			var allDIV = div({0:body,26:1,9:uni([{ "font-size":"0.821429rem"
+			$("#dmgChartDIV").remove()
+			var allDIV = div({1:"dmgChartDIV",0:body,26:1,9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
 			

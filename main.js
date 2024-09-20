@@ -4,7 +4,7 @@ function rien(){}
 var fediv={
 3:function(a,b,c){c.addClass(a[b])},
 4:function(a,b,c){if(a[b]===0){a[b]=[0,0,0,0]}else if(a[b]===1){a[b]=[50,"","",50]}else if(a[b]===2){a[b]=["","","",""]};for(var i in a[b]){if(typeof(a[b][i])==typeof(1)){a[b][i]=a[b][i]+"%"}};c.css({"position":"absolute","top":a[b][0],"right":a[b][1],"bottom":a[b][2],"left":a[b][3]})},
-5:function(a,b,c){if(a[b]===0){a[b]=[-50,-50]};if(!isara(a[b])){csi(c,5,a[b])}else{for(var i in a[b]){if(typeof(a[b][i])==typeof(1)){a[b][i]=a[b][i]+"%"}};c.css("transform","translate("+a[b][0]+","+a[b][1]+")")}},
+5:function(a,b,c){if(a[b]===0){a[b]=[-50,-50]};for(var i in a[b]){if(typeof(a[b][i])==typeof(1)){a[b][i]=a[b][i]+"%"}};c.css("transform","translate("+a[b][0]+","+a[b][1]+")")},
 50:function(a,b,c){c.css("text-align","center")},
 13:function(a,b,c){c.css("z-index",a[b])},
 12:function(a,b,c){if(a[b]===0){a[b]=["100%","100%"]};c.css({"width":a[b][0],"height":a[b][1]})},
@@ -124,6 +124,7 @@ addStyle(`		#shuriken {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index:300000000;
 }
 
 #shuriken-image {
