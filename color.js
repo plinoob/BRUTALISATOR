@@ -737,8 +737,9 @@ var COLOR_TYPES = ["skin","hair","clothing","clothing","clothing","clothing","cl
 var COLORS = [];makeRandomColors();
 var BODY = {};makeRandomBody();
 
+var MODIFIED = false
 
-function setGender(gender){if(GENDER!=gender){GENDER_BODY[GENDER] = BODY;GENDER_COLORS[GENDER] = COLORS;
+function setGender(gender){if(GENDER!=gender){if(MODIFIED){MODIFIED=false;GENDER_BODY[GENDER] = BODY;GENDER_COLORS[GENDER] = COLORS;}
 GENDER = gender;if(!(gender in GENDER_BODY)){makeRandomColors();makeRandomBody()}
 else{BODY = GENDER_BODY[gender];COLORS = GENDER_COLORS[gender]};createTable()}}
 
@@ -752,9 +753,7 @@ function createCell(cell,i,j,l){
 	if(l[0]=="color"){
 		
 		$(cell).css("background-color",colors[GENDER][l[2]][j])
-		$(cell).on("click",function(){COLORS[l[1]]=j;
-		var element=document.querySelector('[aria-label="Changer les couleurs"]')
-		element.click();setTimeout(function(){element.click();},10);
+		$(cell).on("click",function(){COLORS[l[1]]=j;clickOnRandomColors()
 		;
 })
 		if(COLORS[l[1]]==j){$(cell).css({border:"4px solid #0000ff"})}
@@ -763,13 +762,28 @@ function createCell(cell,i,j,l){
 	else{
 		cell.textContent = (BODY[l[1]]==j)?"✅":number_as_emoji[j];
 		
-		$(cell).on("click",function(){BODY[l[1]]=j;
-		var element=document.querySelector('[aria-label="Changer l\'apparence"]')
-		element.click();setTimeout(function(){element.click();},10);
+		$(cell).on("click",function(){BODY[l[1]]=j;clickOnRandomBody()
 		})
 	}
 
 }
+
+function clickOnRandomColors(){
+	
+MODIFIED=true;
+		var element=document.querySelector('[aria-label="Changer les couleurs"]')
+		element.click();
+	
+}
+
+function clickOnRandomBody(){
+	
+MODIFIED=true;
+		var element=document.querySelector('[aria-label="Changer l\'apparence"]')
+		element.click();setTimeout(function(){element.click();},10);
+	
+}
+
 $("#customDIV").remove()
 var customDIV = div({1:"customDIV",13:5000000,0:body,26:1,4:[0,0,0,50],9:uni([{ "font-size":"0.821429rem"},
 			textBoxCSS,baseCSS])})
