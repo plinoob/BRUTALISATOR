@@ -373,7 +373,7 @@ var checkColors = (user, gender, colorString, includeSpecials = false) => {
     }
 	console.log("couleurs conformes");
 };
-colors = {
+var colors = {
     male: {
         skin: [
             '#996600',
