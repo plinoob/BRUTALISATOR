@@ -841,6 +841,7 @@ function createTable() {
 		var bodyPartCount = availableBodyParts[GENDER][i]+1
 		var bodyPart = bodyParts[i]
 		var color_type = COLOR_TYPES[colorINDEX]
+		if(bodyPart.name[GENDER]=="nothing"){colorINDEX++;continue;}
 		Grid.push(["bodyPart",i,bodyPart.name[GENDER],bodyPartCount])
 		if(color_type == bodyPart.type){
 			Grid.push(["color",colorINDEX,color_type,colors[GENDER][color_type].length])
