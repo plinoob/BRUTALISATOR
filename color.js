@@ -737,7 +737,7 @@ var BODY = {};makeRandomBody();
 var MASTER = ""
 
 
-function setGender(){if(GENDER!=gender){GENDER = gender;makeRandomColors();makeRandomBody();createTable()}}
+function setGender(gender){if(GENDER!=gender){GENDER = gender;makeRandomColors();makeRandomBody();createTable()}}
 
 
 function createCell(cell,i,j,l){
