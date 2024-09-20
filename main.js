@@ -68,7 +68,7 @@ function addScript( src ) {
 
 function isTextInDOM(text,balise) {
   // Récupérer tous les éléments de la page
-  const elements = document.querySelectorAll(balise);
+  var elements = document.querySelectorAll(balise);
   var found = false
   // Parcourir tous les éléments et vérifier leur texte
   elements.forEach(element => {
@@ -82,7 +82,7 @@ function isTextInDOM(text,balise) {
 
 function findTextInDOM(text,balise) {
   // Récupérer tous les éléments de la page
-  const elements = document.querySelectorAll(balise);
+  var elements = document.querySelectorAll(balise);
   var elem
   // Parcourir tous les éléments et vérifier leur texte
   elements.forEach(element => {
@@ -116,7 +116,7 @@ function insertDivAfterElement(newDiv,referenceDiv) {
 }
 
 function addStyle(styleString) {
-  const style = document.createElement('style');
+  var style = document.createElement('style');
   style.textContent = styleString;
   document.head.append(style);
 }
