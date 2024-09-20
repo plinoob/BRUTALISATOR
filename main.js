@@ -145,7 +145,7 @@ addStyle(`		#shuriken {
 	`)
 $("#shuriken").remove()
 var shurikenDIV = div({0:body,4:["33px","33px","",""],1:"shuriken"})
-div({0:shurikenDIV,2:"img",22:shuriken,1:"shuriken-image"})
+div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image"})
 function stopLoading(){$(shurikenDIV).css("display","none")}
 var baseCSS = {	"font-family": "Roboto, Helvetica, Arial, sans-serif",
     "font-weight": "400",
@@ -185,7 +185,7 @@ var FIGHT_TYPE
 if(url[url.length-1] == ""){url.pop();}
 
 //if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
-
+cl("URL : ",url)
 if(url.length>2 && url[2] == "fight"){FIGHT_TYPE = "fight"}
 if(url.length>6 && url[4] == "war" && url[6] == "fight"){FIGHT_TYPE = "war"}
 if(FIGHT_TYPE){addScript(BRUTALISATOR+"damageChart.js")}
