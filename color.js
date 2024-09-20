@@ -775,7 +775,7 @@ function createDynamicDivs() {
     
     // Ajoute des divs dynamiquement
     for (var master of MASTERS) {
-        div_elem = document.createElement('div');
+        var div_elem = document.createElement('div');
 		$(div_elem).on("click",function(){masterInput.val($(this).text())})
         div_elem.classList.add('master-grid-item');
         div_elem.textContent = master;
