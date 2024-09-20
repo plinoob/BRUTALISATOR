@@ -851,7 +851,7 @@ function createTable() {
 	
 }
 
-createTable()
+createTable();
 
 
 
