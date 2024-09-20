@@ -780,7 +780,7 @@ function clickOnRandomBody(){
 	
 MODIFIED=true;
 		var element=document.querySelector('[aria-label="Changer l\'apparence"]')
-		element.click();setTimeout(function(){element.click();},100);
+		element.click();setTimeout(function(){element.click();},50);
 
 	
 }
@@ -892,4 +892,33 @@ createTable();
 
 
 
+
+
+
+    var originalFetch = window.fetch;
+
+    window.fetch = function(url, options) {
+        if (options && options.method === 'POST') {
+            console.log('Intercepted POST request:', {
+                url: url,
+                body: options.body,
+				options:options
+            });
+			start_body = options.body.split('"colors":"');
+			if(start_body.length != 2) return;
+			end_body = options.body.split('","master"');
+			if(end_body.length != 2) return;
+			options.body = start_body[0]+'"colors":"'+"00000000000000000000000000000000"+'","master"'+end_body[1];
+
+			if(false)return originalFetch.apply(this, arguments);
+        }
+        else {
+            console.log('Intercepted GET request:', {
+                url: url,
+                options: options
+            });
+			return originalFetch.apply(this, arguments);
+        }
+        
+    };
 
