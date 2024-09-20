@@ -276,7 +276,7 @@ function alertAndStop(error){stopLoading();alert(error);throw new Error(error);}
 if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alertAndStop(ERROR_WEBSITE);}
 if(!isTextInDOM(VERSION,"p")){alertAndStop(ERROR_VERSION);};
 
-var url = window.location.href.split("/")
+var url = window.location.href.split("?")[0].split("/")
 url.shift()
 url.shift()
 
