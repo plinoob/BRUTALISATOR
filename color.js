@@ -533,24 +533,24 @@ var bodyParts = {
 					p1a:{
 						name :
 						{
-							male:"belt",
-							female:"belt"
+							male:"Belt",
+							female:"Belt"
 						},
 						type : "clothing"
 					},
 					p1b:{
 						name :
 						{
-							male:"roman belt",
-							female:"roman belt"
+							male:"Roman Belt",
+							female:"Roman Belt"
 						},
 						type : "clothing"
 					},
 					p2:{
 						name :
 						{
-							male:"size",
-							female:"size"
+							male:"Size",
+							female:"Size"
 						},
 						type : "skin"
 					},
@@ -581,16 +581,16 @@ var bodyParts = {
 					p6:{
 						name :
 						{
-							male:"short",
-							female:"short"
+							male:"Short",
+							female:"Short"
 						},
 						type : "clothing"
 					},
 					p7:{
 						name :
 						{
-							male:"clothing",
-							female:"clothing"
+							male:"Clothing",
+							female:"Clothing"
 						},
 						type : "clothing"
 					},
@@ -841,7 +841,7 @@ function createTable() {
 		var bodyPartCount = availableBodyParts[GENDER][i]+1
 		var bodyPart = bodyParts[i]
 		var color_type = COLOR_TYPES[colorINDEX]
-		if(bodyPart.name[GENDER]=="nothing"){colorINDEX++;continue;}
+		if(bodyPart.name[GENDER]=="Nothing"){colorINDEX++;continue;}
 		Grid.push(["bodyPart",i,bodyPart.name[GENDER],bodyPartCount])
 		if(color_type == bodyPart.type){
 			Grid.push(["color",colorINDEX,color_type,colors[GENDER][color_type].length])
