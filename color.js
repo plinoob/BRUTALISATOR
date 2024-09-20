@@ -728,7 +728,7 @@ function makeRandomBody(){BODY = {
 }}
 
 
-var number_as_emoji=["0️⃣","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣","🔟","⏸️","12","13","14"]
+var number_as_emoji=["0️⃣","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣","🔟","⏸️","12","13","14","15","16","17","18","19","20","21","22"]
 
 var GENDER = "male"
 var GENDER_BODY={}
@@ -752,14 +752,21 @@ function createCell(cell,i,j,l){
 	if(l[0]=="color"){
 		
 		$(cell).css("background-color",colors[GENDER][l[2]][j])
-		$(cell).on("click",function(){COLORS[l[1]]=j})
+		$(cell).on("click",function(){COLORS[l[1]]=j;
+		var element=document.querySelector('[aria-label="Changer les couleurs"]')
+		element.click();setTimeout(function(){element.click();},10);
+		;
+})
 		if(COLORS[l[1]]==j){$(cell).css({border:"4px solid #0000ff"})}
 		
 	}
 	else{
 		cell.textContent = (BODY[l[1]]==j)?"✅":number_as_emoji[j];
 		
-		$(cell).on("click",function(){BODY[l[1]]=j})
+		$(cell).on("click",function(){BODY[l[1]]=j;
+		var element=document.querySelector('[aria-label="Changer l\'apparence"]')
+		element.click();setTimeout(function(){element.click();},10);
+		})
 	}
 
 }
