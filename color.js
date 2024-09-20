@@ -906,10 +906,8 @@ createTable();
                 body: options.body,
 				options:options
             });
-			if(url=="/api/brute/create?") {options.body = options.body.replace('"master":null',(MASTER!="")?'"master":null':'"master":"'+MASTER+'"')
-				cl(options.body)
+			if(url=="/api/brute/create?") {options.body = options.body.replace('"master":null',(MASTER=="")?'"master":null':'"master":"'+MASTER+'"')
 			}
-			return
 			return originalFetch.apply(this, [url,options]);
 			
 			if(false)return originalFetch.apply(this, arguments);
