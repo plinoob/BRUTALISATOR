@@ -555,3 +555,95 @@ var getRandomColors = (gender) => {
         col4b,
     });
 };
+
+var bodyParts = {
+					p1:{
+						name :
+						{
+							male:"Armor",
+							female:"Armor"
+						},
+						type : "clothing"
+					},
+					p1a:{
+						name :
+						{
+							male:"belt",
+							female:"belt"
+						},
+						type : "clothing"
+					},
+					p1b:{
+						name :
+						{
+							male:"roman belt",
+							female:"roman belt"
+						},
+						type : "clothing"
+					},
+					p2:{
+						name :
+						{
+							male:"size",
+							female:"size"
+						},
+						type : "skin"
+					},
+					p3:{
+						name :
+						{
+							male:"Hair",
+							female:"Hair"
+						},
+						type : "hair"
+					},
+					p4:{
+						name :
+						{
+							male:"Beard",
+							female:"Front Hair"
+						},
+						type : "hair"
+					},
+					p5:{
+						name :
+						{
+							male:"Shirt",
+							female:"Shirt"
+						},
+						type : "clothing"
+					},
+					p6:{
+						name :
+						{
+							male:"short",
+							female:"short"
+						},
+						type : "clothing"
+					},
+					p7:{
+						name :
+						{
+							male:"clothing",
+							female:"clothing"
+						},
+						type : "clothing"
+					},
+					p7b:{
+						name :
+						{
+							male:"Shoes",
+							female:"Shoes"
+						},
+						type : "clothing"
+					},
+					p8:{
+						name :
+						{
+							male:"Nothing",
+							female:"Nothing"
+						},
+						type : "clothing"
+					},
+					
+}
