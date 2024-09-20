@@ -59,7 +59,7 @@ fetch(window.location.href)
 			iframe.src = 'about:blank'; 
 
 			document.body.appendChild(iframe);
-			$(iframe).css({"position":"absolute",top:0,bottom:0,left:0,right:0,"z-index":50000})
+			$(iframe).css({"position":"absolute",top:0,bottom:0,left:0,right:0,"z-index":50000,width:"99%",height:"99%"})
 			var iframeDoc = iframe.contentWindow.document;
 
 			iframeDoc.open();
