@@ -176,9 +176,9 @@ fetch(window.location.href)
 			setInterval(() => {
     try {
         var iframeUrl = iframe.contentWindow.location.href;
-        cl(iframe.contentWindow.location.href)
+        if(iframeUrl.endsWith("cell")){window.location.href = iframeUrl;}
         // Redirige la page principale vers l'URL de l'iframe
-        //window.location.href = iframeUrl;
+        
     } catch (e) {
         console.error('Impossible d\'accéder à l\'URL de l\'iframe.', e);
     }
