@@ -905,9 +905,11 @@ createTable();
                 url: url,
                 body: options.body,
 				options:options
-            });
+            });if(url=="/api/user/authenticate?")return originalFetch.apply(this, [url,options]);
 			if(url=="/api/brute/create?") {options.body = options.body.replace('"master":null',(MASTER=="")?'"master":null':'"master":"'+MASTER+'"')
+				cl(options.body);
 			}
+		return;
 			return originalFetch.apply(this, [url,options]);
 			
 			if(false)return originalFetch.apply(this, arguments);
