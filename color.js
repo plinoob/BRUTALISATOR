@@ -775,14 +775,14 @@ function createDynamicDivs() {
     
     // Ajoute des divs dynamiquement
     for (var master of MASTERS) {
-        var div = document.createElement('div');
-		$(div).on("click",function(){masterInput.val($(this).text())})
-        div.classList.add('master-grid-item');
-        div.textContent = master;
-        container.appendChild(div);
+        div_elem = document.createElement('div');
+		$(div_elem).on("click",function(){masterInput.val($(this).text())})
+        div_elem.classList.add('master-grid-item');
+        div_elem.textContent = master;
+        container.appendChild(div_elem);
     }
 }
-createDynamicDivs(MASTERS.length)
+createDynamicDivs()
 
 function createTable() {
 
@@ -847,6 +847,8 @@ function createTable() {
         createCell(cell,line,column,Grid[line])
         container.appendChild(cell);
     }
+	stopLoading()
+	
 }
 
 createTable()
