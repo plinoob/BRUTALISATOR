@@ -712,7 +712,7 @@ var getChoosedColors = function(gender) {cl("COLOR CALLED"); setGender(gender);
 	return res
 };
 
-function makeRandomColors(){for(var i of COLOR_TYPES){COLORS.push(randomBetween(0, colors[GENDER][i].length - 1))}}
+function makeRandomColors(){COLORS = [];for(var i of COLOR_TYPES){COLORS.push(randomBetween(0, colors[GENDER][i].length - 1))}}
 function makeRandomBody(){BODY = {
     p2: randomBetween(0, availableBodyParts[GENDER].p2),
     p3: randomBetween(0, availableBodyParts[GENDER].p3),
@@ -731,28 +731,35 @@ function makeRandomBody(){BODY = {
 var number_as_emoji=["0️⃣","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣","🔟","⏸️","12","13","14"]
 
 var GENDER = "male"
+var GENDER_BODYS={}
+var GENDER_COLORS={}
 var COLOR_TYPES = ["skin","hair","clothing","clothing","clothing","clothing","clothing","clothing","clothing","clothing"]
 var COLORS = [];makeRandomColors();
 var BODY = {};makeRandomBody();
 var MASTER = ""
 
 
-function setGender(gender){cl("GENDER : ",GENDER,gender);if(GENDER!=gender){GENDER = gender;makeRandomColors();makeRandomBody();createTable()}}
+function setGender(gender){if(GENDER!=gender){GENDER_BODY[GENDER] = BODY;GENDER_COLORS[GENDER] = COLORS;
+GENDER = gender;if(!(gender in GENDER_BODY)){makeRandomColors();makeRandomBody()}
+else{BODY = GENDER_BODY[gender];COLORS = GENDER_COLORS[gender]};createTable()}}
 
 
 function createCell(cell,i,j,l){
 	
 	if(j>=l[3])return
 	
-	$(cell).css({"border-top-left": "1px solid black",cursor:"pointer"})
+	$(cell).css({cursor:"pointer"})
 
 	if(l[0]=="color"){
 		
 		$(cell).css("background-color",colors[GENDER][l[2]][j])
 		$(cell).on("click",function(){COLORS[l[1]]=j})
+		if(COLORS[l[1]]==j){$(cell).css({border:"4px solid #0000ff"})}
+		
 	}
 	else{
-		cell.textContent = number_as_emoji[j]
+		cell.textContent = (BODY[l[1]]==j)"✅"?number_as_emoji[j]
+		
 		$(cell).on("click",function(){BODY[l[1]]=j})
 	}
 
