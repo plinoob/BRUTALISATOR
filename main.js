@@ -279,7 +279,7 @@ if(!isTextInDOM(VERSION,"p")){alertAndStop(ERROR_VERSION);};
 var url = window.location.href.split("?")[0].split("/")
 url.shift()
 url.shift()
-
+cl(url)
 
 var FIGHT_TYPE = 0
 
