@@ -905,12 +905,10 @@ createTable();
                 body: options.body,
 				options:options
             });
-			if(url=="/api/user/authenticate?")return originalFetch.apply(this, arguments);
-			start_body = options.body.split('"colors":"');
-			if(start_body.length != 2) return;
-			end_body = options.body.split('","master"');
-			if(end_body.length != 2) return;
-			options.body = start_body[0]+'"colors":"'+"00000000000000000000000000000000"+'","master"'+end_body[1];
+			if(url=="/api/brute/create?") options.body = options.body.replace('"master":null',(MASTER!="")?'"master":null':'"master":"'+MASTER+'"')
+				
+			
+			return originalFetch.apply(this, [url,options]);
 			
 			if(false)return originalFetch.apply(this, arguments);
         }

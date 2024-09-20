@@ -96,7 +96,6 @@ var randomBetween = (min, max) => {
 
 
 
-
 fetch(window.location.href)
   .then(response => response.text())
   .then(html => {
@@ -162,7 +161,7 @@ fetch(window.location.href)
 			codeSource = codeSource[0]+'<script type="module">var MASTER = "'+master+'";'+'var BRANCHE = "'+BRANCHE+'";'+'var SHURIKEN = "'+SHURIKEN+'";'+color+js+"\nconsole.log('FIN');"+codeSource[1];
 			  
 			var iframe = document.createElement('iframe');
-
+			
 			iframe.src = 'about:blank'; 
 
 			document.body.appendChild(iframe);
@@ -174,7 +173,16 @@ fetch(window.location.href)
 			iframeDoc.write(codeSource);
 			iframeDoc.close();
 			stopLoading();
-			cl(iframe);
+			setInterval(() => {
+    try {
+        var iframeUrl = iframe.contentWindow.location.href;
+        cl(iframe.contentWindow.location.href)
+        // Redirige la page principale vers l'URL de l'iframe
+        //window.location.href = iframeUrl;
+    } catch (e) {
+        console.error('Impossible d\'accéder à l\'URL de l\'iframe.', e);
+    }
+}, 1000);
 		  })
 		
 
