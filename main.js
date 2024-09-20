@@ -164,36 +164,7 @@ padding: "0px"}
 
 var BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+BRANCHE+"/";
 
-
-
-var VERSION = "v2.72.4"
-var ERROR_VERSION = "Mauvaise version de 💪BRUTALISATOR : "+VERSION+")"
-var ERROR_WEBSITE = "Utilise 💪BRUTALISATOR sur une page Labrute !"
-var NOTHING_TO_DO = "💪BRUTALISATOR n'a pas encore de fonctionnalité pour cette page ! \n\n============== FONCTIONNALITÉS ================\n\n• CRÉATION : Customisation de l'apparence, choix du maître\n\n• COMBAT : Récapitulatif des dommages"
-function alertAndStop(error){stopLoading();alert(error);throw new Error(error);}
-
-if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alertAndStop(ERROR_WEBSITE);}
-if(!isTextInDOM(VERSION,"p")){alertAndStop(ERROR_VERSION);};
-
-var url = window.location.href.split("/")
-url.shift()
-url.shift()
-
-var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
-
-var FIGHT_TYPE = 0
-
-if(url[url.length-1] == ""){url.pop();}
-
-if(url.length>2 && url[2] == "fight"){FIGHT_TYPE = "fight"}
-if(url.length>6 && url[4] == "war" && url[6] == "fight"){FIGHT_TYPE = "war"}
-
-
-
-if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
-else if(FIGHT_TYPE){addScript(BRUTALISATOR+"damageChart.js")}
-
-else{alertAndStop(NOTHING_TO_DO)}var Gender = {
+var Gender = {
   male: 'male',
   female: 'female'
 };
@@ -288,3 +259,33 @@ var randomBetween = (min, max) => {
         return min;
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
+
+
+var VERSION = "v2.72.4"
+var ERROR_VERSION = "Mauvaise version de 💪BRUTALISATOR : "+VERSION+")"
+var ERROR_WEBSITE = "Utilise 💪BRUTALISATOR sur une page Labrute !"
+var NOTHING_TO_DO = "💪BRUTALISATOR n'a pas encore de fonctionnalité pour cette page ! \n\n============== FONCTIONNALITÉS ================\n\n• CRÉATION : Customisation de l'apparence, choix du maître\n\n• COMBAT : Récapitulatif des dommages"
+function alertAndStop(error){stopLoading();alert(error);throw new Error(error);}
+
+if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alertAndStop(ERROR_WEBSITE);}
+if(!isTextInDOM(VERSION,"p")){alertAndStop(ERROR_VERSION);};
+
+var url = window.location.href.split("/")
+url.shift()
+url.shift()
+
+var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
+
+var FIGHT_TYPE = 0
+
+if(url[url.length-1] == ""){url.pop();}
+
+if(url.length>2 && url[2] == "fight"){FIGHT_TYPE = "fight"}
+if(url.length>6 && url[4] == "war" && url[6] == "fight"){FIGHT_TYPE = "war"}
+
+
+
+if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
+else if(FIGHT_TYPE){addScript(BRUTALISATOR+"damageChart.js")}
+
+else{alertAndStop(NOTHING_TO_DO)}
