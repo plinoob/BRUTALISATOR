@@ -180,7 +180,7 @@ url.shift()
 
 
 
-var FIGHT_TYPE
+var FIGHT_TYPE = 0
 
 if(url[url.length-1] == ""){url.pop();}
 
