@@ -731,12 +731,11 @@ function makeRandomBody(){BODY = {
 var number_as_emoji=["0️⃣","1️⃣","2️⃣","3️⃣","4️⃣","5️⃣","6️⃣","7️⃣","8️⃣","9️⃣","🔟","⏸️","12","13","14"]
 
 var GENDER = "male"
-var GENDER_BODYS={}
+var GENDER_BODY={}
 var GENDER_COLORS={}
 var COLOR_TYPES = ["skin","hair","clothing","clothing","clothing","clothing","clothing","clothing","clothing","clothing"]
 var COLORS = [];makeRandomColors();
 var BODY = {};makeRandomBody();
-var MASTER = ""
 
 
 function setGender(gender){if(GENDER!=gender){GENDER_BODY[GENDER] = BODY;GENDER_COLORS[GENDER] = COLORS;
@@ -770,6 +769,7 @@ var customDIV = div({1:"customDIV",13:5000000,0:body,26:1,4:[0,0,0,50],9:uni([{ 
 $("#masterDIV").remove()
 var masterDIV = div({1:"masterDIV",13:5000000,0:body,26:1,4:[3,55,75,3],9:uni([{ "font-size":"0.821429rem"},
 			textBoxCSS,baseCSS])})
+masterDIV.val(MASTER)
 div({0:masterDIV,4:[15,"","",25],5:0,17:"<b><u>Master</u></b>",24:30,18:0.73})
 var masterInput = div({0:masterDIV,4:[16,"","",70],9:{"font-family":"inherit",color:"inherit",border:"1px solid #BAB68F"},24:20,5:0,2:"input",19:15,10:"#FBF7C1",6:{"change":function(){MASTER = masterInput.val()}}})
 

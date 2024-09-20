@@ -146,8 +146,20 @@ fetch(window.location.href)
 		fetch(BRUTALISATOR+"color.js")
 		  .then(response => response.text())
 		  .then(color => {
+			  
+			var url = window.location.href.split("?")
+			var master = ""
+			if(url.length>1){url=url[1].split("&");
+			for(var argstr of url){
+				var argsplit=argstr.split("=");
+				if(argsplit.length>1){if(argsplit[0]=="ref"){master=argsplit[1]}}
+				
+			}
+			
+			}
+			  
 			codeSource = codeSource.split(pos+jsfile+mid+end);
-			codeSource = codeSource[0]+'<script type="module">var BRANCHE = "'+BRANCHE+'";'+'var SHURIKEN = "'+SHURIKEN+'";'+color+js+"\nconsole.log('FIN');"+codeSource[1];
+			codeSource = codeSource[0]+'<script type="module">var MASTER = "'+master+'";'+'var BRANCHE = "'+BRANCHE+'";'+'var SHURIKEN = "'+SHURIKEN+'";'+color+js+"\nconsole.log('FIN');"+codeSource[1];
 			  
 			var iframe = document.createElement('iframe');
 
