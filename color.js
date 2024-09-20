@@ -310,22 +310,22 @@ var checkBody = (user, gender, bodyString) => {
         p7b: parseInt(bodyString[9] || '0', 16),
         p8: parseInt(bodyString[10] || '0', 16),
     };
-    if (!checkBodyPart(inputs.p2, core_1.availableBodyParts[gender].p2)
-        || !checkBodyPart(inputs.p3, core_1.availableBodyParts[gender].p3)
-        || !checkBodyPart(inputs.p4, core_1.availableBodyParts[gender].p4)
-        || !checkBodyPart(inputs.p7, core_1.availableBodyParts[gender].p7)
-        || !checkBodyPart(inputs.p1, core_1.availableBodyParts[gender].p1)
-        || !checkBodyPart(inputs.p1a, core_1.availableBodyParts[gender].p1a)
-        || !checkBodyPart(inputs.p1b, core_1.availableBodyParts[gender].p1b)
-        || !checkBodyPart(inputs.p6, core_1.availableBodyParts[gender].p6)
-        || !checkBodyPart(inputs.p8, core_1.availableBodyParts[gender].p8)
-        || !checkBodyPart(inputs.p7b, core_1.availableBodyParts[gender].p7b)
-        || !checkBodyPart(inputs.p5, core_1.availableBodyParts[gender].p5)) {
+    if (!checkBodyPart(inputs.p2, availableBodyParts[gender].p2)
+        || !checkBodyPart(inputs.p3, availableBodyParts[gender].p3)
+        || !checkBodyPart(inputs.p4, availableBodyParts[gender].p4)
+        || !checkBodyPart(inputs.p7, availableBodyParts[gender].p7)
+        || !checkBodyPart(inputs.p1, availableBodyParts[gender].p1)
+        || !checkBodyPart(inputs.p1a, availableBodyParts[gender].p1a)
+        || !checkBodyPart(inputs.p1b, availableBodyParts[gender].p1b)
+        || !checkBodyPart(inputs.p6, availableBodyParts[gender].p6)
+        || !checkBodyPart(inputs.p8, availableBodyParts[gender].p8)
+        || !checkBodyPart(inputs.p7b, availableBodyParts[gender].p7b)
+        || !checkBodyPart(inputs.p5, availableBodyParts[gender].p5)) {
         alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des fringues !!!");
     }
 };
 var isValid = (value, array) => value >= 0 && value < array.length;
-var isValidWithSpecials = (value, array) => value >= 0 && (value < array.length || (value < 100 && value > (99 - core_1.colors.special.length)));
+var isValidWithSpecials = (value, array) => value >= 0 && (value < array.length || (value < 100 && value > (99 - colors.special.length)));
 var checkColors = (user, gender, colorString, includeSpecials = false) => {
     // Split colors every 2 characters
     var inputs = {
@@ -348,21 +348,21 @@ var checkColors = (user, gender, colorString, includeSpecials = false) => {
     };
     var check = includeSpecials ? isValidWithSpecials : isValid;
     if (!check(inputs.col0, colors[gender].skin)
-        || !check(inputs.col0a, core_1.colors[gender].skin)
-        || !check(inputs.col0c, core_1.colors[gender].skin)
-        || !check(inputs.col1, core_1.colors[gender].hair)
-        || !check(inputs.col1a, core_1.colors[gender].hair)
-        || !check(inputs.col1b, core_1.colors[gender].hair)
-        || !check(inputs.col1c, core_1.colors[gender].hair)
-        || !check(inputs.col1d, core_1.colors[gender].hair)
-        || !check(inputs.col3, core_1.colors[gender].clothing)
-        || !check(inputs.col2, core_1.colors[gender].clothing)
-        || !check(inputs.col2b, core_1.colors[gender].clothing)
-        || !check(inputs.col3b, core_1.colors[gender].clothing)
-        || !check(inputs.col2a, core_1.colors[gender].clothing)
-        || !check(inputs.col4, core_1.colors[gender].clothing)
-        || !check(inputs.col4a, core_1.colors[gender].clothing)
-        || !check(inputs.col4b, core_1.colors[gender].clothing)) {
+        || !check(inputs.col0a, colors[gender].skin)
+        || !check(inputs.col0c, colors[gender].skin)
+        || !check(inputs.col1, colors[gender].hair)
+        || !check(inputs.col1a, colors[gender].hair)
+        || !check(inputs.col1b, colors[gender].hair)
+        || !check(inputs.col1c, colors[gender].hair)
+        || !check(inputs.col1d, colors[gender].hair)
+        || !check(inputs.col3, colors[gender].clothing)
+        || !check(inputs.col2, colors[gender].clothing)
+        || !check(inputs.col2b, colors[gender].clothing)
+        || !check(inputs.col3b, colors[gender].clothing)
+        || !check(inputs.col2a, colors[gender].clothing)
+        || !check(inputs.col4, colors[gender].clothing)
+        || !check(inputs.col4a, colors[gender].clothing)
+        || !check(inputs.col4b, colors[gender].clothing)) {
         alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des couleurs !!!");
     }
     // col0, col0a, col0c must be the same
