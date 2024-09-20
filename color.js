@@ -8,7 +8,7 @@ var fediv={
 50:function(a,b,c){c.css("text-align","center")},
 13:function(a,b,c){c.css("z-index",a[b])},
 12:function(a,b,c){if(a[b]===0){a[b]=["100%","100%"]};c.css({"width":a[b][0],"height":a[b][1]})},
-10:function(a,b,c){if(a[b]===0){a[b]=blanc};c.css("background-color",rba(a[b]))},
+10:function(a,b,c){c.css("background-color",a[b])},
 16:function(a,b,c){if(a[b]===0){a[b]=police};c.css("font-family",a[b])},
 15:function(a,b,c){if(a[b]===0){a[b]="pointer"};c.css("cursor",a[b])},
 18:function(a,b,c){c.css("opacity",a[b])},
