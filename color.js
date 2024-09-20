@@ -746,7 +746,7 @@ else{BODY = GENDER_BODY[gender];COLORS = GENDER_COLORS[gender]}};createTable()}
 
 function createCell(cell,i,j,l){
 	
-	//if(j>=l[3])return
+	if(j>=l[3])return
 	
 	$(cell).css({cursor:"pointer"})
 
