@@ -127,7 +127,7 @@ addStyle(`		#shuriken {
 }
 
 #shuriken-image {
-  animation: organic-rotation 3s infinite;
+  animation: organic-rotation 4s infinite;
 }
 
 @keyframes organic-rotation {
@@ -135,7 +135,7 @@ addStyle(`		#shuriken {
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(1080deg);
+    transform: rotate(1800deg);
   }
 }
 
@@ -143,7 +143,7 @@ addStyle(`		#shuriken {
   animation-timing-function: cubic-bezier(0.42, 0.2, 0.44, 0.8); /* Courbe personnalisée */
 }
 	`)
-	
+$("#shuriken").remove()
 var shurikenDIV = div({0:body,4:["33px","33px","",""],1:"shuriken"})
 div({0:shurikenDIV,2:"img",22:shuriken,1:"shuriken-image"})
 function stopLoading(){$(shurikenDIV).css("display","none")}
@@ -169,7 +169,7 @@ var VERSION = "v2.72.4"
 var ERROR_VERSION = "Mauvaise version de 💪BRUTALISATOR : "+VERSION+")"
 var ERROR_WEBSITE = "Utilise 💪BRUTALISATOR sur une page Labrute !"
 var NOTHING_TO_DO = "💪BRUTALISATOR n'a pas encore de fonctionnalité pour cette page ! \n\n============== FONCTIONNALITÉS ================\n\n• CRÉATION : Customisation de l'apparence, choix du maître\n\n• COMBAT : Récapitulatif des dommages"
-function alertAndStop(error){alert(error);throw new Error(error);}
+function alertAndStop(error){stopLoading();alert(error);throw new Error(error);}
 
 if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alertAndStop(ERROR_WEBSITE);}
 if(!isTextInDOM(VERSION,"p")){alertAndStop(ERROR_VERSION);};

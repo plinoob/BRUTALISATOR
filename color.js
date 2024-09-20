@@ -127,7 +127,7 @@ addStyle(`		#shuriken {
 }
 
 #shuriken-image {
-  animation: organic-rotation 3s infinite;
+  animation: organic-rotation 4s infinite;
 }
 
 @keyframes organic-rotation {
@@ -135,7 +135,7 @@ addStyle(`		#shuriken {
     transform: rotate(0deg);
   }
   100% {
-    transform: rotate(1080deg);
+    transform: rotate(1800deg);
   }
 }
 
@@ -143,7 +143,7 @@ addStyle(`		#shuriken {
   animation-timing-function: cubic-bezier(0.42, 0.2, 0.44, 0.8); /* Courbe personnalisée */
 }
 	`)
-	
+$("#shuriken").remove()
 var shurikenDIV = div({0:body,4:["33px","33px","",""],1:"shuriken"})
 div({0:shurikenDIV,2:"img",22:shuriken,1:"shuriken-image"})
 function stopLoading(){$(shurikenDIV).css("display","none")}
