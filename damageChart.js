@@ -452,8 +452,7 @@ if (element) {
 
 var floatingDiv=(typeof(floatingDiv)==undefined)?false:floatingDiv
 if(!floatingDiv){
-	floatingDiv = div({12:[100,100],id:"floatingDiv",4:2,10:"#ff0000"})
-	$(document).ready(function() {
+
 });
 	
 }
