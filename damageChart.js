@@ -251,7 +251,7 @@ var s=""
 for(var i in sorted){
 	s+=' <b class = "bruteNameHover">'+((i in weaponImages)?'<img height="20px" src="'+weaponImages[i]+'">':i)+'</b>   '+"\n"
 }
-if($('#floatingDiv').length>0){div({2:"span",17:s,0:$('#floatingDiv').empty()})}
+if($('#floatingDiv').length>0){div({50:"right",2:"span",17:s,0:$('#floatingDiv').empty()})}
 s=""
 for(var i in sorted){
 	s+='<font text-align="right" opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)"><b>'+sorted[i]+"</b></font>"+"\n"
