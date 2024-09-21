@@ -210,6 +210,8 @@ bruteElements.forEach(function(element) {
     // Événement lors du survol (mouseenter)
     element.addEventListener('mouseenter', function() {
         // Appeler une fonction quand on survole l'élément
+		acPopupContent(this.textContent)
+		$('#floatingDiv').show();
         console.log('Survolé : ' + this.textContent);  // Récupère le contenu textuel
         // Par exemple, une fonction qui manipule cet élément
         onHover(this.textContent);
@@ -217,8 +219,7 @@ bruteElements.forEach(function(element) {
 
     // Événement lors de la fin du survol (mouseleave)
     element.addEventListener('mouseleave', function() {
-        console.log('Fin du survol : ' + this.textContent);  // Récupère le contenu textuel
-        // On peut ici gérer la fin du hover si besoin
+$('#floatingDiv').hide();        // On peut ici gérer la fin du hover si besoin
         onHoverEnd(this.textContent);
     });
 });
@@ -239,6 +240,20 @@ observer.observe(document.body, {
   childList: true,
   subtree: true
 });
+
+
+function acPopupContent(name){if(!(name in detailedDamage)){$("#floatingDiv").hide();return};
+var sorted = Object.entries(detailedDamage[name]).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {
+  result[key] = value;
+  return result;
+}, {});
+var s=""
+for(var i in sorted){
+	s+='<font opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)"><b>'+sorted[i]+"</b></font>"
+	s+=' <b class = "bruteNameHover">'+((i in weaponImages)?'</img src="'+weaponImages[i]+'">':i)+'</b>'+"\n"+"\n"
+}
+$('#floatingDiv')[0].textContent = s
+}
 
 function decentName(name){var nom;if(parseInt(name).toString() == name){ nom= " "+name}else{nom= name};if(names.indexOf(nom)==-1){names.push(nom)};return nom}
 
@@ -456,7 +471,9 @@ if (element) {
 
     // Suivi de la position de la souris en permanence
     $(document).mousemove(function(event) {
-		if($('#floatingDiv').length==0)div({12:[100,100],1:"floatingDiv",4:2,10:"#ff0000"})
+		if($('#floatingDiv').length==0)div({1:"floatingDiv",26:1,9:uni([{ "font-size":"0.821429rem"
+			},
+			textBoxCSS,baseCSS])})
         // Récupérer les coordonnées X et Y de la souris
         mouseX = event.pageX;
         mouseY = event.pageY;
@@ -464,14 +481,11 @@ if (element) {
         // Mettre à jour la position de la div (au-dessus de la souris)
         $('#floatingDiv').css({
             left: mouseX - ($('#floatingDiv').outerWidth() / 2), // Centrer horizontalement
-            top: mouseY - $('#floatingDiv').outerHeight() - 10 // Positionner au-dessus avec un petit décalage
+            top: mouseY - $('#floatingDiv').outerHeight() - 15 // Positionner au-dessus avec un petit décalage
         });
     });
 
-    // Afficher la div lorsque la souris bouge
-    $(document).on('mousemove', function() {
-        $('#floatingDiv').show(); // Affiche la div quand la souris bouge
-    });
+
 
     // Optionnel : Cacher la div quand la souris quitte la fenêtre
     $(document).mouseleave(function() {
