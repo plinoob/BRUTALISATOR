@@ -144,7 +144,7 @@ var weaponsFR={"fan": "Éventail",
   "piopio": "Piou Piou",
   "shuriken": "Shuriken",
   "broadsword": "Glaive",
-"scimitar": "Cimeterre",}var fightLog = ""
+"scimitar": "Cimeterre",};var fightLog = ""
 
 
 
