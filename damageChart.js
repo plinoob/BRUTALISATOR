@@ -474,7 +474,7 @@ if (element) {
 		
         // Mettre à jour la position de la div (au-dessus de la souris)
         $('#floatingDiv').css({
-            left: mouseX), // Centrer horizontalement
+            left: mouseX, // Centrer horizontalement
             top: mouseY - 15 // Positionner au-dessus avec un petit décalage
         });
 		
