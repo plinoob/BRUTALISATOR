@@ -165,7 +165,7 @@ var observer = new MutationObserver((mutationsList) => {
 			}
 			return s}
 			$("#dmgChartDIV").remove()
-			var allDIV = div({1:"dmgChartDIV",0:body,26:1,9:uni([{ "font-size":"0.821429rem"
+			var allDIV = div({1:"dmgChartDIV",0:body,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
 			
@@ -464,7 +464,7 @@ if (element) {
 
     // Suivi de la position de la souris en permanence
     $(document).mousemove(function(event) {
-		if($('#floatingDiv').length==0)div({5:[-50,-120],1:"floatingDiv",4:2,26:1,9:uni([{ "font-size":"0.821429rem",
+		if($('#floatingDiv').length==0)div({5:[-50,-145],1:"floatingDiv",4:2,26:1,9:uni([{ "font-size":"0.821429rem",
 			display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS])})
         // Récupérer les coordonnées X et Y de la souris
