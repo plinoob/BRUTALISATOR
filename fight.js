@@ -709,6 +709,7 @@ var WEAPONS_SFX = {
         return acc;
     }, {}),
 };
+var WeaponName = /*exports.*/$Enums.WeaponName = {
   fan: 'fan',
   keyboard: 'keyboard',
   knife: 'knife',
