@@ -178,6 +178,7 @@ var WeaponById = {
     [WeaponId.scimitar]: WeaponName.scimitar,
     [WeaponId.sword]: WeaponName.sword,
 };
+var WeaponTypes = ['fast', 'sharp', 'heavy', 'long', 'thrown', 'blunt'];
 var WeaponType = {
     FAST: 'fast',
     SHARP: 'sharp',
@@ -194,6 +195,7 @@ var WeaponTypeColor = {
     thrown: 'purple',
     blunt: 'orange',
 };
+var WeaponAnimations = ['fist', 'slash', 'estoc', 'whip'];
 var limitedWeapons = [
     'knife', 'broadsword', 'lance', 'baton', 'trident', 'hatchet',
     'scimitar', 'axe', 'sword', 'fan', 'shuriken', 'bumps',
