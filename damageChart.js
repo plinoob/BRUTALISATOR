@@ -227,8 +227,8 @@ bruteElements.forEach(function(element) {
     // Événement lors du survol (mouseenter)
     element.addEventListener('mouseenter', function() {
         // Appeler une fonction quand on survole l'élément
-		acPopupContent(this.textContent)
 		$('#floatingDiv').show();
+		acPopupContent(this.textContent)
         // Par exemple, une fonction qui manipule cet élément
     });
 
@@ -256,7 +256,7 @@ observer.observe(document.body, {
 });
 
 
-function acPopupContent(name){if(!(name in detailedDamage)){$("#floatingDiv").hide();return};
+function acPopupContent(name){if(!(name in detailedDamage)){$("#floatingDiv").empty().hide();return};
 var sorted = Object.entries(detailedDamage[name]).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {
   result[key] = value;
   return result;
@@ -503,7 +503,7 @@ if (element) {
 
     // Suivi de la position de la souris en permanence
     $(document).mousemove(function(event) {
-		if($('#floatingDiv').length==0)div({5:[-50,-145],1:"floatingDiv",4:2,26:1,9:uni([{ "z-index":50000000,"font-size":"0.821429rem",
+		if($('#floatingDiv').length==0)div({5:[-50,-100],1:"floatingDiv",4:2,26:1,9:uni([{ "z-index":50000000,"font-size":"0.821429rem",
 			display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS,{"padding":"6px"}])}).hide()
         // Récupérer les coordonnées X et Y de la souris
@@ -512,7 +512,7 @@ if (element) {
         // Mettre à jour la position de la div (au-dessus de la souris)
         $('#floatingDiv').css({
             left: mouseX, // Centrer horizontalement
-            top: mouseY - 15 // Positionner au-dessus avec un petit décalage
+            top: mouseY - 37 // Positionner au-dessus avec un petit décalage
         });
 		
     });
