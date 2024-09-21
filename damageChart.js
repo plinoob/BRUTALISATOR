@@ -450,10 +450,31 @@ if (element) {
   console.log("LOGS non trouvés");
 }
 
-var floatingDiv=(typeof(floatingDiv)==undefined)?false:floatingDiv
-if(!floatingDiv){
-	floatingDiv = div({12:[100,100],id:"floatingDiv",4:2,10:"#ff0000"})
-	$(document).ready(function() {
-});
-	
-}
+
+    // Variable pour stocker les coordonnées de la souris
+    var mouseX = 0, mouseY = 0;
+
+    // Suivi de la position de la souris en permanence
+    $(document).mousemove(function(event) {
+		
+		if(!($('#floatingDiv')))div({12:[100,100],1:"floatingDiv",4:2,10:"#ff0000"})
+        // Récupérer les coordonnées X et Y de la souris
+        mouseX = event.pageX;
+        mouseY = event.pageY;
+
+        // Mettre à jour la position de la div (au-dessus de la souris)
+        $('#floatingDiv').css({
+            left: mouseX - ($('#floatingDiv').outerWidth() / 2), // Centrer horizontalement
+            top: mouseY - $('#floatingDiv').outerHeight() - 10 // Positionner au-dessus avec un petit décalage
+        });
+    });
+
+    // Afficher la div lorsque la souris bouge
+    $(document).on('mousemove', function() {
+        $('#floatingDiv').show(); // Affiche la div quand la souris bouge
+    });
+
+    // Optionnel : Cacher la div quand la souris quitte la fenêtre
+    $(document).mouseleave(function() {
+        $('#floatingDiv').hide();
+    });
