@@ -194,6 +194,7 @@ var WeaponTypeColor = {
     thrown: 'purple',
     blunt: 'orange',
 };
+var limitedWeapons = [
     'knife', 'broadsword', 'lance', 'baton', 'trident', 'hatchet',
     'scimitar', 'axe', 'sword', 'fan', 'shuriken', 'bumps',
     'morningStar', 'mammothBone', 'flail', 'whip',
