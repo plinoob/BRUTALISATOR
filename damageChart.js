@@ -324,6 +324,8 @@ spans.forEach(spans => {
 
 }
 
+function getWeaponFromFRName(arme){for(var i in weaponsFR){if(weaponsFR[i].toLowerCase()==arme){return i}};return ""}
+
 
 
 
@@ -437,7 +439,8 @@ function analyzeText(text){
 			}
 			else {
 				var arme = l.split(" ")[l.split(" ").length - 1].split(".")[0].toLowerCase()
-				if(arme in weaponImages)addDetailed(roxeur,arme,dmg)
+				var weapon = getWeaponFromFRName(arme)
+				if(weapon in weaponImages)addDetailed(roxeur,weapon,dmg)
 				else{
 					
 					arme = prec_line.split(" a lancé ")
@@ -446,7 +449,9 @@ function analyzeText(text){
 					}
 					else arme = arme[0]
 					
-					if(last_failure == line_nb-1 && arme in weaponImages) addDetailed(roxeur,arme,dmg)
+					var weapon = getWeaponFromFRName(arme)
+					
+					if(last_failure == line_nb-1 && weapon in weaponImages) addDetailed(roxeur,weapon,dmg)
 					
 				else{
 					addDetailed(roxeur,"👊",dmg)
