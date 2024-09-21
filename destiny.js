@@ -1737,6 +1737,7 @@ var options = {
         }
     },
     nodes: {
+		label:"mdrr",
         shape: 'box',  // Forme rectangulaire
         font: {
             color: '#ffffff',  // Texte en blanc
