@@ -1639,8 +1639,9 @@ function isLeaf(node) {if(node.currentDestiny)return false
 }
 
 // Fonction pour parcourir l'arbre et générer des nœuds et des arêtes
-function processNode(node, nodeId, nodes, edges, parentId = null) {
+function processNode(node, nodeId, nodes, edges, parentId = null,level=1) {
     let label;
+
 	var colors = {
 		skill:{
 			leaf:"#B2A0BA",
@@ -1681,6 +1682,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 				color = isLeaf(node)?colors.stats.leaf:colors.stats.node
 
     }
+	cl(label)
     // Définir la couleur en fonction des conditions
 
 	if (!isLeaf(node)) {
@@ -1712,10 +1714,10 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 
     // Processus récursif pour les enfants
     if (node.LEFT) {
-        processNode(node.LEFT, nodeId * 2, nodes, edges, nodeId);
+        processNode(node.LEFT, nodeId * 2, nodes, edges, nodeId,level+1);
     }
     if (node.RIGHT) {
-        processNode(node.RIGHT, nodeId * 2 + 1, nodes, edges, nodeId);
+        processNode(node.RIGHT, nodeId * 2 + 1, nodes, edges, nodeId,level+1);
     }
 }
 var jsonTree
@@ -1735,7 +1737,8 @@ var data = {
 };
 var options = {
     layout: {
-        hierarchical: {
+        hierarchical: {sortMethod: 'directed',
+		 shakeTowards: 'roots',
             direction: "UD",  // UD = Up to Down (vertical)
             nodeSpacing: 180,  // Espacement entre les nœuds
             levelSeparation: 100  // Séparation verticale entre les niveaux
