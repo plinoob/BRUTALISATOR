@@ -250,9 +250,10 @@ var sorted = Object.entries(detailedDamage[name]).sort(([, a], [, b]) => b-a).re
 var s=""
 for(var i in sorted){
 	s+='<font opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)"><b>'+sorted[i]+"</b></font>"
-	s+=' <b class = "bruteNameHover">'+((i in weaponImages)?'<img src="'+weaponImages[i]+'">':i)+'</b>'+"\n"+"\n"
+	s+=' <b class = "bruteNameHover">'+((i in weaponImages)?'<img id="img_'+i+'">':i)+'</b>'+"\n"+"\n"
 }
 if($('#floatingDiv').length>0){$('#floatingDiv')[0].textContent = s}
+cl($('#img_shuriken'))
 }
 
 function decentName(name){var nom;if(parseInt(name).toString() == name){ nom= " "+name}else{nom= name};if(names.indexOf(nom)==-1){names.push(nom)};return nom}
