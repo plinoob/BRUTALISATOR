@@ -327,7 +327,6 @@ function addDetailed(roxeurEspace,arme,dmg){
 	var roxeur = roxeurEspace.replace(" ","")
 	if(!(roxeur in detailedDamage))detailedDamage[roxeur] = {}
 	detailedDamage[roxeur][arme] = (detailedDamage[roxeur][arme] || 0) + dmg
-	cl(detailedDamage)
 }
 
 function analyzeText(text){
@@ -483,7 +482,8 @@ if (element) {
         // Récupérer les coordonnées X et Y de la souris
         mouseX = event.pageX;
         mouseY = event.pageY;
-		cl(mouseX,mouseY)
+		cl(mouseX,mouseY,mouseX - ($('#floatingDiv').outerWidth() / 2),mouseY - $('#floatingDiv').outerHeight() - 15)
+		
         // Mettre à jour la position de la div (au-dessus de la souris)
         $('#floatingDiv').css({
             left: mouseX - ($('#floatingDiv').outerWidth() / 2), // Centrer horizontalement
