@@ -222,6 +222,8 @@ var bruteElements = document.querySelectorAll('.bruteNameHover');
 
 // Boucle pour ajouter les événements à chaque élément
 bruteElements.forEach(function(element) {
+	$(element).css("cursor","pointer")
+	element.addEventListener('click', function() {openBruteCell(this.textContent)})
     // Événement lors du survol (mouseenter)
     element.addEventListener('mouseenter', function() {
         // Appeler une fonction quand on survole l'élément
