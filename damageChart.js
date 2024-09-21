@@ -252,7 +252,7 @@ for(var i in sorted){
 	s+='<font opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)"><b>'+sorted[i]+"</b></font>"
 	s+=' <b class = "bruteNameHover">'+((i in weaponImages)?'</img src="'+weaponImages[i]+'">':i)+'</b>'+"\n"+"\n"
 }
-$('#floatingDiv')[0].textContent = s
+//$('#floatingDiv')[0].textContent = s
 }
 
 function decentName(name){var nom;if(parseInt(name).toString() == name){ nom= " "+name}else{nom= name};if(names.indexOf(nom)==-1){names.push(nom)};return nom}
