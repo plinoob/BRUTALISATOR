@@ -263,7 +263,7 @@ var sorted = Object.entries(detailedDamage[name]).sort(([, a], [, b]) => b-a).re
 }, {});
 var s=""
 for(var i in sorted){
-	s+=' <b class = "bruteNameHover">'+((i in weaponImages)?'<img height="20px" src="'+weaponImages[i]+'">':i)+'</b>   '+"\n"
+	s+=' <b class = "bruteNameHover">'+((i in weaponImages)?'<img height="18px" src="'+weaponImages[i]+'">':i)+'</b>   '+"\n"
 }
 if($('#floatingDiv').length>0){div({9:{"text-align":"right"},2:"span",17:s,0:$('#floatingDiv').empty()})}
 s=""
