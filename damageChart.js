@@ -251,13 +251,13 @@ var s=""
 for(var i in sorted){
 	s+=' <b class = "bruteNameHover">'+((i in weaponImages)?'<img height="20px" src="'+weaponImages[i]+'">':i)+'</b>   '+"\n"
 }
-var res='<p>'+s+'</p>'
+var res='<span>'+s+'</span>'
 s=""
 for(var i in sorted){
 	s+='<font opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)"><b>'+sorted[i]+"</b></font>"+"\n"
 }
 
-res+='<p>'+s+'</p>'
+res+='<span>'+s+'</span>'
 cl(res)
 if($('#floatingDiv').length>0){$('#floatingDiv')[0].innerHTML = res}
 }
