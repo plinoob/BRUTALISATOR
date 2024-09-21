@@ -1652,7 +1652,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 		},
 		pet:{
 			leaf:"#A7DD87",
-			node:"#C4BD38",
+			node:"#C0C170",
 		},
 		stats:{
 			leaf:"#DBC7B1",
