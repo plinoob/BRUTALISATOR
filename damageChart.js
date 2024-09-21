@@ -122,6 +122,17 @@ var randomBetween = (min, max) => {
 };
 var fightLog = ""
 
+// Exemple de fonctions appelées lors du survol
+function onHover(text) {
+    // Action à effectuer lors du survol
+    console.log('Contenu pendant le hover : ' + text);
+}
+
+function onHoverEnd(text) {
+    // Action à effectuer quand on quitte l'élément
+    console.log('Fin hover : ' + text);
+}
+
 
 // Créer un observer qui surveille les changements dans le DOM
 var observer = new MutationObserver((mutationsList) => {
@@ -146,7 +157,7 @@ var observer = new MutationObserver((mutationsList) => {
 		  analyzeText(fightLog);
 		  
 			function getNamesFromTeam(team){var s = "";
-			for(var i of team){var bruteSTR = " <b>"+i[0]+'</b>'+"\n"
+			for(var i of team){var bruteSTR = ' <b class = "bruteNameHover">'+i[0]+'</b>'+"\n"
 			s+=bruteSTR
 			}
 			return s}
@@ -190,6 +201,30 @@ var observer = new MutationObserver((mutationsList) => {
 		    $(findTextInDOM("Plus de jeux EternalTwin","p")).css("visibility","hidden");
 		    $(findTextInDOM(VERSION,"p")).css("visibility","hidden");
 			$(document.querySelector('[role="alert"]')).css("visibility","hidden");
+		
+		
+var bruteElements = document.querySelectorAll('.bruteNameHover');
+
+// Boucle pour ajouter les événements à chaque élément
+bruteElements.forEach(function(element) {
+    // Événement lors du survol (mouseenter)
+    element.addEventListener('mouseenter', function() {
+        // Appeler une fonction quand on survole l'élément
+        console.log('Survolé : ' + this.textContent);  // Récupère le contenu textuel
+        // Par exemple, une fonction qui manipule cet élément
+        onHover(this.textContent);
+    });
+
+    // Événement lors de la fin du survol (mouseleave)
+    element.addEventListener('mouseleave', function() {
+        console.log('Fin du survol : ' + this.textContent);  // Récupère le contenu textuel
+        // On peut ici gérer la fin du hover si besoin
+        onHoverEnd(this.textContent);
+    });
+});
+		
+		
+		
 		
 			stopLoading();
 			observer.disconnect();
