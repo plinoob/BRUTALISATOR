@@ -1717,7 +1717,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
         processNode(node.RIGHT, nodeId * 2 + 1, nodes, edges, nodeId);
     }
 }
-
+var jsonTree
 
 
 function go(){
@@ -1763,7 +1763,7 @@ var network = new vis.Network(container, data, options);}
 
 fetch("/api/brute/"+BRUTE+"/destiny")
   .then(response => response.text())
-  .then(html => {var jsonTree=JSON.parse(html)
+  .then(html => {jsonTree=JSON.parse(html)
   
     
 fetch("/api/brute/"+BRUTE+"/for-hook")
