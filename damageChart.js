@@ -143,7 +143,7 @@ var observer = new MutationObserver((mutationsList) => {
       if (node.nodeName === 'DIV') {
         // Vérifier si la div contient des balises <p>
         var pElements = node.querySelectorAll('p');
-        
+        if(pElements==0)return
         if (fightLog=="") {
           // Loguer le contenu de chaque balise <p>
           pElements.forEach(p => {
