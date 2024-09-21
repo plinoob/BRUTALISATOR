@@ -1665,18 +1665,18 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 	var borderWidth = 0
 	var borderColor = "#000000"
     if (node.type === 'skill') {
-        label = node.skill;
+        label = "<b>"+FR[node.skill]+"</b>";
 		color = isLeaf(node)?colors.skill.leaf:colors.skill.node
     } else if (node.type === 'weapon') {
         label = FR[node.weapon];
 				color = isLeaf(node)?colors.weapon.leaf:colors.weapon.node
 }
      else if (node.type === 'pet') {
-        label = node.pet;
+        label = FR[node.pet];
 				color = isLeaf(node)?colors.pet.leaf:colors.pet.node
 
     } else if (node.type === 'stats') {
-        label = node.stat1 + (node.stat2 ? '/' + node.stat2 : '');
+        label = FR[node.stat1] + (FR[node.stat2] ? '/' + FR[node.stat2] : '');
 				color = isLeaf(node)?colors.stats.leaf:colors.stats.node
 
     }
@@ -1700,7 +1700,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
             background: color,  // Couleur de fond du nœud
             border: borderColor    // Couleur de la bordure (noir)
         },
-        font: { color: '#000000' ,size:20,face:"arial",bold: '20px arial black'} // Texte en blanc
+        font: { color: '#000000' ,size:20,face:"arial",bold: '20px arial black', multi: "html"} // Texte en blanc
     });
 
     // Ajouter les arêtes
@@ -1732,7 +1732,7 @@ var options = {
     layout: {
         hierarchical: {
             direction: "UD",  // UD = Up to Down (vertical)
-            nodeSpacing: 143,  // Espacement entre les nœuds
+            nodeSpacing: 150,  // Espacement entre les nœuds
             levelSeparation: 100  // Séparation verticale entre les niveaux
         }
     },
