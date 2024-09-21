@@ -1639,7 +1639,7 @@ function isLeaf(node) {if(node.currentDestiny)return false
 }
 
 // Fonction pour parcourir l'arbre et générer des nœuds et des arêtes
-function processNode(node, nodeId, nodes, edges, parentId = null) {
+function processNode(node, nodeId, nodes, edges, parentId = null,level=1) {
     let label;
 	var colors = {
 		skill:{
@@ -1712,36 +1712,20 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 
     // Processus récursif pour les enfants
     if (node.LEFT) {
-        processNode(node.LEFT, nodeId * 2, nodes, edges, nodeId);
+        processNode(node.LEFT, nodeId * 2, nodes, edges, nodeId,level+1);
     }
     if (node.RIGHT) {
-        processNode(node.RIGHT, nodeId * 2 + 1, nodes, edges, nodeId);
+        processNode(node.RIGHT, nodeId * 2 + 1, nodes, edges, nodeId,level+1);
     }
 }
 var jsonTree
-
-function findRootNode(jsonTree) {
-    if (jsonTree.level === 1) {
-        return jsonTree;
-    }
-    // Si le nœud actuel n'a pas level: 1, on cherche dans les sous-arbres
-    if (jsonTree.LEFT) {
-        var leftSearch = findRootNode(jsonTree.LEFT);
-        if (leftSearch) return leftSearch;
-    }
-    if (jsonTree.RIGHT) {
-        var rightSearch = findRootNode(jsonTree.RIGHT);
-        if (rightSearch) return rightSearch;
-    }
-    return null;  // Si aucun nœud avec level: 1 n'est trouvé
-}
 
 
 function go(){
 // Initialisation des nœuds et des arêtes
 let nodes = [];
 let edges = [];
-processNode(findRootNode(jsonTree), 1, nodes, edges);
+processNode(jsonTree, 1, nodes, edges);
 
 // Création du réseau avec vis-network
 var container = document.getElementById("mynetwork");
