@@ -1763,9 +1763,22 @@ var network = new vis.Network(container, data, options);}
 
 fetch("/api/brute/"+BRUTE+"/destiny")
   .then(response => response.text())
-  .then(html => {cl("destiny :",html)})
+  .then(html => {var jsonTree=JSON.parse(html)
   
+    
 fetch("/api/brute/"+BRUTE+"/for-hook")
   .then(response => response.text())
-  .then(html => {cl("brute :",html)})
+  .then(html => {var brute=JSON.parse(html)
+	  
+	  
+	  var currentNode=jsonTree;
+currentNode.currentDestiny=true
+for(var step of brute.destinyPath){currentNode=currentNode[step];currentNode.currentDestiny=true}
+
+go()
+	  
+	  })
+  
+  })
+
   
