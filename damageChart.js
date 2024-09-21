@@ -456,8 +456,7 @@ if (element) {
 
     // Suivi de la position de la souris en permanence
     $(document).mousemove(function(event) {
-		cl($('#floatingDiv').length,mouseX,mouseY)
-		if(!($('#floatingDiv')))div({12:[100,100],1:"floatingDiv",4:2,10:"#ff0000"})
+		if($('#floatingDiv').length==0)div({12:[100,100],1:"floatingDiv",4:2,10:"#ff0000"})
         // Récupérer les coordonnées X et Y de la souris
         mouseX = event.pageX;
         mouseY = event.pageY;
