@@ -71,7 +71,17 @@ function addScript( src ) {
 	  })
 
 	}
-
+	
+function openBruteCell(name){openNewTab(window.location.href.split(".org")[0]+".org/"+name+"/cell")}
+function openNewTab(url) {
+    // Vérifier si l'URL est définie
+    if (url) {
+        // Ouvrir un nouvel onglet avec l'URL spécifiée
+        window.open(url, '_blank');
+    } else {
+        console.error('URL non spécifiée');
+    }
+}
 function isTextInDOM(text,balise) {
   // Récupérer tous les éléments de la page
   var elements = document.querySelectorAll(balise);
