@@ -1668,7 +1668,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
         label = node.skill;
 		color = isLeaf(node)?colors.skill.leaf:colors.skill.node
     } else if (node.type === 'weapon') {
-        label = node.weapon;
+        label = FR[node.weapon];
 				color = isLeaf(node)?colors.weapon.leaf:colors.weapon.node
 }
      else if (node.type === 'pet') {
