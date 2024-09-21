@@ -707,5 +707,32 @@ var WEAPONS_SFX = {
         return acc;
     }, {}),
 };
+  fan: 'fan',
+  keyboard: 'keyboard',
+  knife: 'knife',
+  leek: 'leek',
+  mug: 'mug',
+  sai: 'sai',
+  racquet: 'racquet',
+  axe: 'axe',
+  bumps: 'bumps',
+  flail: 'flail',
+  fryingPan: 'fryingPan',
+  hatchet: 'hatchet',
+  mammothBone: 'mammothBone',
+  morningStar: 'morningStar',
+  trombone: 'trombone',
+  baton: 'baton',
+  halbard: 'halbard',
+  lance: 'lance',
+  trident: 'trident',
+  whip: 'whip',
+  noodleBowl: 'noodleBowl',
+  piopio: 'piopio',
+  shuriken: 'shuriken',
+  broadsword: 'broadsword',
+  scimitar: 'scimitar',
+  sword: 'sword'
+};
 "use strict"
 
