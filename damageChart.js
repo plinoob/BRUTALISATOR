@@ -255,10 +255,10 @@ for(var i in sorted){
 if($('#floatingDiv').length>0){div({9:{"text-align":"left"},2:"span",17:s,0:$('#floatingDiv').empty()})}
 s=""
 for(var i in sorted){
-	s+=' <b class = "bruteNameHover">'+((i in weaponImages)?'<img height="20px" src="'+weaponImages[i]+'">':i)+'</b>   '+"\n"
+	s+='    <b class = "bruteNameHover">'+((i in weaponImages)?'<img height="20px" src="'+weaponImages[i]+'">':i)+'</b>   '+"\n"
 }
 
-if($('#floatingDiv').length>0){div({2:"span",17:s,0:$('#floatingDiv')})}
+if($('#floatingDiv').length>0){div({9:{"text-align":"right"},2:"span",17:s,0:$('#floatingDiv')})}
 
 }
 
