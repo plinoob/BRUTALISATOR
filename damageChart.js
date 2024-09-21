@@ -227,8 +227,8 @@ bruteElements.forEach(function(element) {
     // Événement lors du survol (mouseenter)
     element.addEventListener('mouseenter', function() {
         // Appeler une fonction quand on survole l'élément
-		acPopupContent(this.textContent)
 		$('#floatingDiv').show();
+		acPopupContent(this.textContent)
         // Par exemple, une fonction qui manipule cet élément
     });
 
@@ -256,7 +256,7 @@ observer.observe(document.body, {
 });
 
 
-function acPopupContent(name){if(!(name in detailedDamage)){$("#floatingDiv").hide();return};
+function acPopupContent(name){if(!(name in detailedDamage)){$("#floatingDiv").empty().hide();return};
 var sorted = Object.entries(detailedDamage[name]).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {
   result[key] = value;
   return result;
