@@ -449,3 +449,9 @@ if (element) {
 } else {
   console.log("LOGS non trouvés");
 }
+
+var floatingDiv=(typeof(floatingDiv)==undefined)?false:floatingDiv
+if(!floatingDiv){
+	
+	
+}
