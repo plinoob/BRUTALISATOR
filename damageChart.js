@@ -258,7 +258,7 @@ for(var i in sorted){
 }
 
 res+='<p>'+s+'</p>'
-
+cl(res)
 if($('#floatingDiv').length>0){$('#floatingDiv')[0].innerHTML = s}
 }
 
