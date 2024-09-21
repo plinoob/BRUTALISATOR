@@ -453,6 +453,5 @@ if (element) {
 var floatingDiv=(typeof(floatingDiv)==undefined)?false:floatingDiv
 if(!floatingDiv){
 
-});
 	
 }
