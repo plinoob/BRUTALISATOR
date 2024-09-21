@@ -503,7 +503,7 @@ if (element) {
 
     // Suivi de la position de la souris en permanence
     $(document).mousemove(function(event) {
-		if($('#floatingDiv').length==0)div({5:[-50,-145],1:"floatingDiv",4:2,26:1,9:uni([{ "font-size":"0.821429rem",
+		if($('#floatingDiv').length==0)div({5:[-50,-145],1:"floatingDiv",4:2,26:1,9:uni([{ "z-index":50000000,"font-size":"0.821429rem",
 			display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS])})
         // Récupérer les coordonnées X et Y de la souris
