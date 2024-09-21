@@ -122,16 +122,7 @@ var randomBetween = (min, max) => {
 };
 var fightLog = ""
 
-// Exemple de fonctions appelées lors du survol
-function onHover(text) {
-    // Action à effectuer lors du survol
-    console.log('Contenu pendant le hover : ' + text);
-}
 
-function onHoverEnd(text) {
-    // Action à effectuer quand on quitte l'élément
-    console.log('Fin hover : ' + text);
-}
 
 
 // Créer un observer qui surveille les changements dans le DOM
@@ -212,15 +203,12 @@ bruteElements.forEach(function(element) {
         // Appeler une fonction quand on survole l'élément
 		acPopupContent(this.textContent)
 		$('#floatingDiv').show();
-        console.log('Survolé : ' + this.textContent);  // Récupère le contenu textuel
         // Par exemple, une fonction qui manipule cet élément
-        onHover(this.textContent);
     });
 
     // Événement lors de la fin du survol (mouseleave)
     element.addEventListener('mouseleave', function() {
 $('#floatingDiv').hide();        // On peut ici gérer la fin du hover si besoin
-        onHoverEnd(this.textContent);
     });
 });
 		
@@ -476,7 +464,7 @@ if (element) {
 
     // Suivi de la position de la souris en permanence
     $(document).mousemove(function(event) {
-		if($('#floatingDiv').length==0)div({1:"floatingDiv",4:2,26:1,9:uni([{ "font-size":"0.821429rem",
+		if($('#floatingDiv').length==0)div({5:[-50,-100],1:"floatingDiv",4:2,26:1,9:uni([{ "font-size":"0.821429rem",
 			display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS])})
         // Récupérer les coordonnées X et Y de la souris
@@ -486,8 +474,8 @@ if (element) {
 		
         // Mettre à jour la position de la div (au-dessus de la souris)
         $('#floatingDiv').css({
-            left: mouseX - ($('#floatingDiv').outerWidth() / 2), // Centrer horizontalement
-            top: mouseY - $('#floatingDiv').outerHeight() - 15 // Positionner au-dessus avec un petit décalage
+            left: mouseX), // Centrer horizontalement
+            top: mouseY - 15 // Positionner au-dessus avec un petit décalage
         });
 		
     });
