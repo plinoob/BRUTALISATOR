@@ -121,7 +121,7 @@ var WeaponId;
     WeaponId[WeaponId["broadsword"] = 23] = "broadsword";
     WeaponId[WeaponId["scimitar"] = 24] = "scimitar";
     WeaponId[WeaponId["sword"] = 25] = "sword";
-})(WeaponId || (exports.WeaponId = WeaponId = {}));
+})(WeaponId || (/*exports.*/WeaponId = WeaponId = {}));
 var WeaponByName = {
     [WeaponName.fan]: WeaponId.fan,
     [WeaponName.keyboard]: WeaponId.keyboard,
