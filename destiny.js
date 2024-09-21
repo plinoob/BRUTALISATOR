@@ -1684,7 +1684,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
     // Définir la couleur en fonction des conditions
 
 	if (!isLeaf(node)) {
-		borderWidth = 3
+		borderWidth = 2
 		borderColor = "#D87446"
 		 if (node.currentDestiny === true) {
 		borderColor = "#535D87"
