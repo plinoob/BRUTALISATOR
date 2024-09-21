@@ -238,7 +238,14 @@ var names = []
 	
 var renforts = {}
 var teams = [team1,team2,renforts]
-	
+var detailedDamage = {}
+
+function addDetailed(roxeurEspace,arme,dmg){
+	var roxeur = roxeurEspace.replace(" ","")
+	if(!(roxeur in detailedDamage))detailedDamage[roxeur] = {}
+	detailedDamage[roxeur][arme] = (detailedDamage[roxeur][arme] || 0) + dmg
+	cl(detailedDamage)
+}
 
 function analyzeText(text){
 	
@@ -248,9 +255,18 @@ function analyzeText(text){
 	
 
 	var currentTeam = team1
-	
+	var prec_line = ""
+	var act_line = ""
+	var last_failure = -1
+	var line_nb = 0
 	var lines=text.split("\n")
-	for(var l of lines){if(l=="" || l=="\r")continue;
+	for(var l of lines){
+		
+		pres_line = act_line
+		act_line = l
+		
+		line_nb ++
+		if(l=="" || l=="\r")continue;
 	
 		var brute = l.split(" est arrivé !")
 		if(brute.length>1){
@@ -293,7 +309,8 @@ function analyzeText(text){
 			var dmg=parseInt(vamp[1].split(" infligeant ")[1].split(" ")[0])
 			var roxeur = vamp[0];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
 			//console.log("vamp "+dmg)
-			chart[roxeur] = (chart[roxeur] || 0) + dmg
+			chart[roxeur] = (chart[roxeur] || 0) + dmg;
+			addDetailed(roxeur,"🩸",dmg)
 			continue
 		}
 		
@@ -304,6 +321,7 @@ function analyzeText(text){
 			var roxeur = bomb[0];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
 			//console.log("bomb "+dmg)
 			chart[roxeur] = (chart[roxeur] || 0) + dmg
+			addDetailed(roxeur,"💣",dmg)
 			continue
 		}
 		
@@ -313,8 +331,30 @@ function analyzeText(text){
 			var roxeur = rox[0];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
 			//console.log("_ "+dmg)
 			chart[roxeur] = (chart[roxeur] || 0) + dmg
+			
+			if(l.indexOf(" poison ")!=-1) addDetailed(roxeur,"🧪",dmg)
+			else {
+				var arme = l.split(" ")[l.split(" ").length - 1].split(".")[0].toLowerCase()
+				if(arme in weaponImages)addDetailed(roxeur,arme,dmg)
+				else{
+					
+					arme = prec_line.split(" a lancé ")
+					if(arme.length>1){
+						arme=arme[1].split(" sur ")[0].toLowerCase()
+					}
+					else arme = arme[0]
+					
+					if(last_failure == line_nb-1 && arme in weaponImages) addDetailed(roxeur,arme,dmg)
+					
+				else{
+					addDetailed(roxeur,"👊",dmg)
+				}
+				}
+			}
+			
 			continue
 		}
+		last_failure = line_nb
 		if(/\d/.test(names.reduce((acc, name) => acc.replace(new RegExp(name.replace(" ",""), 'g'), ''), l))) console.log("SUS "+l)
 	}
 	for(var team_number in teams) {var team = teams[team_number];
