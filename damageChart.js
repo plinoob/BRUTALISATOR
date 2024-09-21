@@ -262,7 +262,7 @@ function analyzeText(text){
 	var lines=text.split("\n")
 	for(var l of lines){
 		
-		pres_line = act_line
+		prec_line = act_line
 		act_line = l
 		
 		line_nb ++
