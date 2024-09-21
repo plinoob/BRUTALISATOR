@@ -259,7 +259,7 @@ for(var i in sorted){
 
 res+='<p>'+s+'</p>'
 cl(res)
-if($('#floatingDiv').length>0){$('#floatingDiv')[0].innerHTML = s}
+if($('#floatingDiv').length>0){$('#floatingDiv')[0].innerHTML = res}
 }
 
 function decentName(name){var nom;if(parseInt(name).toString() == name){ nom= " "+name}else{nom= name};if(names.indexOf(nom)==-1){names.push(nom)};return nom}
