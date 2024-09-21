@@ -1665,7 +1665,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 	var borderWidth = 0
 	var borderColor = "#000000"
     if (node.type === 'skill') {
-        label = "<b>"+FR[node.skill]+"</b>";
+        label = isLeaf(node)?(FR[node.skill]):("<b>"+FR[node.skill]+"</b>");
 		color = isLeaf(node)?colors.skill.leaf:colors.skill.node
     } else if (node.type === 'weapon') {
         label = FR[node.weapon];
