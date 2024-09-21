@@ -1643,8 +1643,8 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
     let label;
 	var colors = {
 		skill:{
-			leaf:"#CC749A",
-			node:"#B2A0BA",
+			leaf:"#B2A0BA",
+			node:"#CC749A",
 		},
 		weapon:{
 			leaf:"#B5A59F",
