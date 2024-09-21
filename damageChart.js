@@ -478,8 +478,8 @@ if (element) {
 
     // Suivi de la position de la souris en permanence
     $(document).mousemove(function(event) {
-		if($('#floatingDiv').length==0)div({1:"floatingDiv",4:2,26:1,9:uni([{ "font-size":"0.821429rem"
-			},
+		if($('#floatingDiv').length==0)div({1:"floatingDiv",4:2,26:1,9:uni([{ "font-size":"0.821429rem",
+			display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS])})
         // Récupérer les coordonnées X et Y de la souris
         mouseX = event.pageX;
