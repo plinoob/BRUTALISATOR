@@ -1737,7 +1737,8 @@ var data = {
 };
 var options = {
     layout: {
-        hierarchical: {
+        hierarchical: {sortMethod: 'directed',
+		 shakeTowards: 'roots',
             direction: "UD",  // UD = Up to Down (vertical)
             nodeSpacing: 180,  // Espacement entre les nœuds
             levelSeparation: 100  // Séparation verticale entre les niveaux
