@@ -1644,7 +1644,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 	var colors = {
 		skill:{
 			leaf:"#B2A0BA",
-			node:"#CC7A9D",
+			node:"#D181A4",
 		},
 		weapon:{
 			leaf:"#B5A59F",
