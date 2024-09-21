@@ -1668,11 +1668,11 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
         label = isLeaf(node)?(FR[node.skill]):("<b>"+FR[node.skill]+"</b>");
 		color = isLeaf(node)?colors.skill.leaf:colors.skill.node
     } else if (node.type === 'weapon') {
-        label = FR[node.weapon];
+        label =isLeaf(node)?(FR[node.weapon]):("<b>"+FR[node.weapon]+"</b>");
 				color = isLeaf(node)?colors.weapon.leaf:colors.weapon.node
 }
      else if (node.type === 'pet') {
-        label = FR[node.pet];
+        label = isLeaf(node)?(FR[node.pet]):("<b>"+FR[node.pet]+"</b>");
 				color = isLeaf(node)?colors.pet.leaf:colors.pet.node
 
     } else if (node.type === 'stats') {
