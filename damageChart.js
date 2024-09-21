@@ -120,7 +120,31 @@ var randomBetween = (min, max) => {
         return min;
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
-var fightLog = ""
+var weaponsFR={"fan": "Éventail",
+  "keyboard": "Clavier",
+  "knife": "Couteau",
+  "leek": "Poireau",
+  "mug": "Mug",
+  "sai": "Sai",
+  "racquet": "Raquette",
+  "axe": "Marteau",
+  "bumps": "Massue",
+  "flail": "Fléau",
+  "fryingPan": "Poêle",
+  "hatchet": "Hache",
+  "mammothBone": "Os de mammouth",
+  "morningStar": "Étoile du matin",
+  "trombone": "Trombone",
+  "baton": "Bâton",
+  "halbard": "Hallebarde",
+  "lance": "Lance",
+  "trident": "Trident",
+  "whip": "Fouet",
+  "noodleBowl": "Bol de nouilles",
+  "piopio": "Piou Piou",
+  "shuriken": "Shuriken",
+  "broadsword": "Glaive",
+"scimitar": "Cimeterre",}var fightLog = ""
 
 
 
@@ -311,6 +335,8 @@ var renforts = {}
 var teams = [team1,team2,renforts]
 var detailedDamage = {}
 
+var poisoners=[]
+
 function addDetailed(roxeurEspace,arme,dmg){
 	var roxeur = roxeurEspace.replace(" ","")
 	if(!(roxeur in detailedDamage))detailedDamage[roxeur] = {}
@@ -402,7 +428,13 @@ function analyzeText(text){
 			//console.log("_ "+dmg)
 			chart[roxeur] = (chart[roxeur] || 0) + dmg
 			
-			if(l.indexOf(" poison ")!=-1) addDetailed(roxeur,"🧪",dmg)
+			if(l.indexOf(" poison ")!=-1) {
+				var vrairoxeur = roxeur;
+				var flag=false
+				for(var tm of teams){if(!(roxeur in tm)){continue};for(var ps of poisoners){if(ps[0]==tm){vrairoxeur=ps[1];flag=true}};if(!flag){poisoners.push([tm,roxeur])}}
+				addDetailed(vrairoxeur,"🧪",dmg)
+				
+			}
 			else {
 				var arme = l.split(" ")[l.split(" ").length - 1].split(".")[0].toLowerCase()
 				if(arme in weaponImages)addDetailed(roxeur,arme,dmg)
@@ -469,9 +501,7 @@ if (element) {
 			textBoxCSS,baseCSS])})
         // Récupérer les coordonnées X et Y de la souris
         mouseX = event.pageX;
-        mouseY = event.pageY;
-		cl(mouseX,mouseY,mouseX - ($('#floatingDiv').outerWidth() / 2),mouseY - $('#floatingDiv').outerHeight() - 15)
-		
+        mouseY = event.pageY;		
         // Mettre à jour la position de la div (au-dessus de la souris)
         $('#floatingDiv').css({
             left: mouseX, // Centrer horizontalement
