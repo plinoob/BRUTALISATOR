@@ -1685,9 +1685,9 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 
 	if (!isLeaf(node)) {
 		borderWidth = 2
-		borderColor = "#D87446"
-		 if (node.currentDestiny === true) {
 		borderColor = "#777777"
+		 if (node.currentDestiny === true) {
+		borderColor = "#D87446"
 		} 
     }
 
