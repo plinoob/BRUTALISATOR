@@ -430,16 +430,16 @@ function analyzeText(text){
 			var dmg=parseInt(rox[1].split(" ")[0])
 			var roxeur = rox[0];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
 			//console.log("_ "+dmg)
-			chart[roxeur] = (chart[roxeur] || 0) + dmg
+			
 			
 			if(l.indexOf(" poison ")!=-1) {
 				var vrairoxeur = roxeur;
 				var flag=false
 				for(var tm of teams){if(!(roxeur in tm)){continue};for(var ps of poisoners){if(ps[0]==tm){vrairoxeur=ps[1];flag=true}};if(!flag){poisoners.push([tm,roxeur])}}
 				addDetailed(vrairoxeur,"🧪",dmg)
-				
+				chart[vrairoxeur] = (chart[vrairoxeur] || 0) + dmg
 			}
-			else {
+			else {chart[roxeur] = (chart[roxeur] || 0) + dmg
 				var arme = l.split(" ")[l.split(" ").length - 1].split(".")[0].toLowerCase()
 				var weapon = getWeaponFromFRName(arme)
 				if(weapon in weaponImages)addDetailed(roxeur,weapon,dmg)
