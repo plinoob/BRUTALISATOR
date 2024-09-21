@@ -483,7 +483,7 @@ if (element) {
         // Récupérer les coordonnées X et Y de la souris
         mouseX = event.pageX;
         mouseY = event.pageY;
-
+		cl(mouseX,mouseY)
         // Mettre à jour la position de la div (au-dessus de la souris)
         $('#floatingDiv').css({
             left: mouseX - ($('#floatingDiv').outerWidth() / 2), // Centrer horizontalement
