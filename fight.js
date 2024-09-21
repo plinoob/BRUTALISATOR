@@ -93,7 +93,7 @@ var randomBetween = (min, max) => {
         return min;
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
-var WeaponName = /*exports.*/$Enums.WeaponName = {
+var WeaponName = /*exports.*//*$Enums.*/WeaponName = {
   fan: 'fan',
   keyboard: 'keyboard',
   knife: 'knife',
