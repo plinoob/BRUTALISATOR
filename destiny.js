@@ -1643,7 +1643,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 	var colors = {
 		skill:{
 			leaf:"#CC749A",
-			node:"#A469CE",
+			node:"#AA7CCC",
 		},
 		weapon:{
 			leaf:"#B5A59F",
@@ -1665,7 +1665,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 	var borderWidth = 0
 	var borderColor = "#000000"
     if (node.type === 'skill') {
-        label = "<b>"+node.skill+"<b>";
+        label = node.skill;
 		color = isLeaf(node)?colors.skill.leaf:colors.skill.node
     } else if (node.type === 'weapon') {
         label = node.weapon;
@@ -1700,7 +1700,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
             background: color,  // Couleur de fond du nœud
             border: borderColor    // Couleur de la bordure (noir)
         },
-        font: { color: '#000000' ,size:20,face:"arial",bold:{}} // Texte en blanc
+        font: { color: '#000000' ,size:20,face:"arial",bold: '20px arial black'} // Texte en blanc
     });
 
     // Ajouter les arêtes
