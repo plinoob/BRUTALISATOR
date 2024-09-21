@@ -1644,7 +1644,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 	var colors = {
 		skill:{
 			leaf:"#CC749A",
-			node:"#BE8ACC",
+			node:"#C19DCC",
 		},
 		weapon:{
 			leaf:"#B5A59F",
@@ -1693,7 +1693,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 
     // Ajouter le nœud avec la couleur appropriée
     nodes.push({
-		title:"lv. "+node.level,
+		title:"Niveau "+node.level,
         id: nodeId,
         label: label,
 		borderWidth:borderWidth,
