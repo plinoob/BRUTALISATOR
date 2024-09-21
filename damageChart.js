@@ -490,12 +490,11 @@ if (element) {
             top: mouseY - $('#floatingDiv').outerHeight() - 15 // Positionner au-dessus avec un petit décalage
         });
 		
-acPopupContent("hahah")
     });
 
 
 
     // Optionnel : Cacher la div quand la souris quitte la fenêtre
     $(document).mouseleave(function() {
-        //$('#floatingDiv').hide();
+        $('#floatingDiv').hide();
     });
