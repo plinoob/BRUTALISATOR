@@ -1736,7 +1736,7 @@ var options = {
     layout: {
         hierarchical: {
             direction: "UD",  // UD = Up to Down (vertical)
-            nodeSpacing: 150,  // Espacement entre les nœuds
+            nodeSpacing: 200,  // Espacement entre les nœuds
             levelSeparation: 100  // Séparation verticale entre les niveaux
         }
     },
