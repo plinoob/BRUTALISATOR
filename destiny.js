@@ -1687,7 +1687,8 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 		borderWidth = 2
 		borderColor = "#777777"
 		 if (node.currentDestiny === true) {
-		borderColor = "#D87446"
+			 borderWidth = 3
+		borderColor = "#DD6F40"
 		} 
     }
 
