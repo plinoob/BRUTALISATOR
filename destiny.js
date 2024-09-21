@@ -1641,6 +1641,7 @@ function isLeaf(node) {if(node.currentDestiny)return false
 // Fonction pour parcourir l'arbre et générer des nœuds et des arêtes
 function processNode(node, nodeId, nodes, edges, parentId = null,level=1) {
     let label;
+
 	var colors = {
 		skill:{
 			leaf:"#B2A0BA",
@@ -1681,6 +1682,7 @@ function processNode(node, nodeId, nodes, edges, parentId = null,level=1) {
 				color = isLeaf(node)?colors.stats.leaf:colors.stats.node
 
     }
+	cl(label)
     // Définir la couleur en fonction des conditions
 
 	if (!isLeaf(node)) {
