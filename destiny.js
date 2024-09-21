@@ -1720,12 +1720,28 @@ function processNode(node, nodeId, nodes, edges, parentId = null) {
 }
 var jsonTree
 
+function findRootNode(jsonTree) {
+    if (jsonTree.level === 1) {
+        return jsonTree;
+    }
+    // Si le nœud actuel n'a pas level: 1, on cherche dans les sous-arbres
+    if (jsonTree.LEFT) {
+        var leftSearch = findRootNode(jsonTree.LEFT);
+        if (leftSearch) return leftSearch;
+    }
+    if (jsonTree.RIGHT) {
+        var rightSearch = findRootNode(jsonTree.RIGHT);
+        if (rightSearch) return rightSearch;
+    }
+    return null;  // Si aucun nœud avec level: 1 n'est trouvé
+}
+
 
 function go(){
 // Initialisation des nœuds et des arêtes
 let nodes = [];
 let edges = [];
-processNode(jsonTree, 1, nodes, edges);
+processNode(findRootNode(jsonTree), 1, nodes, edges);
 
 // Création du réseau avec vis-network
 var container = document.getElementById("mynetwork");
