@@ -176,17 +176,17 @@ simulFights({
 var setInt
 var fightWorker
 
-async function simulFights(){
+async function simulFights(arg){
 	
 	fetch(BRUTALISATOR+"generateFights.js")
 	  .then(response => response.text())
-	  .then(function(generateFights){cl("gooo",generateFights,arguments);simulFights_no_fetch(generateFights,...arguments);
+	  .then(function(generateFights){arg.generateFights = generateFights;simulFights_no_fetch(arg);
 })}
 
 
-async function simulFights_no_fetch(generateFights,{fn,rota1,rota2//number = boss
+async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
 ,backups,fight_per_rota,fight_total}){
-cl(arguments)
+
 	if(fightWorker)fightWorker.terminate()
 		
 	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
