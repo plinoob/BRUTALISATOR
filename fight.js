@@ -4398,5 +4398,5 @@ var getTempSkill = getTempSkill;
 
 var ServerState = proxy;
 var updateAchievement = proxy;
-var getTempSkill = zero
-var getTempWeapon = zero
+var getTempSkill = proxy
+var getTempWeapon = proxy
