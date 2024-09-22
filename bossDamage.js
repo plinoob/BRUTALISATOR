@@ -1740,9 +1740,61 @@ addScript(
 	function(){
 		
 		
-		fetch(fetches.val("/api/clan/"+CLAN))
+		fetch("/api/clan/"+CLAN)
 			.then(response => response.text())
-			.then(html => {cl(JSON.parse(html))})
+			.then(html => {
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				cl(JSON.parse(html))
+				
+				
+				
+				
+			function getNamesFromTeam(team){var s = "";
+			for(var i of team){var bruteSTR = ' <b class = "bruteNameHover">'+i[0]+'</b>'+"\n"
+			s+=bruteSTR
+			}
+			return s}
+			
+			function getDamageFromTeam(team){var s = "";
+			for(var i of team){var bruteSTR = '<font opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)">'+i[1]+"</font>"+"\n"
+			s+=bruteSTR
+			}
+			return s}
+
+			$("#dmgChartDIV").remove()
+			var allDIV = div({1:"dmgChartDIV",0:body,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+			,display: "flex","flex-direction": "line"},
+			textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
+				
+				
+			div({0:allDIV,17:getNamesFromTeam(teams[0])})
+			div({0:allDIV,17:"   "})
+			div({0:allDIV,17:getDamageFromTeam(teams[0])})
+				
+				
+				
+				insertDivAfterElement(allDIV[0],findFirstParentDiv(findTextInDOM("Afficher le détail des dégâts","h6")));
+				
+				
+				
+				
+				
+				
+				
+				})
 		
 		
 	}
