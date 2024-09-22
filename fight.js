@@ -4372,3 +4372,4 @@ var weaponsFR={"fan": "Éventail",
 "scimitar": "Cimeterre",};"use strict"
 
 var ServerState = proxy;
+var updateAchievement = proxy;
