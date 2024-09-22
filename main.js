@@ -152,7 +152,7 @@ async function simulFights(fn,rota1,rota2, boss,backups,fight_per_rota,fight_tot
 	fightWorker = new Worker(workerUrl);
 
 	clearInterval(setInt);
-	setInt = setInterval(function(){fn(worker.postMessage(5));},1000)
+	setInt = setInterval(function(){fn(fightWorker.postMessage(5));},1000)
 	
 	
 
