@@ -70,11 +70,11 @@ for(var i in fediv){if(i in a){fediv[i](a,i,b)}};
 return(b)}
 function uni(a){var l={};for(var i in a){for(var j in a[i]){l[j]=a[i][j]}};return(l)}
 
-function addScript( src ) {
+function addScript( src ,fn) {
 	cl("addscript",src);
 	fetch(src)
 	  .then(response => response.text())
-	  .then(html => {
+	  .then(fn?fn:(html => {
 	  
 		  var s = document.createElement( 'script' );
 		  s.setAttribute('text',"text/javascript");
@@ -82,7 +82,7 @@ function addScript( src ) {
 		  s.textContent=html;
 		  document.body.appendChild( s );
 	  
-	  })
+	  }))
 
 	}
 	

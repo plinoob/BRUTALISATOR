@@ -70,11 +70,11 @@ for(var i in fediv){if(i in a){fediv[i](a,i,b)}};
 return(b)}
 function uni(a){var l={};for(var i in a){for(var j in a[i]){l[j]=a[i][j]}};return(l)}
 
-function addScript( src ) {
+function addScript( src ,fn) {
 	cl("addscript",src);
 	fetch(src)
 	  .then(response => response.text())
-	  .then(html => {
+	  .then(fn?fn:(html => {
 	  
 		  var s = document.createElement( 'script' );
 		  s.setAttribute('text',"text/javascript");
@@ -82,7 +82,7 @@ function addScript( src ) {
 		  s.textContent=html;
 		  document.body.appendChild( s );
 	  
-	  })
+	  }))
 
 	}
 	
@@ -2014,10 +2014,12 @@ if(url.length>2 && url[2] == "fight"){FIGHT_TYPE = "fight"}
 if(url.length>6 && url[4] == "war" && url[6] == "fight"){FIGHT_TYPE = "war"}
 
 var BRUTE = ""
+var CLAN = ""
 
 
 if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
 else if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATOR+"destiny.js")}
+else if(url.length==4 && url[2]=="clan"){CLAN = url[3];addScript(BRUTALISATOR+"bossDamage.js")}
 else if(BRANCHE == "dev" && url.length==3 && url[1]=="user"){addScript(BRUTALISATOR+"devTools.js")}
 else if(FIGHT_TYPE){addScript(BRUTALISATOR+"damageChart.js")}
 
