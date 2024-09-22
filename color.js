@@ -946,7 +946,8 @@ if (typeof ExpectedError === 'undefined') {
       super(message);
     }
   }
-}var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
+}
+cl("er",ExpectedError)var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
   noThrows: 'noThrows',
   focusOpponent: 'focusOpponent',
   alwaysUseSupers: 'alwaysUseSupers',
