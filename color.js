@@ -150,9 +150,9 @@ async function simulFights(fn,rota1,rota2, boss,backups,fight_per_rota,fight_tot
 
 	// Créer le worker à partir de l'URL du Blob
 	fightWorker = new Worker(workerUrl);
-
+	fightWorker.onmessage=fn
 	clearInterval(setInt);
-	setInt = setInterval(function(){fn(fightWorker.postMessage(5));},1000)
+	setInt = setInterval(function(){fightWorker.postMessage(5);},1000)
 	
 	
 
