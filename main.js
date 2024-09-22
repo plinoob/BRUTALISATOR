@@ -161,7 +161,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 ,backups,fight_per_rota,fight_total}){
 
 	if(fightWorker)fightWorker.terminate()
-		
+		cl("rota2",rota2)
 	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
 		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = [[bosses["+rota2+"]]];")
 	}
