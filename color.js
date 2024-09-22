@@ -1127,6 +1127,694 @@ var weightedRandom = (items) => {
     }
     return items[i] || firstItem;
 };
+var pets = [
+    {
+        name: PetName.bear,
+        odds: 1,
+        enduranceMalus: 8,
+        initiative: 3.6,
+        strength: 40,
+        agility: 2,
+        speed: 1,
+        hp: 110,
+        counter: 0,
+        combo: -0.2,
+        block: -0.25,
+        evasion: 0.1,
+        accuracy: 0.2,
+        disarm: 0.05,
+        damage: 5,
+    },
+    {
+        name: PetName.panther,
+        odds: 1,
+        enduranceMalus: 6,
+        initiative: 0.6,
+        strength: 23,
+        agility: 16,
+        speed: 24,
+        hp: 26,
+        counter: 0,
+        combo: 0.7,
+        block: 0,
+        evasion: 0.2,
+        accuracy: 0,
+        disarm: 0,
+        damage: 3,
+    },
+    {
+        name: PetName.dog3,
+        odds: 2,
+        enduranceMalus: 2,
+        initiative: 0.1,
+        strength: 6,
+        agility: 5,
+        speed: 3,
+        hp: 14,
+        counter: 0,
+        combo: 0.2,
+        block: 0,
+        evasion: 0,
+        accuracy: 0,
+        disarm: 0,
+        damage: 3,
+    },
+    {
+        name: PetName.dog2,
+        odds: 8,
+        enduranceMalus: 2,
+        initiative: 0.1,
+        strength: 6,
+        agility: 5,
+        speed: 3,
+        hp: 14,
+        counter: 0,
+        combo: 0.2,
+        block: 0,
+        evasion: 0,
+        accuracy: 0,
+        disarm: 0,
+        damage: 3,
+    },
+    {
+        name: PetName.dog1,
+        odds: 20,
+        enduranceMalus: 2,
+        initiative: 0.1,
+        strength: 6,
+        agility: 5,
+        speed: 3,
+        hp: 14,
+        counter: 0,
+        combo: 0.2,
+        block: 0,
+        evasion: 0,
+        accuracy: 0,
+        disarm: 0,
+        damage: 3,
+    },
+];
+var scalingByPet = {
+    [PetName.bear]: {
+        strength: 0.4,
+        agility: 0.1,
+        speed: 0.1,
+        hp: 0.4,
+    },
+    [PetName.panther]: {
+        strength: 0.25,
+        agility: 0.3,
+        speed: 0.3,
+        hp: 0.15,
+    },
+    [PetName.dog3]: {
+        strength: 0.1,
+        agility: 0.2,
+        speed: 0.4,
+        hp: 0.1,
+    },
+    [PetName.dog2]: {
+        strength: 0.1,
+        agility: 0.2,
+        speed: 0.4,
+        hp: 0.1,
+    },
+    [PetName.dog1]: {
+        strength: 0.1,
+        agility: 0.2,
+        speed: 0.4,
+        hp: 0.1,
+    },
+};
+var petStatToBruteStat = {
+    strength: 'strengthValue',
+    agility: 'agilityValue',
+    speed: 'speedValue',
+    hp: 'hp',
+};
+var getPetStat = (brute, pet, stat) => {
+    var base = pet[stat];
+    var scaling = scalingByPet[pet.name][stat];
+    var bruteStat = brute[petStatToBruteStat[stat]];
+    return base + Math.ceil(scaling * bruteStat);
+};
+var SkillId;
+(function (SkillId) {
+    SkillId[SkillId["herculeanStrength"] = 0] = "herculeanStrength";
+    SkillId[SkillId["felineAgility"] = 1] = "felineAgility";
+    SkillId[SkillId["lightningBolt"] = 2] = "lightningBolt";
+    SkillId[SkillId["vitality"] = 3] = "vitality";
+    SkillId[SkillId["immortality"] = 4] = "immortality";
+    SkillId[SkillId["reconnaissance"] = 5] = "reconnaissance";
+    SkillId[SkillId["weaponsMaster"] = 6] = "weaponsMaster";
+    SkillId[SkillId["martialArts"] = 7] = "martialArts";
+    SkillId[SkillId["sixthSense"] = 8] = "sixthSense";
+    SkillId[SkillId["hostility"] = 9] = "hostility";
+    SkillId[SkillId["fistsOfFury"] = 10] = "fistsOfFury";
+    SkillId[SkillId["shield"] = 11] = "shield";
+    SkillId[SkillId["armor"] = 12] = "armor";
+    SkillId[SkillId["toughenedSkin"] = 13] = "toughenedSkin";
+    SkillId[SkillId["untouchable"] = 14] = "untouchable";
+    SkillId[SkillId["sabotage"] = 15] = "sabotage";
+    SkillId[SkillId["shock"] = 16] = "shock";
+    SkillId[SkillId["bodybuilder"] = 17] = "bodybuilder";
+    SkillId[SkillId["relentless"] = 18] = "relentless";
+    SkillId[SkillId["survival"] = 19] = "survival";
+    SkillId[SkillId["leadSkeleton"] = 20] = "leadSkeleton";
+    SkillId[SkillId["balletShoes"] = 21] = "balletShoes";
+    SkillId[SkillId["determination"] = 22] = "determination";
+    SkillId[SkillId["firstStrike"] = 23] = "firstStrike";
+    SkillId[SkillId["resistant"] = 24] = "resistant";
+    SkillId[SkillId["counterAttack"] = 25] = "counterAttack";
+    SkillId[SkillId["ironHead"] = 26] = "ironHead";
+    SkillId[SkillId["thief"] = 27] = "thief";
+    SkillId[SkillId["fierceBrute"] = 28] = "fierceBrute";
+    SkillId[SkillId["tragicPotion"] = 29] = "tragicPotion";
+    SkillId[SkillId["net"] = 30] = "net";
+    SkillId[SkillId["bomb"] = 31] = "bomb";
+    SkillId[SkillId["hammer"] = 32] = "hammer";
+    SkillId[SkillId["cryOfTheDamned"] = 33] = "cryOfTheDamned";
+    SkillId[SkillId["hypnosis"] = 34] = "hypnosis";
+    SkillId[SkillId["flashFlood"] = 35] = "flashFlood";
+    SkillId[SkillId["tamer"] = 36] = "tamer";
+    SkillId[SkillId["regeneration"] = 37] = "regeneration";
+    SkillId[SkillId["chef"] = 38] = "chef";
+    SkillId[SkillId["spy"] = 39] = "spy";
+    SkillId[SkillId["saboteur"] = 40] = "saboteur";
+    SkillId[SkillId["backup"] = 41] = "backup";
+    SkillId[SkillId["hideaway"] = 42] = "hideaway";
+    SkillId[SkillId["monk"] = 43] = "monk";
+    SkillId[SkillId["vampirism"] = 44] = "vampirism";
+    SkillId[SkillId["chaining"] = 45] = "chaining";
+    SkillId[SkillId["haste"] = 46] = "haste";
+    SkillId[SkillId["treat"] = 47] = "treat";
+    SkillId[SkillId["repulse"] = 48] = "repulse";
+})(SkillId || (/*exports.*/SkillId = SkillId = {}));
+var SkillByName = {
+    [SkillName.herculeanStrength]: SkillId.herculeanStrength,
+    [SkillName.felineAgility]: SkillId.felineAgility,
+    [SkillName.lightningBolt]: SkillId.lightningBolt,
+    [SkillName.vitality]: SkillId.vitality,
+    [SkillName.immortality]: SkillId.immortality,
+    [SkillName.reconnaissance]: SkillId.reconnaissance,
+    [SkillName.weaponsMaster]: SkillId.weaponsMaster,
+    [SkillName.martialArts]: SkillId.martialArts,
+    [SkillName.sixthSense]: SkillId.sixthSense,
+    [SkillName.hostility]: SkillId.hostility,
+    [SkillName.fistsOfFury]: SkillId.fistsOfFury,
+    [SkillName.shield]: SkillId.shield,
+    [SkillName.armor]: SkillId.armor,
+    [SkillName.toughenedSkin]: SkillId.toughenedSkin,
+    [SkillName.untouchable]: SkillId.untouchable,
+    [SkillName.sabotage]: SkillId.sabotage,
+    [SkillName.shock]: SkillId.shock,
+    [SkillName.bodybuilder]: SkillId.bodybuilder,
+    [SkillName.relentless]: SkillId.relentless,
+    [SkillName.survival]: SkillId.survival,
+    [SkillName.leadSkeleton]: SkillId.leadSkeleton,
+    [SkillName.balletShoes]: SkillId.balletShoes,
+    [SkillName.determination]: SkillId.determination,
+    [SkillName.firstStrike]: SkillId.firstStrike,
+    [SkillName.resistant]: SkillId.resistant,
+    [SkillName.counterAttack]: SkillId.counterAttack,
+    [SkillName.ironHead]: SkillId.ironHead,
+    [SkillName.thief]: SkillId.thief,
+    [SkillName.fierceBrute]: SkillId.fierceBrute,
+    [SkillName.tragicPotion]: SkillId.tragicPotion,
+    [SkillName.net]: SkillId.net,
+    [SkillName.bomb]: SkillId.bomb,
+    [SkillName.hammer]: SkillId.hammer,
+    [SkillName.cryOfTheDamned]: SkillId.cryOfTheDamned,
+    [SkillName.hypnosis]: SkillId.hypnosis,
+    [SkillName.flashFlood]: SkillId.flashFlood,
+    [SkillName.tamer]: SkillId.tamer,
+    [SkillName.regeneration]: SkillId.regeneration,
+    [SkillName.chef]: SkillId.chef,
+    [SkillName.spy]: SkillId.spy,
+    [SkillName.saboteur]: SkillId.saboteur,
+    [SkillName.backup]: SkillId.backup,
+    [SkillName.hideaway]: SkillId.hideaway,
+    [SkillName.monk]: SkillId.monk,
+    [SkillName.vampirism]: SkillId.vampirism,
+    [SkillName.chaining]: SkillId.chaining,
+    [SkillName.haste]: SkillId.haste,
+    [SkillName.treat]: SkillId.treat,
+    [SkillName.repulse]: SkillId.repulse,
+};
+var SkillById = {
+    [SkillId.herculeanStrength]: SkillName.herculeanStrength,
+    [SkillId.felineAgility]: SkillName.felineAgility,
+    [SkillId.lightningBolt]: SkillName.lightningBolt,
+    [SkillId.vitality]: SkillName.vitality,
+    [SkillId.immortality]: SkillName.immortality,
+    [SkillId.reconnaissance]: SkillName.reconnaissance,
+    [SkillId.weaponsMaster]: SkillName.weaponsMaster,
+    [SkillId.martialArts]: SkillName.martialArts,
+    [SkillId.sixthSense]: SkillName.sixthSense,
+    [SkillId.hostility]: SkillName.hostility,
+    [SkillId.fistsOfFury]: SkillName.fistsOfFury,
+    [SkillId.shield]: SkillName.shield,
+    [SkillId.armor]: SkillName.armor,
+    [SkillId.toughenedSkin]: SkillName.toughenedSkin,
+    [SkillId.untouchable]: SkillName.untouchable,
+    [SkillId.sabotage]: SkillName.sabotage,
+    [SkillId.shock]: SkillName.shock,
+    [SkillId.bodybuilder]: SkillName.bodybuilder,
+    [SkillId.relentless]: SkillName.relentless,
+    [SkillId.survival]: SkillName.survival,
+    [SkillId.leadSkeleton]: SkillName.leadSkeleton,
+    [SkillId.balletShoes]: SkillName.balletShoes,
+    [SkillId.determination]: SkillName.determination,
+    [SkillId.firstStrike]: SkillName.firstStrike,
+    [SkillId.resistant]: SkillName.resistant,
+    [SkillId.counterAttack]: SkillName.counterAttack,
+    [SkillId.ironHead]: SkillName.ironHead,
+    [SkillId.thief]: SkillName.thief,
+    [SkillId.fierceBrute]: SkillName.fierceBrute,
+    [SkillId.tragicPotion]: SkillName.tragicPotion,
+    [SkillId.net]: SkillName.net,
+    [SkillId.bomb]: SkillName.bomb,
+    [SkillId.hammer]: SkillName.hammer,
+    [SkillId.cryOfTheDamned]: SkillName.cryOfTheDamned,
+    [SkillId.hypnosis]: SkillName.hypnosis,
+    [SkillId.flashFlood]: SkillName.flashFlood,
+    [SkillId.tamer]: SkillName.tamer,
+    [SkillId.regeneration]: SkillName.regeneration,
+    [SkillId.chef]: SkillName.chef,
+    [SkillId.spy]: SkillName.spy,
+    [SkillId.saboteur]: SkillName.saboteur,
+    [SkillId.backup]: SkillName.backup,
+    [SkillId.hideaway]: SkillName.hideaway,
+    [SkillId.monk]: SkillName.monk,
+    [SkillId.vampirism]: SkillName.vampirism,
+    [SkillId.chaining]: SkillName.chaining,
+    [SkillId.haste]: SkillName.haste,
+    [SkillId.treat]: SkillName.treat,
+    [SkillId.repulse]: SkillName.repulse,
+};
+var FightStat = {
+    REVERSAL: 'reversal',
+    COUNTER: 'counter',
+    EVASION: 'evasion',
+    DEXTERITY: 'dexterity',
+    BLOCK: 'block',
+    ACCURACY: 'accuracy',
+    DISARM: 'disarm',
+    COMBO: 'combo',
+    DEFLECT: 'deflect',
+    ARMOR: 'armor',
+    DAMAGE: 'damage',
+    HIT_SPEED: 'hitSpeed',
+    INITIATIVE: 'initiative',
+    STRENGTH: 'strength',
+    AGILITY: 'agility',
+    SPEED: 'speed',
+    ENDURANCE: 'endurance',
+};
+var skills = [
+    {
+        name: 'herculeanStrength',
+        odds: 60,
+        type: 'booster',
+    },
+    {
+        name: 'felineAgility',
+        odds: 60,
+        type: 'booster',
+    },
+    {
+        name: 'lightningBolt',
+        odds: 60,
+        type: 'booster',
+    },
+    {
+        name: 'vitality',
+        odds: 60,
+        type: 'booster',
+    },
+    {
+        name: 'immortality',
+        odds: 0.14,
+        type: 'booster',
+    },
+    {
+        name: 'weaponsMaster',
+        odds: 10,
+        type: 'passive',
+    },
+    {
+        name: 'martialArts',
+        odds: 10,
+        type: 'passive',
+    },
+    {
+        name: 'sixthSense',
+        odds: 20,
+        type: 'passive',
+    },
+    {
+        name: 'hostility',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'fistsOfFury',
+        odds: 10,
+        type: 'passive',
+    },
+    {
+        name: 'shield',
+        odds: 10,
+        type: 'passive',
+    },
+    {
+        name: 'armor',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'toughenedSkin',
+        odds: 30,
+        type: 'passive',
+    },
+    {
+        name: 'untouchable',
+        odds: 1,
+        type: 'passive',
+    },
+    {
+        name: 'sabotage',
+        odds: 3,
+        type: 'passive',
+    },
+    {
+        name: 'shock',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'bodybuilder',
+        odds: 5,
+        type: 'passive',
+    },
+    {
+        name: 'relentless',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'survival',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'leadSkeleton',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'balletShoes',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'determination',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'firstStrike',
+        odds: 8,
+        type: 'passive',
+    },
+    {
+        name: 'resistant',
+        odds: 3,
+        type: 'passive',
+    },
+    {
+        name: 'reconnaissance',
+        odds: 1,
+        type: 'booster',
+    },
+    {
+        name: 'counterAttack',
+        odds: 10,
+        type: 'passive',
+    },
+    {
+        name: 'ironHead',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'thief',
+        odds: 2.5,
+        type: 'super',
+        toss: 8,
+        uses: 2,
+    },
+    {
+        name: 'fierceBrute',
+        odds: 20,
+        type: 'super',
+        toss: 5,
+        uses: 1,
+    },
+    {
+        name: 'tragicPotion',
+        odds: 8,
+        type: 'super',
+        toss: 10,
+        uses: 1,
+    },
+    {
+        name: 'net',
+        odds: 16,
+        type: 'super',
+        toss: 10,
+        uses: 1,
+    },
+    {
+        name: 'bomb',
+        odds: 6,
+        type: 'super',
+        toss: 2,
+        uses: 2,
+    },
+    {
+        name: 'hammer',
+        odds: 1,
+        type: 'super',
+        toss: 2,
+        uses: 1,
+    },
+    {
+        name: 'cryOfTheDamned',
+        odds: 4,
+        type: 'super',
+        toss: 8,
+        uses: 2,
+    },
+    {
+        name: 'hypnosis',
+        odds: 0.5,
+        type: 'super',
+        toss: 3,
+        uses: 1,
+    },
+    {
+        name: 'flashFlood',
+        odds: 0.5,
+        type: 'super',
+        toss: 2,
+        uses: 3,
+    },
+    {
+        name: 'tamer',
+        odds: 4,
+        type: 'super',
+        toss: 20,
+        uses: 4,
+    },
+    {
+        name: 'regeneration',
+        odds: 3,
+        type: 'talent',
+    },
+    {
+        name: 'chef',
+        odds: 1,
+        type: 'talent',
+    },
+    {
+        name: 'spy',
+        odds: 3,
+        type: 'talent',
+    },
+    {
+        name: 'saboteur',
+        odds: 3,
+        type: 'talent',
+    },
+    {
+        name: 'backup',
+        odds: 5,
+        type: 'talent',
+    },
+    {
+        name: 'hideaway',
+        odds: 5,
+        type: 'talent',
+    },
+    {
+        name: 'monk',
+        odds: 5,
+        type: 'talent',
+    },
+    {
+        name: 'vampirism',
+        odds: 10,
+        type: 'super',
+        uses: 1,
+        toss: 5,
+    },
+    {
+        name: 'chaining',
+        odds: 5,
+        type: 'passive',
+    },
+    {
+        name: 'haste',
+        odds: 5,
+        type: 'super',
+        uses: 1,
+        toss: 3,
+    },
+    {
+        name: 'treat',
+        odds: 20,
+        type: 'super',
+        uses: 4,
+        toss: 5,
+    },
+    {
+        name: 'repulse',
+        odds: 10,
+        type: 'passive',
+    },
+];
+var SkillModifiers = {
+    [SkillName.herculeanStrength]: [
+        { stat: FightStat.STRENGTH, value: 3 },
+        { stat: FightStat.STRENGTH, value: 50, percent: true },
+    ],
+    [SkillName.felineAgility]: [
+        { stat: FightStat.AGILITY, value: 3 },
+        { stat: FightStat.AGILITY, value: 50, percent: true },
+    ],
+    [SkillName.lightningBolt]: [
+        { stat: FightStat.SPEED, value: 3 },
+        { stat: FightStat.SPEED, value: 50, percent: true },
+    ],
+    [SkillName.vitality]: [
+        { stat: FightStat.ENDURANCE, value: 3 },
+        { stat: FightStat.ENDURANCE, value: 50, percent: true },
+    ],
+    [SkillName.immortality]: [
+        { stat: FightStat.ENDURANCE, value: 250, percent: true },
+        { stat: FightStat.STRENGTH, value: -25, percent: true },
+        { stat: FightStat.AGILITY, value: -25, percent: true },
+        { stat: FightStat.SPEED, value: -25, percent: true },
+    ],
+    [SkillName.weaponsMaster]: [
+        { stat: FightStat.DAMAGE, weaponType: WeaponType.SHARP, value: 50, percent: true },
+    ],
+    [SkillName.martialArts]: [
+        { stat: FightStat.DAMAGE, weaponType: null, value: 100, percent: true },
+    ],
+    [SkillName.sixthSense]: [
+        { stat: FightStat.COUNTER, value: 10, percent: true },
+    ],
+    [SkillName.hostility]: [
+        { stat: FightStat.REVERSAL, value: 30, percent: true },
+    ],
+    [SkillName.fistsOfFury]: [
+        { stat: FightStat.COMBO, value: 20, percent: true },
+    ],
+    [SkillName.shield]: [
+        { stat: FightStat.BLOCK, value: 45, percent: true },
+    ],
+    [SkillName.armor]: [
+        { stat: FightStat.ARMOR, value: 25, percent: true },
+        { stat: FightStat.SPEED, value: -10, percent: true },
+    ],
+    [SkillName.toughenedSkin]: [
+        { stat: FightStat.ARMOR, value: 10, percent: true },
+    ],
+    [SkillName.untouchable]: [
+        { stat: FightStat.EVASION, value: 30, percent: true },
+    ],
+    [SkillName.sabotage]: [],
+    [SkillName.shock]: [
+        { stat: FightStat.DISARM, value: 50, percent: true },
+    ],
+    [SkillName.bodybuilder]: [
+        { stat: FightStat.HIT_SPEED, weaponType: WeaponType.HEAVY, value: 25, percent: true },
+        { stat: FightStat.DEXTERITY, weaponType: WeaponType.HEAVY, value: 10, percent: true },
+    ],
+    [SkillName.relentless]: [
+        { stat: FightStat.ACCURACY, value: 30, percent: true },
+    ],
+    [SkillName.survival]: [],
+    [SkillName.leadSkeleton]: [],
+    [SkillName.balletShoes]: [
+        { stat: FightStat.EVASION, value: 10, percent: true },
+    ],
+    [SkillName.determination]: [],
+    [SkillName.firstStrike]: [
+        { stat: FightStat.INITIATIVE, value: 200 },
+    ],
+    [SkillName.resistant]: [],
+    [SkillName.reconnaissance]: [
+        { stat: FightStat.INITIATIVE, value: -200 },
+        { stat: FightStat.SPEED, value: 5 },
+        { stat: FightStat.SPEED, value: 150, percent: true },
+    ],
+    [SkillName.counterAttack]: [
+        { stat: FightStat.BLOCK, value: 10, percent: true },
+        { stat: FightStat.REVERSAL, value: 90, percent: true, details: 'afterBlock' },
+    ],
+    [SkillName.ironHead]: [],
+    [SkillName.thief]: [],
+    [SkillName.fierceBrute]: [],
+    [SkillName.tragicPotion]: [],
+    [SkillName.net]: [],
+    [SkillName.bomb]: [],
+    [SkillName.hammer]: [],
+    [SkillName.cryOfTheDamned]: [],
+    [SkillName.hypnosis]: [],
+    [SkillName.flashFlood]: [],
+    [SkillName.tamer]: [],
+    [SkillName.regeneration]: [],
+    [SkillName.chef]: [],
+    [SkillName.spy]: [],
+    [SkillName.saboteur]: [],
+    [SkillName.backup]: [],
+    [SkillName.hideaway]: [],
+    [SkillName.monk]: [
+        { stat: FightStat.COUNTER, value: 40, percent: true },
+        { stat: FightStat.INITIATIVE, value: -200 },
+        { stat: FightStat.HIT_SPEED, value: -100, percent: true },
+    ],
+    [SkillName.vampirism]: [],
+    [SkillName.chaining]: [],
+    [SkillName.haste]: [],
+    [SkillName.treat]: [],
+    [SkillName.repulse]: [
+        { stat: FightStat.DEFLECT, value: 30, percent: true },
+    ],
+};
 var Animations = [
     'arrive', 'attack', 'block', 'death', 'drink', 'eat',
     'equip', 'evade', 'grab', 'grabbed', 'hit', 'hit-0', 'hit-1', 'hit-2',
