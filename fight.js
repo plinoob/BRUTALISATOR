@@ -4369,7 +4369,33 @@ var weaponsFR={"fan": "Éventail",
   "piopio": "Piou Piou",
   "shuriken": "Shuriken",
   "broadsword": "Glaive",
-"scimitar": "Cimeterre",};"use strict"
+"scimitar": "Cimeterre",};var getTempWeapon = (brute, weaponIndex) => {
+    if (weaponIndex === null) {
+        return null;
+    }
+    var unownedWeapons = weapons.filter((weapon) => !brute.weapons.includes(weapon.name));
+    var tempWeapon = unownedWeapons[weaponIndex % unownedWeapons.length];
+    if (!tempWeapon) {
+        throw new Error('No temp weapon found');
+    }
+    return tempWeapon.name;
+};
+var getTempWeapon = getTempWeapon;
+var unavailableTemporarySkills = [SkillName.backup];
+var getTempSkill = (brute, skillIndex) => {
+    if (skillIndex === null) {
+        return null;
+    }
+    var unownedSkills = skills.filter((skill) => !brute.skills.includes(skill.name)
+        && !unavailableTemporarySkills.includes(skill.name));
+    var tempSkill = unownedSkills[skillIndex % unownedSkills.length];
+    if (!tempSkill) {
+        throw new Error('No temp skill found');
+    }
+    return tempSkill.name;
+};
+var getTempSkill = getTempSkill;
+"use strict"
 
 var ServerState = proxy;
 var updateAchievement = proxy;
