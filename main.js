@@ -5,7 +5,7 @@ function rien(){}
 function simulServer(a){
 	
 	var bossDmg = parseInt(a["0"]?.data?.damageOnBoss?.increment)
-	if(bossDmg>0){cl(arguments);cl(a["0"].data.damageOnBoss.increment)};return 0}
+	if(bossDmg>0){cl(a["0"].data.damageOnBoss.increment)};return 0}
 
 
 var proxy = new Proxy(simulServer, {
