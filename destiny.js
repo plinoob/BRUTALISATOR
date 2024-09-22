@@ -684,12 +684,14 @@ var WEAPONS_SFX = {
         return acc;
     }, {}),
 };
-class ExpectedError extends Error {
+
+if (typeof ExpectedError === 'undefined') {
+  class ExpectedError extends Error {
     constructor(message = '') {
-        super(message);
+      super(message);
     }
-}
-var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
+  }
+}var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
   noThrows: 'noThrows',
   focusOpponent: 'focusOpponent',
   alwaysUseSupers: 'alwaysUseSupers',

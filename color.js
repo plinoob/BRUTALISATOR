@@ -123,10 +123,23 @@ function findTextInDOM(text,balise) {
   });
   return elem;
 }
+
+/*
+simulFights({
+	fn,
+	rota1,
+	rota2,//number = boss
+	backups,
+	fight_per_rota,
+	fight_total
+	})
+*/
+
+
 var setInt
 var fightWorker
-async function simulFights(fn,rota1,rota2//number = boss
-	,backups,fight_per_rota,fight_total){
+async function simulFights({fn,rota1,rota2//number = boss
+,backups,fight_per_rota,fight_total}){
 	if(fightWorker)fightWorker.terminate()
 		
 	
@@ -926,12 +939,14 @@ var WEAPONS_SFX = {
         return acc;
     }, {}),
 };
-class ExpectedError extends Error {
+
+if (typeof ExpectedError === 'undefined') {
+  class ExpectedError extends Error {
     constructor(message = '') {
-        super(message);
+      super(message);
     }
-}
-var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
+  }
+}var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
   noThrows: 'noThrows',
   focusOpponent: 'focusOpponent',
   alwaysUseSupers: 'alwaysUseSupers',
