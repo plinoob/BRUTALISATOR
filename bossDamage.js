@@ -4441,7 +4441,7 @@ var getTempSkill = getTempSkill;
 			var allDIVMERE = div({9:{ "display": "flex",           /* Utilise Flexbox */
   "justify-content": "center",    /* Centre horizontalement */
   "align-items": "center"}})
-			var allDIV = div({0:allDIVMERE,1:"dmgChartDIV",0:body,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+			var allDIV = div({0:allDIVMERE,1:"dmgChartDIV",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS,{"width":"400px"}])})
 				
