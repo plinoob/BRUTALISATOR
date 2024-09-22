@@ -2,9 +2,10 @@
 var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
 
 function rien(){}
+function zero(){return 0}
 
 
-var proxy = new Proxy(rien, {
+var proxy = new Proxy(zero, {
   get(target, property) {
     if (property in target) {
       return target[property];
