@@ -13,7 +13,7 @@ var proxy = new Proxy(simulServer, {
     return proxy; // Renvoie le même proxy pour les accès en profondeur
   },
   apply(target, thisArg, argumentsList) {
-    return {}; // Renvoie un objet vide lorsqu'on appelle le proxy comme une fonction
+    return simulServer(argumentsList); // Renvoie un objet vide lorsqu'on appelle le proxy comme une fonction
   }
 });
 
