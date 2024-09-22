@@ -19,24 +19,7 @@ var proxy = new Proxy(simulServer, {
     return simulServer(argumentsList); // Renvoie un objet vide lorsqu'on appelle le proxy comme une fonction
   }
 });
-var document = self.document = {parentNode: null, nodeType: 9, toString: function() {return "FakeDocument"}};
-var window = self.window = self;
-var fakeElement = Object.create(document);
-fakeElement.nodeType = 1;
-fakeElement.toString=function() {return "FakeElement"};
-fakeElement.parentNode = fakeElement.firstChild = fakeElement.lastChild = fakeElement;
-fakeElement.ownerDocument = document;
 
-document.head = document.body = fakeElement;
-document.ownerDocument = document.documentElement = document;
-document.getElementById = document.createElement = function() {return fakeElement;};
-document.createDocumentFragment = function() {return this;};
-document.getElementsByTagName = document.getElementsByClassName = function() {return [fakeElement];};
-document.getAttribute = document.setAttribute = document.removeChild = 
-  document.addEventListener = document.removeEventListener = 
-  function() {return null;};
-document.cloneNode = document.appendChild = function() {return this;};
-document.appendChild = function(child) {return child;};
 
 var nfps=60;var dicfps={};var dirfps=[];function fps(a){var f=dirfps.length;var t=function(){if(!(a in dicfps)){dicfps[a]=false;a(...arguments);setTimeout(function(){var b=dicfps[a];delk(dicfps,a);if(typeof(b)==typeof([])){dirfps[f](...b)}},nfps)}else{dicfps[a]=arguments;};};dirfps.push(t);return(t)};
 function delk(a,b){if(typeof(a)==typeof([]) && (!Array.isArray(a))){var c=a;a=b;b=c};var c=b[a];delete b[a];return(c)}
