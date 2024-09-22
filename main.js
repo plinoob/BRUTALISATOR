@@ -939,15 +939,13 @@ var WEAPONS_SFX = {
         return acc;
     }, {}),
 };
-
-if (typeof ExpectedError === 'undefined') {
-  class ExpectedError extends Error {
+if (typeof window.ExpectedError === 'undefined') {
+  window.ExpectedError = class ExpectedError extends Error {
     constructor(message = '') {
       super(message);
     }
-  }
-}
-cl("er",typeof ExpectedError === 'undefined');var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
+  };
+}var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
   noThrows: 'noThrows',
   focusOpponent: 'focusOpponent',
   alwaysUseSupers: 'alwaysUseSupers',
