@@ -876,78 +876,6 @@ var WEAPONS_SFX = {
         return acc;
     }, {}),
 };
-var Animations = [
-    'arrive', 'attack', 'block', 'death', 'drink', 'eat',
-    'equip', 'evade', 'grab', 'grabbed', 'hit', 'hit-0', 'hit-1', 'hit-2',
-    'idle', 'launch', 'monk', 'prepare-throw', 'run',
-    'stolen', 'steal', 'strengthen', 'throw', 'train', 'train2', 'trapped',
-    'trash', 'win', ...WeaponAnimations,
-];
-var BruteRankings = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
-var PERK_ODDS = [
-    { name: 'pet', odds: PETS_TOTAL_ODDS },
-    { name: 'skill', odds: SKILLS_TOTAL_ODDS },
-    { name: 'weapon', odds: WEAPONS_TOTAL_ODDS },
-];
-var FIGHTER_HEIGHT = {
-    brute: 80,
-    [PetName.bear]: 130,
-    [PetName.panther]: 60,
-    dog: 40,
-};
-var FIGHTER_WIDTH = {
-    brute: 50,
-    [PetName.bear]: 100,
-    [PetName.panther]: 80,
-    dog: 60,
-};
-var FIGHTER_HIT_ANCHOR = {
-    brute: { x: 5, y: 40 },
-    [PetName.bear]: { x: 60, y: 100 },
-    [PetName.panther]: { x: 45, y: 45 },
-    dog: { x: 30, y: 30 },
-};
-var BASE_FIGHTER_STATS = {
-    reversal: 0,
-    evasion: 0.1,
-    dexterity: 0.2,
-    block: -0.25,
-    accuracy: 0,
-    disarm: 0.05,
-    combo: 0,
-    deflect: 0,
-    tempo: 1.2,
-};
-var BruteDeletionReason;
-(function (BruteDeletionReason) {
-    BruteDeletionReason["DUPLICATE_NAME"] = "DUPLICATE_NAME";
-    BruteDeletionReason["INNAPROPRIATE_NAME"] = "INNAPROPRIATE_NAME";
-    BruteDeletionReason["BANNED_USER"] = "BANNED_USER";
-    BruteDeletionReason["EVENT_LOSS"] = "EVENT_LOSS";
-})(BruteDeletionReason || (/*exports.*/BruteDeletionReason = BruteDeletionReason = {}));
-var DailyModifierOdds = [
-    { modifier: FightModifier.noThrows, odds: 1 },
-    { modifier: FightModifier.focusOpponent, odds: 1 },
-    { modifier: FightModifier.alwaysUseSupers, odds: 1 },
-    { modifier: FightModifier.drawEveryWeapon, odds: 1 },
-    { modifier: FightModifier.doubleAgility, odds: 1 },
-    { modifier: FightModifier.randomSkill, odds: 1 },
-    { modifier: FightModifier.randomWeapon, odds: 1 },
-    { modifier: FightModifier.bareHandsFirstHit, odds: 1 },
-    { modifier: FightModifier.startWithWeapon, odds: 1 },
-];
-var DailyModifierCountOdds = [
-    { count: 1, odds: 50 },
-    { count: 2, odds: 25 },
-    { count: 3, odds: 15 },
-    { count: 4, odds: 10 },
-];
-var BanReason;
-(function (BanReason) {
-    BanReason["INNAPROPRIATE_NAME"] = "innapropriateName";
-    BanReason["INNAPROPRIATE_BRUTE_NAME"] = "innapropriateBruteName";
-    BanReason["MULTIPLE_ACCOUNTS"] = "multipleAccounts";
-})(BanReason || (/*exports.*/BanReason = BanReason = {}));
 class ExpectedError extends Error {
     constructor(message = '') {
         super(message);
@@ -1199,6 +1127,78 @@ var weightedRandom = (items) => {
     }
     return items[i] || firstItem;
 };
+var Animations = [
+    'arrive', 'attack', 'block', 'death', 'drink', 'eat',
+    'equip', 'evade', 'grab', 'grabbed', 'hit', 'hit-0', 'hit-1', 'hit-2',
+    'idle', 'launch', 'monk', 'prepare-throw', 'run',
+    'stolen', 'steal', 'strengthen', 'throw', 'train', 'train2', 'trapped',
+    'trash', 'win', ...WeaponAnimations,
+];
+var BruteRankings = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+var PERK_ODDS = [
+    { name: 'pet', odds: PETS_TOTAL_ODDS },
+    { name: 'skill', odds: SKILLS_TOTAL_ODDS },
+    { name: 'weapon', odds: WEAPONS_TOTAL_ODDS },
+];
+var FIGHTER_HEIGHT = {
+    brute: 80,
+    [PetName.bear]: 130,
+    [PetName.panther]: 60,
+    dog: 40,
+};
+var FIGHTER_WIDTH = {
+    brute: 50,
+    [PetName.bear]: 100,
+    [PetName.panther]: 80,
+    dog: 60,
+};
+var FIGHTER_HIT_ANCHOR = {
+    brute: { x: 5, y: 40 },
+    [PetName.bear]: { x: 60, y: 100 },
+    [PetName.panther]: { x: 45, y: 45 },
+    dog: { x: 30, y: 30 },
+};
+var BASE_FIGHTER_STATS = {
+    reversal: 0,
+    evasion: 0.1,
+    dexterity: 0.2,
+    block: -0.25,
+    accuracy: 0,
+    disarm: 0.05,
+    combo: 0,
+    deflect: 0,
+    tempo: 1.2,
+};
+var BruteDeletionReason;
+(function (BruteDeletionReason) {
+    BruteDeletionReason["DUPLICATE_NAME"] = "DUPLICATE_NAME";
+    BruteDeletionReason["INNAPROPRIATE_NAME"] = "INNAPROPRIATE_NAME";
+    BruteDeletionReason["BANNED_USER"] = "BANNED_USER";
+    BruteDeletionReason["EVENT_LOSS"] = "EVENT_LOSS";
+})(BruteDeletionReason || (/*exports.*/BruteDeletionReason = BruteDeletionReason = {}));
+var DailyModifierOdds = [
+    { modifier: FightModifier.noThrows, odds: 1 },
+    { modifier: FightModifier.focusOpponent, odds: 1 },
+    { modifier: FightModifier.alwaysUseSupers, odds: 1 },
+    { modifier: FightModifier.drawEveryWeapon, odds: 1 },
+    { modifier: FightModifier.doubleAgility, odds: 1 },
+    { modifier: FightModifier.randomSkill, odds: 1 },
+    { modifier: FightModifier.randomWeapon, odds: 1 },
+    { modifier: FightModifier.bareHandsFirstHit, odds: 1 },
+    { modifier: FightModifier.startWithWeapon, odds: 1 },
+];
+var DailyModifierCountOdds = [
+    { count: 1, odds: 50 },
+    { count: 2, odds: 25 },
+    { count: 3, odds: 15 },
+    { count: 4, odds: 10 },
+];
+var BanReason;
+(function (BanReason) {
+    BanReason["INNAPROPRIATE_NAME"] = "innapropriateName";
+    BanReason["INNAPROPRIATE_BRUTE_NAME"] = "innapropriateBruteName";
+    BanReason["MULTIPLE_ACCOUNTS"] = "multipleAccounts";
+})(BanReason || (/*exports.*/BanReason = BanReason = {}));
 var availableBodyParts = {
     male: {
         p2: 7,
