@@ -1958,7 +1958,8 @@ if(url.length>6 && url[4] == "war" && url[6] == "fight"){FIGHT_TYPE = "war"}
 var BRUTE = ""
 
 if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
-if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATOR+"destiny.js")}
+else if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATOR+"destiny.js")}
+else if(BRANCHE == "dev" && url.length==3 && url[1]=="user"){addScript(BRUTALISATOR+"devTools.js")}
 else if(FIGHT_TYPE){addScript(BRUTALISATOR+"damageChart.js")}
 
 else{alertAndStop(NOTHING_TO_DO)}
