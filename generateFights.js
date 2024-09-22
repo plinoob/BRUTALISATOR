@@ -216,7 +216,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 
 	// Créer le worker à partir de l'URL du Blob
 	fightWorker = new Worker(workerUrl);
-	fightWorker.onmessage=function(e){cl(e);if(e.data.ended){stopLoading();};fn(e.data.bilan)}
+	fightWorker.onmessage=function(e){if(e.data.ended){stopLoading();};fn(e.data.bilan)}
 	clearInterval(setInt);
 	setInt = setInterval(function(){fightWorker.postMessage(5);},333)
 	
