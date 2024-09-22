@@ -4440,7 +4440,7 @@ var getTempSkill = getTempSkill;
 			$("#dmgChartDIV").remove()
 			var allDIV = div({1:"dmgChartDIV",0:body,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
-			textBoxCSS,baseCSS,{"width":"400px","margin": "16px 40px"}])})
+			textBoxCSS,baseCSS,{"width":"400px",display:"inline-block"}])})
 				
 			function ac(){
 				allDIV.empty()
