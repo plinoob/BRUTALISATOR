@@ -74,7 +74,11 @@ function addScript( src ,fn) {
 	cl("addscript",src);
 	fetch(src)
 	  .then(response => response.text())
-	  .then(fn?fn:(html => {
+	  .then(fn?function(html){var s = document.createElement( 'script' );
+		  s.setAttribute('text',"text/javascript");
+		  s.setAttribute('type',"module");
+		  s.textContent=html;
+		  document.body.appendChild( s );fn()}:(html => {
 	  
 		  var s = document.createElement( 'script' );
 		  s.setAttribute('text',"text/javascript");
