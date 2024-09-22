@@ -150,7 +150,7 @@ var setInt
 var fightWorker
 	clearInterval(setInt);
 	var urrl = window.location.href
-	setInt = setInterval(function(){fightWorker.postMessage(5);
+	setInt = setInterval(function(){if(fightWorker)fightWorker.postMessage(5);
 	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();
 	if(fightWorker)fightWorker.terminate()}
 	},333)
