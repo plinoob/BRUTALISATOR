@@ -4399,7 +4399,7 @@ var getTempSkill = getTempSkill;
 		
 		fetch("/api/clan/"+CLAN)
 			.then(response => response.text())
-			.then(html => {cl("CLAN :",clan)
+			.then(html => {
 				
 				
 				var clan = JSON.parse(html)
@@ -4409,7 +4409,7 @@ var getTempSkill = getTempSkill;
 				for(var brute of clan.brutes){rota1.push([brute])}
 				
 				var rota2 =  0
-				for(var boss in bosses){if(bosses[boss].name==clan.boss){rota2=boss}}
+				for(var boss in bosses){if(bosses[boss].name==clan.boss){rota2=parseInt(boss)}}
 				
 				
 				
