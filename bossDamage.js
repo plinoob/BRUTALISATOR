@@ -4425,13 +4425,13 @@ var getTempSkill = getTempSkill;
 				
 				var bilan = {}
 				
-			function getNamesFromTeam(team){var s = "";
+			function getNamesFromTeam(){var s = "";
 			for(var i in team){var bruteSTR = ' <b title="'+bilan[i]+'">'+i+'</b>'+"\n"
 			s+=bruteSTR
 			}
 			return s}
 			
-			function getDamageFromTeam(team){var s = "";
+			function getDamageFromTeam(){var s = "";
 			for(var i in team){var bruteSTR = '<font opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)">'+team[i]+"</font>"+"\n"
 			s+=bruteSTR
 			}
