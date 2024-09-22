@@ -252,6 +252,12 @@ function addStyle(styleString) {
   style.textContent = styleString;
   document.head.append(style);
 }
+
+
+var textBoxCSS
+var baseCSS
+var shurikenDIV
+
 if(typeof(document)!="undefined"){addStyle(`		#shuriken {
   display: flex;
   justify-content: center;
@@ -277,16 +283,16 @@ if(typeof(document)!="undefined"){addStyle(`		#shuriken {
 }
 	`)
 $("#shuriken").remove()
-var shurikenDIV = div({0:body,4:["33px","33px","",""],1:"shuriken"})
+shurikenDIV = div({0:body,4:["33px","33px","",""],1:"shuriken"})
 div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image"})
-var baseCSS = {	"font-family": "Roboto, Helvetica, Arial, sans-serif",
+  baseCSS= {	"font-family": "Roboto, Helvetica, Arial, sans-serif",
     "font-weight": "400",
     "font-size": "1rem",
     "line-height": "1.5",
     "letter-spacing": "0.00938em",
 }
 
-var textBoxCSS = {color: "rgb(176, 107, 79)",
+textBoxCSS = {color: "rgb(176, 107, 79)",
     "box-shadow": "rgb(222, 195, 127) 0px 0px 0px 1px, rgb(246, 238, 144) 0px 0px 1px 4.5px, rgb(114, 82, 84) 0px 0px 0px 6px, rgb(188, 123, 74) 3px 3px 0px 6px",
     "background-color": "rgb(251, 242, 175)",
     "border-radius": "5px",
