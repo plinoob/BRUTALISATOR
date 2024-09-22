@@ -73,7 +73,7 @@ function addScript( src ,src2) {
 	cl("addscript",src);
 	fetch(src)
 	  .then(response => response.text())
-	  .then(src2?function(){
+	  .then(src2?function(html){
 		  fetch(src)
 	  .then(response => response.text())
 	  .then(function(html2){var s = document.createElement( 'script' );
