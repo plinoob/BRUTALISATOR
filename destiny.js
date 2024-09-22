@@ -3279,7 +3279,7 @@ div({1:"mynetwork",4:0,13:500000000,10:"#EEBB83",12:["100%","100%"]})
 function isLeaf(node) {if(node.currentDestiny)return false
   return !node.LEFT && !node.RIGHT; // Un nœud sans enfants est une feuille
 }
-
+var NODEID = 1
 // Fonction pour parcourir l'arbre et générer des nœuds et des arêtes
 function processNode(node, nodeId, nodes, edges, parentId = null,level=1) {
     let label;
@@ -3355,11 +3355,11 @@ function processNode(node, nodeId, nodes, edges, parentId = null,level=1) {
     }
 
     // Processus récursif pour les enfants
-    if (node.LEFT) {
-        processNode(node.LEFT, nodeId * 2, nodes, edges, nodeId,level+1);
+    if (node.LEFT) {NODEID+=1
+        processNode(node.LEFT, NODEID, nodes, edges, nodeId,level+1);
     }
-    if (node.RIGHT) {
-        processNode(node.RIGHT, nodeId * 2 + 1, nodes, edges, nodeId,level+1);
+    if (node.RIGHT) {NODEID+=1;
+        processNode(node.RIGHT, NODEID, nodes, edges, nodeId,level+1);
     }
 }
 var jsonTree
