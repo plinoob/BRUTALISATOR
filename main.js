@@ -129,8 +129,8 @@ async function simulFights(fn,rota1,rota2, boss,backups,fight_per_rota,fight_tot
 	if(fightWorker)fightWorker.terminate()
 		
 	
-	generateFights = generateFights.replace("var TEAM1 ="++" []","var TEAM1 = "+JSON.stringify(rota1)+";")
-	generateFights = generateFights.replace("var TEAM2 ="++" []","var TEAM2 = "+JSON.stringify(rota2)+";")
+	generateFights = generateFights.replace("var TEAM1 ="+" []","var TEAM1 = "+JSON.stringify(rota1)+";")
+	generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = "+JSON.stringify(rota2)+";")
 	
 	if(boss){generateFights = generateFights.replace('var BOSS = "brutes"','var BOSS = "bosses"'+";")}
 	if(rota1[0].length+rota2[0].length>2){generateFights = generateFights.replace('var CLANWAR = false','var CLANWAR = true'+";")}
