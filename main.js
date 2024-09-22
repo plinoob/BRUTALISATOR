@@ -148,7 +148,15 @@ simulFights({
 
 var setInt
 var fightWorker
+	clearInterval(setInt);
+	var urrl
 
+if(typeof(window)!="undefined"){	urrl= window.location.href;
+	setInt = setInterval(function(){if(fightWorker)fightWorker.postMessage(5);
+	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();
+	if(fightWorker)fightWorker.terminate()
+		$("#mynetwork").remove()}
+},333)}
 async function simulFights(arg){
 	
 	fetch(BRUTALISATOR+"generateFights.js")
@@ -189,9 +197,8 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 
 	// Créer le worker à partir de l'URL du Blob
 	fightWorker = new Worker(workerUrl);
-	fightWorker.onmessage=function(e){if(e.data.ended){stopLoading();};fn(e.data.bilan)}
-	clearInterval(setInt);
-	setInt = setInterval(function(){fightWorker.postMessage(5);},333)
+	fightWorker.onmessage=function(e){if(e.data.ended){stopLoading();fightWorker.terminate()};fn(e.data.bilan)}
+
 	
 	
 
@@ -231,7 +238,13 @@ var textBoxCSS
 var baseCSS
 var shurikenDIV
 
-if(typeof(document)!="undefined"){addStyle(`		#shuriken {
+if(typeof(document)!="undefined"){
+	
+	
+
+	
+	
+	addStyle(`		#shuriken {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -2019,7 +2032,7 @@ var BossName = /*exports.*//*$Enums.*/BossName = {
 var VERSION = "v2.72.4"
 var ERROR_VERSION = "Mauvaise version de 💪BRUTALISATOR : "+VERSION+")"
 var ERROR_WEBSITE = "Utilise 💪BRUTALISATOR sur une page Labrute !"
-var NOTHING_TO_DO = "💪BRUTALISATOR n'a pas encore de fonctionnalité pour cette page ! \n\n============== FONCTIONNALITÉS ================\n\n• CRÉATION : Customisation de l'apparence, choix du maître\n\n• COMBAT : Récapitulatif des dommages\n\n• DESTINÉE : Meilleure visualisation"
+var NOTHING_TO_DO = "💪BRUTALISATOR n'a pas encore de fonctionnalité pour cette page ! \n\n============== FONCTIONNALITÉS ================\n\n• CRÉATION : Customisation de l'apparence, choix du maître\n\n• CLAN : Estimation des dégâts journaliers\n\n• COMBAT : Récapitulatif des dommages\n\n• DESTINÉE : Meilleure visualisation"
 function alertAndStop(error){stopLoading();alert(error);throw new Error(error);}
 
 if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alertAndStop(ERROR_WEBSITE);}

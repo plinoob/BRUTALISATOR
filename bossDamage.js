@@ -4425,22 +4425,25 @@ var getTempSkill = getTempSkill;
 				
 				var bilan = {}
 				
-			function getNamesFromTeam(team){var s = "";
+			function getNamesFromTeam(){var s = "";
 			for(var i in team){var bruteSTR = ' <b title="'+bilan[i]+'">'+i+'</b>'+"\n"
 			s+=bruteSTR
 			}
 			return s}
 			
-			function getDamageFromTeam(team){var s = "";
-			for(var i in team){var bruteSTR = '<font opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)">'+team[i]+"</font>"+"\n"
+			function getDamageFromTeam(){var s = "";
+			for(var i in team){var bruteSTR = '<font opacity="0.66" font-size="0.751429rem" color="rgba(144, 90, 78)"><b>'+parseInt(team[i]*7/bilan[i])+"</b></font>"+"\n"
 			s+=bruteSTR
 			}
 			return s}
 
 			$("#dmgChartDIV").remove()
-			var allDIV = div({1:"dmgChartDIV",0:body,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+			var allDIVMERE = div({9:{ "display": "flex",           /* Utilise Flexbox */
+  "justify-content": "center",    /* Centre horizontalement */
+  "align-items": "center"}})
+			var allDIV = div({0:allDIVMERE,1:"dmgChartDIV",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
-			textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
+			textBoxCSS,baseCSS,{padding:"10px"}])})
 				
 			function ac(){
 				allDIV.empty()
@@ -4450,11 +4453,11 @@ var getTempSkill = getTempSkill;
 			}	
 				
 				
-				insertDivAfterElement(allDIV[0],findFirstParentDiv(findTextInDOM("Afficher le détail des dégâts","h6")));
+				insertDivAfterElement(allDIVMERE[0],findFirstParentDiv(findTextInDOM("Afficher le détail des dégâts","h6")));
 				
 				
 				simulFights({
-					fn:function(res){team={};for(var brute of res){bilan[brute.name]=brute.j;team[brute.name] = brute.boss}
+					fn:function(res){team={};for(var brute of res){bilan[brute.nom]=brute.j;team[brute.nom] = brute.boss}
 					var sorted = Object.entries(team).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {
   result[key] = value;
   return result;
