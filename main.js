@@ -131,7 +131,7 @@ async function simulFights(fn,rota1,rota2//number = boss
 		
 	
 	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
-		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = ["+bosses[0]+"];")
+		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = [bosses[0]];")
 	}
 	else{
 		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = "+JSON.stringify(rota2)+";")
