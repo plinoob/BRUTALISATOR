@@ -2,10 +2,10 @@
 var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
 
 function rien(){}
-function zero(){return 0}
+function simulServer(a){if(a.data?.damageOnBoss?.increment){cl(a.data?.damageOnBoss?.increment)};return 0}
 
 
-var proxy = new Proxy(zero, {
+var proxy = new Proxy(simulServer, {
   get(target, property) {
     if (property in target) {
       return target[property];
