@@ -3448,7 +3448,6 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
         winner: null,
         loser: null,
     };
-	cl(fightData)
     // Add arrive step for all fighters
     fightData.fighters.forEach((fighter) => {
         // Ignore backups
