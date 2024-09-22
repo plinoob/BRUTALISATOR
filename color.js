@@ -130,7 +130,7 @@ async function simulFights(fn,rota1,rota2//number = boss
 	if(fightWorker)fightWorker.terminate()
 		
 	
-	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
+	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
 		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = ["+bosses[0]+"];")
 	}
 	else{
@@ -140,11 +140,11 @@ async function simulFights(fn,rota1,rota2//number = boss
 	
 	generateFights = generateFights.replace("var TEAM1 ="+" []","var TEAM1 = "+JSON.stringify(rota1)+";")
 	
-	if(rota1[0].length+rota2[0].length>2){generateFights = generateFights.replace('var CLANWAR = false','var CLANWAR = true'+";")}
-	if(backups){generateFights = generateFights.replace('var BACKUPS = false','var BACKUPS = true'+";")}
+	if(rota1[0].length+rota2[0].length>2){generateFights = generateFights.replace('var CLANWAR'+' = false','var CLANWAR = true'+";")}
+	if(backups){generateFights = generateFights.replace('var BACKUPS'+' = false','var BACKUPS = true'+";")}
 	
-	generateFights = generateFights.replace("var FIGHTS_PER_ROTA = 1","var FIGHTS_PER_ROTA = "+fight_per_rota+";")
-	generateFights = generateFights.replace("var FIGHT_TOTAL = 1","var FIGHT_TOTAL = "+fight_total+";")
+	generateFights = generateFights.replace("var FIGHTS_PER_ROTA"+" = 1","var FIGHTS_PER_ROTA = "+fight_per_rota+";")
+	generateFights = generateFights.replace("var FIGHT_TOTAL"+" = 1","var FIGHT_TOTAL = "+fight_total+";")
 	
 
 	var workerScript = 'var BRANCHE = "'+BRANCHE+'";'+generateFights
