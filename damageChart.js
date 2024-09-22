@@ -65,6 +65,7 @@ var weaponImages = {
     }
     return updatedBrute;
 };
+var default = applySkillModifiers;
 var WeaponName = /*exports.*//*$Enums.*/WeaponName = {
   fan: 'fan',
   keyboard: 'keyboard',
@@ -201,6 +202,7 @@ var limitedWeapons = [
     'scimitar', 'axe', 'sword', 'fan', 'shuriken', 'bumps',
     'morningStar', 'mammothBone', 'flail', 'whip',
 ];
+var MAX_LIMITED_WEAPONS = limitedWeapons.length - 3;
 var weapons = [
     {
         name: 'axe',
@@ -671,6 +673,7 @@ var weapons = [
         animation: 'whip',
     },
 ];
+var WEAPONS_TOTAL_ODDS = weapons.reduce((acc, weapon) => acc + weapon.odds, 0);
 var WEAPONS_SFX = {
     ...weapons.reduce((acc, weapon) => {
         acc[weapon.name] = [];
@@ -709,11 +712,13 @@ var WEAPONS_SFX = {
         return acc;
     }, {}),
 };
+var default = weapons;
 class ExpectedError extends Error {
     constructor(message = '') {
         super(message);
     }
 }
+var default = ExpectedError;
 var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
   noThrows: 'noThrows',
   focusOpponent: 'focusOpponent',
@@ -741,6 +746,7 @@ var getFinalStat = (brute, stat, modifiers, randomSkillIndex) => {
     // Return new stat
     return Math.floor(newBrute[`${stat}Stat`] * newBrute[`${stat}Modifier`]) * multiplier;
 };
+var getFinalStat = getFinalStat;
 var getFinalHP = (brute, randomSkillIndex) => {
     var randomSkill = (0, getTempSkill)(brute, randomSkillIndex);
     // No random skill, return normal HP
@@ -752,10 +758,13 @@ var getFinalHP = (brute, randomSkillIndex) => {
     // Return new HP
     return (0, getHP)(newBrute.level, Math.floor(newBrute.enduranceStat * newBrute.enduranceModifier));
 };
+var getFinalHP = getFinalHP;
 var getHP = (level, endurance) => Math.floor(50
     + (Math.max(endurance, 0)
         + level * 0.25) * 6);
+var getHP = getHP;
 var readableHPFormula = (level, endurance) => `50 + (max(${endurance}, 0) + ${level} * 0.25) * 6`;
+var readableHPFormula = readableHPFormula;
 var InventoryItemType = /*exports.*//*$Enums.*/InventoryItemType = {
   visualReset: 'visualReset',
   bossTicket: 'bossTicket',
@@ -792,6 +801,7 @@ var readBodyString = (bodyString) => ({
     p7b: parseInt(bodyString[9] || '0', 16),
     p8: parseInt(bodyString[10] || '0', 16),
 });
+var readBodyString = readBodyString;
 var generateBodyString = (body) => [
     body.p1.toString(16),
     body.p1a.toString(16),
@@ -805,6 +815,7 @@ var generateBodyString = (body) => [
     body.p7b.toString(16),
     body.p8.toString(16),
 ].join('');
+var generateBodyString = generateBodyString;
 var getColor = (gender, part, color) => {
     var skinParts = ['col0', 'col0a', 'col0c'];
     var hairParts = ['col1', 'col1a', 'col1b', 'col1c', 'col1d'];
@@ -821,6 +832,7 @@ var getColor = (gender, part, color) => {
         return normalColor;
     return colors.special[99 - color] || '#ffffff';
 };
+var getColor = getColor;
 var readColorString = (gender, colorsString) => ({
     col0: (0, getColor)(gender, 'col0', +colorsString.slice(0, 2)),
     col0a: (0, getColor)(gender, 'col0a', +colorsString.slice(2, 4)),
@@ -839,6 +851,7 @@ var readColorString = (gender, colorsString) => ({
     col4a: (0, getColor)(gender, 'col4a', +colorsString.slice(28, 30)),
     col4b: (0, getColor)(gender, 'col4b', +colorsString.slice(30, 32)),
 });
+var readColorString = readColorString;
 var generateColorString = (colorObject) => [
     (0, pad)(colorObject.col0, 2),
     (0, pad)(colorObject.col0a, 2),
@@ -871,6 +884,7 @@ var randomBetween = (min, max) => {
         return min;
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
+var randomItem = void 0;
 var randomItem = (items) => {
     if (!items.length) {
         throw new Error('No items');
@@ -889,6 +903,7 @@ var randomItem = (items) => {
     }
     return item;
 };
+var randomItem = randomItem;
 var SkillName = /*exports.*//*$Enums.*/SkillName = {
   herculeanStrength: 'herculeanStrength',
   felineAgility: 'felineAgility',
@@ -960,6 +975,7 @@ var weightedRandom = (items) => {
     }
     return items[i] || firstItem;
 };
+var default = weightedRandom;
 var pets = [
     {
         name: PetName.bear,
@@ -1047,6 +1063,7 @@ var pets = [
         damage: 3,
     },
 ];
+var PETS_TOTAL_ODDS = pets.reduce((acc, pet) => acc + pet.odds, 0);
 var scalingByPet = {
     [PetName.bear]: {
         strength: 0.4,
@@ -1091,6 +1108,7 @@ var getPetStat = (brute, pet, stat) => {
     var bruteStat = brute[petStatToBruteStat[stat]];
     return base + Math.ceil(scaling * bruteStat);
 };
+var getPetStat = getPetStat;
 var SkillId;
 (function (SkillId) {
     SkillId[SkillId["herculeanStrength"] = 0] = "herculeanStrength";
@@ -1537,6 +1555,7 @@ var skills = [
         type: 'passive',
     },
 ];
+var SKILLS_TOTAL_ODDS = skills.reduce((acc, skill) => acc + skill.odds, 0);
 var SkillModifiers = {
     [SkillName.herculeanStrength]: [
         { stat: FightStat.STRENGTH, value: 3 },
@@ -1648,6 +1667,14 @@ var SkillModifiers = {
         { stat: FightStat.DEFLECT, value: 30, percent: true },
     ],
 };
+var default = skills;
+var FIGHTS_PER_DAY = 6;
+var ARENA_OPPONENTS_COUNT = 6;
+var ARENA_OPPONENTS_MAX_GAP = 2;
+var BRUTE_STARTING_POINTS = 11;
+var PERKS_TOTAL_ODDS = WEAPONS_TOTAL_ODDS + PETS_TOTAL_ODDS + SKILLS_TOTAL_ODDS;
+var SHIELD_BLOCK_ODDS = 0.45;
+var NO_WEAPON_TOSS = 10;
 var Animations = [
     'arrive', 'attack', 'block', 'death', 'drink', 'eat',
     'equip', 'evade', 'grab', 'grabbed', 'hit', 'hit-0', 'hit-1', 'hit-2',
@@ -1656,11 +1683,13 @@ var Animations = [
     'trash', 'win', ...WeaponAnimations,
 ];
 var BruteRankings = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+var GLOBAL_TOURNAMENT_START_HOUR = 6;
 var PERK_ODDS = [
     { name: 'pet', odds: PETS_TOTAL_ODDS },
     { name: 'skill', odds: SKILLS_TOTAL_ODDS },
     { name: 'weapon', odds: WEAPONS_TOTAL_ODDS },
 ];
+var NEW_BRUTE_BASE_COST = 500;
 var FIGHTER_HEIGHT = {
     brute: 80,
     [PetName.bear]: 130,
@@ -1679,6 +1708,7 @@ var FIGHTER_HIT_ANCHOR = {
     [PetName.panther]: { x: 45, y: 45 },
     dog: { x: 30, y: 30 },
 };
+var MAX_FAVORITE_BRUTES = 3;
 var BASE_FIGHTER_STATS = {
     reversal: 0,
     evasion: 0.1,
@@ -1690,6 +1720,11 @@ var BASE_FIGHTER_STATS = {
     deflect: 0,
     tempo: 1.2,
 };
+var BARE_HANDS_DAMAGE = 5;
+var RESET_PRICE = 100;
+var CLAN_SIZE_LIMIT = 50;
+var BOSS_XP_REWARD = 500;
+var BOSS_GOLD_REWARD = 500;
 var BruteDeletionReason;
 (function (BruteDeletionReason) {
     BruteDeletionReason["DUPLICATE_NAME"] = "DUPLICATE_NAME";
@@ -1714,12 +1749,19 @@ var DailyModifierCountOdds = [
     { count: 3, odds: 15 },
     { count: 4, odds: 10 },
 ];
+var DailyModifierSpawnChance = 4 / 30;
 var BanReason;
 (function (BanReason) {
     BanReason["INNAPROPRIATE_NAME"] = "innapropriateName";
     BanReason["INNAPROPRIATE_BRUTE_NAME"] = "innapropriateBruteName";
     BanReason["MULTIPLE_ACCOUNTS"] = "multipleAccounts";
 })(BanReason || (/*exports.*/BanReason = BanReason = {}));
+var FightLogTemplateCount = 48;
+var ClanWarMaxParticipants = 7;
+var ClanWarPointReward = 1000;
+var EventPauseDuration = 3;
+var EventFightsPerDay = 10;
+var EventFreeResets = 3;
 var weaponsFR={"fan": "Éventail",
   "keyboard": "Clavier",
   "knife": "Couteau",
