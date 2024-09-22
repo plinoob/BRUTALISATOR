@@ -25,9 +25,181 @@ var weaponImages = {
   broadsword: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHhtbG5zOmZmZGVjPSJodHRwczovL3d3dy5mcmVlLWRlY29tcGlsZXIuY29tL2ZsYXNoIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgZmZkZWM6b2JqZWN0VHlwZT0ic2hhcGUiIGhlaWdodD0iNDUuMTVweCIgd2lkdGg9Ijg2LjdweCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMS4wLCAwLjAsIDAuMCwgMS4wLCAxNy44NSwgMS4wNSkiPg0KICAgIDxwYXRoIGQ9Ik02NS45NSAzOS43IEw2NC45NSAzOS44NSA2Mi41NSA0MC4yIDU2Ljg1IDQwLjYgNTYuMSA0MC41IDU1LjM1IDQwLjYgNTIuNiA0MC4xNSBRNTEuODUgNDAuMTUgNDUuNTUgMzcuMTUgTDMzLjggMzEuNSBRMzEuNTUgMzAuNCAyOC4xIDI5LjA1IEwyMy4yNSAyNy4wNSAxOC4wIDI0LjkgUTE1LjMgMjMuNjUgMTUuMTUgMjIuMyBMMTUuMTUgMjIuMiAxNS44IDIyLjM1IDE2LjI1IDIyLjQ1IDM5LjMgMzAuMTUgNDkuOTUgMzMuOTUgNTQuNiAzNS43NSA1OC42IDM3LjE1IDU4LjkgMzcuMSA1OC45NSAzNi45NSA1OC40NSAzNi42IDU3LjkgMzYuNCA1Mi4yIDMzLjAgNDYuNCAyOS42IFE0NC4yNSAyOC4zNSA0MS4zIDI2Ljg1IEwzNi4wNSAyNC4xIFEyOS40IDIwLjM1IDI2LjA1IDE4LjggTDE3Ljk1IDE0Ljc1IDIwLjI1IDkuNiA1Ny4wNSAyNy4xIDY1Ljk1IDM5LjciIGZpbGw9IiNlMGU4ZWIiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTE3LjY1IDE1LjQ1IEwxMi4xNSAyNy42IDQuMyAzMS40IDYuMyAyMi4yIC0xNi44NSA3LjEgLTEzLjk1IDAuNSAxMy42IDcuMTUgMTguNzUgLTAuMDUgMjAuMjUgOS42IDE3Ljk1IDE0Ljc1IDE3LjY1IDE1LjQ1IE0xNy4zIDMuNDUgUTE2LjYgMy45IDE2LjM1IDUuNSBMMTUuOSA3LjA1IDE1LjUgOS4wIDEzLjIgMTUuOCAxNC4zIDE2LjQgUTE0LjkgMTYuNCAxNS44IDE0LjAgTDE2Ljg1IDEwLjYgMTcuNSA3LjcgMTcuOTUgNC41IFExNy45NSAyLjk1IDE3LjMgMy40NSBNMTEuMTUgOS44IEwxMS41IDkuNSAxMS42NSA5LjA1IFExMS42NSA4LjUgMTEuMiA4LjQ1IEwxMC4zNSA4LjUgMi42IDYuMiBRLTUuMjUgMy45IC01Ljk1IDMuOSBMLTguNSAzLjUgLTEwLjggMy4wNSBRLTExLjI1IDMuMDUgLTExLjM1IDMuNCBMLTExLjMgMy4zIFEtMTEuOSAzLjYgLTExLjkgNC4wIC0xMS45IDQuOTUgLTEwLjkgNS4zNSAtOC43NSA2LjAgLTYuNiA2LjggLTMuODUgNy44IC0xLjMgOS4yIDAuMzUgOS45IDQuNSAxMi40NSA4LjE1IDE0Ljc1IDguNiAxNC43NSA5LjQgMTQuNzUgMTAuMTUgMTIuMCBMMTEuMTUgOS44IiBmaWxsPSIjMDAwMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xNy45NSAxNC43NSBMMjYuMDUgMTguOCBRMjkuNCAyMC4zNSAzNi4wNSAyNC4xIEw0MS4zIDI2Ljg1IFE0NC4yNSAyOC4zNSA0Ni40IDI5LjYgTDUyLjIgMzMuMCA1Ny45IDM2LjQgNTguNDUgMzYuNiA1OC45NSAzNi45NSA1OC45IDM3LjEgNTguNiAzNy4xNSA1NC42IDM1Ljc1IDQ5Ljk1IDMzLjk1IDM5LjMgMzAuMTUgMTYuMjUgMjIuNDUgMTUuOCAyMi4zNSAxNS4xNSAyMi4yIDE1LjE1IDIyLjMgUTE1LjMgMjMuNjUgMTguMCAyNC45IEwyMy4yNSAyNy4wNSAyOC4xIDI5LjA1IFEzMS41NSAzMC40IDMzLjggMzEuNSBMNDUuNTUgMzcuMTUgUTUxLjg1IDQwLjE1IDUyLjYgNDAuMTUgTDU1LjM1IDQwLjYgNTYuMSA0MC41IDU2Ljg1IDQwLjYgNjIuNTUgNDAuMiA2NC45NSAzOS44NSA2NS45NSAzOS43IDY3Ljg1IDQyLjM1IDUxLjIgNDMuMSAxMi4xNSAyNy42IDE3LjY1IDE1LjQ1IDE3Ljk1IDE0Ljc1IDE3LjY1IDE1LjQ1IDE3Ljk1IDE0Ljc1IiBmaWxsPSIjYjhjOWNmIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xMS4xNSA5LjggTDEwLjE1IDEyLjAgUTkuNCAxNC43NSA4LjYgMTQuNzUgOC4xNSAxNC43NSA0LjUgMTIuNDUgMC4zNSA5LjkgLTEuMyA5LjIgLTMuODUgNy44IC02LjYgNi44IC04Ljc1IDYuMCAtMTAuOSA1LjM1IC0xMS45IDQuOTUgLTExLjkgNC4wIC0xMS45IDMuNiAtMTEuMyAzLjMgTC0xMS4zNSAzLjQgUS0xMS4yNSAzLjA1IC0xMC44IDMuMDUgTC04LjUgMy41IC01Ljk1IDMuOSBRLTUuMjUgMy45IDIuNiA2LjIgTDEwLjM1IDguNSAxMS4yIDguNDUgUTExLjY1IDguNSAxMS42NSA5LjA1IEwxMS41IDkuNSAxMS4xNSA5LjggTTE3LjMgMy40NSBRMTcuOTUgMi45NSAxNy45NSA0LjUgTDE3LjUgNy43IDE2Ljg1IDEwLjYgMTUuOCAxNC4wIFExNC45IDE2LjQgMTQuMyAxNi40IEwxMy4yIDE1LjggMTUuNSA5LjAgMTUuOSA3LjA1IDE2LjM1IDUuNSBRMTYuNiAzLjkgMTcuMyAzLjQ1IiBmaWxsPSIjNmI1YTUwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xNy45NSAxNC43NSBMMTcuNjUgMTUuNDUgMTIuMTUgMjcuNiA1MS4yIDQzLjEgNjcuODUgNDIuMzUgNjUuOTUgMzkuNyA1Ny4wNSAyNy4xIDIwLjI1IDkuNiAxNy45NSAxNC43NSBNMjAuMjUgOS42IEwxOC43NSAtMC4wNSAxMy42IDcuMTUgLTEzLjk1IDAuNSAtMTYuODUgNy4xIDYuMyAyMi4yIDQuMyAzMS40IDEyLjE1IDI3LjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utb3BhY2l0eT0iMC40IiBzdHJva2Utd2lkdGg9IjEiLz4NCiAgPC9nPg0KPC9zdmc+DQo8IS0tIDEgLS0+',
   scimitar: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHhtbG5zOmZmZGVjPSJodHRwczovL3d3dy5mcmVlLWRlY29tcGlsZXIuY29tL2ZsYXNoIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgZmZkZWM6b2JqZWN0VHlwZT0ic2hhcGUiIGhlaWdodD0iNDguNHB4IiB3aWR0aD0iMTAzLjE1cHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogIDxnIHRyYW5zZm9ybT0ibWF0cml4KDEuMCwgMC4wLCAwLjAsIDEuMCwgMTguMSwgLTEuMjk5OTk5OTk5OTk5OTk5OCkiPg0KICAgIDxwYXRoIGQ9Ik03OS4xIDQxLjU1IEw3OC41IDQxLjYgNzQuNzUgNDIuMzUgNzMuODUgNDIuNTUgNzIuOTUgNDIuNzUgNzIuODUgNDIuNzUgNzEuNDUgNDIuNjUgNjguNCA0Mi45NSA2NS4xIDQzLjQ1IFE2MS4zNSA0My40NSA1NS42NSA0MC42IEw0Ny4wIDM1LjkgNDEuNiAzMi45IDM2LjM1IDI5Ljc1IDI0LjIgMjIuMjUgMTguOTUgMTkuMjUgMTYuMSAxNy42NSAxNC45NSAxNy4wIDE2LjIgMTMuNCA2MS40NSAzNi45NSA3Mi45IDM0Ljc1IDc0LjM1IDQxLjMgNzkuMSA0MS41NSIgZmlsbD0iI2UwZThlYiIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiLz4NCiAgICA8cGF0aCBkPSJNMTQuOTUgMTcuMCBMMTYuMSAxNy42NSAxOC45NSAxOS4yNSAyNC4yIDIyLjI1IDM2LjM1IDI5Ljc1IDQxLjYgMzIuOSA0Ny4wIDM1LjkgNTUuNjUgNDAuNiBRNjEuMzUgNDMuNDUgNjUuMSA0My40NSBMNjguNCA0Mi45NSA3MS40NSA0Mi42NSA3Mi44NSA0Mi43NSA3Mi45NSA0Mi43NSA3My44NSA0Mi41NSA3NC43NSA0Mi4zNSA3OC41IDQxLjYgNzkuMSA0MS41NSA4NC4wNSA0MS43NSA3NC45NSA0Ny43IDYwLjc1IDQ4LjcgNTIuODUgNDUuODUgMTQuMCAxOS41NSAxNC45NSAxNy4wIiBmaWxsPSIjYjhjOWNmIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xNC45NSAxNy4wIEwxNC4wIDE5LjU1IC0xNy4xIDguNDUgLTE1LjggNC45NSBRMTQuMCAxNi40IDE0Ljk1IDE3LjAiIGZpbGw9IiMwMDAwMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTE2LjIgMTMuNCBMMTQuOTUgMTcuMCBRMTQuMCAxNi40IC0xNS44IDQuOTUgTC0xNC44NSAyLjMgMTYuMiAxMy40IiBmaWxsPSIjNmI1YTUwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xNC45NSAxNy4wIEwxNC4wIDE5LjU1IDUyLjg1IDQ1Ljg1IDYwLjc1IDQ4LjcgNzQuOTUgNDcuNyA4NC4wNSA0MS43NSA3OS4xIDQxLjU1IDc0LjM1IDQxLjMgNzIuOSAzNC43NSA2MS40NSAzNi45NSAxNi4yIDEzLjQgMTQuOTUgMTcuMCBNLTE1LjggNC45NSBMLTE3LjEgOC40NSAxNC4wIDE5LjU1IE0xNi4yIDEzLjQgTC0xNC44NSAyLjMgLTE1LjggNC45NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1vcGFjaXR5PSIwLjQiIHN0cm9rZS13aWR0aD0iMSIvPg0KICA8L2c+DQo8L3N2Zz4NCjwhLS0gMSAtLT4=',
   sword: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHhtbG5zOmZmZGVjPSJodHRwczovL3d3dy5mcmVlLWRlY29tcGlsZXIuY29tL2ZsYXNoIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgZmZkZWM6b2JqZWN0VHlwZT0ic2hhcGUiIGhlaWdodD0iNTUuOTVweCIgd2lkdGg9IjEyMS45NXB4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLjAsIDAuMCwgMC4wLCAxLjAsIDE4LjksIDIuNTUpIj4NCiAgICA8cGF0aCBkPSJNMTguODUgOS4wIEw4OS42NSAzNC4yIDEwMi4wNSA0Ni43NSAxMDEuNiA0Ny4wNSAxNi4zIDE2LjI1IDE4Ljg1IDkuMCIgZmlsbD0iI2UwZThlYiIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiLz4NCiAgICA8cGF0aCBkPSJNLTE1LjYgNC40NSBMLTEzLjUgLTEuNTUgMTEuOSA3LjIgMTMuMyAzLjIgMjAuMDUgNS42IDE4Ljg1IDkuMCAxNi4zIDE2LjI1IC0xNS42IDQuNDUiIGZpbGw9IiM3MjUzMjciIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTEwMS42IDQ3LjA1IEw5My44IDUyLjQgMTMuNiAyMy45IDE2LjMgMTYuMjUgMTAxLjYgNDcuMDUiIGZpbGw9IiNiOGM5Y2YiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTEzLjYgMjMuOSBMMTIuNiAyNi43NSA2LjA1IDI0LjQ1IDcuMzUgMjAuNyAtMTcuOSAxMC45NSAtMTUuNiA0LjQ1IDE2LjMgMTYuMjUgMTMuNiAyMy45IiBmaWxsPSIjMDAwMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xOC44NSA5LjAgTDg5LjY1IDM0LjIgMTAyLjA1IDQ2Ljc1IDEwMS42IDQ3LjA1IDkzLjggNTIuNCAxMy42IDIzLjkgMTIuNiAyNi43NSA2LjA1IDI0LjQ1IDcuMzUgMjAuNyAtMTcuOSAxMC45NSAtMTUuNiA0LjQ1IC0xMy41IC0xLjU1IDExLjkgNy4yIDEzLjMgMy4yIDIwLjA1IDUuNiAxOC44NSA5LjAgMTYuMyAxNi4yNSAxMy42IDIzLjkgTS0xNS42IDQuNDUgTDE2LjMgMTYuMjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utb3BhY2l0eT0iMC40IiBzdHJva2Utd2lkdGg9IjEiLz4NCiAgPC9nPg0KPC9zdmc+DQo8IS0tIDEgLS0+'
-};var Gender = {
+};var applySkillModifiers = (brute, skill) => {
+    var updatedBrute = { ...brute };
+    // Vitality modifier
+    if (skill === 'vitality') {
+        updatedBrute.enduranceModifier *= 1.5;
+        updatedBrute.enduranceStat += 3;
+    }
+    // Immortality modifier
+    if (skill === 'immortality') {
+        updatedBrute.enduranceModifier *= 3.5;
+        updatedBrute.strengthModifier *= 0.75;
+        updatedBrute.agilityModifier *= 0.75;
+        updatedBrute.speedModifier *= 0.75;
+    }
+    // Herculean strength modifier
+    if (skill === 'herculeanStrength') {
+        updatedBrute.strengthModifier *= 1.5;
+        updatedBrute.strengthStat += 3;
+    }
+    // Feline agility modifier
+    if (skill === 'felineAgility') {
+        updatedBrute.agilityModifier *= 1.5;
+        updatedBrute.agilityStat += 3;
+    }
+    // Lightning bolt modifier
+    if (skill === 'lightningBolt') {
+        updatedBrute.speedModifier *= 1.5;
+        updatedBrute.speedStat += 3;
+    }
+    // Reconnaissance modifier
+    if (skill === 'reconnaissance') {
+        updatedBrute.speedModifier *= 2.5;
+        updatedBrute.speedStat += 5;
+    }
+    // Armor modifier
+    if (skill === 'armor') {
+        updatedBrute.speedModifier *= 0.9;
+    }
+    return updatedBrute;
+};
+var Animations = [
+    'arrive', 'attack', 'block', 'death', 'drink', 'eat',
+    'equip', 'evade', 'grab', 'grabbed', 'hit', 'hit-0', 'hit-1', 'hit-2',
+    'idle', 'launch', 'monk', 'prepare-throw', 'run',
+    'stolen', 'steal', 'strengthen', 'throw', 'train', 'train2', 'trapped',
+    'trash', 'win', ...WeaponAnimations,
+];
+var BruteRankings = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+var PERK_ODDS = [
+    { name: 'pet', odds: PETS_TOTAL_ODDS },
+    { name: 'skill', odds: SKILLS_TOTAL_ODDS },
+    { name: 'weapon', odds: WEAPONS_TOTAL_ODDS },
+];
+var FIGHTER_HEIGHT = {
+    brute: 80,
+    [PetName.bear]: 130,
+    [PetName.panther]: 60,
+    dog: 40,
+};
+var FIGHTER_WIDTH = {
+    brute: 50,
+    [PetName.bear]: 100,
+    [PetName.panther]: 80,
+    dog: 60,
+};
+var FIGHTER_HIT_ANCHOR = {
+    brute: { x: 5, y: 40 },
+    [PetName.bear]: { x: 60, y: 100 },
+    [PetName.panther]: { x: 45, y: 45 },
+    dog: { x: 30, y: 30 },
+};
+var BASE_FIGHTER_STATS = {
+    reversal: 0,
+    evasion: 0.1,
+    dexterity: 0.2,
+    block: -0.25,
+    accuracy: 0,
+    disarm: 0.05,
+    combo: 0,
+    deflect: 0,
+    tempo: 1.2,
+};
+var BruteDeletionReason;
+(function (BruteDeletionReason) {
+    BruteDeletionReason["DUPLICATE_NAME"] = "DUPLICATE_NAME";
+    BruteDeletionReason["INNAPROPRIATE_NAME"] = "INNAPROPRIATE_NAME";
+    BruteDeletionReason["BANNED_USER"] = "BANNED_USER";
+    BruteDeletionReason["EVENT_LOSS"] = "EVENT_LOSS";
+})(BruteDeletionReason || (/*exports.*/BruteDeletionReason = BruteDeletionReason = {}));
+var DailyModifierOdds = [
+    { modifier: FightModifier.noThrows, odds: 1 },
+    { modifier: FightModifier.focusOpponent, odds: 1 },
+    { modifier: FightModifier.alwaysUseSupers, odds: 1 },
+    { modifier: FightModifier.drawEveryWeapon, odds: 1 },
+    { modifier: FightModifier.doubleAgility, odds: 1 },
+    { modifier: FightModifier.randomSkill, odds: 1 },
+    { modifier: FightModifier.randomWeapon, odds: 1 },
+    { modifier: FightModifier.bareHandsFirstHit, odds: 1 },
+    { modifier: FightModifier.startWithWeapon, odds: 1 },
+];
+var DailyModifierCountOdds = [
+    { count: 1, odds: 50 },
+    { count: 2, odds: 25 },
+    { count: 3, odds: 15 },
+    { count: 4, odds: 10 },
+];
+var BanReason;
+(function (BanReason) {
+    BanReason["INNAPROPRIATE_NAME"] = "innapropriateName";
+    BanReason["INNAPROPRIATE_BRUTE_NAME"] = "innapropriateBruteName";
+    BanReason["MULTIPLE_ACCOUNTS"] = "multipleAccounts";
+})(BanReason || (/*exports.*/BanReason = BanReason = {}));
+class ExpectedError extends Error {
+    constructor(message = '') {
+        super(message);
+    }
+}
+var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
+  noThrows: 'noThrows',
+  focusOpponent: 'focusOpponent',
+  alwaysUseSupers: 'alwaysUseSupers',
+  drawEveryWeapon: 'drawEveryWeapon',
+  doubleAgility: 'doubleAgility',
+  randomSkill: 'randomSkill',
+  randomWeapon: 'randomWeapon',
+  bareHandsFirstHit: 'bareHandsFirstHit',
+  startWithWeapon: 'startWithWeapon'
+};
+var Gender = {
   male: 'male',
   female: 'female'
+};
+var getFinalStat = (brute, stat, modifiers, randomSkillIndex) => {
+    var multiplier = stat === 'agility' ? modifiers.includes(FightModifier.doubleAgility) ? 2 : 1 : 1;
+    var randomSkill = (0, getTempSkill)(brute, randomSkillIndex);
+    // No random skill, return normal stat
+    if (!randomSkill) {
+        return brute[`${stat}Value`] * multiplier;
+    }
+    // Apply skill modifiers
+    var newBrute = (0, applySkillModifiers)(brute, randomSkill);
+    // Return new stat
+    return Math.floor(newBrute[`${stat}Stat`] * newBrute[`${stat}Modifier`]) * multiplier;
+};
+var getFinalHP = (brute, randomSkillIndex) => {
+    var randomSkill = (0, getTempSkill)(brute, randomSkillIndex);
+    // No random skill, return normal HP
+    if (!randomSkill) {
+        return (0, getHP)(brute.level, brute.enduranceValue);
+    }
+    // Apply skill modifiers
+    var newBrute = (0, applySkillModifiers)(brute, randomSkill);
+    // Return new HP
+    return (0, getHP)(newBrute.level, Math.floor(newBrute.enduranceStat * newBrute.enduranceModifier));
+};
+var getHP = (level, endurance) => Math.floor(50
+    + (Math.max(endurance, 0)
+        + level * 0.25) * 6);
+var readableHPFormula = (level, endurance) => `50 + (max(${endurance}, 0) + ${level} * 0.25) * 6`;
+var InventoryItemType = /*exports.*//*$Enums.*/InventoryItemType = {
+  visualReset: 'visualReset',
+  bossTicket: 'bossTicket',
+  nameChange: 'nameChange',
+  favoriteFight: 'favoriteFight'
+};
+var LogType = /*exports.*//*$Enums.*/LogType = {
+  win: 'win',
+  lose: 'lose',
+  child: 'child',
+  childup: 'childup',
+  up: 'up',
+  lvl: 'lvl',
+  tournament: 'tournament',
+  tournamentXp: 'tournamentXp',
+  bossDefeat: 'bossDefeat'
 };
 var pad = (n, width, z = '0') => {
     var nString = `${n}`;
@@ -113,12 +285,108 @@ var generateColorString = (colorObject) => [
     (0, pad)(colorObject.col4a, 2),
     (0, pad)(colorObject.col4b, 2),
 ].join('');
+var PetName = /*exports.*//*$Enums.*/PetName = {
+  dog1: 'dog1',
+  dog2: 'dog2',
+  dog3: 'dog3',
+  panther: 'panther',
+  bear: 'bear'
+};
 var randomBetween = (min, max) => {
     if (min > max)
         return 0;
     if (min === max)
         return min;
     return Math.floor(Math.random() * (max - min + 1) + min);
+};
+var randomItem = (items) => {
+    if (!items.length) {
+        throw new Error('No items');
+    }
+    if (items.length === 1) {
+        var item = items[0];
+        if (!item) {
+            throw new Error('No item');
+        }
+        return item;
+    }
+    var index = (0, randomBetween)(0, items.length - 1);
+    var item = items[index];
+    if (!item) {
+        throw new Error('No item');
+    }
+    return item;
+};
+var SkillName = /*exports.*//*$Enums.*/SkillName = {
+  herculeanStrength: 'herculeanStrength',
+  felineAgility: 'felineAgility',
+  lightningBolt: 'lightningBolt',
+  vitality: 'vitality',
+  immortality: 'immortality',
+  reconnaissance: 'reconnaissance',
+  weaponsMaster: 'weaponsMaster',
+  martialArts: 'martialArts',
+  sixthSense: 'sixthSense',
+  hostility: 'hostility',
+  fistsOfFury: 'fistsOfFury',
+  shield: 'shield',
+  armor: 'armor',
+  toughenedSkin: 'toughenedSkin',
+  untouchable: 'untouchable',
+  sabotage: 'sabotage',
+  shock: 'shock',
+  bodybuilder: 'bodybuilder',
+  relentless: 'relentless',
+  survival: 'survival',
+  leadSkeleton: 'leadSkeleton',
+  balletShoes: 'balletShoes',
+  determination: 'determination',
+  firstStrike: 'firstStrike',
+  resistant: 'resistant',
+  counterAttack: 'counterAttack',
+  ironHead: 'ironHead',
+  thief: 'thief',
+  fierceBrute: 'fierceBrute',
+  tragicPotion: 'tragicPotion',
+  net: 'net',
+  bomb: 'bomb',
+  hammer: 'hammer',
+  cryOfTheDamned: 'cryOfTheDamned',
+  hypnosis: 'hypnosis',
+  flashFlood: 'flashFlood',
+  tamer: 'tamer',
+  regeneration: 'regeneration',
+  chef: 'chef',
+  spy: 'spy',
+  saboteur: 'saboteur',
+  backup: 'backup',
+  hideaway: 'hideaway',
+  monk: 'monk',
+  vampirism: 'vampirism',
+  chaining: 'chaining',
+  haste: 'haste',
+  treat: 'treat',
+  repulse: 'repulse'
+};
+var weightedRandom = (items) => {
+    var firstItem = items[0];
+    if (!firstItem) {
+        throw new Error('No items');
+    }
+    // Calculate total odds
+    var totalOdds = items.reduce((acc, item) => acc + item.odds, 0);
+    let i = 0;
+    var weights = [];
+    for (i = 0; i < items.length; i++) {
+        weights[i] = ((items[i]?.odds || 0) / totalOdds) + (weights[i - 1] || 0);
+    }
+    var random = Math.random() * (weights[weights.length - 1] || 0);
+    for (i = 0; i < weights.length; i++) {
+        if ((weights[i] || 0) > random) {
+            break;
+        }
+    }
+    return items[i] || firstItem;
 };
 var weaponsFR={"fan": "Éventail",
   "keyboard": "Clavier",
