@@ -148,8 +148,9 @@ simulFights({
 
 var setInt
 var fightWorker
+var generateFights
 async function simulFights({fn,rota1,rota2//number = boss
-,backups,fight_per_rota,fight_total}){
+,backups,fight_per_rota,fight_total}){cl("simul !",generateFights)
 	if(fightWorker)fightWorker.terminate()
 		
 	
