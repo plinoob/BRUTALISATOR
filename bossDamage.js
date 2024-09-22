@@ -4438,7 +4438,10 @@ var getTempSkill = getTempSkill;
 			return s}
 
 			$("#dmgChartDIV").remove()
-			var allDIV = div({1:"dmgChartDIV",0:body,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+			var allDIVMERE = div({9:{ "display": "flex",           /* Utilise Flexbox */
+  "justify-content": "center",    /* Centre horizontalement */
+  "align-items": "center"}})
+			var allDIV = div({0:allDIVMERE,1:"dmgChartDIV",0:body,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS,{"width":"400px"}])})
 				
@@ -4450,7 +4453,7 @@ var getTempSkill = getTempSkill;
 			}	
 				
 				
-				insertDivAfterElement(allDIV[0],findFirstParentDiv(findTextInDOM("Afficher le détail des dégâts","h6")));
+				insertDivAfterElement(allDIVMERE[0],findFirstParentDiv(findTextInDOM("Afficher le détail des dégâts","h6")));
 				
 				
 				simulFights({
