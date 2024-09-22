@@ -4443,7 +4443,7 @@ var getTempSkill = getTempSkill;
   "align-items": "center"}})
 			var allDIV = div({0:allDIVMERE,1:"dmgChartDIV",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
-			textBoxCSS,baseCSS,{"width":"400px"}])})
+			textBoxCSS,baseCSS,{}])})
 				
 			function ac(){
 				allDIV.empty()
