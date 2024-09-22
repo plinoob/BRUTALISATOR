@@ -3448,6 +3448,7 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
         winner: null,
         loser: null,
     };
+	cl(fightData)
     // Add arrive step for all fighters
     fightData.fighters.forEach((fighter) => {
         // Ignore backups
@@ -3703,8 +3704,7 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
         await (0, updateAchievements)(prisma, achievementsStore, !!tournament);
     }
     return result;
-};
-var getDamage = (fighter, opponent, thrown) => {
+};var getDamage = (fighter, opponent, thrown) => {
     var base = thrown
         ? thrown.damage
         : (fighter.activeWeapon?.damage || fighter.baseDamage);

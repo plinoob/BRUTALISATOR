@@ -1,21 +1,21 @@
 
 var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
 
-
-var proxy = new Proxy({}, {
-    get(target, property) {
-      if (property in target) {
-        return target[property];
-      }
-      return proxy; 
-    }
-	,
-    apply(target, thisArg, argumentsList) {
-      return {}; 
-    }
-  });
-
 function rien(){}
+
+
+var proxy = new Proxy(rien, {
+  get(target, property) {
+    if (property in target) {
+      return target[property];
+    }
+    return proxy; // Renvoie le même proxy pour les accès en profondeur
+  },
+  apply(target, thisArg, argumentsList) {
+    return {}; // Renvoie un objet vide lorsqu'on appelle le proxy comme une fonction
+  }
+});
+
 
 var nfps=60;var dicfps={};var dirfps=[];function fps(a){var f=dirfps.length;var t=function(){if(!(a in dicfps)){dicfps[a]=false;a(...arguments);setTimeout(function(){var b=dicfps[a];delk(dicfps,a);if(typeof(b)==typeof([])){dirfps[f](...b)}},nfps)}else{dicfps[a]=arguments;};};dirfps.push(t);return(t)};
 function delk(a,b){if(typeof(a)==typeof([]) && (!Array.isArray(a))){var c=a;a=b;b=c};var c=b[a];delete b[a];return(c)}
