@@ -165,7 +165,7 @@ function addStyle(styleString) {
   style.textContent = styleString;
   document.head.append(style);
 }
-addStyle(`		#shuriken {
+if(typeof(document)!="undefined"){addStyle(`		#shuriken {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -206,6 +206,8 @@ var textBoxCSS = {color: "rgb(176, 107, 79)",
     "border-radius": "5px",
     margin: "16px 8px",
 padding: "0px"}
+
+}
 
 var BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+BRANCHE+"/";
 
