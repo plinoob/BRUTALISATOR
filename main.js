@@ -939,8 +939,8 @@ var WEAPONS_SFX = {
         return acc;
     }, {}),
 };
-if (typeof window.ExpectedError === 'undefined') {
-  window.ExpectedError = class ExpectedError extends Error {
+if (typeof self.ExpectedError === 'undefined') {
+  self.ExpectedError = class ExpectedError extends Error {
     constructor(message = '') {
       super(message);
     }
