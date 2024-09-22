@@ -4432,7 +4432,7 @@ var getTempSkill = getTempSkill;
 			return s}
 			
 			function getDamageFromTeam(){var s = "";
-			for(var i in team){var bruteSTR = '<font opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)">'+team[i]+"</font>"+"\n"
+			for(var i in team){var bruteSTR = '<font opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)">'+parseInt(team[i]*7/bilan[i])+"</font>"+"\n"
 			s+=bruteSTR
 			}
 			return s}
@@ -4440,7 +4440,7 @@ var getTempSkill = getTempSkill;
 			$("#dmgChartDIV").remove()
 			var allDIV = div({1:"dmgChartDIV",0:body,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
-			textBoxCSS,baseCSS,{"width":"400px",display:"inline-block"}])})
+			textBoxCSS,baseCSS,{"width":"300px",display:"inline-block"}])})
 				
 			function ac(){
 				allDIV.empty()
