@@ -148,7 +148,12 @@ simulFights({
 
 var setInt
 var fightWorker
-
+	clearInterval(setInt);
+	var urrl = window.location.href
+	setInt = setInterval(function(){fightWorker.postMessage(5);
+	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();
+	if(fightWorker)fightWorker.terminate()}
+	},333)
 async function simulFights(arg){
 	
 	fetch(BRUTALISATOR+"generateFights.js")
@@ -190,8 +195,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	// Créer le worker à partir de l'URL du Blob
 	fightWorker = new Worker(workerUrl);
 	fightWorker.onmessage=function(e){if(e.data.ended){stopLoading();fightWorker.terminate()};fn(e.data.bilan)}
-	clearInterval(setInt);
-	setInt = setInterval(function(){fightWorker.postMessage(5);},333)
+
 	
 	
 
@@ -234,12 +238,7 @@ var shurikenDIV
 if(typeof(document)!="undefined"){
 	
 	
-	window.addEventListener('popstate', function (event) {
-	// Log the state data to the console
-	stopLoading();
-	if(fightWorker)fightWorker.terminate()
-	
-});
+
 	
 	
 	addStyle(`		#shuriken {
