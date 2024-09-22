@@ -947,7 +947,7 @@ if (typeof ExpectedError === 'undefined') {
     }
   }
 }
-cl("er",ExpectedError);var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
+cl("er",typeof ExpectedError === 'undefined');var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
   noThrows: 'noThrows',
   focusOpponent: 'focusOpponent',
   alwaysUseSupers: 'alwaysUseSupers',
