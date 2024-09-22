@@ -1737,105 +1737,23 @@ var BossName = /*exports.*//*$Enums.*/BossName = {
 };
 
 
+var fetches = div({13:50000,4:[20,"","",50],5:0,2:"input"})
 
-fetch(window.location.href)
+
+fetches.keypress(function (e) {
+  if (e.which == 13) {
+    fetch(fetches.val())
   .then(response => response.text())
-  .then(html => {
-    var codeSource = html; 
-	
-	
-	var pos = '<script defer="defer" src="';
-	var jsfile = "/static/js/main.";
-	var end = '.js">';
-	var num = codeSource.split(pos+jsfile);
-	if(num.length != 2){cl("trouve pas le .js",pos+jsfile);return}
-	
-	var mid = num[1].split(end)[0];
-	
-	cl("fetching : ",jsfile+mid+end);
-	fetch(jsfile+mid+".js")
-	  .then(response => response.text())
-	  .then(html2 => {
-	  		
-		var js = html2;
-		
-		
-		
-		var colorflag = ".getRandomColors)";
-		var newColor = "getChoosedColors)";
-		var bodyflag = ".getRandomBody)";
-		var newBody = "getChoosedBody)";
-		
-		js=js.split(colorflag);
-		
-		for(var i in js){
-			if(i==js.length-1)break;
-			while(!js[i].endsWith(",")){js[i]=js[i].substring(0, js[i].length - 1);}
-		}
+  .then(html => {cl(html)})
+    return false;   
+  }
+});
 
-		js = js.join(newColor);
-		
-		js=js.split(bodyflag);
-		cl(js.length,"BODY FOUND");
-		for(var i in js){
-			if(i==js.length-1)break;
-			while(!js[i].endsWith(",")){js[i]=js[i].substring(0, js[i].length - 1);}
-		}
+cl("/api/brute/name/for-hook")
 
-		js = js.join(newBody);
-		
-		fetch(BRUTALISATOR+"color.js")
-		  .then(response => response.text())
-		  .then(color => {
-			  
-			var url = window.location.href.split("?")
-			var master = ""
-			if(url.length>1){url=url[1].split("&");
-			for(var argstr of url){
-				var argsplit=argstr.split("=");
-				if(argsplit.length>1){if(argsplit[0]=="ref"){master=argsplit[1]}}
-				
-			}
-			
-			}
-			  
-			codeSource = codeSource.split(pos+jsfile+mid+end);
-			codeSource = codeSource[0]+'<script type="module">var MASTER = "'+master+'";'+'var BRANCHE = "'+BRANCHE+'";'+'var SHURIKEN = "'+SHURIKEN+'";'+color+js+"\nconsole.log('FIN');"+codeSource[1];
-			  
-			var iframe = document.createElement('iframe');
-			
-			iframe.src = 'about:blank'; 
 
-			document.body.appendChild(iframe);
-			$(iframe).css({"position":"absolute",top:0,bottom:0,left:0,right:0,"z-index":50000,width:"99.5%",height:"100%"})
-			var iframeDoc = iframe.contentWindow.document;
 
-			iframeDoc.open();
-			
-			iframeDoc.write(codeSource);
-			iframeDoc.close();
-			stopLoading();
-			setInterval(() => {
-    try {
-        var iframeUrl = iframe.contentWindow.location.href;
-        if(iframeUrl.endsWith("cell")){window.location.href = iframeUrl;}
-        // Redirige la page principale vers l'URL de l'iframe
-        
-    } catch (e) {
-        console.error('Impossible d\'accéder à l\'URL de l\'iframe.', e);
-    }
-}, 1000);
-		  })
-		
 
-	  
-	  })
-	
-	
-
-	
-	
-  })
-  .catch(error => {
-    console.error('Erreur:', error);
-  });
+var t1 = div({13:50000,4:[50,"","",20],5:0,2:"textarea",12:["300","200"]})
+var t2 = div({13:50000,4:[50,"","",80],5:0,2:"textarea",12:["300","200"]})
+var btn = div({13:50000,4:[75,45,20,45],10:"#ff0000",15:0,6:{click:function(){cl(t1.val().split("\n"),t2.val().split("\n"))}}})

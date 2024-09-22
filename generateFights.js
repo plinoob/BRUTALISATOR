@@ -25,7 +25,286 @@ var weaponImages = {
   broadsword: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHhtbG5zOmZmZGVjPSJodHRwczovL3d3dy5mcmVlLWRlY29tcGlsZXIuY29tL2ZsYXNoIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgZmZkZWM6b2JqZWN0VHlwZT0ic2hhcGUiIGhlaWdodD0iNDUuMTVweCIgd2lkdGg9Ijg2LjdweCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMS4wLCAwLjAsIDAuMCwgMS4wLCAxNy44NSwgMS4wNSkiPg0KICAgIDxwYXRoIGQ9Ik02NS45NSAzOS43IEw2NC45NSAzOS44NSA2Mi41NSA0MC4yIDU2Ljg1IDQwLjYgNTYuMSA0MC41IDU1LjM1IDQwLjYgNTIuNiA0MC4xNSBRNTEuODUgNDAuMTUgNDUuNTUgMzcuMTUgTDMzLjggMzEuNSBRMzEuNTUgMzAuNCAyOC4xIDI5LjA1IEwyMy4yNSAyNy4wNSAxOC4wIDI0LjkgUTE1LjMgMjMuNjUgMTUuMTUgMjIuMyBMMTUuMTUgMjIuMiAxNS44IDIyLjM1IDE2LjI1IDIyLjQ1IDM5LjMgMzAuMTUgNDkuOTUgMzMuOTUgNTQuNiAzNS43NSA1OC42IDM3LjE1IDU4LjkgMzcuMSA1OC45NSAzNi45NSA1OC40NSAzNi42IDU3LjkgMzYuNCA1Mi4yIDMzLjAgNDYuNCAyOS42IFE0NC4yNSAyOC4zNSA0MS4zIDI2Ljg1IEwzNi4wNSAyNC4xIFEyOS40IDIwLjM1IDI2LjA1IDE4LjggTDE3Ljk1IDE0Ljc1IDIwLjI1IDkuNiA1Ny4wNSAyNy4xIDY1Ljk1IDM5LjciIGZpbGw9IiNlMGU4ZWIiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTE3LjY1IDE1LjQ1IEwxMi4xNSAyNy42IDQuMyAzMS40IDYuMyAyMi4yIC0xNi44NSA3LjEgLTEzLjk1IDAuNSAxMy42IDcuMTUgMTguNzUgLTAuMDUgMjAuMjUgOS42IDE3Ljk1IDE0Ljc1IDE3LjY1IDE1LjQ1IE0xNy4zIDMuNDUgUTE2LjYgMy45IDE2LjM1IDUuNSBMMTUuOSA3LjA1IDE1LjUgOS4wIDEzLjIgMTUuOCAxNC4zIDE2LjQgUTE0LjkgMTYuNCAxNS44IDE0LjAgTDE2Ljg1IDEwLjYgMTcuNSA3LjcgMTcuOTUgNC41IFExNy45NSAyLjk1IDE3LjMgMy40NSBNMTEuMTUgOS44IEwxMS41IDkuNSAxMS42NSA5LjA1IFExMS42NSA4LjUgMTEuMiA4LjQ1IEwxMC4zNSA4LjUgMi42IDYuMiBRLTUuMjUgMy45IC01Ljk1IDMuOSBMLTguNSAzLjUgLTEwLjggMy4wNSBRLTExLjI1IDMuMDUgLTExLjM1IDMuNCBMLTExLjMgMy4zIFEtMTEuOSAzLjYgLTExLjkgNC4wIC0xMS45IDQuOTUgLTEwLjkgNS4zNSAtOC43NSA2LjAgLTYuNiA2LjggLTMuODUgNy44IC0xLjMgOS4yIDAuMzUgOS45IDQuNSAxMi40NSA4LjE1IDE0Ljc1IDguNiAxNC43NSA5LjQgMTQuNzUgMTAuMTUgMTIuMCBMMTEuMTUgOS44IiBmaWxsPSIjMDAwMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xNy45NSAxNC43NSBMMjYuMDUgMTguOCBRMjkuNCAyMC4zNSAzNi4wNSAyNC4xIEw0MS4zIDI2Ljg1IFE0NC4yNSAyOC4zNSA0Ni40IDI5LjYgTDUyLjIgMzMuMCA1Ny45IDM2LjQgNTguNDUgMzYuNiA1OC45NSAzNi45NSA1OC45IDM3LjEgNTguNiAzNy4xNSA1NC42IDM1Ljc1IDQ5Ljk1IDMzLjk1IDM5LjMgMzAuMTUgMTYuMjUgMjIuNDUgMTUuOCAyMi4zNSAxNS4xNSAyMi4yIDE1LjE1IDIyLjMgUTE1LjMgMjMuNjUgMTguMCAyNC45IEwyMy4yNSAyNy4wNSAyOC4xIDI5LjA1IFEzMS41NSAzMC40IDMzLjggMzEuNSBMNDUuNTUgMzcuMTUgUTUxLjg1IDQwLjE1IDUyLjYgNDAuMTUgTDU1LjM1IDQwLjYgNTYuMSA0MC41IDU2Ljg1IDQwLjYgNjIuNTUgNDAuMiA2NC45NSAzOS44NSA2NS45NSAzOS43IDY3Ljg1IDQyLjM1IDUxLjIgNDMuMSAxMi4xNSAyNy42IDE3LjY1IDE1LjQ1IDE3Ljk1IDE0Ljc1IDE3LjY1IDE1LjQ1IDE3Ljk1IDE0Ljc1IiBmaWxsPSIjYjhjOWNmIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xMS4xNSA5LjggTDEwLjE1IDEyLjAgUTkuNCAxNC43NSA4LjYgMTQuNzUgOC4xNSAxNC43NSA0LjUgMTIuNDUgMC4zNSA5LjkgLTEuMyA5LjIgLTMuODUgNy44IC02LjYgNi44IC04Ljc1IDYuMCAtMTAuOSA1LjM1IC0xMS45IDQuOTUgLTExLjkgNC4wIC0xMS45IDMuNiAtMTEuMyAzLjMgTC0xMS4zNSAzLjQgUS0xMS4yNSAzLjA1IC0xMC44IDMuMDUgTC04LjUgMy41IC01Ljk1IDMuOSBRLTUuMjUgMy45IDIuNiA2LjIgTDEwLjM1IDguNSAxMS4yIDguNDUgUTExLjY1IDguNSAxMS42NSA5LjA1IEwxMS41IDkuNSAxMS4xNSA5LjggTTE3LjMgMy40NSBRMTcuOTUgMi45NSAxNy45NSA0LjUgTDE3LjUgNy43IDE2Ljg1IDEwLjYgMTUuOCAxNC4wIFExNC45IDE2LjQgMTQuMyAxNi40IEwxMy4yIDE1LjggMTUuNSA5LjAgMTUuOSA3LjA1IDE2LjM1IDUuNSBRMTYuNiAzLjkgMTcuMyAzLjQ1IiBmaWxsPSIjNmI1YTUwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xNy45NSAxNC43NSBMMTcuNjUgMTUuNDUgMTIuMTUgMjcuNiA1MS4yIDQzLjEgNjcuODUgNDIuMzUgNjUuOTUgMzkuNyA1Ny4wNSAyNy4xIDIwLjI1IDkuNiAxNy45NSAxNC43NSBNMjAuMjUgOS42IEwxOC43NSAtMC4wNSAxMy42IDcuMTUgLTEzLjk1IDAuNSAtMTYuODUgNy4xIDYuMyAyMi4yIDQuMyAzMS40IDEyLjE1IDI3LjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utb3BhY2l0eT0iMC40IiBzdHJva2Utd2lkdGg9IjEiLz4NCiAgPC9nPg0KPC9zdmc+DQo8IS0tIDEgLS0+',
   scimitar: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHhtbG5zOmZmZGVjPSJodHRwczovL3d3dy5mcmVlLWRlY29tcGlsZXIuY29tL2ZsYXNoIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgZmZkZWM6b2JqZWN0VHlwZT0ic2hhcGUiIGhlaWdodD0iNDguNHB4IiB3aWR0aD0iMTAzLjE1cHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogIDxnIHRyYW5zZm9ybT0ibWF0cml4KDEuMCwgMC4wLCAwLjAsIDEuMCwgMTguMSwgLTEuMjk5OTk5OTk5OTk5OTk5OCkiPg0KICAgIDxwYXRoIGQ9Ik03OS4xIDQxLjU1IEw3OC41IDQxLjYgNzQuNzUgNDIuMzUgNzMuODUgNDIuNTUgNzIuOTUgNDIuNzUgNzIuODUgNDIuNzUgNzEuNDUgNDIuNjUgNjguNCA0Mi45NSA2NS4xIDQzLjQ1IFE2MS4zNSA0My40NSA1NS42NSA0MC42IEw0Ny4wIDM1LjkgNDEuNiAzMi45IDM2LjM1IDI5Ljc1IDI0LjIgMjIuMjUgMTguOTUgMTkuMjUgMTYuMSAxNy42NSAxNC45NSAxNy4wIDE2LjIgMTMuNCA2MS40NSAzNi45NSA3Mi45IDM0Ljc1IDc0LjM1IDQxLjMgNzkuMSA0MS41NSIgZmlsbD0iI2UwZThlYiIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiLz4NCiAgICA8cGF0aCBkPSJNMTQuOTUgMTcuMCBMMTYuMSAxNy42NSAxOC45NSAxOS4yNSAyNC4yIDIyLjI1IDM2LjM1IDI5Ljc1IDQxLjYgMzIuOSA0Ny4wIDM1LjkgNTUuNjUgNDAuNiBRNjEuMzUgNDMuNDUgNjUuMSA0My40NSBMNjguNCA0Mi45NSA3MS40NSA0Mi42NSA3Mi44NSA0Mi43NSA3Mi45NSA0Mi43NSA3My44NSA0Mi41NSA3NC43NSA0Mi4zNSA3OC41IDQxLjYgNzkuMSA0MS41NSA4NC4wNSA0MS43NSA3NC45NSA0Ny43IDYwLjc1IDQ4LjcgNTIuODUgNDUuODUgMTQuMCAxOS41NSAxNC45NSAxNy4wIiBmaWxsPSIjYjhjOWNmIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xNC45NSAxNy4wIEwxNC4wIDE5LjU1IC0xNy4xIDguNDUgLTE1LjggNC45NSBRMTQuMCAxNi40IDE0Ljk1IDE3LjAiIGZpbGw9IiMwMDAwMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTE2LjIgMTMuNCBMMTQuOTUgMTcuMCBRMTQuMCAxNi40IC0xNS44IDQuOTUgTC0xNC44NSAyLjMgMTYuMiAxMy40IiBmaWxsPSIjNmI1YTUwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xNC45NSAxNy4wIEwxNC4wIDE5LjU1IDUyLjg1IDQ1Ljg1IDYwLjc1IDQ4LjcgNzQuOTUgNDcuNyA4NC4wNSA0MS43NSA3OS4xIDQxLjU1IDc0LjM1IDQxLjMgNzIuOSAzNC43NSA2MS40NSAzNi45NSAxNi4yIDEzLjQgMTQuOTUgMTcuMCBNLTE1LjggNC45NSBMLTE3LjEgOC40NSAxNC4wIDE5LjU1IE0xNi4yIDEzLjQgTC0xNC44NSAyLjMgLTE1LjggNC45NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1vcGFjaXR5PSIwLjQiIHN0cm9rZS13aWR0aD0iMSIvPg0KICA8L2c+DQo8L3N2Zz4NCjwhLS0gMSAtLT4=',
   sword: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHhtbG5zOmZmZGVjPSJodHRwczovL3d3dy5mcmVlLWRlY29tcGlsZXIuY29tL2ZsYXNoIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgZmZkZWM6b2JqZWN0VHlwZT0ic2hhcGUiIGhlaWdodD0iNTUuOTVweCIgd2lkdGg9IjEyMS45NXB4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLjAsIDAuMCwgMC4wLCAxLjAsIDE4LjksIDIuNTUpIj4NCiAgICA8cGF0aCBkPSJNMTguODUgOS4wIEw4OS42NSAzNC4yIDEwMi4wNSA0Ni43NSAxMDEuNiA0Ny4wNSAxNi4zIDE2LjI1IDE4Ljg1IDkuMCIgZmlsbD0iI2UwZThlYiIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiLz4NCiAgICA8cGF0aCBkPSJNLTE1LjYgNC40NSBMLTEzLjUgLTEuNTUgMTEuOSA3LjIgMTMuMyAzLjIgMjAuMDUgNS42IDE4Ljg1IDkuMCAxNi4zIDE2LjI1IC0xNS42IDQuNDUiIGZpbGw9IiM3MjUzMjciIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTEwMS42IDQ3LjA1IEw5My44IDUyLjQgMTMuNiAyMy45IDE2LjMgMTYuMjUgMTAxLjYgNDcuMDUiIGZpbGw9IiNiOGM5Y2YiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTEzLjYgMjMuOSBMMTIuNiAyNi43NSA2LjA1IDI0LjQ1IDcuMzUgMjAuNyAtMTcuOSAxMC45NSAtMTUuNiA0LjQ1IDE2LjMgMTYuMjUgMTMuNiAyMy45IiBmaWxsPSIjMDAwMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xOC44NSA5LjAgTDg5LjY1IDM0LjIgMTAyLjA1IDQ2Ljc1IDEwMS42IDQ3LjA1IDkzLjggNTIuNCAxMy42IDIzLjkgMTIuNiAyNi43NSA2LjA1IDI0LjQ1IDcuMzUgMjAuNyAtMTcuOSAxMC45NSAtMTUuNiA0LjQ1IC0xMy41IC0xLjU1IDExLjkgNy4yIDEzLjMgMy4yIDIwLjA1IDUuNiAxOC44NSA5LjAgMTYuMyAxNi4yNSAxMy42IDIzLjkgTS0xNS42IDQuNDUgTDE2LjMgMTYuMjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utb3BhY2l0eT0iMC40IiBzdHJva2Utd2lkdGg9IjEiLz4NCiAgPC9nPg0KPC9zdmc+DQo8IS0tIDEgLS0+'
-};var applySkillModifiers = (brute, skill) => {
+};
+var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
+
+function rien(){}
+
+
+
+
+var nfps=60;var dicfps={};var dirfps=[];function fps(a){var f=dirfps.length;var t=function(){if(!(a in dicfps)){dicfps[a]=false;a(...arguments);setTimeout(function(){var b=dicfps[a];delk(dicfps,a);if(typeof(b)==typeof([])){dirfps[f](...b)}},nfps)}else{dicfps[a]=arguments;};};dirfps.push(t);return(t)};
+function delk(a,b){if(typeof(a)==typeof([]) && (!Array.isArray(a))){var c=a;a=b;b=c};var c=b[a];delete b[a];return(c)}
+
+
+var body
+if(typeof(document)!="undefined"){
+	
+	!function(e,t){"use strict";"object"==typeof module&&"object"==typeof module.exports?module.exports=e.document?t(e,!0):function(e){if(!e.document)throw new Error("jQuery requires a window with a document");return t(e)}:t(e)}("undefined"!=typeof window?window:this,function(C,e){"use strict";var t=[],E=C.document,r=Object.getPrototypeOf,s=t.slice,g=t.concat,u=t.push,i=t.indexOf,n={},o=n.toString,v=n.hasOwnProperty,a=v.toString,l=a.call(Object),y={},m=function(e){return"function"==typeof e&&"number"!=typeof e.nodeType},x=function(e){return null!=e&&e===e.window},c={type:!0,src:!0,nonce:!0,noModule:!0};function b(e,t,n){var r,i,o=(n=n||E).createElement("script");if(o.text=e,t)for(r in c)(i=t[r]||t.getAttribute&&t.getAttribute(r))&&o.setAttribute(r,i);n.head.appendChild(o).parentNode.removeChild(o)}function w(e){return null==e?e+"":"object"==typeof e||"function"==typeof e?n[o.call(e)]||"object":typeof e}var f="3.4.1",k=function(e,t){return new k.fn.init(e,t)},p=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;function d(e){var t=!!e&&"length"in e&&e.length,n=w(e);return!m(e)&&!x(e)&&("array"===n||0===t||"number"==typeof t&&0<t&&t-1 in e)}k.fn=k.prototype={jquery:f,constructor:k,length:0,toArray:function(){return s.call(this)},get:function(e){return null==e?s.call(this):e<0?this[e+this.length]:this[e]},pushStack:function(e){var t=k.merge(this.constructor(),e);return t.prevObject=this,t},each:function(e){return k.each(this,e)},map:function(n){return this.pushStack(k.map(this,function(e,t){return n.call(e,t,e)}))},slice:function(){return this.pushStack(s.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(e){var t=this.length,n=+e+(e<0?t:0);return this.pushStack(0<=n&&n<t?[this[n]]:[])},end:function(){return this.prevObject||this.constructor()},push:u,sort:t.sort,splice:t.splice},k.extend=k.fn.extend=function(){var e,t,n,r,i,o,a=arguments[0]||{},s=1,u=arguments.length,l=!1;for("boolean"==typeof a&&(l=a,a=arguments[s]||{},s++),"object"==typeof a||m(a)||(a={}),s===u&&(a=this,s--);s<u;s++)if(null!=(e=arguments[s]))for(t in e)r=e[t],"__proto__"!==t&&a!==r&&(l&&r&&(k.isPlainObject(r)||(i=Array.isArray(r)))?(n=a[t],o=i&&!Array.isArray(n)?[]:i||k.isPlainObject(n)?n:{},i=!1,a[t]=k.extend(l,o,r)):void 0!==r&&(a[t]=r));return a},k.extend({expando:"jQuery"+(f+Math.random()).replace(/\D/g,""),isReady:!0,error:function(e){throw new Error(e)},noop:function(){},isPlainObject:function(e){var t,n;return!(!e||"[object Object]"!==o.call(e))&&(!(t=r(e))||"function"==typeof(n=v.call(t,"constructor")&&t.constructor)&&a.call(n)===l)},isEmptyObject:function(e){var t;for(t in e)return!1;return!0},globalEval:function(e,t){b(e,{nonce:t&&t.nonce})},each:function(e,t){var n,r=0;if(d(e)){for(n=e.length;r<n;r++)if(!1===t.call(e[r],r,e[r]))break}else for(r in e)if(!1===t.call(e[r],r,e[r]))break;return e},trim:function(e){return null==e?"":(e+"").replace(p,"")},makeArray:function(e,t){var n=t||[];return null!=e&&(d(Object(e))?k.merge(n,"string"==typeof e?[e]:e):u.call(n,e)),n},inArray:function(e,t,n){return null==t?-1:i.call(t,e,n)},merge:function(e,t){for(var n=+t.length,r=0,i=e.length;r<n;r++)e[i++]=t[r];return e.length=i,e},grep:function(e,t,n){for(var r=[],i=0,o=e.length,a=!n;i<o;i++)!t(e[i],i)!==a&&r.push(e[i]);return r},map:function(e,t,n){var r,i,o=0,a=[];if(d(e))for(r=e.length;o<r;o++)null!=(i=t(e[o],o,n))&&a.push(i);else for(o in e)null!=(i=t(e[o],o,n))&&a.push(i);return g.apply([],a)},guid:1,support:y}),"function"==typeof Symbol&&(k.fn[Symbol.iterator]=t[Symbol.iterator]),k.each("Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "),function(e,t){n["[object "+t+"]"]=t.toLowerCase()});var h=function(n){var e,d,b,o,i,h,f,g,w,u,l,T,C,a,E,v,s,c,y,k="sizzle"+1*new Date,m=n.document,S=0,r=0,p=ue(),x=ue(),N=ue(),A=ue(),D=function(e,t){return e===t&&(l=!0),0},j={}.hasOwnProperty,t=[],q=t.pop,L=t.push,H=t.push,O=t.slice,P=function(e,t){for(var n=0,r=e.length;n<r;n++)if(e[n]===t)return n;return-1},R="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",M="[\\x20\\t\\r\\n\\f]",I="(?:\\\\.|[\\w-]|[^\0-\\xa0])+",W="\\["+M+"*("+I+")(?:"+M+"*([*^$|!~]?=)"+M+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+I+"))|)"+M+"*\\]",$=":("+I+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+W+")*)|.*)\\)|)",F=new RegExp(M+"+","g"),B=new RegExp("^"+M+"+|((?:^|[^\\\\])(?:\\\\.)*)"+M+"+$","g"),_=new RegExp("^"+M+"*,"+M+"*"),z=new RegExp("^"+M+"*([>+~]|"+M+")"+M+"*"),U=new RegExp(M+"|>"),X=new RegExp($),V=new RegExp("^"+I+"$"),G={ID:new RegExp("^#("+I+")"),CLASS:new RegExp("^\\.("+I+")"),TAG:new RegExp("^("+I+"|[*])"),ATTR:new RegExp("^"+W),PSEUDO:new RegExp("^"+$),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+M+"*(even|odd|(([+-]|)(\\d*)n|)"+M+"*(?:([+-]|)"+M+"*(\\d+)|))"+M+"*\\)|)","i"),bool:new RegExp("^(?:"+R+")$","i"),needsContext:new RegExp("^"+M+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+M+"*((?:-\\d)?\\d*)"+M+"*\\)|)(?=[^-]|$)","i")},Y=/HTML$/i,Q=/^(?:input|select|textarea|button)$/i,J=/^h\d$/i,K=/^[^{]+\{\s*\[native \w/,Z=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,ee=/[+~]/,te=new RegExp("\\\\([\\da-f]{1,6}"+M+"?|("+M+")|.)","ig"),ne=function(e,t,n){var r="0x"+t-65536;return r!=r||n?t:r<0?String.fromCharCode(r+65536):String.fromCharCode(r>>10|55296,1023&r|56320)},re=/([\0-\x1f\x7f]|^-?\d)|^-$|[^\0-\x1f\x7f-\uFFFF\w-]/g,ie=function(e,t){return t?"\0"===e?"\ufffd":e.slice(0,-1)+"\\"+e.charCodeAt(e.length-1).toString(16)+" ":"\\"+e},oe=function(){T()},ae=be(function(e){return!0===e.disabled&&"fieldset"===e.nodeName.toLowerCase()},{dir:"parentNode",next:"legend"});try{H.apply(t=O.call(m.childNodes),m.childNodes),t[m.childNodes.length].nodeType}catch(e){H={apply:t.length?function(e,t){L.apply(e,O.call(t))}:function(e,t){var n=e.length,r=0;while(e[n++]=t[r++]);e.length=n-1}}}function se(t,e,n,r){var i,o,a,s,u,l,c,f=e&&e.ownerDocument,p=e?e.nodeType:9;if(n=n||[],"string"!=typeof t||!t||1!==p&&9!==p&&11!==p)return n;if(!r&&((e?e.ownerDocument||e:m)!==C&&T(e),e=e||C,E)){if(11!==p&&(u=Z.exec(t)))if(i=u[1]){if(9===p){if(!(a=e.getElementById(i)))return n;if(a.id===i)return n.push(a),n}else if(f&&(a=f.getElementById(i))&&y(e,a)&&a.id===i)return n.push(a),n}else{if(u[2])return H.apply(n,e.getElementsByTagName(t)),n;if((i=u[3])&&d.getElementsByClassName&&e.getElementsByClassName)return H.apply(n,e.getElementsByClassName(i)),n}if(d.qsa&&!A[t+" "]&&(!v||!v.test(t))&&(1!==p||"object"!==e.nodeName.toLowerCase())){if(c=t,f=e,1===p&&U.test(t)){(s=e.getAttribute("id"))?s=s.replace(re,ie):e.setAttribute("id",s=k),o=(l=h(t)).length;while(o--)l[o]="#"+s+" "+xe(l[o]);c=l.join(","),f=ee.test(t)&&ye(e.parentNode)||e}try{return H.apply(n,f.querySelectorAll(c)),n}catch(e){A(t,!0)}finally{s===k&&e.removeAttribute("id")}}}return g(t.replace(B,"$1"),e,n,r)}function ue(){var r=[];return function e(t,n){return r.push(t+" ")>b.cacheLength&&delete e[r.shift()],e[t+" "]=n}}function le(e){return e[k]=!0,e}function ce(e){var t=C.createElement("fieldset");try{return!!e(t)}catch(e){return!1}finally{t.parentNode&&t.parentNode.removeChild(t),t=null}}function fe(e,t){var n=e.split("|"),r=n.length;while(r--)b.attrHandle[n[r]]=t}function pe(e,t){var n=t&&e,r=n&&1===e.nodeType&&1===t.nodeType&&e.sourceIndex-t.sourceIndex;if(r)return r;if(n)while(n=n.nextSibling)if(n===t)return-1;return e?1:-1}function de(t){return function(e){return"input"===e.nodeName.toLowerCase()&&e.type===t}}function he(n){return function(e){var t=e.nodeName.toLowerCase();return("input"===t||"button"===t)&&e.type===n}}function ge(t){return function(e){return"form"in e?e.parentNode&&!1===e.disabled?"label"in e?"label"in e.parentNode?e.parentNode.disabled===t:e.disabled===t:e.isDisabled===t||e.isDisabled!==!t&&ae(e)===t:e.disabled===t:"label"in e&&e.disabled===t}}function ve(a){return le(function(o){return o=+o,le(function(e,t){var n,r=a([],e.length,o),i=r.length;while(i--)e[n=r[i]]&&(e[n]=!(t[n]=e[n]))})})}function ye(e){return e&&"undefined"!=typeof e.getElementsByTagName&&e}for(e in d=se.support={},i=se.isXML=function(e){var t=e.namespaceURI,n=(e.ownerDocument||e).documentElement;return!Y.test(t||n&&n.nodeName||"HTML")},T=se.setDocument=function(e){var t,n,r=e?e.ownerDocument||e:m;return r!==C&&9===r.nodeType&&r.documentElement&&(a=(C=r).documentElement,E=!i(C),m!==C&&(n=C.defaultView)&&n.top!==n&&(n.addEventListener?n.addEventListener("unload",oe,!1):n.attachEvent&&n.attachEvent("onunload",oe)),d.attributes=ce(function(e){return e.className="i",!e.getAttribute("className")}),d.getElementsByTagName=ce(function(e){return e.appendChild(C.createComment("")),!e.getElementsByTagName("*").length}),d.getElementsByClassName=K.test(C.getElementsByClassName),d.getById=ce(function(e){return a.appendChild(e).id=k,!C.getElementsByName||!C.getElementsByName(k).length}),d.getById?(b.filter.ID=function(e){var t=e.replace(te,ne);return function(e){return e.getAttribute("id")===t}},b.find.ID=function(e,t){if("undefined"!=typeof t.getElementById&&E){var n=t.getElementById(e);return n?[n]:[]}}):(b.filter.ID=function(e){var n=e.replace(te,ne);return function(e){var t="undefined"!=typeof e.getAttributeNode&&e.getAttributeNode("id");return t&&t.value===n}},b.find.ID=function(e,t){if("undefined"!=typeof t.getElementById&&E){var n,r,i,o=t.getElementById(e);if(o){if((n=o.getAttributeNode("id"))&&n.value===e)return[o];i=t.getElementsByName(e),r=0;while(o=i[r++])if((n=o.getAttributeNode("id"))&&n.value===e)return[o]}return[]}}),b.find.TAG=d.getElementsByTagName?function(e,t){return"undefined"!=typeof t.getElementsByTagName?t.getElementsByTagName(e):d.qsa?t.querySelectorAll(e):void 0}:function(e,t){var n,r=[],i=0,o=t.getElementsByTagName(e);if("*"===e){while(n=o[i++])1===n.nodeType&&r.push(n);return r}return o},b.find.CLASS=d.getElementsByClassName&&function(e,t){if("undefined"!=typeof t.getElementsByClassName&&E)return t.getElementsByClassName(e)},s=[],v=[],(d.qsa=K.test(C.querySelectorAll))&&(ce(function(e){a.appendChild(e).innerHTML="<a id='"+k+"'></a><select id='"+k+"-\r\\' msallowcapture=''><option selected=''></option></select>",e.querySelectorAll("[msallowcapture^='']").length&&v.push("[*^$]="+M+"*(?:''|\"\")"),e.querySelectorAll("[selected]").length||v.push("\\["+M+"*(?:value|"+R+")"),e.querySelectorAll("[id~="+k+"-]").length||v.push("~="),e.querySelectorAll(":checked").length||v.push(":checked"),e.querySelectorAll("a#"+k+"+*").length||v.push(".#.+[+~]")}),ce(function(e){e.innerHTML="<a href='' disabled='disabled'></a><select disabled='disabled'><option/></select>";var t=C.createElement("input");t.setAttribute("type","hidden"),e.appendChild(t).setAttribute("name","D"),e.querySelectorAll("[name=d]").length&&v.push("name"+M+"*[*^$|!~]?="),2!==e.querySelectorAll(":enabled").length&&v.push(":enabled",":disabled"),a.appendChild(e).disabled=!0,2!==e.querySelectorAll(":disabled").length&&v.push(":enabled",":disabled"),e.querySelectorAll("*,:x"),v.push(",.*:")})),(d.matchesSelector=K.test(c=a.matches||a.webkitMatchesSelector||a.mozMatchesSelector||a.oMatchesSelector||a.msMatchesSelector))&&ce(function(e){d.disconnectedMatch=c.call(e,"*"),c.call(e,"[s!='']:x"),s.push("!=",$)}),v=v.length&&new RegExp(v.join("|")),s=s.length&&new RegExp(s.join("|")),t=K.test(a.compareDocumentPosition),y=t||K.test(a.contains)?function(e,t){var n=9===e.nodeType?e.documentElement:e,r=t&&t.parentNode;return e===r||!(!r||1!==r.nodeType||!(n.contains?n.contains(r):e.compareDocumentPosition&&16&e.compareDocumentPosition(r)))}:function(e,t){if(t)while(t=t.parentNode)if(t===e)return!0;return!1},D=t?function(e,t){if(e===t)return l=!0,0;var n=!e.compareDocumentPosition-!t.compareDocumentPosition;return n||(1&(n=(e.ownerDocument||e)===(t.ownerDocument||t)?e.compareDocumentPosition(t):1)||!d.sortDetached&&t.compareDocumentPosition(e)===n?e===C||e.ownerDocument===m&&y(m,e)?-1:t===C||t.ownerDocument===m&&y(m,t)?1:u?P(u,e)-P(u,t):0:4&n?-1:1)}:function(e,t){if(e===t)return l=!0,0;var n,r=0,i=e.parentNode,o=t.parentNode,a=[e],s=[t];if(!i||!o)return e===C?-1:t===C?1:i?-1:o?1:u?P(u,e)-P(u,t):0;if(i===o)return pe(e,t);n=e;while(n=n.parentNode)a.unshift(n);n=t;while(n=n.parentNode)s.unshift(n);while(a[r]===s[r])r++;return r?pe(a[r],s[r]):a[r]===m?-1:s[r]===m?1:0}),C},se.matches=function(e,t){return se(e,null,null,t)},se.matchesSelector=function(e,t){if((e.ownerDocument||e)!==C&&T(e),d.matchesSelector&&E&&!A[t+" "]&&(!s||!s.test(t))&&(!v||!v.test(t)))try{var n=c.call(e,t);if(n||d.disconnectedMatch||e.document&&11!==e.document.nodeType)return n}catch(e){A(t,!0)}return 0<se(t,C,null,[e]).length},se.contains=function(e,t){return(e.ownerDocument||e)!==C&&T(e),y(e,t)},se.attr=function(e,t){(e.ownerDocument||e)!==C&&T(e);var n=b.attrHandle[t.toLowerCase()],r=n&&j.call(b.attrHandle,t.toLowerCase())?n(e,t,!E):void 0;return void 0!==r?r:d.attributes||!E?e.getAttribute(t):(r=e.getAttributeNode(t))&&r.specified?r.value:null},se.escape=function(e){return(e+"").replace(re,ie)},se.error=function(e){throw new Error("Syntax error, unrecognized expression: "+e)},se.uniqueSort=function(e){var t,n=[],r=0,i=0;if(l=!d.detectDuplicates,u=!d.sortStable&&e.slice(0),e.sort(D),l){while(t=e[i++])t===e[i]&&(r=n.push(i));while(r--)e.splice(n[r],1)}return u=null,e},o=se.getText=function(e){var t,n="",r=0,i=e.nodeType;if(i){if(1===i||9===i||11===i){if("string"==typeof e.textContent)return e.textContent;for(e=e.firstChild;e;e=e.nextSibling)n+=o(e)}else if(3===i||4===i)return e.nodeValue}else while(t=e[r++])n+=o(t);return n},(b=se.selectors={cacheLength:50,createPseudo:le,match:G,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(e){return e[1]=e[1].replace(te,ne),e[3]=(e[3]||e[4]||e[5]||"").replace(te,ne),"~="===e[2]&&(e[3]=" "+e[3]+" "),e.slice(0,4)},CHILD:function(e){return e[1]=e[1].toLowerCase(),"nth"===e[1].slice(0,3)?(e[3]||se.error(e[0]),e[4]=+(e[4]?e[5]+(e[6]||1):2*("even"===e[3]||"odd"===e[3])),e[5]=+(e[7]+e[8]||"odd"===e[3])):e[3]&&se.error(e[0]),e},PSEUDO:function(e){var t,n=!e[6]&&e[2];return G.CHILD.test(e[0])?null:(e[3]?e[2]=e[4]||e[5]||"":n&&X.test(n)&&(t=h(n,!0))&&(t=n.indexOf(")",n.length-t)-n.length)&&(e[0]=e[0].slice(0,t),e[2]=n.slice(0,t)),e.slice(0,3))}},filter:{TAG:function(e){var t=e.replace(te,ne).toLowerCase();return"*"===e?function(){return!0}:function(e){return e.nodeName&&e.nodeName.toLowerCase()===t}},CLASS:function(e){var t=p[e+" "];return t||(t=new RegExp("(^|"+M+")"+e+"("+M+"|$)"))&&p(e,function(e){return t.test("string"==typeof e.className&&e.className||"undefined"!=typeof e.getAttribute&&e.getAttribute("class")||"")})},ATTR:function(n,r,i){return function(e){var t=se.attr(e,n);return null==t?"!="===r:!r||(t+="","="===r?t===i:"!="===r?t!==i:"^="===r?i&&0===t.indexOf(i):"*="===r?i&&-1<t.indexOf(i):"$="===r?i&&t.slice(-i.length)===i:"~="===r?-1<(" "+t.replace(F," ")+" ").indexOf(i):"|="===r&&(t===i||t.slice(0,i.length+1)===i+"-"))}},CHILD:function(h,e,t,g,v){var y="nth"!==h.slice(0,3),m="last"!==h.slice(-4),x="of-type"===e;return 1===g&&0===v?function(e){return!!e.parentNode}:function(e,t,n){var r,i,o,a,s,u,l=y!==m?"nextSibling":"previousSibling",c=e.parentNode,f=x&&e.nodeName.toLowerCase(),p=!n&&!x,d=!1;if(c){if(y){while(l){a=e;while(a=a[l])if(x?a.nodeName.toLowerCase()===f:1===a.nodeType)return!1;u=l="only"===h&&!u&&"nextSibling"}return!0}if(u=[m?c.firstChild:c.lastChild],m&&p){d=(s=(r=(i=(o=(a=c)[k]||(a[k]={}))[a.uniqueID]||(o[a.uniqueID]={}))[h]||[])[0]===S&&r[1])&&r[2],a=s&&c.childNodes[s];while(a=++s&&a&&a[l]||(d=s=0)||u.pop())if(1===a.nodeType&&++d&&a===e){i[h]=[S,s,d];break}}else if(p&&(d=s=(r=(i=(o=(a=e)[k]||(a[k]={}))[a.uniqueID]||(o[a.uniqueID]={}))[h]||[])[0]===S&&r[1]),!1===d)while(a=++s&&a&&a[l]||(d=s=0)||u.pop())if((x?a.nodeName.toLowerCase()===f:1===a.nodeType)&&++d&&(p&&((i=(o=a[k]||(a[k]={}))[a.uniqueID]||(o[a.uniqueID]={}))[h]=[S,d]),a===e))break;return(d-=v)===g||d%g==0&&0<=d/g}}},PSEUDO:function(e,o){var t,a=b.pseudos[e]||b.setFilters[e.toLowerCase()]||se.error("unsupported pseudo: "+e);return a[k]?a(o):1<a.length?(t=[e,e,"",o],b.setFilters.hasOwnProperty(e.toLowerCase())?le(function(e,t){var n,r=a(e,o),i=r.length;while(i--)e[n=P(e,r[i])]=!(t[n]=r[i])}):function(e){return a(e,0,t)}):a}},pseudos:{not:le(function(e){var r=[],i=[],s=f(e.replace(B,"$1"));return s[k]?le(function(e,t,n,r){var i,o=s(e,null,r,[]),a=e.length;while(a--)(i=o[a])&&(e[a]=!(t[a]=i))}):function(e,t,n){return r[0]=e,s(r,null,n,i),r[0]=null,!i.pop()}}),has:le(function(t){return function(e){return 0<se(t,e).length}}),contains:le(function(t){return t=t.replace(te,ne),function(e){return-1<(e.textContent||o(e)).indexOf(t)}}),lang:le(function(n){return V.test(n||"")||se.error("unsupported lang: "+n),n=n.replace(te,ne).toLowerCase(),function(e){var t;do{if(t=E?e.lang:e.getAttribute("xml:lang")||e.getAttribute("lang"))return(t=t.toLowerCase())===n||0===t.indexOf(n+"-")}while((e=e.parentNode)&&1===e.nodeType);return!1}}),target:function(e){var t=n.location&&n.location.hash;return t&&t.slice(1)===e.id},root:function(e){return e===a},focus:function(e){return e===C.activeElement&&(!C.hasFocus||C.hasFocus())&&!!(e.type||e.href||~e.tabIndex)},enabled:ge(!1),disabled:ge(!0),checked:function(e){var t=e.nodeName.toLowerCase();return"input"===t&&!!e.checked||"option"===t&&!!e.selected},selected:function(e){return e.parentNode&&e.parentNode.selectedIndex,!0===e.selected},empty:function(e){for(e=e.firstChild;e;e=e.nextSibling)if(e.nodeType<6)return!1;return!0},parent:function(e){return!b.pseudos.empty(e)},header:function(e){return J.test(e.nodeName)},input:function(e){return Q.test(e.nodeName)},button:function(e){var t=e.nodeName.toLowerCase();return"input"===t&&"button"===e.type||"button"===t},text:function(e){var t;return"input"===e.nodeName.toLowerCase()&&"text"===e.type&&(null==(t=e.getAttribute("type"))||"text"===t.toLowerCase())},first:ve(function(){return[0]}),last:ve(function(e,t){return[t-1]}),eq:ve(function(e,t,n){return[n<0?n+t:n]}),even:ve(function(e,t){for(var n=0;n<t;n+=2)e.push(n);return e}),odd:ve(function(e,t){for(var n=1;n<t;n+=2)e.push(n);return e}),lt:ve(function(e,t,n){for(var r=n<0?n+t:t<n?t:n;0<=--r;)e.push(r);return e}),gt:ve(function(e,t,n){for(var r=n<0?n+t:n;++r<t;)e.push(r);return e})}}).pseudos.nth=b.pseudos.eq,{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})b.pseudos[e]=de(e);for(e in{submit:!0,reset:!0})b.pseudos[e]=he(e);function me(){}function xe(e){for(var t=0,n=e.length,r="";t<n;t++)r+=e[t].value;return r}function be(s,e,t){var u=e.dir,l=e.next,c=l||u,f=t&&"parentNode"===c,p=r++;return e.first?function(e,t,n){while(e=e[u])if(1===e.nodeType||f)return s(e,t,n);return!1}:function(e,t,n){var r,i,o,a=[S,p];if(n){while(e=e[u])if((1===e.nodeType||f)&&s(e,t,n))return!0}else while(e=e[u])if(1===e.nodeType||f)if(i=(o=e[k]||(e[k]={}))[e.uniqueID]||(o[e.uniqueID]={}),l&&l===e.nodeName.toLowerCase())e=e[u]||e;else{if((r=i[c])&&r[0]===S&&r[1]===p)return a[2]=r[2];if((i[c]=a)[2]=s(e,t,n))return!0}return!1}}function we(i){return 1<i.length?function(e,t,n){var r=i.length;while(r--)if(!i[r](e,t,n))return!1;return!0}:i[0]}function Te(e,t,n,r,i){for(var o,a=[],s=0,u=e.length,l=null!=t;s<u;s++)(o=e[s])&&(n&&!n(o,r,i)||(a.push(o),l&&t.push(s)));return a}function Ce(d,h,g,v,y,e){return v&&!v[k]&&(v=Ce(v)),y&&!y[k]&&(y=Ce(y,e)),le(function(e,t,n,r){var i,o,a,s=[],u=[],l=t.length,c=e||function(e,t,n){for(var r=0,i=t.length;r<i;r++)se(e,t[r],n);return n}(h||"*",n.nodeType?[n]:n,[]),f=!d||!e&&h?c:Te(c,s,d,n,r),p=g?y||(e?d:l||v)?[]:t:f;if(g&&g(f,p,n,r),v){i=Te(p,u),v(i,[],n,r),o=i.length;while(o--)(a=i[o])&&(p[u[o]]=!(f[u[o]]=a))}if(e){if(y||d){if(y){i=[],o=p.length;while(o--)(a=p[o])&&i.push(f[o]=a);y(null,p=[],i,r)}o=p.length;while(o--)(a=p[o])&&-1<(i=y?P(e,a):s[o])&&(e[i]=!(t[i]=a))}}else p=Te(p===t?p.splice(l,p.length):p),y?y(null,t,p,r):H.apply(t,p)})}function Ee(e){for(var i,t,n,r=e.length,o=b.relative[e[0].type],a=o||b.relative[" "],s=o?1:0,u=be(function(e){return e===i},a,!0),l=be(function(e){return-1<P(i,e)},a,!0),c=[function(e,t,n){var r=!o&&(n||t!==w)||((i=t).nodeType?u(e,t,n):l(e,t,n));return i=null,r}];s<r;s++)if(t=b.relative[e[s].type])c=[be(we(c),t)];else{if((t=b.filter[e[s].type].apply(null,e[s].matches))[k]){for(n=++s;n<r;n++)if(b.relative[e[n].type])break;return Ce(1<s&&we(c),1<s&&xe(e.slice(0,s-1).concat({value:" "===e[s-2].type?"*":""})).replace(B,"$1"),t,s<n&&Ee(e.slice(s,n)),n<r&&Ee(e=e.slice(n)),n<r&&xe(e))}c.push(t)}return we(c)}return me.prototype=b.filters=b.pseudos,b.setFilters=new me,h=se.tokenize=function(e,t){var n,r,i,o,a,s,u,l=x[e+" "];if(l)return t?0:l.slice(0);a=e,s=[],u=b.preFilter;while(a){for(o in n&&!(r=_.exec(a))||(r&&(a=a.slice(r[0].length)||a),s.push(i=[])),n=!1,(r=z.exec(a))&&(n=r.shift(),i.push({value:n,type:r[0].replace(B," ")}),a=a.slice(n.length)),b.filter)!(r=G[o].exec(a))||u[o]&&!(r=u[o](r))||(n=r.shift(),i.push({value:n,type:o,matches:r}),a=a.slice(n.length));if(!n)break}return t?a.length:a?se.error(e):x(e,s).slice(0)},f=se.compile=function(e,t){var n,v,y,m,x,r,i=[],o=[],a=N[e+" "];if(!a){t||(t=h(e)),n=t.length;while(n--)(a=Ee(t[n]))[k]?i.push(a):o.push(a);(a=N(e,(v=o,m=0<(y=i).length,x=0<v.length,r=function(e,t,n,r,i){var o,a,s,u=0,l="0",c=e&&[],f=[],p=w,d=e||x&&b.find.TAG("*",i),h=S+=null==p?1:Math.random()||.1,g=d.length;for(i&&(w=t===C||t||i);l!==g&&null!=(o=d[l]);l++){if(x&&o){a=0,t||o.ownerDocument===C||(T(o),n=!E);while(s=v[a++])if(s(o,t||C,n)){r.push(o);break}i&&(S=h)}m&&((o=!s&&o)&&u--,e&&c.push(o))}if(u+=l,m&&l!==u){a=0;while(s=y[a++])s(c,f,t,n);if(e){if(0<u)while(l--)c[l]||f[l]||(f[l]=q.call(r));f=Te(f)}H.apply(r,f),i&&!e&&0<f.length&&1<u+y.length&&se.uniqueSort(r)}return i&&(S=h,w=p),c},m?le(r):r))).selector=e}return a},g=se.select=function(e,t,n,r){var i,o,a,s,u,l="function"==typeof e&&e,c=!r&&h(e=l.selector||e);if(n=n||[],1===c.length){if(2<(o=c[0]=c[0].slice(0)).length&&"ID"===(a=o[0]).type&&9===t.nodeType&&E&&b.relative[o[1].type]){if(!(t=(b.find.ID(a.matches[0].replace(te,ne),t)||[])[0]))return n;l&&(t=t.parentNode),e=e.slice(o.shift().value.length)}i=G.needsContext.test(e)?0:o.length;while(i--){if(a=o[i],b.relative[s=a.type])break;if((u=b.find[s])&&(r=u(a.matches[0].replace(te,ne),ee.test(o[0].type)&&ye(t.parentNode)||t))){if(o.splice(i,1),!(e=r.length&&xe(o)))return H.apply(n,r),n;break}}}return(l||f(e,c))(r,t,!E,n,!t||ee.test(e)&&ye(t.parentNode)||t),n},d.sortStable=k.split("").sort(D).join("")===k,d.detectDuplicates=!!l,T(),d.sortDetached=ce(function(e){return 1&e.compareDocumentPosition(C.createElement("fieldset"))}),ce(function(e){return e.innerHTML="<a href='#'></a>","#"===e.firstChild.getAttribute("href")})||fe("type|href|height|width",function(e,t,n){if(!n)return e.getAttribute(t,"type"===t.toLowerCase()?1:2)}),d.attributes&&ce(function(e){return e.innerHTML="<input/>",e.firstChild.setAttribute("value",""),""===e.firstChild.getAttribute("value")})||fe("value",function(e,t,n){if(!n&&"input"===e.nodeName.toLowerCase())return e.defaultValue}),ce(function(e){return null==e.getAttribute("disabled")})||fe(R,function(e,t,n){var r;if(!n)return!0===e[t]?t.toLowerCase():(r=e.getAttributeNode(t))&&r.specified?r.value:null}),se}(C);k.find=h,k.expr=h.selectors,k.expr[":"]=k.expr.pseudos,k.uniqueSort=k.unique=h.uniqueSort,k.text=h.getText,k.isXMLDoc=h.isXML,k.contains=h.contains,k.escapeSelector=h.escape;var T=function(e,t,n){var r=[],i=void 0!==n;while((e=e[t])&&9!==e.nodeType)if(1===e.nodeType){if(i&&k(e).is(n))break;r.push(e)}return r},S=function(e,t){for(var n=[];e;e=e.nextSibling)1===e.nodeType&&e!==t&&n.push(e);return n},N=k.expr.match.needsContext;function A(e,t){return e.nodeName&&e.nodeName.toLowerCase()===t.toLowerCase()}var D=/^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;function j(e,n,r){return m(n)?k.grep(e,function(e,t){return!!n.call(e,t,e)!==r}):n.nodeType?k.grep(e,function(e){return e===n!==r}):"string"!=typeof n?k.grep(e,function(e){return-1<i.call(n,e)!==r}):k.filter(n,e,r)}k.filter=function(e,t,n){var r=t[0];return n&&(e=":not("+e+")"),1===t.length&&1===r.nodeType?k.find.matchesSelector(r,e)?[r]:[]:k.find.matches(e,k.grep(t,function(e){return 1===e.nodeType}))},k.fn.extend({find:function(e){var t,n,r=this.length,i=this;if("string"!=typeof e)return this.pushStack(k(e).filter(function(){for(t=0;t<r;t++)if(k.contains(i[t],this))return!0}));for(n=this.pushStack([]),t=0;t<r;t++)k.find(e,i[t],n);return 1<r?k.uniqueSort(n):n},filter:function(e){return this.pushStack(j(this,e||[],!1))},not:function(e){return this.pushStack(j(this,e||[],!0))},is:function(e){return!!j(this,"string"==typeof e&&N.test(e)?k(e):e||[],!1).length}});var q,L=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/;(k.fn.init=function(e,t,n){var r,i;if(!e)return this;if(n=n||q,"string"==typeof e){if(!(r="<"===e[0]&&">"===e[e.length-1]&&3<=e.length?[null,e,null]:L.exec(e))||!r[1]&&t)return!t||t.jquery?(t||n).find(e):this.constructor(t).find(e);if(r[1]){if(t=t instanceof k?t[0]:t,k.merge(this,k.parseHTML(r[1],t&&t.nodeType?t.ownerDocument||t:E,!0)),D.test(r[1])&&k.isPlainObject(t))for(r in t)m(this[r])?this[r](t[r]):this.attr(r,t[r]);return this}return(i=E.getElementById(r[2]))&&(this[0]=i,this.length=1),this}return e.nodeType?(this[0]=e,this.length=1,this):m(e)?void 0!==n.ready?n.ready(e):e(k):k.makeArray(e,this)}).prototype=k.fn,q=k(E);var H=/^(?:parents|prev(?:Until|All))/,O={children:!0,contents:!0,next:!0,prev:!0};function P(e,t){while((e=e[t])&&1!==e.nodeType);return e}k.fn.extend({has:function(e){var t=k(e,this),n=t.length;return this.filter(function(){for(var e=0;e<n;e++)if(k.contains(this,t[e]))return!0})},closest:function(e,t){var n,r=0,i=this.length,o=[],a="string"!=typeof e&&k(e);if(!N.test(e))for(;r<i;r++)for(n=this[r];n&&n!==t;n=n.parentNode)if(n.nodeType<11&&(a?-1<a.index(n):1===n.nodeType&&k.find.matchesSelector(n,e))){o.push(n);break}return this.pushStack(1<o.length?k.uniqueSort(o):o)},index:function(e){return e?"string"==typeof e?i.call(k(e),this[0]):i.call(this,e.jquery?e[0]:e):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(e,t){return this.pushStack(k.uniqueSort(k.merge(this.get(),k(e,t))))},addBack:function(e){return this.add(null==e?this.prevObject:this.prevObject.filter(e))}}),k.each({parent:function(e){var t=e.parentNode;return t&&11!==t.nodeType?t:null},parents:function(e){return T(e,"parentNode")},parentsUntil:function(e,t,n){return T(e,"parentNode",n)},next:function(e){return P(e,"nextSibling")},prev:function(e){return P(e,"previousSibling")},nextAll:function(e){return T(e,"nextSibling")},prevAll:function(e){return T(e,"previousSibling")},nextUntil:function(e,t,n){return T(e,"nextSibling",n)},prevUntil:function(e,t,n){return T(e,"previousSibling",n)},siblings:function(e){return S((e.parentNode||{}).firstChild,e)},children:function(e){return S(e.firstChild)},contents:function(e){return"undefined"!=typeof e.contentDocument?e.contentDocument:(A(e,"template")&&(e=e.content||e),k.merge([],e.childNodes))}},function(r,i){k.fn[r]=function(e,t){var n=k.map(this,i,e);return"Until"!==r.slice(-5)&&(t=e),t&&"string"==typeof t&&(n=k.filter(t,n)),1<this.length&&(O[r]||k.uniqueSort(n),H.test(r)&&n.reverse()),this.pushStack(n)}});var R=/[^\x20\t\r\n\f]+/g;function M(e){return e}function I(e){throw e}function W(e,t,n,r){var i;try{e&&m(i=e.promise)?i.call(e).done(t).fail(n):e&&m(i=e.then)?i.call(e,t,n):t.apply(void 0,[e].slice(r))}catch(e){n.apply(void 0,[e])}}k.Callbacks=function(r){var e,n;r="string"==typeof r?(e=r,n={},k.each(e.match(R)||[],function(e,t){n[t]=!0}),n):k.extend({},r);var i,t,o,a,s=[],u=[],l=-1,c=function(){for(a=a||r.once,o=i=!0;u.length;l=-1){t=u.shift();while(++l<s.length)!1===s[l].apply(t[0],t[1])&&r.stopOnFalse&&(l=s.length,t=!1)}r.memory||(t=!1),i=!1,a&&(s=t?[]:"")},f={add:function(){return s&&(t&&!i&&(l=s.length-1,u.push(t)),function n(e){k.each(e,function(e,t){m(t)?r.unique&&f.has(t)||s.push(t):t&&t.length&&"string"!==w(t)&&n(t)})}(arguments),t&&!i&&c()),this},remove:function(){return k.each(arguments,function(e,t){var n;while(-1<(n=k.inArray(t,s,n)))s.splice(n,1),n<=l&&l--}),this},has:function(e){return e?-1<k.inArray(e,s):0<s.length},empty:function(){return s&&(s=[]),this},disable:function(){return a=u=[],s=t="",this},disabled:function(){return!s},lock:function(){return a=u=[],t||i||(s=t=""),this},locked:function(){return!!a},fireWith:function(e,t){return a||(t=[e,(t=t||[]).slice?t.slice():t],u.push(t),i||c()),this},fire:function(){return f.fireWith(this,arguments),this},fired:function(){return!!o}};return f},k.extend({Deferred:function(e){var o=[["notify","progress",k.Callbacks("memory"),k.Callbacks("memory"),2],["resolve","done",k.Callbacks("once memory"),k.Callbacks("once memory"),0,"resolved"],["reject","fail",k.Callbacks("once memory"),k.Callbacks("once memory"),1,"rejected"]],i="pending",a={state:function(){return i},always:function(){return s.done(arguments).fail(arguments),this},"catch":function(e){return a.then(null,e)},pipe:function(){var i=arguments;return k.Deferred(function(r){k.each(o,function(e,t){var n=m(i[t[4]])&&i[t[4]];s[t[1]](function(){var e=n&&n.apply(this,arguments);e&&m(e.promise)?e.promise().progress(r.notify).done(r.resolve).fail(r.reject):r[t[0]+"With"](this,n?[e]:arguments)})}),i=null}).promise()},then:function(t,n,r){var u=0;function l(i,o,a,s){return function(){var n=this,r=arguments,e=function(){var e,t;if(!(i<u)){if((e=a.apply(n,r))===o.promise())throw new TypeError("Thenable self-resolution");t=e&&("object"==typeof e||"function"==typeof e)&&e.then,m(t)?s?t.call(e,l(u,o,M,s),l(u,o,I,s)):(u++,t.call(e,l(u,o,M,s),l(u,o,I,s),l(u,o,M,o.notifyWith))):(a!==M&&(n=void 0,r=[e]),(s||o.resolveWith)(n,r))}},t=s?e:function(){try{e()}catch(e){k.Deferred.exceptionHook&&k.Deferred.exceptionHook(e,t.stackTrace),u<=i+1&&(a!==I&&(n=void 0,r=[e]),o.rejectWith(n,r))}};i?t():(k.Deferred.getStackHook&&(t.stackTrace=k.Deferred.getStackHook()),C.setTimeout(t))}}return k.Deferred(function(e){o[0][3].add(l(0,e,m(r)?r:M,e.notifyWith)),o[1][3].add(l(0,e,m(t)?t:M)),o[2][3].add(l(0,e,m(n)?n:I))}).promise()},promise:function(e){return null!=e?k.extend(e,a):a}},s={};return k.each(o,function(e,t){var n=t[2],r=t[5];a[t[1]]=n.add,r&&n.add(function(){i=r},o[3-e][2].disable,o[3-e][3].disable,o[0][2].lock,o[0][3].lock),n.add(t[3].fire),s[t[0]]=function(){return s[t[0]+"With"](this===s?void 0:this,arguments),this},s[t[0]+"With"]=n.fireWith}),a.promise(s),e&&e.call(s,s),s},when:function(e){var n=arguments.length,t=n,r=Array(t),i=s.call(arguments),o=k.Deferred(),a=function(t){return function(e){r[t]=this,i[t]=1<arguments.length?s.call(arguments):e,--n||o.resolveWith(r,i)}};if(n<=1&&(W(e,o.done(a(t)).resolve,o.reject,!n),"pending"===o.state()||m(i[t]&&i[t].then)))return o.then();while(t--)W(i[t],a(t),o.reject);return o.promise()}});var $=/^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;k.Deferred.exceptionHook=function(e,t){C.console&&C.console.warn&&e&&$.test(e.name)&&C.console.warn("jQuery.Deferred exception: "+e.message,e.stack,t)},k.readyException=function(e){C.setTimeout(function(){throw e})};var F=k.Deferred();function B(){E.removeEventListener("DOMContentLoaded",B),C.removeEventListener("load",B),k.ready()}k.fn.ready=function(e){return F.then(e)["catch"](function(e){k.readyException(e)}),this},k.extend({isReady:!1,readyWait:1,ready:function(e){(!0===e?--k.readyWait:k.isReady)||(k.isReady=!0)!==e&&0<--k.readyWait||F.resolveWith(E,[k])}}),k.ready.then=F.then,"complete"===E.readyState||"loading"!==E.readyState&&!E.documentElement.doScroll?C.setTimeout(k.ready):(E.addEventListener("DOMContentLoaded",B),C.addEventListener("load",B));var _=function(e,t,n,r,i,o,a){var s=0,u=e.length,l=null==n;if("object"===w(n))for(s in i=!0,n)_(e,t,s,n[s],!0,o,a);else if(void 0!==r&&(i=!0,m(r)||(a=!0),l&&(a?(t.call(e,r),t=null):(l=t,t=function(e,t,n){return l.call(k(e),n)})),t))for(;s<u;s++)t(e[s],n,a?r:r.call(e[s],s,t(e[s],n)));return i?e:l?t.call(e):u?t(e[0],n):o},z=/^-ms-/,U=/-([a-z])/g;function X(e,t){return t.toUpperCase()}function V(e){return e.replace(z,"ms-").replace(U,X)}var G=function(e){return 1===e.nodeType||9===e.nodeType||!+e.nodeType};function Y(){this.expando=k.expando+Y.uid++}Y.uid=1,Y.prototype={cache:function(e){var t=e[this.expando];return t||(t={},G(e)&&(e.nodeType?e[this.expando]=t:Object.defineProperty(e,this.expando,{value:t,configurable:!0}))),t},set:function(e,t,n){var r,i=this.cache(e);if("string"==typeof t)i[V(t)]=n;else for(r in t)i[V(r)]=t[r];return i},get:function(e,t){return void 0===t?this.cache(e):e[this.expando]&&e[this.expando][V(t)]},access:function(e,t,n){return void 0===t||t&&"string"==typeof t&&void 0===n?this.get(e,t):(this.set(e,t,n),void 0!==n?n:t)},remove:function(e,t){var n,r=e[this.expando];if(void 0!==r){if(void 0!==t){n=(t=Array.isArray(t)?t.map(V):(t=V(t))in r?[t]:t.match(R)||[]).length;while(n--)delete r[t[n]]}(void 0===t||k.isEmptyObject(r))&&(e.nodeType?e[this.expando]=void 0:delete e[this.expando])}},hasData:function(e){var t=e[this.expando];return void 0!==t&&!k.isEmptyObject(t)}};var Q=new Y,J=new Y,K=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,Z=/[A-Z]/g;function ee(e,t,n){var r,i;if(void 0===n&&1===e.nodeType)if(r="data-"+t.replace(Z,"-$&").toLowerCase(),"string"==typeof(n=e.getAttribute(r))){try{n="true"===(i=n)||"false"!==i&&("null"===i?null:i===+i+""?+i:K.test(i)?JSON.parse(i):i)}catch(e){}J.set(e,t,n)}else n=void 0;return n}k.extend({hasData:function(e){return J.hasData(e)||Q.hasData(e)},data:function(e,t,n){return J.access(e,t,n)},removeData:function(e,t){J.remove(e,t)},_data:function(e,t,n){return Q.access(e,t,n)},_removeData:function(e,t){Q.remove(e,t)}}),k.fn.extend({data:function(n,e){var t,r,i,o=this[0],a=o&&o.attributes;if(void 0===n){if(this.length&&(i=J.get(o),1===o.nodeType&&!Q.get(o,"hasDataAttrs"))){t=a.length;while(t--)a[t]&&0===(r=a[t].name).indexOf("data-")&&(r=V(r.slice(5)),ee(o,r,i[r]));Q.set(o,"hasDataAttrs",!0)}return i}return"object"==typeof n?this.each(function(){J.set(this,n)}):_(this,function(e){var t;if(o&&void 0===e)return void 0!==(t=J.get(o,n))?t:void 0!==(t=ee(o,n))?t:void 0;this.each(function(){J.set(this,n,e)})},null,e,1<arguments.length,null,!0)},removeData:function(e){return this.each(function(){J.remove(this,e)})}}),k.extend({queue:function(e,t,n){var r;if(e)return t=(t||"fx")+"queue",r=Q.get(e,t),n&&(!r||Array.isArray(n)?r=Q.access(e,t,k.makeArray(n)):r.push(n)),r||[]},dequeue:function(e,t){t=t||"fx";var n=k.queue(e,t),r=n.length,i=n.shift(),o=k._queueHooks(e,t);"inprogress"===i&&(i=n.shift(),r--),i&&("fx"===t&&n.unshift("inprogress"),delete o.stop,i.call(e,function(){k.dequeue(e,t)},o)),!r&&o&&o.empty.fire()},_queueHooks:function(e,t){var n=t+"queueHooks";return Q.get(e,n)||Q.access(e,n,{empty:k.Callbacks("once memory").add(function(){Q.remove(e,[t+"queue",n])})})}}),k.fn.extend({queue:function(t,n){var e=2;return"string"!=typeof t&&(n=t,t="fx",e--),arguments.length<e?k.queue(this[0],t):void 0===n?this:this.each(function(){var e=k.queue(this,t,n);k._queueHooks(this,t),"fx"===t&&"inprogress"!==e[0]&&k.dequeue(this,t)})},dequeue:function(e){return this.each(function(){k.dequeue(this,e)})},clearQueue:function(e){return this.queue(e||"fx",[])},promise:function(e,t){var n,r=1,i=k.Deferred(),o=this,a=this.length,s=function(){--r||i.resolveWith(o,[o])};"string"!=typeof e&&(t=e,e=void 0),e=e||"fx";while(a--)(n=Q.get(o[a],e+"queueHooks"))&&n.empty&&(r++,n.empty.add(s));return s(),i.promise(t)}});var te=/[+-]?(?:\d*\.|)\d+(?:[eE][+-]?\d+|)/.source,ne=new RegExp("^(?:([+-])=|)("+te+")([a-z%]*)$","i"),re=["Top","Right","Bottom","Left"],ie=E.documentElement,oe=function(e){return k.contains(e.ownerDocument,e)},ae={composed:!0};ie.getRootNode&&(oe=function(e){return k.contains(e.ownerDocument,e)||e.getRootNode(ae)===e.ownerDocument});var se=function(e,t){return"none"===(e=t||e).style.display||""===e.style.display&&oe(e)&&"none"===k.css(e,"display")},ue=function(e,t,n,r){var i,o,a={};for(o in t)a[o]=e.style[o],e.style[o]=t[o];for(o in i=n.apply(e,r||[]),t)e.style[o]=a[o];return i};function le(e,t,n,r){var i,o,a=20,s=r?function(){return r.cur()}:function(){return k.css(e,t,"")},u=s(),l=n&&n[3]||(k.cssNumber[t]?"":"px"),c=e.nodeType&&(k.cssNumber[t]||"px"!==l&&+u)&&ne.exec(k.css(e,t));if(c&&c[3]!==l){u/=2,l=l||c[3],c=+u||1;while(a--)k.style(e,t,c+l),(1-o)*(1-(o=s()/u||.5))<=0&&(a=0),c/=o;c*=2,k.style(e,t,c+l),n=n||[]}return n&&(c=+c||+u||0,i=n[1]?c+(n[1]+1)*n[2]:+n[2],r&&(r.unit=l,r.start=c,r.end=i)),i}var ce={};function fe(e,t){for(var n,r,i,o,a,s,u,l=[],c=0,f=e.length;c<f;c++)(r=e[c]).style&&(n=r.style.display,t?("none"===n&&(l[c]=Q.get(r,"display")||null,l[c]||(r.style.display="")),""===r.style.display&&se(r)&&(l[c]=(u=a=o=void 0,a=(i=r).ownerDocument,s=i.nodeName,(u=ce[s])||(o=a.body.appendChild(a.createElement(s)),u=k.css(o,"display"),o.parentNode.removeChild(o),"none"===u&&(u="block"),ce[s]=u)))):"none"!==n&&(l[c]="none",Q.set(r,"display",n)));for(c=0;c<f;c++)null!=l[c]&&(e[c].style.display=l[c]);return e}k.fn.extend({show:function(){return fe(this,!0)},hide:function(){return fe(this)},toggle:function(e){return"boolean"==typeof e?e?this.show():this.hide():this.each(function(){se(this)?k(this).show():k(this).hide()})}});var pe=/^(?:checkbox|radio)$/i,de=/<([a-z][^\/\0>\x20\t\r\n\f]*)/i,he=/^$|^module$|\/(?:java|ecma)script/i,ge={option:[1,"<select multiple='multiple'>","</select>"],thead:[1,"<table>","</table>"],col:[2,"<table><colgroup>","</colgroup></table>"],tr:[2,"<table><tbody>","</tbody></table>"],td:[3,"<table><tbody><tr>","</tr></tbody></table>"],_default:[0,"",""]};function ve(e,t){var n;return n="undefined"!=typeof e.getElementsByTagName?e.getElementsByTagName(t||"*"):"undefined"!=typeof e.querySelectorAll?e.querySelectorAll(t||"*"):[],void 0===t||t&&A(e,t)?k.merge([e],n):n}function ye(e,t){for(var n=0,r=e.length;n<r;n++)Q.set(e[n],"globalEval",!t||Q.get(t[n],"globalEval"))}ge.optgroup=ge.option,ge.tbody=ge.tfoot=ge.colgroup=ge.caption=ge.thead,ge.th=ge.td;var me,xe,be=/<|&#?\w+;/;function we(e,t,n,r,i){for(var o,a,s,u,l,c,f=t.createDocumentFragment(),p=[],d=0,h=e.length;d<h;d++)if((o=e[d])||0===o)if("object"===w(o))k.merge(p,o.nodeType?[o]:o);else if(be.test(o)){a=a||f.appendChild(t.createElement("div")),s=(de.exec(o)||["",""])[1].toLowerCase(),u=ge[s]||ge._default,a.innerHTML=u[1]+k.htmlPrefilter(o)+u[2],c=u[0];while(c--)a=a.lastChild;k.merge(p,a.childNodes),(a=f.firstChild).textContent=""}else p.push(t.createTextNode(o));f.textContent="",d=0;while(o=p[d++])if(r&&-1<k.inArray(o,r))i&&i.push(o);else if(l=oe(o),a=ve(f.appendChild(o),"script"),l&&ye(a),n){c=0;while(o=a[c++])he.test(o.type||"")&&n.push(o)}return f}me=E.createDocumentFragment().appendChild(E.createElement("div")),(xe=E.createElement("input")).setAttribute("type","radio"),xe.setAttribute("checked","checked"),xe.setAttribute("name","t"),me.appendChild(xe),y.checkClone=me.cloneNode(!0).cloneNode(!0).lastChild.checked,me.innerHTML="<textarea>x</textarea>",y.noCloneChecked=!!me.cloneNode(!0).lastChild.defaultValue;var Te=/^key/,Ce=/^(?:mouse|pointer|contextmenu|drag|drop)|click/,Ee=/^([^.]*)(?:\.(.+)|)/;function ke(){return!0}function Se(){return!1}function Ne(e,t){return e===function(){try{return E.activeElement}catch(e){}}()==("focus"===t)}function Ae(e,t,n,r,i,o){var a,s;if("object"==typeof t){for(s in"string"!=typeof n&&(r=r||n,n=void 0),t)Ae(e,s,n,r,t[s],o);return e}if(null==r&&null==i?(i=n,r=n=void 0):null==i&&("string"==typeof n?(i=r,r=void 0):(i=r,r=n,n=void 0)),!1===i)i=Se;else if(!i)return e;return 1===o&&(a=i,(i=function(e){return k().off(e),a.apply(this,arguments)}).guid=a.guid||(a.guid=k.guid++)),e.each(function(){k.event.add(this,t,i,r,n)})}function De(e,i,o){o?(Q.set(e,i,!1),k.event.add(e,i,{namespace:!1,handler:function(e){var t,n,r=Q.get(this,i);if(1&e.isTrigger&&this[i]){if(r.length)(k.event.special[i]||{}).delegateType&&e.stopPropagation();else if(r=s.call(arguments),Q.set(this,i,r),t=o(this,i),this[i](),r!==(n=Q.get(this,i))||t?Q.set(this,i,!1):n={},r!==n)return e.stopImmediatePropagation(),e.preventDefault(),n.value}else r.length&&(Q.set(this,i,{value:k.event.trigger(k.extend(r[0],k.Event.prototype),r.slice(1),this)}),e.stopImmediatePropagation())}})):void 0===Q.get(e,i)&&k.event.add(e,i,ke)}k.event={global:{},add:function(t,e,n,r,i){var o,a,s,u,l,c,f,p,d,h,g,v=Q.get(t);if(v){n.handler&&(n=(o=n).handler,i=o.selector),i&&k.find.matchesSelector(ie,i),n.guid||(n.guid=k.guid++),(u=v.events)||(u=v.events={}),(a=v.handle)||(a=v.handle=function(e){return"undefined"!=typeof k&&k.event.triggered!==e.type?k.event.dispatch.apply(t,arguments):void 0}),l=(e=(e||"").match(R)||[""]).length;while(l--)d=g=(s=Ee.exec(e[l])||[])[1],h=(s[2]||"").split(".").sort(),d&&(f=k.event.special[d]||{},d=(i?f.delegateType:f.bindType)||d,f=k.event.special[d]||{},c=k.extend({type:d,origType:g,data:r,handler:n,guid:n.guid,selector:i,needsContext:i&&k.expr.match.needsContext.test(i),namespace:h.join(".")},o),(p=u[d])||((p=u[d]=[]).delegateCount=0,f.setup&&!1!==f.setup.call(t,r,h,a)||t.addEventListener&&t.addEventListener(d,a)),f.add&&(f.add.call(t,c),c.handler.guid||(c.handler.guid=n.guid)),i?p.splice(p.delegateCount++,0,c):p.push(c),k.event.global[d]=!0)}},remove:function(e,t,n,r,i){var o,a,s,u,l,c,f,p,d,h,g,v=Q.hasData(e)&&Q.get(e);if(v&&(u=v.events)){l=(t=(t||"").match(R)||[""]).length;while(l--)if(d=g=(s=Ee.exec(t[l])||[])[1],h=(s[2]||"").split(".").sort(),d){f=k.event.special[d]||{},p=u[d=(r?f.delegateType:f.bindType)||d]||[],s=s[2]&&new RegExp("(^|\\.)"+h.join("\\.(?:.*\\.|)")+"(\\.|$)"),a=o=p.length;while(o--)c=p[o],!i&&g!==c.origType||n&&n.guid!==c.guid||s&&!s.test(c.namespace)||r&&r!==c.selector&&("**"!==r||!c.selector)||(p.splice(o,1),c.selector&&p.delegateCount--,f.remove&&f.remove.call(e,c));a&&!p.length&&(f.teardown&&!1!==f.teardown.call(e,h,v.handle)||k.removeEvent(e,d,v.handle),delete u[d])}else for(d in u)k.event.remove(e,d+t[l],n,r,!0);k.isEmptyObject(u)&&Q.remove(e,"handle events")}},dispatch:function(e){var t,n,r,i,o,a,s=k.event.fix(e),u=new Array(arguments.length),l=(Q.get(this,"events")||{})[s.type]||[],c=k.event.special[s.type]||{};for(u[0]=s,t=1;t<arguments.length;t++)u[t]=arguments[t];if(s.delegateTarget=this,!c.preDispatch||!1!==c.preDispatch.call(this,s)){a=k.event.handlers.call(this,s,l),t=0;while((i=a[t++])&&!s.isPropagationStopped()){s.currentTarget=i.elem,n=0;while((o=i.handlers[n++])&&!s.isImmediatePropagationStopped())s.rnamespace&&!1!==o.namespace&&!s.rnamespace.test(o.namespace)||(s.handleObj=o,s.data=o.data,void 0!==(r=((k.event.special[o.origType]||{}).handle||o.handler).apply(i.elem,u))&&!1===(s.result=r)&&(s.preventDefault(),s.stopPropagation()))}return c.postDispatch&&c.postDispatch.call(this,s),s.result}},handlers:function(e,t){var n,r,i,o,a,s=[],u=t.delegateCount,l=e.target;if(u&&l.nodeType&&!("click"===e.type&&1<=e.button))for(;l!==this;l=l.parentNode||this)if(1===l.nodeType&&("click"!==e.type||!0!==l.disabled)){for(o=[],a={},n=0;n<u;n++)void 0===a[i=(r=t[n]).selector+" "]&&(a[i]=r.needsContext?-1<k(i,this).index(l):k.find(i,this,null,[l]).length),a[i]&&o.push(r);o.length&&s.push({elem:l,handlers:o})}return l=this,u<t.length&&s.push({elem:l,handlers:t.slice(u)}),s},addProp:function(t,e){Object.defineProperty(k.Event.prototype,t,{enumerable:!0,configurable:!0,get:m(e)?function(){if(this.originalEvent)return e(this.originalEvent)}:function(){if(this.originalEvent)return this.originalEvent[t]},set:function(e){Object.defineProperty(this,t,{enumerable:!0,configurable:!0,writable:!0,value:e})}})},fix:function(e){return e[k.expando]?e:new k.Event(e)},special:{load:{noBubble:!0},click:{setup:function(e){var t=this||e;return pe.test(t.type)&&t.click&&A(t,"input")&&De(t,"click",ke),!1},trigger:function(e){var t=this||e;return pe.test(t.type)&&t.click&&A(t,"input")&&De(t,"click"),!0},_default:function(e){var t=e.target;return pe.test(t.type)&&t.click&&A(t,"input")&&Q.get(t,"click")||A(t,"a")}},beforeunload:{postDispatch:function(e){void 0!==e.result&&e.originalEvent&&(e.originalEvent.returnValue=e.result)}}}},k.removeEvent=function(e,t,n){e.removeEventListener&&e.removeEventListener(t,n)},k.Event=function(e,t){if(!(this instanceof k.Event))return new k.Event(e,t);e&&e.type?(this.originalEvent=e,this.type=e.type,this.isDefaultPrevented=e.defaultPrevented||void 0===e.defaultPrevented&&!1===e.returnValue?ke:Se,this.target=e.target&&3===e.target.nodeType?e.target.parentNode:e.target,this.currentTarget=e.currentTarget,this.relatedTarget=e.relatedTarget):this.type=e,t&&k.extend(this,t),this.timeStamp=e&&e.timeStamp||Date.now(),this[k.expando]=!0},k.Event.prototype={constructor:k.Event,isDefaultPrevented:Se,isPropagationStopped:Se,isImmediatePropagationStopped:Se,isSimulated:!1,preventDefault:function(){var e=this.originalEvent;this.isDefaultPrevented=ke,e&&!this.isSimulated&&e.preventDefault()},stopPropagation:function(){var e=this.originalEvent;this.isPropagationStopped=ke,e&&!this.isSimulated&&e.stopPropagation()},stopImmediatePropagation:function(){var e=this.originalEvent;this.isImmediatePropagationStopped=ke,e&&!this.isSimulated&&e.stopImmediatePropagation(),this.stopPropagation()}},k.each({altKey:!0,bubbles:!0,cancelable:!0,changedTouches:!0,ctrlKey:!0,detail:!0,eventPhase:!0,metaKey:!0,pageX:!0,pageY:!0,shiftKey:!0,view:!0,"char":!0,code:!0,charCode:!0,key:!0,keyCode:!0,button:!0,buttons:!0,clientX:!0,clientY:!0,offsetX:!0,offsetY:!0,pointerId:!0,pointerType:!0,screenX:!0,screenY:!0,targetTouches:!0,toElement:!0,touches:!0,which:function(e){var t=e.button;return null==e.which&&Te.test(e.type)?null!=e.charCode?e.charCode:e.keyCode:!e.which&&void 0!==t&&Ce.test(e.type)?1&t?1:2&t?3:4&t?2:0:e.which}},k.event.addProp),k.each({focus:"focusin",blur:"focusout"},function(e,t){k.event.special[e]={setup:function(){return De(this,e,Ne),!1},trigger:function(){return De(this,e),!0},delegateType:t}}),k.each({mouseenter:"mouseover",mouseleave:"mouseout",pointerenter:"pointerover",pointerleave:"pointerout"},function(e,i){k.event.special[e]={delegateType:i,bindType:i,handle:function(e){var t,n=e.relatedTarget,r=e.handleObj;return n&&(n===this||k.contains(this,n))||(e.type=r.origType,t=r.handler.apply(this,arguments),e.type=i),t}}}),k.fn.extend({on:function(e,t,n,r){return Ae(this,e,t,n,r)},one:function(e,t,n,r){return Ae(this,e,t,n,r,1)},off:function(e,t,n){var r,i;if(e&&e.preventDefault&&e.handleObj)return r=e.handleObj,k(e.delegateTarget).off(r.namespace?r.origType+"."+r.namespace:r.origType,r.selector,r.handler),this;if("object"==typeof e){for(i in e)this.off(i,t,e[i]);return this}return!1!==t&&"function"!=typeof t||(n=t,t=void 0),!1===n&&(n=Se),this.each(function(){k.event.remove(this,e,n,t)})}});var je=/<(?!area|br|col|embed|hr|img|input|link|meta|param)(([a-z][^\/\0>\x20\t\r\n\f]*)[^>]*)\/>/gi,qe=/<script|<style|<link/i,Le=/checked\s*(?:[^=]|=\s*.checked.)/i,He=/^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;function Oe(e,t){return A(e,"table")&&A(11!==t.nodeType?t:t.firstChild,"tr")&&k(e).children("tbody")[0]||e}function Pe(e){return e.type=(null!==e.getAttribute("type"))+"/"+e.type,e}function Re(e){return"true/"===(e.type||"").slice(0,5)?e.type=e.type.slice(5):e.removeAttribute("type"),e}function Me(e,t){var n,r,i,o,a,s,u,l;if(1===t.nodeType){if(Q.hasData(e)&&(o=Q.access(e),a=Q.set(t,o),l=o.events))for(i in delete a.handle,a.events={},l)for(n=0,r=l[i].length;n<r;n++)k.event.add(t,i,l[i][n]);J.hasData(e)&&(s=J.access(e),u=k.extend({},s),J.set(t,u))}}function Ie(n,r,i,o){r=g.apply([],r);var e,t,a,s,u,l,c=0,f=n.length,p=f-1,d=r[0],h=m(d);if(h||1<f&&"string"==typeof d&&!y.checkClone&&Le.test(d))return n.each(function(e){var t=n.eq(e);h&&(r[0]=d.call(this,e,t.html())),Ie(t,r,i,o)});if(f&&(t=(e=we(r,n[0].ownerDocument,!1,n,o)).firstChild,1===e.childNodes.length&&(e=t),t||o)){for(s=(a=k.map(ve(e,"script"),Pe)).length;c<f;c++)u=e,c!==p&&(u=k.clone(u,!0,!0),s&&k.merge(a,ve(u,"script"))),i.call(n[c],u,c);if(s)for(l=a[a.length-1].ownerDocument,k.map(a,Re),c=0;c<s;c++)u=a[c],he.test(u.type||"")&&!Q.access(u,"globalEval")&&k.contains(l,u)&&(u.src&&"module"!==(u.type||"").toLowerCase()?k._evalUrl&&!u.noModule&&k._evalUrl(u.src,{nonce:u.nonce||u.getAttribute("nonce")}):b(u.textContent.replace(He,""),u,l))}return n}function We(e,t,n){for(var r,i=t?k.filter(t,e):e,o=0;null!=(r=i[o]);o++)n||1!==r.nodeType||k.cleanData(ve(r)),r.parentNode&&(n&&oe(r)&&ye(ve(r,"script")),r.parentNode.removeChild(r));return e}k.extend({htmlPrefilter:function(e){return e.replace(je,"<$1></$2>")},clone:function(e,t,n){var r,i,o,a,s,u,l,c=e.cloneNode(!0),f=oe(e);if(!(y.noCloneChecked||1!==e.nodeType&&11!==e.nodeType||k.isXMLDoc(e)))for(a=ve(c),r=0,i=(o=ve(e)).length;r<i;r++)s=o[r],u=a[r],void 0,"input"===(l=u.nodeName.toLowerCase())&&pe.test(s.type)?u.checked=s.checked:"input"!==l&&"textarea"!==l||(u.defaultValue=s.defaultValue);if(t)if(n)for(o=o||ve(e),a=a||ve(c),r=0,i=o.length;r<i;r++)Me(o[r],a[r]);else Me(e,c);return 0<(a=ve(c,"script")).length&&ye(a,!f&&ve(e,"script")),c},cleanData:function(e){for(var t,n,r,i=k.event.special,o=0;void 0!==(n=e[o]);o++)if(G(n)){if(t=n[Q.expando]){if(t.events)for(r in t.events)i[r]?k.event.remove(n,r):k.removeEvent(n,r,t.handle);n[Q.expando]=void 0}n[J.expando]&&(n[J.expando]=void 0)}}}),k.fn.extend({detach:function(e){return We(this,e,!0)},remove:function(e){return We(this,e)},text:function(e){return _(this,function(e){return void 0===e?k.text(this):this.empty().each(function(){1!==this.nodeType&&11!==this.nodeType&&9!==this.nodeType||(this.textContent=e)})},null,e,arguments.length)},append:function(){return Ie(this,arguments,function(e){1!==this.nodeType&&11!==this.nodeType&&9!==this.nodeType||Oe(this,e).appendChild(e)})},prepend:function(){return Ie(this,arguments,function(e){if(1===this.nodeType||11===this.nodeType||9===this.nodeType){var t=Oe(this,e);t.insertBefore(e,t.firstChild)}})},before:function(){return Ie(this,arguments,function(e){this.parentNode&&this.parentNode.insertBefore(e,this)})},after:function(){return Ie(this,arguments,function(e){this.parentNode&&this.parentNode.insertBefore(e,this.nextSibling)})},empty:function(){for(var e,t=0;null!=(e=this[t]);t++)1===e.nodeType&&(k.cleanData(ve(e,!1)),e.textContent="");return this},clone:function(e,t){return e=null!=e&&e,t=null==t?e:t,this.map(function(){return k.clone(this,e,t)})},html:function(e){return _(this,function(e){var t=this[0]||{},n=0,r=this.length;if(void 0===e&&1===t.nodeType)return t.innerHTML;if("string"==typeof e&&!qe.test(e)&&!ge[(de.exec(e)||["",""])[1].toLowerCase()]){e=k.htmlPrefilter(e);try{for(;n<r;n++)1===(t=this[n]||{}).nodeType&&(k.cleanData(ve(t,!1)),t.innerHTML=e);t=0}catch(e){}}t&&this.empty().append(e)},null,e,arguments.length)},replaceWith:function(){var n=[];return Ie(this,arguments,function(e){var t=this.parentNode;k.inArray(this,n)<0&&(k.cleanData(ve(this)),t&&t.replaceChild(e,this))},n)}}),k.each({appendTo:"append",prependTo:"prepend",insertBefore:"before",insertAfter:"after",replaceAll:"replaceWith"},function(e,a){k.fn[e]=function(e){for(var t,n=[],r=k(e),i=r.length-1,o=0;o<=i;o++)t=o===i?this:this.clone(!0),k(r[o])[a](t),u.apply(n,t.get());return this.pushStack(n)}});var $e=new RegExp("^("+te+")(?!px)[a-z%]+$","i"),Fe=function(e){var t=e.ownerDocument.defaultView;return t&&t.opener||(t=C),t.getComputedStyle(e)},Be=new RegExp(re.join("|"),"i");function _e(e,t,n){var r,i,o,a,s=e.style;return(n=n||Fe(e))&&(""!==(a=n.getPropertyValue(t)||n[t])||oe(e)||(a=k.style(e,t)),!y.pixelBoxStyles()&&$e.test(a)&&Be.test(t)&&(r=s.width,i=s.minWidth,o=s.maxWidth,s.minWidth=s.maxWidth=s.width=a,a=n.width,s.width=r,s.minWidth=i,s.maxWidth=o)),void 0!==a?a+"":a}function ze(e,t){return{get:function(){if(!e())return(this.get=t).apply(this,arguments);delete this.get}}}!function(){function e(){if(u){s.style.cssText="position:absolute;left:-11111px;width:60px;margin-top:1px;padding:0;border:0",u.style.cssText="position:relative;display:block;box-sizing:border-box;overflow:scroll;margin:auto;border:1px;padding:1px;width:60%;top:1%",ie.appendChild(s).appendChild(u);var e=C.getComputedStyle(u);n="1%"!==e.top,a=12===t(e.marginLeft),u.style.right="60%",o=36===t(e.right),r=36===t(e.width),u.style.position="absolute",i=12===t(u.offsetWidth/3),ie.removeChild(s),u=null}}function t(e){return Math.round(parseFloat(e))}var n,r,i,o,a,s=E.createElement("div"),u=E.createElement("div");u.style&&(u.style.backgroundClip="content-box",u.cloneNode(!0).style.backgroundClip="",y.clearCloneStyle="content-box"===u.style.backgroundClip,k.extend(y,{boxSizingReliable:function(){return e(),r},pixelBoxStyles:function(){return e(),o},pixelPosition:function(){return e(),n},reliableMarginLeft:function(){return e(),a},scrollboxSize:function(){return e(),i}}))}();var Ue=["Webkit","Moz","ms"],Xe=E.createElement("div").style,Ve={};function Ge(e){var t=k.cssProps[e]||Ve[e];return t||(e in Xe?e:Ve[e]=function(e){var t=e[0].toUpperCase()+e.slice(1),n=Ue.length;while(n--)if((e=Ue[n]+t)in Xe)return e}(e)||e)}var Ye=/^(none|table(?!-c[ea]).+)/,Qe=/^--/,Je={position:"absolute",visibility:"hidden",display:"block"},Ke={letterSpacing:"0",fontWeight:"400"};function Ze(e,t,n){var r=ne.exec(t);return r?Math.max(0,r[2]-(n||0))+(r[3]||"px"):t}function et(e,t,n,r,i,o){var a="width"===t?1:0,s=0,u=0;if(n===(r?"border":"content"))return 0;for(;a<4;a+=2)"margin"===n&&(u+=k.css(e,n+re[a],!0,i)),r?("content"===n&&(u-=k.css(e,"padding"+re[a],!0,i)),"margin"!==n&&(u-=k.css(e,"border"+re[a]+"Width",!0,i))):(u+=k.css(e,"padding"+re[a],!0,i),"padding"!==n?u+=k.css(e,"border"+re[a]+"Width",!0,i):s+=k.css(e,"border"+re[a]+"Width",!0,i));return!r&&0<=o&&(u+=Math.max(0,Math.ceil(e["offset"+t[0].toUpperCase()+t.slice(1)]-o-u-s-.5))||0),u}function tt(e,t,n){var r=Fe(e),i=(!y.boxSizingReliable()||n)&&"border-box"===k.css(e,"boxSizing",!1,r),o=i,a=_e(e,t,r),s="offset"+t[0].toUpperCase()+t.slice(1);if($e.test(a)){if(!n)return a;a="auto"}return(!y.boxSizingReliable()&&i||"auto"===a||!parseFloat(a)&&"inline"===k.css(e,"display",!1,r))&&e.getClientRects().length&&(i="border-box"===k.css(e,"boxSizing",!1,r),(o=s in e)&&(a=e[s])),(a=parseFloat(a)||0)+et(e,t,n||(i?"border":"content"),o,r,a)+"px"}function nt(e,t,n,r,i){return new nt.prototype.init(e,t,n,r,i)}k.extend({cssHooks:{opacity:{get:function(e,t){if(t){var n=_e(e,"opacity");return""===n?"1":n}}}},cssNumber:{animationIterationCount:!0,columnCount:!0,fillOpacity:!0,flexGrow:!0,flexShrink:!0,fontWeight:!0,gridArea:!0,gridColumn:!0,gridColumnEnd:!0,gridColumnStart:!0,gridRow:!0,gridRowEnd:!0,gridRowStart:!0,lineHeight:!0,opacity:!0,order:!0,orphans:!0,widows:!0,zIndex:!0,zoom:!0},cssProps:{},style:function(e,t,n,r){if(e&&3!==e.nodeType&&8!==e.nodeType&&e.style){var i,o,a,s=V(t),u=Qe.test(t),l=e.style;if(u||(t=Ge(s)),a=k.cssHooks[t]||k.cssHooks[s],void 0===n)return a&&"get"in a&&void 0!==(i=a.get(e,!1,r))?i:l[t];"string"===(o=typeof n)&&(i=ne.exec(n))&&i[1]&&(n=le(e,t,i),o="number"),null!=n&&n==n&&("number"!==o||u||(n+=i&&i[3]||(k.cssNumber[s]?"":"px")),y.clearCloneStyle||""!==n||0!==t.indexOf("background")||(l[t]="inherit"),a&&"set"in a&&void 0===(n=a.set(e,n,r))||(u?l.setProperty(t,n):l[t]=n))}},css:function(e,t,n,r){var i,o,a,s=V(t);return Qe.test(t)||(t=Ge(s)),(a=k.cssHooks[t]||k.cssHooks[s])&&"get"in a&&(i=a.get(e,!0,n)),void 0===i&&(i=_e(e,t,r)),"normal"===i&&t in Ke&&(i=Ke[t]),""===n||n?(o=parseFloat(i),!0===n||isFinite(o)?o||0:i):i}}),k.each(["height","width"],function(e,u){k.cssHooks[u]={get:function(e,t,n){if(t)return!Ye.test(k.css(e,"display"))||e.getClientRects().length&&e.getBoundingClientRect().width?tt(e,u,n):ue(e,Je,function(){return tt(e,u,n)})},set:function(e,t,n){var r,i=Fe(e),o=!y.scrollboxSize()&&"absolute"===i.position,a=(o||n)&&"border-box"===k.css(e,"boxSizing",!1,i),s=n?et(e,u,n,a,i):0;return a&&o&&(s-=Math.ceil(e["offset"+u[0].toUpperCase()+u.slice(1)]-parseFloat(i[u])-et(e,u,"border",!1,i)-.5)),s&&(r=ne.exec(t))&&"px"!==(r[3]||"px")&&(e.style[u]=t,t=k.css(e,u)),Ze(0,t,s)}}}),k.cssHooks.marginLeft=ze(y.reliableMarginLeft,function(e,t){if(t)return(parseFloat(_e(e,"marginLeft"))||e.getBoundingClientRect().left-ue(e,{marginLeft:0},function(){return e.getBoundingClientRect().left}))+"px"}),k.each({margin:"",padding:"",border:"Width"},function(i,o){k.cssHooks[i+o]={expand:function(e){for(var t=0,n={},r="string"==typeof e?e.split(" "):[e];t<4;t++)n[i+re[t]+o]=r[t]||r[t-2]||r[0];return n}},"margin"!==i&&(k.cssHooks[i+o].set=Ze)}),k.fn.extend({css:function(e,t){return _(this,function(e,t,n){var r,i,o={},a=0;if(Array.isArray(t)){for(r=Fe(e),i=t.length;a<i;a++)o[t[a]]=k.css(e,t[a],!1,r);return o}return void 0!==n?k.style(e,t,n):k.css(e,t)},e,t,1<arguments.length)}}),((k.Tween=nt).prototype={constructor:nt,init:function(e,t,n,r,i,o){this.elem=e,this.prop=n,this.easing=i||k.easing._default,this.options=t,this.start=this.now=this.cur(),this.end=r,this.unit=o||(k.cssNumber[n]?"":"px")},cur:function(){var e=nt.propHooks[this.prop];return e&&e.get?e.get(this):nt.propHooks._default.get(this)},run:function(e){var t,n=nt.propHooks[this.prop];return this.options.duration?this.pos=t=k.easing[this.easing](e,this.options.duration*e,0,1,this.options.duration):this.pos=t=e,this.now=(this.end-this.start)*t+this.start,this.options.step&&this.options.step.call(this.elem,this.now,this),n&&n.set?n.set(this):nt.propHooks._default.set(this),this}}).init.prototype=nt.prototype,(nt.propHooks={_default:{get:function(e){var t;return 1!==e.elem.nodeType||null!=e.elem[e.prop]&&null==e.elem.style[e.prop]?e.elem[e.prop]:(t=k.css(e.elem,e.prop,""))&&"auto"!==t?t:0},set:function(e){k.fx.step[e.prop]?k.fx.step[e.prop](e):1!==e.elem.nodeType||!k.cssHooks[e.prop]&&null==e.elem.style[Ge(e.prop)]?e.elem[e.prop]=e.now:k.style(e.elem,e.prop,e.now+e.unit)}}}).scrollTop=nt.propHooks.scrollLeft={set:function(e){e.elem.nodeType&&e.elem.parentNode&&(e.elem[e.prop]=e.now)}},k.easing={linear:function(e){return e},swing:function(e){return.5-Math.cos(e*Math.PI)/2},_default:"swing"},k.fx=nt.prototype.init,k.fx.step={};var rt,it,ot,at,st=/^(?:toggle|show|hide)$/,ut=/queueHooks$/;function lt(){it&&(!1===E.hidden&&C.requestAnimationFrame?C.requestAnimationFrame(lt):C.setTimeout(lt,k.fx.interval),k.fx.tick())}function ct(){return C.setTimeout(function(){rt=void 0}),rt=Date.now()}function ft(e,t){var n,r=0,i={height:e};for(t=t?1:0;r<4;r+=2-t)i["margin"+(n=re[r])]=i["padding"+n]=e;return t&&(i.opacity=i.width=e),i}function pt(e,t,n){for(var r,i=(dt.tweeners[t]||[]).concat(dt.tweeners["*"]),o=0,a=i.length;o<a;o++)if(r=i[o].call(n,t,e))return r}function dt(o,e,t){var n,a,r=0,i=dt.prefilters.length,s=k.Deferred().always(function(){delete u.elem}),u=function(){if(a)return!1;for(var e=rt||ct(),t=Math.max(0,l.startTime+l.duration-e),n=1-(t/l.duration||0),r=0,i=l.tweens.length;r<i;r++)l.tweens[r].run(n);return s.notifyWith(o,[l,n,t]),n<1&&i?t:(i||s.notifyWith(o,[l,1,0]),s.resolveWith(o,[l]),!1)},l=s.promise({elem:o,props:k.extend({},e),opts:k.extend(!0,{specialEasing:{},easing:k.easing._default},t),originalProperties:e,originalOptions:t,startTime:rt||ct(),duration:t.duration,tweens:[],createTween:function(e,t){var n=k.Tween(o,l.opts,e,t,l.opts.specialEasing[e]||l.opts.easing);return l.tweens.push(n),n},stop:function(e){var t=0,n=e?l.tweens.length:0;if(a)return this;for(a=!0;t<n;t++)l.tweens[t].run(1);return e?(s.notifyWith(o,[l,1,0]),s.resolveWith(o,[l,e])):s.rejectWith(o,[l,e]),this}}),c=l.props;for(!function(e,t){var n,r,i,o,a;for(n in e)if(i=t[r=V(n)],o=e[n],Array.isArray(o)&&(i=o[1],o=e[n]=o[0]),n!==r&&(e[r]=o,delete e[n]),(a=k.cssHooks[r])&&"expand"in a)for(n in o=a.expand(o),delete e[r],o)n in e||(e[n]=o[n],t[n]=i);else t[r]=i}(c,l.opts.specialEasing);r<i;r++)if(n=dt.prefilters[r].call(l,o,c,l.opts))return m(n.stop)&&(k._queueHooks(l.elem,l.opts.queue).stop=n.stop.bind(n)),n;return k.map(c,pt,l),m(l.opts.start)&&l.opts.start.call(o,l),l.progress(l.opts.progress).done(l.opts.done,l.opts.complete).fail(l.opts.fail).always(l.opts.always),k.fx.timer(k.extend(u,{elem:o,anim:l,queue:l.opts.queue})),l}k.Animation=k.extend(dt,{tweeners:{"*":[function(e,t){var n=this.createTween(e,t);return le(n.elem,e,ne.exec(t),n),n}]},tweener:function(e,t){m(e)?(t=e,e=["*"]):e=e.match(R);for(var n,r=0,i=e.length;r<i;r++)n=e[r],dt.tweeners[n]=dt.tweeners[n]||[],dt.tweeners[n].unshift(t)},prefilters:[function(e,t,n){var r,i,o,a,s,u,l,c,f="width"in t||"height"in t,p=this,d={},h=e.style,g=e.nodeType&&se(e),v=Q.get(e,"fxshow");for(r in n.queue||(null==(a=k._queueHooks(e,"fx")).unqueued&&(a.unqueued=0,s=a.empty.fire,a.empty.fire=function(){a.unqueued||s()}),a.unqueued++,p.always(function(){p.always(function(){a.unqueued--,k.queue(e,"fx").length||a.empty.fire()})})),t)if(i=t[r],st.test(i)){if(delete t[r],o=o||"toggle"===i,i===(g?"hide":"show")){if("show"!==i||!v||void 0===v[r])continue;g=!0}d[r]=v&&v[r]||k.style(e,r)}if((u=!k.isEmptyObject(t))||!k.isEmptyObject(d))for(r in f&&1===e.nodeType&&(n.overflow=[h.overflow,h.overflowX,h.overflowY],null==(l=v&&v.display)&&(l=Q.get(e,"display")),"none"===(c=k.css(e,"display"))&&(l?c=l:(fe([e],!0),l=e.style.display||l,c=k.css(e,"display"),fe([e]))),("inline"===c||"inline-block"===c&&null!=l)&&"none"===k.css(e,"float")&&(u||(p.done(function(){h.display=l}),null==l&&(c=h.display,l="none"===c?"":c)),h.display="inline-block")),n.overflow&&(h.overflow="hidden",p.always(function(){h.overflow=n.overflow[0],h.overflowX=n.overflow[1],h.overflowY=n.overflow[2]})),u=!1,d)u||(v?"hidden"in v&&(g=v.hidden):v=Q.access(e,"fxshow",{display:l}),o&&(v.hidden=!g),g&&fe([e],!0),p.done(function(){for(r in g||fe([e]),Q.remove(e,"fxshow"),d)k.style(e,r,d[r])})),u=pt(g?v[r]:0,r,p),r in v||(v[r]=u.start,g&&(u.end=u.start,u.start=0))}],prefilter:function(e,t){t?dt.prefilters.unshift(e):dt.prefilters.push(e)}}),k.speed=function(e,t,n){var r=e&&"object"==typeof e?k.extend({},e):{complete:n||!n&&t||m(e)&&e,duration:e,easing:n&&t||t&&!m(t)&&t};return k.fx.off?r.duration=0:"number"!=typeof r.duration&&(r.duration in k.fx.speeds?r.duration=k.fx.speeds[r.duration]:r.duration=k.fx.speeds._default),null!=r.queue&&!0!==r.queue||(r.queue="fx"),r.old=r.complete,r.complete=function(){m(r.old)&&r.old.call(this),r.queue&&k.dequeue(this,r.queue)},r},k.fn.extend({fadeTo:function(e,t,n,r){return this.filter(se).css("opacity",0).show().end().animate({opacity:t},e,n,r)},animate:function(t,e,n,r){var i=k.isEmptyObject(t),o=k.speed(e,n,r),a=function(){var e=dt(this,k.extend({},t),o);(i||Q.get(this,"finish"))&&e.stop(!0)};return a.finish=a,i||!1===o.queue?this.each(a):this.queue(o.queue,a)},stop:function(i,e,o){var a=function(e){var t=e.stop;delete e.stop,t(o)};return"string"!=typeof i&&(o=e,e=i,i=void 0),e&&!1!==i&&this.queue(i||"fx",[]),this.each(function(){var e=!0,t=null!=i&&i+"queueHooks",n=k.timers,r=Q.get(this);if(t)r[t]&&r[t].stop&&a(r[t]);else for(t in r)r[t]&&r[t].stop&&ut.test(t)&&a(r[t]);for(t=n.length;t--;)n[t].elem!==this||null!=i&&n[t].queue!==i||(n[t].anim.stop(o),e=!1,n.splice(t,1));!e&&o||k.dequeue(this,i)})},finish:function(a){return!1!==a&&(a=a||"fx"),this.each(function(){var e,t=Q.get(this),n=t[a+"queue"],r=t[a+"queueHooks"],i=k.timers,o=n?n.length:0;for(t.finish=!0,k.queue(this,a,[]),r&&r.stop&&r.stop.call(this,!0),e=i.length;e--;)i[e].elem===this&&i[e].queue===a&&(i[e].anim.stop(!0),i.splice(e,1));for(e=0;e<o;e++)n[e]&&n[e].finish&&n[e].finish.call(this);delete t.finish})}}),k.each(["toggle","show","hide"],function(e,r){var i=k.fn[r];k.fn[r]=function(e,t,n){return null==e||"boolean"==typeof e?i.apply(this,arguments):this.animate(ft(r,!0),e,t,n)}}),k.each({slideDown:ft("show"),slideUp:ft("hide"),slideToggle:ft("toggle"),fadeIn:{opacity:"show"},fadeOut:{opacity:"hide"},fadeToggle:{opacity:"toggle"}},function(e,r){k.fn[e]=function(e,t,n){return this.animate(r,e,t,n)}}),k.timers=[],k.fx.tick=function(){var e,t=0,n=k.timers;for(rt=Date.now();t<n.length;t++)(e=n[t])()||n[t]!==e||n.splice(t--,1);n.length||k.fx.stop(),rt=void 0},k.fx.timer=function(e){k.timers.push(e),k.fx.start()},k.fx.interval=13,k.fx.start=function(){it||(it=!0,lt())},k.fx.stop=function(){it=null},k.fx.speeds={slow:600,fast:200,_default:400},k.fn.delay=function(r,e){return r=k.fx&&k.fx.speeds[r]||r,e=e||"fx",this.queue(e,function(e,t){var n=C.setTimeout(e,r);t.stop=function(){C.clearTimeout(n)}})},ot=E.createElement("input"),at=E.createElement("select").appendChild(E.createElement("option")),ot.type="checkbox",y.checkOn=""!==ot.value,y.optSelected=at.selected,(ot=E.createElement("input")).value="t",ot.type="radio",y.radioValue="t"===ot.value;var ht,gt=k.expr.attrHandle;k.fn.extend({attr:function(e,t){return _(this,k.attr,e,t,1<arguments.length)},removeAttr:function(e){return this.each(function(){k.removeAttr(this,e)})}}),k.extend({attr:function(e,t,n){var r,i,o=e.nodeType;if(3!==o&&8!==o&&2!==o)return"undefined"==typeof e.getAttribute?k.prop(e,t,n):(1===o&&k.isXMLDoc(e)||(i=k.attrHooks[t.toLowerCase()]||(k.expr.match.bool.test(t)?ht:void 0)),void 0!==n?null===n?void k.removeAttr(e,t):i&&"set"in i&&void 0!==(r=i.set(e,n,t))?r:(e.setAttribute(t,n+""),n):i&&"get"in i&&null!==(r=i.get(e,t))?r:null==(r=k.find.attr(e,t))?void 0:r)},attrHooks:{type:{set:function(e,t){if(!y.radioValue&&"radio"===t&&A(e,"input")){var n=e.value;return e.setAttribute("type",t),n&&(e.value=n),t}}}},removeAttr:function(e,t){var n,r=0,i=t&&t.match(R);if(i&&1===e.nodeType)while(n=i[r++])e.removeAttribute(n)}}),ht={set:function(e,t,n){return!1===t?k.removeAttr(e,n):e.setAttribute(n,n),n}},k.each(k.expr.match.bool.source.match(/\w+/g),function(e,t){var a=gt[t]||k.find.attr;gt[t]=function(e,t,n){var r,i,o=t.toLowerCase();return n||(i=gt[o],gt[o]=r,r=null!=a(e,t,n)?o:null,gt[o]=i),r}});var vt=/^(?:input|select|textarea|button)$/i,yt=/^(?:a|area)$/i;function mt(e){return(e.match(R)||[]).join(" ")}function xt(e){return e.getAttribute&&e.getAttribute("class")||""}function bt(e){return Array.isArray(e)?e:"string"==typeof e&&e.match(R)||[]}k.fn.extend({prop:function(e,t){return _(this,k.prop,e,t,1<arguments.length)},removeProp:function(e){return this.each(function(){delete this[k.propFix[e]||e]})}}),k.extend({prop:function(e,t,n){var r,i,o=e.nodeType;if(3!==o&&8!==o&&2!==o)return 1===o&&k.isXMLDoc(e)||(t=k.propFix[t]||t,i=k.propHooks[t]),void 0!==n?i&&"set"in i&&void 0!==(r=i.set(e,n,t))?r:e[t]=n:i&&"get"in i&&null!==(r=i.get(e,t))?r:e[t]},propHooks:{tabIndex:{get:function(e){var t=k.find.attr(e,"tabindex");return t?parseInt(t,10):vt.test(e.nodeName)||yt.test(e.nodeName)&&e.href?0:-1}}},propFix:{"for":"htmlFor","class":"className"}}),y.optSelected||(k.propHooks.selected={get:function(e){var t=e.parentNode;return t&&t.parentNode&&t.parentNode.selectedIndex,null},set:function(e){var t=e.parentNode;t&&(t.selectedIndex,t.parentNode&&t.parentNode.selectedIndex)}}),k.each(["tabIndex","readOnly","maxLength","cellSpacing","cellPadding","rowSpan","colSpan","useMap","frameBorder","contentEditable"],function(){k.propFix[this.toLowerCase()]=this}),k.fn.extend({addClass:function(t){var e,n,r,i,o,a,s,u=0;if(m(t))return this.each(function(e){k(this).addClass(t.call(this,e,xt(this)))});if((e=bt(t)).length)while(n=this[u++])if(i=xt(n),r=1===n.nodeType&&" "+mt(i)+" "){a=0;while(o=e[a++])r.indexOf(" "+o+" ")<0&&(r+=o+" ");i!==(s=mt(r))&&n.setAttribute("class",s)}return this},removeClass:function(t){var e,n,r,i,o,a,s,u=0;if(m(t))return this.each(function(e){k(this).removeClass(t.call(this,e,xt(this)))});if(!arguments.length)return this.attr("class","");if((e=bt(t)).length)while(n=this[u++])if(i=xt(n),r=1===n.nodeType&&" "+mt(i)+" "){a=0;while(o=e[a++])while(-1<r.indexOf(" "+o+" "))r=r.replace(" "+o+" "," ");i!==(s=mt(r))&&n.setAttribute("class",s)}return this},toggleClass:function(i,t){var o=typeof i,a="string"===o||Array.isArray(i);return"boolean"==typeof t&&a?t?this.addClass(i):this.removeClass(i):m(i)?this.each(function(e){k(this).toggleClass(i.call(this,e,xt(this),t),t)}):this.each(function(){var e,t,n,r;if(a){t=0,n=k(this),r=bt(i);while(e=r[t++])n.hasClass(e)?n.removeClass(e):n.addClass(e)}else void 0!==i&&"boolean"!==o||((e=xt(this))&&Q.set(this,"__className__",e),this.setAttribute&&this.setAttribute("class",e||!1===i?"":Q.get(this,"__className__")||""))})},hasClass:function(e){var t,n,r=0;t=" "+e+" ";while(n=this[r++])if(1===n.nodeType&&-1<(" "+mt(xt(n))+" ").indexOf(t))return!0;return!1}});var wt=/\r/g;k.fn.extend({val:function(n){var r,e,i,t=this[0];return arguments.length?(i=m(n),this.each(function(e){var t;1===this.nodeType&&(null==(t=i?n.call(this,e,k(this).val()):n)?t="":"number"==typeof t?t+="":Array.isArray(t)&&(t=k.map(t,function(e){return null==e?"":e+""})),(r=k.valHooks[this.type]||k.valHooks[this.nodeName.toLowerCase()])&&"set"in r&&void 0!==r.set(this,t,"value")||(this.value=t))})):t?(r=k.valHooks[t.type]||k.valHooks[t.nodeName.toLowerCase()])&&"get"in r&&void 0!==(e=r.get(t,"value"))?e:"string"==typeof(e=t.value)?e.replace(wt,""):null==e?"":e:void 0}}),k.extend({valHooks:{option:{get:function(e){var t=k.find.attr(e,"value");return null!=t?t:mt(k.text(e))}},select:{get:function(e){var t,n,r,i=e.options,o=e.selectedIndex,a="select-one"===e.type,s=a?null:[],u=a?o+1:i.length;for(r=o<0?u:a?o:0;r<u;r++)if(((n=i[r]).selected||r===o)&&!n.disabled&&(!n.parentNode.disabled||!A(n.parentNode,"optgroup"))){if(t=k(n).val(),a)return t;s.push(t)}return s},set:function(e,t){var n,r,i=e.options,o=k.makeArray(t),a=i.length;while(a--)((r=i[a]).selected=-1<k.inArray(k.valHooks.option.get(r),o))&&(n=!0);return n||(e.selectedIndex=-1),o}}}}),k.each(["radio","checkbox"],function(){k.valHooks[this]={set:function(e,t){if(Array.isArray(t))return e.checked=-1<k.inArray(k(e).val(),t)}},y.checkOn||(k.valHooks[this].get=function(e){return null===e.getAttribute("value")?"on":e.value})}),y.focusin="onfocusin"in C;var Tt=/^(?:focusinfocus|focusoutblur)$/,Ct=function(e){e.stopPropagation()};k.extend(k.event,{trigger:function(e,t,n,r){var i,o,a,s,u,l,c,f,p=[n||E],d=v.call(e,"type")?e.type:e,h=v.call(e,"namespace")?e.namespace.split("."):[];if(o=f=a=n=n||E,3!==n.nodeType&&8!==n.nodeType&&!Tt.test(d+k.event.triggered)&&(-1<d.indexOf(".")&&(d=(h=d.split(".")).shift(),h.sort()),u=d.indexOf(":")<0&&"on"+d,(e=e[k.expando]?e:new k.Event(d,"object"==typeof e&&e)).isTrigger=r?2:3,e.namespace=h.join("."),e.rnamespace=e.namespace?new RegExp("(^|\\.)"+h.join("\\.(?:.*\\.|)")+"(\\.|$)"):null,e.result=void 0,e.target||(e.target=n),t=null==t?[e]:k.makeArray(t,[e]),c=k.event.special[d]||{},r||!c.trigger||!1!==c.trigger.apply(n,t))){if(!r&&!c.noBubble&&!x(n)){for(s=c.delegateType||d,Tt.test(s+d)||(o=o.parentNode);o;o=o.parentNode)p.push(o),a=o;a===(n.ownerDocument||E)&&p.push(a.defaultView||a.parentWindow||C)}i=0;while((o=p[i++])&&!e.isPropagationStopped())f=o,e.type=1<i?s:c.bindType||d,(l=(Q.get(o,"events")||{})[e.type]&&Q.get(o,"handle"))&&l.apply(o,t),(l=u&&o[u])&&l.apply&&G(o)&&(e.result=l.apply(o,t),!1===e.result&&e.preventDefault());return e.type=d,r||e.isDefaultPrevented()||c._default&&!1!==c._default.apply(p.pop(),t)||!G(n)||u&&m(n[d])&&!x(n)&&((a=n[u])&&(n[u]=null),k.event.triggered=d,e.isPropagationStopped()&&f.addEventListener(d,Ct),n[d](),e.isPropagationStopped()&&f.removeEventListener(d,Ct),k.event.triggered=void 0,a&&(n[u]=a)),e.result}},simulate:function(e,t,n){var r=k.extend(new k.Event,n,{type:e,isSimulated:!0});k.event.trigger(r,null,t)}}),k.fn.extend({trigger:function(e,t){return this.each(function(){k.event.trigger(e,t,this)})},triggerHandler:function(e,t){var n=this[0];if(n)return k.event.trigger(e,t,n,!0)}}),y.focusin||k.each({focus:"focusin",blur:"focusout"},function(n,r){var i=function(e){k.event.simulate(r,e.target,k.event.fix(e))};k.event.special[r]={setup:function(){var e=this.ownerDocument||this,t=Q.access(e,r);t||e.addEventListener(n,i,!0),Q.access(e,r,(t||0)+1)},teardown:function(){var e=this.ownerDocument||this,t=Q.access(e,r)-1;t?Q.access(e,r,t):(e.removeEventListener(n,i,!0),Q.remove(e,r))}}});var Et=C.location,kt=Date.now(),St=/\?/;k.parseXML=function(e){var t;if(!e||"string"!=typeof e)return null;try{t=(new C.DOMParser).parseFromString(e,"text/xml")}catch(e){t=void 0}return t&&!t.getElementsByTagName("parsererror").length||k.error("Invalid XML: "+e),t};var Nt=/\[\]$/,At=/\r?\n/g,Dt=/^(?:submit|button|image|reset|file)$/i,jt=/^(?:input|select|textarea|keygen)/i;function qt(n,e,r,i){var t;if(Array.isArray(e))k.each(e,function(e,t){r||Nt.test(n)?i(n,t):qt(n+"["+("object"==typeof t&&null!=t?e:"")+"]",t,r,i)});else if(r||"object"!==w(e))i(n,e);else for(t in e)qt(n+"["+t+"]",e[t],r,i)}k.param=function(e,t){var n,r=[],i=function(e,t){var n=m(t)?t():t;r[r.length]=encodeURIComponent(e)+"="+encodeURIComponent(null==n?"":n)};if(null==e)return"";if(Array.isArray(e)||e.jquery&&!k.isPlainObject(e))k.each(e,function(){i(this.name,this.value)});else for(n in e)qt(n,e[n],t,i);return r.join("&")},k.fn.extend({serialize:function(){return k.param(this.serializeArray())},serializeArray:function(){return this.map(function(){var e=k.prop(this,"elements");return e?k.makeArray(e):this}).filter(function(){var e=this.type;return this.name&&!k(this).is(":disabled")&&jt.test(this.nodeName)&&!Dt.test(e)&&(this.checked||!pe.test(e))}).map(function(e,t){var n=k(this).val();return null==n?null:Array.isArray(n)?k.map(n,function(e){return{name:t.name,value:e.replace(At,"\r\n")}}):{name:t.name,value:n.replace(At,"\r\n")}}).get()}});var Lt=/%20/g,Ht=/#.*$/,Ot=/([?&])_=[^&]*/,Pt=/^(.*?):[ \t]*([^\r\n]*)$/gm,Rt=/^(?:GET|HEAD)$/,Mt=/^\/\//,It={},Wt={},$t="*/".concat("*"),Ft=E.createElement("a");function Bt(o){return function(e,t){"string"!=typeof e&&(t=e,e="*");var n,r=0,i=e.toLowerCase().match(R)||[];if(m(t))while(n=i[r++])"+"===n[0]?(n=n.slice(1)||"*",(o[n]=o[n]||[]).unshift(t)):(o[n]=o[n]||[]).push(t)}}function _t(t,i,o,a){var s={},u=t===Wt;function l(e){var r;return s[e]=!0,k.each(t[e]||[],function(e,t){var n=t(i,o,a);return"string"!=typeof n||u||s[n]?u?!(r=n):void 0:(i.dataTypes.unshift(n),l(n),!1)}),r}return l(i.dataTypes[0])||!s["*"]&&l("*")}function zt(e,t){var n,r,i=k.ajaxSettings.flatOptions||{};for(n in t)void 0!==t[n]&&((i[n]?e:r||(r={}))[n]=t[n]);return r&&k.extend(!0,e,r),e}Ft.href=Et.href,k.extend({active:0,lastModified:{},etag:{},ajaxSettings:{url:Et.href,type:"GET",isLocal:/^(?:about|app|app-storage|.+-extension|file|res|widget):$/.test(Et.protocol),global:!0,processData:!0,async:!0,contentType:"application/x-www-form-urlencoded; charset=UTF-8",accepts:{"*":$t,text:"text/plain",html:"text/html",xml:"application/xml, text/xml",json:"application/json, text/javascript"},contents:{xml:/\bxml\b/,html:/\bhtml/,json:/\bjson\b/},responseFields:{xml:"responseXML",text:"responseText",json:"responseJSON"},converters:{"* text":String,"text html":!0,"text json":JSON.parse,"text xml":k.parseXML},flatOptions:{url:!0,context:!0}},ajaxSetup:function(e,t){return t?zt(zt(e,k.ajaxSettings),t):zt(k.ajaxSettings,e)},ajaxPrefilter:Bt(It),ajaxTransport:Bt(Wt),ajax:function(e,t){"object"==typeof e&&(t=e,e=void 0),t=t||{};var c,f,p,n,d,r,h,g,i,o,v=k.ajaxSetup({},t),y=v.context||v,m=v.context&&(y.nodeType||y.jquery)?k(y):k.event,x=k.Deferred(),b=k.Callbacks("once memory"),w=v.statusCode||{},a={},s={},u="canceled",T={readyState:0,getResponseHeader:function(e){var t;if(h){if(!n){n={};while(t=Pt.exec(p))n[t[1].toLowerCase()+" "]=(n[t[1].toLowerCase()+" "]||[]).concat(t[2])}t=n[e.toLowerCase()+" "]}return null==t?null:t.join(", ")},getAllResponseHeaders:function(){return h?p:null},setRequestHeader:function(e,t){return null==h&&(e=s[e.toLowerCase()]=s[e.toLowerCase()]||e,a[e]=t),this},overrideMimeType:function(e){return null==h&&(v.mimeType=e),this},statusCode:function(e){var t;if(e)if(h)T.always(e[T.status]);else for(t in e)w[t]=[w[t],e[t]];return this},abort:function(e){var t=e||u;return c&&c.abort(t),l(0,t),this}};if(x.promise(T),v.url=((e||v.url||Et.href)+"").replace(Mt,Et.protocol+"//"),v.type=t.method||t.type||v.method||v.type,v.dataTypes=(v.dataType||"*").toLowerCase().match(R)||[""],null==v.crossDomain){r=E.createElement("a");try{r.href=v.url,r.href=r.href,v.crossDomain=Ft.protocol+"//"+Ft.host!=r.protocol+"//"+r.host}catch(e){v.crossDomain=!0}}if(v.data&&v.processData&&"string"!=typeof v.data&&(v.data=k.param(v.data,v.traditional)),_t(It,v,t,T),h)return T;for(i in(g=k.event&&v.global)&&0==k.active++&&k.event.trigger("ajaxStart"),v.type=v.type.toUpperCase(),v.hasContent=!Rt.test(v.type),f=v.url.replace(Ht,""),v.hasContent?v.data&&v.processData&&0===(v.contentType||"").indexOf("application/x-www-form-urlencoded")&&(v.data=v.data.replace(Lt,"+")):(o=v.url.slice(f.length),v.data&&(v.processData||"string"==typeof v.data)&&(f+=(St.test(f)?"&":"?")+v.data,delete v.data),!1===v.cache&&(f=f.replace(Ot,"$1"),o=(St.test(f)?"&":"?")+"_="+kt+++o),v.url=f+o),v.ifModified&&(k.lastModified[f]&&T.setRequestHeader("If-Modified-Since",k.lastModified[f]),k.etag[f]&&T.setRequestHeader("If-None-Match",k.etag[f])),(v.data&&v.hasContent&&!1!==v.contentType||t.contentType)&&T.setRequestHeader("Content-Type",v.contentType),T.setRequestHeader("Accept",v.dataTypes[0]&&v.accepts[v.dataTypes[0]]?v.accepts[v.dataTypes[0]]+("*"!==v.dataTypes[0]?", "+$t+"; q=0.01":""):v.accepts["*"]),v.headers)T.setRequestHeader(i,v.headers[i]);if(v.beforeSend&&(!1===v.beforeSend.call(y,T,v)||h))return T.abort();if(u="abort",b.add(v.complete),T.done(v.success),T.fail(v.error),c=_t(Wt,v,t,T)){if(T.readyState=1,g&&m.trigger("ajaxSend",[T,v]),h)return T;v.async&&0<v.timeout&&(d=C.setTimeout(function(){T.abort("timeout")},v.timeout));try{h=!1,c.send(a,l)}catch(e){if(h)throw e;l(-1,e)}}else l(-1,"No Transport");function l(e,t,n,r){var i,o,a,s,u,l=t;h||(h=!0,d&&C.clearTimeout(d),c=void 0,p=r||"",T.readyState=0<e?4:0,i=200<=e&&e<300||304===e,n&&(s=function(e,t,n){var r,i,o,a,s=e.contents,u=e.dataTypes;while("*"===u[0])u.shift(),void 0===r&&(r=e.mimeType||t.getResponseHeader("Content-Type"));if(r)for(i in s)if(s[i]&&s[i].test(r)){u.unshift(i);break}if(u[0]in n)o=u[0];else{for(i in n){if(!u[0]||e.converters[i+" "+u[0]]){o=i;break}a||(a=i)}o=o||a}if(o)return o!==u[0]&&u.unshift(o),n[o]}(v,T,n)),s=function(e,t,n,r){var i,o,a,s,u,l={},c=e.dataTypes.slice();if(c[1])for(a in e.converters)l[a.toLowerCase()]=e.converters[a];o=c.shift();while(o)if(e.responseFields[o]&&(n[e.responseFields[o]]=t),!u&&r&&e.dataFilter&&(t=e.dataFilter(t,e.dataType)),u=o,o=c.shift())if("*"===o)o=u;else if("*"!==u&&u!==o){if(!(a=l[u+" "+o]||l["* "+o]))for(i in l)if((s=i.split(" "))[1]===o&&(a=l[u+" "+s[0]]||l["* "+s[0]])){!0===a?a=l[i]:!0!==l[i]&&(o=s[0],c.unshift(s[1]));break}if(!0!==a)if(a&&e["throws"])t=a(t);else try{t=a(t)}catch(e){return{state:"parsererror",error:a?e:"No conversion from "+u+" to "+o}}}return{state:"success",data:t}}(v,s,T,i),i?(v.ifModified&&((u=T.getResponseHeader("Last-Modified"))&&(k.lastModified[f]=u),(u=T.getResponseHeader("etag"))&&(k.etag[f]=u)),204===e||"HEAD"===v.type?l="nocontent":304===e?l="notmodified":(l=s.state,o=s.data,i=!(a=s.error))):(a=l,!e&&l||(l="error",e<0&&(e=0))),T.status=e,T.statusText=(t||l)+"",i?x.resolveWith(y,[o,l,T]):x.rejectWith(y,[T,l,a]),T.statusCode(w),w=void 0,g&&m.trigger(i?"ajaxSuccess":"ajaxError",[T,v,i?o:a]),b.fireWith(y,[T,l]),g&&(m.trigger("ajaxComplete",[T,v]),--k.active||k.event.trigger("ajaxStop")))}return T},getJSON:function(e,t,n){return k.get(e,t,n,"json")},getScript:function(e,t){return k.get(e,void 0,t,"script")}}),k.each(["get","post"],function(e,i){k[i]=function(e,t,n,r){return m(t)&&(r=r||n,n=t,t=void 0),k.ajax(k.extend({url:e,type:i,dataType:r,data:t,success:n},k.isPlainObject(e)&&e))}}),k._evalUrl=function(e,t){return k.ajax({url:e,type:"GET",dataType:"script",cache:!0,async:!1,global:!1,converters:{"text script":function(){}},dataFilter:function(e){k.globalEval(e,t)}})},k.fn.extend({wrapAll:function(e){var t;return this[0]&&(m(e)&&(e=e.call(this[0])),t=k(e,this[0].ownerDocument).eq(0).clone(!0),this[0].parentNode&&t.insertBefore(this[0]),t.map(function(){var e=this;while(e.firstElementChild)e=e.firstElementChild;return e}).append(this)),this},wrapInner:function(n){return m(n)?this.each(function(e){k(this).wrapInner(n.call(this,e))}):this.each(function(){var e=k(this),t=e.contents();t.length?t.wrapAll(n):e.append(n)})},wrap:function(t){var n=m(t);return this.each(function(e){k(this).wrapAll(n?t.call(this,e):t)})},unwrap:function(e){return this.parent(e).not("body").each(function(){k(this).replaceWith(this.childNodes)}),this}}),k.expr.pseudos.hidden=function(e){return!k.expr.pseudos.visible(e)},k.expr.pseudos.visible=function(e){return!!(e.offsetWidth||e.offsetHeight||e.getClientRects().length)},k.ajaxSettings.xhr=function(){try{return new C.XMLHttpRequest}catch(e){}};var Ut={0:200,1223:204},Xt=k.ajaxSettings.xhr();y.cors=!!Xt&&"withCredentials"in Xt,y.ajax=Xt=!!Xt,k.ajaxTransport(function(i){var o,a;if(y.cors||Xt&&!i.crossDomain)return{send:function(e,t){var n,r=i.xhr();if(r.open(i.type,i.url,i.async,i.username,i.password),i.xhrFields)for(n in i.xhrFields)r[n]=i.xhrFields[n];for(n in i.mimeType&&r.overrideMimeType&&r.overrideMimeType(i.mimeType),i.crossDomain||e["X-Requested-With"]||(e["X-Requested-With"]="XMLHttpRequest"),e)r.setRequestHeader(n,e[n]);o=function(e){return function(){o&&(o=a=r.onload=r.onerror=r.onabort=r.ontimeout=r.onreadystatechange=null,"abort"===e?r.abort():"error"===e?"number"!=typeof r.status?t(0,"error"):t(r.status,r.statusText):t(Ut[r.status]||r.status,r.statusText,"text"!==(r.responseType||"text")||"string"!=typeof r.responseText?{binary:r.response}:{text:r.responseText},r.getAllResponseHeaders()))}},r.onload=o(),a=r.onerror=r.ontimeout=o("error"),void 0!==r.onabort?r.onabort=a:r.onreadystatechange=function(){4===r.readyState&&C.setTimeout(function(){o&&a()})},o=o("abort");try{r.send(i.hasContent&&i.data||null)}catch(e){if(o)throw e}},abort:function(){o&&o()}}}),k.ajaxPrefilter(function(e){e.crossDomain&&(e.contents.script=!1)}),k.ajaxSetup({accepts:{script:"text/javascript, application/javascript, application/ecmascript, application/x-ecmascript"},contents:{script:/\b(?:java|ecma)script\b/},converters:{"text script":function(e){return k.globalEval(e),e}}}),k.ajaxPrefilter("script",function(e){void 0===e.cache&&(e.cache=!1),e.crossDomain&&(e.type="GET")}),k.ajaxTransport("script",function(n){var r,i;if(n.crossDomain||n.scriptAttrs)return{send:function(e,t){r=k("<script>").attr(n.scriptAttrs||{}).prop({charset:n.scriptCharset,src:n.url}).on("load error",i=function(e){r.remove(),i=null,e&&t("error"===e.type?404:200,e.type)}),E.head.appendChild(r[0])},abort:function(){i&&i()}}});var Vt,Gt=[],Yt=/(=)\?(?=&|$)|\?\?/;k.ajaxSetup({jsonp:"callback",jsonpCallback:function(){var e=Gt.pop()||k.expando+"_"+kt++;return this[e]=!0,e}}),k.ajaxPrefilter("json jsonp",function(e,t,n){var r,i,o,a=!1!==e.jsonp&&(Yt.test(e.url)?"url":"string"==typeof e.data&&0===(e.contentType||"").indexOf("application/x-www-form-urlencoded")&&Yt.test(e.data)&&"data");if(a||"jsonp"===e.dataTypes[0])return r=e.jsonpCallback=m(e.jsonpCallback)?e.jsonpCallback():e.jsonpCallback,a?e[a]=e[a].replace(Yt,"$1"+r):!1!==e.jsonp&&(e.url+=(St.test(e.url)?"&":"?")+e.jsonp+"="+r),e.converters["script json"]=function(){return o||k.error(r+" was not called"),o[0]},e.dataTypes[0]="json",i=C[r],C[r]=function(){o=arguments},n.always(function(){void 0===i?k(C).removeProp(r):C[r]=i,e[r]&&(e.jsonpCallback=t.jsonpCallback,Gt.push(r)),o&&m(i)&&i(o[0]),o=i=void 0}),"script"}),y.createHTMLDocument=((Vt=E.implementation.createHTMLDocument("").body).innerHTML="<form></form><form></form>",2===Vt.childNodes.length),k.parseHTML=function(e,t,n){return"string"!=typeof e?[]:("boolean"==typeof t&&(n=t,t=!1),t||(y.createHTMLDocument?((r=(t=E.implementation.createHTMLDocument("")).createElement("base")).href=E.location.href,t.head.appendChild(r)):t=E),o=!n&&[],(i=D.exec(e))?[t.createElement(i[1])]:(i=we([e],t,o),o&&o.length&&k(o).remove(),k.merge([],i.childNodes)));var r,i,o},k.fn.load=function(e,t,n){var r,i,o,a=this,s=e.indexOf(" ");return-1<s&&(r=mt(e.slice(s)),e=e.slice(0,s)),m(t)?(n=t,t=void 0):t&&"object"==typeof t&&(i="POST"),0<a.length&&k.ajax({url:e,type:i||"GET",dataType:"html",data:t}).done(function(e){o=arguments,a.html(r?k("<div>").append(k.parseHTML(e)).find(r):e)}).always(n&&function(e,t){a.each(function(){n.apply(this,o||[e.responseText,t,e])})}),this},k.each(["ajaxStart","ajaxStop","ajaxComplete","ajaxError","ajaxSuccess","ajaxSend"],function(e,t){k.fn[t]=function(e){return this.on(t,e)}}),k.expr.pseudos.animated=function(t){return k.grep(k.timers,function(e){return t===e.elem}).length},k.offset={setOffset:function(e,t,n){var r,i,o,a,s,u,l=k.css(e,"position"),c=k(e),f={};"static"===l&&(e.style.position="relative"),s=c.offset(),o=k.css(e,"top"),u=k.css(e,"left"),("absolute"===l||"fixed"===l)&&-1<(o+u).indexOf("auto")?(a=(r=c.position()).top,i=r.left):(a=parseFloat(o)||0,i=parseFloat(u)||0),m(t)&&(t=t.call(e,n,k.extend({},s))),null!=t.top&&(f.top=t.top-s.top+a),null!=t.left&&(f.left=t.left-s.left+i),"using"in t?t.using.call(e,f):c.css(f)}},k.fn.extend({offset:function(t){if(arguments.length)return void 0===t?this:this.each(function(e){k.offset.setOffset(this,t,e)});var e,n,r=this[0];return r?r.getClientRects().length?(e=r.getBoundingClientRect(),n=r.ownerDocument.defaultView,{top:e.top+n.pageYOffset,left:e.left+n.pageXOffset}):{top:0,left:0}:void 0},position:function(){if(this[0]){var e,t,n,r=this[0],i={top:0,left:0};if("fixed"===k.css(r,"position"))t=r.getBoundingClientRect();else{t=this.offset(),n=r.ownerDocument,e=r.offsetParent||n.documentElement;while(e&&(e===n.body||e===n.documentElement)&&"static"===k.css(e,"position"))e=e.parentNode;e&&e!==r&&1===e.nodeType&&((i=k(e).offset()).top+=k.css(e,"borderTopWidth",!0),i.left+=k.css(e,"borderLeftWidth",!0))}return{top:t.top-i.top-k.css(r,"marginTop",!0),left:t.left-i.left-k.css(r,"marginLeft",!0)}}},offsetParent:function(){return this.map(function(){var e=this.offsetParent;while(e&&"static"===k.css(e,"position"))e=e.offsetParent;return e||ie})}}),k.each({scrollLeft:"pageXOffset",scrollTop:"pageYOffset"},function(t,i){var o="pageYOffset"===i;k.fn[t]=function(e){return _(this,function(e,t,n){var r;if(x(e)?r=e:9===e.nodeType&&(r=e.defaultView),void 0===n)return r?r[i]:e[t];r?r.scrollTo(o?r.pageXOffset:n,o?n:r.pageYOffset):e[t]=n},t,e,arguments.length)}}),k.each(["top","left"],function(e,n){k.cssHooks[n]=ze(y.pixelPosition,function(e,t){if(t)return t=_e(e,n),$e.test(t)?k(e).position()[n]+"px":t})}),k.each({Height:"height",Width:"width"},function(a,s){k.each({padding:"inner"+a,content:s,"":"outer"+a},function(r,o){k.fn[o]=function(e,t){var n=arguments.length&&(r||"boolean"!=typeof e),i=r||(!0===e||!0===t?"margin":"border");return _(this,function(e,t,n){var r;return x(e)?0===o.indexOf("outer")?e["inner"+a]:e.document.documentElement["client"+a]:9===e.nodeType?(r=e.documentElement,Math.max(e.body["scroll"+a],r["scroll"+a],e.body["offset"+a],r["offset"+a],r["client"+a])):void 0===n?k.css(e,t,i):k.style(e,t,n,i)},s,n?e:void 0,n)}})}),k.each("blur focus focusin focusout resize scroll click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup contextmenu".split(" "),function(e,n){k.fn[n]=function(e,t){return 0<arguments.length?this.on(n,null,e,t):this.trigger(n)}}),k.fn.extend({hover:function(e,t){return this.mouseenter(e).mouseleave(t||e)}}),k.fn.extend({bind:function(e,t,n){return this.on(e,null,t,n)},unbind:function(e,t){return this.off(e,null,t)},delegate:function(e,t,n,r){return this.on(t,e,n,r)},undelegate:function(e,t,n){return 1===arguments.length?this.off(e,"**"):this.off(t,e||"**",n)}}),k.proxy=function(e,t){var n,r,i;if("string"==typeof t&&(n=e[t],t=e,e=n),m(e))return r=s.call(arguments,2),(i=function(){return e.apply(t||this,r.concat(s.call(arguments)))}).guid=e.guid=e.guid||k.guid++,i},k.holdReady=function(e){e?k.readyWait++:k.ready(!0)},k.isArray=Array.isArray,k.parseJSON=JSON.parse,k.nodeName=A,k.isFunction=m,k.isWindow=x,k.camelCase=V,k.type=w,k.now=Date.now,k.isNumeric=function(e){var t=k.type(e);return("number"===t||"string"===t)&&!isNaN(e-parseFloat(e))},"function"==typeof define&&define.amd&&define("jquery",[],function(){return k});var Qt=C.jQuery,Jt=C.$;return k.noConflict=function(e){return C.$===k&&(C.$=Jt),e&&C.jQuery===k&&(C.jQuery=Qt),k},e||(C.jQuery=C.$=k),k});
+	body=$("body")
+	}
+
+
+
+function cl(a){if(arguments.length!=1) a=[...arguments];console.log(a)}
+var fediv={
+3:function(a,b,c){c.addClass(a[b])},
+4:function(a,b,c){if(a[b]===0){a[b]=[0,0,0,0]}else if(a[b]===1){a[b]=[50,"","",50]}else if(a[b]===2){a[b]=["","","",""]};for(var i in a[b]){if(typeof(a[b][i])==typeof(1)){a[b][i]=a[b][i]+"%"}};c.css({"position":"absolute","top":a[b][0],"right":a[b][1],"bottom":a[b][2],"left":a[b][3]})},
+5:function(a,b,c){if(a[b]===0){a[b]=[-50,-50]};for(var i in a[b]){if(typeof(a[b][i])==typeof(1)){a[b][i]=a[b][i]+"%"}};c.css("transform","translate("+a[b][0]+","+a[b][1]+")")},
+50:function(a,b,c){c.css("text-align","center")},
+13:function(a,b,c){c.css("z-index",a[b])},
+12:function(a,b,c){if(a[b]===0){a[b]=["100%","100%"]};c.css({"width":a[b][0],"height":a[b][1]})},
+10:function(a,b,c){c.css("background-color",a[b])},
+16:function(a,b,c){if(a[b]===0){a[b]=police};c.css("font-family",a[b])},
+15:function(a,b,c){if(a[b]===0){a[b]="pointer"};c.css("cursor",a[b])},
+18:function(a,b,c){c.css("opacity",a[b])},
+19:function(a,b,c){c.css("border-radius",a[b])},
+24:function(a,b,c){c.css("font-size",a[b])},
+20:function(a,b,c){c.attr("title",a[b])},
+21:function(a,b,c){c.attr("placeholder",a[b])},
+22:function(a,b,c){c.attr("src",a[b])},
+23:function(a,b,c){c.css("color",a[b])},
+26:function(a,b,c){if(a[b]===0){a[b]="nowrap"}else if(a[b]===1){a[b]="pre"};c.css("white-space",a[b])},
+27:function(a,b,c){c.attr("type",a[b])},
+28:function(a,b,c){for(var i in a[b]){c.attr("data-"+i,a[b][i])}},
+33:function(a,b,c){if(typeof(a[b])==="string"){c[0].style.filter=a[b]}else{csi(c,33,a[b])}},
+37:function(a,b,c){c.attr("oncontextmenu","return false");if(!clidroi){clidroi=true;$(document).on("mousedown",function(e){if(e.which===3 && e.pageX===0){dov({13:d32-3,6:{"mouseup mousedown mousemove":function(){var a=$(this);setTimeout(function(){a.remove()},16)}}})}})}},
+42:function(a,b,c){c[0].style.position="absolute";if(Array.isArray(a[b])){anim(c,...a[b])}else if(a[b]!==0){anim(c,a[b],0)}},
+44:function(a,b,c){c.attr("font-weight","bold")},
+66:function(a,b,c){if(a[b]===0){a[b]="auto"}else if(a[b]===1){a[b]="hidden"}else if(a[b]===2){a[b]="visible"};c.css("overflow",a[b])},
+70:function(a,b,c){c.css("maskImage",typeof(a[b])=="object"?gra(a[b]):a[b])},
+71:function(a,b,c){if(a[b]===0){a[b]="100%"};c.css("line-height",a[b])},
+79:function(a,b,c){if(typeof(a[b])==="number"){vado(c,a[b],0);}else{a[b][1]=c;vado(...a[b])}},
+82:function(a,b,c){c.css("background",typeof(a[b])=="object"?gra(a[b]):a[b])},
+8:function(a,b,c){c.attr(a[b])},
+9:function(a,b,c){c.css(a[b])},
+6:function(a,b,c){for(var i in a[b]){c.on(i,a[b][i])};},
+7:function(a,b,c){if(a[b].length==1){c.hover(a[b][0])}else{c.hover(a[b][0],a[b][1])}},
+99:function(a,b,c){if(a[b]===0){a[b]=[0]};for(var i in a[b]){if(i%2==0){c.fadeOut(a[b][i])}else{c.fadeIn(a[b][i])}};},
+73:function(a,b,c){if(typeof(a[b])==typeof("")){if(vexist(typeof(ima_exist)) && (a[b] in ima)){a[b]={0:a[b]}}
+else{a[b]=[a[b],"",[1,1,1],[0,0],[]]}};if(Array.isArray(a[b])){if(!isara(a[b][a[b].length-1])){fon(c,...a[b])}else{a[b].push(c);fonde(a[b])}}else{fon(c,a[b])}}
+}
+
+function dov(a=body,b={}){if(b===0){b={}};if(arguments.length===1){b=a;a=body};return(div(uni([{0:a,4:0},b])))}
+function div(a){var fiv={0:body,1:"nvl_mc",2:"div",17:""};
+for(var i in fiv){if(i in a){fiv[i]=a[i]}}
+if(typeof(fiv[0])==typeof("1")){fiv[0]=$("#"+fiv[0])}
+var f="";if(["input","img"].indexOf(fiv[2])==-1){f="</"+fiv[2]+">"}
+fiv[0].append("<"+fiv[2]+" id='"+fiv[1]+"'>"+fiv[17]+f);
+var b=$("#"+fiv[1]);if(fiv[1]==="nvl_mc"){b.removeAttr("id")};
+for(var i in fediv){if(i in a){fediv[i](a,i,b)}};
+return(b)}
+function uni(a){var l={};for(var i in a){for(var j in a[i]){l[j]=a[i][j]}};return(l)}
+
+function addScript( src ,src2) {
+	cl("addscript",src);
+	fetch(src)
+	  .then(response => response.text())
+	  .then(src2?function(html){cl("OK on a le 1er",html);
+		  fetch(src2)
+	  .then(response => response.text())
+	  .then(function(html2){var s = document.createElement( 'script' );
+		  s.setAttribute('text',"text/javascript");
+		  s.setAttribute('type',"module");
+		  s.textContent=html+html2;
+		  document.body.appendChild( s );})
+		  
+		  
+		  
+	  }:(html => {
+	  
+		  var s = document.createElement( 'script' );
+		  s.setAttribute('text',"text/javascript");
+		  s.setAttribute('type',"module");
+		  s.textContent=html;
+		  document.body.appendChild( s );
+	  
+	  }))
+
+	}
+	
+function openBruteCell(name){openNewTab(window.location.href.split(".org")[0]+".org/"+name+"/cell")}
+function openNewTab(url) {
+    // Vérifier si l'URL est définie
+    if (url) {
+        // Ouvrir un nouvel onglet avec l'URL spécifiée
+        window.open(url, '_blank');
+    } else {
+        console.error('URL non spécifiée');
+    }
+}
+function isTextInDOM(text,balise) {
+  // Récupérer tous les éléments de la page
+  var elements = document.querySelectorAll(balise);
+  var found = false
+  // Parcourir tous les éléments et vérifier leur texte
+  elements.forEach(element => {
+    if (element.textContent.includes(text)) {
+      console.log('Élément trouvé :', element.textContent);
+	  found = true
+    }
+  });
+  return found;
+}
+
+function findTextInDOM(text,balise) {
+  // Récupérer tous les éléments de la page
+  var elements = document.querySelectorAll(balise);
+  var elem
+  // Parcourir tous les éléments et vérifier leur texte
+  elements.forEach(element => {
+    if (element.textContent.includes(text)) {
+      console.log('Élément trouvé :', element.textContent);
+	  elem = element
+    }
+  });
+  return elem;
+}
+
+/*
+simulFights({
+	fn,
+	rota1,
+	rota2,//number = boss
+	backups,
+	fight_per_rota,
+	fight_total
+	})
+*/
+
+
+var setInt
+var fightWorker
+
+async function simulFights(arg){
+	
+	fetch(BRUTALISATOR+"generateFights.js")
+	  .then(response => response.text())
+	  .then(function(generateFights){arg.generateFights = generateFights;simulFights_no_fetch(arg);
+})}
+
+
+async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
+,backups,fight_per_rota,fight_total}){
+
+	if(fightWorker)fightWorker.terminate()
+		cl("rota2",rota2)
+	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
+		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = [[bosses["+rota2+"]]];")
+	}
+	else{
+		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = "+JSON.stringify(rota2)+";")
+
+	}
+	
+	generateFights = generateFights.replace("var TEAM1 ="+" []","var TEAM1 = "+JSON.stringify(rota1)+";")
+	
+	if(rota1[0].length+(rota2[0]?rota2[0].length:1)>2){generateFights = generateFights.replace('var CLANWAR'+' = false','var CLANWAR = true'+";")}
+	if(backups){generateFights = generateFights.replace('var BACKUPS'+' = false','var BACKUPS = true'+";")}
+	
+	generateFights = generateFights.replace("var FIGHTS_PER_ROTA"+" = 1","var FIGHTS_PER_ROTA = "+fight_per_rota+";")
+	generateFights = generateFights.replace("var FIGHT_TOTAL"+" = 1","var FIGHT_TOTAL = "+fight_total+";")
+	
+
+	var workerScript = 'var BRANCHE = "'+BRANCHE+'";'+generateFights
+
+	// Créer un Blob contenant le script du worker
+	var blob = new Blob([workerScript], { type: 'application/javascript' });
+
+	// Créer une URL pour le Blob
+	var workerUrl = URL.createObjectURL(blob);
+
+	// Créer le worker à partir de l'URL du Blob
+	fightWorker = new Worker(workerUrl);
+	fightWorker.onmessage=function(e){if(e.data.ended){stopLoading();};fn(e.data.bilan)}
+	clearInterval(setInt);
+	setInt = setInterval(function(){fightWorker.postMessage(5);},333)
+	
+	
+
+	
+	  }
+	
+
+function findFirstParentDiv(element) {
+  let parent = element.parentElement;
+  
+  while (parent) {
+    if (parent.tagName.toLowerCase() === 'div') {
+      return parent;
+    }
+    parent = parent.parentElement;
+  }
+  
+  return null; // Si aucun parent <div> n'est trouvé
+}
+
+function insertDivAfterElement(newDiv,referenceDiv) {
+  if (referenceDiv) {
+
+    // Insérer la nouvelle div juste après la div parent trouvée
+    referenceDiv.insertAdjacentElement('afterend', newDiv);
+  }
+}
+
+function addStyle(styleString) {
+  var style = document.createElement('style');
+  style.textContent = styleString;
+  document.head.append(style);
+}
+
+
+var textBoxCSS
+var baseCSS
+var shurikenDIV
+
+if(typeof(document)!="undefined"){addStyle(`		#shuriken {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index:300000000;
+}
+
+#shuriken-image {
+  animation: organic-rotation 4s infinite;
+}
+
+@keyframes organic-rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(1800deg);
+  }
+}
+
+#shuriken-image {
+  animation-timing-function: cubic-bezier(0.42, 0.2, 0.44, 0.8); /* Courbe personnalisée */
+}
+	`)
+$("#shuriken").remove()
+shurikenDIV = div({0:body,4:["33px","33px","",""],1:"shuriken"})
+div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image"})
+  baseCSS= {	"font-family": "Roboto, Helvetica, Arial, sans-serif",
+    "font-weight": "400",
+    "font-size": "1rem",
+    "line-height": "1.5",
+    "letter-spacing": "0.00938em",
+}
+
+textBoxCSS = {color: "rgb(176, 107, 79)",
+    "box-shadow": "rgb(222, 195, 127) 0px 0px 0px 1px, rgb(246, 238, 144) 0px 0px 1px 4.5px, rgb(114, 82, 84) 0px 0px 0px 6px, rgb(188, 123, 74) 3px 3px 0px 6px",
+    "background-color": "rgb(251, 242, 175)",
+    "border-radius": "5px",
+    margin: "16px 8px",
+padding: "0px"}
+
+}
+function stopLoading(){$(shurikenDIV).css("display","none")}
+
+var BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+BRANCHE+"/";
+
+var applySkillModifiers = (brute, skill) => {
     var updatedBrute = { ...brute };
     // Vitality modifier
     if (skill === 'vitality') {
@@ -1762,6 +2041,2589 @@ var BossName = /*exports.*//*$Enums.*/BossName = {
   GoldClaw: 'GoldClaw',
   EmberFang: 'EmberFang'
 };
+
+var applySpy = (fightData, brute, opponent) => {
+    if (brute.skills.find((skill) => skill.name === 'spy')) {
+        var opponentWeaponsCount = opponent.weapons.length;
+        var bruteWeaponsCount = brute.weapons.length;
+        var weaponsToSwap = Math.min(opponentWeaponsCount, bruteWeaponsCount);
+        if (weaponsToSwap === 0) {
+            return;
+        }
+        // Only swap the amount of weapons the spy has (maxed at opponent's weapons count)
+        var opponentWeaponsToSwap = (0, shuffle)(opponent.weapons)
+            .slice(0, weaponsToSwap);
+        var bruteWeaponsToSwap = (0, shuffle)(brute.weapons)
+            .slice(0, weaponsToSwap);
+        fightData.steps.push({
+            a: StepType.Spy,
+            b: brute.index,
+            t: opponent.index,
+            s: bruteWeaponsToSwap.map((weapon) => WeaponByName[weapon.name]),
+            r: opponentWeaponsToSwap.map((weapon) => WeaponByName[weapon.name]),
+        });
+        // Swap weapons
+        for (var weaponToSwap of bruteWeaponsToSwap) {
+            var index = brute.weapons.findIndex((weapon) => weapon.name === weaponToSwap.name);
+            if (index === -1) {
+                throw new Error('Weapon not found');
+            }
+            brute.weapons.splice(index, 1);
+            opponent.weapons.push(weaponToSwap);
+        }
+        for (var weaponToSwap of opponentWeaponsToSwap) {
+            var index = opponent.weapons.findIndex((weapon) => weapon.name === weaponToSwap.name);
+            if (index === -1) {
+                throw new Error('Weapon not found');
+            }
+            opponent.weapons.splice(index, 1);
+            brute.weapons.push(weaponToSwap);
+        }
+        // Add own weapons to opponent damaged weapons
+        opponent.damagedWeapons.push(...bruteWeaponsToSwap.map((weapon) => weapon.name));
+    }
+};
+var tournamentBackground = {
+    name: '3.png',
+    odds: 0,
+};
+var bossBackground = {
+    name: '4.png',
+    odds: 0,
+};
+var fightBackgrounds = [
+    { name: '1.jpg', odds: 100 },
+    { name: '2.jpg', odds: 2 },
+    tournamentBackground,
+    bossBackground,
+    { name: '5.png', odds: 2 },
+    { name: '6.png', odds: 2 },
+    { name: '7.png', odds: 2 },
+    { name: '8.png', odds: 2 },
+    { name: '9.png', odds: 2 },
+    { name: '10.png', odds: 2 },
+    { name: '11.png', odds: 2 },
+    { name: '12.png', odds: 2 },
+    { name: '13.png', odds: 2 },
+];
+var bear = pets.find((p) => p.name === PetName.bear);
+var panther = pets.find((p) => p.name === PetName.panther);
+var bosses = [
+    {
+        name: BossName.GoldClaw,
+        base: PetName.bear,
+        scale: 2,
+        initiative: -0.5,
+        strength: bear.strength * 10,
+        agility: bear.agility,
+        speed: bear.speed,
+        hp: 100000,
+        counter: bear.counter,
+        combo: bear.combo,
+        block: bear.block,
+        evasion: bear.evasion,
+        accuracy: 0.75,
+        disarm: bear.disarm,
+        damage: bear.damage,
+        reach: 3,
+    },
+    {
+        name: BossName.EmberFang,
+        base: PetName.panther,
+        scale: 3,
+        initiative: -0.5,
+        strength: panther.strength * 2,
+        agility: panther.agility,
+        speed: panther.speed * 10,
+        hp: 50000,
+        counter: panther.counter,
+        combo: panther.combo,
+        block: panther.block,
+        evasion: panther.evasion,
+        accuracy: 0.75,
+        disarm: panther.disarm,
+        damage: panther.damage,
+        reach: 3,
+    },
+];
+var getFighterStat = (fighter, stat, onlyStat) => {
+    // Special case for dexterity as it only exists on weapons
+    if (stat === 'dexterity') {
+        if (onlyStat === 'fighter')
+            return 0;
+        if (fighter.activeWeapon) {
+            var weaponStat = fighter.activeWeapon[stat];
+            // +10% dexterity if `bodybuilder` and using a heavy weapon
+            if (fighter.bodybuilder && fighter.activeWeapon.types.includes(WeaponType.HEAVY)) {
+                return weaponStat + 0.1;
+            }
+            return weaponStat;
+        }
+        return fighter.type === 'brute' ? BASE_FIGHTER_STATS[stat] : 0;
+    }
+    // Special case for tempo as it's either weapon or base
+    if (stat === 'tempo') {
+        if (fighter.activeWeapon) {
+            return fighter.activeWeapon[stat];
+        }
+        return BASE_FIGHTER_STATS[stat];
+    }
+    let total = onlyStat === 'weapon' ? 0 : fighter[stat];
+    if (onlyStat !== 'fighter') {
+        if (fighter.activeWeapon) {
+            total += fighter.activeWeapon[stat];
+        }
+        else {
+            total += fighter.type === 'brute'
+                ? BASE_FIGHTER_STATS[stat]
+                : fighter.type === 'boss'
+                    ? fighter[stat]
+                    : 0;
+        }
+    }
+    return total;
+};
+var resetOthersStats = (stats, excludedFighter, stat) => {
+    for (var [bruteId, bruteStats] of Object.entries(stats)) {
+        if (bruteId !== excludedFighter) {
+            bruteStats[stat] = 0;
+        }
+    }
+};
+var updateStats = (stats, bruteId, stat, value, masterId) => {
+    // Special case for hits, add to otherTeamMembersHits if not master
+    if (stat === 'hits' && masterId) {
+        var master = stats[masterId];
+        if (master) {
+            master.otherTeamMembersHits = (master.otherTeamMembersHits || 0) + value;
+        }
+        return;
+    }
+    var current = stats[bruteId];
+    if (!current)
+        return;
+    if (value === 0) {
+        current[stat] = 0;
+    }
+    else {
+        current[stat] = (current[stat] || 0) + value;
+    }
+};
+var checkAchievements = (stats, achievements) => {
+    for (var [bruteId, stat] of Object.entries(stats)) {
+        var achievement = achievements[bruteId];
+        if (!achievement) {
+            continue;
+        }
+        // Consecutive counters
+        if (stat.consecutiveCounters && stat.consecutiveCounters >= 4) {
+            (0, updateAchievement)(achievements, 'counter4b2b', 1, bruteId);
+            stat.consecutiveCounters = 0;
+        }
+        // Consecutive reversals
+        if (stat.consecutiveReversals && stat.consecutiveReversals >= 4) {
+            (0, updateAchievement)(achievements, 'reversal4b2b', 1, bruteId);
+            stat.consecutiveReversals = 0;
+        }
+        // Consecutive blocks
+        if (stat.consecutiveBlocks && stat.consecutiveBlocks >= 4) {
+            (0, updateAchievement)(achievements, 'block4b2b', 1, bruteId);
+            stat.consecutiveBlocks = 0;
+        }
+        // Consecutive evades
+        if (stat.consecutiveEvades && stat.consecutiveEvades >= 4) {
+            (0, updateAchievement)(achievements, 'evade4b2b', 1, bruteId);
+            stat.consecutiveEvades = 0;
+        }
+        // Consecutive throws
+        if (stat.consecutiveThrows && stat.consecutiveThrows >= 10) {
+            (0, updateAchievement)(achievements, 'throw10b2b', 1, bruteId);
+            stat.consecutiveThrows = 0;
+        }
+    }
+};
+var getOpponents = ({ fightData, fighter, bruteOnly, petOnly, }) => {
+    let opponents = [];
+    // Remove backups not arrived yet and dead fighters
+    opponents = fightData.fighters.filter((f) => !f.arrivesAtInitiative
+        && f.hp > 0
+        && f.team !== fighter.team);
+    // Allow bosses too
+    if (bruteOnly) {
+        opponents = opponents.filter((f) => f.type === 'brute' || f.type === 'boss');
+    }
+    if (petOnly) {
+        opponents = opponents.filter((f) => f.type === 'pet');
+    }
+    return opponents;
+};
+var getOpponents = getOpponents;
+var getRandomOpponent = ({ fightData, fighter, bruteOnly, petOnly, nonTrappedOnly, }) => {
+    let opponents = (0, getOpponents)({
+        fightData,
+        fighter,
+        bruteOnly: bruteOnly || fightData.modifiers.includes(FightModifier.focusOpponent),
+        petOnly,
+    });
+    // Filter out trapped pets
+    opponents = opponents.filter((f) => f.type !== 'pet' || !f.trapped);
+    if (nonTrappedOnly) {
+        // Filter out trapped brutes
+        opponents = opponents.filter((f) => !f.trapped);
+    }
+    if (!opponents.length) {
+        return null;
+    }
+    return (0, randomItem)(opponents);
+};
+var saboteur = (fightData, achievements) => {
+    fightData.fighters.filter((fighter) => fighter.type === 'brute' && !fighter.master).forEach((fighter) => {
+        if (fighter.saboteur) {
+            var opponent = getRandomOpponent({ fightData, fighter, bruteOnly: true });
+            if (opponent && opponent.weapons.length > 0) {
+                var sabotagedWeapon = (0, randomItem)(opponent.weapons);
+                opponent.sabotagedWeapon = sabotagedWeapon;
+                (0, updateAchievement)(achievements, 'saboteur', 1, fighter.id);
+            }
+        }
+    });
+};
+var saboteur = saboteur;
+var orderFighters = (fightData) => {
+    fightData.fighters = fightData.fighters.sort((a, b) => {
+        // Last if hp <= 0
+        if (a.hp <= 0)
+            return 1;
+        if (b.hp <= 0)
+            return -1;
+        // Last if stunned
+        if (a.stunned)
+            return 1;
+        if (b.stunned)
+            return -1;
+        // Random is initiatives are equal
+        if (a.initiative === b.initiative) {
+            return Math.random() > 0.5 ? 1 : -1;
+        }
+        // Lower initiative first
+        return a.initiative - b.initiative;
+    });
+};
+var orderFighters = orderFighters;
+var randomlyGetSuper = (fightData, fighter) => {
+    let supers = fighter.skills.filter((skill) => skill.uses);
+    if (!supers.length)
+        return null;
+    // Filter out tamer if no dead pets
+    if (fightData.fighters.filter((f) => f.type === 'pet' && f.hp <= 0).length === 0) {
+        supers = supers.filter((skill) => skill.name !== SkillName.tamer);
+    }
+    // Filter out thief if opponents have no weapons in hand
+    if ((0, getOpponents)({ fightData, fighter, bruteOnly: true })
+        .filter((f) => f.activeWeapon).length === 0) {
+        supers = supers.filter((skill) => skill.name !== SkillName.thief);
+    }
+    // Filter out tragicPotion if not poisoned or lost less than 50 HP
+    if (!fighter.poisoned && fighter.hp > fighter.maxHp / 2) {
+        supers = supers.filter((skill) => skill.name !== SkillName.tragicPotion);
+    }
+    // Filter out cryOfTheDamned and hypnosis if opponent has no non-trapped pets
+    if ((0, getOpponents)({ fightData, fighter, petOnly: true })
+        .filter((f) => !f.trapped).length === 0) {
+        supers = supers.filter((skill) => skill.name !== SkillName.cryOfTheDamned
+            && skill.name !== SkillName.hypnosis);
+    }
+    // Filter out flashFlood if less than 3 weapons
+    if (fighter.weapons.length < 3) {
+        supers = supers.filter((skill) => skill.name !== SkillName.flashFlood);
+    }
+    // Filter out net if no non-trapped fighters
+    if ((0, getOpponents)({ fightData, fighter }).filter((f) => !f.trapped).length === 0) {
+        supers = supers.filter((skill) => skill.name !== SkillName.net);
+    }
+    // Filter out vampirism if more than 50% hp
+    if (fighter.hp > fighter.maxHp / 2) {
+        supers = supers.filter((skill) => skill.name !== SkillName.vampirism);
+    }
+    // Filter out vampirism if no brute opponent
+    if ((0, getOpponents)({ fightData, fighter, bruteOnly: true }).length === 0) {
+        supers = supers.filter((skill) => skill.name !== SkillName.vampirism);
+    }
+    // Filter out treat if no pets lost hp and not trapped
+    if (fightData.fighters.filter((f) => f.type === 'pet' && f.team === fighter.team && f.hp < f.maxHp && !f.trapped).length === 0) {
+        supers = supers.filter((skill) => skill.name !== SkillName.treat);
+    }
+    if (!supers.length)
+        return null;
+    var NO_SUPER_TOSS = fightData.modifiers.includes(FightModifier.alwaysUseSupers) ? 0 : 10;
+    var randomSuper = (0, randomBetween)(0, supers.reduce((acc, skill) => acc + (skill.toss || 0), -1) + NO_SUPER_TOSS);
+    let toss = 0;
+    for (let i = 0; i < supers.length; i += 1) {
+        toss += supers[i]?.toss || 0;
+        if (randomSuper < toss) {
+            return supers[i];
+        }
+    }
+    return null;
+};
+var randomlyDrawWeapon = (fightData, weapons, forceDraw) => {
+    if (!weapons.length)
+        return null;
+    let totalToss = weapons.reduce((acc, weapon) => acc + (weapon.toss || 0), -1);
+    if (!forceDraw && !fightData.modifiers.includes(FightModifier.drawEveryWeapon)) {
+        totalToss += NO_WEAPON_TOSS;
+    }
+    var randomWeapon = (0, randomBetween)(0, totalToss);
+    let toss = 0;
+    for (let i = 0; i < weapons.length; i += 1) {
+        toss += weapons[i]?.toss || 0;
+        if (randomWeapon < toss) {
+            return weapons[i];
+        }
+    }
+    return null;
+};
+var randomlyDrawWeapon = randomlyDrawWeapon;
+var healFighter = (stats, fighter, amount) => {
+    fighter.hp += amount;
+    // Heal stat
+    updateStats(stats, fighter.id, 'hpHealed', amount);
+};
+var increaseInitiative = (fighter) => {
+    var random = (0, randomBetween)(0, 10);
+    let tempo = getFighterStat(fighter, 'tempo')
+        * fighter.tempo
+        + (random / 100);
+    // Reduce tempo lost if fighter has `bodybuilder` and is using a heavy weapon
+    if (fighter.activeWeapon && fighter.bodybuilder && fighter.activeWeapon.types.includes('heavy')) {
+        tempo *= 0.75;
+    }
+    // Increase tempo lost if fighter has `monk`
+    if (fighter.monk) {
+        tempo *= 2;
+    }
+    fighter.initiative += tempo;
+};
+var fighterArrives = (fightData, fighter) => {
+    var arriveWithWeapon = fightData.modifiers.includes(FightModifier.startWithWeapon);
+    var step = {
+        a: StepType.Arrive,
+        f: fighter.index,
+    };
+    if (arriveWithWeapon) {
+        // Randomly draw a weapon for the fighter
+        var possibleWeapon = (0, randomlyDrawWeapon)(fightData, fighter.weapons, true);
+        if (possibleWeapon) {
+            // Equip weapon
+            fighter.activeWeapon = possibleWeapon;
+            fighter.keepWeaponChance = 0.5;
+            // Remove weapon from possible weapons
+            var weaponIndex = fighter.weapons.findIndex((w) => w.name === possibleWeapon.name);
+            fighter.weapons.splice(weaponIndex, 1);
+            // Add weapon to step
+            step.w = WeaponByName[possibleWeapon.name];
+        }
+    }
+    // Poison fighters (not for bosses)
+    if (fighter.skills.find((skill) => skill.name === SkillName.chef)) {
+        (0, getOpponents)({ fightData, fighter }).forEach((opponent) => {
+            if (opponent.type !== 'boss') {
+                opponent.poisoned = true;
+            }
+        });
+    }
+    fightData.steps.push(step);
+};
+var fighterArrives = fighterArrives;
+var registerHit = (fightData, stats, achievements, fighter, opponents, damage, thrown, sourceName, flashFloodWeapon) => {
+    var bombDamageRangeOnPets = {
+        [PetName.dog1]: [90, 150],
+        [PetName.dog2]: [90, 150],
+        [PetName.dog3]: [90, 150],
+        [PetName.panther]: [40, 80],
+        [PetName.bear]: [15, 30],
+    };
+    var actualDamage = opponents.reduce((acc, opponent) => ({
+        ...acc,
+        [opponent.index]: (sourceName === 'bomb' && opponent.type === 'pet')
+            ? Math.round((((0, randomBetween)(...bombDamageRangeOnPets[opponent.name]) / 100) * opponent.maxHp))
+            : damage,
+    }), {});
+    opponents.forEach((opponent) => {
+        // Remove the net and reset initiative
+        if (opponent.trapped) {
+            opponent.trapped = false;
+            opponent.initiative = fightData.initiative + 0.5;
+        }
+        if (opponent.skills.find((sk) => sk.name === 'resistant')) {
+            // Max damage to 20% of opponent's health if `resistant`
+            actualDamage[opponent.index] = Math.min(damage, Math.floor(opponent.maxHp * 0.2));
+            if ((actualDamage[opponent.index] ?? damage) < damage) {
+                // Add resist step
+                fightData.steps.push({
+                    a: StepType.Resist,
+                    b: opponent.index,
+                });
+            }
+        }
+        var opponentDamage = actualDamage[opponent.index] ?? damage;
+        // Reduce backup leave time instead of reducing hp
+        if (opponent.leavesAtInitiative) {
+            opponent.leavesAtInitiative -= opponentDamage * 0.05;
+        }
+        else {
+            opponent.hp -= opponentDamage;
+        }
+    });
+    if (sourceName === 'bomb') {
+        // Add bomb step
+        fightData.steps.push({
+            a: StepType.Bomb,
+            f: fighter.index,
+            t: opponents.map((opponent) => opponent.index),
+            d: opponents.reduce((acc, curr) => {
+                acc[curr.index] = actualDamage[curr.index] ?? damage;
+                return acc;
+            }, {}),
+        });
+    }
+    else if (sourceName === 'vampirism') {
+        var opponent = opponents[0];
+        if (!opponent) {
+            throw new Error('No opponent found');
+        }
+        // HP healed (100 - 200% of damage)
+        var finalDamage = actualDamage[opponent.index] ?? damage;
+        var heal = Math.floor(Math.min(finalDamage * (1 + Math.random()), fighter.maxHp - fighter.hp));
+        healFighter(stats, fighter, heal);
+        // Add vampirism step
+        fightData.steps.push({
+            a: StepType.Vampirism,
+            b: fighter.index,
+            t: opponent.index,
+            d: actualDamage[opponent.index] ?? damage,
+            h: heal,
+        });
+    }
+    else if (sourceName === 'haste') {
+        var opponent = opponents[0];
+        if (!opponent) {
+            throw new Error('No opponent found');
+        }
+        // Add haste step
+        fightData.steps.push({
+            a: StepType.Haste,
+            b: fighter.index,
+            t: opponent.index,
+            d: actualDamage[opponent.index] ?? damage,
+        });
+    }
+    else {
+        opponents.forEach((opponent) => {
+            var stepType = sourceName === 'hammer'
+                ? StepType.Hammer
+                : sourceName === 'flashFlood'
+                    ? StepType.FlashFlood
+                    : sourceName === 'poison'
+                        ? StepType.Poison
+                        : StepType.Hit;
+            var step = {
+                a: stepType,
+                f: fighter.index,
+                t: opponent.index,
+                w: sourceName
+                    ? (flashFloodWeapon
+                        ? WeaponByName[flashFloodWeapon.name]
+                        : undefined)
+                    : fighter.activeWeapon ? WeaponByName[fighter.activeWeapon.name] : undefined,
+                d: actualDamage[opponent.index] ?? damage,
+            };
+            // Reset consecutive hits
+            if (sourceName !== 'poison') {
+                fighter.hitBy[opponent.index] = 0;
+            }
+            // Remove stun if hit while stunned
+            if (opponent.stunned) {
+                opponent.stunned = false;
+            }
+            if (!thrown && !sourceName && !flashFloodWeapon && opponent.type === 'brute') {
+                // Update consecutive hits
+                opponent.hitBy[fighter.index] = (opponent.hitBy[fighter.index] || 0) + 1;
+                // Stun opponent if 3 hits in a row
+                if (fighter.skills.find((s) => s.name === SkillName.chaining)
+                    && (opponent.hitBy[fighter.index] || 0) === 3) {
+                    step.s = 1;
+                    opponent.stunned = true;
+                    opponent.hitBy[fighter.index] = 0;
+                }
+            }
+            // Add hit step
+            fightData.steps.push(step);
+        });
+    }
+    // 50 Damage achievement
+    var moreThan50 = Object.values(actualDamage).filter((d) => d >= 50).length;
+    if (moreThan50) {
+        (0, updateAchievement)(achievements, 'damage50once', moreThan50, fighter.id);
+    }
+    // 100 Damage achievement
+    var moreThan100 = Object.values(actualDamage).filter((d) => d >= 100).length;
+    if (moreThan100) {
+        (0, updateAchievement)(achievements, 'damage100once', moreThan100, fighter.id);
+    }
+    // Max damage achievement
+    var maxDamage = Math.max(...Object.values(actualDamage));
+    if ((stats[fighter.id]?.maxDamage || 0) < maxDamage) {
+        updateStats(stats, fighter.id, 'maxDamage', maxDamage - (stats[fighter.id]?.maxDamage || 0));
+    }
+    opponents.forEach((opponent) => {
+        // Survive with 1 HP if `survival` skill
+        if (opponent.survival && opponent.hp <= 1) {
+            opponent.survival = false;
+            opponent.hp = 1;
+            // Add survival step
+            fightData.steps.push({
+                a: StepType.Survive,
+                b: opponent.index,
+            });
+        }
+    });
+    // Update stats
+    updateStats(stats, fighter.id, 'hits', 1, fighter.master);
+};
+var activateSuper = (fightData, fighter, skill, stats, achievements) => {
+    // No uses left (should never happen)
+    if (!skill.uses)
+        return false;
+    switch (skill.name) {
+        // Steal opponent's weapon if he has one
+        case SkillName.thief: {
+            // Choose brute opponent
+            var opponent = getRandomOpponent({ fightData, fighter, bruteOnly: true });
+            if (!opponent) {
+                return false;
+            }
+            // Abort if no weapon
+            if (!opponent.activeWeapon)
+                return false;
+            // 20% chance to steal if fighter already has a weapon
+            if (fighter.activeWeapon && (0, randomBetween)(1, 5) !== 1) {
+                return false;
+            }
+            // Remove own weapon
+            if (fighter.activeWeapon) {
+                // Add trash step
+                fightData.steps.push({
+                    a: StepType.Trash,
+                    b: fighter.index,
+                    w: WeaponByName[fighter.activeWeapon.name],
+                });
+                fighter.activeWeapon = null;
+            }
+            // Add steal step
+            fightData.steps.push({
+                a: StepType.Steal,
+                b: fighter.index,
+                w: WeaponByName[opponent.activeWeapon.name],
+                t: opponent.index,
+            });
+            // Set own weapon
+            fighter.activeWeapon = opponent.activeWeapon;
+            // Force keep weapon for the next turn
+            fighter.keepWeaponChance = 1;
+            // Remove opponent's weapon
+            opponent.activeWeapon = null;
+            // Increase opponent initiative
+            opponent.initiative += 0.3 + opponent.tempo;
+            // Update stats
+            updateStats(stats, fighter.id, 'weaponsStolen', 1);
+            break;
+        }
+        case SkillName.fierceBrute: {
+            // Add skill to active skills
+            fighter.activeSkills.push(skill);
+            // Add skill activation step
+            fightData.steps.push({
+                a: StepType.SkillActivate,
+                b: fighter.index,
+                s: SkillByName[skill.name],
+            });
+            break;
+        }
+        case SkillName.tragicPotion: {
+            let hpHealed = Math.floor(fighter.maxHp * (0.25 + Math.random() * 0.25));
+            let poisonHeal = false;
+            // Limit hp to max
+            hpHealed = Math.min(hpHealed, fighter.maxHp - fighter.hp);
+            healFighter(stats, fighter, hpHealed);
+            if (fighter.poisoned) {
+                fighter.poisoned = false;
+                poisonHeal = true;
+            }
+            // Increas own initiative
+            fighter.initiative += 0.15;
+            // Add heal step
+            fightData.steps.push({
+                a: StepType.Heal,
+                b: fighter.index,
+                h: hpHealed,
+                c: poisonHeal ? 1 : 0,
+            });
+            break;
+        }
+        case SkillName.net: {
+            // Target pet first
+            let opponent = getRandomOpponent({
+                fightData, fighter, petOnly: true, nonTrappedOnly: true,
+            });
+            if (!opponent) {
+                // Choose brute opponent if no pet
+                opponent = getRandomOpponent({
+                    fightData, fighter, bruteOnly: true, nonTrappedOnly: true,
+                });
+                if (!opponent) {
+                    return false;
+                }
+            }
+            // Set opponent's trapped status
+            opponent.trapped = true;
+            // Increase opponent initiative
+            opponent.initiative += 1000;
+            // Increase own initiative
+            fighter.initiative += 0.2 * fighter.tempo;
+            // Add trap step
+            fightData.steps.push({
+                a: StepType.Trap,
+                b: fighter.index,
+                t: opponent.index,
+            });
+            break;
+        }
+        case SkillName.bomb: {
+            // Get opponents
+            var opponents = (0, getOpponents)({ fightData, fighter });
+            // Set random bomb damage
+            var damage = 15 + (0, randomBetween)(0, 10);
+            // Hit every opponent
+            registerHit(fightData, stats, achievements, fighter, opponents, damage, true, 'bomb');
+            // Increase own initiative
+            fighter.initiative += 0.5 * fighter.tempo;
+            break;
+        }
+        case SkillName.hammer: {
+            // Only 20% to use the skill if fighter has a weapon
+            if (fighter.activeWeapon) {
+                if ((0, randomBetween)(1, 5) === 1) {
+                    // Add trash step
+                    fightData.steps.push({
+                        a: StepType.Trash,
+                        b: fighter.index,
+                        w: WeaponByName[fighter.activeWeapon.name],
+                    });
+                    fighter.activeWeapon = null;
+                }
+                else {
+                    return false;
+                }
+            }
+            // Choose opponent
+            var opponent = getRandomOpponent({ fightData, fighter, bruteOnly: true });
+            if (!opponent) {
+                return false;
+            }
+            // Add to active skills
+            fighter.activeSkills.push(skill);
+            // Get damage
+            var damage = (0, getDamage)(fighter, opponent);
+            // Add skill activation step
+            fightData.steps.push({
+                a: StepType.SkillActivate,
+                b: fighter.index,
+                s: SkillByName[skill.name],
+            });
+            // Add move step
+            fightData.steps.push({
+                a: StepType.Move,
+                f: fighter.index,
+                t: opponent.index,
+                s: 1,
+            });
+            registerHit(fightData, stats, achievements, fighter, [opponent], damage, false, 'hammer');
+            // Add move back step
+            fightData.steps.push({
+                a: StepType.MoveBack,
+                f: fighter.index,
+            });
+            // Increase own initiative
+            fighter.initiative += 1 * fighter.tempo;
+            // Add skill expire step
+            fightData.steps.push({
+                a: StepType.SkillExpire,
+                b: fighter.index,
+                s: SkillByName[skill.name],
+            });
+            // Remove skill from active skills
+            fighter.activeSkills = fighter.activeSkills.filter((s) => s.name !== skill.name);
+            break;
+        }
+        case SkillName.cryOfTheDamned: {
+            // Get opponent's non trapped pets
+            var opponentPets = (0, getOpponents)({ fightData, fighter, petOnly: true })
+                .filter((f) => !f.trapped);
+            // Abort if no pet
+            if (opponentPets.length === 0)
+                return false;
+            // Keep track of fear steps
+            var fearSteps = [];
+            for (var pet of opponentPets) {
+                // 50% chance to fear the pet
+                if ((0, randomBetween)(0, 1) === 0) {
+                    fearSteps.push({
+                        a: StepType.Leave,
+                        f: pet.index,
+                    });
+                    // Remove pet from fight
+                    fightData.fighters = fightData.fighters
+                        .filter((f) => f.index !== pet.index);
+                }
+            }
+            // Abort if no pet feared
+            if (fearSteps.length === 0)
+                return false;
+            // Add skill activation step
+            fightData.steps.push({
+                a: StepType.SkillActivate,
+                b: fighter.index,
+                s: SkillByName[skill.name],
+            });
+            // Add fear steps
+            fightData.steps = fightData.steps.concat(fearSteps);
+            break;
+        }
+        case SkillName.hypnosis: {
+            // Get opponent's non trapped pets
+            var opponentPets = (0, getOpponents)({ fightData, fighter, petOnly: true })
+                .filter((f) => !f.trapped);
+            // Keep track of hypnotised pets
+            var hypnotisedPets = [];
+            for (var pet of opponentPets) {
+                hypnotisedPets.push(pet.index);
+                // Change pet owner
+                pet.master = fighter.id;
+                pet.team = fighter.team;
+            }
+            // Abort if no pet hypnotised
+            if (hypnotisedPets.length === 0)
+                return false;
+            // Add hypnotise step
+            fightData.steps.push({
+                a: StepType.Hypnotise,
+                b: fighter.index,
+                p: hypnotisedPets,
+            });
+            break;
+        }
+        case SkillName.flashFlood: {
+            // Choose opponent
+            var opponent = getRandomOpponent({ fightData, fighter, bruteOnly: true });
+            if (!opponent) {
+                return false;
+            }
+            // Shuffle weapons
+            var shuffledWeapons = [...fighter.weapons].sort(() => Math.random() - 0.5);
+            // Get 3 weapons
+            var weaponsToThrow = shuffledWeapons.slice(0, fighter.activeWeapon ? 2 : 3);
+            // Remove those weapons from the fighter
+            weaponsToThrow.forEach((w) => {
+                var weaponIndex = fighter.weapons.findIndex((weapon) => weapon.name === w.name);
+                fighter.weapons.splice(weaponIndex, 1);
+            });
+            // Add active weapon as first weapon if any
+            if (fighter.activeWeapon) {
+                weaponsToThrow.unshift(fighter.activeWeapon);
+                fighter.activeWeapon = null;
+            }
+            // Add skill activation step
+            fightData.steps.push({
+                a: StepType.SkillActivate,
+                b: fighter.index,
+                s: SkillByName[skill.name],
+            });
+            // Get damages for each weapon
+            var damages = [];
+            weaponsToThrow.forEach((w) => {
+                var damage = Math.floor((0, getDamage)(fighter, opponent, w) * 1.5);
+                damages.push(damage);
+                registerHit(fightData, stats, achievements, fighter, [opponent], damage, true, 'flashFlood', w);
+            });
+            // Add skill expire step
+            fightData.steps.push({
+                a: StepType.SkillExpire,
+                b: fighter.index,
+                s: SkillByName[skill.name],
+            });
+            // Increase own initiative
+            fighter.initiative += 2 * fighter.tempo;
+            break;
+        }
+        case SkillName.tamer: {
+            // Get non eaten dead pets
+            var deadPets = fightData.fighters.filter((f) => f.type === 'pet' && f.hp <= 0 && !f.eaten);
+            if (deadPets.length === 0)
+                return false;
+            // Abort if less than 20 HP lost
+            if (fighter.hp > fighter.maxHp - 20)
+                return false;
+            // Get random dead pet
+            var pet = (0, randomItem)(deadPets);
+            let healPercentage = 0;
+            switch (pet.name) {
+                case 'dog1':
+                case 'dog2':
+                case 'dog3':
+                    // Heal 20% for a dog
+                    healPercentage = 0.2;
+                    break;
+                case 'panther':
+                    // Heal 30% for a panther
+                    healPercentage = 0.3;
+                    break;
+                case 'bear':
+                    // Heal 50% for a bear
+                    healPercentage = 0.5;
+                    break;
+                default:
+                    return false;
+            }
+            // Don't overheal
+            var heal = Math.min(fighter.maxHp - fighter.hp, Math.floor(fighter.maxHp * healPercentage));
+            // Heal fighter
+            healFighter(stats, fighter, heal);
+            // Increase own initiative
+            fighter.initiative += 0.15;
+            // Set pet as eaten
+            pet.eaten = true;
+            // Add move step
+            fightData.steps.push({
+                a: StepType.Move,
+                f: fighter.index,
+                t: pet.index,
+                s: 1,
+            });
+            // Add eat step
+            fightData.steps.push({
+                a: StepType.Eat,
+                b: fighter.index,
+                t: pet.index,
+                h: heal,
+            });
+            // Add moveBack step
+            fightData.steps.push({
+                a: StepType.MoveBack,
+                f: fighter.index,
+            });
+            break;
+        }
+        case SkillName.vampirism: {
+            // Choose opponent
+            var opponent = getRandomOpponent({ fightData, fighter, bruteOnly: true });
+            if (!opponent) {
+                return false;
+            }
+            // Damage done (25% own missing hp)
+            var damage = Math.floor((fighter.maxHp - fighter.hp) * 0.25);
+            registerHit(fightData, stats, achievements, fighter, [opponent], damage, false, 'vampirism');
+            // Increase own initiative
+            fighter.initiative += 0.3 + fighter.tempo;
+            break;
+        }
+        case SkillName.haste: {
+            // Choose random opponent
+            var opponent = getRandomOpponent({ fightData, fighter });
+            if (!opponent) {
+                return false;
+            }
+            // Damage done (usual + speed)
+            var damage = (0, getDamage)(fighter, opponent) + fighter.speed;
+            registerHit(fightData, stats, achievements, fighter, [opponent], damage, false, 'haste');
+            // Increase own initiative
+            fighter.initiative += 0.3 + fighter.tempo;
+            break;
+        }
+        case SkillName.treat: {
+            // Choose random ally pet
+            var pets = fightData.fighters.filter((f) => f.type === 'pet' && f.team === fighter.team && f.hp > 0);
+            var pet = pets.find((p) => p.hp < p.maxHp && !p.trapped);
+            if (!pet) {
+                return false;
+            }
+            // HP healed (max 50%)
+            var heal = Math.min(Math.floor(pet.maxHp * 0.5), pet.maxHp - pet.hp);
+            pet.hp += heal;
+            // Add move step
+            fightData.steps.push({
+                a: StepType.Move,
+                f: fighter.index,
+                t: pet.index,
+                s: 1,
+            });
+            // Add treat step
+            fightData.steps.push({
+                a: StepType.Treat,
+                b: fighter.index,
+                t: pet.index,
+                h: heal,
+            });
+            // Add moveBack step
+            fightData.steps.push({
+                a: StepType.MoveBack,
+                f: fighter.index,
+            });
+            // Increase own initiative
+            fighter.initiative += 0.3 + fighter.tempo;
+            break;
+        }
+        default:
+            return false;
+    }
+    // Spend one use
+    skill.uses -= 1;
+    // Update stats
+    updateStats(stats, fighter.id, 'skillsUsed', 1);
+    // Remove skill if no uses left
+    if (!skill.uses) {
+        fighter.skills.splice(fighter.skills.findIndex((s) => s.name === skill.name), 1);
+    }
+    return true;
+};
+var counterAttack = (fighter, opponent) => {
+    // No counter attack if opponent is dead
+    if (opponent.hp <= 0)
+        return false;
+    // No counter attack if opponent is trapped
+    if (opponent.trapped)
+        return false;
+    // No counter attack if opponent is stunned
+    if (opponent.stunned)
+        return false;
+    var random = Math.random();
+    var valueToBeat = (opponent.counter * 10
+        + ((opponent.reach + (opponent.activeWeapon?.reach || 0))
+            - (fighter.reach + (fighter.activeWeapon?.reach || 0)))) * 0.1;
+    return random < valueToBeat;
+};
+// Returns true if weapon was sabotaged
+var drawWeapon = (fightData, fighter) => {
+    var bareHandsFirstHit = fightData.modifiers.includes(FightModifier.bareHandsFirstHit);
+    // Don't draw a weapon if the fighter hasn't hit yet
+    if (bareHandsFirstHit && !fighter.bareHandHit) {
+        return false;
+    }
+    var drawEveryWeapon = fightData.modifiers.includes(FightModifier.drawEveryWeapon);
+    // Don't always draw a weapon if the fighter is already holding a weapon
+    if (fighter.activeWeapon
+        && !drawEveryWeapon
+        && (0, randomBetween)(0, fighter.weapons.length * 2) === 0)
+        return false;
+    // Draw a weapon
+    var possibleWeapon = (0, randomlyDrawWeapon)(fightData, fighter.weapons);
+    // Decrease `keepWeaponChance` each turn and abort until true
+    if (!drawEveryWeapon && Math.random() < fighter.keepWeaponChance) {
+        fighter.keepWeaponChance *= 0.5;
+        return false;
+    }
+    // Abort if no weapon drawn
+    if (!possibleWeapon)
+        return false;
+    // Trash old weapon if there is one
+    if (fighter.activeWeapon) {
+        // Add trash step
+        fightData.steps.push({
+            a: StepType.Trash,
+            b: fighter.index,
+            w: WeaponByName[fighter.activeWeapon.name],
+        });
+        // Remove weapon from fighter
+        fighter.activeWeapon = null;
+    }
+    // Equip new weapon
+    fighter.activeWeapon = possibleWeapon;
+    // Set the chance to keep the weapon to 50%
+    fighter.keepWeaponChance = 0.5;
+    // Remove weapon from possible weapons
+    var weaponIndex = fighter.weapons.findIndex((w) => w.name === possibleWeapon.name);
+    fighter.weapons.splice(weaponIndex, 1);
+    // Add equip step
+    fightData.steps.push({
+        a: StepType.Equip,
+        b: fighter.index,
+        w: WeaponByName[possibleWeapon.name],
+    });
+    // Check if weapon was sabotaged
+    if (fighter.sabotagedWeapon?.name === possibleWeapon.name) {
+        // Add saboteur step
+        fightData.steps.push({
+            a: StepType.Saboteur,
+            b: fighter.index,
+            w: WeaponByName[possibleWeapon.name],
+        });
+        // Remove weapon from fighter
+        fighter.activeWeapon = null;
+        fighter.sabotagedWeapon = null;
+        // Increase own initiative
+        fighter.initiative += 1;
+        return true;
+    }
+    return false;
+};
+var block = (fighter, opponent, ease = 1) => {
+    // No block if opponent is dead
+    if (opponent.hp <= 0)
+        return false;
+    // No block if opponent is trapped
+    if (opponent.trapped)
+        return false;
+    // No block if opponent is stunned
+    if (opponent.stunned)
+        return false;
+    // No block for pets and bosses
+    if (opponent.type === 'pet' || opponent.type === 'boss')
+        return false;
+    return Math.random() * ease
+        < (getFighterStat(opponent, 'block')
+            - getFighterStat(fighter, 'accuracy', 'weapon'));
+};
+var evade = (fighter, opponent, difficulty = 1) => {
+    // No evasion if opponent is dead
+    if (opponent.hp <= 0)
+        return false;
+    // No evasion if opponent is trapped
+    if (opponent.trapped)
+        return false;
+    // No evasion if opponent is stunned
+    if (opponent.stunned)
+        return false;
+    // Automatically evade if `balletShoes`
+    if (opponent.balletShoes) {
+        // Disable ballet shoes
+        opponent.balletShoes = false;
+        return true;
+    }
+    // Get agility difference (-40 > diff > 40)
+    var agilityDifference = Math.min(Math.max(-40, (opponent.agility - fighter.agility) * 2), 40);
+    var random = Math.random();
+    return random * difficulty
+        < Math.min((getFighterStat(opponent, 'evasion')
+            + agilityDifference * 0.01
+            - getFighterStat(fighter, 'accuracy', 'fighter')
+            - getFighterStat(fighter, 'dexterity')), 0.9);
+};
+var breakShield = (fighter, opponent) => {
+    // Can't break someone's shield if they are not holding a shield >.>
+    if (!opponent.shield)
+        return false;
+    return getFighterStat(fighter, 'disarm') * 100 >= (0, randomBetween)(1, 300);
+};
+var disarm = (fighter, opponent, thrown) => {
+    // Can't disarm someone if they are not holding a weapon >.>
+    if (!opponent.activeWeapon)
+        return false;
+    return getFighterStat(fighter, 'disarm', thrown ? 'weapon' : undefined) * 100 >= (0, randomBetween)(1, 100);
+};
+var disarmAttacker = (fighter, opponent) => {
+    // Can't disarm someone if they are not holding a weapon >.>
+    if (!fighter.activeWeapon)
+        return false;
+    // Only disarm if opponent has `ironHead`
+    if (!opponent.ironHead)
+        return false;
+    // 50% chance to disarm the attacker
+    return Math.random() < 0.5;
+};
+var reversal = (opponent, blocked) => {
+    // No reversal if stunned
+    if (opponent.stunned)
+        return false;
+    var random = Math.random();
+    let reversalStat = getFighterStat(opponent, 'reversal');
+    // Special case when blocking with counterAttack (+90%)
+    if (blocked && opponent.skills.find((sk) => sk.name === SkillName.counterAttack)) {
+        reversalStat += 0.9;
+    }
+    return random < reversalStat;
+};
+var deflectProjectile = (fighter) => {
+    // No deflect if dead
+    if (fighter.hp <= 0)
+        return false;
+    // No deflect if trapped
+    if (fighter.trapped)
+        return false;
+    // No deflect if stunned
+    if (fighter.stunned)
+        return false;
+    var random = Math.random();
+    return random < getFighterStat(fighter, 'deflect');
+};
+var attack = (fightData, fighter, opponent, stats, achievements, isCounter = false) => {
+    // Abort if fighter is dead
+    if (fighter.hp <= 0)
+        return { blocked: false };
+    // Get damage
+    let damage = (0, getDamage)(fighter, opponent);
+    var blocked = block(fighter, opponent);
+    var evaded = evade(fighter, opponent);
+    var brokeShield = breakShield(fighter, opponent);
+    // Prepare attempt step
+    var attemptStep = {
+        a: StepType.AttemptHit,
+        f: fighter.index,
+        t: opponent.index,
+        w: fighter.activeWeapon ? WeaponByName[fighter.activeWeapon.name] : undefined,
+    };
+    // Check if opponent evaded
+    if (evaded) {
+        // Add attempt step as is
+        fightData.steps.push(attemptStep);
+        damage = 0;
+        // Add evade step
+        fightData.steps.push({
+            a: StepType.Evade,
+            f: opponent.index,
+        });
+        // Update evasion stat
+        updateStats(stats, opponent.id, 'evades', 1);
+        updateStats(stats, opponent.id, 'consecutiveEvades', 1);
+        checkAchievements(stats, achievements);
+    }
+    else {
+        // Reset evasion stat
+        updateStats(stats, opponent.id, 'consecutiveEvades', 0);
+        // Check if the opponent shield broke
+        if (brokeShield) {
+            // Update disarm stat
+            updateStats(stats, fighter.id, 'disarms', 1);
+            // Add attempt step with shield break
+            attemptStep.b = 1;
+            fightData.steps.push(attemptStep);
+            // Remove shield from opponent
+            opponent.shield = false;
+            opponent.block -= SHIELD_BLOCK_ODDS;
+        }
+        else {
+            // Add attempt step as is
+            fightData.steps.push(attemptStep);
+        }
+        // Check if opponent blocked
+        if (blocked) {
+            damage = 0;
+            // Add block step
+            fightData.steps.push({
+                a: StepType.Block,
+                f: opponent.index,
+            });
+            // Update block stat
+            updateStats(stats, opponent.id, 'blocks', 1);
+            updateStats(stats, opponent.id, 'consecutiveBlocks', 1);
+            checkAchievements(stats, achievements);
+        }
+        else {
+            // Reset block stat
+            updateStats(stats, opponent.id, 'consecutiveBlocks', 0);
+        }
+    }
+    // Check if the fighter sabotages an opponent's weapon
+    if (damage && fighter.sabotage) {
+        // 90% chance to sabotage
+        if (opponent.weapons.length && Math.random() < 0.9) {
+            // Remove a random weapon
+            var weapon = opponent.weapons.splice((0, randomBetween)(0, opponent.weapons.length - 1), 1)[0];
+            if (!weapon) {
+                throw new Error('No weapon found');
+            }
+            // Add sabotage step
+            fightData.steps.push({
+                a: StepType.Sabotage,
+                f: fighter.index,
+                t: opponent.index,
+                w: WeaponByName[weapon.name],
+            });
+        }
+    }
+    // Check if the fighter disarms the opponent
+    if (damage && disarm(fighter, opponent)) {
+        if (opponent.activeWeapon) {
+            // Add disarm step
+            fightData.steps.push({
+                a: StepType.Disarm,
+                f: fighter.index,
+                t: opponent.index,
+                w: WeaponByName[opponent.activeWeapon.name],
+            });
+            // Remove weapon from opponent
+            opponent.activeWeapon = null;
+            // Update disarm stat
+            updateStats(stats, fighter.id, 'disarms', 1);
+        }
+    }
+    // Register hit if damage was done
+    if (damage) {
+        registerHit(fightData, stats, achievements, fighter, [opponent], damage);
+        // Register first bare hands hit
+        if (!fighter.activeWeapon && !fighter.bareHandHit) {
+            fighter.bareHandHit = true;
+        }
+    }
+    // Check if the fighter gets disarmed
+    if (damage && disarmAttacker(fighter, opponent)) {
+        if (fighter.activeWeapon) {
+            // Add disarm step
+            fightData.steps.push({
+                a: StepType.Disarm,
+                f: opponent.index,
+                t: fighter.index,
+                w: WeaponByName[fighter.activeWeapon.name],
+            });
+            // Remove weapon from fighter
+            fighter.activeWeapon = null;
+            // Update disarm stat
+            updateStats(stats, opponent.id, 'disarms', 1);
+        }
+    }
+    // Randomly trigger another attack if the fighter has `determination`
+    if (!isCounter && !damage && fighter.determination && Math.random() < 0.7) {
+        fighter.retryAttack = true;
+    }
+    var reversed = reversal(opponent, blocked);
+    return {
+        blocked: !evaded && blocked,
+        reversed: !evaded && reversed,
+    };
+};
+var checkDeaths = (fightData, stats) => {
+    for (var fighter of fightData.fighters) {
+        // Only add death step if fighter is dead and hasn't died yet
+        if (fighter.hp <= 0 && fightData.steps.filter((step) => step.a === StepType.Death
+            && step.f === fighter.index).length === 0) {
+            // Add death step
+            fightData.steps.push({
+                a: StepType.Death,
+                f: fighter.index,
+            });
+            // Update pet kills stat
+            if (fighter.type === 'pet') {
+                var { master } = fighter;
+                if (!master) {
+                    throw new Error('Pet without master');
+                }
+                var opponents = (0, getOpponents)({ fightData, fighter, bruteOnly: true });
+                opponents.forEach((opponent) => {
+                    updateStats(stats, opponent.id, 'petsKilled', 1);
+                });
+            }
+            // Set loser if team has no brutes or bosses alive
+            if (!fightData.loser && fightData.fighters.filter((f) => f.team === fighter.team
+                && !f.master
+                && f.hp > 0).length === 0) {
+                fightData.loser = fighter.id;
+            }
+        }
+    }
+};
+var checkDeaths = checkDeaths;
+var startAttack = (fightData, stats, achievements, fighter, opponent, isCounter) => {
+    // Keep track of initial fighter HP
+    var initialFighterHp = fighter.hp;
+    // Was opponent trapped ?
+    let opponentWasTrapped = opponent.trapped;
+    var attackResult = {
+        blocked: false,
+        reversed: false,
+    };
+    // Trigger fighter attack
+    var { blocked, reversed, } = attack(fightData, fighter, opponent, stats, achievements, isCounter);
+    // Keep track of attack status
+    if (blocked)
+        attackResult.blocked = true;
+    if (reversed)
+        attackResult.reversed = true;
+    // Keep track of attacks
+    let attacksCount = 1;
+    // Get combo chances
+    let combo = getFighterStat(fighter, 'combo') + (fighter.agility * 0.01);
+    // Repeat attack only if not countering
+    if (!isCounter) {
+        let random = Math.random();
+        while (!attackResult.reversed && (random < combo || fighter.retryAttack)) {
+            // Reset retry attack flag
+            fighter.retryAttack = false;
+            // Stop the combo if the fighter took a hit
+            if (fighter.hp < initialFighterHp) {
+                break;
+            }
+            // Decrease combo chances
+            combo *= 0.5;
+            // Trigger fighter attack
+            var { blocked: comboBlocked, reversed: comboReversed, } = attack(fightData, fighter, opponent, stats, achievements);
+            attacksCount++;
+            // Keep track of attack status
+            if (comboBlocked)
+                attackResult.blocked = true;
+            if (comboReversed)
+                attackResult.reversed = true;
+            // Opponent cannot be trapped starting from the second attack
+            opponentWasTrapped = false;
+            random = Math.random();
+        }
+        // Check if the opponent reverses the attack
+        if (!opponentWasTrapped && attackResult.reversed) {
+            // Update reversal stat
+            updateStats(stats, opponent.id, 'consecutiveReversals', 1);
+            checkAchievements(stats, achievements);
+            // Check if the opponent has less reach than the fighter, and move them closer
+            var opponentReach = opponent.activeWeapon?.reach ?? 0;
+            var fighterReach = fighter.activeWeapon?.reach ?? 0;
+            if (opponentReach < fighterReach) {
+                // Add move step
+                fightData.steps.push({
+                    a: StepType.Move,
+                    f: opponent.index,
+                    t: fighter.index,
+                    r: 1,
+                });
+            }
+            // Trigger fighter attack
+            attack(fightData, opponent, fighter, stats, achievements);
+        }
+        else {
+            // Reset reversal stat
+            updateStats(stats, opponent.id, 'consecutiveReversals', 0);
+        }
+        // Achievement for combos
+        if (attacksCount === 3) {
+            (0, updateAchievement)(achievements, 'combo3', 1, fighter.id);
+        }
+        else if (attacksCount === 4) {
+            (0, updateAchievement)(achievements, 'combo4', 1, fighter.id);
+        }
+        else if (attacksCount >= 5) {
+            (0, updateAchievement)(achievements, 'combo5', 1, fighter.id);
+        }
+    }
+    // Reset retry attack flag
+    fighter.retryAttack = false;
+    // Check if a fighter is dead
+    (0, checkDeaths)(fightData, stats);
+};
+var playFighterTurn = (fightData, stats, achievements) => {
+    var fighter = fightData.fighters[0];
+    if (!fighter) {
+        throw new Error('No fighter found');
+    }
+    // Reset throw counter
+    resetOthersStats(stats, fighter.id, 'consecutiveThrows');
+    // Check if backup should leave
+    if (fighter.leavesAtInitiative && fighter.leavesAtInitiative <= fightData.initiative) {
+        // Add backup leave step
+        fightData.steps.push({
+            a: StepType.Leave,
+            f: fighter.index,
+        });
+        fightData.fighters.shift();
+        return;
+    }
+    // Check if backup should arrive
+    if (fighter.arrivesAtInitiative) {
+        fighter.arrivesAtInitiative = undefined;
+        // Add backup arrive step
+        (0, fighterArrives)(fightData, fighter);
+    }
+    // Super activation
+    var possibleSuper = randomlyGetSuper(fightData, fighter);
+    if (possibleSuper) {
+        // End turn if super activated
+        if (activateSuper(fightData, fighter, possibleSuper, stats, achievements)) {
+            return;
+        }
+    }
+    // Draw weapon
+    var sabotaged = drawWeapon(fightData, fighter);
+    // End turn if weapon was sabotaged
+    if (sabotaged) {
+        return;
+    }
+    // Get attack type (more chances to throw a weapon the less damage it does)
+    let attackType = fighter.activeWeapon?.types.includes('thrown')
+        ? 'thrown'
+        : fighter.activeWeapon
+            ? fighter.skills.find((s) => s.name === 'hideaway')
+                // 50% chance to throw a weapon if the fighter has `hideaway`
+                ? (0, randomBetween)(0, 1) === 0
+                    ? 'thrown'
+                    : 'melee'
+                // 1/28 chance to throw a weapon otherwise
+                : (0, randomBetween)(0, 27) === 0
+                    ? 'thrown' : 'melee'
+            : 'melee';
+    if (attackType === 'thrown' && fightData.modifiers.includes(FightModifier.noThrows)) {
+        attackType = 'melee';
+    }
+    // Get opponent
+    var opponent = getRandomOpponent({ fightData, fighter });
+    if (!opponent) {
+        return;
+    }
+    // Melee attack
+    if (attackType === 'melee') {
+        var countered = !opponent.trapped && counterAttack(fighter, opponent);
+        // Add move step
+        fightData.steps.push({
+            a: StepType.Move,
+            f: fighter.index,
+            t: opponent.index,
+            c: countered ? 1 : 0,
+        });
+        // Check if opponent is not trapped and countered
+        if (countered) {
+            // Update counter stat
+            updateStats(stats, opponent.id, 'counters', 1);
+            updateStats(stats, fighter.id, 'countersTriggered', 1);
+            updateStats(stats, opponent.id, 'consecutiveCounters', 1);
+            checkAchievements(stats, achievements);
+            // Add counter step
+            fightData.steps.push({
+                a: StepType.Counter,
+                f: opponent.index,
+                t: fighter.index,
+            });
+            // Opponent attacks fighter
+            startAttack(fightData, stats, achievements, opponent, fighter, true);
+        }
+        else {
+            // Reset counter stat
+            updateStats(stats, opponent.id, 'consecutiveCounters', 0);
+            // Fighter attacks opponent
+            startAttack(fightData, stats, achievements, fighter, opponent);
+        }
+        // Check if fighter is not dead
+        if (fighter.hp > 0) {
+            // Add moveBack step
+            fightData.steps.push({
+                a: StepType.MoveBack,
+                f: fighter.index,
+            });
+        }
+    }
+    else {
+        // Throw attack
+        if (!fighter.activeWeapon) {
+            throw new Error('Trying to throw a weapon but no weapon is active');
+        }
+        // Keep weapon if it's a thrown weapon or the fighter has `hideaway`
+        var keepWeapon = fighter.activeWeapon.types.includes('thrown') || !!fighter.skills.find((s) => s.name === 'hideaway');
+        let firstThrow = true;
+        // Get combo chances
+        let combo = getFighterStat(fighter, 'combo') + (fighter.agility * 0.01);
+        let random = Math.random();
+        while (firstThrow || (keepWeapon && random < combo)) {
+            if (!fighter.activeWeapon) {
+                break;
+            }
+            // Check if fighter is not dead (hit by a deflected weapond for example)
+            if (fighter.hp <= 0) {
+                break;
+            }
+            var thrownWeapon = fighter.activeWeapon;
+            let deflected = null;
+            let currentFighter = fighter;
+            let currentOpponent = opponent;
+            let timesDeflected = 0;
+            while (deflected === null || deflected) {
+                // Add throw step
+                fightData.steps.push({
+                    a: StepType.Throw,
+                    f: currentFighter.index,
+                    t: currentOpponent.index,
+                    w: WeaponByName[thrownWeapon.name],
+                    k: keepWeapon ? 1 : 0,
+                    r: deflected ? 1 : 0,
+                });
+                deflected = deflectProjectile(currentOpponent);
+                let damage = 0;
+                // Get damage
+                if (!deflected) {
+                    damage = (0, getDamage)(currentFighter, currentOpponent, thrownWeapon);
+                    // Increase damage by 50% for each deflection
+                    damage = Math.floor(damage * (1.5 ** timesDeflected));
+                }
+                // Update consecutive throw stat
+                updateStats(stats, currentFighter.id, 'consecutiveThrows', 1);
+                checkAchievements(stats, achievements);
+                // Check if opponent blocked (harder than melee)
+                if (!deflected && block(currentFighter, currentOpponent, 2)) {
+                    damage = 0;
+                    // Add block step
+                    fightData.steps.push({
+                        a: StepType.Block,
+                        f: currentOpponent.index,
+                    });
+                    // Update block stat
+                    updateStats(stats, currentOpponent.id, 'blocks', 1);
+                    updateStats(stats, currentOpponent.id, 'consecutiveBlocks', 1);
+                    checkAchievements(stats, achievements);
+                }
+                else {
+                    // Reset block stat
+                    updateStats(stats, currentOpponent.id, 'consecutiveBlocks', 0);
+                }
+                // Check if opponent evaded (harder than melee)
+                if (damage && evade(currentFighter, currentOpponent, 2)) {
+                    damage = 0;
+                    // Add evade step
+                    fightData.steps.push({
+                        a: StepType.Evade,
+                        f: currentOpponent.index,
+                    });
+                    // Update evade stat
+                    updateStats(stats, currentOpponent.id, 'consecutiveEvades', 1);
+                    checkAchievements(stats, achievements);
+                }
+                else {
+                    // Reset evade stat
+                    updateStats(stats, currentOpponent.id, 'consecutiveEvades', 0);
+                }
+                // Register hit if damage was done
+                if (damage) {
+                    registerHit(fightData, stats, achievements, currentFighter, [currentOpponent], damage, true);
+                    // Disarm
+                    if (disarm(currentFighter, currentOpponent, true)) {
+                        if (currentOpponent.activeWeapon) {
+                            // Add disarm step
+                            fightData.steps.push({
+                                a: StepType.Disarm,
+                                f: currentFighter.index,
+                                t: currentOpponent.index,
+                                w: WeaponByName[currentOpponent.activeWeapon.name],
+                            });
+                            // Remove weapon from opponent
+                            currentOpponent.activeWeapon = null;
+                            // Update disarm stat
+                            updateStats(stats, currentFighter.id, 'disarms', 1);
+                        }
+                    }
+                }
+                // Swap fighters if the weapon was returned
+                if (deflected) {
+                    [currentFighter, currentOpponent] = [currentOpponent, currentFighter];
+                    timesDeflected++;
+                }
+            }
+            // Remove fighter weapon
+            if (!keepWeapon) {
+                fighter.activeWeapon = null;
+            }
+            firstThrow = false;
+            combo *= 0.5;
+            random = Math.random();
+        }
+        // Check if a fighter is dead
+        (0, checkDeaths)(fightData, stats);
+    }
+    // Check if fighter is poisoned
+    if (!fightData.loser && fighter.hp > 0 && fighter.poisoned) {
+        // Get poison damage
+        var poisonDamage = Math.ceil(fighter.maxHp / 50);
+        // Get poisoner
+        var poisoner = (0, getOpponents)({ fightData, fighter, bruteOnly: true })
+            .find((f) => f.skills.find((s) => s.name === SkillName.chef))
+            || getRandomOpponent({ fightData, fighter, bruteOnly: true });
+        if (poisoner) {
+            // Register the hit
+            registerHit(fightData, stats, achievements, poisoner, [fighter], poisonDamage, false, 'poison');
+        }
+    }
+    increaseInitiative(fighter);
+    // Remove active skills
+    fighter.activeSkills.forEach((skill) => {
+        // Add skill expire step
+        fightData.steps.push({
+            a: StepType.SkillExpire,
+            b: fighter.index,
+            s: SkillByName[skill.name],
+        });
+    });
+    fighter.activeSkills = [];
+};
+var playFighterTurn = playFighterTurn;
+var generateFight = async ({ prisma, team1, team2, modifiers, backups, achievements, tournament, clanId, clanWar, }) => {
+    if (team1.brutes?.some((brute) => team2.brutes?.some((b) => b.id === brute.id))) {
+        throw new ExpectedError('Attempted to created a fight between the same brutes');
+    }
+    var background = (team1.bosses?.length || team2.bosses?.length)
+        ? bossBackground
+        : tournament
+            ? tournamentBackground
+            : (0, weightedRandom)(fightBackgrounds);
+    // Achievements
+    var achievementsStore = {};
+    // Stats
+    var stats = {};
+    team1.brutes?.concat(team2.brutes ?? []).forEach((brute) => {
+        achievementsStore[brute.id] = {
+            userId: brute.userId,
+            achievements: {},
+        };
+        stats[brute.id] = {
+            userId: brute.userId,
+        };
+    });
+    // Get brute backups
+    var team1Backups = [];
+    var team2Backups = [];
+    if (backups) {
+        var brute1 = team1.brutes?.[0];
+        var brute2 = team2.brutes?.[0];
+        if (!brute1) {
+            throw new Error('No brute 1');
+        }
+        var brute1Backups = await prisma.brute.findMany({
+            where: {
+                skills: { has: 'backup' },
+                level: { lt: brute1.level },
+                userId: brute1.userId,
+                deletedAt: null,
+            },
+        });
+        if (brute1Backups.length) {
+            team1Backups.push((0, randomItem)(brute1Backups));
+        }
+        if (brute2) {
+            var brute2Backups = await prisma.brute.findMany({
+                where: {
+                    skills: { has: 'backup' },
+                    level: { lt: brute2.level },
+                    userId: brute2.userId,
+                    deletedAt: null,
+                },
+            });
+            if (brute2Backups.length) {
+                team2Backups.push((0, randomItem)(brute2Backups));
+            }
+        }
+    }
+    // Global fight data
+    var fightDataFighters = await (0, getFighters)({
+        prisma,
+        team1: { brutes: team1.brutes ?? [], backups: team1Backups, bosses: team1.bosses ?? [] },
+        team2: { brutes: team2.brutes ?? [], backups: team2Backups, bosses: team2.bosses ?? [] },
+        modifiers,
+        clanFight: clanWar,
+    });
+    var fightData = {
+        modifiers,
+        fighters: fightDataFighters,
+        initialFighters: JSON.parse(JSON.stringify(fightDataFighters)),
+        steps: [],
+        initiative: 0,
+        winner: null,
+        loser: null,
+    };
+    // Add arrive step for all fighters
+    fightData.fighters.forEach((fighter) => {
+        // Ignore backups
+        if (fighter.type === 'brute' && fighter.master) {
+            return;
+        }
+        (0, fighterArrives)(fightData, fighter);
+    });
+    // Add spy steps (only 1v1)
+    if (team1.brutes?.length === 1 && team2.brutes?.length === 1) {
+        var leftFighter = fightData.fighters.find((fighter) => fighter.id === team1.brutes?.[0]?.id);
+        var rightFighter = fightData.fighters.find((fighter) => fighter.id === team2.brutes?.[0]?.id);
+        if (!leftFighter || !rightFighter) {
+            throw new Error('Fighter not found');
+        }
+        (0, applySpy)(fightData, leftFighter, rightFighter);
+        (0, applySpy)(fightData, rightFighter, leftFighter);
+    }
+    // Pre-fight saboteur
+    (0, saboteur)(fightData, achievementsStore);
+    let turn = 0;
+    // Fight loop
+    while (!fightData.loser && turn < 2000) {
+        // Order fighters by initiative (random if equal)
+        (0, orderFighters)(fightData);
+        var firstFighter = fightData.fighters[0];
+        if (!firstFighter) {
+            // No fighters left
+            break;
+        }
+        // Set current initiative to first fighter
+        fightData.initiative = firstFighter.initiative;
+        // Poison fighters if turn > 1000
+        if (turn > 1000) {
+            fightData.fighters.forEach((fighter) => {
+                fighter.poisoned = true;
+            });
+        }
+        // Play fighter turn
+        (0, playFighterTurn)(fightData, stats, achievementsStore);
+        // Check deaths
+        (0, checkDeaths)(fightData, stats);
+        turn += 1;
+    }
+    if (!fightData.loser) {
+        throw new Error('Fight not finished');
+    }
+    // Get loser
+    var loser = fightData.fighters.find((fighter) => fighter.id === fightData.loser);
+    if (!loser) {
+        throw new Error('No loser found');
+    }
+    // Get winner
+    var winner = loser.team === 'L'
+        ? fightData.fighters.find((fighter) => fighter.team === 'R' && (fighter.type === 'boss' || fighter.id === team2.brutes?.[0]?.id))
+        : fightData.fighters.find((fighter) => fighter.team === 'L' && (fighter.type === 'boss' || fighter.id === team1.brutes?.[0]?.id));
+    if (!winner) {
+        throw new Error('No winner found');
+    }
+    // Set fight winner and loser
+    fightData.winner = winner.id;
+    // Add end step
+    fightData.steps.push({
+        a: StepType.End,
+        w: winner.index,
+        l: loser.index,
+    });
+    // Reduce the size of the fighters data
+    var fighters = fightData.initialFighters.map((fighter) => ({
+        id: fighter.id,
+        index: fighter.index,
+        team: fighter.team,
+        name: fighter.name,
+        gender: fighter.gender,
+        body: fighter.body,
+        colors: fighter.colors,
+        rank: fighter.rank,
+        level: fighter.level,
+        agility: fighter.agility,
+        strength: fighter.strength,
+        speed: fighter.speed,
+        type: fighter.type,
+        master: fighter.master,
+        maxHp: fighter.maxHp,
+        hp: fighter.hp,
+        weapons: fighter.weapons.map((weapon) => WeaponByName[weapon.name]),
+        skills: fighter.skills.map((skill) => SkillByName[skill.name]),
+        shield: fighter.shield,
+    }));
+    var brute1 = team1.brutes?.[0];
+    var brute2 = team2.brutes?.[0];
+    if (!brute1) {
+        throw new Error('No brute 1');
+    }
+    var result = {
+        data: {
+            brute1: { connect: { id: brute1.id } },
+            winner: winner.name,
+            loser: loser.name,
+            steps: JSON.stringify(fightData.steps),
+            fighters: JSON.stringify(fighters),
+            background: background.name,
+        },
+    };
+    if (brute2) {
+        result.data.brute2 = { connect: { id: brute2.id } };
+    }
+    if (team1.bosses?.length || team2.bosses?.length) {
+        // Update clan limit and boss if boss slain
+        var bossFighter = fightData.fighters.find((fighter) => fighter.type === 'boss');
+        if (bossFighter && bossFighter.hp <= 0) {
+            var clan = await prisma.clan.findUnique({
+                where: { id: clanId },
+                select: {
+                    limit: true,
+                    brutes: {
+                        select: {
+                            id: true,
+                            userId: true,
+                        },
+                    },
+                    bossDamages: {
+                        select: {
+                            brute: {
+                                select: {
+                                    id: true,
+                                    userId: true,
+                                },
+                            },
+                        },
+                    },
+                },
+            });
+            if (!clan) {
+                throw new Error('Clan not found');
+            }
+            // Combine all bruteIds
+            var bruteIds = new Set(clan.brutes.map((brute) => brute.id));
+            clan.bossDamages.forEach((damage) => {
+                bruteIds.add(damage.brute.id);
+            });
+            // Get brutes that already have a BossTicket
+            var brutesWithTicket = await prisma.inventoryItem.findMany({
+                where: {
+                    bruteId: { in: Array.from(bruteIds) },
+                    type: InventoryItemType.bossTicket,
+                },
+                select: {
+                    bruteId: true,
+                },
+            });
+            // Add 1x BossTicket to those brutes
+            await prisma.inventoryItem.updateMany({
+                where: {
+                    bruteId: { in: brutesWithTicket.map((brute) => brute.bruteId ?? '') },
+                    type: InventoryItemType.bossTicket,
+                },
+                data: {
+                    count: { increment: 1 },
+                },
+            });
+            // Get brutes that don't have a BossTicket
+            var brutesWithoutTicket = Array.from(bruteIds)
+                .filter((bruteId) => !brutesWithTicket.find((brute) => brute.bruteId === bruteId));
+            // Add 1x BossTicket to those brutes
+            await prisma.inventoryItem.createMany({
+                data: brutesWithoutTicket.map((bruteId) => ({
+                    bruteId,
+                    type: InventoryItemType.bossTicket,
+                    count: 1,
+                })),
+            });
+            // Update clan
+            await prisma.clan.update({
+                where: { id: clanId },
+                data: {
+                    // Set new boss
+                    boss: (0, randomItem)(bosses).name,
+                    damageOnBoss: 0,
+                    // Increase clan limit
+                    limit: Math.min(CLAN_SIZE_LIMIT, clan.limit + 5),
+                    // +1000 points
+                    points: { increment: 1000 },
+                    // Reset boss damages
+                    bossDamages: {
+                        deleteMany: {},
+                    },
+                },
+            });
+            // Give gold to users
+            var userIds = new Set(clan.brutes.map((brute) => brute.userId || ''));
+            clan.bossDamages.forEach((damage) => {
+                userIds.add(damage.brute.userId || '');
+            });
+            var goldGains = Math.floor(BOSS_GOLD_REWARD / userIds.size);
+            await prisma.user.updateMany({
+                where: { id: { in: Array.from(userIds) } },
+                data: {
+                    gold: { increment: goldGains },
+                },
+            });
+            // Add log
+            await prisma.log.createMany({
+                data: Array.from(bruteIds).map((bruteId) => ({
+                    type: LogType.bossDefeat,
+                    gold: goldGains,
+                    currentBruteId: bruteId,
+                })),
+            });
+            result.boss = {
+                xp: 0,
+                gold: goldGains,
+            };
+        }
+        else {
+            // Update damage on boss + store it
+            var initialBoss = fightData.initialFighters.find((fighter) => fighter.type === 'boss');
+            var finalBoss = fightData.fighters.find((fighter) => fighter.type === 'boss');
+            if (!initialBoss || !finalBoss) {
+                throw new Error('Boss not found');
+            }
+            if (!clanId) {
+                throw new Error('Clan ID not found');
+            }
+            var damage = initialBoss.hp - finalBoss.hp;
+            await prisma.clan.update({
+                where: { id: clanId },
+                data: {
+                    damageOnBoss: { increment: damage },
+                    bossDamages: {
+                        upsert: {
+                            where: {
+                                bruteId_clanId: {
+                                    bruteId: winner.type === 'brute' ? winner.id : loser.id,
+                                    clanId,
+                                },
+                            },
+                            update: { damage: { increment: damage } },
+                            create: {
+                                damage,
+                                bruteId: winner.type === 'brute' ? winner.id : loser.id,
+                            },
+                        },
+                    },
+                },
+            });
+        }
+    }
+    // Add achievements from stats
+    (0, handleStats)(fightData, stats, achievementsStore, tournament);
+    // Update achievements
+    if (achievements) {
+        await (0, updateAchievements)(prisma, achievementsStore, !!tournament);
+    }
+    return result;
+};var getDamage = (fighter, opponent, thrown) => {
+    var base = thrown
+        ? thrown.damage
+        : (fighter.activeWeapon?.damage || fighter.baseDamage);
+    let skillsMultiplier = 1;
+    // Using Piledriver ?
+    var piledriver = fighter.activeSkills.find((sk) => sk.name === 'hammer');
+    // +50% damage for `weaponsMaster` on sharp weapons
+    if (fighter.activeWeapon?.types.includes('sharp') && fighter.skills.find((sk) => sk.name === 'weaponsMaster') && !thrown) {
+        skillsMultiplier += 0.5;
+    }
+    if (!piledriver) {
+        // +100% damage for `martialArts` without a weapon or with a mug
+        if ((!fighter.activeWeapon || fighter.activeWeapon.name === 'mug') && fighter.skills.find((sk) => sk.name === 'martialArts') && !thrown) {
+            skillsMultiplier += 1;
+        }
+    }
+    // -30% damage if opponent has `leadSkeleton` and weapon is blunt
+    if (opponent.skills.find((sk) => sk.name === 'leadSkeleton') && fighter.activeWeapon?.types.includes('blunt') && !thrown) {
+        skillsMultiplier -= 0.3;
+    }
+    // x2 damage for if skill `fierceBrute` is active
+    if (fighter.activeSkills.find((sk) => sk.name === 'fierceBrute')) {
+        skillsMultiplier *= 2;
+    }
+    // x4 damage for `piledriver`
+    if (piledriver) {
+        skillsMultiplier *= 4;
+    }
+    let damage = 0;
+    if (thrown) {
+        damage = Math.floor((base + fighter.strength * 0.1 + fighter.agility * 0.15)
+            * (1 + Math.random() * 0.5) * skillsMultiplier);
+    }
+    else if (piledriver) {
+        damage = Math.floor((10 + opponent.strength * 0.6)
+            * (0.8 + Math.random() * 0.4) * skillsMultiplier);
+    }
+    else {
+        damage = Math.floor((base + fighter.strength * (0.2 + base * 0.05))
+            * (0.8 + Math.random() * 0.4) * skillsMultiplier);
+    }
+    // -25% damage if fighter uses a damaged weapon
+    if (fighter.activeWeapon && fighter.damagedWeapons.includes(fighter.activeWeapon.name)) {
+        damage = Math.floor(damage * 0.75);
+    }
+    // Reduce damage with opponent's armor if not thrown
+    if (!thrown) {
+        damage = Math.ceil(damage * (1 - opponent.armor));
+    }
+    // Set minimum damage to 1
+    if (damage < 1) {
+        damage = 1;
+    }
+    return damage;
+};
+var handleSkills = (brute, fighter) => {
+    /* INITIATIVE */
+    // -2 initiative for `firstStrike`
+    if (brute.skills.includes(SkillName.firstStrike)) {
+        fighter.initiative -= 2;
+    }
+    // +2 initiative for `reconnaissance`
+    if (brute.skills.includes(SkillName.reconnaissance)) {
+        fighter.initiative += 2;
+    }
+    /* COUNTER */
+    // +10% counter for `sixthSense`
+    if (brute.skills.includes(SkillName.sixthSense)) {
+        fighter.counter += 0.1;
+    }
+    // +40% counter / +2 initiative for `monk`
+    if (brute.skills.includes(SkillName.monk)) {
+        fighter.counter += 0.4;
+        fighter.initiative += 2;
+    }
+    /* COMBO */
+    // +20% combo for `fistsOfFury`
+    if (brute.skills.includes(SkillName.fistsOfFury)) {
+        fighter.combo += 0.2;
+    }
+    /* REVERSAL */
+    // +30% reversal for `hostility`
+    if (brute.skills.includes(SkillName.hostility)) {
+        fighter.reversal += 0.30;
+    }
+    /* BLOCK */
+    // +XX% block for `shield`
+    if (brute.skills.includes(SkillName.shield)) {
+        fighter.block += SHIELD_BLOCK_ODDS;
+        fighter.shield = true;
+    }
+    // +10% block for `counterAttack`
+    if (brute.skills.includes(SkillName.counterAttack)) {
+        fighter.block += 0.1;
+    }
+    /* ACCURACY */
+    // +30% accuracy for `relentless`
+    if (brute.skills.includes(SkillName.relentless)) {
+        fighter.accuracy += 0.3;
+    }
+    /* ARMOR */
+    // +25% armor for `armor`
+    if (brute.skills.includes(SkillName.armor)) {
+        fighter.armor += 0.25;
+    }
+    // +10% armor for `toughenedSkin`
+    if (brute.skills.includes(SkillName.toughenedSkin)) {
+        fighter.armor += 0.1;
+    }
+    /* DISARM */
+    // +50% disarm for `shock`
+    if (brute.skills.includes(SkillName.shock)) {
+        fighter.disarm += 0.5;
+    }
+    /* EVASION */
+    // +30% evasion for `untouchable`
+    if (brute.skills.includes(SkillName.untouchable)) {
+        fighter.evasion += 0.3;
+    }
+    // +10% evasion for `balletShoes
+    if (brute.skills.includes(SkillName.balletShoes)) {
+        fighter.evasion += 0.1;
+    }
+    /* DEFLECT */
+    // +30% deflect for `repulse`
+    if (brute.skills.includes(SkillName.repulse)) {
+        fighter.deflect += 0.3;
+    }
+    /* PASSIVES */
+    if (brute.skills.includes(SkillName.saboteur)) {
+        fighter.saboteur = true;
+    }
+    if (brute.skills.includes(SkillName.sabotage)) {
+        fighter.sabotage = true;
+    }
+    if (brute.skills.includes(SkillName.bodybuilder)) {
+        fighter.bodybuilder = true;
+    }
+    if (brute.skills.includes(SkillName.survival)) {
+        fighter.survival = true;
+    }
+    if (brute.skills.includes(SkillName.balletShoes)) {
+        fighter.balletShoes = true;
+    }
+    if (brute.skills.includes(SkillName.determination)) {
+        fighter.determination = true;
+    }
+    if (brute.skills.includes(SkillName.ironHead)) {
+        fighter.ironHead = true;
+    }
+    if (brute.skills.includes(SkillName.resistant)) {
+        fighter.resistant = true;
+    }
+    if (brute.skills.includes(SkillName.monk)) {
+        fighter.monk = true;
+    }
+};
+var handleModifiers = (brute, randomWeaponIndex, randomSkillIndex) => {
+    var randomWeaponName = (0, getTempWeapon)(brute, randomWeaponIndex);
+    if (randomWeaponName) {
+        var randomWeapon = weapons.find((weapon) => weapon.name === randomWeaponName);
+        if (!randomWeapon) {
+            throw new Error('Random weapon not found');
+        }
+        brute.weapons.push(randomWeaponName);
+    }
+    var randomSkillName = (0, getTempSkill)(brute, randomSkillIndex);
+    if (randomSkillName) {
+        var randomSkill = skills.find((skill) => skill.name === randomSkillName);
+        if (!randomSkill) {
+            throw new Error('Random skill not found');
+        }
+        brute.skills.push(randomSkillName);
+    }
+};
+var getTempo = (speed) => 0.10 + (20 / (10 + (speed * 1.5))) * 0.90;
+var getFighters = async ({ prisma, team1, team2, modifiers, clanFight, }) => {
+    var randomWeaponIndex = await ServerState.getRandomWeapon(prisma);
+    var randomSkillIndex = await ServerState.getRandomSkill(prisma);
+    let spawnedPets = 0;
+    var fighters = [];
+    let positiveIndex = 0;
+    [team1, team2].forEach((team, teamIndex) => {
+        var { brutes } = team;
+        for (var brute of brutes) {
+            var teamSide = teamIndex === 0 ? 'L' : 'R';
+            // Restore endurance lost by pets for clan fights, which do not have pets
+            if (clanFight) {
+                for (var petName of brute.pets) {
+                    var pet = pets.find((p) => p.name === petName);
+                    if (!pet) {
+                        throw new Error(`Pet ${petName} not found`);
+                    }
+                    brute.enduranceStat += pet.enduranceMalus;
+                    brute.enduranceValue = Math.floor(brute.enduranceStat * brute.enduranceModifier);
+                }
+            }
+            // Fetch brute stats before handling modifiers,
+            // as both depend on the skills, which get modified
+            var bruteHP = (0, getFinalHP)(brute, randomSkillIndex);
+            var bruteSpeed = (0, getFinalStat)(brute, 'speed', modifiers, randomSkillIndex);
+            var bruteStrength = (0, getFinalStat)(brute, 'strength', modifiers, randomSkillIndex);
+            var bruteAgility = (0, getFinalStat)(brute, 'agility', modifiers, randomSkillIndex);
+            handleModifiers(brute, randomWeaponIndex, randomSkillIndex);
+            // Brute stats
+            positiveIndex++;
+            var fighter = {
+                id: brute.id,
+                index: positiveIndex,
+                team: teamSide,
+                name: brute.name,
+                // Add minimal visual data to still be able to display the fight if the brute was deleted
+                gender: brute.gender,
+                colors: brute.colors,
+                body: brute.body,
+                rank: brute.ranking,
+                level: brute.level,
+                type: 'brute',
+                maxHp: bruteHP,
+                hp: bruteHP,
+                strength: bruteStrength,
+                agility: bruteAgility,
+                speed: bruteSpeed,
+                initiative: ((0, randomBetween)(0, 10) - bruteSpeed) / 100,
+                tempo: getTempo(bruteSpeed),
+                baseDamage: BARE_HANDS_DAMAGE,
+                counter: 0,
+                combo: 0,
+                deflect: 0,
+                reversal: 0,
+                block: 0,
+                accuracy: 0,
+                armor: 0,
+                disarm: 0,
+                evasion: 0,
+                reach: 0,
+                sabotage: false,
+                bodybuilder: false,
+                survival: false,
+                balletShoes: false,
+                determination: false,
+                retryAttack: false,
+                ironHead: false,
+                resistant: false,
+                monk: false,
+                skills: skills
+                    .filter((skill) => brute.skills.includes(skill.name))
+                    .map((skill) => ({ ...skill })),
+                weapons: weapons
+                    .filter((weapon) => brute.weapons.includes(weapon.name)),
+                shield: false,
+                activeSkills: [],
+                activeWeapon: null,
+                keepWeaponChance: 0,
+                saboteur: false,
+                sabotagedWeapon: null,
+                poisoned: false,
+                trapped: false,
+                damagedWeapons: [],
+                hitBy: {},
+            };
+            handleSkills(brute, fighter);
+            fighters.push(fighter);
+            // No pets in clan fights
+            if (clanFight) {
+                continue;
+            }
+            // Pets stats
+            for (var petName of brute.pets) {
+                var pet = pets.find((p) => p.name === petName);
+                if (!pet) {
+                    throw new Error(`Pet ${petName} not found`);
+                }
+                spawnedPets++;
+                fighters.push({
+                    id: `${-spawnedPets}`,
+                    index: -spawnedPets,
+                    team: teamSide,
+                    name: petName,
+                    rank: 0,
+                    level: 0,
+                    type: 'pet',
+                    master: brute.id,
+                    maxHp: (0, getPetStat)(brute, pet, 'hp'),
+                    hp: (0, getPetStat)(brute, pet, 'hp'),
+                    strength: (0, getPetStat)(brute, pet, 'strength'),
+                    agility: (0, getPetStat)(brute, pet, 'agility'),
+                    speed: (0, getPetStat)(brute, pet, 'speed'),
+                    initiative: pet.initiative + (0, randomBetween)(0, 10) / 100,
+                    tempo: getTempo((0, getPetStat)(brute, pet, 'speed')),
+                    baseDamage: pet.damage,
+                    counter: pet.counter,
+                    combo: pet.combo,
+                    deflect: 0,
+                    reversal: pet.counter,
+                    block: pet.block,
+                    accuracy: pet.accuracy,
+                    reach: 0,
+                    armor: 0,
+                    disarm: pet.disarm,
+                    evasion: pet.evasion,
+                    sabotage: false,
+                    bodybuilder: false,
+                    survival: false,
+                    balletShoes: false,
+                    determination: false,
+                    retryAttack: false,
+                    ironHead: false,
+                    resistant: false,
+                    monk: false,
+                    skills: [],
+                    weapons: [],
+                    shield: false,
+                    activeSkills: [],
+                    activeWeapon: null,
+                    keepWeaponChance: 0,
+                    saboteur: false,
+                    sabotagedWeapon: null,
+                    poisoned: false,
+                    trapped: false,
+                    damagedWeapons: [],
+                    hitBy: {},
+                });
+            }
+        }
+        // Backup stats
+        for (var backup of team.backups) {
+            var backupMaster = team.brutes[0];
+            if (!backupMaster) {
+                throw new Error('Backup master not found');
+            }
+            // Arrives at a random time
+            var arrivesAt = (0, randomBetween)(1, 500) / 100;
+            // Fetch backup stats before handling modifiers,
+            // as both depend on the skills, which get modified
+            var backupHP = (0, getFinalHP)(backup, randomSkillIndex);
+            var backupSpeed = (0, getFinalStat)(backup, 'speed', modifiers, randomSkillIndex);
+            var backupStrength = (0, getFinalStat)(backup, 'strength', modifiers, randomSkillIndex);
+            var backupAgility = (0, getFinalStat)(backup, 'agility', modifiers, randomSkillIndex);
+            handleModifiers(backup, randomWeaponIndex, randomSkillIndex);
+            spawnedPets++;
+            var backupFighter = {
+                id: `${-spawnedPets}`,
+                index: -spawnedPets,
+                team: teamIndex === 0 ? 'L' : 'R',
+                name: backup.name,
+                // Add minimal visual data to still be able to display the fight if the brute was deleted
+                gender: backup.gender,
+                colors: backup.colors,
+                body: backup.body,
+                rank: backup.ranking,
+                level: backup.level,
+                type: 'brute',
+                master: backupMaster.id,
+                arrivesAtInitiative: arrivesAt,
+                leavesAtInitiative: arrivesAt + 2.8,
+                maxHp: backupHP,
+                hp: backupHP,
+                strength: backupStrength,
+                agility: backupAgility,
+                speed: backupSpeed,
+                initiative: arrivesAt,
+                tempo: getTempo(backupSpeed),
+                baseDamage: BARE_HANDS_DAMAGE,
+                counter: 0,
+                combo: 0,
+                deflect: 0,
+                reversal: 0,
+                block: 0,
+                accuracy: 0,
+                armor: 0,
+                disarm: 0,
+                evasion: 0,
+                reach: 0,
+                sabotage: false,
+                bodybuilder: false,
+                survival: false,
+                balletShoes: false,
+                determination: false,
+                retryAttack: false,
+                ironHead: false,
+                resistant: false,
+                monk: false,
+                skills: skills
+                    .filter((skill) => backup.skills.includes(skill.name))
+                    .map((skill) => ({ ...skill })),
+                weapons: weapons.filter((weapon) => backup.weapons.includes(weapon.name)),
+                shield: false,
+                activeSkills: [],
+                activeWeapon: null,
+                keepWeaponChance: 0,
+                saboteur: false,
+                sabotagedWeapon: null,
+                poisoned: false,
+                trapped: false,
+                damagedWeapons: [],
+                hitBy: {},
+            };
+            handleSkills(backup, backupFighter);
+            // Reset initiative to arrive at the desired time
+            backupFighter.initiative = arrivesAt;
+            fighters.push(backupFighter);
+        }
+        // Boss
+        positiveIndex++;
+        for (var boss of team.bosses) {
+            spawnedPets++;
+            fighters.push({
+                id: `${-spawnedPets}`,
+                index: positiveIndex,
+                team: teamIndex === 0 ? 'L' : 'R',
+                name: boss.name,
+                rank: 0,
+                level: 0,
+                type: 'boss',
+                maxHp: boss.hp,
+                hp: boss.startHP,
+                strength: boss.strength,
+                agility: boss.agility,
+                speed: boss.speed,
+                initiative: boss.initiative + (0, randomBetween)(0, 10) / 100,
+                tempo: getTempo(boss.speed),
+                baseDamage: boss.damage,
+                counter: boss.counter,
+                combo: boss.combo,
+                deflect: 0,
+                reversal: boss.counter,
+                block: boss.block,
+                accuracy: boss.accuracy,
+                reach: boss.reach,
+                armor: 0,
+                disarm: boss.disarm,
+                evasion: boss.evasion,
+                sabotage: false,
+                bodybuilder: false,
+                survival: false,
+                balletShoes: false,
+                determination: false,
+                retryAttack: false,
+                ironHead: false,
+                resistant: false,
+                monk: false,
+                skills: [],
+                weapons: [],
+                shield: false,
+                activeSkills: [],
+                activeWeapon: null,
+                keepWeaponChance: 0,
+                saboteur: false,
+                sabotagedWeapon: null,
+                poisoned: false,
+                trapped: false,
+                damagedWeapons: [],
+                hitBy: {},
+            });
+        }
+    });
+    return fighters;
+};
+var handleStats = (fightData, stats, achievements, tournament) => {
+    var winner = fightData.fighters.find((f) => f.id === fightData.winner);
+    if (!winner) {
+        throw new Error('Winner not found');
+    }
+    var loser = fightData.fighters.find((f) => f.id === fightData.loser);
+    if (!loser) {
+        throw new Error('Loser not found');
+    }
+    for (var [bruteId, stat] of Object.entries(stats)) {
+        var achievement = achievements[bruteId];
+        if (!achievement) {
+            continue;
+        }
+        // Win / defeat
+        if (bruteId === winner.id) {
+            achievement.achievements.wins = 1;
+        }
+        else {
+            achievement.achievements.defeats = 1;
+        }
+        // Max damage
+        if (stat.maxDamage) {
+            achievement.achievements.maxDamage = stat.maxDamage;
+        }
+        // Flawless
+        if (bruteId === winner.id && winner.hp === winner.maxHp) {
+            achievement.achievements.flawless = 1;
+        }
+        // Win with 1hp
+        if (bruteId === winner.id
+            && winner.hp === 1
+            && !winner.skills.find((s) => s.name === SkillName.survival)) {
+            achievement.achievements.winWith1HP = 1;
+        }
+        // Steal 2 weapons
+        if (stat.weaponsStolen && stat.weaponsStolen >= 2) {
+            achievement.achievements.steal2Weapons = 1;
+        }
+        // Single hit win
+        if (bruteId === winner.id && stat.hits === 1) {
+            // Only apply if other team member didn't hit
+            if (!stat.otherTeamMembersHits) {
+                achievement.achievements.singleHitWin = 1;
+            }
+        }
+        // Hit 20 times
+        if (stat.hits && stat.hits >= 20) {
+            achievement.achievements.hit20times = 1;
+        }
+        // 10 Skills used
+        if (stat.skillsUsed && stat.skillsUsed >= 10) {
+            achievement.achievements.use10skills = 1;
+        }
+        // 5 counters
+        if (stat.counters && stat.counters >= 5) {
+            achievement.achievements.counter5 = 1;
+        }
+        // 10 evades
+        if (stat.evades && stat.evades >= 10) {
+            achievement.achievements.evade10 = 1;
+        }
+        // 25 blocks
+        if (stat.blocks && stat.blocks >= 25) {
+            achievement.achievements.block25 = 1;
+        }
+        // 4 disarms
+        if (stat.disarms && stat.disarms >= 4) {
+            achievement.achievements.disarm4 = 1;
+        }
+        // 8 disarms
+        if (stat.disarms && stat.disarms >= 8) {
+            achievement.achievements.disarm8 = 1;
+        }
+        // Kill 3 pets
+        if (stat.petsKilled && stat.petsKilled >= 3) {
+            achievement.achievements.kill3pets = 1;
+        }
+        // HP healed
+        if (stat.hpHealed) {
+            achievement.achievements.hpHealed = stat.hpHealed;
+        }
+        // Tournament achievements
+        if (tournament) {
+            if (tournament === 'finals') {
+                if (bruteId === winner.id && winner.level <= 15) {
+                    // Win as Lv15-
+                    achievement.achievements.winTournamentAs15 = 1;
+                }
+                else if (bruteId === winner.id && winner.level <= 20) {
+                    // Win as Lv20-
+                    achievement.achievements.winTournamentAs20 = 1;
+                }
+                // Win as a lower level
+                if (bruteId === winner.id && winner.level < loser.level) {
+                    achievement.achievements.winAsLower = 1;
+                }
+                // Win
+                if (bruteId === winner.id) {
+                    achievement.achievements.win = 1;
+                }
+            }
+            if (bruteId === loser.id && loser.level >= winner.level * 4) {
+                // Loose against 1/4 level
+                achievement.achievements.looseAgainst4 = 1;
+            }
+            else if (bruteId === loser.id && loser.level >= winner.level * 3) {
+                // Loose against 1/3 level
+                achievement.achievements.looseAgainst3 = 1;
+            }
+            else if (bruteId === loser.id && loser.level >= winner.level * 2) {
+                // Loose against 1/2 level
+                achievement.achievements.looseAgainst2 = 1;
+            }
+            if (bruteId === winner.id && winner.level * 4 <= loser.level) {
+                // Win against 4x level
+                achievement.achievements.winAgainst4 = 1;
+            }
+            else if (bruteId === winner.id && winner.level * 3 <= loser.level) {
+                // Win against 3x level
+                achievement.achievements.winAgainst3 = 1;
+            }
+            else if (bruteId === winner.id && winner.level * 2 <= loser.level) {
+                // Win against 2x level
+                achievement.achievements.winAgainst2 = 1;
+            }
+        }
+    }
+};
+var shuffle = (array) => {
+    var shuffledArray = [...array];
+    for (let i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var iItem = shuffledArray[i];
+        var jItem = shuffledArray[j];
+        if (typeof iItem === 'undefined' || typeof jItem === 'undefined') {
+            throw new Error('Item not found while shuffling array');
+        }
+        shuffledArray[i] = jItem;
+        shuffledArray[j] = iItem;
+    }
+    return shuffledArray;
+};
+var StepType;
+(function (StepType) {
+    StepType[StepType["Saboteur"] = 0] = "Saboteur";
+    StepType[StepType["Leave"] = 1] = "Leave";
+    StepType[StepType["Arrive"] = 2] = "Arrive";
+    StepType[StepType["Trash"] = 3] = "Trash";
+    StepType[StepType["Steal"] = 4] = "Steal";
+    StepType[StepType["Trap"] = 5] = "Trap";
+    StepType[StepType["Heal"] = 6] = "Heal";
+    StepType[StepType["Resist"] = 7] = "Resist";
+    StepType[StepType["Survive"] = 8] = "Survive";
+    StepType[StepType["Hit"] = 9] = "Hit";
+    StepType[StepType["FlashFlood"] = 10] = "FlashFlood";
+    StepType[StepType["Hammer"] = 11] = "Hammer";
+    StepType[StepType["Poison"] = 12] = "Poison";
+    StepType[StepType["Bomb"] = 13] = "Bomb";
+    StepType[StepType["Hypnotise"] = 14] = "Hypnotise";
+    StepType[StepType["Move"] = 15] = "Move";
+    StepType[StepType["Eat"] = 16] = "Eat";
+    StepType[StepType["MoveBack"] = 17] = "MoveBack";
+    StepType[StepType["Equip"] = 18] = "Equip";
+    StepType[StepType["AttemptHit"] = 19] = "AttemptHit";
+    StepType[StepType["Block"] = 20] = "Block";
+    StepType[StepType["Evade"] = 21] = "Evade";
+    StepType[StepType["Sabotage"] = 22] = "Sabotage";
+    StepType[StepType["Disarm"] = 23] = "Disarm";
+    StepType[StepType["Death"] = 24] = "Death";
+    StepType[StepType["Throw"] = 25] = "Throw";
+    StepType[StepType["End"] = 26] = "End";
+    StepType[StepType["Counter"] = 27] = "Counter";
+    StepType[StepType["SkillActivate"] = 28] = "SkillActivate";
+    StepType[StepType["SkillExpire"] = 29] = "SkillExpire";
+    StepType[StepType["Spy"] = 30] = "Spy";
+    StepType[StepType["Vampirism"] = 31] = "Vampirism";
+    StepType[StepType["Haste"] = 32] = "Haste";
+    StepType[StepType["Treat"] = 33] = "Treat";
+})(StepType || (/*exports.*/StepType = StepType = {}));
+//# sourceMappingURL=types.js.map
 var weaponsFR={"fan": "Éventail",
   "keyboard": "Clavier",
   "knife": "Couteau",
@@ -1786,382 +4648,116 @@ var weaponsFR={"fan": "Éventail",
   "piopio": "Piou Piou",
   "shuriken": "Shuriken",
   "broadsword": "Glaive",
-"scimitar": "Cimeterre",};var fightLog = ""
-
-
-
-
-// Créer un observer qui surveille les changements dans le DOM
-var observer = new MutationObserver((mutationsList) => {
-  for (var mutation of mutationsList) {
-    // Parcourir les nouveaux nœuds ajoutés
-    mutation.addedNodes.forEach(node => {
-      // Vérifier si le nœud est une div
-      if (node.nodeName === 'DIV') {
-        // Vérifier si la div contient des balises <p>
-        var pElements = node.querySelectorAll('p');
-        if(pElements.length==0)return
-        if (fightLog=="") {
-          // Loguer le contenu de chaque balise <p>
-          pElements.forEach(p => {
-            //console.log('Contenu de la balise <p>:', p.innerText);
-			fightLog += p.innerText+"\n"
-          });
-          
-          // Rendre la div invisible
-          node.style.display = 'none';
-		  
-		  analyzeText(fightLog);
-		  
-			function getNamesFromTeam(team){var s = "";
-			for(var i of team){var bruteSTR = ' <b class = "bruteNameHover">'+i[0]+'</b>'+"\n"
-			s+=bruteSTR
-			}
-			return s}
-			
-			function getDamageFromTeam(team){var s = "";
-			for(var i of team){var bruteSTR = '<font opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)"><b>'+i[1]+"</b></font>"+"\n"
-			s+=bruteSTR
-			}
-			return s}
-
-			function getChocFromTeam(team){var s = "";
-			for(var i of team){var bruteSTR = '<font text-align="center">'+i[2]+"</font>"+"\n"
-			s+=bruteSTR
-			}
-			return s}
-			$("#dmgChartDIV").remove()
-			var allDIV = div({1:"dmgChartDIV",0:body,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
-			,display: "flex","flex-direction": "line"},
-			textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
-			
-			div({0:allDIV,17:getNamesFromTeam(teams[0])})
-			div({0:allDIV,17:"   "})
-			div({0:allDIV,17:getDamageFromTeam(teams[0])})
-			div({0:allDIV,17:" "})
-			div({0:allDIV,17:getChocFromTeam(teams[0])})
-			div({0:allDIV,17:(teams[2].length!=0)?"      ":"         "})
-			div({0:allDIV,17:getNamesFromTeam(teams[2])})
-			div({0:allDIV,17:"   "})
-			div({0:allDIV,17:getDamageFromTeam(teams[2])})
-			div({0:allDIV,17:" "})
-			div({0:allDIV,17:getChocFromTeam(teams[2])})
-			div({0:allDIV,17:(teams[2].length!=0)?"      ":"         "})
-			div({0:allDIV,17:getNamesFromTeam(teams[1])})
-			div({0:allDIV,17:"   "})
-			div({0:allDIV,17:getDamageFromTeam(teams[1])})
-			div({0:allDIV,17:" "})
-			div({0:allDIV,17:getChocFromTeam(teams[1])})
-			
-			insertDivAfterElement(allDIV[0],findFirstParentDiv(findTextInDOM("Cellule de ","span")));
-			
-		    $(findTextInDOM("Plus de jeux EternalTwin","p")).css("visibility","hidden");
-		    $(findTextInDOM(VERSION,"p")).css("visibility","hidden");
-			$(document.querySelector('[role="alert"]')).css("visibility","hidden");
-		
-		
-var bruteElements = document.querySelectorAll('.bruteNameHover');
-
-// Boucle pour ajouter les événements à chaque élément
-bruteElements.forEach(function(element) {
-	$(element).css("cursor","pointer")
-	element.addEventListener('click', function() {openBruteCell(this.textContent)})
-    // Événement lors du survol (mouseenter)
-    element.addEventListener('mouseenter', function() {
-        // Appeler une fonction quand on survole l'élément
-		$('#floatingDiv').show();
-		acPopupContent(this.textContent)
-        // Par exemple, une fonction qui manipule cet élément
-    });
-
-    // Événement lors de la fin du survol (mouseleave)
-    element.addEventListener('mouseleave', function() {
-$('#floatingDiv').hide();        // On peut ici gérer la fin du hover si besoin
-    });
-});
-		
-		
-		
-		
-			stopLoading();
-			observer.disconnect();
-        }
-      }
-    });
-  }
-});
-
-// Configurer l'observer pour surveiller les ajouts d'enfants dans tout le document
-observer.observe(document.body, {
-  childList: true,
-  subtree: true
-});
-
-
-function acPopupContent(name){if(!(name in detailedDamage)){$("#floatingDiv").empty().hide();return};
-var sorted = Object.entries(detailedDamage[name]).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {
-  result[key] = value;
-  return result;
-}, {});
-var s=""
-for(var i in sorted){
-	s+=' <b class = "bruteNameHover">'+((i in weaponImages)?'<img height="18px" src="'+weaponImages[i]+'">':i)+'</b>   '+"\n"
-}
-if($('#floatingDiv').length>0){div({9:{"text-align":"right"},2:"span",17:s,0:$('#floatingDiv').empty()})}
-s=""
-for(var i in sorted){
-	s+='<font text-align="left" opacity="0.88" font-size="0.661429rem" color="rgb(140, 81, 64)">'+sorted[i]+"</font>"+"\n"
-}
-
-if($('#floatingDiv').length>0){div({2:"span",17:s,0:$('#floatingDiv')})}
-
-}
-
-function decentName(name){var nom;if(parseInt(name).toString() == name){ nom= " "+name}else{nom= name};if(names.indexOf(nom)==-1){names.push(nom)};return nom}
-
-var pre_team1 = {}
-var pre_team2 = {}
-	
-
-function getClanNames(){
-var rows = document.querySelectorAll('tr');
-
-// Parcourir chaque élément <tr>
-rows.forEach(row => {
-  // Récupérer les deux premiers <td> du <tr>
-  var tds = row.querySelectorAll('td');
-
-  if (tds.length >= 2) {
-    // Pour chacun des deux premiers <td>
-    for (let i = 0; i < 2; i++) {
-      var td = tds[i];
-      
-      // Récupérer le premier <p> dans le <td>
-      var p = td.querySelector('p');
-      
-      if (p) {
-        // Afficher le contenu du <p>
-        if(i==0){pre_team1[decentName(p.textContent)]=0}
-		else{pre_team2[decentName(p.textContent)]=0}
-      } else {
-        console.log(`Pas de <p> dans le ${i + 1}er <td>`);
-      }
+"scimitar": "Cimeterre",};var getTempWeapon = (brute, weaponIndex) => {
+    if (weaponIndex === null) {
+        return null;
     }
+    var unownedWeapons = weapons.filter((weapon) => !brute.weapons.includes(weapon.name));
+    var tempWeapon = unownedWeapons[weaponIndex % unownedWeapons.length];
+    if (!tempWeapon) {
+        throw new Error('No temp weapon found');
+    }
+    return tempWeapon.name;
+};
+var getTempWeapon = getTempWeapon;
+var unavailableTemporarySkills = [SkillName.backup];
+var getTempSkill = (brute, skillIndex) => {
+    if (skillIndex === null) {
+        return null;
+    }
+    var unownedSkills = skills.filter((skill) => !brute.skills.includes(skill.name)
+        && !unavailableTemporarySkills.includes(skill.name));
+    var tempSkill = unownedSkills[skillIndex % unownedSkills.length];
+    if (!tempSkill) {
+        throw new Error('No temp skill found');
+    }
+    return tempSkill.name;
+};
+var getTempSkill = getTempSkill;
+"use strict"
+
+function simulServer(a){
+	
+	var bossDmg = parseInt(a["0"]?.data?.damageOnBoss?.increment)
+	if(bossDmg>0){bilac.boss+=bossDmg};return 0}
+
+
+
+var proxy = new Proxy(simulServer, {
+  get(target, property) {
+    if (property in target) {
+      return target[property];
+    }
+    return proxy; // Renvoie le même proxy pour les accès en profondeur
+  },
+  apply(target, thisArg, argumentsList) {
+    return simulServer(argumentsList); // Renvoie un objet vide lorsqu'on appelle le proxy comme une fonction
   }
 });
 
+var ServerState = proxy;
+var updateAchievement = proxy;
+var getTempSkill = proxy
+var getTempWeapon = proxy
+
+
+var FIGHTS_PER_ROTA = 1
+var FIGHT_TOTAL = 1000
+
+var TEAM1 = []
+var TEAM2 = []
+var BACKUPS = false
+var BOSS = "brutes"
+var CLANWAR = false
+
+var SLEEP_AT_STEP_1 = FIGHTS_PER_ROTA > 300 &&  FIGHTS_PER_ROTA * TEAM2.length > 700
+var SLEEP_AT_STEP_2 = !SLEEP_AT_STEP_1 && FIGHTS_PER_ROTA * TEAM2.length > 300 && FIGHTS_PER_ROTA * TEAM2.length * TEAM1.length > 700
+var SLEEP_AT_STEP_3 = !SLEEP_AT_STEP_1 && !SLEEP_AT_STEP_2
+cl("sleep",SLEEP_AT_STEP_1,SLEEP_AT_STEP_2,SLEEP_AT_STEP_3)
+
+var bilan = [] ; for(var i=0;i<TEAM1.length;i++){bilan.push({nom:TEAM1[i][0].name,j:0,v:0,boss:0})}
+var bilac=bilan[0]
+
+var startTime = Date.now()
+var ended = 0
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function getBrutesNames(){
-var spans = document.querySelectorAll('span');
-var nbBrutes = 0
-// Parcourir chaque élément <tr>
-spans.forEach(spans => {
-	var spanText = spans.textContent.split("Cellule de ");
-	if(spanText.length>1){console.log("BRUTE : ",spanText[1]);
-	nbBrutes++;
-	if(nbBrutes>1){pre_team2[decentName(spanText[1])]=0}else{pre_team1[decentName(spanText[1])]=0}
-	
+async function genFights() {var pos1=0,pos2=0
+cl("BOSS",BOSS,{ [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] });
+	var nbfights=0
+	while(bilac.j<FIGHT_TOTAL){
+		
+	  for (let i = 0; i < FIGHTS_PER_ROTA; i++) {
+		  var result = await generateFight({
+				prisma: proxy,
+				team1: { brutes:  true?structuredClone(TEAM1[pos1]):TEAM1[pos1]},
+				team2: { [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] },
+				modifiers: [],
+				backups: BACKUPS,
+				achievements: false,
+				tournament: false,
+				clanId: 123,
+				clanWar: CLANWAR
+			  });
+			if(bilac.nom==result.data.winner){bilac.v++};bilac.j++;
+	  }
+	  if(SLEEP_AT_STEP_1)await sleep(1);
+	  
+	  pos2=(pos2+1)%TEAM2.length
+	  if(!pos2){pos1=(pos1+1)%TEAM1.length;if(SLEEP_AT_STEP_2 || (SLEEP_AT_STEP_3 && !pos1)){await sleep(1);}}
+	  bilac=bilan[pos1]
 	}
-	
-});
-
-}
-
-function getWeaponFromFRName(arme){for(var i in weaponsFR){if(weaponsFR[i].toLowerCase()==arme){return i}};return ""}
-
-
-
-
-var team1 = {}
-var team2 = {}
-var names = []
-	
-var renforts = {}
-var teams = [team1,team2,renforts]
-var detailedDamage = {}
-
-var poisoners=[]
-
-function addDetailed(roxeurEspace,arme,dmg){
-	var roxeur = roxeurEspace.replace(" ","")
-	if(!(roxeur in detailedDamage))detailedDamage[roxeur] = {}
-	detailedDamage[roxeur][arme] = (detailedDamage[roxeur][arme] || 0) + dmg
-}
-
-function analyzeText(text){
-	
-	
-	var chart = {}
-
-	
-
-	var currentTeam = team1
-	var prec_line = ""
-	var act_line = ""
-	var last_failure = -1
-	var line_nb = 0
-	var lines=text.split("\n")
-	for(var l of lines){
-		
-		prec_line = act_line
-		act_line = l
-		
-		line_nb ++
-		if(l=="" || l=="\r")continue;
-	
-		var brute = l.split(" est arrivé !")
-		if(brute.length>1){
-			var nom = decentName(brute[0])
-			
-			if(nom in pre_team1){currentTeam = team1}else if(nom in pre_team2){currentTeam = team2};
-			currentTeam[nom] = 0;
-		}
-		else{currentTeam = renforts}
-		
-		
-		
-		var choc =  l.split(" a fait tomber ")
-		if(choc.length>1){
-			var roxeur = choc[0];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
-			//console.log("choc "+dmg)
-			chart[roxeur] = (chart[roxeur] || 0) + 0.001
-			continue
-		}
-		
-		var choc =  l.split(" a brisé le bouclier")
-		if(choc.length>1){
-			var boubou = choc[0].split(" ");
-			var roxeur = boubou[boubou.length-1];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
-			//console.log("choc "+dmg)
-			chart[roxeur] = (chart[roxeur] || 0) + 0.001
-			continue
-		}
-		
-		var vol =  l.split(" a volé ")
-		if(vol.length>1){
-			var roxeur = vol[0];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
-			//console.log("choc "+dmg)
-			chart[roxeur] = (chart[roxeur] || 0) + 0.001
-			continue
-		}
-		
-		var vamp =  l.split(" a sucé le sang ")
-		if(vamp.length>1){
-			var dmg=parseInt(vamp[1].split(" infligeant ")[1].split(" ")[0])
-			var roxeur = vamp[0];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
-			//console.log("vamp "+dmg)
-			chart[roxeur] = (chart[roxeur] || 0) + dmg;
-			addDetailed(roxeur,"🩸",dmg)
-			continue
-		}
-		
-		var bomb =  l.split(" dégâts avec une bombe")
-		if(bomb.length>1){
-			var bomb = bomb[0].split(" a infligé ")
-			var dmg=bomb[1].split(", ").reduce((acc, val) => acc + parseInt(val, 10), 0);
-			var roxeur = bomb[0];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
-			//console.log("bomb "+dmg)
-			chart[roxeur] = (chart[roxeur] || 0) + dmg
-			addDetailed(roxeur,"💣",dmg)
-			continue
-		}
-		
-		var rox = l.split(" a infligé ")
-		if(rox.length>1){
-			var dmg=parseInt(rox[1].split(" ")[0])
-			var roxeur = rox[0];if(parseInt(roxeur).toString() == roxeur) roxeur = " "+roxeur;
-			//console.log("_ "+dmg)
-			
-			
-			if(l.indexOf(" poison ")!=-1) {
-				var vrairoxeur = roxeur;
-				var flag=false
-				for(var tm of teams){if(!(roxeur in tm)){continue};for(var ps of poisoners){if(ps[0]==tm){vrairoxeur=ps[1];flag=true}};if(!flag){poisoners.push([tm,roxeur])}}
-				addDetailed(vrairoxeur,"🧪",dmg)
-				chart[vrairoxeur] = (chart[vrairoxeur] || 0) + dmg
-			}
-			else {chart[roxeur] = (chart[roxeur] || 0) + dmg
-				var arme = l.split(" ")[l.split(" ").length - 1].split(".")[0].toLowerCase()
-				var weapon = getWeaponFromFRName(arme)
-				if(weapon in weaponImages)addDetailed(roxeur,weapon,dmg)
-				else{
-					
-					arme = prec_line.split(" a lancé ")
-					if(arme.length>1){
-						arme=arme[1].split(" sur ")[0].toLowerCase()
-					}
-					else arme = arme[0]
-					
-					var weapon = getWeaponFromFRName(arme)
-					
-					if(last_failure == line_nb-1 && weapon in weaponImages) addDetailed(roxeur,weapon,dmg)
-					
-				else{
-					addDetailed(roxeur,"👊",dmg)
-				}
-				}
-			}
-			
-			continue
-		}
-		last_failure = line_nb
-		if(/\d/.test(names.reduce((acc, name) => acc.replace(new RegExp(name.replace(" ",""), 'g'), ''), l))) console.log("SUS "+l)
-	}
-	for(var team_number in teams) {var team = teams[team_number];
-		for(var j in team) team[j] = chart[j] || 0
-		var sorted = Object.entries(team).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {
-  result[key] = value;
-  return result;
-}, {})
-		
-		teams[team_number] = []
-		for(var i in sorted) {
-			
-			var choc = (Math.round((sorted[i]-parseInt(sorted[i])) * 1000)==0)?"":"  ("+Math.round((sorted[i]-parseInt(sorted[i])) * 1000)+" choc)";
-			choc=choc.replace("(1 choc)","     💥").replace("(2 choc)","  💥💥").replace("(3 choc)","💥💥💥").replace(" choc)","</b>💥").replace("(","  <b>")
-			teams[team_number].push(
-			[i.replace(" ",""),parseInt(sorted[i]),choc
-	])}
-		console.log("")
-		}
-	}
-	
-if(FIGHT_TYPE == "war") getClanNames();
-else{getBrutesNames();}
-// Récupérer l'élément avec l'attribut aria-label="Afficher/masquer les logs"
-var element = document.querySelector('[aria-label="Afficher/masquer les logs"]');
-
-// Vérifier si l'élément existe, puis simuler un clic
-if (element) {
-  element.click();setTimeout(function(){element.click();},200)
-} else {
-  console.log("LOGS non trouvés");
+	cl("fini",Date.now()-startTime)
+	ended = Date.now()-startTime
 }
 
 
-    // Variable pour stocker les coordonnées de la souris
-    var mouseX = 0, mouseY = 0;
 
-    // Suivi de la position de la souris en permanence
-    $(document).mousemove(function(event) {
-		if($('#floatingDiv').length==0)div({5:[-50,-100],1:"floatingDiv",4:2,26:1,9:uni([{ "z-index":50000000,"font-size":"0.821429rem",
-			display: "flex","flex-direction": "line"},
-			textBoxCSS,baseCSS,{"padding":"6px"}])}).hide()
-        // Récupérer les coordonnées X et Y de la souris
-        mouseX = event.pageX;
-        mouseY = event.pageY;		
-        // Mettre à jour la position de la div (au-dessus de la souris)
-        $('#floatingDiv').css({
-            left: mouseX, // Centrer horizontalement
-            top: mouseY - 37 // Positionner au-dessus avec un petit décalage
-        });
-		
-    });
-
-
-
-    // Optionnel : Cacher la div quand la souris quitte la fenêtre
-    $(document).mouseleave(function() {
-        $('#floatingDiv').hide();
-    });
+  self.onmessage = function() {
+	  
+    self.postMessage({bilan:bilan,ended:ended});
+  };
+  
+  genFights();

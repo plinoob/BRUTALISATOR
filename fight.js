@@ -25,100 +25,45 @@ var weaponImages = {
   broadsword: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHhtbG5zOmZmZGVjPSJodHRwczovL3d3dy5mcmVlLWRlY29tcGlsZXIuY29tL2ZsYXNoIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgZmZkZWM6b2JqZWN0VHlwZT0ic2hhcGUiIGhlaWdodD0iNDUuMTVweCIgd2lkdGg9Ijg2LjdweCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMS4wLCAwLjAsIDAuMCwgMS4wLCAxNy44NSwgMS4wNSkiPg0KICAgIDxwYXRoIGQ9Ik02NS45NSAzOS43IEw2NC45NSAzOS44NSA2Mi41NSA0MC4yIDU2Ljg1IDQwLjYgNTYuMSA0MC41IDU1LjM1IDQwLjYgNTIuNiA0MC4xNSBRNTEuODUgNDAuMTUgNDUuNTUgMzcuMTUgTDMzLjggMzEuNSBRMzEuNTUgMzAuNCAyOC4xIDI5LjA1IEwyMy4yNSAyNy4wNSAxOC4wIDI0LjkgUTE1LjMgMjMuNjUgMTUuMTUgMjIuMyBMMTUuMTUgMjIuMiAxNS44IDIyLjM1IDE2LjI1IDIyLjQ1IDM5LjMgMzAuMTUgNDkuOTUgMzMuOTUgNTQuNiAzNS43NSA1OC42IDM3LjE1IDU4LjkgMzcuMSA1OC45NSAzNi45NSA1OC40NSAzNi42IDU3LjkgMzYuNCA1Mi4yIDMzLjAgNDYuNCAyOS42IFE0NC4yNSAyOC4zNSA0MS4zIDI2Ljg1IEwzNi4wNSAyNC4xIFEyOS40IDIwLjM1IDI2LjA1IDE4LjggTDE3Ljk1IDE0Ljc1IDIwLjI1IDkuNiA1Ny4wNSAyNy4xIDY1Ljk1IDM5LjciIGZpbGw9IiNlMGU4ZWIiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTE3LjY1IDE1LjQ1IEwxMi4xNSAyNy42IDQuMyAzMS40IDYuMyAyMi4yIC0xNi44NSA3LjEgLTEzLjk1IDAuNSAxMy42IDcuMTUgMTguNzUgLTAuMDUgMjAuMjUgOS42IDE3Ljk1IDE0Ljc1IDE3LjY1IDE1LjQ1IE0xNy4zIDMuNDUgUTE2LjYgMy45IDE2LjM1IDUuNSBMMTUuOSA3LjA1IDE1LjUgOS4wIDEzLjIgMTUuOCAxNC4zIDE2LjQgUTE0LjkgMTYuNCAxNS44IDE0LjAgTDE2Ljg1IDEwLjYgMTcuNSA3LjcgMTcuOTUgNC41IFExNy45NSAyLjk1IDE3LjMgMy40NSBNMTEuMTUgOS44IEwxMS41IDkuNSAxMS42NSA5LjA1IFExMS42NSA4LjUgMTEuMiA4LjQ1IEwxMC4zNSA4LjUgMi42IDYuMiBRLTUuMjUgMy45IC01Ljk1IDMuOSBMLTguNSAzLjUgLTEwLjggMy4wNSBRLTExLjI1IDMuMDUgLTExLjM1IDMuNCBMLTExLjMgMy4zIFEtMTEuOSAzLjYgLTExLjkgNC4wIC0xMS45IDQuOTUgLTEwLjkgNS4zNSAtOC43NSA2LjAgLTYuNiA2LjggLTMuODUgNy44IC0xLjMgOS4yIDAuMzUgOS45IDQuNSAxMi40NSA4LjE1IDE0Ljc1IDguNiAxNC43NSA5LjQgMTQuNzUgMTAuMTUgMTIuMCBMMTEuMTUgOS44IiBmaWxsPSIjMDAwMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xNy45NSAxNC43NSBMMjYuMDUgMTguOCBRMjkuNCAyMC4zNSAzNi4wNSAyNC4xIEw0MS4zIDI2Ljg1IFE0NC4yNSAyOC4zNSA0Ni40IDI5LjYgTDUyLjIgMzMuMCA1Ny45IDM2LjQgNTguNDUgMzYuNiA1OC45NSAzNi45NSA1OC45IDM3LjEgNTguNiAzNy4xNSA1NC42IDM1Ljc1IDQ5Ljk1IDMzLjk1IDM5LjMgMzAuMTUgMTYuMjUgMjIuNDUgMTUuOCAyMi4zNSAxNS4xNSAyMi4yIDE1LjE1IDIyLjMgUTE1LjMgMjMuNjUgMTguMCAyNC45IEwyMy4yNSAyNy4wNSAyOC4xIDI5LjA1IFEzMS41NSAzMC40IDMzLjggMzEuNSBMNDUuNTUgMzcuMTUgUTUxLjg1IDQwLjE1IDUyLjYgNDAuMTUgTDU1LjM1IDQwLjYgNTYuMSA0MC41IDU2Ljg1IDQwLjYgNjIuNTUgNDAuMiA2NC45NSAzOS44NSA2NS45NSAzOS43IDY3Ljg1IDQyLjM1IDUxLjIgNDMuMSAxMi4xNSAyNy42IDE3LjY1IDE1LjQ1IDE3Ljk1IDE0Ljc1IDE3LjY1IDE1LjQ1IDE3Ljk1IDE0Ljc1IiBmaWxsPSIjYjhjOWNmIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xMS4xNSA5LjggTDEwLjE1IDEyLjAgUTkuNCAxNC43NSA4LjYgMTQuNzUgOC4xNSAxNC43NSA0LjUgMTIuNDUgMC4zNSA5LjkgLTEuMyA5LjIgLTMuODUgNy44IC02LjYgNi44IC04Ljc1IDYuMCAtMTAuOSA1LjM1IC0xMS45IDQuOTUgLTExLjkgNC4wIC0xMS45IDMuNiAtMTEuMyAzLjMgTC0xMS4zNSAzLjQgUS0xMS4yNSAzLjA1IC0xMC44IDMuMDUgTC04LjUgMy41IC01Ljk1IDMuOSBRLTUuMjUgMy45IDIuNiA2LjIgTDEwLjM1IDguNSAxMS4yIDguNDUgUTExLjY1IDguNSAxMS42NSA5LjA1IEwxMS41IDkuNSAxMS4xNSA5LjggTTE3LjMgMy40NSBRMTcuOTUgMi45NSAxNy45NSA0LjUgTDE3LjUgNy43IDE2Ljg1IDEwLjYgMTUuOCAxNC4wIFExNC45IDE2LjQgMTQuMyAxNi40IEwxMy4yIDE1LjggMTUuNSA5LjAgMTUuOSA3LjA1IDE2LjM1IDUuNSBRMTYuNiAzLjkgMTcuMyAzLjQ1IiBmaWxsPSIjNmI1YTUwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xNy45NSAxNC43NSBMMTcuNjUgMTUuNDUgMTIuMTUgMjcuNiA1MS4yIDQzLjEgNjcuODUgNDIuMzUgNjUuOTUgMzkuNyA1Ny4wNSAyNy4xIDIwLjI1IDkuNiAxNy45NSAxNC43NSBNMjAuMjUgOS42IEwxOC43NSAtMC4wNSAxMy42IDcuMTUgLTEzLjk1IDAuNSAtMTYuODUgNy4xIDYuMyAyMi4yIDQuMyAzMS40IDEyLjE1IDI3LjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utb3BhY2l0eT0iMC40IiBzdHJva2Utd2lkdGg9IjEiLz4NCiAgPC9nPg0KPC9zdmc+DQo8IS0tIDEgLS0+',
   scimitar: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHhtbG5zOmZmZGVjPSJodHRwczovL3d3dy5mcmVlLWRlY29tcGlsZXIuY29tL2ZsYXNoIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgZmZkZWM6b2JqZWN0VHlwZT0ic2hhcGUiIGhlaWdodD0iNDguNHB4IiB3aWR0aD0iMTAzLjE1cHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogIDxnIHRyYW5zZm9ybT0ibWF0cml4KDEuMCwgMC4wLCAwLjAsIDEuMCwgMTguMSwgLTEuMjk5OTk5OTk5OTk5OTk5OCkiPg0KICAgIDxwYXRoIGQ9Ik03OS4xIDQxLjU1IEw3OC41IDQxLjYgNzQuNzUgNDIuMzUgNzMuODUgNDIuNTUgNzIuOTUgNDIuNzUgNzIuODUgNDIuNzUgNzEuNDUgNDIuNjUgNjguNCA0Mi45NSA2NS4xIDQzLjQ1IFE2MS4zNSA0My40NSA1NS42NSA0MC42IEw0Ny4wIDM1LjkgNDEuNiAzMi45IDM2LjM1IDI5Ljc1IDI0LjIgMjIuMjUgMTguOTUgMTkuMjUgMTYuMSAxNy42NSAxNC45NSAxNy4wIDE2LjIgMTMuNCA2MS40NSAzNi45NSA3Mi45IDM0Ljc1IDc0LjM1IDQxLjMgNzkuMSA0MS41NSIgZmlsbD0iI2UwZThlYiIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiLz4NCiAgICA8cGF0aCBkPSJNMTQuOTUgMTcuMCBMMTYuMSAxNy42NSAxOC45NSAxOS4yNSAyNC4yIDIyLjI1IDM2LjM1IDI5Ljc1IDQxLjYgMzIuOSA0Ny4wIDM1LjkgNTUuNjUgNDAuNiBRNjEuMzUgNDMuNDUgNjUuMSA0My40NSBMNjguNCA0Mi45NSA3MS40NSA0Mi42NSA3Mi44NSA0Mi43NSA3Mi45NSA0Mi43NSA3My44NSA0Mi41NSA3NC43NSA0Mi4zNSA3OC41IDQxLjYgNzkuMSA0MS41NSA4NC4wNSA0MS43NSA3NC45NSA0Ny43IDYwLjc1IDQ4LjcgNTIuODUgNDUuODUgMTQuMCAxOS41NSAxNC45NSAxNy4wIiBmaWxsPSIjYjhjOWNmIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xNC45NSAxNy4wIEwxNC4wIDE5LjU1IC0xNy4xIDguNDUgLTE1LjggNC45NSBRMTQuMCAxNi40IDE0Ljk1IDE3LjAiIGZpbGw9IiMwMDAwMDAiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTE2LjIgMTMuNCBMMTQuOTUgMTcuMCBRMTQuMCAxNi40IC0xNS44IDQuOTUgTC0xNC44NSAyLjMgMTYuMiAxMy40IiBmaWxsPSIjNmI1YTUwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xNC45NSAxNy4wIEwxNC4wIDE5LjU1IDUyLjg1IDQ1Ljg1IDYwLjc1IDQ4LjcgNzQuOTUgNDcuNyA4NC4wNSA0MS43NSA3OS4xIDQxLjU1IDc0LjM1IDQxLjMgNzIuOSAzNC43NSA2MS40NSAzNi45NSAxNi4yIDEzLjQgMTQuOTUgMTcuMCBNLTE1LjggNC45NSBMLTE3LjEgOC40NSAxNC4wIDE5LjU1IE0xNi4yIDEzLjQgTC0xNC44NSAyLjMgLTE1LjggNC45NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1vcGFjaXR5PSIwLjQiIHN0cm9rZS13aWR0aD0iMSIvPg0KICA8L2c+DQo8L3N2Zz4NCjwhLS0gMSAtLT4=',
   sword: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHhtbG5zOmZmZGVjPSJodHRwczovL3d3dy5mcmVlLWRlY29tcGlsZXIuY29tL2ZsYXNoIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgZmZkZWM6b2JqZWN0VHlwZT0ic2hhcGUiIGhlaWdodD0iNTUuOTVweCIgd2lkdGg9IjEyMS45NXB4IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPg0KICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLjAsIDAuMCwgMC4wLCAxLjAsIDE4LjksIDIuNTUpIj4NCiAgICA8cGF0aCBkPSJNMTguODUgOS4wIEw4OS42NSAzNC4yIDEwMi4wNSA0Ni43NSAxMDEuNiA0Ny4wNSAxNi4zIDE2LjI1IDE4Ljg1IDkuMCIgZmlsbD0iI2UwZThlYiIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiLz4NCiAgICA8cGF0aCBkPSJNLTE1LjYgNC40NSBMLTEzLjUgLTEuNTUgMTEuOSA3LjIgMTMuMyAzLjIgMjAuMDUgNS42IDE4Ljg1IDkuMCAxNi4zIDE2LjI1IC0xNS42IDQuNDUiIGZpbGw9IiM3MjUzMjciIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTEwMS42IDQ3LjA1IEw5My44IDUyLjQgMTMuNiAyMy45IDE2LjMgMTYuMjUgMTAxLjYgNDcuMDUiIGZpbGw9IiNiOGM5Y2YiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTEzLjYgMjMuOSBMMTIuNiAyNi43NSA2LjA1IDI0LjQ1IDcuMzUgMjAuNyAtMTcuOSAxMC45NSAtMTUuNiA0LjQ1IDE2LjMgMTYuMjUgMTMuNiAyMy45IiBmaWxsPSIjMDAwMDAwIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0xOC44NSA5LjAgTDg5LjY1IDM0LjIgMTAyLjA1IDQ2Ljc1IDEwMS42IDQ3LjA1IDkzLjggNTIuNCAxMy42IDIzLjkgMTIuNiAyNi43NSA2LjA1IDI0LjQ1IDcuMzUgMjAuNyAtMTcuOSAxMC45NSAtMTUuNiA0LjQ1IC0xMy41IC0xLjU1IDExLjkgNy4yIDEzLjMgMy4yIDIwLjA1IDUuNiAxOC44NSA5LjAgMTYuMyAxNi4yNSAxMy42IDIzLjkgTS0xNS42IDQuNDUgTDE2LjMgMTYuMjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utb3BhY2l0eT0iMC40IiBzdHJva2Utd2lkdGg9IjEiLz4NCiAgPC9nPg0KPC9zdmc+DQo8IS0tIDEgLS0+'
-};var Gender = {
-  male: 'male',
-  female: 'female'
-};
-var pad = (n, width, z = '0') => {
-    var nString = `${n}`;
-    return nString.length >= width
-        ? nString
-        : new Array(width - nString.length + 1).join(z) + n.toString();
-};
-var readBodyString = (bodyString) => ({
-    p1: parseInt(bodyString[0] || '0', 16),
-    p1a: parseInt(bodyString[1] || '0', 16),
-    p1b: parseInt(bodyString[2] || '0', 16),
-    p2: parseInt(bodyString[3] || '0', 16),
-    p3: parseInt(bodyString[4] || '0', 16),
-    p4: parseInt(bodyString[5] || '0', 16),
-    p5: parseInt(bodyString[6] || '0', 16),
-    p6: parseInt(bodyString[7] || '0', 16),
-    p7: parseInt(bodyString[8] || '0', 16),
-    p7b: parseInt(bodyString[9] || '0', 16),
-    p8: parseInt(bodyString[10] || '0', 16),
-});
-var generateBodyString = (body) => [
-    body.p1.toString(16),
-    body.p1a.toString(16),
-    body.p1b.toString(16),
-    body.p2.toString(16),
-    body.p3.toString(16),
-    body.p4.toString(16),
-    body.p5.toString(16),
-    body.p6.toString(16),
-    body.p7.toString(16),
-    body.p7b.toString(16),
-    body.p8.toString(16),
-].join('');
-var getColor = (gender, part, color) => {
-    var skinParts = ['col0', 'col0a', 'col0c'];
-    var hairParts = ['col1', 'col1a', 'col1b', 'col1c', 'col1d'];
-    var clothingParts = ['col2', 'col2a', 'col2b', 'col3', 'col3b', 'col4', 'col4a', 'col4b'];
-    let colorArray = [];
-    if (skinParts.includes(part))
-        colorArray = colors[gender].skin;
-    else if (hairParts.includes(part))
-        colorArray = colors[gender].hair;
-    else if (clothingParts.includes(part))
-        colorArray = colors[gender].clothing;
-    var normalColor = colorArray[color];
-    if (normalColor)
-        return normalColor;
-    return colors.special[99 - color] || '#ffffff';
-};
-var readColorString = (gender, colorsString) => ({
-    col0: (0, getColor)(gender, 'col0', +colorsString.slice(0, 2)),
-    col0a: (0, getColor)(gender, 'col0a', +colorsString.slice(2, 4)),
-    col0c: (0, getColor)(gender, 'col0c', +colorsString.slice(4, 6)),
-    col1: (0, getColor)(gender, 'col1', +colorsString.slice(6, 8)),
-    col1a: (0, getColor)(gender, 'col1a', +colorsString.slice(8, 10)),
-    col1b: (0, getColor)(gender, 'col1b', +colorsString.slice(10, 12)),
-    col1c: (0, getColor)(gender, 'col1c', +colorsString.slice(12, 14)),
-    col1d: (0, getColor)(gender, 'col1d', +colorsString.slice(14, 16)),
-    col2: (0, getColor)(gender, 'col2', +colorsString.slice(16, 18)),
-    col2a: (0, getColor)(gender, 'col2a', +colorsString.slice(18, 20)),
-    col2b: (0, getColor)(gender, 'col2b', +colorsString.slice(20, 22)),
-    col3: (0, getColor)(gender, 'col3', +colorsString.slice(22, 24)),
-    col3b: (0, getColor)(gender, 'col3b', +colorsString.slice(24, 26)),
-    col4: (0, getColor)(gender, 'col4', +colorsString.slice(26, 28)),
-    col4a: (0, getColor)(gender, 'col4a', +colorsString.slice(28, 30)),
-    col4b: (0, getColor)(gender, 'col4b', +colorsString.slice(30, 32)),
-});
-var generateColorString = (colorObject) => [
-    (0, pad)(colorObject.col0, 2),
-    (0, pad)(colorObject.col0a, 2),
-    (0, pad)(colorObject.col0c, 2),
-    (0, pad)(colorObject.col1, 2),
-    (0, pad)(colorObject.col1a, 2),
-    (0, pad)(colorObject.col1b, 2),
-    (0, pad)(colorObject.col1c, 2),
-    (0, pad)(colorObject.col1d, 2),
-    (0, pad)(colorObject.col2, 2),
-    (0, pad)(colorObject.col2a, 2),
-    (0, pad)(colorObject.col2b, 2),
-    (0, pad)(colorObject.col3, 2),
-    (0, pad)(colorObject.col3b, 2),
-    (0, pad)(colorObject.col4, 2),
-    (0, pad)(colorObject.col4a, 2),
-    (0, pad)(colorObject.col4b, 2),
-].join('');
-var randomBetween = (min, max) => {
-    if (min > max)
-        return 0;
-    if (min === max)
-        return min;
-    return Math.floor(Math.random() * (max - min + 1) + min);
+};var applySkillModifiers = (brute, skill) => {
+    var updatedBrute = { ...brute };
+    // Vitality modifier
+    if (skill === 'vitality') {
+        updatedBrute.enduranceModifier *= 1.5;
+        updatedBrute.enduranceStat += 3;
+    }
+    // Immortality modifier
+    if (skill === 'immortality') {
+        updatedBrute.enduranceModifier *= 3.5;
+        updatedBrute.strengthModifier *= 0.75;
+        updatedBrute.agilityModifier *= 0.75;
+        updatedBrute.speedModifier *= 0.75;
+    }
+    // Herculean strength modifier
+    if (skill === 'herculeanStrength') {
+        updatedBrute.strengthModifier *= 1.5;
+        updatedBrute.strengthStat += 3;
+    }
+    // Feline agility modifier
+    if (skill === 'felineAgility') {
+        updatedBrute.agilityModifier *= 1.5;
+        updatedBrute.agilityStat += 3;
+    }
+    // Lightning bolt modifier
+    if (skill === 'lightningBolt') {
+        updatedBrute.speedModifier *= 1.5;
+        updatedBrute.speedStat += 3;
+    }
+    // Reconnaissance modifier
+    if (skill === 'reconnaissance') {
+        updatedBrute.speedModifier *= 2.5;
+        updatedBrute.speedStat += 5;
+    }
+    // Armor modifier
+    if (skill === 'armor') {
+        updatedBrute.speedModifier *= 0.9;
+    }
+    return updatedBrute;
 };
 var WeaponName = /*exports.*//*$Enums.*/WeaponName = {
   fan: 'fan',
@@ -256,6 +201,7 @@ var limitedWeapons = [
     'scimitar', 'axe', 'sword', 'fan', 'shuriken', 'bumps',
     'morningStar', 'mammothBone', 'flail', 'whip',
 ];
+var MAX_LIMITED_WEAPONS = limitedWeapons.length - 3;
 var weapons = [
     {
         name: 'axe',
@@ -726,6 +672,7 @@ var weapons = [
         animation: 'whip',
     },
 ];
+var WEAPONS_TOTAL_ODDS = weapons.reduce((acc, weapon) => acc + weapon.odds, 0);
 var WEAPONS_SFX = {
     ...weapons.reduce((acc, weapon) => {
         acc[weapon.name] = [];
@@ -764,5 +711,3693 @@ var WEAPONS_SFX = {
         return acc;
     }, {}),
 };
+if (typeof self.ExpectedError === 'undefined') {
+  self.ExpectedError = class ExpectedError extends Error {
+    constructor(message = '') {
+      super(message);
+    }
+  };
+}var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
+  noThrows: 'noThrows',
+  focusOpponent: 'focusOpponent',
+  alwaysUseSupers: 'alwaysUseSupers',
+  drawEveryWeapon: 'drawEveryWeapon',
+  doubleAgility: 'doubleAgility',
+  randomSkill: 'randomSkill',
+  randomWeapon: 'randomWeapon',
+  bareHandsFirstHit: 'bareHandsFirstHit',
+  startWithWeapon: 'startWithWeapon'
+};
+var Gender = {
+  male: 'male',
+  female: 'female'
+};
+var getFinalStat = (brute, stat, modifiers, randomSkillIndex) => {
+    var multiplier = stat === 'agility' ? modifiers.includes(FightModifier.doubleAgility) ? 2 : 1 : 1;
+    var randomSkill = (0, getTempSkill)(brute, randomSkillIndex);
+    // No random skill, return normal stat
+    if (!randomSkill) {
+        return brute[`${stat}Value`] * multiplier;
+    }
+    // Apply skill modifiers
+    var newBrute = (0, applySkillModifiers)(brute, randomSkill);
+    // Return new stat
+    return Math.floor(newBrute[`${stat}Stat`] * newBrute[`${stat}Modifier`]) * multiplier;
+};
+var getFinalStat = getFinalStat;
+var getFinalHP = (brute, randomSkillIndex) => {
+    var randomSkill = (0, getTempSkill)(brute, randomSkillIndex);
+    // No random skill, return normal HP
+    if (!randomSkill) {
+        return (0, getHP)(brute.level, brute.enduranceValue);
+    }
+    // Apply skill modifiers
+    var newBrute = (0, applySkillModifiers)(brute, randomSkill);
+    // Return new HP
+    return (0, getHP)(newBrute.level, Math.floor(newBrute.enduranceStat * newBrute.enduranceModifier));
+};
+var getFinalHP = getFinalHP;
+var getHP = (level, endurance) => Math.floor(50
+    + (Math.max(endurance, 0)
+        + level * 0.25) * 6);
+var getHP = getHP;
+var readableHPFormula = (level, endurance) => `50 + (max(${endurance}, 0) + ${level} * 0.25) * 6`;
+var readableHPFormula = readableHPFormula;
+var InventoryItemType = /*exports.*//*$Enums.*/InventoryItemType = {
+  visualReset: 'visualReset',
+  bossTicket: 'bossTicket',
+  nameChange: 'nameChange',
+  favoriteFight: 'favoriteFight'
+};
+var LogType = /*exports.*//*$Enums.*/LogType = {
+  win: 'win',
+  lose: 'lose',
+  child: 'child',
+  childup: 'childup',
+  up: 'up',
+  lvl: 'lvl',
+  tournament: 'tournament',
+  tournamentXp: 'tournamentXp',
+  bossDefeat: 'bossDefeat'
+};
+var pad = (n, width, z = '0') => {
+    var nString = `${n}`;
+    return nString.length >= width
+        ? nString
+        : new Array(width - nString.length + 1).join(z) + n.toString();
+};
+var readBodyString = (bodyString) => ({
+    p1: parseInt(bodyString[0] || '0', 16),
+    p1a: parseInt(bodyString[1] || '0', 16),
+    p1b: parseInt(bodyString[2] || '0', 16),
+    p2: parseInt(bodyString[3] || '0', 16),
+    p3: parseInt(bodyString[4] || '0', 16),
+    p4: parseInt(bodyString[5] || '0', 16),
+    p5: parseInt(bodyString[6] || '0', 16),
+    p6: parseInt(bodyString[7] || '0', 16),
+    p7: parseInt(bodyString[8] || '0', 16),
+    p7b: parseInt(bodyString[9] || '0', 16),
+    p8: parseInt(bodyString[10] || '0', 16),
+});
+var readBodyString = readBodyString;
+var generateBodyString = (body) => [
+    body.p1.toString(16),
+    body.p1a.toString(16),
+    body.p1b.toString(16),
+    body.p2.toString(16),
+    body.p3.toString(16),
+    body.p4.toString(16),
+    body.p5.toString(16),
+    body.p6.toString(16),
+    body.p7.toString(16),
+    body.p7b.toString(16),
+    body.p8.toString(16),
+].join('');
+var generateBodyString = generateBodyString;
+var getColor = (gender, part, color) => {
+    var skinParts = ['col0', 'col0a', 'col0c'];
+    var hairParts = ['col1', 'col1a', 'col1b', 'col1c', 'col1d'];
+    var clothingParts = ['col2', 'col2a', 'col2b', 'col3', 'col3b', 'col4', 'col4a', 'col4b'];
+    let colorArray = [];
+    if (skinParts.includes(part))
+        colorArray = colors[gender].skin;
+    else if (hairParts.includes(part))
+        colorArray = colors[gender].hair;
+    else if (clothingParts.includes(part))
+        colorArray = colors[gender].clothing;
+    var normalColor = colorArray[color];
+    if (normalColor)
+        return normalColor;
+    return colors.special[99 - color] || '#ffffff';
+};
+var getColor = getColor;
+var readColorString = (gender, colorsString) => ({
+    col0: (0, getColor)(gender, 'col0', +colorsString.slice(0, 2)),
+    col0a: (0, getColor)(gender, 'col0a', +colorsString.slice(2, 4)),
+    col0c: (0, getColor)(gender, 'col0c', +colorsString.slice(4, 6)),
+    col1: (0, getColor)(gender, 'col1', +colorsString.slice(6, 8)),
+    col1a: (0, getColor)(gender, 'col1a', +colorsString.slice(8, 10)),
+    col1b: (0, getColor)(gender, 'col1b', +colorsString.slice(10, 12)),
+    col1c: (0, getColor)(gender, 'col1c', +colorsString.slice(12, 14)),
+    col1d: (0, getColor)(gender, 'col1d', +colorsString.slice(14, 16)),
+    col2: (0, getColor)(gender, 'col2', +colorsString.slice(16, 18)),
+    col2a: (0, getColor)(gender, 'col2a', +colorsString.slice(18, 20)),
+    col2b: (0, getColor)(gender, 'col2b', +colorsString.slice(20, 22)),
+    col3: (0, getColor)(gender, 'col3', +colorsString.slice(22, 24)),
+    col3b: (0, getColor)(gender, 'col3b', +colorsString.slice(24, 26)),
+    col4: (0, getColor)(gender, 'col4', +colorsString.slice(26, 28)),
+    col4a: (0, getColor)(gender, 'col4a', +colorsString.slice(28, 30)),
+    col4b: (0, getColor)(gender, 'col4b', +colorsString.slice(30, 32)),
+});
+var readColorString = readColorString;
+var generateColorString = (colorObject) => [
+    (0, pad)(colorObject.col0, 2),
+    (0, pad)(colorObject.col0a, 2),
+    (0, pad)(colorObject.col0c, 2),
+    (0, pad)(colorObject.col1, 2),
+    (0, pad)(colorObject.col1a, 2),
+    (0, pad)(colorObject.col1b, 2),
+    (0, pad)(colorObject.col1c, 2),
+    (0, pad)(colorObject.col1d, 2),
+    (0, pad)(colorObject.col2, 2),
+    (0, pad)(colorObject.col2a, 2),
+    (0, pad)(colorObject.col2b, 2),
+    (0, pad)(colorObject.col3, 2),
+    (0, pad)(colorObject.col3b, 2),
+    (0, pad)(colorObject.col4, 2),
+    (0, pad)(colorObject.col4a, 2),
+    (0, pad)(colorObject.col4b, 2),
+].join('');
+var PetName = /*exports.*//*$Enums.*/PetName = {
+  dog1: 'dog1',
+  dog2: 'dog2',
+  dog3: 'dog3',
+  panther: 'panther',
+  bear: 'bear'
+};
+var randomBetween = (min, max) => {
+    if (min > max)
+        return 0;
+    if (min === max)
+        return min;
+    return Math.floor(Math.random() * (max - min + 1) + min);
+};
+var randomItem = void 0;
+var randomItem = (items) => {
+    if (!items.length) {
+        throw new Error('No items');
+    }
+    if (items.length === 1) {
+        var item = items[0];
+        if (!item) {
+            throw new Error('No item');
+        }
+        return item;
+    }
+    var index = (0, randomBetween)(0, items.length - 1);
+    var item = items[index];
+    if (!item) {
+        throw new Error('No item');
+    }
+    return item;
+};
+var randomItem = randomItem;
+var SkillName = /*exports.*//*$Enums.*/SkillName = {
+  herculeanStrength: 'herculeanStrength',
+  felineAgility: 'felineAgility',
+  lightningBolt: 'lightningBolt',
+  vitality: 'vitality',
+  immortality: 'immortality',
+  reconnaissance: 'reconnaissance',
+  weaponsMaster: 'weaponsMaster',
+  martialArts: 'martialArts',
+  sixthSense: 'sixthSense',
+  hostility: 'hostility',
+  fistsOfFury: 'fistsOfFury',
+  shield: 'shield',
+  armor: 'armor',
+  toughenedSkin: 'toughenedSkin',
+  untouchable: 'untouchable',
+  sabotage: 'sabotage',
+  shock: 'shock',
+  bodybuilder: 'bodybuilder',
+  relentless: 'relentless',
+  survival: 'survival',
+  leadSkeleton: 'leadSkeleton',
+  balletShoes: 'balletShoes',
+  determination: 'determination',
+  firstStrike: 'firstStrike',
+  resistant: 'resistant',
+  counterAttack: 'counterAttack',
+  ironHead: 'ironHead',
+  thief: 'thief',
+  fierceBrute: 'fierceBrute',
+  tragicPotion: 'tragicPotion',
+  net: 'net',
+  bomb: 'bomb',
+  hammer: 'hammer',
+  cryOfTheDamned: 'cryOfTheDamned',
+  hypnosis: 'hypnosis',
+  flashFlood: 'flashFlood',
+  tamer: 'tamer',
+  regeneration: 'regeneration',
+  chef: 'chef',
+  spy: 'spy',
+  saboteur: 'saboteur',
+  backup: 'backup',
+  hideaway: 'hideaway',
+  monk: 'monk',
+  vampirism: 'vampirism',
+  chaining: 'chaining',
+  haste: 'haste',
+  treat: 'treat',
+  repulse: 'repulse'
+};
+var weightedRandom = (items) => {
+    var firstItem = items[0];
+    if (!firstItem) {
+        throw new Error('No items');
+    }
+    // Calculate total odds
+    var totalOdds = items.reduce((acc, item) => acc + item.odds, 0);
+    let i = 0;
+    var weights = [];
+    for (i = 0; i < items.length; i++) {
+        weights[i] = ((items[i]?.odds || 0) / totalOdds) + (weights[i - 1] || 0);
+    }
+    var random = Math.random() * (weights[weights.length - 1] || 0);
+    for (i = 0; i < weights.length; i++) {
+        if ((weights[i] || 0) > random) {
+            break;
+        }
+    }
+    return items[i] || firstItem;
+};
+var pets = [
+    {
+        name: PetName.bear,
+        odds: 1,
+        enduranceMalus: 8,
+        initiative: 3.6,
+        strength: 40,
+        agility: 2,
+        speed: 1,
+        hp: 110,
+        counter: 0,
+        combo: -0.2,
+        block: -0.25,
+        evasion: 0.1,
+        accuracy: 0.2,
+        disarm: 0.05,
+        damage: 5,
+    },
+    {
+        name: PetName.panther,
+        odds: 1,
+        enduranceMalus: 6,
+        initiative: 0.6,
+        strength: 23,
+        agility: 16,
+        speed: 24,
+        hp: 26,
+        counter: 0,
+        combo: 0.7,
+        block: 0,
+        evasion: 0.2,
+        accuracy: 0,
+        disarm: 0,
+        damage: 3,
+    },
+    {
+        name: PetName.dog3,
+        odds: 2,
+        enduranceMalus: 2,
+        initiative: 0.1,
+        strength: 6,
+        agility: 5,
+        speed: 3,
+        hp: 14,
+        counter: 0,
+        combo: 0.2,
+        block: 0,
+        evasion: 0,
+        accuracy: 0,
+        disarm: 0,
+        damage: 3,
+    },
+    {
+        name: PetName.dog2,
+        odds: 8,
+        enduranceMalus: 2,
+        initiative: 0.1,
+        strength: 6,
+        agility: 5,
+        speed: 3,
+        hp: 14,
+        counter: 0,
+        combo: 0.2,
+        block: 0,
+        evasion: 0,
+        accuracy: 0,
+        disarm: 0,
+        damage: 3,
+    },
+    {
+        name: PetName.dog1,
+        odds: 20,
+        enduranceMalus: 2,
+        initiative: 0.1,
+        strength: 6,
+        agility: 5,
+        speed: 3,
+        hp: 14,
+        counter: 0,
+        combo: 0.2,
+        block: 0,
+        evasion: 0,
+        accuracy: 0,
+        disarm: 0,
+        damage: 3,
+    },
+];
+var PETS_TOTAL_ODDS = pets.reduce((acc, pet) => acc + pet.odds, 0);
+var scalingByPet = {
+    [PetName.bear]: {
+        strength: 0.4,
+        agility: 0.1,
+        speed: 0.1,
+        hp: 0.4,
+    },
+    [PetName.panther]: {
+        strength: 0.25,
+        agility: 0.3,
+        speed: 0.3,
+        hp: 0.15,
+    },
+    [PetName.dog3]: {
+        strength: 0.1,
+        agility: 0.2,
+        speed: 0.4,
+        hp: 0.1,
+    },
+    [PetName.dog2]: {
+        strength: 0.1,
+        agility: 0.2,
+        speed: 0.4,
+        hp: 0.1,
+    },
+    [PetName.dog1]: {
+        strength: 0.1,
+        agility: 0.2,
+        speed: 0.4,
+        hp: 0.1,
+    },
+};
+var petStatToBruteStat = {
+    strength: 'strengthValue',
+    agility: 'agilityValue',
+    speed: 'speedValue',
+    hp: 'hp',
+};
+var getPetStat = (brute, pet, stat) => {
+    var base = pet[stat];
+    var scaling = scalingByPet[pet.name][stat];
+    var bruteStat = brute[petStatToBruteStat[stat]];
+    return base + Math.ceil(scaling * bruteStat);
+};
+var getPetStat = getPetStat;
+var SkillId;
+(function (SkillId) {
+    SkillId[SkillId["herculeanStrength"] = 0] = "herculeanStrength";
+    SkillId[SkillId["felineAgility"] = 1] = "felineAgility";
+    SkillId[SkillId["lightningBolt"] = 2] = "lightningBolt";
+    SkillId[SkillId["vitality"] = 3] = "vitality";
+    SkillId[SkillId["immortality"] = 4] = "immortality";
+    SkillId[SkillId["reconnaissance"] = 5] = "reconnaissance";
+    SkillId[SkillId["weaponsMaster"] = 6] = "weaponsMaster";
+    SkillId[SkillId["martialArts"] = 7] = "martialArts";
+    SkillId[SkillId["sixthSense"] = 8] = "sixthSense";
+    SkillId[SkillId["hostility"] = 9] = "hostility";
+    SkillId[SkillId["fistsOfFury"] = 10] = "fistsOfFury";
+    SkillId[SkillId["shield"] = 11] = "shield";
+    SkillId[SkillId["armor"] = 12] = "armor";
+    SkillId[SkillId["toughenedSkin"] = 13] = "toughenedSkin";
+    SkillId[SkillId["untouchable"] = 14] = "untouchable";
+    SkillId[SkillId["sabotage"] = 15] = "sabotage";
+    SkillId[SkillId["shock"] = 16] = "shock";
+    SkillId[SkillId["bodybuilder"] = 17] = "bodybuilder";
+    SkillId[SkillId["relentless"] = 18] = "relentless";
+    SkillId[SkillId["survival"] = 19] = "survival";
+    SkillId[SkillId["leadSkeleton"] = 20] = "leadSkeleton";
+    SkillId[SkillId["balletShoes"] = 21] = "balletShoes";
+    SkillId[SkillId["determination"] = 22] = "determination";
+    SkillId[SkillId["firstStrike"] = 23] = "firstStrike";
+    SkillId[SkillId["resistant"] = 24] = "resistant";
+    SkillId[SkillId["counterAttack"] = 25] = "counterAttack";
+    SkillId[SkillId["ironHead"] = 26] = "ironHead";
+    SkillId[SkillId["thief"] = 27] = "thief";
+    SkillId[SkillId["fierceBrute"] = 28] = "fierceBrute";
+    SkillId[SkillId["tragicPotion"] = 29] = "tragicPotion";
+    SkillId[SkillId["net"] = 30] = "net";
+    SkillId[SkillId["bomb"] = 31] = "bomb";
+    SkillId[SkillId["hammer"] = 32] = "hammer";
+    SkillId[SkillId["cryOfTheDamned"] = 33] = "cryOfTheDamned";
+    SkillId[SkillId["hypnosis"] = 34] = "hypnosis";
+    SkillId[SkillId["flashFlood"] = 35] = "flashFlood";
+    SkillId[SkillId["tamer"] = 36] = "tamer";
+    SkillId[SkillId["regeneration"] = 37] = "regeneration";
+    SkillId[SkillId["chef"] = 38] = "chef";
+    SkillId[SkillId["spy"] = 39] = "spy";
+    SkillId[SkillId["saboteur"] = 40] = "saboteur";
+    SkillId[SkillId["backup"] = 41] = "backup";
+    SkillId[SkillId["hideaway"] = 42] = "hideaway";
+    SkillId[SkillId["monk"] = 43] = "monk";
+    SkillId[SkillId["vampirism"] = 44] = "vampirism";
+    SkillId[SkillId["chaining"] = 45] = "chaining";
+    SkillId[SkillId["haste"] = 46] = "haste";
+    SkillId[SkillId["treat"] = 47] = "treat";
+    SkillId[SkillId["repulse"] = 48] = "repulse";
+})(SkillId || (/*exports.*/SkillId = SkillId = {}));
+var SkillByName = {
+    [SkillName.herculeanStrength]: SkillId.herculeanStrength,
+    [SkillName.felineAgility]: SkillId.felineAgility,
+    [SkillName.lightningBolt]: SkillId.lightningBolt,
+    [SkillName.vitality]: SkillId.vitality,
+    [SkillName.immortality]: SkillId.immortality,
+    [SkillName.reconnaissance]: SkillId.reconnaissance,
+    [SkillName.weaponsMaster]: SkillId.weaponsMaster,
+    [SkillName.martialArts]: SkillId.martialArts,
+    [SkillName.sixthSense]: SkillId.sixthSense,
+    [SkillName.hostility]: SkillId.hostility,
+    [SkillName.fistsOfFury]: SkillId.fistsOfFury,
+    [SkillName.shield]: SkillId.shield,
+    [SkillName.armor]: SkillId.armor,
+    [SkillName.toughenedSkin]: SkillId.toughenedSkin,
+    [SkillName.untouchable]: SkillId.untouchable,
+    [SkillName.sabotage]: SkillId.sabotage,
+    [SkillName.shock]: SkillId.shock,
+    [SkillName.bodybuilder]: SkillId.bodybuilder,
+    [SkillName.relentless]: SkillId.relentless,
+    [SkillName.survival]: SkillId.survival,
+    [SkillName.leadSkeleton]: SkillId.leadSkeleton,
+    [SkillName.balletShoes]: SkillId.balletShoes,
+    [SkillName.determination]: SkillId.determination,
+    [SkillName.firstStrike]: SkillId.firstStrike,
+    [SkillName.resistant]: SkillId.resistant,
+    [SkillName.counterAttack]: SkillId.counterAttack,
+    [SkillName.ironHead]: SkillId.ironHead,
+    [SkillName.thief]: SkillId.thief,
+    [SkillName.fierceBrute]: SkillId.fierceBrute,
+    [SkillName.tragicPotion]: SkillId.tragicPotion,
+    [SkillName.net]: SkillId.net,
+    [SkillName.bomb]: SkillId.bomb,
+    [SkillName.hammer]: SkillId.hammer,
+    [SkillName.cryOfTheDamned]: SkillId.cryOfTheDamned,
+    [SkillName.hypnosis]: SkillId.hypnosis,
+    [SkillName.flashFlood]: SkillId.flashFlood,
+    [SkillName.tamer]: SkillId.tamer,
+    [SkillName.regeneration]: SkillId.regeneration,
+    [SkillName.chef]: SkillId.chef,
+    [SkillName.spy]: SkillId.spy,
+    [SkillName.saboteur]: SkillId.saboteur,
+    [SkillName.backup]: SkillId.backup,
+    [SkillName.hideaway]: SkillId.hideaway,
+    [SkillName.monk]: SkillId.monk,
+    [SkillName.vampirism]: SkillId.vampirism,
+    [SkillName.chaining]: SkillId.chaining,
+    [SkillName.haste]: SkillId.haste,
+    [SkillName.treat]: SkillId.treat,
+    [SkillName.repulse]: SkillId.repulse,
+};
+var SkillById = {
+    [SkillId.herculeanStrength]: SkillName.herculeanStrength,
+    [SkillId.felineAgility]: SkillName.felineAgility,
+    [SkillId.lightningBolt]: SkillName.lightningBolt,
+    [SkillId.vitality]: SkillName.vitality,
+    [SkillId.immortality]: SkillName.immortality,
+    [SkillId.reconnaissance]: SkillName.reconnaissance,
+    [SkillId.weaponsMaster]: SkillName.weaponsMaster,
+    [SkillId.martialArts]: SkillName.martialArts,
+    [SkillId.sixthSense]: SkillName.sixthSense,
+    [SkillId.hostility]: SkillName.hostility,
+    [SkillId.fistsOfFury]: SkillName.fistsOfFury,
+    [SkillId.shield]: SkillName.shield,
+    [SkillId.armor]: SkillName.armor,
+    [SkillId.toughenedSkin]: SkillName.toughenedSkin,
+    [SkillId.untouchable]: SkillName.untouchable,
+    [SkillId.sabotage]: SkillName.sabotage,
+    [SkillId.shock]: SkillName.shock,
+    [SkillId.bodybuilder]: SkillName.bodybuilder,
+    [SkillId.relentless]: SkillName.relentless,
+    [SkillId.survival]: SkillName.survival,
+    [SkillId.leadSkeleton]: SkillName.leadSkeleton,
+    [SkillId.balletShoes]: SkillName.balletShoes,
+    [SkillId.determination]: SkillName.determination,
+    [SkillId.firstStrike]: SkillName.firstStrike,
+    [SkillId.resistant]: SkillName.resistant,
+    [SkillId.counterAttack]: SkillName.counterAttack,
+    [SkillId.ironHead]: SkillName.ironHead,
+    [SkillId.thief]: SkillName.thief,
+    [SkillId.fierceBrute]: SkillName.fierceBrute,
+    [SkillId.tragicPotion]: SkillName.tragicPotion,
+    [SkillId.net]: SkillName.net,
+    [SkillId.bomb]: SkillName.bomb,
+    [SkillId.hammer]: SkillName.hammer,
+    [SkillId.cryOfTheDamned]: SkillName.cryOfTheDamned,
+    [SkillId.hypnosis]: SkillName.hypnosis,
+    [SkillId.flashFlood]: SkillName.flashFlood,
+    [SkillId.tamer]: SkillName.tamer,
+    [SkillId.regeneration]: SkillName.regeneration,
+    [SkillId.chef]: SkillName.chef,
+    [SkillId.spy]: SkillName.spy,
+    [SkillId.saboteur]: SkillName.saboteur,
+    [SkillId.backup]: SkillName.backup,
+    [SkillId.hideaway]: SkillName.hideaway,
+    [SkillId.monk]: SkillName.monk,
+    [SkillId.vampirism]: SkillName.vampirism,
+    [SkillId.chaining]: SkillName.chaining,
+    [SkillId.haste]: SkillName.haste,
+    [SkillId.treat]: SkillName.treat,
+    [SkillId.repulse]: SkillName.repulse,
+};
+var FightStat = {
+    REVERSAL: 'reversal',
+    COUNTER: 'counter',
+    EVASION: 'evasion',
+    DEXTERITY: 'dexterity',
+    BLOCK: 'block',
+    ACCURACY: 'accuracy',
+    DISARM: 'disarm',
+    COMBO: 'combo',
+    DEFLECT: 'deflect',
+    ARMOR: 'armor',
+    DAMAGE: 'damage',
+    HIT_SPEED: 'hitSpeed',
+    INITIATIVE: 'initiative',
+    STRENGTH: 'strength',
+    AGILITY: 'agility',
+    SPEED: 'speed',
+    ENDURANCE: 'endurance',
+};
+var skills = [
+    {
+        name: 'herculeanStrength',
+        odds: 60,
+        type: 'booster',
+    },
+    {
+        name: 'felineAgility',
+        odds: 60,
+        type: 'booster',
+    },
+    {
+        name: 'lightningBolt',
+        odds: 60,
+        type: 'booster',
+    },
+    {
+        name: 'vitality',
+        odds: 60,
+        type: 'booster',
+    },
+    {
+        name: 'immortality',
+        odds: 0.14,
+        type: 'booster',
+    },
+    {
+        name: 'weaponsMaster',
+        odds: 10,
+        type: 'passive',
+    },
+    {
+        name: 'martialArts',
+        odds: 10,
+        type: 'passive',
+    },
+    {
+        name: 'sixthSense',
+        odds: 20,
+        type: 'passive',
+    },
+    {
+        name: 'hostility',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'fistsOfFury',
+        odds: 10,
+        type: 'passive',
+    },
+    {
+        name: 'shield',
+        odds: 10,
+        type: 'passive',
+    },
+    {
+        name: 'armor',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'toughenedSkin',
+        odds: 30,
+        type: 'passive',
+    },
+    {
+        name: 'untouchable',
+        odds: 1,
+        type: 'passive',
+    },
+    {
+        name: 'sabotage',
+        odds: 3,
+        type: 'passive',
+    },
+    {
+        name: 'shock',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'bodybuilder',
+        odds: 5,
+        type: 'passive',
+    },
+    {
+        name: 'relentless',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'survival',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'leadSkeleton',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'balletShoes',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'determination',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'firstStrike',
+        odds: 8,
+        type: 'passive',
+    },
+    {
+        name: 'resistant',
+        odds: 3,
+        type: 'passive',
+    },
+    {
+        name: 'reconnaissance',
+        odds: 1,
+        type: 'booster',
+    },
+    {
+        name: 'counterAttack',
+        odds: 10,
+        type: 'passive',
+    },
+    {
+        name: 'ironHead',
+        odds: 4,
+        type: 'passive',
+    },
+    {
+        name: 'thief',
+        odds: 2.5,
+        type: 'super',
+        toss: 8,
+        uses: 2,
+    },
+    {
+        name: 'fierceBrute',
+        odds: 20,
+        type: 'super',
+        toss: 5,
+        uses: 1,
+    },
+    {
+        name: 'tragicPotion',
+        odds: 8,
+        type: 'super',
+        toss: 10,
+        uses: 1,
+    },
+    {
+        name: 'net',
+        odds: 16,
+        type: 'super',
+        toss: 10,
+        uses: 1,
+    },
+    {
+        name: 'bomb',
+        odds: 6,
+        type: 'super',
+        toss: 2,
+        uses: 2,
+    },
+    {
+        name: 'hammer',
+        odds: 1,
+        type: 'super',
+        toss: 2,
+        uses: 1,
+    },
+    {
+        name: 'cryOfTheDamned',
+        odds: 4,
+        type: 'super',
+        toss: 8,
+        uses: 2,
+    },
+    {
+        name: 'hypnosis',
+        odds: 0.5,
+        type: 'super',
+        toss: 3,
+        uses: 1,
+    },
+    {
+        name: 'flashFlood',
+        odds: 0.5,
+        type: 'super',
+        toss: 2,
+        uses: 3,
+    },
+    {
+        name: 'tamer',
+        odds: 4,
+        type: 'super',
+        toss: 20,
+        uses: 4,
+    },
+    {
+        name: 'regeneration',
+        odds: 3,
+        type: 'talent',
+    },
+    {
+        name: 'chef',
+        odds: 1,
+        type: 'talent',
+    },
+    {
+        name: 'spy',
+        odds: 3,
+        type: 'talent',
+    },
+    {
+        name: 'saboteur',
+        odds: 3,
+        type: 'talent',
+    },
+    {
+        name: 'backup',
+        odds: 5,
+        type: 'talent',
+    },
+    {
+        name: 'hideaway',
+        odds: 5,
+        type: 'talent',
+    },
+    {
+        name: 'monk',
+        odds: 5,
+        type: 'talent',
+    },
+    {
+        name: 'vampirism',
+        odds: 10,
+        type: 'super',
+        uses: 1,
+        toss: 5,
+    },
+    {
+        name: 'chaining',
+        odds: 5,
+        type: 'passive',
+    },
+    {
+        name: 'haste',
+        odds: 5,
+        type: 'super',
+        uses: 1,
+        toss: 3,
+    },
+    {
+        name: 'treat',
+        odds: 20,
+        type: 'super',
+        uses: 4,
+        toss: 5,
+    },
+    {
+        name: 'repulse',
+        odds: 10,
+        type: 'passive',
+    },
+];
+var SKILLS_TOTAL_ODDS = skills.reduce((acc, skill) => acc + skill.odds, 0);
+var SkillModifiers = {
+    [SkillName.herculeanStrength]: [
+        { stat: FightStat.STRENGTH, value: 3 },
+        { stat: FightStat.STRENGTH, value: 50, percent: true },
+    ],
+    [SkillName.felineAgility]: [
+        { stat: FightStat.AGILITY, value: 3 },
+        { stat: FightStat.AGILITY, value: 50, percent: true },
+    ],
+    [SkillName.lightningBolt]: [
+        { stat: FightStat.SPEED, value: 3 },
+        { stat: FightStat.SPEED, value: 50, percent: true },
+    ],
+    [SkillName.vitality]: [
+        { stat: FightStat.ENDURANCE, value: 3 },
+        { stat: FightStat.ENDURANCE, value: 50, percent: true },
+    ],
+    [SkillName.immortality]: [
+        { stat: FightStat.ENDURANCE, value: 250, percent: true },
+        { stat: FightStat.STRENGTH, value: -25, percent: true },
+        { stat: FightStat.AGILITY, value: -25, percent: true },
+        { stat: FightStat.SPEED, value: -25, percent: true },
+    ],
+    [SkillName.weaponsMaster]: [
+        { stat: FightStat.DAMAGE, weaponType: WeaponType.SHARP, value: 50, percent: true },
+    ],
+    [SkillName.martialArts]: [
+        { stat: FightStat.DAMAGE, weaponType: null, value: 100, percent: true },
+    ],
+    [SkillName.sixthSense]: [
+        { stat: FightStat.COUNTER, value: 10, percent: true },
+    ],
+    [SkillName.hostility]: [
+        { stat: FightStat.REVERSAL, value: 30, percent: true },
+    ],
+    [SkillName.fistsOfFury]: [
+        { stat: FightStat.COMBO, value: 20, percent: true },
+    ],
+    [SkillName.shield]: [
+        { stat: FightStat.BLOCK, value: 45, percent: true },
+    ],
+    [SkillName.armor]: [
+        { stat: FightStat.ARMOR, value: 25, percent: true },
+        { stat: FightStat.SPEED, value: -10, percent: true },
+    ],
+    [SkillName.toughenedSkin]: [
+        { stat: FightStat.ARMOR, value: 10, percent: true },
+    ],
+    [SkillName.untouchable]: [
+        { stat: FightStat.EVASION, value: 30, percent: true },
+    ],
+    [SkillName.sabotage]: [],
+    [SkillName.shock]: [
+        { stat: FightStat.DISARM, value: 50, percent: true },
+    ],
+    [SkillName.bodybuilder]: [
+        { stat: FightStat.HIT_SPEED, weaponType: WeaponType.HEAVY, value: 25, percent: true },
+        { stat: FightStat.DEXTERITY, weaponType: WeaponType.HEAVY, value: 10, percent: true },
+    ],
+    [SkillName.relentless]: [
+        { stat: FightStat.ACCURACY, value: 30, percent: true },
+    ],
+    [SkillName.survival]: [],
+    [SkillName.leadSkeleton]: [],
+    [SkillName.balletShoes]: [
+        { stat: FightStat.EVASION, value: 10, percent: true },
+    ],
+    [SkillName.determination]: [],
+    [SkillName.firstStrike]: [
+        { stat: FightStat.INITIATIVE, value: 200 },
+    ],
+    [SkillName.resistant]: [],
+    [SkillName.reconnaissance]: [
+        { stat: FightStat.INITIATIVE, value: -200 },
+        { stat: FightStat.SPEED, value: 5 },
+        { stat: FightStat.SPEED, value: 150, percent: true },
+    ],
+    [SkillName.counterAttack]: [
+        { stat: FightStat.BLOCK, value: 10, percent: true },
+        { stat: FightStat.REVERSAL, value: 90, percent: true, details: 'afterBlock' },
+    ],
+    [SkillName.ironHead]: [],
+    [SkillName.thief]: [],
+    [SkillName.fierceBrute]: [],
+    [SkillName.tragicPotion]: [],
+    [SkillName.net]: [],
+    [SkillName.bomb]: [],
+    [SkillName.hammer]: [],
+    [SkillName.cryOfTheDamned]: [],
+    [SkillName.hypnosis]: [],
+    [SkillName.flashFlood]: [],
+    [SkillName.tamer]: [],
+    [SkillName.regeneration]: [],
+    [SkillName.chef]: [],
+    [SkillName.spy]: [],
+    [SkillName.saboteur]: [],
+    [SkillName.backup]: [],
+    [SkillName.hideaway]: [],
+    [SkillName.monk]: [
+        { stat: FightStat.COUNTER, value: 40, percent: true },
+        { stat: FightStat.INITIATIVE, value: -200 },
+        { stat: FightStat.HIT_SPEED, value: -100, percent: true },
+    ],
+    [SkillName.vampirism]: [],
+    [SkillName.chaining]: [],
+    [SkillName.haste]: [],
+    [SkillName.treat]: [],
+    [SkillName.repulse]: [
+        { stat: FightStat.DEFLECT, value: 30, percent: true },
+    ],
+};
+var FIGHTS_PER_DAY = 6;
+var ARENA_OPPONENTS_COUNT = 6;
+var ARENA_OPPONENTS_MAX_GAP = 2;
+var BRUTE_STARTING_POINTS = 11;
+var PERKS_TOTAL_ODDS = WEAPONS_TOTAL_ODDS + PETS_TOTAL_ODDS + SKILLS_TOTAL_ODDS;
+var SHIELD_BLOCK_ODDS = 0.45;
+var NO_WEAPON_TOSS = 10;
+var Animations = [
+    'arrive', 'attack', 'block', 'death', 'drink', 'eat',
+    'equip', 'evade', 'grab', 'grabbed', 'hit', 'hit-0', 'hit-1', 'hit-2',
+    'idle', 'launch', 'monk', 'prepare-throw', 'run',
+    'stolen', 'steal', 'strengthen', 'throw', 'train', 'train2', 'trapped',
+    'trash', 'win', ...WeaponAnimations,
+];
+var BruteRankings = [11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0];
+var GLOBAL_TOURNAMENT_START_HOUR = 6;
+var PERK_ODDS = [
+    { name: 'pet', odds: PETS_TOTAL_ODDS },
+    { name: 'skill', odds: SKILLS_TOTAL_ODDS },
+    { name: 'weapon', odds: WEAPONS_TOTAL_ODDS },
+];
+var NEW_BRUTE_BASE_COST = 500;
+var FIGHTER_HEIGHT = {
+    brute: 80,
+    [PetName.bear]: 130,
+    [PetName.panther]: 60,
+    dog: 40,
+};
+var FIGHTER_WIDTH = {
+    brute: 50,
+    [PetName.bear]: 100,
+    [PetName.panther]: 80,
+    dog: 60,
+};
+var FIGHTER_HIT_ANCHOR = {
+    brute: { x: 5, y: 40 },
+    [PetName.bear]: { x: 60, y: 100 },
+    [PetName.panther]: { x: 45, y: 45 },
+    dog: { x: 30, y: 30 },
+};
+var MAX_FAVORITE_BRUTES = 3;
+var BASE_FIGHTER_STATS = {
+    reversal: 0,
+    evasion: 0.1,
+    dexterity: 0.2,
+    block: -0.25,
+    accuracy: 0,
+    disarm: 0.05,
+    combo: 0,
+    deflect: 0,
+    tempo: 1.2,
+};
+var BARE_HANDS_DAMAGE = 5;
+var RESET_PRICE = 100;
+var CLAN_SIZE_LIMIT = 50;
+var BOSS_XP_REWARD = 500;
+var BOSS_GOLD_REWARD = 500;
+var BruteDeletionReason;
+(function (BruteDeletionReason) {
+    BruteDeletionReason["DUPLICATE_NAME"] = "DUPLICATE_NAME";
+    BruteDeletionReason["INNAPROPRIATE_NAME"] = "INNAPROPRIATE_NAME";
+    BruteDeletionReason["BANNED_USER"] = "BANNED_USER";
+    BruteDeletionReason["EVENT_LOSS"] = "EVENT_LOSS";
+})(BruteDeletionReason || (/*exports.*/BruteDeletionReason = BruteDeletionReason = {}));
+var DailyModifierOdds = [
+    { modifier: FightModifier.noThrows, odds: 1 },
+    { modifier: FightModifier.focusOpponent, odds: 1 },
+    { modifier: FightModifier.alwaysUseSupers, odds: 1 },
+    { modifier: FightModifier.drawEveryWeapon, odds: 1 },
+    { modifier: FightModifier.doubleAgility, odds: 1 },
+    { modifier: FightModifier.randomSkill, odds: 1 },
+    { modifier: FightModifier.randomWeapon, odds: 1 },
+    { modifier: FightModifier.bareHandsFirstHit, odds: 1 },
+    { modifier: FightModifier.startWithWeapon, odds: 1 },
+];
+var DailyModifierCountOdds = [
+    { count: 1, odds: 50 },
+    { count: 2, odds: 25 },
+    { count: 3, odds: 15 },
+    { count: 4, odds: 10 },
+];
+var DailyModifierSpawnChance = 4 / 30;
+var BanReason;
+(function (BanReason) {
+    BanReason["INNAPROPRIATE_NAME"] = "innapropriateName";
+    BanReason["INNAPROPRIATE_BRUTE_NAME"] = "innapropriateBruteName";
+    BanReason["MULTIPLE_ACCOUNTS"] = "multipleAccounts";
+})(BanReason || (/*exports.*/BanReason = BanReason = {}));
+var FightLogTemplateCount = 48;
+var ClanWarMaxParticipants = 7;
+var ClanWarPointReward = 1000;
+var EventPauseDuration = 3;
+var EventFightsPerDay = 10;
+var EventFreeResets = 3;
+var BossName = /*exports.*//*$Enums.*/BossName = {
+  GoldClaw: 'GoldClaw',
+  EmberFang: 'EmberFang'
+};
+
+var applySpy = (fightData, brute, opponent) => {
+    if (brute.skills.find((skill) => skill.name === 'spy')) {
+        var opponentWeaponsCount = opponent.weapons.length;
+        var bruteWeaponsCount = brute.weapons.length;
+        var weaponsToSwap = Math.min(opponentWeaponsCount, bruteWeaponsCount);
+        if (weaponsToSwap === 0) {
+            return;
+        }
+        // Only swap the amount of weapons the spy has (maxed at opponent's weapons count)
+        var opponentWeaponsToSwap = (0, shuffle)(opponent.weapons)
+            .slice(0, weaponsToSwap);
+        var bruteWeaponsToSwap = (0, shuffle)(brute.weapons)
+            .slice(0, weaponsToSwap);
+        fightData.steps.push({
+            a: StepType.Spy,
+            b: brute.index,
+            t: opponent.index,
+            s: bruteWeaponsToSwap.map((weapon) => WeaponByName[weapon.name]),
+            r: opponentWeaponsToSwap.map((weapon) => WeaponByName[weapon.name]),
+        });
+        // Swap weapons
+        for (var weaponToSwap of bruteWeaponsToSwap) {
+            var index = brute.weapons.findIndex((weapon) => weapon.name === weaponToSwap.name);
+            if (index === -1) {
+                throw new Error('Weapon not found');
+            }
+            brute.weapons.splice(index, 1);
+            opponent.weapons.push(weaponToSwap);
+        }
+        for (var weaponToSwap of opponentWeaponsToSwap) {
+            var index = opponent.weapons.findIndex((weapon) => weapon.name === weaponToSwap.name);
+            if (index === -1) {
+                throw new Error('Weapon not found');
+            }
+            opponent.weapons.splice(index, 1);
+            brute.weapons.push(weaponToSwap);
+        }
+        // Add own weapons to opponent damaged weapons
+        opponent.damagedWeapons.push(...bruteWeaponsToSwap.map((weapon) => weapon.name));
+    }
+};
+var tournamentBackground = {
+    name: '3.png',
+    odds: 0,
+};
+var bossBackground = {
+    name: '4.png',
+    odds: 0,
+};
+var fightBackgrounds = [
+    { name: '1.jpg', odds: 100 },
+    { name: '2.jpg', odds: 2 },
+    tournamentBackground,
+    bossBackground,
+    { name: '5.png', odds: 2 },
+    { name: '6.png', odds: 2 },
+    { name: '7.png', odds: 2 },
+    { name: '8.png', odds: 2 },
+    { name: '9.png', odds: 2 },
+    { name: '10.png', odds: 2 },
+    { name: '11.png', odds: 2 },
+    { name: '12.png', odds: 2 },
+    { name: '13.png', odds: 2 },
+];
+var bear = pets.find((p) => p.name === PetName.bear);
+var panther = pets.find((p) => p.name === PetName.panther);
+var bosses = [
+    {
+        name: BossName.GoldClaw,
+        base: PetName.bear,
+        scale: 2,
+        initiative: -0.5,
+        strength: bear.strength * 10,
+        agility: bear.agility,
+        speed: bear.speed,
+        hp: 100000,
+        counter: bear.counter,
+        combo: bear.combo,
+        block: bear.block,
+        evasion: bear.evasion,
+        accuracy: 0.75,
+        disarm: bear.disarm,
+        damage: bear.damage,
+        reach: 3,
+    },
+    {
+        name: BossName.EmberFang,
+        base: PetName.panther,
+        scale: 3,
+        initiative: -0.5,
+        strength: panther.strength * 2,
+        agility: panther.agility,
+        speed: panther.speed * 10,
+        hp: 50000,
+        counter: panther.counter,
+        combo: panther.combo,
+        block: panther.block,
+        evasion: panther.evasion,
+        accuracy: 0.75,
+        disarm: panther.disarm,
+        damage: panther.damage,
+        reach: 3,
+    },
+];
+var getFighterStat = (fighter, stat, onlyStat) => {
+    // Special case for dexterity as it only exists on weapons
+    if (stat === 'dexterity') {
+        if (onlyStat === 'fighter')
+            return 0;
+        if (fighter.activeWeapon) {
+            var weaponStat = fighter.activeWeapon[stat];
+            // +10% dexterity if `bodybuilder` and using a heavy weapon
+            if (fighter.bodybuilder && fighter.activeWeapon.types.includes(WeaponType.HEAVY)) {
+                return weaponStat + 0.1;
+            }
+            return weaponStat;
+        }
+        return fighter.type === 'brute' ? BASE_FIGHTER_STATS[stat] : 0;
+    }
+    // Special case for tempo as it's either weapon or base
+    if (stat === 'tempo') {
+        if (fighter.activeWeapon) {
+            return fighter.activeWeapon[stat];
+        }
+        return BASE_FIGHTER_STATS[stat];
+    }
+    let total = onlyStat === 'weapon' ? 0 : fighter[stat];
+    if (onlyStat !== 'fighter') {
+        if (fighter.activeWeapon) {
+            total += fighter.activeWeapon[stat];
+        }
+        else {
+            total += fighter.type === 'brute'
+                ? BASE_FIGHTER_STATS[stat]
+                : fighter.type === 'boss'
+                    ? fighter[stat]
+                    : 0;
+        }
+    }
+    return total;
+};
+var resetOthersStats = (stats, excludedFighter, stat) => {
+    for (var [bruteId, bruteStats] of Object.entries(stats)) {
+        if (bruteId !== excludedFighter) {
+            bruteStats[stat] = 0;
+        }
+    }
+};
+var updateStats = (stats, bruteId, stat, value, masterId) => {
+    // Special case for hits, add to otherTeamMembersHits if not master
+    if (stat === 'hits' && masterId) {
+        var master = stats[masterId];
+        if (master) {
+            master.otherTeamMembersHits = (master.otherTeamMembersHits || 0) + value;
+        }
+        return;
+    }
+    var current = stats[bruteId];
+    if (!current)
+        return;
+    if (value === 0) {
+        current[stat] = 0;
+    }
+    else {
+        current[stat] = (current[stat] || 0) + value;
+    }
+};
+var checkAchievements = (stats, achievements) => {
+    for (var [bruteId, stat] of Object.entries(stats)) {
+        var achievement = achievements[bruteId];
+        if (!achievement) {
+            continue;
+        }
+        // Consecutive counters
+        if (stat.consecutiveCounters && stat.consecutiveCounters >= 4) {
+            (0, updateAchievement)(achievements, 'counter4b2b', 1, bruteId);
+            stat.consecutiveCounters = 0;
+        }
+        // Consecutive reversals
+        if (stat.consecutiveReversals && stat.consecutiveReversals >= 4) {
+            (0, updateAchievement)(achievements, 'reversal4b2b', 1, bruteId);
+            stat.consecutiveReversals = 0;
+        }
+        // Consecutive blocks
+        if (stat.consecutiveBlocks && stat.consecutiveBlocks >= 4) {
+            (0, updateAchievement)(achievements, 'block4b2b', 1, bruteId);
+            stat.consecutiveBlocks = 0;
+        }
+        // Consecutive evades
+        if (stat.consecutiveEvades && stat.consecutiveEvades >= 4) {
+            (0, updateAchievement)(achievements, 'evade4b2b', 1, bruteId);
+            stat.consecutiveEvades = 0;
+        }
+        // Consecutive throws
+        if (stat.consecutiveThrows && stat.consecutiveThrows >= 10) {
+            (0, updateAchievement)(achievements, 'throw10b2b', 1, bruteId);
+            stat.consecutiveThrows = 0;
+        }
+    }
+};
+var getOpponents = ({ fightData, fighter, bruteOnly, petOnly, }) => {
+    let opponents = [];
+    // Remove backups not arrived yet and dead fighters
+    opponents = fightData.fighters.filter((f) => !f.arrivesAtInitiative
+        && f.hp > 0
+        && f.team !== fighter.team);
+    // Allow bosses too
+    if (bruteOnly) {
+        opponents = opponents.filter((f) => f.type === 'brute' || f.type === 'boss');
+    }
+    if (petOnly) {
+        opponents = opponents.filter((f) => f.type === 'pet');
+    }
+    return opponents;
+};
+var getOpponents = getOpponents;
+var getRandomOpponent = ({ fightData, fighter, bruteOnly, petOnly, nonTrappedOnly, }) => {
+    let opponents = (0, getOpponents)({
+        fightData,
+        fighter,
+        bruteOnly: bruteOnly || fightData.modifiers.includes(FightModifier.focusOpponent),
+        petOnly,
+    });
+    // Filter out trapped pets
+    opponents = opponents.filter((f) => f.type !== 'pet' || !f.trapped);
+    if (nonTrappedOnly) {
+        // Filter out trapped brutes
+        opponents = opponents.filter((f) => !f.trapped);
+    }
+    if (!opponents.length) {
+        return null;
+    }
+    return (0, randomItem)(opponents);
+};
+var saboteur = (fightData, achievements) => {
+    fightData.fighters.filter((fighter) => fighter.type === 'brute' && !fighter.master).forEach((fighter) => {
+        if (fighter.saboteur) {
+            var opponent = getRandomOpponent({ fightData, fighter, bruteOnly: true });
+            if (opponent && opponent.weapons.length > 0) {
+                var sabotagedWeapon = (0, randomItem)(opponent.weapons);
+                opponent.sabotagedWeapon = sabotagedWeapon;
+                (0, updateAchievement)(achievements, 'saboteur', 1, fighter.id);
+            }
+        }
+    });
+};
+var saboteur = saboteur;
+var orderFighters = (fightData) => {
+    fightData.fighters = fightData.fighters.sort((a, b) => {
+        // Last if hp <= 0
+        if (a.hp <= 0)
+            return 1;
+        if (b.hp <= 0)
+            return -1;
+        // Last if stunned
+        if (a.stunned)
+            return 1;
+        if (b.stunned)
+            return -1;
+        // Random is initiatives are equal
+        if (a.initiative === b.initiative) {
+            return Math.random() > 0.5 ? 1 : -1;
+        }
+        // Lower initiative first
+        return a.initiative - b.initiative;
+    });
+};
+var orderFighters = orderFighters;
+var randomlyGetSuper = (fightData, fighter) => {
+    let supers = fighter.skills.filter((skill) => skill.uses);
+    if (!supers.length)
+        return null;
+    // Filter out tamer if no dead pets
+    if (fightData.fighters.filter((f) => f.type === 'pet' && f.hp <= 0).length === 0) {
+        supers = supers.filter((skill) => skill.name !== SkillName.tamer);
+    }
+    // Filter out thief if opponents have no weapons in hand
+    if ((0, getOpponents)({ fightData, fighter, bruteOnly: true })
+        .filter((f) => f.activeWeapon).length === 0) {
+        supers = supers.filter((skill) => skill.name !== SkillName.thief);
+    }
+    // Filter out tragicPotion if not poisoned or lost less than 50 HP
+    if (!fighter.poisoned && fighter.hp > fighter.maxHp / 2) {
+        supers = supers.filter((skill) => skill.name !== SkillName.tragicPotion);
+    }
+    // Filter out cryOfTheDamned and hypnosis if opponent has no non-trapped pets
+    if ((0, getOpponents)({ fightData, fighter, petOnly: true })
+        .filter((f) => !f.trapped).length === 0) {
+        supers = supers.filter((skill) => skill.name !== SkillName.cryOfTheDamned
+            && skill.name !== SkillName.hypnosis);
+    }
+    // Filter out flashFlood if less than 3 weapons
+    if (fighter.weapons.length < 3) {
+        supers = supers.filter((skill) => skill.name !== SkillName.flashFlood);
+    }
+    // Filter out net if no non-trapped fighters
+    if ((0, getOpponents)({ fightData, fighter }).filter((f) => !f.trapped).length === 0) {
+        supers = supers.filter((skill) => skill.name !== SkillName.net);
+    }
+    // Filter out vampirism if more than 50% hp
+    if (fighter.hp > fighter.maxHp / 2) {
+        supers = supers.filter((skill) => skill.name !== SkillName.vampirism);
+    }
+    // Filter out vampirism if no brute opponent
+    if ((0, getOpponents)({ fightData, fighter, bruteOnly: true }).length === 0) {
+        supers = supers.filter((skill) => skill.name !== SkillName.vampirism);
+    }
+    // Filter out treat if no pets lost hp and not trapped
+    if (fightData.fighters.filter((f) => f.type === 'pet' && f.team === fighter.team && f.hp < f.maxHp && !f.trapped).length === 0) {
+        supers = supers.filter((skill) => skill.name !== SkillName.treat);
+    }
+    if (!supers.length)
+        return null;
+    var NO_SUPER_TOSS = fightData.modifiers.includes(FightModifier.alwaysUseSupers) ? 0 : 10;
+    var randomSuper = (0, randomBetween)(0, supers.reduce((acc, skill) => acc + (skill.toss || 0), -1) + NO_SUPER_TOSS);
+    let toss = 0;
+    for (let i = 0; i < supers.length; i += 1) {
+        toss += supers[i]?.toss || 0;
+        if (randomSuper < toss) {
+            return supers[i];
+        }
+    }
+    return null;
+};
+var randomlyDrawWeapon = (fightData, weapons, forceDraw) => {
+    if (!weapons.length)
+        return null;
+    let totalToss = weapons.reduce((acc, weapon) => acc + (weapon.toss || 0), -1);
+    if (!forceDraw && !fightData.modifiers.includes(FightModifier.drawEveryWeapon)) {
+        totalToss += NO_WEAPON_TOSS;
+    }
+    var randomWeapon = (0, randomBetween)(0, totalToss);
+    let toss = 0;
+    for (let i = 0; i < weapons.length; i += 1) {
+        toss += weapons[i]?.toss || 0;
+        if (randomWeapon < toss) {
+            return weapons[i];
+        }
+    }
+    return null;
+};
+var randomlyDrawWeapon = randomlyDrawWeapon;
+var healFighter = (stats, fighter, amount) => {
+    fighter.hp += amount;
+    // Heal stat
+    updateStats(stats, fighter.id, 'hpHealed', amount);
+};
+var increaseInitiative = (fighter) => {
+    var random = (0, randomBetween)(0, 10);
+    let tempo = getFighterStat(fighter, 'tempo')
+        * fighter.tempo
+        + (random / 100);
+    // Reduce tempo lost if fighter has `bodybuilder` and is using a heavy weapon
+    if (fighter.activeWeapon && fighter.bodybuilder && fighter.activeWeapon.types.includes('heavy')) {
+        tempo *= 0.75;
+    }
+    // Increase tempo lost if fighter has `monk`
+    if (fighter.monk) {
+        tempo *= 2;
+    }
+    fighter.initiative += tempo;
+};
+var fighterArrives = (fightData, fighter) => {
+    var arriveWithWeapon = fightData.modifiers.includes(FightModifier.startWithWeapon);
+    var step = {
+        a: StepType.Arrive,
+        f: fighter.index,
+    };
+    if (arriveWithWeapon) {
+        // Randomly draw a weapon for the fighter
+        var possibleWeapon = (0, randomlyDrawWeapon)(fightData, fighter.weapons, true);
+        if (possibleWeapon) {
+            // Equip weapon
+            fighter.activeWeapon = possibleWeapon;
+            fighter.keepWeaponChance = 0.5;
+            // Remove weapon from possible weapons
+            var weaponIndex = fighter.weapons.findIndex((w) => w.name === possibleWeapon.name);
+            fighter.weapons.splice(weaponIndex, 1);
+            // Add weapon to step
+            step.w = WeaponByName[possibleWeapon.name];
+        }
+    }
+    // Poison fighters (not for bosses)
+    if (fighter.skills.find((skill) => skill.name === SkillName.chef)) {
+        (0, getOpponents)({ fightData, fighter }).forEach((opponent) => {
+            if (opponent.type !== 'boss') {
+                opponent.poisoned = true;
+            }
+        });
+    }
+    fightData.steps.push(step);
+};
+var fighterArrives = fighterArrives;
+var registerHit = (fightData, stats, achievements, fighter, opponents, damage, thrown, sourceName, flashFloodWeapon) => {
+    var bombDamageRangeOnPets = {
+        [PetName.dog1]: [90, 150],
+        [PetName.dog2]: [90, 150],
+        [PetName.dog3]: [90, 150],
+        [PetName.panther]: [40, 80],
+        [PetName.bear]: [15, 30],
+    };
+    var actualDamage = opponents.reduce((acc, opponent) => ({
+        ...acc,
+        [opponent.index]: (sourceName === 'bomb' && opponent.type === 'pet')
+            ? Math.round((((0, randomBetween)(...bombDamageRangeOnPets[opponent.name]) / 100) * opponent.maxHp))
+            : damage,
+    }), {});
+    opponents.forEach((opponent) => {
+        // Remove the net and reset initiative
+        if (opponent.trapped) {
+            opponent.trapped = false;
+            opponent.initiative = fightData.initiative + 0.5;
+        }
+        if (opponent.skills.find((sk) => sk.name === 'resistant')) {
+            // Max damage to 20% of opponent's health if `resistant`
+            actualDamage[opponent.index] = Math.min(damage, Math.floor(opponent.maxHp * 0.2));
+            if ((actualDamage[opponent.index] ?? damage) < damage) {
+                // Add resist step
+                fightData.steps.push({
+                    a: StepType.Resist,
+                    b: opponent.index,
+                });
+            }
+        }
+        var opponentDamage = actualDamage[opponent.index] ?? damage;
+        // Reduce backup leave time instead of reducing hp
+        if (opponent.leavesAtInitiative) {
+            opponent.leavesAtInitiative -= opponentDamage * 0.05;
+        }
+        else {
+            opponent.hp -= opponentDamage;
+        }
+    });
+    if (sourceName === 'bomb') {
+        // Add bomb step
+        fightData.steps.push({
+            a: StepType.Bomb,
+            f: fighter.index,
+            t: opponents.map((opponent) => opponent.index),
+            d: opponents.reduce((acc, curr) => {
+                acc[curr.index] = actualDamage[curr.index] ?? damage;
+                return acc;
+            }, {}),
+        });
+    }
+    else if (sourceName === 'vampirism') {
+        var opponent = opponents[0];
+        if (!opponent) {
+            throw new Error('No opponent found');
+        }
+        // HP healed (100 - 200% of damage)
+        var finalDamage = actualDamage[opponent.index] ?? damage;
+        var heal = Math.floor(Math.min(finalDamage * (1 + Math.random()), fighter.maxHp - fighter.hp));
+        healFighter(stats, fighter, heal);
+        // Add vampirism step
+        fightData.steps.push({
+            a: StepType.Vampirism,
+            b: fighter.index,
+            t: opponent.index,
+            d: actualDamage[opponent.index] ?? damage,
+            h: heal,
+        });
+    }
+    else if (sourceName === 'haste') {
+        var opponent = opponents[0];
+        if (!opponent) {
+            throw new Error('No opponent found');
+        }
+        // Add haste step
+        fightData.steps.push({
+            a: StepType.Haste,
+            b: fighter.index,
+            t: opponent.index,
+            d: actualDamage[opponent.index] ?? damage,
+        });
+    }
+    else {
+        opponents.forEach((opponent) => {
+            var stepType = sourceName === 'hammer'
+                ? StepType.Hammer
+                : sourceName === 'flashFlood'
+                    ? StepType.FlashFlood
+                    : sourceName === 'poison'
+                        ? StepType.Poison
+                        : StepType.Hit;
+            var step = {
+                a: stepType,
+                f: fighter.index,
+                t: opponent.index,
+                w: sourceName
+                    ? (flashFloodWeapon
+                        ? WeaponByName[flashFloodWeapon.name]
+                        : undefined)
+                    : fighter.activeWeapon ? WeaponByName[fighter.activeWeapon.name] : undefined,
+                d: actualDamage[opponent.index] ?? damage,
+            };
+            // Reset consecutive hits
+            if (sourceName !== 'poison') {
+                fighter.hitBy[opponent.index] = 0;
+            }
+            // Remove stun if hit while stunned
+            if (opponent.stunned) {
+                opponent.stunned = false;
+            }
+            if (!thrown && !sourceName && !flashFloodWeapon && opponent.type === 'brute') {
+                // Update consecutive hits
+                opponent.hitBy[fighter.index] = (opponent.hitBy[fighter.index] || 0) + 1;
+                // Stun opponent if 3 hits in a row
+                if (fighter.skills.find((s) => s.name === SkillName.chaining)
+                    && (opponent.hitBy[fighter.index] || 0) === 3) {
+                    step.s = 1;
+                    opponent.stunned = true;
+                    opponent.hitBy[fighter.index] = 0;
+                }
+            }
+            // Add hit step
+            fightData.steps.push(step);
+        });
+    }
+    // 50 Damage achievement
+    var moreThan50 = Object.values(actualDamage).filter((d) => d >= 50).length;
+    if (moreThan50) {
+        (0, updateAchievement)(achievements, 'damage50once', moreThan50, fighter.id);
+    }
+    // 100 Damage achievement
+    var moreThan100 = Object.values(actualDamage).filter((d) => d >= 100).length;
+    if (moreThan100) {
+        (0, updateAchievement)(achievements, 'damage100once', moreThan100, fighter.id);
+    }
+    // Max damage achievement
+    var maxDamage = Math.max(...Object.values(actualDamage));
+    if ((stats[fighter.id]?.maxDamage || 0) < maxDamage) {
+        updateStats(stats, fighter.id, 'maxDamage', maxDamage - (stats[fighter.id]?.maxDamage || 0));
+    }
+    opponents.forEach((opponent) => {
+        // Survive with 1 HP if `survival` skill
+        if (opponent.survival && opponent.hp <= 1) {
+            opponent.survival = false;
+            opponent.hp = 1;
+            // Add survival step
+            fightData.steps.push({
+                a: StepType.Survive,
+                b: opponent.index,
+            });
+        }
+    });
+    // Update stats
+    updateStats(stats, fighter.id, 'hits', 1, fighter.master);
+};
+var activateSuper = (fightData, fighter, skill, stats, achievements) => {
+    // No uses left (should never happen)
+    if (!skill.uses)
+        return false;
+    switch (skill.name) {
+        // Steal opponent's weapon if he has one
+        case SkillName.thief: {
+            // Choose brute opponent
+            var opponent = getRandomOpponent({ fightData, fighter, bruteOnly: true });
+            if (!opponent) {
+                return false;
+            }
+            // Abort if no weapon
+            if (!opponent.activeWeapon)
+                return false;
+            // 20% chance to steal if fighter already has a weapon
+            if (fighter.activeWeapon && (0, randomBetween)(1, 5) !== 1) {
+                return false;
+            }
+            // Remove own weapon
+            if (fighter.activeWeapon) {
+                // Add trash step
+                fightData.steps.push({
+                    a: StepType.Trash,
+                    b: fighter.index,
+                    w: WeaponByName[fighter.activeWeapon.name],
+                });
+                fighter.activeWeapon = null;
+            }
+            // Add steal step
+            fightData.steps.push({
+                a: StepType.Steal,
+                b: fighter.index,
+                w: WeaponByName[opponent.activeWeapon.name],
+                t: opponent.index,
+            });
+            // Set own weapon
+            fighter.activeWeapon = opponent.activeWeapon;
+            // Force keep weapon for the next turn
+            fighter.keepWeaponChance = 1;
+            // Remove opponent's weapon
+            opponent.activeWeapon = null;
+            // Increase opponent initiative
+            opponent.initiative += 0.3 + opponent.tempo;
+            // Update stats
+            updateStats(stats, fighter.id, 'weaponsStolen', 1);
+            break;
+        }
+        case SkillName.fierceBrute: {
+            // Add skill to active skills
+            fighter.activeSkills.push(skill);
+            // Add skill activation step
+            fightData.steps.push({
+                a: StepType.SkillActivate,
+                b: fighter.index,
+                s: SkillByName[skill.name],
+            });
+            break;
+        }
+        case SkillName.tragicPotion: {
+            let hpHealed = Math.floor(fighter.maxHp * (0.25 + Math.random() * 0.25));
+            let poisonHeal = false;
+            // Limit hp to max
+            hpHealed = Math.min(hpHealed, fighter.maxHp - fighter.hp);
+            healFighter(stats, fighter, hpHealed);
+            if (fighter.poisoned) {
+                fighter.poisoned = false;
+                poisonHeal = true;
+            }
+            // Increas own initiative
+            fighter.initiative += 0.15;
+            // Add heal step
+            fightData.steps.push({
+                a: StepType.Heal,
+                b: fighter.index,
+                h: hpHealed,
+                c: poisonHeal ? 1 : 0,
+            });
+            break;
+        }
+        case SkillName.net: {
+            // Target pet first
+            let opponent = getRandomOpponent({
+                fightData, fighter, petOnly: true, nonTrappedOnly: true,
+            });
+            if (!opponent) {
+                // Choose brute opponent if no pet
+                opponent = getRandomOpponent({
+                    fightData, fighter, bruteOnly: true, nonTrappedOnly: true,
+                });
+                if (!opponent) {
+                    return false;
+                }
+            }
+            // Set opponent's trapped status
+            opponent.trapped = true;
+            // Increase opponent initiative
+            opponent.initiative += 1000;
+            // Increase own initiative
+            fighter.initiative += 0.2 * fighter.tempo;
+            // Add trap step
+            fightData.steps.push({
+                a: StepType.Trap,
+                b: fighter.index,
+                t: opponent.index,
+            });
+            break;
+        }
+        case SkillName.bomb: {
+            // Get opponents
+            var opponents = (0, getOpponents)({ fightData, fighter });
+            // Set random bomb damage
+            var damage = 15 + (0, randomBetween)(0, 10);
+            // Hit every opponent
+            registerHit(fightData, stats, achievements, fighter, opponents, damage, true, 'bomb');
+            // Increase own initiative
+            fighter.initiative += 0.5 * fighter.tempo;
+            break;
+        }
+        case SkillName.hammer: {
+            // Only 20% to use the skill if fighter has a weapon
+            if (fighter.activeWeapon) {
+                if ((0, randomBetween)(1, 5) === 1) {
+                    // Add trash step
+                    fightData.steps.push({
+                        a: StepType.Trash,
+                        b: fighter.index,
+                        w: WeaponByName[fighter.activeWeapon.name],
+                    });
+                    fighter.activeWeapon = null;
+                }
+                else {
+                    return false;
+                }
+            }
+            // Choose opponent
+            var opponent = getRandomOpponent({ fightData, fighter, bruteOnly: true });
+            if (!opponent) {
+                return false;
+            }
+            // Add to active skills
+            fighter.activeSkills.push(skill);
+            // Get damage
+            var damage = (0, getDamage)(fighter, opponent);
+            // Add skill activation step
+            fightData.steps.push({
+                a: StepType.SkillActivate,
+                b: fighter.index,
+                s: SkillByName[skill.name],
+            });
+            // Add move step
+            fightData.steps.push({
+                a: StepType.Move,
+                f: fighter.index,
+                t: opponent.index,
+                s: 1,
+            });
+            registerHit(fightData, stats, achievements, fighter, [opponent], damage, false, 'hammer');
+            // Add move back step
+            fightData.steps.push({
+                a: StepType.MoveBack,
+                f: fighter.index,
+            });
+            // Increase own initiative
+            fighter.initiative += 1 * fighter.tempo;
+            // Add skill expire step
+            fightData.steps.push({
+                a: StepType.SkillExpire,
+                b: fighter.index,
+                s: SkillByName[skill.name],
+            });
+            // Remove skill from active skills
+            fighter.activeSkills = fighter.activeSkills.filter((s) => s.name !== skill.name);
+            break;
+        }
+        case SkillName.cryOfTheDamned: {
+            // Get opponent's non trapped pets
+            var opponentPets = (0, getOpponents)({ fightData, fighter, petOnly: true })
+                .filter((f) => !f.trapped);
+            // Abort if no pet
+            if (opponentPets.length === 0)
+                return false;
+            // Keep track of fear steps
+            var fearSteps = [];
+            for (var pet of opponentPets) {
+                // 50% chance to fear the pet
+                if ((0, randomBetween)(0, 1) === 0) {
+                    fearSteps.push({
+                        a: StepType.Leave,
+                        f: pet.index,
+                    });
+                    // Remove pet from fight
+                    fightData.fighters = fightData.fighters
+                        .filter((f) => f.index !== pet.index);
+                }
+            }
+            // Abort if no pet feared
+            if (fearSteps.length === 0)
+                return false;
+            // Add skill activation step
+            fightData.steps.push({
+                a: StepType.SkillActivate,
+                b: fighter.index,
+                s: SkillByName[skill.name],
+            });
+            // Add fear steps
+            fightData.steps = fightData.steps.concat(fearSteps);
+            break;
+        }
+        case SkillName.hypnosis: {
+            // Get opponent's non trapped pets
+            var opponentPets = (0, getOpponents)({ fightData, fighter, petOnly: true })
+                .filter((f) => !f.trapped);
+            // Keep track of hypnotised pets
+            var hypnotisedPets = [];
+            for (var pet of opponentPets) {
+                hypnotisedPets.push(pet.index);
+                // Change pet owner
+                pet.master = fighter.id;
+                pet.team = fighter.team;
+            }
+            // Abort if no pet hypnotised
+            if (hypnotisedPets.length === 0)
+                return false;
+            // Add hypnotise step
+            fightData.steps.push({
+                a: StepType.Hypnotise,
+                b: fighter.index,
+                p: hypnotisedPets,
+            });
+            break;
+        }
+        case SkillName.flashFlood: {
+            // Choose opponent
+            var opponent = getRandomOpponent({ fightData, fighter, bruteOnly: true });
+            if (!opponent) {
+                return false;
+            }
+            // Shuffle weapons
+            var shuffledWeapons = [...fighter.weapons].sort(() => Math.random() - 0.5);
+            // Get 3 weapons
+            var weaponsToThrow = shuffledWeapons.slice(0, fighter.activeWeapon ? 2 : 3);
+            // Remove those weapons from the fighter
+            weaponsToThrow.forEach((w) => {
+                var weaponIndex = fighter.weapons.findIndex((weapon) => weapon.name === w.name);
+                fighter.weapons.splice(weaponIndex, 1);
+            });
+            // Add active weapon as first weapon if any
+            if (fighter.activeWeapon) {
+                weaponsToThrow.unshift(fighter.activeWeapon);
+                fighter.activeWeapon = null;
+            }
+            // Add skill activation step
+            fightData.steps.push({
+                a: StepType.SkillActivate,
+                b: fighter.index,
+                s: SkillByName[skill.name],
+            });
+            // Get damages for each weapon
+            var damages = [];
+            weaponsToThrow.forEach((w) => {
+                var damage = Math.floor((0, getDamage)(fighter, opponent, w) * 1.5);
+                damages.push(damage);
+                registerHit(fightData, stats, achievements, fighter, [opponent], damage, true, 'flashFlood', w);
+            });
+            // Add skill expire step
+            fightData.steps.push({
+                a: StepType.SkillExpire,
+                b: fighter.index,
+                s: SkillByName[skill.name],
+            });
+            // Increase own initiative
+            fighter.initiative += 2 * fighter.tempo;
+            break;
+        }
+        case SkillName.tamer: {
+            // Get non eaten dead pets
+            var deadPets = fightData.fighters.filter((f) => f.type === 'pet' && f.hp <= 0 && !f.eaten);
+            if (deadPets.length === 0)
+                return false;
+            // Abort if less than 20 HP lost
+            if (fighter.hp > fighter.maxHp - 20)
+                return false;
+            // Get random dead pet
+            var pet = (0, randomItem)(deadPets);
+            let healPercentage = 0;
+            switch (pet.name) {
+                case 'dog1':
+                case 'dog2':
+                case 'dog3':
+                    // Heal 20% for a dog
+                    healPercentage = 0.2;
+                    break;
+                case 'panther':
+                    // Heal 30% for a panther
+                    healPercentage = 0.3;
+                    break;
+                case 'bear':
+                    // Heal 50% for a bear
+                    healPercentage = 0.5;
+                    break;
+                default:
+                    return false;
+            }
+            // Don't overheal
+            var heal = Math.min(fighter.maxHp - fighter.hp, Math.floor(fighter.maxHp * healPercentage));
+            // Heal fighter
+            healFighter(stats, fighter, heal);
+            // Increase own initiative
+            fighter.initiative += 0.15;
+            // Set pet as eaten
+            pet.eaten = true;
+            // Add move step
+            fightData.steps.push({
+                a: StepType.Move,
+                f: fighter.index,
+                t: pet.index,
+                s: 1,
+            });
+            // Add eat step
+            fightData.steps.push({
+                a: StepType.Eat,
+                b: fighter.index,
+                t: pet.index,
+                h: heal,
+            });
+            // Add moveBack step
+            fightData.steps.push({
+                a: StepType.MoveBack,
+                f: fighter.index,
+            });
+            break;
+        }
+        case SkillName.vampirism: {
+            // Choose opponent
+            var opponent = getRandomOpponent({ fightData, fighter, bruteOnly: true });
+            if (!opponent) {
+                return false;
+            }
+            // Damage done (25% own missing hp)
+            var damage = Math.floor((fighter.maxHp - fighter.hp) * 0.25);
+            registerHit(fightData, stats, achievements, fighter, [opponent], damage, false, 'vampirism');
+            // Increase own initiative
+            fighter.initiative += 0.3 + fighter.tempo;
+            break;
+        }
+        case SkillName.haste: {
+            // Choose random opponent
+            var opponent = getRandomOpponent({ fightData, fighter });
+            if (!opponent) {
+                return false;
+            }
+            // Damage done (usual + speed)
+            var damage = (0, getDamage)(fighter, opponent) + fighter.speed;
+            registerHit(fightData, stats, achievements, fighter, [opponent], damage, false, 'haste');
+            // Increase own initiative
+            fighter.initiative += 0.3 + fighter.tempo;
+            break;
+        }
+        case SkillName.treat: {
+            // Choose random ally pet
+            var pets = fightData.fighters.filter((f) => f.type === 'pet' && f.team === fighter.team && f.hp > 0);
+            var pet = pets.find((p) => p.hp < p.maxHp && !p.trapped);
+            if (!pet) {
+                return false;
+            }
+            // HP healed (max 50%)
+            var heal = Math.min(Math.floor(pet.maxHp * 0.5), pet.maxHp - pet.hp);
+            pet.hp += heal;
+            // Add move step
+            fightData.steps.push({
+                a: StepType.Move,
+                f: fighter.index,
+                t: pet.index,
+                s: 1,
+            });
+            // Add treat step
+            fightData.steps.push({
+                a: StepType.Treat,
+                b: fighter.index,
+                t: pet.index,
+                h: heal,
+            });
+            // Add moveBack step
+            fightData.steps.push({
+                a: StepType.MoveBack,
+                f: fighter.index,
+            });
+            // Increase own initiative
+            fighter.initiative += 0.3 + fighter.tempo;
+            break;
+        }
+        default:
+            return false;
+    }
+    // Spend one use
+    skill.uses -= 1;
+    // Update stats
+    updateStats(stats, fighter.id, 'skillsUsed', 1);
+    // Remove skill if no uses left
+    if (!skill.uses) {
+        fighter.skills.splice(fighter.skills.findIndex((s) => s.name === skill.name), 1);
+    }
+    return true;
+};
+var counterAttack = (fighter, opponent) => {
+    // No counter attack if opponent is dead
+    if (opponent.hp <= 0)
+        return false;
+    // No counter attack if opponent is trapped
+    if (opponent.trapped)
+        return false;
+    // No counter attack if opponent is stunned
+    if (opponent.stunned)
+        return false;
+    var random = Math.random();
+    var valueToBeat = (opponent.counter * 10
+        + ((opponent.reach + (opponent.activeWeapon?.reach || 0))
+            - (fighter.reach + (fighter.activeWeapon?.reach || 0)))) * 0.1;
+    return random < valueToBeat;
+};
+// Returns true if weapon was sabotaged
+var drawWeapon = (fightData, fighter) => {
+    var bareHandsFirstHit = fightData.modifiers.includes(FightModifier.bareHandsFirstHit);
+    // Don't draw a weapon if the fighter hasn't hit yet
+    if (bareHandsFirstHit && !fighter.bareHandHit) {
+        return false;
+    }
+    var drawEveryWeapon = fightData.modifiers.includes(FightModifier.drawEveryWeapon);
+    // Don't always draw a weapon if the fighter is already holding a weapon
+    if (fighter.activeWeapon
+        && !drawEveryWeapon
+        && (0, randomBetween)(0, fighter.weapons.length * 2) === 0)
+        return false;
+    // Draw a weapon
+    var possibleWeapon = (0, randomlyDrawWeapon)(fightData, fighter.weapons);
+    // Decrease `keepWeaponChance` each turn and abort until true
+    if (!drawEveryWeapon && Math.random() < fighter.keepWeaponChance) {
+        fighter.keepWeaponChance *= 0.5;
+        return false;
+    }
+    // Abort if no weapon drawn
+    if (!possibleWeapon)
+        return false;
+    // Trash old weapon if there is one
+    if (fighter.activeWeapon) {
+        // Add trash step
+        fightData.steps.push({
+            a: StepType.Trash,
+            b: fighter.index,
+            w: WeaponByName[fighter.activeWeapon.name],
+        });
+        // Remove weapon from fighter
+        fighter.activeWeapon = null;
+    }
+    // Equip new weapon
+    fighter.activeWeapon = possibleWeapon;
+    // Set the chance to keep the weapon to 50%
+    fighter.keepWeaponChance = 0.5;
+    // Remove weapon from possible weapons
+    var weaponIndex = fighter.weapons.findIndex((w) => w.name === possibleWeapon.name);
+    fighter.weapons.splice(weaponIndex, 1);
+    // Add equip step
+    fightData.steps.push({
+        a: StepType.Equip,
+        b: fighter.index,
+        w: WeaponByName[possibleWeapon.name],
+    });
+    // Check if weapon was sabotaged
+    if (fighter.sabotagedWeapon?.name === possibleWeapon.name) {
+        // Add saboteur step
+        fightData.steps.push({
+            a: StepType.Saboteur,
+            b: fighter.index,
+            w: WeaponByName[possibleWeapon.name],
+        });
+        // Remove weapon from fighter
+        fighter.activeWeapon = null;
+        fighter.sabotagedWeapon = null;
+        // Increase own initiative
+        fighter.initiative += 1;
+        return true;
+    }
+    return false;
+};
+var block = (fighter, opponent, ease = 1) => {
+    // No block if opponent is dead
+    if (opponent.hp <= 0)
+        return false;
+    // No block if opponent is trapped
+    if (opponent.trapped)
+        return false;
+    // No block if opponent is stunned
+    if (opponent.stunned)
+        return false;
+    // No block for pets and bosses
+    if (opponent.type === 'pet' || opponent.type === 'boss')
+        return false;
+    return Math.random() * ease
+        < (getFighterStat(opponent, 'block')
+            - getFighterStat(fighter, 'accuracy', 'weapon'));
+};
+var evade = (fighter, opponent, difficulty = 1) => {
+    // No evasion if opponent is dead
+    if (opponent.hp <= 0)
+        return false;
+    // No evasion if opponent is trapped
+    if (opponent.trapped)
+        return false;
+    // No evasion if opponent is stunned
+    if (opponent.stunned)
+        return false;
+    // Automatically evade if `balletShoes`
+    if (opponent.balletShoes) {
+        // Disable ballet shoes
+        opponent.balletShoes = false;
+        return true;
+    }
+    // Get agility difference (-40 > diff > 40)
+    var agilityDifference = Math.min(Math.max(-40, (opponent.agility - fighter.agility) * 2), 40);
+    var random = Math.random();
+    return random * difficulty
+        < Math.min((getFighterStat(opponent, 'evasion')
+            + agilityDifference * 0.01
+            - getFighterStat(fighter, 'accuracy', 'fighter')
+            - getFighterStat(fighter, 'dexterity')), 0.9);
+};
+var breakShield = (fighter, opponent) => {
+    // Can't break someone's shield if they are not holding a shield >.>
+    if (!opponent.shield)
+        return false;
+    return getFighterStat(fighter, 'disarm') * 100 >= (0, randomBetween)(1, 300);
+};
+var disarm = (fighter, opponent, thrown) => {
+    // Can't disarm someone if they are not holding a weapon >.>
+    if (!opponent.activeWeapon)
+        return false;
+    return getFighterStat(fighter, 'disarm', thrown ? 'weapon' : undefined) * 100 >= (0, randomBetween)(1, 100);
+};
+var disarmAttacker = (fighter, opponent) => {
+    // Can't disarm someone if they are not holding a weapon >.>
+    if (!fighter.activeWeapon)
+        return false;
+    // Only disarm if opponent has `ironHead`
+    if (!opponent.ironHead)
+        return false;
+    // 50% chance to disarm the attacker
+    return Math.random() < 0.5;
+};
+var reversal = (opponent, blocked) => {
+    // No reversal if stunned
+    if (opponent.stunned)
+        return false;
+    var random = Math.random();
+    let reversalStat = getFighterStat(opponent, 'reversal');
+    // Special case when blocking with counterAttack (+90%)
+    if (blocked && opponent.skills.find((sk) => sk.name === SkillName.counterAttack)) {
+        reversalStat += 0.9;
+    }
+    return random < reversalStat;
+};
+var deflectProjectile = (fighter) => {
+    // No deflect if dead
+    if (fighter.hp <= 0)
+        return false;
+    // No deflect if trapped
+    if (fighter.trapped)
+        return false;
+    // No deflect if stunned
+    if (fighter.stunned)
+        return false;
+    var random = Math.random();
+    return random < getFighterStat(fighter, 'deflect');
+};
+var attack = (fightData, fighter, opponent, stats, achievements, isCounter = false) => {
+    // Abort if fighter is dead
+    if (fighter.hp <= 0)
+        return { blocked: false };
+    // Get damage
+    let damage = (0, getDamage)(fighter, opponent);
+    var blocked = block(fighter, opponent);
+    var evaded = evade(fighter, opponent);
+    var brokeShield = breakShield(fighter, opponent);
+    // Prepare attempt step
+    var attemptStep = {
+        a: StepType.AttemptHit,
+        f: fighter.index,
+        t: opponent.index,
+        w: fighter.activeWeapon ? WeaponByName[fighter.activeWeapon.name] : undefined,
+    };
+    // Check if opponent evaded
+    if (evaded) {
+        // Add attempt step as is
+        fightData.steps.push(attemptStep);
+        damage = 0;
+        // Add evade step
+        fightData.steps.push({
+            a: StepType.Evade,
+            f: opponent.index,
+        });
+        // Update evasion stat
+        updateStats(stats, opponent.id, 'evades', 1);
+        updateStats(stats, opponent.id, 'consecutiveEvades', 1);
+        checkAchievements(stats, achievements);
+    }
+    else {
+        // Reset evasion stat
+        updateStats(stats, opponent.id, 'consecutiveEvades', 0);
+        // Check if the opponent shield broke
+        if (brokeShield) {
+            // Update disarm stat
+            updateStats(stats, fighter.id, 'disarms', 1);
+            // Add attempt step with shield break
+            attemptStep.b = 1;
+            fightData.steps.push(attemptStep);
+            // Remove shield from opponent
+            opponent.shield = false;
+            opponent.block -= SHIELD_BLOCK_ODDS;
+        }
+        else {
+            // Add attempt step as is
+            fightData.steps.push(attemptStep);
+        }
+        // Check if opponent blocked
+        if (blocked) {
+            damage = 0;
+            // Add block step
+            fightData.steps.push({
+                a: StepType.Block,
+                f: opponent.index,
+            });
+            // Update block stat
+            updateStats(stats, opponent.id, 'blocks', 1);
+            updateStats(stats, opponent.id, 'consecutiveBlocks', 1);
+            checkAchievements(stats, achievements);
+        }
+        else {
+            // Reset block stat
+            updateStats(stats, opponent.id, 'consecutiveBlocks', 0);
+        }
+    }
+    // Check if the fighter sabotages an opponent's weapon
+    if (damage && fighter.sabotage) {
+        // 90% chance to sabotage
+        if (opponent.weapons.length && Math.random() < 0.9) {
+            // Remove a random weapon
+            var weapon = opponent.weapons.splice((0, randomBetween)(0, opponent.weapons.length - 1), 1)[0];
+            if (!weapon) {
+                throw new Error('No weapon found');
+            }
+            // Add sabotage step
+            fightData.steps.push({
+                a: StepType.Sabotage,
+                f: fighter.index,
+                t: opponent.index,
+                w: WeaponByName[weapon.name],
+            });
+        }
+    }
+    // Check if the fighter disarms the opponent
+    if (damage && disarm(fighter, opponent)) {
+        if (opponent.activeWeapon) {
+            // Add disarm step
+            fightData.steps.push({
+                a: StepType.Disarm,
+                f: fighter.index,
+                t: opponent.index,
+                w: WeaponByName[opponent.activeWeapon.name],
+            });
+            // Remove weapon from opponent
+            opponent.activeWeapon = null;
+            // Update disarm stat
+            updateStats(stats, fighter.id, 'disarms', 1);
+        }
+    }
+    // Register hit if damage was done
+    if (damage) {
+        registerHit(fightData, stats, achievements, fighter, [opponent], damage);
+        // Register first bare hands hit
+        if (!fighter.activeWeapon && !fighter.bareHandHit) {
+            fighter.bareHandHit = true;
+        }
+    }
+    // Check if the fighter gets disarmed
+    if (damage && disarmAttacker(fighter, opponent)) {
+        if (fighter.activeWeapon) {
+            // Add disarm step
+            fightData.steps.push({
+                a: StepType.Disarm,
+                f: opponent.index,
+                t: fighter.index,
+                w: WeaponByName[fighter.activeWeapon.name],
+            });
+            // Remove weapon from fighter
+            fighter.activeWeapon = null;
+            // Update disarm stat
+            updateStats(stats, opponent.id, 'disarms', 1);
+        }
+    }
+    // Randomly trigger another attack if the fighter has `determination`
+    if (!isCounter && !damage && fighter.determination && Math.random() < 0.7) {
+        fighter.retryAttack = true;
+    }
+    var reversed = reversal(opponent, blocked);
+    return {
+        blocked: !evaded && blocked,
+        reversed: !evaded && reversed,
+    };
+};
+var checkDeaths = (fightData, stats) => {
+    for (var fighter of fightData.fighters) {
+        // Only add death step if fighter is dead and hasn't died yet
+        if (fighter.hp <= 0 && fightData.steps.filter((step) => step.a === StepType.Death
+            && step.f === fighter.index).length === 0) {
+            // Add death step
+            fightData.steps.push({
+                a: StepType.Death,
+                f: fighter.index,
+            });
+            // Update pet kills stat
+            if (fighter.type === 'pet') {
+                var { master } = fighter;
+                if (!master) {
+                    throw new Error('Pet without master');
+                }
+                var opponents = (0, getOpponents)({ fightData, fighter, bruteOnly: true });
+                opponents.forEach((opponent) => {
+                    updateStats(stats, opponent.id, 'petsKilled', 1);
+                });
+            }
+            // Set loser if team has no brutes or bosses alive
+            if (!fightData.loser && fightData.fighters.filter((f) => f.team === fighter.team
+                && !f.master
+                && f.hp > 0).length === 0) {
+                fightData.loser = fighter.id;
+            }
+        }
+    }
+};
+var checkDeaths = checkDeaths;
+var startAttack = (fightData, stats, achievements, fighter, opponent, isCounter) => {
+    // Keep track of initial fighter HP
+    var initialFighterHp = fighter.hp;
+    // Was opponent trapped ?
+    let opponentWasTrapped = opponent.trapped;
+    var attackResult = {
+        blocked: false,
+        reversed: false,
+    };
+    // Trigger fighter attack
+    var { blocked, reversed, } = attack(fightData, fighter, opponent, stats, achievements, isCounter);
+    // Keep track of attack status
+    if (blocked)
+        attackResult.blocked = true;
+    if (reversed)
+        attackResult.reversed = true;
+    // Keep track of attacks
+    let attacksCount = 1;
+    // Get combo chances
+    let combo = getFighterStat(fighter, 'combo') + (fighter.agility * 0.01);
+    // Repeat attack only if not countering
+    if (!isCounter) {
+        let random = Math.random();
+        while (!attackResult.reversed && (random < combo || fighter.retryAttack)) {
+            // Reset retry attack flag
+            fighter.retryAttack = false;
+            // Stop the combo if the fighter took a hit
+            if (fighter.hp < initialFighterHp) {
+                break;
+            }
+            // Decrease combo chances
+            combo *= 0.5;
+            // Trigger fighter attack
+            var { blocked: comboBlocked, reversed: comboReversed, } = attack(fightData, fighter, opponent, stats, achievements);
+            attacksCount++;
+            // Keep track of attack status
+            if (comboBlocked)
+                attackResult.blocked = true;
+            if (comboReversed)
+                attackResult.reversed = true;
+            // Opponent cannot be trapped starting from the second attack
+            opponentWasTrapped = false;
+            random = Math.random();
+        }
+        // Check if the opponent reverses the attack
+        if (!opponentWasTrapped && attackResult.reversed) {
+            // Update reversal stat
+            updateStats(stats, opponent.id, 'consecutiveReversals', 1);
+            checkAchievements(stats, achievements);
+            // Check if the opponent has less reach than the fighter, and move them closer
+            var opponentReach = opponent.activeWeapon?.reach ?? 0;
+            var fighterReach = fighter.activeWeapon?.reach ?? 0;
+            if (opponentReach < fighterReach) {
+                // Add move step
+                fightData.steps.push({
+                    a: StepType.Move,
+                    f: opponent.index,
+                    t: fighter.index,
+                    r: 1,
+                });
+            }
+            // Trigger fighter attack
+            attack(fightData, opponent, fighter, stats, achievements);
+        }
+        else {
+            // Reset reversal stat
+            updateStats(stats, opponent.id, 'consecutiveReversals', 0);
+        }
+        // Achievement for combos
+        if (attacksCount === 3) {
+            (0, updateAchievement)(achievements, 'combo3', 1, fighter.id);
+        }
+        else if (attacksCount === 4) {
+            (0, updateAchievement)(achievements, 'combo4', 1, fighter.id);
+        }
+        else if (attacksCount >= 5) {
+            (0, updateAchievement)(achievements, 'combo5', 1, fighter.id);
+        }
+    }
+    // Reset retry attack flag
+    fighter.retryAttack = false;
+    // Check if a fighter is dead
+    (0, checkDeaths)(fightData, stats);
+};
+var playFighterTurn = (fightData, stats, achievements) => {
+    var fighter = fightData.fighters[0];
+    if (!fighter) {
+        throw new Error('No fighter found');
+    }
+    // Reset throw counter
+    resetOthersStats(stats, fighter.id, 'consecutiveThrows');
+    // Check if backup should leave
+    if (fighter.leavesAtInitiative && fighter.leavesAtInitiative <= fightData.initiative) {
+        // Add backup leave step
+        fightData.steps.push({
+            a: StepType.Leave,
+            f: fighter.index,
+        });
+        fightData.fighters.shift();
+        return;
+    }
+    // Check if backup should arrive
+    if (fighter.arrivesAtInitiative) {
+        fighter.arrivesAtInitiative = undefined;
+        // Add backup arrive step
+        (0, fighterArrives)(fightData, fighter);
+    }
+    // Super activation
+    var possibleSuper = randomlyGetSuper(fightData, fighter);
+    if (possibleSuper) {
+        // End turn if super activated
+        if (activateSuper(fightData, fighter, possibleSuper, stats, achievements)) {
+            return;
+        }
+    }
+    // Draw weapon
+    var sabotaged = drawWeapon(fightData, fighter);
+    // End turn if weapon was sabotaged
+    if (sabotaged) {
+        return;
+    }
+    // Get attack type (more chances to throw a weapon the less damage it does)
+    let attackType = fighter.activeWeapon?.types.includes('thrown')
+        ? 'thrown'
+        : fighter.activeWeapon
+            ? fighter.skills.find((s) => s.name === 'hideaway')
+                // 50% chance to throw a weapon if the fighter has `hideaway`
+                ? (0, randomBetween)(0, 1) === 0
+                    ? 'thrown'
+                    : 'melee'
+                // 1/28 chance to throw a weapon otherwise
+                : (0, randomBetween)(0, 27) === 0
+                    ? 'thrown' : 'melee'
+            : 'melee';
+    if (attackType === 'thrown' && fightData.modifiers.includes(FightModifier.noThrows)) {
+        attackType = 'melee';
+    }
+    // Get opponent
+    var opponent = getRandomOpponent({ fightData, fighter });
+    if (!opponent) {
+        return;
+    }
+    // Melee attack
+    if (attackType === 'melee') {
+        var countered = !opponent.trapped && counterAttack(fighter, opponent);
+        // Add move step
+        fightData.steps.push({
+            a: StepType.Move,
+            f: fighter.index,
+            t: opponent.index,
+            c: countered ? 1 : 0,
+        });
+        // Check if opponent is not trapped and countered
+        if (countered) {
+            // Update counter stat
+            updateStats(stats, opponent.id, 'counters', 1);
+            updateStats(stats, fighter.id, 'countersTriggered', 1);
+            updateStats(stats, opponent.id, 'consecutiveCounters', 1);
+            checkAchievements(stats, achievements);
+            // Add counter step
+            fightData.steps.push({
+                a: StepType.Counter,
+                f: opponent.index,
+                t: fighter.index,
+            });
+            // Opponent attacks fighter
+            startAttack(fightData, stats, achievements, opponent, fighter, true);
+        }
+        else {
+            // Reset counter stat
+            updateStats(stats, opponent.id, 'consecutiveCounters', 0);
+            // Fighter attacks opponent
+            startAttack(fightData, stats, achievements, fighter, opponent);
+        }
+        // Check if fighter is not dead
+        if (fighter.hp > 0) {
+            // Add moveBack step
+            fightData.steps.push({
+                a: StepType.MoveBack,
+                f: fighter.index,
+            });
+        }
+    }
+    else {
+        // Throw attack
+        if (!fighter.activeWeapon) {
+            throw new Error('Trying to throw a weapon but no weapon is active');
+        }
+        // Keep weapon if it's a thrown weapon or the fighter has `hideaway`
+        var keepWeapon = fighter.activeWeapon.types.includes('thrown') || !!fighter.skills.find((s) => s.name === 'hideaway');
+        let firstThrow = true;
+        // Get combo chances
+        let combo = getFighterStat(fighter, 'combo') + (fighter.agility * 0.01);
+        let random = Math.random();
+        while (firstThrow || (keepWeapon && random < combo)) {
+            if (!fighter.activeWeapon) {
+                break;
+            }
+            // Check if fighter is not dead (hit by a deflected weapond for example)
+            if (fighter.hp <= 0) {
+                break;
+            }
+            var thrownWeapon = fighter.activeWeapon;
+            let deflected = null;
+            let currentFighter = fighter;
+            let currentOpponent = opponent;
+            let timesDeflected = 0;
+            while (deflected === null || deflected) {
+                // Add throw step
+                fightData.steps.push({
+                    a: StepType.Throw,
+                    f: currentFighter.index,
+                    t: currentOpponent.index,
+                    w: WeaponByName[thrownWeapon.name],
+                    k: keepWeapon ? 1 : 0,
+                    r: deflected ? 1 : 0,
+                });
+                deflected = deflectProjectile(currentOpponent);
+                let damage = 0;
+                // Get damage
+                if (!deflected) {
+                    damage = (0, getDamage)(currentFighter, currentOpponent, thrownWeapon);
+                    // Increase damage by 50% for each deflection
+                    damage = Math.floor(damage * (1.5 ** timesDeflected));
+                }
+                // Update consecutive throw stat
+                updateStats(stats, currentFighter.id, 'consecutiveThrows', 1);
+                checkAchievements(stats, achievements);
+                // Check if opponent blocked (harder than melee)
+                if (!deflected && block(currentFighter, currentOpponent, 2)) {
+                    damage = 0;
+                    // Add block step
+                    fightData.steps.push({
+                        a: StepType.Block,
+                        f: currentOpponent.index,
+                    });
+                    // Update block stat
+                    updateStats(stats, currentOpponent.id, 'blocks', 1);
+                    updateStats(stats, currentOpponent.id, 'consecutiveBlocks', 1);
+                    checkAchievements(stats, achievements);
+                }
+                else {
+                    // Reset block stat
+                    updateStats(stats, currentOpponent.id, 'consecutiveBlocks', 0);
+                }
+                // Check if opponent evaded (harder than melee)
+                if (damage && evade(currentFighter, currentOpponent, 2)) {
+                    damage = 0;
+                    // Add evade step
+                    fightData.steps.push({
+                        a: StepType.Evade,
+                        f: currentOpponent.index,
+                    });
+                    // Update evade stat
+                    updateStats(stats, currentOpponent.id, 'consecutiveEvades', 1);
+                    checkAchievements(stats, achievements);
+                }
+                else {
+                    // Reset evade stat
+                    updateStats(stats, currentOpponent.id, 'consecutiveEvades', 0);
+                }
+                // Register hit if damage was done
+                if (damage) {
+                    registerHit(fightData, stats, achievements, currentFighter, [currentOpponent], damage, true);
+                    // Disarm
+                    if (disarm(currentFighter, currentOpponent, true)) {
+                        if (currentOpponent.activeWeapon) {
+                            // Add disarm step
+                            fightData.steps.push({
+                                a: StepType.Disarm,
+                                f: currentFighter.index,
+                                t: currentOpponent.index,
+                                w: WeaponByName[currentOpponent.activeWeapon.name],
+                            });
+                            // Remove weapon from opponent
+                            currentOpponent.activeWeapon = null;
+                            // Update disarm stat
+                            updateStats(stats, currentFighter.id, 'disarms', 1);
+                        }
+                    }
+                }
+                // Swap fighters if the weapon was returned
+                if (deflected) {
+                    [currentFighter, currentOpponent] = [currentOpponent, currentFighter];
+                    timesDeflected++;
+                }
+            }
+            // Remove fighter weapon
+            if (!keepWeapon) {
+                fighter.activeWeapon = null;
+            }
+            firstThrow = false;
+            combo *= 0.5;
+            random = Math.random();
+        }
+        // Check if a fighter is dead
+        (0, checkDeaths)(fightData, stats);
+    }
+    // Check if fighter is poisoned
+    if (!fightData.loser && fighter.hp > 0 && fighter.poisoned) {
+        // Get poison damage
+        var poisonDamage = Math.ceil(fighter.maxHp / 50);
+        // Get poisoner
+        var poisoner = (0, getOpponents)({ fightData, fighter, bruteOnly: true })
+            .find((f) => f.skills.find((s) => s.name === SkillName.chef))
+            || getRandomOpponent({ fightData, fighter, bruteOnly: true });
+        if (poisoner) {
+            // Register the hit
+            registerHit(fightData, stats, achievements, poisoner, [fighter], poisonDamage, false, 'poison');
+        }
+    }
+    increaseInitiative(fighter);
+    // Remove active skills
+    fighter.activeSkills.forEach((skill) => {
+        // Add skill expire step
+        fightData.steps.push({
+            a: StepType.SkillExpire,
+            b: fighter.index,
+            s: SkillByName[skill.name],
+        });
+    });
+    fighter.activeSkills = [];
+};
+var playFighterTurn = playFighterTurn;
+var generateFight = async ({ prisma, team1, team2, modifiers, backups, achievements, tournament, clanId, clanWar, }) => {
+    if (team1.brutes?.some((brute) => team2.brutes?.some((b) => b.id === brute.id))) {
+        throw new ExpectedError('Attempted to created a fight between the same brutes');
+    }
+    var background = (team1.bosses?.length || team2.bosses?.length)
+        ? bossBackground
+        : tournament
+            ? tournamentBackground
+            : (0, weightedRandom)(fightBackgrounds);
+    // Achievements
+    var achievementsStore = {};
+    // Stats
+    var stats = {};
+    team1.brutes?.concat(team2.brutes ?? []).forEach((brute) => {
+        achievementsStore[brute.id] = {
+            userId: brute.userId,
+            achievements: {},
+        };
+        stats[brute.id] = {
+            userId: brute.userId,
+        };
+    });
+    // Get brute backups
+    var team1Backups = [];
+    var team2Backups = [];
+    if (backups) {
+        var brute1 = team1.brutes?.[0];
+        var brute2 = team2.brutes?.[0];
+        if (!brute1) {
+            throw new Error('No brute 1');
+        }
+        var brute1Backups = await prisma.brute.findMany({
+            where: {
+                skills: { has: 'backup' },
+                level: { lt: brute1.level },
+                userId: brute1.userId,
+                deletedAt: null,
+            },
+        });
+        if (brute1Backups.length) {
+            team1Backups.push((0, randomItem)(brute1Backups));
+        }
+        if (brute2) {
+            var brute2Backups = await prisma.brute.findMany({
+                where: {
+                    skills: { has: 'backup' },
+                    level: { lt: brute2.level },
+                    userId: brute2.userId,
+                    deletedAt: null,
+                },
+            });
+            if (brute2Backups.length) {
+                team2Backups.push((0, randomItem)(brute2Backups));
+            }
+        }
+    }
+    // Global fight data
+    var fightDataFighters = await (0, getFighters)({
+        prisma,
+        team1: { brutes: team1.brutes ?? [], backups: team1Backups, bosses: team1.bosses ?? [] },
+        team2: { brutes: team2.brutes ?? [], backups: team2Backups, bosses: team2.bosses ?? [] },
+        modifiers,
+        clanFight: clanWar,
+    });
+    var fightData = {
+        modifiers,
+        fighters: fightDataFighters,
+        initialFighters: JSON.parse(JSON.stringify(fightDataFighters)),
+        steps: [],
+        initiative: 0,
+        winner: null,
+        loser: null,
+    };
+    // Add arrive step for all fighters
+    fightData.fighters.forEach((fighter) => {
+        // Ignore backups
+        if (fighter.type === 'brute' && fighter.master) {
+            return;
+        }
+        (0, fighterArrives)(fightData, fighter);
+    });
+    // Add spy steps (only 1v1)
+    if (team1.brutes?.length === 1 && team2.brutes?.length === 1) {
+        var leftFighter = fightData.fighters.find((fighter) => fighter.id === team1.brutes?.[0]?.id);
+        var rightFighter = fightData.fighters.find((fighter) => fighter.id === team2.brutes?.[0]?.id);
+        if (!leftFighter || !rightFighter) {
+            throw new Error('Fighter not found');
+        }
+        (0, applySpy)(fightData, leftFighter, rightFighter);
+        (0, applySpy)(fightData, rightFighter, leftFighter);
+    }
+    // Pre-fight saboteur
+    (0, saboteur)(fightData, achievementsStore);
+    let turn = 0;
+    // Fight loop
+    while (!fightData.loser && turn < 2000) {
+        // Order fighters by initiative (random if equal)
+        (0, orderFighters)(fightData);
+        var firstFighter = fightData.fighters[0];
+        if (!firstFighter) {
+            // No fighters left
+            break;
+        }
+        // Set current initiative to first fighter
+        fightData.initiative = firstFighter.initiative;
+        // Poison fighters if turn > 1000
+        if (turn > 1000) {
+            fightData.fighters.forEach((fighter) => {
+                fighter.poisoned = true;
+            });
+        }
+        // Play fighter turn
+        (0, playFighterTurn)(fightData, stats, achievementsStore);
+        // Check deaths
+        (0, checkDeaths)(fightData, stats);
+        turn += 1;
+    }
+    if (!fightData.loser) {
+        throw new Error('Fight not finished');
+    }
+    // Get loser
+    var loser = fightData.fighters.find((fighter) => fighter.id === fightData.loser);
+    if (!loser) {
+        throw new Error('No loser found');
+    }
+    // Get winner
+    var winner = loser.team === 'L'
+        ? fightData.fighters.find((fighter) => fighter.team === 'R' && (fighter.type === 'boss' || fighter.id === team2.brutes?.[0]?.id))
+        : fightData.fighters.find((fighter) => fighter.team === 'L' && (fighter.type === 'boss' || fighter.id === team1.brutes?.[0]?.id));
+    if (!winner) {
+        throw new Error('No winner found');
+    }
+    // Set fight winner and loser
+    fightData.winner = winner.id;
+    // Add end step
+    fightData.steps.push({
+        a: StepType.End,
+        w: winner.index,
+        l: loser.index,
+    });
+    // Reduce the size of the fighters data
+    var fighters = fightData.initialFighters.map((fighter) => ({
+        id: fighter.id,
+        index: fighter.index,
+        team: fighter.team,
+        name: fighter.name,
+        gender: fighter.gender,
+        body: fighter.body,
+        colors: fighter.colors,
+        rank: fighter.rank,
+        level: fighter.level,
+        agility: fighter.agility,
+        strength: fighter.strength,
+        speed: fighter.speed,
+        type: fighter.type,
+        master: fighter.master,
+        maxHp: fighter.maxHp,
+        hp: fighter.hp,
+        weapons: fighter.weapons.map((weapon) => WeaponByName[weapon.name]),
+        skills: fighter.skills.map((skill) => SkillByName[skill.name]),
+        shield: fighter.shield,
+    }));
+    var brute1 = team1.brutes?.[0];
+    var brute2 = team2.brutes?.[0];
+    if (!brute1) {
+        throw new Error('No brute 1');
+    }
+    var result = {
+        data: {
+            brute1: { connect: { id: brute1.id } },
+            winner: winner.name,
+            loser: loser.name,
+            steps: JSON.stringify(fightData.steps),
+            fighters: JSON.stringify(fighters),
+            background: background.name,
+        },
+    };
+    if (brute2) {
+        result.data.brute2 = { connect: { id: brute2.id } };
+    }
+    if (team1.bosses?.length || team2.bosses?.length) {
+        // Update clan limit and boss if boss slain
+        var bossFighter = fightData.fighters.find((fighter) => fighter.type === 'boss');
+        if (bossFighter && bossFighter.hp <= 0) {
+            var clan = await prisma.clan.findUnique({
+                where: { id: clanId },
+                select: {
+                    limit: true,
+                    brutes: {
+                        select: {
+                            id: true,
+                            userId: true,
+                        },
+                    },
+                    bossDamages: {
+                        select: {
+                            brute: {
+                                select: {
+                                    id: true,
+                                    userId: true,
+                                },
+                            },
+                        },
+                    },
+                },
+            });
+            if (!clan) {
+                throw new Error('Clan not found');
+            }
+            // Combine all bruteIds
+            var bruteIds = new Set(clan.brutes.map((brute) => brute.id));
+            clan.bossDamages.forEach((damage) => {
+                bruteIds.add(damage.brute.id);
+            });
+            // Get brutes that already have a BossTicket
+            var brutesWithTicket = await prisma.inventoryItem.findMany({
+                where: {
+                    bruteId: { in: Array.from(bruteIds) },
+                    type: InventoryItemType.bossTicket,
+                },
+                select: {
+                    bruteId: true,
+                },
+            });
+            // Add 1x BossTicket to those brutes
+            await prisma.inventoryItem.updateMany({
+                where: {
+                    bruteId: { in: brutesWithTicket.map((brute) => brute.bruteId ?? '') },
+                    type: InventoryItemType.bossTicket,
+                },
+                data: {
+                    count: { increment: 1 },
+                },
+            });
+            // Get brutes that don't have a BossTicket
+            var brutesWithoutTicket = Array.from(bruteIds)
+                .filter((bruteId) => !brutesWithTicket.find((brute) => brute.bruteId === bruteId));
+            // Add 1x BossTicket to those brutes
+            await prisma.inventoryItem.createMany({
+                data: brutesWithoutTicket.map((bruteId) => ({
+                    bruteId,
+                    type: InventoryItemType.bossTicket,
+                    count: 1,
+                })),
+            });
+            // Update clan
+            await prisma.clan.update({
+                where: { id: clanId },
+                data: {
+                    // Set new boss
+                    boss: (0, randomItem)(bosses).name,
+                    damageOnBoss: 0,
+                    // Increase clan limit
+                    limit: Math.min(CLAN_SIZE_LIMIT, clan.limit + 5),
+                    // +1000 points
+                    points: { increment: 1000 },
+                    // Reset boss damages
+                    bossDamages: {
+                        deleteMany: {},
+                    },
+                },
+            });
+            // Give gold to users
+            var userIds = new Set(clan.brutes.map((brute) => brute.userId || ''));
+            clan.bossDamages.forEach((damage) => {
+                userIds.add(damage.brute.userId || '');
+            });
+            var goldGains = Math.floor(BOSS_GOLD_REWARD / userIds.size);
+            await prisma.user.updateMany({
+                where: { id: { in: Array.from(userIds) } },
+                data: {
+                    gold: { increment: goldGains },
+                },
+            });
+            // Add log
+            await prisma.log.createMany({
+                data: Array.from(bruteIds).map((bruteId) => ({
+                    type: LogType.bossDefeat,
+                    gold: goldGains,
+                    currentBruteId: bruteId,
+                })),
+            });
+            result.boss = {
+                xp: 0,
+                gold: goldGains,
+            };
+        }
+        else {
+            // Update damage on boss + store it
+            var initialBoss = fightData.initialFighters.find((fighter) => fighter.type === 'boss');
+            var finalBoss = fightData.fighters.find((fighter) => fighter.type === 'boss');
+            if (!initialBoss || !finalBoss) {
+                throw new Error('Boss not found');
+            }
+            if (!clanId) {
+                throw new Error('Clan ID not found');
+            }
+            var damage = initialBoss.hp - finalBoss.hp;
+            await prisma.clan.update({
+                where: { id: clanId },
+                data: {
+                    damageOnBoss: { increment: damage },
+                    bossDamages: {
+                        upsert: {
+                            where: {
+                                bruteId_clanId: {
+                                    bruteId: winner.type === 'brute' ? winner.id : loser.id,
+                                    clanId,
+                                },
+                            },
+                            update: { damage: { increment: damage } },
+                            create: {
+                                damage,
+                                bruteId: winner.type === 'brute' ? winner.id : loser.id,
+                            },
+                        },
+                    },
+                },
+            });
+        }
+    }
+    // Add achievements from stats
+    (0, handleStats)(fightData, stats, achievementsStore, tournament);
+    // Update achievements
+    if (achievements) {
+        await (0, updateAchievements)(prisma, achievementsStore, !!tournament);
+    }
+    return result;
+};var getDamage = (fighter, opponent, thrown) => {
+    var base = thrown
+        ? thrown.damage
+        : (fighter.activeWeapon?.damage || fighter.baseDamage);
+    let skillsMultiplier = 1;
+    // Using Piledriver ?
+    var piledriver = fighter.activeSkills.find((sk) => sk.name === 'hammer');
+    // +50% damage for `weaponsMaster` on sharp weapons
+    if (fighter.activeWeapon?.types.includes('sharp') && fighter.skills.find((sk) => sk.name === 'weaponsMaster') && !thrown) {
+        skillsMultiplier += 0.5;
+    }
+    if (!piledriver) {
+        // +100% damage for `martialArts` without a weapon or with a mug
+        if ((!fighter.activeWeapon || fighter.activeWeapon.name === 'mug') && fighter.skills.find((sk) => sk.name === 'martialArts') && !thrown) {
+            skillsMultiplier += 1;
+        }
+    }
+    // -30% damage if opponent has `leadSkeleton` and weapon is blunt
+    if (opponent.skills.find((sk) => sk.name === 'leadSkeleton') && fighter.activeWeapon?.types.includes('blunt') && !thrown) {
+        skillsMultiplier -= 0.3;
+    }
+    // x2 damage for if skill `fierceBrute` is active
+    if (fighter.activeSkills.find((sk) => sk.name === 'fierceBrute')) {
+        skillsMultiplier *= 2;
+    }
+    // x4 damage for `piledriver`
+    if (piledriver) {
+        skillsMultiplier *= 4;
+    }
+    let damage = 0;
+    if (thrown) {
+        damage = Math.floor((base + fighter.strength * 0.1 + fighter.agility * 0.15)
+            * (1 + Math.random() * 0.5) * skillsMultiplier);
+    }
+    else if (piledriver) {
+        damage = Math.floor((10 + opponent.strength * 0.6)
+            * (0.8 + Math.random() * 0.4) * skillsMultiplier);
+    }
+    else {
+        damage = Math.floor((base + fighter.strength * (0.2 + base * 0.05))
+            * (0.8 + Math.random() * 0.4) * skillsMultiplier);
+    }
+    // -25% damage if fighter uses a damaged weapon
+    if (fighter.activeWeapon && fighter.damagedWeapons.includes(fighter.activeWeapon.name)) {
+        damage = Math.floor(damage * 0.75);
+    }
+    // Reduce damage with opponent's armor if not thrown
+    if (!thrown) {
+        damage = Math.ceil(damage * (1 - opponent.armor));
+    }
+    // Set minimum damage to 1
+    if (damage < 1) {
+        damage = 1;
+    }
+    return damage;
+};
+var handleSkills = (brute, fighter) => {
+    /* INITIATIVE */
+    // -2 initiative for `firstStrike`
+    if (brute.skills.includes(SkillName.firstStrike)) {
+        fighter.initiative -= 2;
+    }
+    // +2 initiative for `reconnaissance`
+    if (brute.skills.includes(SkillName.reconnaissance)) {
+        fighter.initiative += 2;
+    }
+    /* COUNTER */
+    // +10% counter for `sixthSense`
+    if (brute.skills.includes(SkillName.sixthSense)) {
+        fighter.counter += 0.1;
+    }
+    // +40% counter / +2 initiative for `monk`
+    if (brute.skills.includes(SkillName.monk)) {
+        fighter.counter += 0.4;
+        fighter.initiative += 2;
+    }
+    /* COMBO */
+    // +20% combo for `fistsOfFury`
+    if (brute.skills.includes(SkillName.fistsOfFury)) {
+        fighter.combo += 0.2;
+    }
+    /* REVERSAL */
+    // +30% reversal for `hostility`
+    if (brute.skills.includes(SkillName.hostility)) {
+        fighter.reversal += 0.30;
+    }
+    /* BLOCK */
+    // +XX% block for `shield`
+    if (brute.skills.includes(SkillName.shield)) {
+        fighter.block += SHIELD_BLOCK_ODDS;
+        fighter.shield = true;
+    }
+    // +10% block for `counterAttack`
+    if (brute.skills.includes(SkillName.counterAttack)) {
+        fighter.block += 0.1;
+    }
+    /* ACCURACY */
+    // +30% accuracy for `relentless`
+    if (brute.skills.includes(SkillName.relentless)) {
+        fighter.accuracy += 0.3;
+    }
+    /* ARMOR */
+    // +25% armor for `armor`
+    if (brute.skills.includes(SkillName.armor)) {
+        fighter.armor += 0.25;
+    }
+    // +10% armor for `toughenedSkin`
+    if (brute.skills.includes(SkillName.toughenedSkin)) {
+        fighter.armor += 0.1;
+    }
+    /* DISARM */
+    // +50% disarm for `shock`
+    if (brute.skills.includes(SkillName.shock)) {
+        fighter.disarm += 0.5;
+    }
+    /* EVASION */
+    // +30% evasion for `untouchable`
+    if (brute.skills.includes(SkillName.untouchable)) {
+        fighter.evasion += 0.3;
+    }
+    // +10% evasion for `balletShoes
+    if (brute.skills.includes(SkillName.balletShoes)) {
+        fighter.evasion += 0.1;
+    }
+    /* DEFLECT */
+    // +30% deflect for `repulse`
+    if (brute.skills.includes(SkillName.repulse)) {
+        fighter.deflect += 0.3;
+    }
+    /* PASSIVES */
+    if (brute.skills.includes(SkillName.saboteur)) {
+        fighter.saboteur = true;
+    }
+    if (brute.skills.includes(SkillName.sabotage)) {
+        fighter.sabotage = true;
+    }
+    if (brute.skills.includes(SkillName.bodybuilder)) {
+        fighter.bodybuilder = true;
+    }
+    if (brute.skills.includes(SkillName.survival)) {
+        fighter.survival = true;
+    }
+    if (brute.skills.includes(SkillName.balletShoes)) {
+        fighter.balletShoes = true;
+    }
+    if (brute.skills.includes(SkillName.determination)) {
+        fighter.determination = true;
+    }
+    if (brute.skills.includes(SkillName.ironHead)) {
+        fighter.ironHead = true;
+    }
+    if (brute.skills.includes(SkillName.resistant)) {
+        fighter.resistant = true;
+    }
+    if (brute.skills.includes(SkillName.monk)) {
+        fighter.monk = true;
+    }
+};
+var handleModifiers = (brute, randomWeaponIndex, randomSkillIndex) => {
+    var randomWeaponName = (0, getTempWeapon)(brute, randomWeaponIndex);
+    if (randomWeaponName) {
+        var randomWeapon = weapons.find((weapon) => weapon.name === randomWeaponName);
+        if (!randomWeapon) {
+            throw new Error('Random weapon not found');
+        }
+        brute.weapons.push(randomWeaponName);
+    }
+    var randomSkillName = (0, getTempSkill)(brute, randomSkillIndex);
+    if (randomSkillName) {
+        var randomSkill = skills.find((skill) => skill.name === randomSkillName);
+        if (!randomSkill) {
+            throw new Error('Random skill not found');
+        }
+        brute.skills.push(randomSkillName);
+    }
+};
+var getTempo = (speed) => 0.10 + (20 / (10 + (speed * 1.5))) * 0.90;
+var getFighters = async ({ prisma, team1, team2, modifiers, clanFight, }) => {
+    var randomWeaponIndex = await ServerState.getRandomWeapon(prisma);
+    var randomSkillIndex = await ServerState.getRandomSkill(prisma);
+    let spawnedPets = 0;
+    var fighters = [];
+    let positiveIndex = 0;
+    [team1, team2].forEach((team, teamIndex) => {
+        var { brutes } = team;
+        for (var brute of brutes) {
+            var teamSide = teamIndex === 0 ? 'L' : 'R';
+            // Restore endurance lost by pets for clan fights, which do not have pets
+            if (clanFight) {
+                for (var petName of brute.pets) {
+                    var pet = pets.find((p) => p.name === petName);
+                    if (!pet) {
+                        throw new Error(`Pet ${petName} not found`);
+                    }
+                    brute.enduranceStat += pet.enduranceMalus;
+                    brute.enduranceValue = Math.floor(brute.enduranceStat * brute.enduranceModifier);
+                }
+            }
+            // Fetch brute stats before handling modifiers,
+            // as both depend on the skills, which get modified
+            var bruteHP = (0, getFinalHP)(brute, randomSkillIndex);
+            var bruteSpeed = (0, getFinalStat)(brute, 'speed', modifiers, randomSkillIndex);
+            var bruteStrength = (0, getFinalStat)(brute, 'strength', modifiers, randomSkillIndex);
+            var bruteAgility = (0, getFinalStat)(brute, 'agility', modifiers, randomSkillIndex);
+            handleModifiers(brute, randomWeaponIndex, randomSkillIndex);
+            // Brute stats
+            positiveIndex++;
+            var fighter = {
+                id: brute.id,
+                index: positiveIndex,
+                team: teamSide,
+                name: brute.name,
+                // Add minimal visual data to still be able to display the fight if the brute was deleted
+                gender: brute.gender,
+                colors: brute.colors,
+                body: brute.body,
+                rank: brute.ranking,
+                level: brute.level,
+                type: 'brute',
+                maxHp: bruteHP,
+                hp: bruteHP,
+                strength: bruteStrength,
+                agility: bruteAgility,
+                speed: bruteSpeed,
+                initiative: ((0, randomBetween)(0, 10) - bruteSpeed) / 100,
+                tempo: getTempo(bruteSpeed),
+                baseDamage: BARE_HANDS_DAMAGE,
+                counter: 0,
+                combo: 0,
+                deflect: 0,
+                reversal: 0,
+                block: 0,
+                accuracy: 0,
+                armor: 0,
+                disarm: 0,
+                evasion: 0,
+                reach: 0,
+                sabotage: false,
+                bodybuilder: false,
+                survival: false,
+                balletShoes: false,
+                determination: false,
+                retryAttack: false,
+                ironHead: false,
+                resistant: false,
+                monk: false,
+                skills: skills
+                    .filter((skill) => brute.skills.includes(skill.name))
+                    .map((skill) => ({ ...skill })),
+                weapons: weapons
+                    .filter((weapon) => brute.weapons.includes(weapon.name)),
+                shield: false,
+                activeSkills: [],
+                activeWeapon: null,
+                keepWeaponChance: 0,
+                saboteur: false,
+                sabotagedWeapon: null,
+                poisoned: false,
+                trapped: false,
+                damagedWeapons: [],
+                hitBy: {},
+            };
+            handleSkills(brute, fighter);
+            fighters.push(fighter);
+            // No pets in clan fights
+            if (clanFight) {
+                continue;
+            }
+            // Pets stats
+            for (var petName of brute.pets) {
+                var pet = pets.find((p) => p.name === petName);
+                if (!pet) {
+                    throw new Error(`Pet ${petName} not found`);
+                }
+                spawnedPets++;
+                fighters.push({
+                    id: `${-spawnedPets}`,
+                    index: -spawnedPets,
+                    team: teamSide,
+                    name: petName,
+                    rank: 0,
+                    level: 0,
+                    type: 'pet',
+                    master: brute.id,
+                    maxHp: (0, getPetStat)(brute, pet, 'hp'),
+                    hp: (0, getPetStat)(brute, pet, 'hp'),
+                    strength: (0, getPetStat)(brute, pet, 'strength'),
+                    agility: (0, getPetStat)(brute, pet, 'agility'),
+                    speed: (0, getPetStat)(brute, pet, 'speed'),
+                    initiative: pet.initiative + (0, randomBetween)(0, 10) / 100,
+                    tempo: getTempo((0, getPetStat)(brute, pet, 'speed')),
+                    baseDamage: pet.damage,
+                    counter: pet.counter,
+                    combo: pet.combo,
+                    deflect: 0,
+                    reversal: pet.counter,
+                    block: pet.block,
+                    accuracy: pet.accuracy,
+                    reach: 0,
+                    armor: 0,
+                    disarm: pet.disarm,
+                    evasion: pet.evasion,
+                    sabotage: false,
+                    bodybuilder: false,
+                    survival: false,
+                    balletShoes: false,
+                    determination: false,
+                    retryAttack: false,
+                    ironHead: false,
+                    resistant: false,
+                    monk: false,
+                    skills: [],
+                    weapons: [],
+                    shield: false,
+                    activeSkills: [],
+                    activeWeapon: null,
+                    keepWeaponChance: 0,
+                    saboteur: false,
+                    sabotagedWeapon: null,
+                    poisoned: false,
+                    trapped: false,
+                    damagedWeapons: [],
+                    hitBy: {},
+                });
+            }
+        }
+        // Backup stats
+        for (var backup of team.backups) {
+            var backupMaster = team.brutes[0];
+            if (!backupMaster) {
+                throw new Error('Backup master not found');
+            }
+            // Arrives at a random time
+            var arrivesAt = (0, randomBetween)(1, 500) / 100;
+            // Fetch backup stats before handling modifiers,
+            // as both depend on the skills, which get modified
+            var backupHP = (0, getFinalHP)(backup, randomSkillIndex);
+            var backupSpeed = (0, getFinalStat)(backup, 'speed', modifiers, randomSkillIndex);
+            var backupStrength = (0, getFinalStat)(backup, 'strength', modifiers, randomSkillIndex);
+            var backupAgility = (0, getFinalStat)(backup, 'agility', modifiers, randomSkillIndex);
+            handleModifiers(backup, randomWeaponIndex, randomSkillIndex);
+            spawnedPets++;
+            var backupFighter = {
+                id: `${-spawnedPets}`,
+                index: -spawnedPets,
+                team: teamIndex === 0 ? 'L' : 'R',
+                name: backup.name,
+                // Add minimal visual data to still be able to display the fight if the brute was deleted
+                gender: backup.gender,
+                colors: backup.colors,
+                body: backup.body,
+                rank: backup.ranking,
+                level: backup.level,
+                type: 'brute',
+                master: backupMaster.id,
+                arrivesAtInitiative: arrivesAt,
+                leavesAtInitiative: arrivesAt + 2.8,
+                maxHp: backupHP,
+                hp: backupHP,
+                strength: backupStrength,
+                agility: backupAgility,
+                speed: backupSpeed,
+                initiative: arrivesAt,
+                tempo: getTempo(backupSpeed),
+                baseDamage: BARE_HANDS_DAMAGE,
+                counter: 0,
+                combo: 0,
+                deflect: 0,
+                reversal: 0,
+                block: 0,
+                accuracy: 0,
+                armor: 0,
+                disarm: 0,
+                evasion: 0,
+                reach: 0,
+                sabotage: false,
+                bodybuilder: false,
+                survival: false,
+                balletShoes: false,
+                determination: false,
+                retryAttack: false,
+                ironHead: false,
+                resistant: false,
+                monk: false,
+                skills: skills
+                    .filter((skill) => backup.skills.includes(skill.name))
+                    .map((skill) => ({ ...skill })),
+                weapons: weapons.filter((weapon) => backup.weapons.includes(weapon.name)),
+                shield: false,
+                activeSkills: [],
+                activeWeapon: null,
+                keepWeaponChance: 0,
+                saboteur: false,
+                sabotagedWeapon: null,
+                poisoned: false,
+                trapped: false,
+                damagedWeapons: [],
+                hitBy: {},
+            };
+            handleSkills(backup, backupFighter);
+            // Reset initiative to arrive at the desired time
+            backupFighter.initiative = arrivesAt;
+            fighters.push(backupFighter);
+        }
+        // Boss
+        positiveIndex++;
+        for (var boss of team.bosses) {
+            spawnedPets++;
+            fighters.push({
+                id: `${-spawnedPets}`,
+                index: positiveIndex,
+                team: teamIndex === 0 ? 'L' : 'R',
+                name: boss.name,
+                rank: 0,
+                level: 0,
+                type: 'boss',
+                maxHp: boss.hp,
+                hp: boss.startHP,
+                strength: boss.strength,
+                agility: boss.agility,
+                speed: boss.speed,
+                initiative: boss.initiative + (0, randomBetween)(0, 10) / 100,
+                tempo: getTempo(boss.speed),
+                baseDamage: boss.damage,
+                counter: boss.counter,
+                combo: boss.combo,
+                deflect: 0,
+                reversal: boss.counter,
+                block: boss.block,
+                accuracy: boss.accuracy,
+                reach: boss.reach,
+                armor: 0,
+                disarm: boss.disarm,
+                evasion: boss.evasion,
+                sabotage: false,
+                bodybuilder: false,
+                survival: false,
+                balletShoes: false,
+                determination: false,
+                retryAttack: false,
+                ironHead: false,
+                resistant: false,
+                monk: false,
+                skills: [],
+                weapons: [],
+                shield: false,
+                activeSkills: [],
+                activeWeapon: null,
+                keepWeaponChance: 0,
+                saboteur: false,
+                sabotagedWeapon: null,
+                poisoned: false,
+                trapped: false,
+                damagedWeapons: [],
+                hitBy: {},
+            });
+        }
+    });
+    return fighters;
+};
+var handleStats = (fightData, stats, achievements, tournament) => {
+    var winner = fightData.fighters.find((f) => f.id === fightData.winner);
+    if (!winner) {
+        throw new Error('Winner not found');
+    }
+    var loser = fightData.fighters.find((f) => f.id === fightData.loser);
+    if (!loser) {
+        throw new Error('Loser not found');
+    }
+    for (var [bruteId, stat] of Object.entries(stats)) {
+        var achievement = achievements[bruteId];
+        if (!achievement) {
+            continue;
+        }
+        // Win / defeat
+        if (bruteId === winner.id) {
+            achievement.achievements.wins = 1;
+        }
+        else {
+            achievement.achievements.defeats = 1;
+        }
+        // Max damage
+        if (stat.maxDamage) {
+            achievement.achievements.maxDamage = stat.maxDamage;
+        }
+        // Flawless
+        if (bruteId === winner.id && winner.hp === winner.maxHp) {
+            achievement.achievements.flawless = 1;
+        }
+        // Win with 1hp
+        if (bruteId === winner.id
+            && winner.hp === 1
+            && !winner.skills.find((s) => s.name === SkillName.survival)) {
+            achievement.achievements.winWith1HP = 1;
+        }
+        // Steal 2 weapons
+        if (stat.weaponsStolen && stat.weaponsStolen >= 2) {
+            achievement.achievements.steal2Weapons = 1;
+        }
+        // Single hit win
+        if (bruteId === winner.id && stat.hits === 1) {
+            // Only apply if other team member didn't hit
+            if (!stat.otherTeamMembersHits) {
+                achievement.achievements.singleHitWin = 1;
+            }
+        }
+        // Hit 20 times
+        if (stat.hits && stat.hits >= 20) {
+            achievement.achievements.hit20times = 1;
+        }
+        // 10 Skills used
+        if (stat.skillsUsed && stat.skillsUsed >= 10) {
+            achievement.achievements.use10skills = 1;
+        }
+        // 5 counters
+        if (stat.counters && stat.counters >= 5) {
+            achievement.achievements.counter5 = 1;
+        }
+        // 10 evades
+        if (stat.evades && stat.evades >= 10) {
+            achievement.achievements.evade10 = 1;
+        }
+        // 25 blocks
+        if (stat.blocks && stat.blocks >= 25) {
+            achievement.achievements.block25 = 1;
+        }
+        // 4 disarms
+        if (stat.disarms && stat.disarms >= 4) {
+            achievement.achievements.disarm4 = 1;
+        }
+        // 8 disarms
+        if (stat.disarms && stat.disarms >= 8) {
+            achievement.achievements.disarm8 = 1;
+        }
+        // Kill 3 pets
+        if (stat.petsKilled && stat.petsKilled >= 3) {
+            achievement.achievements.kill3pets = 1;
+        }
+        // HP healed
+        if (stat.hpHealed) {
+            achievement.achievements.hpHealed = stat.hpHealed;
+        }
+        // Tournament achievements
+        if (tournament) {
+            if (tournament === 'finals') {
+                if (bruteId === winner.id && winner.level <= 15) {
+                    // Win as Lv15-
+                    achievement.achievements.winTournamentAs15 = 1;
+                }
+                else if (bruteId === winner.id && winner.level <= 20) {
+                    // Win as Lv20-
+                    achievement.achievements.winTournamentAs20 = 1;
+                }
+                // Win as a lower level
+                if (bruteId === winner.id && winner.level < loser.level) {
+                    achievement.achievements.winAsLower = 1;
+                }
+                // Win
+                if (bruteId === winner.id) {
+                    achievement.achievements.win = 1;
+                }
+            }
+            if (bruteId === loser.id && loser.level >= winner.level * 4) {
+                // Loose against 1/4 level
+                achievement.achievements.looseAgainst4 = 1;
+            }
+            else if (bruteId === loser.id && loser.level >= winner.level * 3) {
+                // Loose against 1/3 level
+                achievement.achievements.looseAgainst3 = 1;
+            }
+            else if (bruteId === loser.id && loser.level >= winner.level * 2) {
+                // Loose against 1/2 level
+                achievement.achievements.looseAgainst2 = 1;
+            }
+            if (bruteId === winner.id && winner.level * 4 <= loser.level) {
+                // Win against 4x level
+                achievement.achievements.winAgainst4 = 1;
+            }
+            else if (bruteId === winner.id && winner.level * 3 <= loser.level) {
+                // Win against 3x level
+                achievement.achievements.winAgainst3 = 1;
+            }
+            else if (bruteId === winner.id && winner.level * 2 <= loser.level) {
+                // Win against 2x level
+                achievement.achievements.winAgainst2 = 1;
+            }
+        }
+    }
+};
+var shuffle = (array) => {
+    var shuffledArray = [...array];
+    for (let i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var iItem = shuffledArray[i];
+        var jItem = shuffledArray[j];
+        if (typeof iItem === 'undefined' || typeof jItem === 'undefined') {
+            throw new Error('Item not found while shuffling array');
+        }
+        shuffledArray[i] = jItem;
+        shuffledArray[j] = iItem;
+    }
+    return shuffledArray;
+};
+var StepType;
+(function (StepType) {
+    StepType[StepType["Saboteur"] = 0] = "Saboteur";
+    StepType[StepType["Leave"] = 1] = "Leave";
+    StepType[StepType["Arrive"] = 2] = "Arrive";
+    StepType[StepType["Trash"] = 3] = "Trash";
+    StepType[StepType["Steal"] = 4] = "Steal";
+    StepType[StepType["Trap"] = 5] = "Trap";
+    StepType[StepType["Heal"] = 6] = "Heal";
+    StepType[StepType["Resist"] = 7] = "Resist";
+    StepType[StepType["Survive"] = 8] = "Survive";
+    StepType[StepType["Hit"] = 9] = "Hit";
+    StepType[StepType["FlashFlood"] = 10] = "FlashFlood";
+    StepType[StepType["Hammer"] = 11] = "Hammer";
+    StepType[StepType["Poison"] = 12] = "Poison";
+    StepType[StepType["Bomb"] = 13] = "Bomb";
+    StepType[StepType["Hypnotise"] = 14] = "Hypnotise";
+    StepType[StepType["Move"] = 15] = "Move";
+    StepType[StepType["Eat"] = 16] = "Eat";
+    StepType[StepType["MoveBack"] = 17] = "MoveBack";
+    StepType[StepType["Equip"] = 18] = "Equip";
+    StepType[StepType["AttemptHit"] = 19] = "AttemptHit";
+    StepType[StepType["Block"] = 20] = "Block";
+    StepType[StepType["Evade"] = 21] = "Evade";
+    StepType[StepType["Sabotage"] = 22] = "Sabotage";
+    StepType[StepType["Disarm"] = 23] = "Disarm";
+    StepType[StepType["Death"] = 24] = "Death";
+    StepType[StepType["Throw"] = 25] = "Throw";
+    StepType[StepType["End"] = 26] = "End";
+    StepType[StepType["Counter"] = 27] = "Counter";
+    StepType[StepType["SkillActivate"] = 28] = "SkillActivate";
+    StepType[StepType["SkillExpire"] = 29] = "SkillExpire";
+    StepType[StepType["Spy"] = 30] = "Spy";
+    StepType[StepType["Vampirism"] = 31] = "Vampirism";
+    StepType[StepType["Haste"] = 32] = "Haste";
+    StepType[StepType["Treat"] = 33] = "Treat";
+})(StepType || (/*exports.*/StepType = StepType = {}));
+//# sourceMappingURL=types.js.map
+var weaponsFR={"fan": "Éventail",
+  "keyboard": "Clavier",
+  "knife": "Couteau",
+  "leek": "Poireau",
+  "mug": "Mug",
+  "sai": "Sai",
+  "racquet": "Raquette",
+  "axe": "Marteau",
+  "bumps": "Massue",
+  "flail": "Fléau",
+  "fryingPan": "Poêle",
+  "hatchet": "Hache",
+  "mammothBone": "Os de mammouth",
+  "morningStar": "Étoile du matin",
+  "trombone": "Trombone",
+  "baton": "Bâton",
+  "halbard": "Hallebarde",
+  "lance": "Lance",
+  "trident": "Trident",
+  "whip": "Fouet",
+  "noodleBowl": "Bol de nouilles",
+  "piopio": "Piou Piou",
+  "shuriken": "Shuriken",
+  "broadsword": "Glaive",
+"scimitar": "Cimeterre",};var getTempWeapon = (brute, weaponIndex) => {
+    if (weaponIndex === null) {
+        return null;
+    }
+    var unownedWeapons = weapons.filter((weapon) => !brute.weapons.includes(weapon.name));
+    var tempWeapon = unownedWeapons[weaponIndex % unownedWeapons.length];
+    if (!tempWeapon) {
+        throw new Error('No temp weapon found');
+    }
+    return tempWeapon.name;
+};
+var getTempWeapon = getTempWeapon;
+var unavailableTemporarySkills = [SkillName.backup];
+var getTempSkill = (brute, skillIndex) => {
+    if (skillIndex === null) {
+        return null;
+    }
+    var unownedSkills = skills.filter((skill) => !brute.skills.includes(skill.name)
+        && !unavailableTemporarySkills.includes(skill.name));
+    var tempSkill = unownedSkills[skillIndex % unownedSkills.length];
+    if (!tempSkill) {
+        throw new Error('No temp skill found');
+    }
+    return tempSkill.name;
+};
+var getTempSkill = getTempSkill;
 "use strict"
 
+var ServerState = proxy;
+var updateAchievement = proxy;
+var getTempSkill = proxy
+var getTempWeapon = proxy
