@@ -9,6 +9,10 @@ var proxy = new Proxy({}, {
       }
       return proxy; 
     }
+	,
+    apply(target, thisArg, argumentsList) {
+      return {}; 
+    }
   });
 
 function rien(){}

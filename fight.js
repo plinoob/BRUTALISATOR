@@ -4371,3 +4371,4 @@ var weaponsFR={"fan": "Éventail",
   "broadsword": "Glaive",
 "scimitar": "Cimeterre",};"use strict"
 
+var ServerState = proxy;
