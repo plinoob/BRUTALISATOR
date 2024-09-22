@@ -4399,7 +4399,7 @@ var getTempSkill = getTempSkill;
 		
 		fetch("/api/clan/"+CLAN)
 			.then(response => response.text())
-			.then(html => {
+			.then(html => {cl("CLAN :",clan)
 				
 				
 				var clan = JSON.parse(html)
@@ -4452,7 +4452,7 @@ var getTempSkill = getTempSkill;
 				
 				insertDivAfterElement(allDIV[0],findFirstParentDiv(findTextInDOM("Afficher le détail des dégâts","h6")));
 				
-				
+				cl("rota1",rota1)
 				simulFights({
 					fn:function(res){team={};for(var brute of res){bilan[brute.name]=brute.j;team[brute.name] = brute.boss}
 					var sorted = Object.entries(team).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {

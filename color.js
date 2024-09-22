@@ -153,13 +153,13 @@ async function simulFights(){
 	
 	fetch(BRUTALISATOR+"generateFights.js")
 	  .then(response => response.text())
-	  .then(function(generateFights){cl("gooo",generateFights);simulFights_no_fetch(generateFights,...arguments);
+	  .then(function(generateFights){cl("gooo",generateFights,arguments);simulFights_no_fetch(generateFights,...arguments);
 })}
 
 
 async function simulFights_no_fetch(generateFights,{fn,rota1,rota2//number = boss
 ,backups,fight_per_rota,fight_total}){
-
+cl(arguments)
 	if(fightWorker)fightWorker.terminate()
 		
 	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
