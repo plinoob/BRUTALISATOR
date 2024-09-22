@@ -2,23 +2,8 @@
 var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
 
 function rien(){}
-function simulServer(a){
-	
-	var bossDmg = parseInt(a["0"]?.data?.damageOnBoss?.increment)
-	if(bossDmg>0){cl(a["0"].data.damageOnBoss.increment)};return 0}
 
 
-var proxy = new Proxy(simulServer, {
-  get(target, property) {
-    if (property in target) {
-      return target[property];
-    }
-    return proxy; // Renvoie le même proxy pour les accès en profondeur
-  },
-  apply(target, thisArg, argumentsList) {
-    return simulServer(argumentsList); // Renvoie un objet vide lorsqu'on appelle le proxy comme une fonction
-  }
-});
 
 
 var nfps=60;var dicfps={};var dirfps=[];function fps(a){var f=dirfps.length;var t=function(){if(!(a in dicfps)){dicfps[a]=false;a(...arguments);setTimeout(function(){var b=dicfps[a];delk(dicfps,a);if(typeof(b)==typeof([])){dirfps[f](...b)}},nfps)}else{dicfps[a]=arguments;};};dirfps.push(t);return(t)};
@@ -137,6 +122,43 @@ function findTextInDOM(text,balise) {
     }
   });
   return elem;
+}
+var setInt
+var fightWorker
+async function simulFights(fn,rota1,rota2, boss,backups,fight_per_rota,fight_total){
+	if(fightWorker)fightWorker.terminate()
+		
+	
+	generateFights = generateFights.replace("var TEAM1 = []","var TEAM1 = "+JSON.stringify(rota1)+";")
+	generateFights = generateFights.replace("var TEAM2 = []","var TEAM2 = "+JSON.stringify(rota2)+";")
+	
+	if(boss){generateFights = generateFights.replace('var BOSS = "brutes"','var BOSS = "bosses"'+";")}
+	if(rota[0].length+rota[1].length>2){generateFights = generateFights.replace('var CLANWAR = false','var CLANWAR = true'+";")}
+	if(backups){generateFights = generateFights.replace('var BACKUPS = false','var BACKUPS = true'+";")}
+	
+	generateFights = generateFights.replace("var FIGHTS_PER_ROTA = 1","var FIGHTS_PER_ROTA = "+fight_per_rota+";")
+	generateFights = generateFights.replace("var FIGHT_TOTAL = 1","var FIGHT_TOTAL = "+fight_total+";")
+	
+
+	var workerScript = 'var BRANCHE = "'+BRANCHE+'";'+generateFights
+
+	// Créer un Blob contenant le script du worker
+	var blob = new Blob([workerScript], { type: 'application/javascript' });
+
+	// Créer une URL pour le Blob
+	var workerUrl = URL.createObjectURL(blob);
+
+	// Créer le worker à partir de l'URL du Blob
+	fightWorker = new Worker(workerUrl);
+
+	clearInterval(setInt);
+	setInt = setInterval(function(){fn(worker.postMessage(5));},1000)
+	
+	
+
+	
+	
+	
 }
 
 function findFirstParentDiv(element) {
