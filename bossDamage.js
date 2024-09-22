@@ -4432,7 +4432,7 @@ var getTempSkill = getTempSkill;
 			return s}
 			
 			function getDamageFromTeam(){var s = "";
-			for(var i in team){var bruteSTR = '<font opacity="0.66" font-size="0.751429rem" color="rgb(140, 81, 64)"><b>'+parseInt(team[i]*7/bilan[i])+"</b></font>"+"\n"
+			for(var i in team){var bruteSTR = '<font-size="0.751429rem" color="rgba(140, 81, 64,0.73)"><b>'+parseInt(team[i]*7/bilan[i])+"</b></font>"+"\n"
 			s+=bruteSTR
 			}
 			return s}
