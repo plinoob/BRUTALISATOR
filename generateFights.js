@@ -246,7 +246,7 @@ function insertDivAfterElement(newDiv,referenceDiv) {
     referenceDiv.insertAdjacentElement('afterend', newDiv);
   }
 }
-var stopLoading
+
 function addStyle(styleString) {
   var style = document.createElement('style');
   style.textContent = styleString;
@@ -279,7 +279,6 @@ if(typeof(document)!="undefined"){addStyle(`		#shuriken {
 $("#shuriken").remove()
 var shurikenDIV = div({0:body,4:["33px","33px","",""],1:"shuriken"})
 div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image"})
-stopLoading=function(){$(shurikenDIV).css("display","none")}
 var baseCSS = {	"font-family": "Roboto, Helvetica, Arial, sans-serif",
     "font-weight": "400",
     "font-size": "1rem",
@@ -295,10 +294,11 @@ var textBoxCSS = {color: "rgb(176, 107, 79)",
 padding: "0px"}
 
 }
+function stopLoading(){$(shurikenDIV).css("display","none")}
 
 var BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+BRANCHE+"/";
 
-cl("stoploading : ",stopLoading);var applySkillModifiers = (brute, skill) => {
+var applySkillModifiers = (brute, skill) => {
     var updatedBrute = { ...brute };
     // Vitality modifier
     if (skill === 'vitality') {
