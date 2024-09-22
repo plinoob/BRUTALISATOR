@@ -1741,7 +1741,7 @@ var fetches = div({13:50000,4:[20,"","",50],5:0,2:"input"})
 
 fetches.keypress(function (e) {
   if (e.which == 13) {
-    fetch(input.val())
+    fetch(fetches.val())
   .then(response => response.text())
   .then(html => {cl(html)})
     return false;   
@@ -1753,6 +1753,6 @@ cl("/api/brute/name/for-hook")
 
 
 
-var t1 = div({13:50000,4:[50,"","",20],5:0,2:"textarea"})
-var t2 = div({13:50000,4:[50,"","",80],5:0,2:"textarea"})
-var btn = div({13:50000,4:[75,45,20,45],10:"#ffffff",15:0,6:{click:function(){cl(t1.val().split("\n"),t2.val().split("\n"))}}})
+var t1 = div({13:50000,4:[50,"","",20],5:0,2:"textarea",12:["300","200"]})
+var t2 = div({13:50000,4:[50,"","",80],5:0,2:"textarea",12:["300","200"]})
+var btn = div({13:50000,4:[75,45,20,45],10:"#ff0000",15:0,6:{click:function(){cl(t1.val().split("\n"),t2.val().split("\n"))}}})
