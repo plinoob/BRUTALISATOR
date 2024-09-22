@@ -125,14 +125,21 @@ function findTextInDOM(text,balise) {
 }
 var setInt
 var fightWorker
-async function simulFights(fn,rota1,rota2, boss,backups,fight_per_rota,fight_total){
+async function simulFights(fn,rota1,rota2//number = boss
+	,backups,fight_per_rota,fight_total){
 	if(fightWorker)fightWorker.terminate()
 		
 	
-	generateFights = generateFights.replace("var TEAM1 ="+" []","var TEAM1 = "+JSON.stringify(rota1)+";")
-	generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = "+JSON.stringify(rota2)+";")
+	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
+		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = ["+bosses[0]+"];")
+	}
+	else{
+		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = "+JSON.stringify(rota2)+";")
+
+	}
 	
-	if(boss){generateFights = generateFights.replace('var BOSS = "brutes"','var BOSS = "bosses"'+";")}
+	generateFights = generateFights.replace("var TEAM1 ="+" []","var TEAM1 = "+JSON.stringify(rota1)+";")
+	
 	if(rota1[0].length+rota2[0].length>2){generateFights = generateFights.replace('var CLANWAR = false','var CLANWAR = true'+";")}
 	if(backups){generateFights = generateFights.replace('var BACKUPS = false','var BACKUPS = true'+";")}
 	
