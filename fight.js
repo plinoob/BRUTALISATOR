@@ -1757,6 +1757,10 @@ var ClanWarPointReward = 1000;
 var EventPauseDuration = 3;
 var EventFightsPerDay = 10;
 var EventFreeResets = 3;
+var BossName = /*exports.*//*$Enums.*/BossName = {
+  GoldClaw: 'GoldClaw',
+  EmberFang: 'EmberFang'
+};
 
 var applySpy = (fightData, brute, opponent) => {
     if (brute.skills.find((skill) => skill.name === 'spy')) {
