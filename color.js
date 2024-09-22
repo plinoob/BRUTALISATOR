@@ -20,7 +20,6 @@ if(typeof(document)!="undefined"){
 
 
 function cl(a){if(arguments.length!=1) a=[...arguments];console.log(a)}
-function rien(){}
 var fediv={
 3:function(a,b,c){c.addClass(a[b])},
 4:function(a,b,c){if(a[b]===0){a[b]=[0,0,0,0]}else if(a[b]===1){a[b]=[50,"","",50]}else if(a[b]===2){a[b]=["","","",""]};for(var i in a[b]){if(typeof(a[b][i])==typeof(1)){a[b][i]=a[b][i]+"%"}};c.css({"position":"absolute","top":a[b][0],"right":a[b][1],"bottom":a[b][2],"left":a[b][3]})},
@@ -70,15 +69,22 @@ for(var i in fediv){if(i in a){fediv[i](a,i,b)}};
 return(b)}
 function uni(a){var l={};for(var i in a){for(var j in a[i]){l[j]=a[i][j]}};return(l)}
 
-function addScript( src ,fn) {
+function addScript( src ,src2) {
 	cl("addscript",src);
 	fetch(src)
 	  .then(response => response.text())
-	  .then(fn?function(html){var s = document.createElement( 'script' );
+	  .then(src2?function(){
+		  fetch(src)
+	  .then(response => response.text())
+	  .then(function(html2){var s = document.createElement( 'script' );
 		  s.setAttribute('text',"text/javascript");
 		  s.setAttribute('type',"module");
-		  s.textContent=html;
-		  document.body.appendChild( s );fn()}:(html => {
+		  s.textContent=html+html2;
+		  document.body.appendChild( s );})
+		  
+		  
+		  
+	  }:(html => {
 	  
 		  var s = document.createElement( 'script' );
 		  s.setAttribute('text',"text/javascript");

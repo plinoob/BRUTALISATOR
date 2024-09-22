@@ -4395,9 +4395,7 @@ var getTempSkill = (brute, skillIndex) => {
     return tempSkill.name;
 };
 var getTempSkill = getTempSkill;
-addScript(
-	BRUTALISATOR+"generateFights.js",
-	function(){
+
 		
 		
 		fetch("/api/clan/"+CLAN)
@@ -4476,9 +4474,5 @@ addScript(
 				
 				})
 		
-		
-	}
 
-
-)
 
