@@ -4395,7 +4395,6 @@ var getTempSkill = (brute, skillIndex) => {
     return tempSkill.name;
 };
 var getTempSkill = getTempSkill;
-
 		
 		
 		fetch("/api/clan/"+CLAN)
@@ -4454,7 +4453,7 @@ var getTempSkill = getTempSkill;
 				insertDivAfterElement(allDIV[0],findFirstParentDiv(findTextInDOM("Afficher le détail des dégâts","h6")));
 				
 				
-				simulFights({
+				simulFights(generateFights,{
 					fn:function(res){team={};for(var brute of res){bilan[brute.name]=brute.j;team[brute.name] = brute.boss}
 					var sorted = Object.entries(team).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {
   result[key] = value;

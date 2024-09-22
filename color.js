@@ -148,12 +148,15 @@ simulFights({
 
 var setInt
 var fightWorker
-var generateFights
 async function simulFights({fn,rota1,rota2//number = boss
-,backups,fight_per_rota,fight_total}){cl("simul !",generateFights)
+,backups,fight_per_rota,fight_total}){
+	
+	fetch(BRUTALISATOR+"generateFights.js")
+	  .then(response => response.text())
+	  .then(function(generateFights){cl("gooo",generateFights)
+	
 	if(fightWorker)fightWorker.terminate()
 		
-	
 	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
 		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = [[bosses["+rota2+"]]];")
 	}
@@ -188,7 +191,7 @@ async function simulFights({fn,rota1,rota2//number = boss
 	
 
 	
-	
+	  }
 	
 }
 
