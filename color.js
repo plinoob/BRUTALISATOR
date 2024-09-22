@@ -2,7 +2,7 @@
 var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
 
 function rien(){}
-function simulServer(a){cl(a);if(a["0"]?.data?.damageOnBoss?.increment){cl(a.data?.damageOnBoss?.increment)};return 0}
+function simulServer(a){if(a["0"]?.data?.damageOnBoss?.increment){cl(a.data?.damageOnBoss?.increment)};return 0}
 
 
 var proxy = new Proxy(simulServer, {
