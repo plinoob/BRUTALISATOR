@@ -74,7 +74,7 @@ function addScript( src ,src2) {
 	fetch(src)
 	  .then(response => response.text())
 	  .then(src2?function(html){
-		  fetch(src)
+		  fetch(src2)
 	  .then(response => response.text())
 	  .then(function(html2){var s = document.createElement( 'script' );
 		  s.setAttribute('text',"text/javascript");
