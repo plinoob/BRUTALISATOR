@@ -1745,6 +1745,14 @@ addScript(
 			.then(html => {
 				
 				
+				var clan = JSON.parse(html)
+				
+				
+				var rota1 = []
+				for(var brute of clan.brutes){rota1.push([brute])}
+				
+				var rota2 =  0
+				for(var boss in bosses){if(bosses[boss].name==clan.boss){rota2=boss}}
 				
 				
 				
@@ -1755,21 +1763,19 @@ addScript(
 				
 				
 				
+			
+				var team={}
 				
-				
-				cl(JSON.parse(html))
-				
-				
-				
+				var bilan = {}
 				
 			function getNamesFromTeam(team){var s = "";
-			for(var i of team){var bruteSTR = ' <b class = "bruteNameHover">'+i[0]+'</b>'+"\n"
+			for(var i in team){var bruteSTR = ' <b title="'+bilan[i]+'">'+i+'</b>'+"\n"
 			s+=bruteSTR
 			}
 			return s}
 			
 			function getDamageFromTeam(team){var s = "";
-			for(var i of team){var bruteSTR = '<font opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)">'+i[1]+"</font>"+"\n"
+			for(var i in team){var bruteSTR = '<font opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)">'+team[i]+"</font>"+"\n"
 			s+=bruteSTR
 			}
 			return s}
@@ -1779,17 +1785,31 @@ addScript(
 			,display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
 				
-				
-			div({0:allDIV,17:getNamesFromTeam(teams[0])})
+			function ac(){
+				allDIV.empty()
+			div({0:allDIV,17:getNamesFromTeam()})
 			div({0:allDIV,17:"   "})
-			div({0:allDIV,17:getDamageFromTeam(teams[0])})
-				
+			div({0:allDIV,17:getDamageFromTeam()})
+			}	
 				
 				
 				insertDivAfterElement(allDIV[0],findFirstParentDiv(findTextInDOM("Afficher le détail des dégâts","h6")));
 				
 				
-				
+				simulFights({
+					fn:function(bilan){team={};for(var brute of bilan){bilan[brute.name]=brute.j;team[brute.name] = brute.boss}
+					var sorted = Object.entries(team).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {
+  result[key] = value;
+  return result;
+}, {});team=sorted;ac()
+					
+					},
+					rota1:rota1,
+					rota2:rota2,//number = boss
+					backups:false,
+					fight_per_rota:100,
+					fight_total:20000
+					})
 				
 				
 				
