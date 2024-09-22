@@ -231,7 +231,18 @@ var textBoxCSS
 var baseCSS
 var shurikenDIV
 
-if(typeof(document)!="undefined"){addStyle(`		#shuriken {
+if(typeof(document)!="undefined"){
+	
+	
+	window.addEventListener('popstate', function (event) {
+	// Log the state data to the console
+	stopLoading();
+	if(fightWorker)fightWorker.terminate()
+	
+});
+	
+	
+	addStyle(`		#shuriken {
   display: flex;
   justify-content: center;
   align-items: center;
