@@ -65,7 +65,6 @@ var weaponImages = {
     }
     return updatedBrute;
 };
-/*exports.*/default = applySkillModifiers;
 var WeaponName = /*exports.*//*$Enums.*/WeaponName = {
   fan: 'fan',
   keyboard: 'keyboard',
@@ -712,13 +711,11 @@ var WEAPONS_SFX = {
         return acc;
     }, {}),
 };
-/*exports.*/default = weapons;
 class ExpectedError extends Error {
     constructor(message = '') {
         super(message);
     }
 }
-/*exports.*/default = ExpectedError;
 var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
   noThrows: 'noThrows',
   focusOpponent: 'focusOpponent',
@@ -975,7 +972,6 @@ var weightedRandom = (items) => {
     }
     return items[i] || firstItem;
 };
-/*exports.*/default = weightedRandom;
 var pets = [
     {
         name: PetName.bear,
@@ -1667,7 +1663,6 @@ var SkillModifiers = {
         { stat: FightStat.DEFLECT, value: 30, percent: true },
     ],
 };
-/*exports.*/default = skills;
 var FIGHTS_PER_DAY = 6;
 var ARENA_OPPONENTS_COUNT = 6;
 var ARENA_OPPONENTS_MAX_GAP = 2;
@@ -1804,7 +1799,6 @@ var applySpy = (fightData, brute, opponent) => {
         opponent.damagedWeapons.push(...bruteWeaponsToSwap.map((weapon) => weapon.name));
     }
 };
-/*exports.*/default = applySpy;
 var tournamentBackground = {
     name: '3.png',
     odds: 0,
@@ -1868,7 +1862,6 @@ var bosses = [
         reach: 3,
     },
 ];
-/*exports.*/default = bosses;
 var getFighterStat = (fighter, stat, onlyStat) => {
     // Special case for dexterity as it only exists on weapons
     if (stat === 'dexterity') {
@@ -3707,7 +3700,6 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
     }
     return result;
 };
-/*exports.*/default = generateFight;
 var getDamage = (fighter, opponent, thrown) => {
     var base = thrown
         ? thrown.damage
@@ -3764,7 +3756,6 @@ var getDamage = (fighter, opponent, thrown) => {
     }
     return damage;
 };
-/*exports.*/default = getDamage;
 var handleSkills = (brute, fighter) => {
     /* INITIATIVE */
     // -2 initiative for `firstStrike`
@@ -4169,7 +4160,6 @@ var getFighters = async ({ prisma, team1, team2, modifiers, clanFight, }) => {
     });
     return fighters;
 };
-/*exports.*/default = getFighters;
 var handleStats = (fightData, stats, achievements, tournament) => {
     var winner = fightData.fighters.find((f) => f.id === fightData.winner);
     if (!winner) {
@@ -4299,7 +4289,6 @@ var handleStats = (fightData, stats, achievements, tournament) => {
         }
     }
 };
-/*exports.*/default = handleStats;
 var shuffle = (array) => {
     var shuffledArray = [...array];
     for (let i = array.length - 1; i > 0; i--) {
@@ -4314,7 +4303,6 @@ var shuffle = (array) => {
     }
     return shuffledArray;
 };
-/*exports.*/default = shuffle;
 var StepType;
 (function (StepType) {
     StepType[StepType["Saboteur"] = 0] = "Saboteur";

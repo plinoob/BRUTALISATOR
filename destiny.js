@@ -38,7 +38,6 @@ var applySkillModifiers = (brute, skill) => {
     }
     return updatedBrute;
 };
-/*exports.*/default = applySkillModifiers;
 var WeaponName = /*exports.*//*$Enums.*/WeaponName = {
   fan: 'fan',
   keyboard: 'keyboard',
@@ -685,13 +684,11 @@ var WEAPONS_SFX = {
         return acc;
     }, {}),
 };
-/*exports.*/default = weapons;
 class ExpectedError extends Error {
     constructor(message = '') {
         super(message);
     }
 }
-/*exports.*/default = ExpectedError;
 var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
   noThrows: 'noThrows',
   focusOpponent: 'focusOpponent',
@@ -948,7 +945,6 @@ var weightedRandom = (items) => {
     }
     return items[i] || firstItem;
 };
-/*exports.*/default = weightedRandom;
 var pets = [
     {
         name: PetName.bear,
@@ -1640,7 +1636,6 @@ var SkillModifiers = {
         { stat: FightStat.DEFLECT, value: 30, percent: true },
     ],
 };
-/*exports.*/default = skills;
 var FIGHTS_PER_DAY = 6;
 var ARENA_OPPONENTS_COUNT = 6;
 var ARENA_OPPONENTS_MAX_GAP = 2;
