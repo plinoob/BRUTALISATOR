@@ -298,7 +298,7 @@ padding: "0px"}
 
 var BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+BRANCHE+"/";
 
-cl("stoploading : ",stopLoading)var applySkillModifiers = (brute, skill) => {
+cl("stoploading : ",stopLoading);var applySkillModifiers = (brute, skill) => {
     var updatedBrute = { ...brute };
     // Vitality modifier
     if (skill === 'vitality') {
