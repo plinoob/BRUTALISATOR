@@ -4454,7 +4454,7 @@ var getTempSkill = getTempSkill;
 				
 				
 				simulFights({
-					fn:function(res){team={};for(var brute of res){bilan[brute.name]=brute.j;team[brute.name] = brute.boss}
+					fn:function(res){cl(res);team={};for(var brute of res){bilan[brute.name]=brute.j;team[brute.name] = brute.boss}
 					var sorted = Object.entries(team).sort(([, a], [, b]) => b-a).reduce((result, [key, value]) => {
   result[key] = value;
   return result;
