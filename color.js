@@ -236,7 +236,7 @@ function addStyle(styleString) {
 async function getBrute(name) {
     var response = await fetch(`/api/brute/${name}/for-hook`);
     var html = await response.text();
-    return html;
+    return JSON.parse(html);
 }
 
 async function getAllBrutes(names) {
