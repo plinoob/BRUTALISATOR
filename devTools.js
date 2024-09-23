@@ -1738,7 +1738,7 @@ var BossName = /*exports.*//*$Enums.*/BossName = {
 
 
 var fetches = div({13:50000,4:[20,"","",50],5:0,2:"input"})
-
+stopLoading()
 
 fetches.keypress(function (e) {
   if (e.which == 13) {
