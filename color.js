@@ -207,16 +207,16 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	
 	  }
 	  
-async function arena(name){
+async function arena(){
 	
-	function makeInfoDiv(name){return div({17:"lol",15:0,6:{click:openBruteCell(name)}})}
+	function makeInfoDiv(name){return div({17:"lol",15:0,6:{click:function(){openBruteCell(name)}}})}
 	
 		var searchString = "Niveau";  // Remplace "chaine" par la chaîne à rechercher
 var elements = $("p").filter(function() {
     return $(this).text().startsWith(searchString);
 });
 
-var brutesNames = [name]
+var brutesNames = [BRUTE]
 var brutesDivs={}
 
 elements.each(function() {
@@ -228,11 +228,9 @@ elements.each(function() {
 	var name = $(this).parent().children(":first").text()
 	brutesNames.push(name)
 	brutesDivs[name] = makeInfoDiv(name)
-	ah.insertAfter($(this).parent().parent())
-	cl(ah)
+
 });
-cl(brutesNames)
-return
+
  brutes = await getAllBrutes(brutesNames)
 
 var rota2 = [[brutes.shift()]]
