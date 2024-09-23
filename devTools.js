@@ -1759,7 +1759,7 @@ var t2 = div({13:50000,4:[50,"","",80],5:0,2:"textarea",12:["300","200"]})
 var btn = div({13:50000,4:[75,45,20,45],17:"FIGHT",10:"#ff0000",15:0,6:{click:async function(){
 	var rota1=await getAllBrutes(t1.val().split("\n"))
 	var rota2=await getAllBrutes(t2.val().split("\n"))
-	
+	cl(rota1,rota2)
 					simulFights({
 						fn:cl,
 						rota1:[rota1],
