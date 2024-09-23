@@ -233,11 +233,32 @@ cl("3")
 var elements = $("*").filter(function() {
     return $(this).text()==searchString;
 });
+
+var brutesNames = [name]
+
 elements.each(function() {
     console.log($(this).parent().children(":first"));
 	console.log($(this).parent().children(":first").text());
-	
+	brutesNames.push($(this).parent().children(":first").text())
 });
+
+await brutes = getAllBrutes(brutesNames)
+
+var rota2 = [[brutes.shift()]]
+var rota1 = [] ; for(var b of brutes) rota1.push([b])
+
+				simulFights({
+					fn:function(res){cl(res)
+					
+					},
+					rota1:rota1,
+					rota2:rota2,//number = boss
+					backups:false,
+					fight_per_rota:200,
+					fight_total:10000,
+					return_first_win:false,
+					})
+
 	
 }
 	  
