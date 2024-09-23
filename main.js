@@ -208,12 +208,12 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	  }
 
 var fightToVizualise
-function visualizeFight(fight){fightToVizualise = fight;
+function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL){return}
 			var iframe = document.createElement('iframe');
 			document.body.appendChild(iframe);
 			$(iframe).css({"position":"absolute",top:0,bottom:0,left:0,right:0,"z-index":50000,width:"99.5%",height:"100%"})
 			
-			
+			//brute1Id
 iframe.onload = () => {
     var iframeWindow = iframe.contentWindow;
 
@@ -2101,7 +2101,7 @@ var url = window.location.href.split("?")[0].split("/")
 url.shift()
 url.shift()
 cl(url)
-
+var LOCAL = window.location.href.startsWith("C:/")
 var FIGHT_TYPE = 0
 
 if(url[url.length-1] == ""){url.pop();}
