@@ -4471,7 +4471,8 @@ var getTempSkill = getTempSkill;
 					rota2:rota2,//number = boss
 					backups:false,
 					fight_per_rota:100,
-					fight_total:20000
+					fight_total:20000,
+					return_first_win:false,
 					})
 				
 				

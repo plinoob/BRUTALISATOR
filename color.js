@@ -41,7 +41,7 @@ var fediv={
 27:function(a,b,c){c.attr("type",a[b])},
 28:function(a,b,c){for(var i in a[b]){c.attr("data-"+i,a[b][i])}},
 33:function(a,b,c){if(typeof(a[b])==="string"){c[0].style.filter=a[b]}else{csi(c,33,a[b])}},
-37:function(a,b,c){c.attr("oncontextmenu","return false");if(!clidroi){clidroi=true;$(document).on("mousedown",function(e){if(e.which===3 && e.pageX===0){dov({13:d32-3,6:{"mouseup mousedown mousemove":function(){var a=$(this);setTimeout(function(){a.remove()},16)}}})}})}},
+37:function(a,b,c){c.attr("oncontextmenu","return false");return;if(!clidroi){clidroi=true;$(document).on("mousedown",function(e){if(e.which===3 && e.pageX===0){dov({13:d32-3,6:{"mouseup mousedown mousemove":function(){var a=$(this);setTimeout(function(){a.remove()},16)}}})}})}},
 42:function(a,b,c){c[0].style.position="absolute";if(Array.isArray(a[b])){anim(c,...a[b])}else if(a[b]!==0){anim(c,a[b],0)}},
 44:function(a,b,c){c.attr("font-weight","bold")},
 66:function(a,b,c){if(a[b]===0){a[b]="auto"}else if(a[b]===1){a[b]="hidden"}else if(a[b]===2){a[b]="visible"};c.css("overflow",a[b])},
@@ -166,7 +166,7 @@ async function simulFights(arg){
 
 
 async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
-,backups,fight_per_rota,fight_total}){
+,backups,fight_per_rota,fight_total,return_first_win}){
 
 	if(fightWorker)fightWorker.terminate()
 		cl("rota2",rota2)
@@ -182,6 +182,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	
 	if(rota1[0].length+(rota2[0]?rota2[0].length:1)>2){generateFights = generateFights.replace('var CLANWAR'+' = false','var CLANWAR = true'+";")}
 	if(backups){generateFights = generateFights.replace('var BACKUPS'+' = false','var BACKUPS = true'+";")}
+	if(return_first_win){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN = false','var RETURN_FIRST_WIN = true'+";")}
 	
 	generateFights = generateFights.replace("var FIGHTS_PER_ROTA"+" = 1","var FIGHTS_PER_ROTA = "+fight_per_rota+";")
 	generateFights = generateFights.replace("var FIGHT_TOTAL"+" = 1","var FIGHT_TOTAL = "+fight_total+";")
@@ -197,14 +198,60 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 
 	// Créer le worker à partir de l'URL du Blob
 	fightWorker = new Worker(workerUrl);
-	fightWorker.onmessage=function(e){if(e.data.ended){stopLoading();fightWorker.terminate()};fn(e.data.bilan)}
+	fightWorker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
+	e.data.ended=true};if(e.data.ended){stopLoading();fightWorker.terminate()};fn(e.data.bilan)}
 
 	startLoading();
 	
 
 	
 	  }
-	
+var LOCAL
+var fightToVizualise
+function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL){return}
+			var iframe = document.createElement('iframe');
+			document.body.appendChild(iframe);
+			$(iframe).css({"position":"absolute",top:0,bottom:0,left:0,right:0,"z-index":50000,width:"99.5%",height:"100%"})
+			$(iframe).on("mousedown",function(){$(iframe).remove()})
+			//brute1Id
+iframe.onload = () => {
+    var iframeWindow = iframe.contentWindow;
+
+    // Injecter le code dans l'iframe pour surcharger fetch
+    iframeWindow.fetch = async function(url, options) {
+        console.log(`Intercepted fetch call to: ${url}`);
+        
+        // Appeler le fetch original
+        var response = await window.fetch(url, options);
+        
+        // Modifier la réponse (ici, on parse du JSON pour l'exemple)
+        var data = await response.json();
+        console.log('Original data:', data);
+        
+        // Exemple de modification des données
+        //data.modified = true;
+		if(data.winner && data.loser && data.steps && data.fighters){
+			data.winner = fightToVizualise.winner
+			data.loser = fightToVizualise.loser
+			data.steps = fightToVizualise.steps
+			data.fighters = fightToVizualise.fighters
+			data.brute1Id = fightToVizualise.brute1.connect.id
+			data.brute2Id = fightToVizualise.brute2.connect.id
+			
+		}
+        // Retourner une nouvelle réponse modifiée
+        return new Response(JSON.stringify(data), {
+            status: response.status,
+            statusText: response.statusText,
+            headers: response.headers
+        });
+    };
+};
+
+// Donner une URL à l'iframe
+iframe.src = "https://bru"+"te.eterna"+"ltwin.org/irma-noob/fight/45341f08-9f9b-4073-a708-19e06d0f3c6f"; 
+stopLoading()
+}
 
 function findFirstParentDiv(element) {
   let parent = element.parentElement;
@@ -254,7 +301,7 @@ var shurikenDIV
 if(typeof(document)!="undefined"){
 	
 	
-
+LOCAL = window.location.href.startsWith("C:/")
 	
 	
 	addStyle(`		#shuriken {

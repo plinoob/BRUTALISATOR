@@ -1756,7 +1756,7 @@ cl("/api/brute/name/for-hook")
 
 var t1 = div({13:50000,4:[50,"","",20],5:0,2:"textarea",12:["300","200"]})
 var t2 = div({13:50000,4:[50,"","",80],5:0,2:"textarea",12:["300","200"]})
-var btn = div({13:50000,4:[75,45,20,45],17:"FIGHT",10:"#ff0000",15:0,6:{click:async function(){
+var btn = div({13:50000,4:[75,45,20,45],17:"FIGHT",10:"#ff0000",37:0,15:0,6:{mousedown:async function(e){
 	var rota1=await getAllBrutes(t1.val().split("\n"))
 	var rota2=await getAllBrutes(t2.val().split("\n"))
 	cl(rota1,rota2)
@@ -1766,7 +1766,8 @@ var btn = div({13:50000,4:[75,45,20,45],17:"FIGHT",10:"#ff0000",15:0,6:{click:as
 						rota2:[rota2],//number = boss
 						backups:false,
 						fight_per_rota:1000,
-						fight_total:20000
+						fight_total:20000,
+						return_first_win:e.which!=1
 					})
 	
 	
