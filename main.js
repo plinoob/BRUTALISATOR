@@ -241,6 +241,7 @@ elements.each(function() {
     console.log($(this).parent().children(":first"));
 	console.log($(this).parent().children(":first").text());
 	brutesNames.push($(this).parent().children(":first").text())
+	div({17:"lol"}).insertAfter($(this).parent().parent())
 });
 
  brutes = await getAllBrutes(brutesNames)
