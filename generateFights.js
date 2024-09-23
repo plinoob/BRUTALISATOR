@@ -238,7 +238,7 @@ async function arena(name){
 	
 		var searchString = "Niveau";  // Remplace "chaine" par la chaîne à rechercher
 var elements = $("*").filter(function() {
-    return $(this).text().indexOf(searchString) !== -1;
+    return $(this).text().startsWith(searchString);
 });
 
 cl("1")
@@ -249,14 +249,14 @@ elements.each(function() {
 cl("2")
 		var searchString = '"Niveau"';  // Remplace "chaine" par la chaîne à rechercher
 var elements = $("*").filter(function() {
-    return $(this).text().indexOf(searchString) !== -1;
+    return $(this).text().startsWith(searchString);
 });
 elements.each(function() {
     console.log($(this));
 });
 		
 cl("3")
-		var searchString = 'Niveau';  // Remplace "chaine" par la chaîne à rechercher
+		var searchString = '"Niveau"';  // Remplace "chaine" par la chaîne à rechercher
 var elements = $("*").filter(function() {
     return $(this).text()==searchString;
 });
