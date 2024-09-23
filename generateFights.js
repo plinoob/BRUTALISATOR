@@ -185,7 +185,7 @@ if(typeof(window)!="undefined"){	urrl= window.location.href;
 		$("#mynetwork").remove()}
 },333)}
 async function simulFights(arg){
-	
+	cl("SIMULFIGHTS",JSON.stringify(arg))
 	fetch(BRUTALISATOR+"generateFights.js")
 	  .then(response => response.text())
 	  .then(function(generateFights){arg.generateFights = generateFights;simulFights_no_fetch(arg);
@@ -226,7 +226,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	fightWorker = new Worker(workerUrl);
 	fightWorker.onmessage=function(e){if(e.data.ended){stopLoading();fightWorker.terminate()};fn(e.data.bilan)}
 
-	
+	startLoading();
 	
 
 	
@@ -258,6 +258,19 @@ function addStyle(styleString) {
   var style = document.createElement('style');
   style.textContent = styleString;
   document.head.append(style);
+}
+
+async function getBrute(name) {
+    var response = await fetch(`/api/brute/${name}/for-hook`);
+    var html = await response.text();
+    return JSON.parse(html);
+}
+
+async function getAllBrutes(names) {
+    var results = await Promise.all(
+        names.map(name => getBrute(name))
+    );
+    return results; // Tableau de résultats HTML correspondant à chaque nom
 }
 
 
@@ -296,7 +309,7 @@ if(typeof(document)!="undefined"){
 }
 	`)
 $("#shuriken").remove()
-shurikenDIV = div({0:body,4:["33px","33px","",""],1:"shuriken"})
+shurikenDIV = div({0:body,1:"shuriken",9:{position:"fixed",top:"33px",right:"33px"}})
 div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image"})
   baseCSS= {	"font-family": "Roboto, Helvetica, Arial, sans-serif",
     "font-weight": "400",
@@ -314,6 +327,7 @@ padding: "0px"}
 
 }
 function stopLoading(){$(shurikenDIV).css("display","none")}
+function startLoading(){$(shurikenDIV).css("display","")}
 
 var BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+BRANCHE+"/";
 
@@ -4661,7 +4675,8 @@ var weaponsFR={"fan": "Éventail",
   "piopio": "Piou Piou",
   "shuriken": "Shuriken",
   "broadsword": "Glaive",
-"scimitar": "Cimeterre",};var getTempWeapon = (brute, weaponIndex) => {
+"scimitar": "Cimeterre",
+ "sword": "Épée",};var getTempWeapon = (brute, weaponIndex) => {
     if (weaponIndex === null) {
         return null;
     }

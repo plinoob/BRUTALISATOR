@@ -4369,7 +4369,8 @@ var weaponsFR={"fan": "Éventail",
   "piopio": "Piou Piou",
   "shuriken": "Shuriken",
   "broadsword": "Glaive",
-"scimitar": "Cimeterre",};var getTempWeapon = (brute, weaponIndex) => {
+"scimitar": "Cimeterre",
+ "sword": "Épée",};var getTempWeapon = (brute, weaponIndex) => {
     if (weaponIndex === null) {
         return null;
     }

@@ -4369,7 +4369,8 @@ var weaponsFR={"fan": "Éventail",
   "piopio": "Piou Piou",
   "shuriken": "Shuriken",
   "broadsword": "Glaive",
-"scimitar": "Cimeterre",};var getTempWeapon = (brute, weaponIndex) => {
+"scimitar": "Cimeterre",
+ "sword": "Épée",};var getTempWeapon = (brute, weaponIndex) => {
     if (weaponIndex === null) {
         return null;
     }
@@ -4406,7 +4407,8 @@ var getTempSkill = getTempSkill;
 				
 				
 				var rota1 = []
-				for(var brute of clan.brutes){rota1.push([brute])}
+				var regens = []
+				for(var brute of clan.brutes){rota1.push([brute]);if(brute.skills.indexOf("regeneration")!=-1){regens.push(brute.name)}}
 				
 				var rota2 =  0
 				for(var boss in bosses){if(bosses[boss].name==clan.boss){rota2=parseInt(boss)}}
@@ -4432,7 +4434,8 @@ var getTempSkill = getTempSkill;
 			return s}
 			
 			function getDamageFromTeam(){var s = "";
-			for(var i in team){var bruteSTR = '<font opacity="0.66" font-size="0.751429rem" color="rgb(255,120,70)"><b>'+parseInt(team[i]*7/bilan[i])+"</b></font>"+"\n"
+			for(var i in team){var bruteSTR = '<font opacity="0.66" font-size="0.751429rem" color="rgb(255,140,100)"><b>'
+			+parseInt(team[i]*((regens.indexOf(i)!=-1)?9:7)/bilan[i])+"</b></font>"+"\n"
 			s+=bruteSTR
 			}
 			return s}
