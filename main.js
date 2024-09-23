@@ -206,17 +206,51 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 
 	
 	  }
+	  
+async function arena(name){
+	
+		var searchString = "Niveau";  // Remplace "chaine" par la chaîne à rechercher
+var elements = $("*").filter(function() {
+    return $(this).text().indexOf(searchString) !== -1;
+});
+
+cl("1")
+elements.each(function() {
+    console.log($(this));
+});
+	
+cl("2")
+		var searchString = '"Niveau"';  // Remplace "chaine" par la chaîne à rechercher
+var elements = $("*").filter(function() {
+    return $(this).text().indexOf(searchString) !== -1;
+});
+elements.each(function() {
+    console.log($(this));
+});
+		
+cl("3")
+		var searchString = 'Niveau';  // Remplace "chaine" par la chaîne à rechercher
+var elements = $("*").filter(function() {
+    return $(this).text()==searchString;
+});
+elements.each(function() {
+    console.log($(this));
+});
+	
+}
+	  
+	  
+	  
 var LOCAL
 var fightToVizualise
 function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL){return}
 			var iframe = document.createElement('iframe');
 			document.body.appendChild(iframe);
 			$(iframe).css({"position":"absolute",top:0,bottom:0,left:0,right:0,"z-index":50000,width:"99.5%",height:"100%"})
-			$(iframe).on("mousedown",function(){$(iframe).remove()})
-			//brute1Id
+			// brute1Id
 iframe.onload = () => {
     var iframeWindow = iframe.contentWindow;
-
+iframe.document.addEventListener('click', function(){$(iframe).remove()}, false);
     // Injecter le code dans l'iframe pour surcharger fetch
     iframeWindow.fetch = async function(url, options) {
         console.log(`Intercepted fetch call to: ${url}`);
@@ -2117,6 +2151,7 @@ var CLAN = ""
 
 if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
 else if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATOR+"destiny.js")}
+else if(url.length==3 && url[2]=="arena"){BRUTE = url[1];arena(BRUTE)}
 else if(url.length==4 && url[2]=="clan"){CLAN = url[3];addScript(BRUTALISATOR+"bossDamage.js")}
 else if(/*BRANCHE == "dev" && */url.length==3 && url[1]=="user"){addScript(BRUTALISATOR+"devTools.js")}
 else if(FIGHT_TYPE){addScript(BRUTALISATOR+"damageChart.js")}
