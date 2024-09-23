@@ -265,12 +265,17 @@ var brutesNames = [name]
 var brutesDivs={}
 
 elements.each(function() {
-    console.log($(this).parent().children(":first"));
+	cl("___")
+    console.log($(this).parent())
+	console.log($(this).parent().children(":first"))
+	console.log($(this).parent().parent())
 	console.log($(this).parent().children(":first").text());
 	brutesNames.push($(this).parent().children(":first").text())
-	div({17:"lol"}).insertAfter($(this).parent().parent())
+	var ah=div({17:"lol"})
+	ah.insertAfter($(this).parent().parent())
+	cl(ah)
 });
-
+return
  brutes = await getAllBrutes(brutesNames)
 
 var rota2 = [[brutes.shift()]]
