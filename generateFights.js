@@ -193,7 +193,7 @@ async function simulFights(arg){
 
 
 async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
-,backups,fight_per_rota,fight_total}){
+,backups,fight_per_rota,fight_total,return_first_win}){
 
 	if(fightWorker)fightWorker.terminate()
 		cl("rota2",rota2)
@@ -209,6 +209,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	
 	if(rota1[0].length+(rota2[0]?rota2[0].length:1)>2){generateFights = generateFights.replace('var CLANWAR'+' = false','var CLANWAR = true'+";")}
 	if(backups){generateFights = generateFights.replace('var BACKUPS'+' = false','var BACKUPS = true'+";")}
+	if(return_first_win){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN = false','var RETURN_FIRST_WIN = true'+";")}
 	
 	generateFights = generateFights.replace("var FIGHTS_PER_ROTA"+" = 1","var FIGHTS_PER_ROTA = "+fight_per_rota+";")
 	generateFights = generateFights.replace("var FIGHT_TOTAL"+" = 1","var FIGHT_TOTAL = "+fight_total+";")
@@ -224,14 +225,51 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 
 	// Créer le worker à partir de l'URL du Blob
 	fightWorker = new Worker(workerUrl);
-	fightWorker.onmessage=function(e){if(e.data.ended){stopLoading();fightWorker.terminate()};fn(e.data.bilan)}
+	fightWorker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
+	e.data.ended=true};if(e.data.ended){stopLoading();fightWorker.terminate()};fn(e.data.bilan)}
 
 	startLoading();
 	
 
 	
 	  }
-	
+
+var fightToVizualise
+function visualizeFight(fight){fightToVizualise = fight;
+			var iframe = document.createElement('iframe');
+			document.body.appendChild(iframe);
+			$(iframe).css({"position":"absolute",top:0,bottom:0,left:0,right:0,"z-index":50000,width:"99.5%",height:"100%"})
+			
+			
+iframe.onload = () => {
+    var iframeWindow = iframe.contentWindow;
+
+    // Injecter le code dans l'iframe pour surcharger fetch
+    iframeWindow.fetch = async function(url, options) {
+        console.log(`Intercepted fetch call to: ${url}`);
+        
+        // Appeler le fetch original
+        var response = await window.fetch(url, options);
+        
+        // Modifier la réponse (ici, on parse du JSON pour l'exemple)
+        var data = await response.json();
+        console.log('Original data:', data);
+        
+        // Exemple de modification des données
+        //data.modified = true;
+
+        // Retourner une nouvelle réponse modifiée
+        return new Response(JSON.stringify(data), {
+            status: response.status,
+            statusText: response.statusText,
+            headers: response.headers
+        });
+    };
+};
+
+// Donner une URL à l'iframe
+iframe.src = "https://brute.eternaltwin.org/irma-noob/fight/45341f08-9f9b-4073-a708-19e06d0f3c6f"; 
+}
 
 function findFirstParentDiv(element) {
   let parent = element.parentElement;
@@ -4737,6 +4775,7 @@ var TEAM2 = []
 var BACKUPS = false
 var BOSS = "brutes"
 var CLANWAR = false
+var RETURN_FIRST_WIN = false
 
 var SLEEP_AT_STEP_1 = FIGHTS_PER_ROTA > 300 &&  FIGHTS_PER_ROTA * TEAM2.length > 700
 var SLEEP_AT_STEP_2 = !SLEEP_AT_STEP_1 && FIGHTS_PER_ROTA * TEAM2.length > 300 && FIGHTS_PER_ROTA * TEAM2.length * TEAM1.length > 700
@@ -4769,7 +4808,7 @@ cl("BOSS",BOSS,{ [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] });
 				clanId: 123,
 				clanWar: CLANWAR
 			  });
-			if(bilac.nom==result.data.winner){bilac.v++};bilac.j++;
+			if(bilac.nom==result.data.winner){if(RETURN_FIRST_WIN){bilan.firstwin=result.data;return};bilac.v++};bilac.j++;
 	  }
 	  if(SLEEP_AT_STEP_1)await sleep(1);
 	  
