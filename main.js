@@ -211,7 +211,7 @@ async function arena(name){
 	
 		var searchString = "Niveau";  // Remplace "chaine" par la chaîne à rechercher
 var elements = $("p").filter(function() {
-    return $(this).text().startsWith(searchString).parent().children(":first");
+    return $(this).text().startsWith(searchString);
 });
 
 cl("1")
@@ -234,8 +234,8 @@ var elements = $("*").filter(function() {
     return $(this).text()==searchString;
 });
 elements.each(function() {
-    console.log($(this));
-	console.log($(this).text());
+    console.log($(this).parent().children(":first"));
+	console.log($(this).parent().children(":first").text());
 	
 });
 	
