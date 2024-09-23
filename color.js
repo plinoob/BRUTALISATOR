@@ -210,7 +210,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 async function arena(name){
 	
 		var searchString = "Niveau";  // Remplace "chaine" par la chaîne à rechercher
-var elements = $("p").filter(function() {cl($(this).text().startsWith(searchString).parent().children(":first").text());
+var elements = $("p").filter(function() {
     return $(this).text().startsWith(searchString).parent().children(":first");
 });
 
@@ -235,6 +235,8 @@ var elements = $("*").filter(function() {
 });
 elements.each(function() {
     console.log($(this));
+	console.log($(this).text());
+	
 });
 	
 }
