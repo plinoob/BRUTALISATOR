@@ -206,7 +206,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 
 	
 	  }
-
+var LOCAL
 var fightToVizualise
 function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL){return}
 			var iframe = document.createElement('iframe');
@@ -299,7 +299,7 @@ var shurikenDIV
 if(typeof(document)!="undefined"){
 	
 	
-
+LOCAL = window.location.href.startsWith("C:/")
 	
 	
 	addStyle(`		#shuriken {
