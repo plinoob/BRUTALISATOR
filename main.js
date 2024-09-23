@@ -199,7 +199,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	fightWorker = new Worker(workerUrl);
 	fightWorker.onmessage=function(e){if(e.data.ended){stopLoading();fightWorker.terminate()};fn(e.data.bilan)}
 
-	
+	startLoading();
 	
 
 	
@@ -300,6 +300,7 @@ padding: "0px"}
 
 }
 function stopLoading(){$(shurikenDIV).css("display","none")}
+function startLoading(){$(shurikenDIV).css("display","")}
 
 var BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+BRANCHE+"/";
 
