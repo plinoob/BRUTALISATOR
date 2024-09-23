@@ -158,7 +158,7 @@ if(typeof(window)!="undefined"){	urrl= window.location.href;
 		$("#mynetwork").remove()}
 },333)}
 async function simulFights(arg){
-	
+	cl("SIMULFIGHTS",JSON.stringify(arg))
 	fetch(BRUTALISATOR+"generateFights.js")
 	  .then(response => response.text())
 	  .then(function(generateFights){arg.generateFights = generateFights;simulFights_no_fetch(arg);
