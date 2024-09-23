@@ -248,6 +248,7 @@ iframe.onload = () => {
 
 // Donner une URL à l'iframe
 iframe.src = "https://bru"+"te.eterna"+"ltwin.org/irma-noob/fight/45341f08-9f9b-4073-a708-19e06d0f3c6f"; 
+stopLoading()
 }
 
 function findFirstParentDiv(element) {

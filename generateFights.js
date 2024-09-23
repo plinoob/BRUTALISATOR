@@ -275,6 +275,7 @@ iframe.onload = () => {
 
 // Donner une URL à l'iframe
 iframe.src = "https://bru"+"te.eterna"+"ltwin.org/irma-noob/fight/45341f08-9f9b-4073-a708-19e06d0f3c6f"; 
+stopLoading()
 }
 
 function findFirstParentDiv(element) {
@@ -4832,7 +4833,7 @@ cl("BOSS",BOSS,{ [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] });
 
   self.onmessage = function() {
 	  
-    self.postMessage({bilan:bilan,ended:ended,first_win:first_win});
+    self.postMessage({bilan:bilan,ended:ended,firstwin:firstwin});
   };
   
   genFights();
