@@ -269,7 +269,7 @@ if(typeof(document)!="undefined"){
 }
 	`)
 $("#shuriken").remove()
-shurikenDIV = div({0:body,2:"fixed",1:"shuriken",9:{top:"33px",right:"33px"}})
+shurikenDIV = div({0:body,1:"shuriken",9:{position:"fixed",top:"33px",right:"33px"}})
 div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image"})
   baseCSS= {	"font-family": "Roboto, Helvetica, Arial, sans-serif",
     "font-weight": "400",
