@@ -246,20 +246,7 @@ elements.each(function() {
     console.log($(this));
 });
 	
-cl("2")
-		var searchString = '"Niveau"';  // Remplace "chaine" par la chaîne à rechercher
-var elements = $("*").filter(function() {
-    return $(this).text().startsWith(searchString);
-});
-elements.each(function() {
-    console.log($(this));
-});
-		
-cl("3")
-		var searchString = '"Niveau"';  // Remplace "chaine" par la chaîne à rechercher
-var elements = $("*").filter(function() {
-    return $(this).text()==searchString;
-});
+
 
 var brutesNames = [name]
 var brutesDivs={}
