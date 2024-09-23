@@ -235,6 +235,7 @@ var elements = $("*").filter(function() {
 });
 
 var brutesNames = [name]
+var brutesDivs={}
 
 elements.each(function() {
     console.log($(this).parent().children(":first"));
@@ -242,7 +243,7 @@ elements.each(function() {
 	brutesNames.push($(this).parent().children(":first").text())
 });
 
-await brutes = getAllBrutes(brutesNames)
+ brutes = await getAllBrutes(brutesNames)
 
 var rota2 = [[brutes.shift()]]
 var rota1 = [] ; for(var b of brutes) rota1.push([b])
