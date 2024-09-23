@@ -274,7 +274,7 @@ iframe.onload = () => {
 };
 
 // Donner une URL à l'iframe
-iframe.src = "https://brute.eternaltwin.org/irma-noob/fight/45341f08-9f9b-4073-a708-19e06d0f3c6f"; 
+iframe.src = "https://bru"+"te.eterna"+"ltwin.org/irma-noob/fight/45341f08-9f9b-4073-a708-19e06d0f3c6f"; 
 }
 
 function findFirstParentDiv(element) {
@@ -4783,6 +4783,8 @@ var BOSS = "brutes"
 var CLANWAR = false
 var RETURN_FIRST_WIN = false
 
+var first_win
+
 var SLEEP_AT_STEP_1 = FIGHTS_PER_ROTA > 300 &&  FIGHTS_PER_ROTA * TEAM2.length > 700
 var SLEEP_AT_STEP_2 = !SLEEP_AT_STEP_1 && FIGHTS_PER_ROTA * TEAM2.length > 300 && FIGHTS_PER_ROTA * TEAM2.length * TEAM1.length > 700
 var SLEEP_AT_STEP_3 = !SLEEP_AT_STEP_1 && !SLEEP_AT_STEP_2
@@ -4814,7 +4816,7 @@ cl("BOSS",BOSS,{ [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] });
 				clanId: 123,
 				clanWar: CLANWAR
 			  });
-			if(bilac.nom==result.data.winner){if(RETURN_FIRST_WIN){bilan.firstwin=result.data;return};bilac.v++};bilac.j++;
+			if(bilac.nom==result.data.winner){if(RETURN_FIRST_WIN){first_win=result.data;return};bilac.v++};bilac.j++;
 	  }
 	  if(SLEEP_AT_STEP_1)await sleep(1);
 	  
@@ -4830,7 +4832,7 @@ cl("BOSS",BOSS,{ [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] });
 
   self.onmessage = function() {
 	  
-    self.postMessage({bilan:bilan,ended:ended});
+    self.postMessage({bilan:bilan,ended:ended,first_win:first_win});
   };
   
   genFights();
