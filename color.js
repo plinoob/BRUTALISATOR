@@ -228,7 +228,7 @@ elements.each(function() {
 	var name = $(this).parent().children(":first").text()
 	brutesNames.push(name)
 	brutesDivs[name] = makeInfoDiv(name)
-
+brutesDivs[name].insertAfter($(this).parent().parent())
 });
 
  brutes = await getAllBrutes(brutesNames)
