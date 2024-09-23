@@ -1767,7 +1767,7 @@ var btn = div({13:50000,4:[75,45,20,45],17:"FIGHT",10:"#ff0000",37:0,15:0,6:{mou
 						backups:false,
 						fight_per_rota:1000,
 						fight_total:20000,
-						return_first_win:true,//e.which!=1
+						return_first_win:e.which!=1
 					})
 	
 	
