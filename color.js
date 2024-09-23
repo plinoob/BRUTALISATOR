@@ -235,6 +235,8 @@ iframe.onload = () => {
 			data.loser = fightToVizualise.loser
 			data.steps = fightToVizualise.steps
 			data.fighters = fightToVizualise.fighters
+			data.brute1Id = fightToVizualise.brute1.connect.id
+			data.brute2Id = fightToVizualise.brute2.connect.id
 			
 		}
         // Retourner une nouvelle réponse modifiée
