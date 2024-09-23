@@ -4408,7 +4408,7 @@ var getTempSkill = getTempSkill;
 				
 				var rota1 = []
 				var regens = []
-				for(var brute of clan.brutes){rota1.push([brute]);regens.push(brute.name)}
+				for(var brute of clan.brutes){rota1.push([brute]);if(brute.skills.indexOf("regeneration")!=-1){regens.push(brute.name)}}
 				
 				var rota2 =  0
 				for(var boss in bosses){if(bosses[boss].name==clan.boss){rota2=parseInt(boss)}}
