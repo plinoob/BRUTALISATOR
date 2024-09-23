@@ -1786,7 +1786,8 @@ var weaponsFR={"fan": "Éventail",
   "piopio": "Piou Piou",
   "shuriken": "Shuriken",
   "broadsword": "Glaive",
-"scimitar": "Cimeterre",};var fightLog = ""
+"scimitar": "Cimeterre",
+ "sword": "Épée",};var fightLog = ""
 
 
 
@@ -1968,7 +1969,7 @@ spans.forEach(spans => {
 
 }
 
-function getWeaponFromFRName(arme){for(var i in weaponsFR){if(weaponsFR[i].toLowerCase()==arme){return i}};return ""}
+function getWeaponFromFRName(arme){for(var i in weaponsFR){if(weaponsFR[i]==arme){return i}};return ""}
 
 
 
@@ -2082,14 +2083,14 @@ function analyzeText(text){
 				chart[vrairoxeur] = (chart[vrairoxeur] || 0) + dmg
 			}
 			else {chart[roxeur] = (chart[roxeur] || 0) + dmg
-				var arme = l.split(" ")[l.split(" ").length - 1].split(".")[0].toLowerCase()
+				var arme = l.split(" avec ")[l.split(" avec ").length - 1].split(".")[0]
 				var weapon = getWeaponFromFRName(arme)
 				if(weapon in weaponImages)addDetailed(roxeur,weapon,dmg)
 				else{
 					
 					arme = prec_line.split(" a lancé ")
 					if(arme.length>1){
-						arme=arme[1].split(" sur ")[0].toLowerCase()
+						arme=arme[1].split(" sur ")[0]
 					}
 					else arme = arme[0]
 					
