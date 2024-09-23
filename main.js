@@ -230,7 +230,13 @@ iframe.onload = () => {
         
         // Exemple de modification des données
         //data.modified = true;
-
+		if(data.winner && data.loser && data.steps && data.fighters){
+			data.winner = fightToVizualise.winner
+			data.loser = fightToVizualise.loser
+			data.steps = fightToVizualise.steps
+			data.fighters = fightToVizualise.fighters
+			
+		}
         // Retourner une nouvelle réponse modifiée
         return new Response(JSON.stringify(data), {
             status: response.status,
