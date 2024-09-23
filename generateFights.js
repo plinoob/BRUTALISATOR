@@ -260,6 +260,19 @@ function addStyle(styleString) {
   document.head.append(style);
 }
 
+async function getBrute(name) {
+    var response = await fetch(`/api/brute/${name}/for-hook`);
+    var html = await response.text();
+    return html;
+}
+
+async function getAllBrutes(names) {
+    var results = await Promise.all(
+        names.map(name => getBrute(name))
+    );
+    return results; // Tableau de résultats HTML correspondant à chaque nom
+}
+
 
 var textBoxCSS
 var baseCSS
