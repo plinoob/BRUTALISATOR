@@ -266,19 +266,25 @@ if(brutesNames.length<7){await sleep(800);if(tries>5){return};return arena(tries
 
  brutes = await getAllBrutes(brutesNames)
 
-if(Math.random*100<1){setImageSrc(img_arbitre,img_lapin)}
-else if(Math.random*33<1){setImageSrc(img_arbitre,img_mains)}
-else if(Math.random*33<1){setImageSrc(img_arbitre,img_voyante)}
-else if(Math.random*2<1){setImageSrc(img_ours,img_ours1)}
-else{setImageSrc(img_ours,img_ours2)}
-
+var imged=true
 
 
 var rota2 = [[brutes.shift()]]
 var rota1 = [] ; for(var b of brutes) rota1.push([b])
 
 				simulFights({
-					fn:function(res){stopLoading();for(var b of res){brutesDivs[b.nom].text(1-b.v/b.j)}
+					fn:function(res){stopLoading();
+					
+					if(imged){imged=false
+					if(Math.random*100<1){setImageSrc(img_arbitre,img_lapin)}
+else if(Math.random*33<1){setImageSrc(img_arbitre,img_mains)}
+else if(Math.random*33<1){setImageSrc(img_arbitre,img_voyante)}
+else if(Math.random*2<1){setImageSrc(img_ours,img_ours1)}
+else{setImageSrc(img_ours,img_ours2)}
+
+					}
+					
+					for(var b of res){brutesDivs[b.nom].text(1-b.v/b.j)}
 					
 					},
 					rota1:rota1,
