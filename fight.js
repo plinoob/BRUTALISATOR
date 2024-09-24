@@ -7,8 +7,7 @@ function genBrute({
 }){
 	
 	var brute = createRandomBruteStats()
-	cl("brute :",brute)
-	for(var i=0;i<level;i++){brute=levelUp(brute);cl(brute);}
+	for(var i=1;i<level;i++){brute=levelUp(brute);cl(brute);}
 	
 	return brute;
 	
@@ -19,7 +18,6 @@ function genBrute({
 
 function levelUp(brute){
 	var choices = getLevelUpChoices(brute)
-	cl("choices : ",choices)
 	var newbrute = updateBruteData(structuredClone(brute),choices[0])
 	return newbrute
 	
