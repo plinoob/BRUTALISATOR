@@ -5184,10 +5184,10 @@ var initialURL = window.location.href
 var initialVERSUS = window.location.href.split("?")[0]
 
 var versusGetsList = window.location.href.split("?")[1].split("&")
-var versusGets = {};for(var ){}
+var versusGets = {};for(var v of versusGetsList){var agr = v.split("=");if(agr.length>1){versusGetsList[agr[0]]=agr[1]}}
 
-var seed = 0
-var brutes = ["",""]
+var seed = versusGets.seed?versusGets.seed:0
+var brutes = [(versusGets.b1)?versusGets.b1:"",(versusGets.b2)?versusGets.b2:""]
 var bruteInputs = []
 var bruteDIVS = []
 
