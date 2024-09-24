@@ -314,7 +314,10 @@ function insertDivAfterElement(newDiv,referenceDiv) {
     referenceDiv.insertAdjacentElement('afterend', newDiv);
   }
 }
-
+var getRandomProperty = function (obj) {
+    var keys = Object.keys(obj);
+    return obj[keys[ keys.length * Math.random() << 0]];
+};
 function addStyle(styleString) {
   var style = document.createElement('style');
   style.textContent = styleString;
