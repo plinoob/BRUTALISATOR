@@ -5177,11 +5177,11 @@ var bruteInputs = []
 var bruteDIVS = []
 
 
-$("h2").each(function(){cl($(this).text())
-	if($(this).text().indexOf("Vous avez osé défier")!=-1)defiDIV = $(this)
+$("h2").each(function(){cl($(this).text(),$(this).text().indexOf("Vous avez osé défier"))
+	if($(this).text().indexOf("Vous avez osé défier")!=-1){defiDIV = $(this);cl("TROUVER",defiDIV);}
 })
 $("h3").each(function(){
-	bruteDIVS.push($(this));$(this).text("")
+	bruteDIVS.push($(this));$(this).text(" ")
 })
 defiDiv.text("")
 $("h5").each(function(){

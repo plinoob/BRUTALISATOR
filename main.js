@@ -207,7 +207,16 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	
 	  }
 	  
-async function arena(){
+function setImageSrc(prevSrc,newSrc){
+	$("img[src$='"+prevSrc+"']").attr("src",newSrc)
+	
+}
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+async function arena(tries){
+	
+
 	
 	function makeInfoDiv(name){return div({17:"lol",15:0,6:{click:function(){openBruteCell(name)}}})}
 	
@@ -226,7 +235,17 @@ elements.each(function() {
 brutesDivs[name].insertAfter($(this).parent().parent())
 });
 
+if(brutesNames.length<7){await sleep(800);if(tries>5){return};return arena(tries+1)}
+
  brutes = await getAllBrutes(brutesNames)
+
+if(Math.random*100<1){setImageSrc(img_arbitre,img_lapin)}
+else if(Math.random*33<1){setImageSrc(img_arbitre,img_mains)}
+else if(Math.random*33<1){setImageSrc(img_arbitre,img_voyante)}
+else if(Math.random*2<1){setImageSrc(img_ours,img_ours1)}
+else{setImageSrc(img_ours,img_ours2)}
+
+
 
 var rota2 = [[brutes.shift()]]
 var rota1 = [] ; for(var b of brutes) rota1.push([b])
