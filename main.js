@@ -2933,8 +2933,8 @@ else if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATO
 else if(url.length==3 && url[2]=="arena"){
     BRUTE = url[1];
     if (!window.autoarena) {
-	navigation.addEventListener("navigate", (event) => {
-	    if (event.destination.url.endsWith("arena")) {
+	window.addEventListener("popstate", (event) => {
+	    if (window.location.href.endsWith("arena")) {
 		arena(BRUTE) // TODO resplit l'url ça peut être une autre brute du compte
 	    }
 	})
