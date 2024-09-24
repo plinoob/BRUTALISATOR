@@ -276,10 +276,10 @@ var rota1 = [] ; for(var b of brutes) rota1.push([b])
 					fn:function(res){stopLoading();
 					
 					if(imged){imged=false
-					if(Math.random*100<1){setImageSrc(img_arbitre,img_lapin)}
-else if(Math.random*33<1){setImageSrc(img_arbitre,img_mains)}
-else if(Math.random*33<1){setImageSrc(img_arbitre,img_voyante)}
-else if(Math.random*2<1){setImageSrc(img_ours,img_ours1)}
+					if(Math.random()*100<1){setImageSrc(img_arbitre,img_lapin)}
+else if(Math.random()*33<1){setImageSrc(img_arbitre,img_mains)}
+else if(Math.random()*33<1){setImageSrc(img_arbitre,img_voyante)}
+else if(Math.random()*2<1){setImageSrc(img_ours,img_ours1)}
 else{setImageSrc(img_ours,img_ours2)}
 
 					}
