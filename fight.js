@@ -2405,8 +2405,7 @@ var isNameValid = (name) => {
     return true;
 };
 var isNameValid = isNameValid;
-function getFightsLeft(){}var weapons_1 = __importStar(require("./weapons"));
-var preventSomeBonuses = (brute, perkType, perkName) => {
+function getFightsLeft(){}var preventSomeBonuses = (brute, perkType, perkName) => {
     let preventPerk = false;
     // Check if the perk should be prevented
     if (perkType === 'pet') {
@@ -2493,7 +2492,7 @@ var preventSomeBonuses = (brute, perkType, perkName) => {
 };
 var getRandomBonus = (brute, rerollUntilFound = false, disabledSkills = [], disabledWeapons = [], disabledPets = []) => {
     var enabledSkills = skills.filter((skill) => !disabledSkills.includes(skill.name));
-    var enabledWeapons = default.filter((weapon) => !disabledWeapons.includes(weapon.name));
+    var enabledWeapons = weapons.filter((weapon) => !disabledWeapons.includes(weapon.name));
     var enabledPets = pets.filter((pet) => !disabledPets.includes(pet.name));
     var enabledPerksOdds = [
         { name: 'pet', odds: enabledPets.reduce((acc, pet) => acc + pet.odds, 0) },
@@ -2509,7 +2508,7 @@ var getRandomBonus = (brute, rerollUntilFound = false, disabledSkills = [], disa
         ? (0, weightedRandom)(pets).name
         : perkType === 'skill'
             ? (0, weightedRandom)(skills).name
-            : (0, weightedRandom)(default).name;
+            : (0, weightedRandom)(weapons).name;
     // Prevent some perks
     let found = !preventSomeBonuses(brute, perkType, perkName);
     while (rerollUntilFound && !found) {
@@ -2520,7 +2519,7 @@ var getRandomBonus = (brute, rerollUntilFound = false, disabledSkills = [], disa
             ? (0, weightedRandom)(pets).name
             : perkType === 'skill'
                 ? (0, weightedRandom)(skills).name
-                : (0, weightedRandom)(default).name;
+                : (0, weightedRandom)(weapons).name;
         // Prevent some perks
         found = !preventSomeBonuses(brute, perkType, perkName);
     }
