@@ -2109,11 +2109,9 @@ var bodyParts = {
 					},
 					
 }
-/*exports.*/getTempWeapon = void 0;
-var weapons_1 = __importDefault(require("./weapons"));
 var getTempWeapon = (brute, weaponIndex) => {return 0
 };
-/*exports.*/getTempWeapon = getTempWeapon;
+
 /*exports.*/getTempSkill = void 0;
 var prisma_1 = require("@labrute/prisma");
 var skills_1 = __importDefault(require("./skills"));
