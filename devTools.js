@@ -2353,19 +2353,130 @@ var isNameValid = (name) => {
     return true;
 };
 var isNameValid = isNameValid;
-function getFightsLeft(){}var getRandomBody = (gender) => (0, generateBodyString)({
-    p2: (0, randomBetween)(0, availableBodyParts[gender].p2),
-    p3: (0, randomBetween)(0, availableBodyParts[gender].p3),
-    p4: (0, randomBetween)(0, availableBodyParts[gender].p4),
-    p7: (0, randomBetween)(0, availableBodyParts[gender].p7),
-    p1: (0, randomBetween)(0, availableBodyParts[gender].p1),
-    p1a: (0, randomBetween)(0, availableBodyParts[gender].p1a),
-    p1b: (0, randomBetween)(0, availableBodyParts[gender].p1b),
-    p6: (0, randomBetween)(0, availableBodyParts[gender].p6),
-    p8: (0, randomBetween)(0, availableBodyParts[gender].p8),
-    p7b: (0, randomBetween)(0, availableBodyParts[gender].p7b),
-    p5: (0, randomBetween)(0, availableBodyParts[gender].p5),
-});
+function getFightsLeft(){}var weapons_1 = __importStar(require("./weapons"));
+var preventSomeBonuses = (brute, perkType, perkName) => {
+    let preventPerk = false;
+    // Check if the perk should be prevented
+    if (perkType === 'pet') {
+        switch (perkName) {
+            case 'dog1':
+                preventPerk = brute.pets.includes('dog1');
+                break;
+            case 'dog2':
+                preventPerk = !brute.pets.includes('dog1') || brute.pets.includes('dog2');
+                break;
+            case 'dog3':
+                preventPerk = !brute.pets.includes('dog1') || !brute.pets.includes('dog2') || brute.pets.includes('dog3');
+                break;
+            case 'panther':
+                // Allow for both panther and bear at a 1/1000 chance
+                preventPerk = brute.pets.includes('panther')
+                    || ((0, randomBetween)(1, 1000) > 1 ? brute.pets.includes('bear') : false);
+                break;
+            case 'bear':
+                // Allow for both panther and bear at a 1/1000 chance
+                preventPerk = brute.pets.includes('bear')
+                    || ((0, randomBetween)(1, 1000) > 1 ? brute.pets.includes('panther') : false);
+                break;
+            default:
+                break;
+        }
+    }
+    else if (perkType === 'skill') {
+        var selectedSkill = skills.find((skill) => skill.name === perkName);
+        var hasSkill = brute.skills.includes(perkName);
+        if (hasSkill) {
+            preventPerk = true;
+        }
+        else if (selectedSkill?.type === 'booster') {
+            // Decrease booster chances
+            var boosters = skills.filter((skill) => skill.type === 'booster');
+            var gottenBoosters = brute.skills.filter((skill) => boosters.find((booster) => booster.name === skill));
+            switch (gottenBoosters.length) {
+                case 0:
+                    preventPerk = false;
+                    break;
+                case 1:
+                    // 5% chance of getting a second booster
+                    preventPerk = (0, randomBetween)(1, 100) < 95;
+                    break;
+                case 2:
+                    // 2% chance of getting a third booster
+                    preventPerk = (0, randomBetween)(1, 100) < 98;
+                    break;
+                case 3:
+                    // 0.1% chance of getting a fourth booster
+                    preventPerk = (0, randomBetween)(1, 1000) < 999;
+                    break;
+                case 4:
+                    // 0.1% chance of getting a fifth booster
+                    preventPerk = (0, randomBetween)(1, 1000) < 999;
+                    break;
+                case 5:
+                    // 0.1% chance of getting a sixth booster
+                    preventPerk = (0, randomBetween)(1, 1000) < 999;
+                    break;
+                default:
+                    preventPerk = false;
+                    break;
+            }
+        }
+        else {
+            preventPerk = false;
+        }
+    }
+    else {
+        // Limit some weapons
+        var gottenLimitedWeapons = brute.weapons.filter((weapon) => limitedWeapons.includes(weapon));
+        if (limitedWeapons.find((w) => w === perkName)
+            && gottenLimitedWeapons.length >= MAX_LIMITED_WEAPONS) {
+            preventPerk = true;
+        }
+        else {
+            // Prevent unlocking a weapon if the brute already has it
+            preventPerk = brute.weapons.includes(perkName);
+        }
+    }
+    return preventPerk;
+};
+var getRandomBonus = (brute, rerollUntilFound = false, disabledSkills = [], disabledWeapons = [], disabledPets = []) => {
+    var enabledSkills = skills.filter((skill) => !disabledSkills.includes(skill.name));
+    var enabledWeapons = default.filter((weapon) => !disabledWeapons.includes(weapon.name));
+    var enabledPets = pets.filter((pet) => !disabledPets.includes(pet.name));
+    var enabledPerksOdds = [
+        { name: 'pet', odds: enabledPets.reduce((acc, pet) => acc + pet.odds, 0) },
+        { name: 'skill', odds: enabledSkills.reduce((acc, skill) => acc + skill.odds, 0) },
+        { name: 'weapon', odds: enabledWeapons.reduce((acc, weapon) => acc + weapon.odds, 0) },
+    ];
+    let perkName = null;
+    let perkType = null;
+    // Weapon/Skill/Pet ?
+    perkType = (0, weightedRandom)(enabledPerksOdds).name;
+    // Perk name ?
+    perkName = perkType === 'pet'
+        ? (0, weightedRandom)(pets).name
+        : perkType === 'skill'
+            ? (0, weightedRandom)(skills).name
+            : (0, weightedRandom)(default).name;
+    // Prevent some perks
+    let found = !preventSomeBonuses(brute, perkType, perkName);
+    while (rerollUntilFound && !found) {
+        // Reroll perk type
+        perkType = (0, weightedRandom)(enabledPerksOdds).name;
+        // Reroll perk name
+        perkName = perkType === 'pet'
+            ? (0, weightedRandom)(pets).name
+            : perkType === 'skill'
+                ? (0, weightedRandom)(skills).name
+                : (0, weightedRandom)(default).name;
+        // Prevent some perks
+        found = !preventSomeBonuses(brute, perkType, perkName);
+    }
+    return found ? {
+        type: perkType,
+        name: perkName,
+    } : null;
+};
 
 
 var fetches = div({13:50000,4:[20,"","",50],5:0,2:"input"})
