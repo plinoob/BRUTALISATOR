@@ -5047,7 +5047,7 @@ var brutes = ["",""]
 var bruteInputs = []
 var bruteDIVS = []
 
-$("h2").each(function(){
+$("h2").each(function(){cl($(this).text())
 	if($(this).text().indexOf("Vous avez osé défier")!=-1)defiDIV = $(this)
 })
 $("h3").each(function(){
