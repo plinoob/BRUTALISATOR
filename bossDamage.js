@@ -1762,6 +1762,644 @@ var BossName = /*exports.*//*$Enums.*/BossName = {
   GoldClaw: 'GoldClaw',
   EmberFang: 'EmberFang'
 };
+var availableBodyParts = {
+    male: {
+        p2: 7,
+        p3: 11,
+        p4: 4,
+        p7: 6,
+        p1: 1,
+        p1a: 1,
+        p1b: 1,
+        p6: 1,
+        p8: 4,
+        p7b: 2,
+        p5: 1,
+    },
+    female: {
+        p2: 0,
+        p3: 11,
+        p4: 3,
+        p7: 6,
+        p1: 1,
+        p1a: 1,
+        p1b: 1,
+        p6: 0,
+        p8: 4,
+        p7b: 2,
+        p5: 1,
+    },
+};
+
+var checkBodyPart = (value, expected) => value >= 0 && value <= expected;
+var checkBody = (user, gender, bodyString) => {
+    // Convert every char from hex to number
+    var inputs = {
+        p1: parseInt(bodyString[0] || '0', 16),
+        p1a: parseInt(bodyString[1] || '0', 16),
+        p1b: parseInt(bodyString[2] || '0', 16),
+        p2: parseInt(bodyString[3] || '0', 16),
+        p3: parseInt(bodyString[4] || '0', 16),
+        p4: parseInt(bodyString[5] || '0', 16),
+        p5: parseInt(bodyString[6] || '0', 16),
+        p6: parseInt(bodyString[7] || '0', 16),
+        p7: parseInt(bodyString[8] || '0', 16),
+        p7b: parseInt(bodyString[9] || '0', 16),
+        p8: parseInt(bodyString[10] || '0', 16),
+    };
+    if (!checkBodyPart(inputs.p2, availableBodyParts[gender].p2)
+        || !checkBodyPart(inputs.p3, availableBodyParts[gender].p3)
+        || !checkBodyPart(inputs.p4, availableBodyParts[gender].p4)
+        || !checkBodyPart(inputs.p7, availableBodyParts[gender].p7)
+        || !checkBodyPart(inputs.p1, availableBodyParts[gender].p1)
+        || !checkBodyPart(inputs.p1a, availableBodyParts[gender].p1a)
+        || !checkBodyPart(inputs.p1b, availableBodyParts[gender].p1b)
+        || !checkBodyPart(inputs.p6, availableBodyParts[gender].p6)
+        || !checkBodyPart(inputs.p8, availableBodyParts[gender].p8)
+        || !checkBodyPart(inputs.p7b, availableBodyParts[gender].p7b)
+        || !checkBodyPart(inputs.p5, availableBodyParts[gender].p5)) {
+        alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des fringues !!!");
+    }
+};
+var isValid = (value, array) => value >= 0 && value < array.length;
+var isValidWithSpecials = (value, array) => value >= 0 && (value < array.length || (value < 100 && value > (99 - colors.special.length)));
+var checkColors = (user, gender, colorString, includeSpecials = false) => {
+    // Split colors every 2 characters
+    var inputs = {
+        col0: +colorString.slice(0, 2),
+        col0a: +colorString.slice(2, 4),
+        col0c: +colorString.slice(4, 6),
+        col1: +colorString.slice(6, 8),
+        col1a: +colorString.slice(8, 10),
+        col1b: +colorString.slice(10, 12),
+        col1c: +colorString.slice(12, 14),
+        col1d: +colorString.slice(14, 16),
+        col2: +colorString.slice(16, 18),
+        col2a: +colorString.slice(18, 20),
+        col2b: +colorString.slice(20, 22),
+        col3: +colorString.slice(22, 24),
+        col3b: +colorString.slice(24, 26),
+        col4: +colorString.slice(26, 28),
+        col4a: +colorString.slice(28, 30),
+        col4b: +colorString.slice(30, 32),
+    };
+    var check = includeSpecials ? isValidWithSpecials : isValid;
+    if (!check(inputs.col0, colors[gender].skin)
+        || !check(inputs.col0a, colors[gender].skin)
+        || !check(inputs.col0c, colors[gender].skin)
+        || !check(inputs.col1, colors[gender].hair)
+        || !check(inputs.col1a, colors[gender].hair)
+        || !check(inputs.col1b, colors[gender].hair)
+        || !check(inputs.col1c, colors[gender].hair)
+        || !check(inputs.col1d, colors[gender].hair)
+        || !check(inputs.col3, colors[gender].clothing)
+        || !check(inputs.col2, colors[gender].clothing)
+        || !check(inputs.col2b, colors[gender].clothing)
+        || !check(inputs.col3b, colors[gender].clothing)
+        || !check(inputs.col2a, colors[gender].clothing)
+        || !check(inputs.col4, colors[gender].clothing)
+        || !check(inputs.col4a, colors[gender].clothing)
+        || !check(inputs.col4b, colors[gender].clothing)) {
+        alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des couleurs !!!");
+    }
+    // col0, col0a, col0c must be the same
+    if (inputs.col0 !== inputs.col0a || inputs.col0 !== inputs.col0c) {
+        alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des couleurs !!! (col0, col0a, col0c must be the same)");
+    }
+    // col1, col1a, col1b, col1c, col1d must be the same
+    if (inputs.col1 !== inputs.col1a
+        || inputs.col1 !== inputs.col1b
+        || inputs.col1 !== inputs.col1c
+        || inputs.col1 !== inputs.col1d) {
+        alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des couleurs !!! (col1, col1a, col1b, col1c, col1d must be the same)");
+
+    }
+	console.log("couleurs conformes");
+};
+var colors = {
+    male: {
+        skin: [
+            '#996600',
+            '#eccd57',
+            '#cb841b',
+            '#d79b75',
+            '#fbe6c8',
+            '#f8d198',
+        ],
+        hair: [
+            '#784129',
+            '#fff9ae',
+            '#b85f1d',
+            '#4f677d',
+            '#df7e37',
+            '#fbcd15',
+            '#ffaa1e',
+            '#952f04',
+            '#a2886f',
+            '#fff2df',
+        ],
+        clothing: [
+            '#7bad30',
+            '#b78104',
+            '#bb1111',
+            '#559399',
+            '#fae31f',
+            '#784129',
+            '#7a73c8',
+            '#fff9ae',
+            '#f0dc99',
+            '#b6e7a9',
+            '#d31818',
+            '#b85f1d',
+            '#97cbff',
+            '#8ba3d7',
+            '#df7e37',
+            '#d5eaff',
+            '#ffaa1e',
+            '#cbff97',
+            '#ffcc79',
+            '#fff2df',
+        ],
+    },
+    female: {
+        skin: [
+            '#996600',
+            '#f8cdc2',
+            '#cb841b',
+            '#eaaca6',
+            '#fbe6c8',
+            '#f8d198',
+        ],
+        hair: [
+            '#fff9ae',
+            '#b85f1d',
+            '#eea2c9',
+            '#8e63ad',
+            '#fbcd15',
+            '#ffaa1e',
+            '#952f04',
+            '#a2886f',
+            '#fff2df',
+        ],
+        clothing: [
+            '#7bad30',
+            '#b78104',
+            '#bb1111',
+            '#559399',
+            '#fae31f',
+            '#784129',
+            '#7a73c8',
+            '#fff9ae',
+            '#f0dc99',
+            '#b6e7a9',
+            '#d31818',
+            '#b85f1d',
+            '#97cbff',
+            '#8ba3d7',
+            '#df7e37',
+            '#d5eaff',
+            '#ffaa1e',
+            '#cbff97',
+            '#ffcc79',
+            '#fff2df',
+        ],
+    },
+    special: [
+        '#000000',
+    ],
+};
+var getRandomBody = (gender) => (0, generateBodyString)({
+    p2: (0, randomBetween)(0, availableBodyParts[gender].p2),
+    p3: (0, randomBetween)(0, availableBodyParts[gender].p3),
+    p4: (0, randomBetween)(0, availableBodyParts[gender].p4),
+    p7: (0, randomBetween)(0, availableBodyParts[gender].p7),
+    p1: (0, randomBetween)(0, availableBodyParts[gender].p1),
+    p1a: (0, randomBetween)(0, availableBodyParts[gender].p1a),
+    p1b: (0, randomBetween)(0, availableBodyParts[gender].p1b),
+    p6: (0, randomBetween)(0, availableBodyParts[gender].p6),
+    p8: (0, randomBetween)(0, availableBodyParts[gender].p8),
+    p7b: (0, randomBetween)(0, availableBodyParts[gender].p7b),
+    p5: (0, randomBetween)(0, availableBodyParts[gender].p5),
+});
+var getRandomColors = (gender) => {
+    var col0 = (0, randomBetween)(0, colors[gender].skin.length - 1);
+    var col0a = col0;
+    var col0c = col0;
+    var col1 = (0, randomBetween)(0, colors[gender].hair.length - 1);
+    var col1a = col1;
+    var col1b = col1;
+    var col1c = col1;
+    var col1d = col1;
+    var col3 = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col2 = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col2b = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col3b = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col2a = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col4 = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col4a = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col4b = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    return (0, generateColorString)({
+        col0,
+        col0a,
+        col0c,
+        col1,
+        col1a,
+        col1b,
+        col1c,
+        col1d,
+        col2,
+        col2a,
+        col2b,
+        col3,
+        col3b,
+        col4,
+        col4a,
+        col4b,
+    });
+};
+
+var bodyParts = {
+					p1:{
+						name :
+						{
+							male:"Armor",
+							female:"Armor"
+						},
+						type : "clothing"
+					},
+					p1a:{
+						name :
+						{
+							male:"Belt",
+							female:"Belt"
+						},
+						type : "clothing"
+					},
+					p1b:{
+						name :
+						{
+							male:"Roman Belt",
+							female:"Roman Belt"
+						},
+						type : "clothing"
+					},
+					p2:{
+						name :
+						{
+							male:"Size",
+							female:"Size"
+						},
+						type : "skin"
+					},
+					p3:{
+						name :
+						{
+							male:"Hair",
+							female:"Hair"
+						},
+						type : "hair"
+					},
+					p4:{
+						name :
+						{
+							male:"Beard",
+							female:"Front Hair"
+						},
+						type : "hair"
+					},
+					p5:{
+						name :
+						{
+							male:"Shirt",
+							female:"Shirt"
+						},
+						type : "clothing"
+					},
+					p6:{
+						name :
+						{
+							male:"Short",
+							female:"Short"
+						},
+						type : "clothing"
+					},
+					p7:{
+						name :
+						{
+							male:"Clothing",
+							female:"Clothing"
+						},
+						type : "clothing"
+					},
+					p7b:{
+						name :
+						{
+							male:"Shoes",
+							female:"Shoes"
+						},
+						type : "clothing"
+					},
+					p8:{
+						name :
+						{
+							male:"Nothing",
+							female:"Nothing"
+						},
+						type : "clothing"
+					},
+					
+}
+/*exports.*/getTempWeapon = void 0;
+var weapons_1 = __importDefault(require("./weapons"));
+var getTempWeapon = (brute, weaponIndex) => {return 0
+};
+/*exports.*/getTempWeapon = getTempWeapon;
+/*exports.*/getTempSkill = void 0;
+var prisma_1 = require("@labrute/prisma");
+var skills_1 = __importDefault(require("./skills"));
+var unavailableTemporarySkills = [SkillName.backup];
+var getTempSkill = (brute, skillIndex) => {return 0
+};
+/*exports.*/getTempSkill = getTempSkill;var DestinyChoiceType = /*exports.*//*$Enums.*/DestinyChoiceType = {
+  skill: 'skill',
+  weapon: 'weapon',
+  pet: 'pet',
+  stats: 'stats'
+};
+var BruteStat = /*exports.*//*$Enums.*/BruteStat = {
+  endurance: 'endurance',
+  strength: 'strength',
+  agility: 'agility',
+  speed: 'speed'
+};
+var getLevelUpChoices = (brute) => {
+    let preventPerk = false;
+    let perkType = null;
+    let perkName = null;
+    // First choice (Weapon/Skill/Pet)
+    // (+1/+1 Stats if picked something already learned)
+    let firstChoice = null;
+    var bruteStats = Object.values(BruteStat);
+    // Second choice (+2 Stat)
+    let secondChoice = {
+        type: 'stats',
+        stat1: bruteStats[(0, randomBetween)(0, bruteStats.length - 1)],
+        stat1Value: 2,
+    };
+    // Less likely to get a perk the more high level the brute is
+    if (brute.level >= 80 && (0, randomBetween)(0, brute.level) >= 80) {
+        preventPerk = true;
+    }
+    if (!preventPerk) {
+        var perk = (0, getRandomBonus)(brute);
+        if (perk) {
+            perkType = perk.type;
+            perkName = perk.name;
+        }
+        preventPerk = !perk;
+    }
+    // Chose +1/+1 stat instead
+    if (preventPerk) {
+        var { [(0, randomBetween)(0, bruteStats.length - 1)]: firstStat } = bruteStats;
+        let { [(0, randomBetween)(0, bruteStats.length - 1)]: secondStat } = bruteStats;
+        // Avoid duplicates
+        while (secondStat === firstStat) {
+            secondStat = bruteStats[(0, randomBetween)(0, bruteStats.length - 1)];
+        }
+        // Swap +1/+1 with +2
+        firstChoice = secondChoice;
+        secondChoice = {
+            type: 'stats',
+            stat1: firstStat,
+            stat1Value: 1,
+            stat2: secondStat,
+            stat2Value: 1,
+        };
+    }
+    else {
+        if (!perkType || !perkName) {
+            throw new Error('No perk type or name');
+        }
+        firstChoice = {
+            type: perkType,
+            skill: perkType === 'skill' ? perkName : undefined,
+            pet: perkType === 'pet' ? perkName : undefined,
+            weapon: perkType === 'weapon' ? perkName : undefined,
+        };
+    }
+    return [firstChoice, secondChoice];
+};
+var createRandomBruteStats = (baseStats, perkType, perkName) => {
+    let brute = {
+        level: 1,
+        xp: 0,
+        hp: 0,
+        enduranceStat: 0,
+        enduranceModifier: 1,
+        enduranceValue: 0,
+        strengthStat: 0,
+        strengthModifier: 1,
+        strengthValue: 0,
+        agilityStat: 0,
+        agilityModifier: 1,
+        agilityValue: 0,
+        speedStat: 0,
+        speedModifier: 1,
+        speedValue: 0,
+        skills: [],
+        pets: [],
+        ranking: BruteRankings[0],
+        weapons: [],
+    };
+    let perk = null;
+    // Predefined perk
+    if (perkType && perkName) {
+        perk = { type: perkType, name: perkName };
+        if (perkType === DestinyChoiceType.pet) {
+            brute.pets = [perkName];
+        }
+        else if (perkType === DestinyChoiceType.skill) {
+            brute.skills = [perkName];
+        }
+        else {
+            brute.weapons = [perkName];
+        }
+    }
+    else {
+        // Random perk
+        perk = (0, getRandomBonus)(brute, true);
+        if (!perk) {
+            throw new Error('No bonus found');
+        }
+        // Pet
+        brute.pets = perk.type === DestinyChoiceType.pet ? [perk.name] : [];
+        // Skill
+        brute.skills = perk.type === DestinyChoiceType.skill ? [perk.name] : [];
+        // Weapon
+        brute.weapons = perk.type === DestinyChoiceType.weapon ? [perk.name] : [];
+    }
+    // Stats boosters
+    if (perk.type === 'skill') {
+        var skill = brute.skills[0];
+        if (!skill) {
+            throw new Error('Skill not found');
+        }
+        brute = (0, applySkillModifiers)(brute, skill);
+    }
+    // Starting stats
+    var startingStats = baseStats || (0, getRandomStartingStats)();
+    brute.enduranceStat += startingStats.endurance;
+    brute.strengthStat += startingStats.strength;
+    brute.agilityStat += startingStats.agility;
+    brute.speedStat += startingStats.speed;
+    // Take into account the endurance malus from the pet
+    if (perk.type === DestinyChoiceType.pet) {
+        var pet = pets.find((p) => p.name === perk?.name);
+        if (!pet) {
+            throw new Error('Pet not found');
+        }
+        // Can go into negatives
+        brute.enduranceStat -= pet.enduranceMalus;
+    }
+    // Final stat values
+    brute.enduranceValue = Math.floor(brute.enduranceStat * brute.enduranceModifier);
+    brute.strengthValue = Math.floor(brute.strengthStat * brute.strengthModifier);
+    brute.agilityValue = Math.floor(brute.agilityStat * brute.agilityModifier);
+    brute.speedValue = Math.floor(brute.speedStat * brute.speedModifier);
+    // Final HP
+    brute.hp = (0, getHP)(1, brute.enduranceValue);
+    return brute;
+};
+var getRandomStartingStats = void 0;
+var getRandomStartingStats = () => {
+    // Starting budget
+    let availablePoints = BRUTE_STARTING_POINTS;
+    // Enrudance (2 to 5)
+    var endurance = (0, randomBetween)(2, 5);
+    availablePoints -= endurance;
+    // Strength (2 to 5)
+    var strength = Math.min((0, randomBetween)(2, 5), availablePoints - 2 * 2);
+    availablePoints -= strength;
+    // Agility (2 to 5)
+    var agility = Math.min((0, randomBetween)(2, 5), availablePoints - 2 * 1);
+    availablePoints -= agility;
+    // Speed (2 to 5)
+    var speed = availablePoints;
+    return {
+        endurance,
+        strength,
+        agility,
+        speed,
+    };
+};
+var getRandomStartingStats = getRandomStartingStats;
+var updateStat = (brute, stat, value) => {
+    switch (stat) {
+        case 'endurance':
+            return {
+                ...brute,
+                enduranceStat: brute.enduranceStat + value,
+            };
+        case 'strength':
+            return {
+                ...brute,
+                strengthStat: brute.strengthStat + value,
+            };
+        case 'agility':
+            return {
+                ...brute,
+                agilityStat: brute.agilityStat + value,
+            };
+        case 'speed':
+            return {
+                ...brute,
+                speedStat: brute.speedStat + value,
+            };
+        default:
+            throw new Error('Invalid stat');
+    }
+};
+var updateBruteData = (brute, destinyChoice) => {
+    let updatedBrute = {
+        ...brute,
+        pets: [...brute.pets],
+        skills: [...brute.skills],
+        weapons: [...brute.weapons],
+        xp: 0,
+        level: brute.level + 1,
+    };
+    // New skill
+    if (destinyChoice.type === 'skill') {
+        var skillName = destinyChoice.skill;
+        if (!skillName) {
+            throw new Error('No skill provided');
+        }
+        // Handle +2 fights for `regeneration`
+        if (skillName === SkillName.regeneration) {
+            updatedBrute.fightsLeft = (0, getFightsLeft)(updatedBrute, null) + 2;
+        }
+        updatedBrute.skills.push(skillName);
+        // STATS MODIFIERS
+        updatedBrute = (0, applySkillModifiers)(updatedBrute, skillName);
+    }
+    else if (destinyChoice.type === 'weapon') {
+        // New weapon
+        updatedBrute.weapons.push(destinyChoice.weapon);
+    }
+    else if (destinyChoice.type === 'pet') {
+        // New pet
+        var pet = pets.find((p) => p.name === destinyChoice.pet);
+        if (!pet) {
+            throw new Error('Pet not found');
+        }
+        updatedBrute.pets.push(destinyChoice.pet);
+        // Take into account the endurance malus from the pet
+        updatedBrute.enduranceStat -= pet.enduranceMalus;
+    }
+    else if (destinyChoice.stat1 && !destinyChoice.stat2) {
+        // +X stat
+        var stat = destinyChoice.stat1;
+        updatedBrute = updateStat(updatedBrute, stat, destinyChoice.stat1Value);
+    }
+    else {
+        // +X/+X
+        if (!destinyChoice.stat1 || !destinyChoice.stat2
+            || !destinyChoice.stat1Value || !destinyChoice.stat2Value) {
+            throw new Error('No stats provided');
+        }
+        updatedBrute = updateStat(updatedBrute, destinyChoice.stat1, destinyChoice.stat1Value);
+        updatedBrute = updateStat(updatedBrute, destinyChoice.stat2, destinyChoice.stat2Value);
+    }
+    // Final stat values
+    updatedBrute.enduranceValue = Math.floor(updatedBrute.enduranceStat * updatedBrute.enduranceModifier);
+    updatedBrute.strengthValue = Math.floor(updatedBrute.strengthStat * updatedBrute.strengthModifier);
+    updatedBrute.agilityValue = Math.floor(updatedBrute.agilityStat * updatedBrute.agilityModifier);
+    updatedBrute.speedValue = Math.floor(updatedBrute.speedStat * updatedBrute.speedModifier);
+    // Final HP
+    updatedBrute.hp = (0, getHP)(updatedBrute.level, updatedBrute.enduranceValue);
+    return updatedBrute;
+};
+var isNameValid = void 0;
+var isNameValid = (name) => {
+    if (!name?.match(/^[a-zA-Z0-9_-]*$/) || name.length < 3 || name.length > 16) {
+        return false;
+    }
+    return true;
+};
+var isNameValid = isNameValid;
+function getFightsLeft(){}var getRandomBody = (gender) => (0, generateBodyString)({
+    p2: (0, randomBetween)(0, availableBodyParts[gender].p2),
+    p3: (0, randomBetween)(0, availableBodyParts[gender].p3),
+    p4: (0, randomBetween)(0, availableBodyParts[gender].p4),
+    p7: (0, randomBetween)(0, availableBodyParts[gender].p7),
+    p1: (0, randomBetween)(0, availableBodyParts[gender].p1),
+    p1a: (0, randomBetween)(0, availableBodyParts[gender].p1a),
+    p1b: (0, randomBetween)(0, availableBodyParts[gender].p1b),
+    p6: (0, randomBetween)(0, availableBodyParts[gender].p6),
+    p8: (0, randomBetween)(0, availableBodyParts[gender].p8),
+    p7b: (0, randomBetween)(0, availableBodyParts[gender].p7b),
+    p5: (0, randomBetween)(0, availableBodyParts[gender].p5),
+});
 
 var applySpy = (fightData, brute, opponent) => {
     if (brute.skills.find((skill) => skill.name === 'spy')) {
@@ -4370,33 +5008,7 @@ var weaponsFR={"fan": "Éventail",
   "shuriken": "Shuriken",
   "broadsword": "Glaive",
 "scimitar": "Cimeterre",
- "sword": "Épée",};var getTempWeapon = (brute, weaponIndex) => {
-    if (weaponIndex === null) {
-        return null;
-    }
-    var unownedWeapons = weapons.filter((weapon) => !brute.weapons.includes(weapon.name));
-    var tempWeapon = unownedWeapons[weaponIndex % unownedWeapons.length];
-    if (!tempWeapon) {
-        throw new Error('No temp weapon found');
-    }
-    return tempWeapon.name;
-};
-var getTempWeapon = getTempWeapon;
-var unavailableTemporarySkills = [SkillName.backup];
-var getTempSkill = (brute, skillIndex) => {
-    if (skillIndex === null) {
-        return null;
-    }
-    var unownedSkills = skills.filter((skill) => !brute.skills.includes(skill.name)
-        && !unavailableTemporarySkills.includes(skill.name));
-    var tempSkill = unownedSkills[skillIndex % unownedSkills.length];
-    if (!tempSkill) {
-        throw new Error('No temp skill found');
-    }
-    return tempSkill.name;
-};
-var getTempSkill = getTempSkill;
-		
+ "sword": "Épée",};		
 		
 		fetch("/api/clan/"+CLAN)
 			.then(response => response.text())
