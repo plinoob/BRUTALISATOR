@@ -5206,7 +5206,7 @@ $("h5").each(function(){
 		var nimput = bruteInputs.length
 		makeInputDIV(nimput).parent().insertAfter($(this))
 	}
-	if($(this).text().indexOf("Lancer le combat")!=-1){$(this).parent().on("click mouseup",function(event){cl("lol");event.stopPropagation();event.preventDefault()}}
+	if($(this).text().indexOf("Lancer le combat")!=-1){$(this).parent().on("click mouseup",function(event){cl("lol");event.stopPropagation();event.preventDefault()})}
 })
 
 
