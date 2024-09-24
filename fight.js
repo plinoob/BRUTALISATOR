@@ -5159,7 +5159,7 @@ var weaponsFR={"fan": "Éventail",
 
 
 
-function makeInputDIV(n){$(".inputDIV").remove();return div({0:div({3:"inputDIV",2:"img",22:"/images/creation/input.svg"}),2:"input",4:1,5:0,})}
+function makeInputDIV(n){return div({0:div({3:"inputDIV",2:"img",22:"/images/creation/input.svg"}),2:"input",4:1,5:0})}
 
 
 function gaussianRandom() {
@@ -5180,7 +5180,13 @@ function randomLevel(mean=33,std=3){return parseInt(Math.max(0,gaussianRandomWit
 
 var defiDIV
 
+var initialURL = window.location.href
+var initialVERSUS = window.location.href.split("?")[0]
 
+var versusGetsList = window.location.href.split("?")[1].split("&")
+var versusGets = {};for(var ){}
+
+var seed = 0
 var brutes = ["",""]
 var bruteInputs = []
 var bruteDIVS = []
@@ -5192,12 +5198,13 @@ $("h2").each(function(){
 $("h3").each(function(){
 	bruteDIVS.push($(this));$(this).text(" ")
 })
-defiDIV.text("")
+defiDIV.text(" ")
+$(".inputDIV").remove();
 $("h5").each(function(){
 	if($(this).text().indexOf("Niveau")!=-1){
 		$(this).text("Niveau ???")
 		var nimput = bruteInputs.length
-		makeInputDIV(nimput).insertAfter($(this))
+		makeInputDIV(nimput).parent().insertAfter($(this))
 	}
 })
 
