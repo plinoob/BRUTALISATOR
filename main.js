@@ -1,29 +1,4 @@
 
-
-function genBrute({
-	level,
-	name=false,
-	
-}){
-	
-	var brute = createRandomBruteStats()
-	cl("brute :",brute)
-	for(var i=0;i<level;i++){brute=levelUp(brute);cl(brute);}
-	
-	return brute;
-	
-	
-	
-}
-
-
-function levelUp(brute){
-	var choices = getLevelUpChoices(brute)
-	cl("choices : ",choices)
-	var newbrute = updateBruteData(structuredClone(brute),choices[0])
-	return newbrute
-	
-}
 var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
 
 function rien(){}
