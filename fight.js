@@ -5162,10 +5162,19 @@ var weaponsFR={"fan": "Éventail",
 function makeInputDIV(n){$(".inputDIV").remove();return div({0:div({3:"inputDIV",2:"img",22:"/images/creation/input.svg"}),2:"input",4:1,5:0,})}
 
 
+function gaussianRandom() {
+    let u = 0, v = 0;
+    while (u === 0) u = Math.random(); // Évite 0 pour `u`
+    while (v === 0) v = Math.random(); // Évite 0 pour `v`
+    return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+}
 
+// Exemple : générer un nombre gaussien avec une moyenne et un écart-type spécifique
+function gaussianRandomWithMeanAndStd(mean, stdDev) {
+    return mean + gaussianRandom() * stdDev;
+}
 
-
-
+function randomLevel(mean=33,std=3){return parseInt(Math.max(0,gaussianRandomWithMeanAndStd(mean,std)))}
 
 
 
@@ -5177,13 +5186,13 @@ var bruteInputs = []
 var bruteDIVS = []
 
 
-$("h2").each(function(){cl($(this).text(),$(this).text().indexOf("Vous avez osé défier"))
-	if($(this).text().indexOf("Vous avez osé défier")!=-1){defiDIV = $(this);cl("TROUVER",defiDIV);}
+$("h2").each(function(){
+	if($(this).text().indexOf("Vous avez osé défier")!=-1){defiDIV = $(this);}
 })
 $("h3").each(function(){
 	bruteDIVS.push($(this));$(this).text(" ")
 })
-defiDiv.text("")
+defiDIV.text("")
 $("h5").each(function(){
 	if($(this).text().indexOf("Niveau")!=-1){
 		$(this).text("Niveau ???")
