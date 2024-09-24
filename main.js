@@ -2930,7 +2930,18 @@ var CLAN = ""
 
 if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
 else if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATOR+"destiny.js")}
-else if(url.length==3 && url[2]=="arena"){BRUTE = url[1];arena(BRUTE)}
+else if(url.length==3 && url[2]=="arena"){
+    BRUTE = url[1];
+    if (!window.autoarena) {
+	navigation.addEventListener("navigate", (event) => {
+	    if (event.destination.url.endsWith("arena")) {
+		arena(BRUTE) // TODO resplit l'url ça peut être une autre brute du compte
+	    }
+	})
+	window.autoarena=true
+    }
+    BRUTE = url[1];arena(BRUTE)
+}
 else if(url.length==4 && url[2]=="versus"){BRUTE = url[1];addScript(BRUTALISATOR+"fight.js")}
 else if(url.length==4 && url[2]=="clan"){CLAN = url[3];addScript(BRUTALISATOR+"bossDamage.js")}
 else if(/*BRANCHE == "dev" && */url.length==3 && url[1]=="user"){addScript(BRUTALISATOR+"devTools.js")}
