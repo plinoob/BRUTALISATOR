@@ -251,7 +251,7 @@ var rota2 = [[brutes.shift()]]
 var rota1 = [] ; for(var b of brutes) rota1.push([b])
 
 				simulFights({
-					fn:function(res){for(var b of res){brutesDivs[b.nom].text(1-b.v/b.j)}
+					fn:function(res){stopLoading();for(var b of res){brutesDivs[b.nom].text(1-b.v/b.j)}
 					
 					},
 					rota1:rota1,
