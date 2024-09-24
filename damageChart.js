@@ -2112,13 +2112,8 @@ var bodyParts = {
 var getTempWeapon = (brute, weaponIndex) => {return 0
 };
 
-/*exports.*/getTempSkill = void 0;
-var prisma_1 = require("@labrute/prisma");
-var skills_1 = __importDefault(require("./skills"));
-var unavailableTemporarySkills = [SkillName.backup];
 var getTempSkill = (brute, skillIndex) => {return 0
-};
-/*exports.*/getTempSkill = getTempSkill;var DestinyChoiceType = /*exports.*//*$Enums.*/DestinyChoiceType = {
+};var DestinyChoiceType = /*exports.*//*$Enums.*/DestinyChoiceType = {
   skill: 'skill',
   weapon: 'weapon',
   pet: 'pet',
