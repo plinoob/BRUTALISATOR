@@ -5156,7 +5156,7 @@ var defiDIV
 var brutes = ["",""]
 var bruteInputs = []
 var bruteDIVS = []
- window.addEventListener("DOMContentLoaded", function() {
+
 
 $("h2").each(function(){cl($(this).text())
 	if($(this).text().indexOf("Vous avez osé défier")!=-1)defiDIV = $(this)
@@ -5174,4 +5174,3 @@ $("h5").each(function(){
 })
 
 
-    }, false);
