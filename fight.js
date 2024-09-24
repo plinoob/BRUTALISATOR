@@ -5183,7 +5183,8 @@ var defiDIV
 var initialURL = window.location.href
 var initialVERSUS = window.location.href.split("?")[0]
 
-var versusGetsList = window.location.href.split("?")[1].split("&")
+var versusGetsList = window.location.href.split("?")
+versusGetsList = versusGetsList[1]?versusGetsList[1].split("&"):[]
 var versusGets = {};for(var v of versusGetsList){var agr = v.split("=");if(agr.length>1){versusGetsList[agr[0]]=agr[1]}}
 
 var seed = versusGets.seed?versusGets.seed:0
