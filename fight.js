@@ -5170,6 +5170,7 @@ function makeInputDIV(n){
   if (e.which == 13) {launchFight()
 		  }
 		});
+	return inp
 	
 	}
 	
