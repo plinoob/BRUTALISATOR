@@ -5160,7 +5160,7 @@ var weaponsFR={"fan": "Éventail",
 
 
 function makeInputDIV(n){
-	var inpDIV = div({3:"inputDIV",4:2,12:["182","30"],5:[0,50]})
+	var inpDIV = div({3:"inputDIV",4:2,12:["283","30"],5:[0,50]})
 	
 	div({0:inpDIV,4:1,5:0,2:"img",22:"/images/creation/input.svg"})
 	
@@ -5189,7 +5189,7 @@ function makeInputDIV(n){
 
 
 function updateURL(){cl("UPDATEURL",window.location.href,initialVERSUS+"?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);if(!combatIsOk()){return};window.history.replaceState(null,
-"","/?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);defiDIV=brutes[0]+" a osé défier "+brutes[1]+" !"}
+"","/?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);defiDIV.text(brutes[0]+" a osé défier "+brutes[1]+" !")}
 
 
 
@@ -5197,10 +5197,10 @@ $("h2").each(function(){
 	if($(this).text().indexOf("Vous avez osé défier")!=-1){defiDIV = $(this);}
 })
 $("h3").each(function(){
-	bruteDIVS.push($(this));$(this).text(" ")
-	$(this).parent().find('img:first').attr("src","/images/creation/noCharacter.webp").css("transform","scale(-1, 1)");
+	$(this).parent().find('img:first').attr("src","/images/creation/noCharacter.webp").css("transform","scale(-"+bruteDIVS.length+", 1)");
+	bruteDIVS.push($(this));$(this).text("???")
 })
-defiDIV.text("???")
+defiDIV.text("")
 $(".inputDIV").remove();
 var nimput=0
 $("h5").each(function(){

@@ -51,14 +51,15 @@ versusGetsList = window.location.href.split("?")
 cl("VERSUS?",window.location.href.split("?"))
 }
 versusGetsList = versusGetsList[1]?versusGetsList[1].split("&"):[]
+cl(versusGetsList)
 var versusGets = {};for(var v of versusGetsList){var agr = v.split("=");if(agr.length>1){versusGetsList[agr[0]]=agr[1]}}
-
+cl(versusGets)
 var seed = versusGets.seed?versusGets.seed:0
 var brutes = [(versusGets.b1)?versusGets.b1:"",(versusGets.b2)?versusGets.b2:""]
 var bruteInputs = []
 var bruteDIVS = []
 
-
+cl(brutes)
 function launchFight(){		
 		if(combat_lancer) return
 		if(!combatIsOk()) return
