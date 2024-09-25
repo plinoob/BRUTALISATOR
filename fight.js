@@ -5198,15 +5198,17 @@ $("h2").each(function(){
 })
 $("h3").each(function(){
 	bruteDIVS.push($(this));$(this).text(" ")
-	$(this).parent().find('img:first').attr("src","/images/creation/noCharacter.webp");
+	$(this).parent().find('img:first').attr("src","/images/creation/noCharacter.webp").css("transform","scale(-1, 1)");
 })
 defiDIV.text("???")
 $(".inputDIV").remove();
+var nimput=0
 $("h5").each(function(){
 	if($(this).text().indexOf("Niveau")!=-1){
 		$(this).text("Niveau ??")
-		var nimput = bruteInputs.length
+		
 		makeInputDIV(nimput).parent().insertAfter($(this))
+		nimput++
 	}
 	if($(this).text().indexOf("Lancer le combat")!=-1){$(this).parent().on("click mouseup",function(event){
 		
