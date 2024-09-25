@@ -33,6 +33,53 @@ function rien(){}
 
 //----------------------------FIGHT
 
+
+var heheheha = {"id":"d34f1d14-6d7b-4d87-abd2-614947732ba6","name":"heheheha","deletedAt":null,"createdAt":"2024-05-22T21:19:56.004Z","willBeDeletedAt":null,"deletionReason":null,"destinyPath":["RIGHT","LEFT","LEFT","RIGHT","LEFT"],"previousDestinyPath":["RIGHT","LEFT","LEFT","RIGHT","RIGHT","RIGHT","RIGHT","RIGHT","RIGHT","LEFT","RIGHT","RIGHT"],"level":6,"xp":3,"hp":83,"enduranceStat":4,"enduranceModifier":1,"enduranceValue":4,"strengthStat":5,"strengthModifier":1,"strengthValue":5,"agilityStat":5,"agilityModifier":1.5,"agilityValue":7,"speedStat":6,"speedModifier":1,"speedValue":6,"ranking":9,"gender":"female","userId":"565e2141-9982-406d-81ba-9aafdd219dc4","body":"10001210601","colors":"00000003030303031301020204020312","weapons":["piopio"],"skills":["fistsOfFury","felineAgility"],"pets":[],"masterId":null,"pupilsCount":6,"clanId":null,"registeredForTournament":false,"nextTournamentDate":null,"currentTournamentDate":"2024-09-24T00:00:00.000Z","currentTournamentStepWatched":0,"globalTournamentWatchedDate":"2024-09-23T00:00:00.000Z","globalTournamentRoundWatched":999,"lastFight":"2024-09-24T00:00:00.000Z","fightsLeft":7,"victories":468,"opponentsGeneratedAt":"2024-09-24T00:00:00.000Z","canRankUpSince":null,"favorite":false,"wantToJoinClanId":null,"tournamentWins":0,"eventId":null,"resets":2,"master":null,"clan":null,"user":{"id":"565e2141-9982-406d-81ba-9aafdd219dc4","name":"Ambryal"},"tournaments":[{"id":"9fc44ffc-bee2-486b-84bf-613e199a03a1","date":"2024-09-24T00:00:00.000Z","type":"DAILY","rounds":6,"eventId":null}],"inventory":[{"type":"bossTicket","count":1}]}
+
+
+
+async function genBrute({
+	level,
+	name=false,
+	
+}){
+	var template=heheheha
+	if(!LOCAL && BRUTE){template = await getBrute(BRUTE)}
+	
+	
+	
+	var brute = createRandomBruteStats()
+	brute.gender = getRandomProperty(Gender)
+	brute.colors=getRandomColors(brute.gender)
+	brute.body = getRandomBody(brute.gender)
+	brute.name=name?name:(LOCAL?generateName():"_")
+	brute.userId=brute.name
+	brute.id=brute.name
+	
+	
+	
+	for(var chr in template){if(!(chr in brute)){brute[chr] = template[chr]}}
+	
+	
+	
+	
+	for(var i=1;i<level;i++){brute=levelUp(brute);}
+	
+	return brute;
+	
+	
+	
+}
+
+
+function levelUp(brute){
+	var choices = getLevelUpChoices(brute)
+	var newbrute = updateBruteData(structuredClone(brute),choices[0])
+	return newbrute
+	
+}
+
+
 function combatIsOk(){var name1=brutes[0];var name2=brutes[1];if(name1.indexOf("@")!=-1){name1=name1.split("@")[1]};if(name2.indexOf("@")!=-1){name2=name2.split("@")[1]};
 cl("combatOK?",name1,name2,brutes,isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1])
 return isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1]}
