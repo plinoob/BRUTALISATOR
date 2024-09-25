@@ -5196,7 +5196,7 @@ $("h2").each(function(){
 	if($(this).text().indexOf("Vous avez osé défier")!=-1){defiDIV = $(this);}
 })
 $("h3").each(function(){
-	$(this).parent().find('img:first').attr("src","/images/creation/noCharacter.webp").css("transform","scale(-"+bruteDIVS.length+", 1)");
+	$(this).parent().find('img:first').attr("src","/images/creation/noCharacter.webp").css("transform","scale("+(bruteDIVS.length==0?1:-1)+", 1)");
 	bruteDIVS.push($(this));$(this).text("???")
 })
 defiDIV.text("")
