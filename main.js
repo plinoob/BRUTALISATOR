@@ -165,11 +165,10 @@ var generateFights
 async function simulFights(arg){
 	cl("SIMULFIGHTS",JSON.stringify(arg))
 	if(!GENERATE_FIGHT){if(LOCAL){GENERATE_FIGHT = generateFights}else{GENERATE_FIGHT = await fetch(BRUTALISATOR+"generateFights.js");
-	GENERATE_FIGHT = await response.text();
+	GENERATE_FIGHT = await GENERATE_FIGHT.text();
 	}}
 	
-	var response = await fetch(`/api/brute/${name}/for-hook`);
-    var html = await response.text();
+
 	
 	generateFights = GENERATE_FIGHT
 	
