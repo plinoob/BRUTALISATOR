@@ -106,14 +106,13 @@ cl("BRUTES : ",brutes)
 var bruteInputs = []
 var bruteDIVS = []
 
-cl(brutes)
-function launchFight(){		
+async function launchFight(){		
 		if(combat_lancer) return
 		if(!combatIsOk()) return
 		combat_lancer = true
 	stopLoading()
-	for(var i=0;i<2;i++){if(brutes[i].indexOf("@")==-1){brutes[i] = genBrute({level:randomLevel(56,5),name:brutes[i]})}else{brutes[i]=getBrute(brutes[i].split("@")[1])}} 
-			cl(brutes[0],brutes[1])
+	for(var i=0;i<2;i++){if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];
+	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename})}else{var brutename=brutes[i];brutes[i]=await getBrute(brutename.split("@")[1])}} 
 			simulFights({
 				fn:rien,
 				rota1:[[brutes[0]]],
