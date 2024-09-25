@@ -5182,8 +5182,8 @@ function launchFight(){
 	for(var i=0;i<2;i++){brutes[i] = genBrute({level:randomLevel(56,5),name:brutes[i]})} 
 			simulFights({
 				fn:rien,
-				rota1[[brutes[0]]],
-				rota2[[brutes[1]]],//number = boss
+				rota1[[brutes[0]],
+				rota2[[brutes[1]],//number = boss
 				backups:false,
 				fight_per_rota:1,
 				fight_total:1,
