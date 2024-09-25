@@ -12,11 +12,16 @@ return isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1]}
 
 
 var defiDIV
+var initialURL=""
+var initialVERSUS=""
+var versusGetsList=[]
+if(typeof(window)!="undefined"){
+initialURL = window.location.href
+initialVERSUS = window.location.href.split("?")[0]
 
-var initialURL = window.location.href
-var initialVERSUS = window.location.href.split("?")[0]
+versusGetsList = window.location.href.split("?")
 
-var versusGetsList = window.location.href.split("?")
+}
 versusGetsList = versusGetsList[1]?versusGetsList[1].split("&"):[]
 var versusGets = {};for(var v of versusGetsList){var agr = v.split("=");if(agr.length>1){versusGetsList[agr[0]]=agr[1]}}
 
