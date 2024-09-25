@@ -34,7 +34,7 @@ function rien(){}
 //----------------------------FIGHT
 
 function combatIsOk(){var name1=brutes[0];var name2=brutes[1];if(name1.indexOf("@")!=-1){name1=name1.split("@")[1]};if(name2.indexOf("@")!=-1){name2=name2.split("@")[1]};
-cl("combatOK?",isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1])
+cl("combatOK?",name1,name2,brutes,isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1])
 return isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1]}
 
 
@@ -48,6 +48,7 @@ initialVERSUS = window.location.href.split("?")[0]
 
 versusGetsList = window.location.href.split("?")
 
+cl("VERSUS?",window.location.href.split("?"))
 }
 versusGetsList = versusGetsList[1]?versusGetsList[1].split("&"):[]
 var versusGets = {};for(var v of versusGetsList){var agr = v.split("=");if(agr.length>1){versusGetsList[agr[0]]=agr[1]}}
