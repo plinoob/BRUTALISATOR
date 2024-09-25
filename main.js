@@ -337,7 +337,7 @@ brutesDivs[name].insertAfter($(this).parent().parent())
 
 if(brutesNames.length<7){arenaRunning=false;return}
 
- brutes = await getAllBrutes(brutesNames)
+var  brutes = await getAllBrutes(brutesNames)
 
 var imged=true
 
