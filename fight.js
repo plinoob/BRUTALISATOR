@@ -5198,7 +5198,7 @@ function gaussianRandom() {
 }
 
 function updateURL(){if(!combatIsOk()){return};window.history.replaceState(null,
-"",initialVERSUS+"?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed;defiDIV=brutes[0]+" a osé défier "+brutes[1]+" !")}
+"",initialVERSUS+"?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);defiDIV=brutes[0]+" a osé défier "+brutes[1]+" !")}
 
 // Exemple : générer un nombre gaussien avec une moyenne et un écart-type spécifique
 function gaussianRandomWithMeanAndStd(mean, stdDev) {
