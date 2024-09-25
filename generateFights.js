@@ -184,11 +184,22 @@ if(typeof(window)!="undefined"){	urrl= window.location.href;
 	if(fightWorker)fightWorker.terminate()
 		$("#mynetwork").remove()}
 },333)}
+
+var GENERATE_FIGHT
+var generateFights
+
 async function simulFights(arg){
 	cl("SIMULFIGHTS",JSON.stringify(arg))
-	fetch(BRUTALISATOR+"generateFights.js")
-	  .then(response => response.text())
-	  .then(function(generateFights){arg.generateFights = generateFights;simulFights_no_fetch(arg);
+	if(!GENERATE_FIGHT){if(LOCAL){GENERATE_FIGHT = generateFights}else{GENERATE_FIGHT = await fetch(BRUTALISATOR+"generateFights.js");
+	GENERATE_FIGHT = await response.text();
+	}}
+	
+	var response = await fetch(`/api/brute/${name}/for-hook`);
+    var html = await response.text();
+	
+	generateFights = GENERATE_FIGHT
+	
+	arg.generateFights = generateFights;simulFights_no_fetch(arg);
 })}
 
 

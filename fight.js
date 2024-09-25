@@ -5159,7 +5159,12 @@ var weaponsFR={"fan": "Éventail",
 
 
 
-function makeInputDIV(n){return div({0:div({3:"inputDIV",2:"img",22:"/images/creation/input.svg"}),2:"input",4:1,5:0})}
+function makeInputDIV(n){
+	var inpDIV = div({3:"inputDIV"})
+	
+	div({0:inpDIV,4:1,5:0,2:"img",22:"/images/creation/input.svg"})
+	
+	return div({0:,2:"input",4:1,5:0,6:{"change":function(){var br = $(this).val();brutes[n] = br; updateURL()}}}).val(brutes[n]).trigger("change")}
 
 
 function gaussianRandom() {
@@ -5169,6 +5174,9 @@ function gaussianRandom() {
     return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
 }
 
+function updateURL(){if(!combatIsOk()){return};window.history.replaceState(null,
+"",initialVERSUS+"?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed;defiDIV=brutes[0]+" a osé défier "+brutes[1]+" !")}
+
 // Exemple : générer un nombre gaussien avec une moyenne et un écart-type spécifique
 function gaussianRandomWithMeanAndStd(mean, stdDev) {
     return mean + gaussianRandom() * stdDev;
@@ -5176,6 +5184,7 @@ function gaussianRandomWithMeanAndStd(mean, stdDev) {
 
 function randomLevel(mean=33,std=3){return parseInt(Math.max(0,gaussianRandomWithMeanAndStd(mean,std)))}
 
+function combatIsOk(){return isNameValid(brutes[0]) && isNameValid(brutes[1]) && brutes[0]!=brutes[1]}
 
 
 var defiDIV
@@ -5198,6 +5207,7 @@ $("h2").each(function(){
 })
 $("h3").each(function(){
 	bruteDIVS.push($(this));$(this).text(" ")
+	$(this).find('img:first').attr("src","/images/creation/noCharacter.webp");
 })
 defiDIV.text(" ")
 $(".inputDIV").remove();
@@ -5207,7 +5217,18 @@ $("h5").each(function(){
 		var nimput = bruteInputs.length
 		makeInputDIV(nimput).parent().insertAfter($(this))
 	}
-	if($(this).text().indexOf("Lancer le combat")!=-1){$(this).parent().on("click mouseup",function(event){cl("lol");event.stopPropagation();event.preventDefault()})}
+	var combat_lancer = false
+	if($(this).text().indexOf("Lancer le combat")!=-1){$(this).parent().on("click mouseup",function(event){
+		
+		event.stopPropagation();event.preventDefault();
+		if(combat_lancer) return
+		if(!combatIsOk()) return
+		combat_lancer = true
+		
+		
+		
+	})}
 })
 
 
+stopLoading()
