@@ -64,7 +64,7 @@ function launchFight(){
 		if(!combatIsOk()) return
 		combat_lancer = true
 	stopLoading()
-	for(var i=0;i<2;i++){if(!brutes[i].indexOf("@")){brutes[i] = genBrute({level:randomLevel(56,5),name:brutes[i]})}else{brute[i]=getBrute(brutes[i].split("@")[1])}} 
+	for(var i=0;i<2;i++){if(brutes[i].indexOf("@")==-1){brutes[i] = genBrute({level:randomLevel(56,5),name:brutes[i]})}else{brutes[i]=getBrute(brutes[i].split("@")[1])}} 
 			simulFights({
 				fn:rien,
 				rota1:[[brutes[0]]],
