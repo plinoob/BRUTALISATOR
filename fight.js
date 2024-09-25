@@ -5207,7 +5207,7 @@ function gaussianRandom() {
     return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
 }
 
-function updateURL(){if(!combatIsOk()){return};window.history.replaceState(null,
+function updateURL(){cl("UPDATEURL",window.location.href,initialVERSUS+"?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);defiDIV=brutes[0]+" a osé défier "+brutes[1]+" !");if(!combatIsOk()){return};window.history.replaceState(null,
 "",initialVERSUS+"?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);defiDIV=brutes[0]+" a osé défier "+brutes[1]+" !"}
 
 // Exemple : générer un nombre gaussien avec une moyenne et un écart-type spécifique
@@ -5218,6 +5218,7 @@ function gaussianRandomWithMeanAndStd(mean, stdDev) {
 function randomLevel(mean=33,std=3){return parseInt(Math.max(0,gaussianRandomWithMeanAndStd(mean,std)))}
 
 function combatIsOk(){var name1=brutes[0];var name2=brutes[1];if(name1.indexOf("@")!=-1){name1=name1.split("@")[1]};if(name2.indexOf("@")!=-1){name2=name2.split("@")[1]};
+cl("combatOK?",isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1])
 return isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1]}
 
 
@@ -5235,6 +5236,7 @@ var brutes = [(versusGets.b1)?versusGets.b1:"",(versusGets.b2)?versusGets.b2:""]
 var bruteInputs = []
 var bruteDIVS = []
 
+if(combatIsOk()){launchFight()}
 
 $("h2").each(function(){
 	if($(this).text().indexOf("Vous avez osé défier")!=-1){defiDIV = $(this);}
