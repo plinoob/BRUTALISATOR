@@ -5176,7 +5176,8 @@ function makeInputDIV(n){
     "user-select": "none"         // Désactive la sélection du texte
 });
 	inp.keypress(async function (e) {
-  if (e.which == 13) {launchFight()
+  if (e.which == 13) {window.location.href = window.location.href;
+
 		  }
 		});
 	return inp
@@ -5211,7 +5212,8 @@ $("h5").each(function(){
 		
 		event.stopPropagation();event.preventDefault();
 
-		launchFight()
+		window.location.href = window.location.href;
+
 		
 		
 		
