@@ -5165,7 +5165,7 @@ function makeInputDIV(n){
 	div({0:inpDIV,4:1,5:0,2:"img",22:"/images/creation/input.svg"})
 	
 	var inp= div({0:inpDIV,2:"input",4:1,5:0,
-	6:{"input change":function(){var br = $(this).val();brutes[n] = br; updateURL();bruteDIVS[n].text(br==""?br:" ")}}}).val(brutes[n]).trigger("change")
+	6:{"input change":function(){var br = $(this).val();brutes[n] = br; updateURL();bruteDIVS[n].text((br!="")?br:" ")}}}).val(brutes[n]).trigger("change")
 	inp.css({
     "background": "transparent", // Fond transparent
     "border": "none",             // Pas de bordure
@@ -5187,7 +5187,8 @@ function makeInputDIV(n){
 
 
 
-function updateURL(){cl("UPDATEURL",window.location.href,initialVERSUS+"?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);if(!combatIsOk()){return};window.history.replaceState(null,
+function updateURL(){cl("UPDATEURL",window.location.href,initialVERSUS+"?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);defiDIV.text("");
+if(!combatIsOk()){return};window.history.replaceState(null,
 "","/?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);defiDIV.text(brutes[0]+" a osé défier "+brutes[1]+" !")}
 
 
