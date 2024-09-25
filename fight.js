@@ -5164,7 +5164,7 @@ function makeInputDIV(n){
 	
 	div({0:inpDIV,4:1,5:0,2:"img",22:"/images/creation/input.svg"})
 	
-	var inp= div({0:,2:"input",4:1,5:0,6:{"change":function(){var br = $(this).val();brutes[n] = br; updateURL();}}}).val(brutes[n]).trigger("change")
+	var inp= div({0:inpDIV,2:"input",4:1,5:0,6:{"change":function(){var br = $(this).val();brutes[n] = br; updateURL();}}}).val(brutes[n]).trigger("change")
 	
 	inp.keypress(async function (e) {
   if (e.which == 13) {launchFight()
