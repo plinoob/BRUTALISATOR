@@ -37,6 +37,7 @@ function combatIsOk(){var name1=brutes[0];var name2=brutes[1];if(name1.indexOf("
 cl("combatOK?",name1,name2,brutes,isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1])
 return isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1]}
 
+	var combat_lancer = false
 
 var defiDIV
 var initialURL=""

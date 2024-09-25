@@ -5183,7 +5183,6 @@ function makeInputDIV(n){
 	return inp
 	
 	}
-	var combat_lancer = false
 
 
 
