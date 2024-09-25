@@ -4,6 +4,58 @@ var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK",
 function rien(){}
 
 
+//----------------------------FIGHT
+
+function combatIsOk(){var name1=brutes[0];var name2=brutes[1];if(name1.indexOf("@")!=-1){name1=name1.split("@")[1]};if(name2.indexOf("@")!=-1){name2=name2.split("@")[1]};
+cl("combatOK?",isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1])
+return isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1]}
+
+
+var defiDIV
+
+var initialURL = window.location.href
+var initialVERSUS = window.location.href.split("?")[0]
+
+var versusGetsList = window.location.href.split("?")
+versusGetsList = versusGetsList[1]?versusGetsList[1].split("&"):[]
+var versusGets = {};for(var v of versusGetsList){var agr = v.split("=");if(agr.length>1){versusGetsList[agr[0]]=agr[1]}}
+
+var seed = versusGets.seed?versusGets.seed:0
+var brutes = [(versusGets.b1)?versusGets.b1:"",(versusGets.b2)?versusGets.b2:""]
+var bruteInputs = []
+var bruteDIVS = []
+
+
+function launchFight(){		
+		if(combat_lancer) return
+		if(!combatIsOk()) return
+		combat_lancer = true
+	stopLoading()
+	for(var i=0;i<2;i++){if(!brutes[i].indexOf("@")){brutes[i] = genBrute({level:randomLevel(56,5),name:brutes[i]})}else{brute[i]=getBrute(brutes[i].split("@")[1])}} 
+			simulFights({
+				fn:rien,
+				rota1:[[brutes[0]]],
+				rota2:[[brutes[1]]],//number = boss
+				backups:false,
+				fight_per_rota:1,
+				fight_total:1,
+				return_first_win:false//undefined : nothing, true : first win, false : first fight
+				})}
+
+function gaussianRandom() {
+    let u = 0, v = 0;
+    while (u === 0) u = Math.random(); // Évite 0 pour `u`
+    while (v === 0) v = Math.random(); // Évite 0 pour `v`
+    return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+}
+// Exemple : générer un nombre gaussien avec une moyenne et un écart-type spécifique
+function gaussianRandomWithMeanAndStd(mean, stdDev) {
+    return mean + gaussianRandom() * stdDev;
+}
+
+function randomLevel(mean=33,std=3){return parseInt(Math.max(0,gaussianRandomWithMeanAndStd(mean,std)))}
+
+
 
 
 var nfps=60;var dicfps={};var dirfps=[];function fps(a){var f=dirfps.length;var t=function(){if(!(a in dicfps)){dicfps[a]=false;a(...arguments);setTimeout(function(){var b=dicfps[a];delk(dicfps,a);if(typeof(b)==typeof([])){dirfps[f](...b)}},nfps)}else{dicfps[a]=arguments;};};dirfps.push(t);return(t)};
@@ -2940,63 +2992,10 @@ var getRandomBonus = (brute, rerollUntilFound = false, disabledSkills = [], disa
     } : null;
 };
 
-//----------------------------FIGHT
-
-function combatIsOk(){var name1=brutes[0];var name2=brutes[1];if(name1.indexOf("@")!=-1){name1=name1.split("@")[1]};if(name2.indexOf("@")!=-1){name2=name2.split("@")[1]};
-cl("combatOK?",isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1])
-return isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1]}
-
-
-var defiDIV
-
-var initialURL = window.location.href
-var initialVERSUS = window.location.href.split("?")[0]
-
-var versusGetsList = window.location.href.split("?")
-versusGetsList = versusGetsList[1]?versusGetsList[1].split("&"):[]
-var versusGets = {};for(var v of versusGetsList){var agr = v.split("=");if(agr.length>1){versusGetsList[agr[0]]=agr[1]}}
-
-var seed = versusGets.seed?versusGets.seed:0
-var brutes = [(versusGets.b1)?versusGets.b1:"",(versusGets.b2)?versusGets.b2:""]
-var bruteInputs = []
-var bruteDIVS = []
-
-
-function launchFight(){		
-		if(combat_lancer) return
-		if(!combatIsOk()) return
-		combat_lancer = true
-	stopLoading()
-	for(var i=0;i<2;i++){if(!brutes[i].indexOf("@")){brutes[i] = genBrute({level:randomLevel(56,5),name:brutes[i]})}else{brute[i]=getBrute(brutes[i].split("@")[1])}} 
-			simulFights({
-				fn:rien,
-				rota1:[[brutes[0]]],
-				rota2:[[brutes[1]]],//number = boss
-				backups:false,
-				fight_per_rota:1,
-				fight_total:1,
-				return_first_win:false//undefined : nothing, true : first win, false : first fight
-				})}
-
-function gaussianRandom() {
-    let u = 0, v = 0;
-    while (u === 0) u = Math.random(); // Évite 0 pour `u`
-    while (v === 0) v = Math.random(); // Évite 0 pour `v`
-    return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
-}
-// Exemple : générer un nombre gaussien avec une moyenne et un écart-type spécifique
-function gaussianRandomWithMeanAndStd(mean, stdDev) {
-    return mean + gaussianRandom() * stdDev;
-}
-
-function randomLevel(mean=33,std=3){return parseInt(Math.max(0,gaussianRandomWithMeanAndStd(mean,std)))}
 
 
 
 
-
-
-if(combatIsOk()){launchFight()}
 
 //---------------------------------------------------
 
@@ -3021,8 +3020,8 @@ if(!isTextInDOM(VERSION,"p")){alertAndStop(ERROR_VERSION);};
 
 parseURL()
 
-
-if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
+if(combatIsOk()){launchFight()}
+else if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
 else if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATOR+"destiny.js")}
 else if(url.length==3 && url[2]=="arena"){BRUTE = url[1];arena()}
 else if(url.length==4 && url[2]=="versus"){BRUTE = url[1];addScript(BRUTALISATOR+"fight.js")}
