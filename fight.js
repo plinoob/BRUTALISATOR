@@ -5165,7 +5165,15 @@ function makeInputDIV(n){
 	div({0:inpDIV,4:1,5:0,2:"img",22:"/images/creation/input.svg"})
 	
 	var inp= div({0:inpDIV,2:"input",4:1,5:0,6:{"change":function(){var br = $(this).val();brutes[n] = br; updateURL();}}}).val(brutes[n]).trigger("change")
-	
+	inp.css({
+    "background": "transparent", // Fond transparent
+    "border": "none",             // Pas de bordure
+    "color": "#000",              // Couleur du texte visible
+    "outline": "none",            // Pas d'effet de focus
+    //"caret-color": "transparent", // Cache le curseur d'insertion
+    "box-shadow": "none",         // Pas d'ombre portée
+    "user-select": "none"         // Désactive la sélection du texte
+});
 	inp.keypress(async function (e) {
   if (e.which == 13) {launchFight()
 		  }
