@@ -141,7 +141,8 @@ simulFights({
 	rota2,//number = boss
 	backups,
 	fight_per_rota,
-	fight_total
+	fight_total,
+	return_first_win//undefined : nothing, true : first win, false : first fight
 	})
 */
 
@@ -193,7 +194,8 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	
 	if(rota1[0].length+(rota2[0]?rota2[0].length:1)>2){generateFights = generateFights.replace('var CLANWAR'+' = false','var CLANWAR = true'+";")}
 	if(backups){generateFights = generateFights.replace('var BACKUPS'+' = false','var BACKUPS = true'+";")}
-	if(return_first_win){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN = false','var RETURN_FIRST_WIN = true'+";")}
+	if(return_first_win===true){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN','var RETURN_FIRST_WIN = true'+";")}
+	if(return_first_win===false){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN','var RETURN_FIRST_WIN = false'+";")}
 	
 	generateFights = generateFights.replace("var FIGHTS_PER_ROTA"+" = 1","var FIGHTS_PER_ROTA = "+fight_per_rota+";")
 	generateFights = generateFights.replace("var FIGHT_TOTAL"+" = 1","var FIGHT_TOTAL = "+fight_total+";")
@@ -210,7 +212,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	// Créer le worker à partir de l'URL du Blob
 	fightWorker = new Worker(workerUrl);
 	fightWorker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
-	e.data.ended=true};if(e.data.ended){stopLoading();fightWorker.terminate()};fn(e.data.bilan)}
+	e.data.ended=true};if(e.data.ended){stopLoading();fightWorker.terminate()};fn(e.data.bilan,e.data.ended);}
 
 	startLoading();
 	
@@ -225,7 +227,36 @@ function setImageSrc(prevSrc,newSrc){
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-async function arena(tries){
+
+
+var url
+function parseURL(){
+url=window.location.href.split("?")[0].split("/")
+url.shift()
+url.shift()
+if(url[url.length-1] == ""){url.pop();}
+
+if(url.length>2 && url[2] == "fight"){FIGHT_TYPE = "fight"}
+if(url.length>6 && url[4] == "war" && url[6] == "fight"){FIGHT_TYPE = "war"}
+}
+var FIGHT_TYPE
+
+
+var BRUTE
+var CLAN
+
+
+var arenaRunning
+var arenaBruteAc
+
+var arenaInt
+clearInterval(arenaInt);
+arenaInt = setInterval(function(){parseURL();
+if(url.length==3 && url[2]=="arena"){BRUTE = url[1];if(!arenaRunning && arenaBruteAc==BRUTE){arena()}}else{arenaRunning=false}
+},166)
+
+async function arena(){arenaRunning=true
+arenaBruteAc = BRUTE
 	
 
 	
@@ -246,7 +277,7 @@ elements.each(function() {
 brutesDivs[name].insertAfter($(this).parent().parent())
 });
 
-if(brutesNames.length<7){await sleep(800);if(tries>5){return};return arena(tries+1)}
+if(brutesNames.length<7){arenaRunning=false;return}
 
  brutes = await getAllBrutes(brutesNames)
 
@@ -257,7 +288,7 @@ var rota2 = [[brutes.shift()]]
 var rota1 = [] ; for(var b of brutes) rota1.push([b])
 
 				simulFights({
-					fn:function(res){stopLoading();
+					fn:function(res,ended){stopLoading();if(ended){arenaRunning=false}
 					
 					if(imged){imged=false
 					if(Math.random()*100<1){setImageSrc(img_arbitre,img_lapin)}
@@ -2929,25 +2960,12 @@ function alertAndStop(error){stopLoading();alert(error);throw new Error(error);}
 if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alertAndStop(ERROR_WEBSITE);}
 if(!isTextInDOM(VERSION,"p")){alertAndStop(ERROR_VERSION);};
 
-var url = window.location.href.split("?")[0].split("/")
-url.shift()
-url.shift()
-cl(url)
-
-var FIGHT_TYPE = 0
-
-if(url[url.length-1] == ""){url.pop();}
-
-if(url.length>2 && url[2] == "fight"){FIGHT_TYPE = "fight"}
-if(url.length>6 && url[4] == "war" && url[6] == "fight"){FIGHT_TYPE = "war"}
-
-var BRUTE = ""
-var CLAN = ""
+parseURL()
 
 
 if(url.length==1){addScript(BRUTALISATOR+"custom.js")}
 else if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATOR+"destiny.js")}
-else if(url.length==3 && url[2]=="arena"){BRUTE = url[1];arena(BRUTE)}
+else if(url.length==3 && url[2]=="arena"){BRUTE = url[1];arena()}
 else if(url.length==4 && url[2]=="versus"){BRUTE = url[1];addScript(BRUTALISATOR+"fight.js")}
 else if(url.length==4 && url[2]=="clan"){CLAN = url[3];addScript(BRUTALISATOR+"bossDamage.js")}
 else if(/*BRANCHE == "dev" && */url.length==3 && url[1]=="user"){addScript(BRUTALISATOR+"devTools.js")}

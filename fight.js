@@ -5164,8 +5164,31 @@ function makeInputDIV(n){
 	
 	div({0:inpDIV,4:1,5:0,2:"img",22:"/images/creation/input.svg"})
 	
-	return div({0:,2:"input",4:1,5:0,6:{"change":function(){var br = $(this).val();brutes[n] = br; updateURL()}}}).val(brutes[n]).trigger("change")}
+	var inp= div({0:,2:"input",4:1,5:0,6:{"change":function(){var br = $(this).val();brutes[n] = br; updateURL();}}}).val(brutes[n]).trigger("change")
+	
+	inp.keypress(async function (e) {
+  if (e.which == 13) {launchFight()
+		  }
+		});
+	
+	}
+	
 
+function launchFight(){		
+		if(combat_lancer) return
+		if(!combatIsOk()) return
+		combat_lancer = true
+
+	for(var i=0;i<2;i++){brutes[i] = genBrute({level:randomLevel(56,5),name:brutes[i]})} 
+			simulFights({
+				fn:rien,
+				rota1[[brutes[0]]],
+				rota2[[brutes[1]]],//number = boss
+				backups:false,
+				fight_per_rota:1,
+				fight_total:1,
+				return_first_win:false//undefined : nothing, true : first win, false : first fight
+				})}
 
 function gaussianRandom() {
     let u = 0, v = 0;
@@ -5221,9 +5244,8 @@ $("h5").each(function(){
 	if($(this).text().indexOf("Lancer le combat")!=-1){$(this).parent().on("click mouseup",function(event){
 		
 		event.stopPropagation();event.preventDefault();
-		if(combat_lancer) return
-		if(!combatIsOk()) return
-		combat_lancer = true
+
+		launchFight()
 		
 		
 		
