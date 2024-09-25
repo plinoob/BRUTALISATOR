@@ -5165,7 +5165,7 @@ function makeInputDIV(n){
 	div({0:inpDIV,4:1,5:0,2:"img",22:"/images/creation/input.svg"})
 	
 	var inp= div({0:inpDIV,2:"input",4:1,5:0,
-	6:{"change":function(){var br = $(this).val();brutes[n] = br; updateURL();bruteDIVS[n]=br}}}).val(brutes[n]).trigger("change")
+	6:{"input change":function(){var br = $(this).val();brutes[n] = br; updateURL();bruteDIVS[n].text(br)}}}).val(brutes[n]).trigger("change")
 	inp.css({
     "background": "transparent", // Fond transparent
     "border": "none",             // Pas de bordure
@@ -5197,13 +5197,13 @@ $("h2").each(function(){
 })
 $("h3").each(function(){
 	bruteDIVS.push($(this));$(this).text(" ")
-	$(this).find('img:first').attr("src","/images/creation/noCharacter.webp");
+	$(this).parent().find('img:first').attr("src","/images/creation/noCharacter.webp");
 })
-defiDIV.text(" ")
+defiDIV.text("???")
 $(".inputDIV").remove();
 $("h5").each(function(){
 	if($(this).text().indexOf("Niveau")!=-1){
-		$(this).text("Niveau ???")
+		$(this).text("Niveau ??")
 		var nimput = bruteInputs.length
 		makeInputDIV(nimput).parent().insertAfter($(this))
 	}
