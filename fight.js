@@ -5179,7 +5179,7 @@ function launchFight(){
 		if(!combatIsOk()) return
 		combat_lancer = true
 
-	for(var i=0;i<2;i++){brutes[i] = genBrute({level:randomLevel(56,5),name:brutes[i]})} 
+	for(var i=0;i<2;i++){if(!brutes[i].indexOf("@")){brutes[i] = genBrute({level:randomLevel(56,5),name:brutes[i]})}else{brute[i]=getBrute(brutes[i].split("@")[1])}} 
 			simulFights({
 				fn:rien,
 				rota1:[[brutes[0]]],
@@ -5207,7 +5207,8 @@ function gaussianRandomWithMeanAndStd(mean, stdDev) {
 
 function randomLevel(mean=33,std=3){return parseInt(Math.max(0,gaussianRandomWithMeanAndStd(mean,std)))}
 
-function combatIsOk(){return isNameValid(brutes[0]) && isNameValid(brutes[1]) && brutes[0]!=brutes[1]}
+function combatIsOk(){var name1=brutes[0];var name2=brutes[1];if(name1.indexOf("@")!=-1){name1=name1.split("@")[1]};if(name2.indexOf("@")!=-1){name2=name2.split("@")[1]};
+return isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1]}
 
 
 var defiDIV
