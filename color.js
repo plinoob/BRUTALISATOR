@@ -174,7 +174,7 @@ async function simulFights(arg){
 	generateFights = GENERATE_FIGHT
 	
 	arg.generateFights = generateFights;simulFights_no_fetch(arg);
-})}
+}
 
 
 async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
