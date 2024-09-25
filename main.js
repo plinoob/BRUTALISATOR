@@ -3019,7 +3019,7 @@ var ERROR_VERSION = "Mauvaise version de 💪BRUTALISATOR : "+VERSION+")"
 var ERROR_WEBSITE = "Utilise 💪BRUTALISATOR sur une page Labrute !"
 var NOTHING_TO_DO = "💪BRUTALISATOR n'a pas encore de fonctionnalité pour cette page ! \n\n============== FONCTIONNALITÉS ================\n\n• CRÉATION : Customisation de l'apparence, choix du maître\n\n• CLAN : Estimation des dégâts journaliers\n\n• COMBAT : Récapitulatif des dommages\n\n• DESTINÉE : Meilleure visualisation"
 function alertAndStop(error){stopLoading();alert(error);throw new Error(error);}
-
+cl("START")
 if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alertAndStop(ERROR_WEBSITE);}
 if(!isTextInDOM(VERSION,"p")){alertAndStop(ERROR_VERSION);};
 
