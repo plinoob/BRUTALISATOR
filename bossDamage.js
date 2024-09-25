@@ -5187,7 +5187,7 @@ var weaponsFR={"fan": "Éventail",
 					backups:false,
 					fight_per_rota:100,
 					fight_total:20000,
-					return_first_win:false,
+					return_first_win:undefined,
 					})
 				
 				
