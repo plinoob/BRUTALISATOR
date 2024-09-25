@@ -287,7 +287,7 @@ var rota2 = [[brutes.shift()]]
 var rota1 = [] ; for(var b of brutes) rota1.push([b])
 
 				simulFights({
-					fn:function(res,ended){stopLoading()}
+					fn:function(res,ended){stopLoading();
 					
 					if(imged){imged=false
 					if(Math.random()*100<1){setImageSrc(img_arbitre,img_lapin)}
