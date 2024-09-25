@@ -356,10 +356,11 @@ var arenaBruteAc
 
 var arenaInt
 clearInterval(arenaInt);
-arenaInt = setInterval(function(){parseURL();
+if(typeof(window)!="undefined"){
+	arenaInt = setInterval(function(){parseURL();
 if(url.length==3 && url[2]=="arena"){BRUTE = url[1];if(!arenaRunning && arenaBruteAc==BRUTE){arena()}}else{arenaRunning=false}
 },166)
-
+}
 async function arena(){arenaRunning=true
 arenaBruteAc = BRUTE
 	
