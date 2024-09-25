@@ -5188,7 +5188,7 @@ function makeInputDIV(n){
 
 
 function updateURL(){cl("UPDATEURL",window.location.href,initialVERSUS+"?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);if(!combatIsOk()){return};window.history.replaceState(null,
-"",initialVERSUS+"?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);defiDIV=brutes[0]+" a osé défier "+brutes[1]+" !"}
+"","/?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);defiDIV=brutes[0]+" a osé défier "+brutes[1]+" !"}
 
 
 
