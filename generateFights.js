@@ -310,7 +310,7 @@ async function simulFights(arg){
 
 
 async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
-,backups,fight_per_rota,fight_total,return_first_win}){
+,backups,fight_per_rota,fight_total,return_first_win,loading=true}){
 
 	if(fightWorker)fightWorker.terminate()
 		cl("rota2",rota2)
@@ -346,7 +346,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	fightWorker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
 	e.data.ended=true};if(e.data.ended){stopLoading();fightWorker.terminate()};fn(e.data.bilan,e.data.ended);}
 
-	startLoading();
+	if(loading)startLoading();
 	
 
 	
@@ -441,6 +441,7 @@ else{setImageSrc(img_ours,img_ours2)}
 					fight_per_rota:200,
 					fight_total:10000,
 					return_first_win:undefined,
+					loading:false
 					})
 
 	
