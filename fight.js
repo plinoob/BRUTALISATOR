@@ -5160,11 +5160,12 @@ var weaponsFR={"fan": "Éventail",
 
 
 function makeInputDIV(n){
-	var inpDIV = div({3:"inputDIV"})
+	var inpDIV = div({3:"inputDIV",4:2,12:["182","30"],5:[0,50]})
 	
 	div({0:inpDIV,4:1,5:0,2:"img",22:"/images/creation/input.svg"})
 	
-	var inp= div({0:inpDIV,2:"input",4:1,5:0,6:{"change":function(){var br = $(this).val();brutes[n] = br; updateURL();}}}).val(brutes[n]).trigger("change")
+	var inp= div({0:inpDIV,2:"input",4:1,5:0,
+	6:{"change":function(){var br = $(this).val();brutes[n] = br; updateURL();bruteDIVS[n]=br}}}).val(brutes[n]).trigger("change")
 	inp.css({
     "background": "transparent", // Fond transparent
     "border": "none",             // Pas de bordure
