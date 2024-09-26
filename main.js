@@ -68,10 +68,14 @@ cl("new :",brute.skills,brute.weapons,brute.pets)
 
 function levelUp(brute,random){
 	var choices = getLevelUpChoices(brute)
-	if(random)	{var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])
-		cl(choices)
+	if(random && choices[0].type == "skill")	{var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])
+		if(boosters.includes(choices[0].skill)){for(var skill of brute.skills){if(boosters.includes(skill)){boosters.splice(boosters.indexOf(skill), 1)}}
+		choices[0].skill = shuffle(boosters)[0]
 	}
-	var newbrute = updateBruteData(structuredClone(brute),choices[0])
+	}
+	var chosed = 0
+	if(choices[0].type == "stats"){if(brute[choices[0].stat1+"Modifier"]>1){cl("modifier",choices[0].stat1);chosed = 0}else{chosed = 1}}
+	var newbrute = updateBruteData(structuredClone(brute),choices[chosed])
 	return newbrute
 	
 }
