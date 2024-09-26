@@ -39,7 +39,7 @@ async function genBrute({
 	
 	Math.random = rnd
 	
-	for(var i=1;i<level;i++){brute=levelUp(brute);}
+	for(var i=1;i<level;i++){brute=levelUp(brute,random);}
 	
 	if(random){cl("prev :",brute.skills,brute.weapons,brute.pets)
 	brute.weapons = shuffle(weapons.reduce((acc, obj) => {acc.push(obj.name);return acc;}, [])).slice(0,brute.weapons.length)
@@ -47,13 +47,13 @@ async function genBrute({
 	brute.enduranceValue = Math.floor(brute.enduranceStat * brute.enduranceModifier);}
 	brute.pets = shuffle(pets.reduce((acc, obj) => {acc.push(obj.name);if(obj.name.startsWith("dog")){acc.push(obj.name)};return acc;}, [])).slice(0,brute.pets.length)
 	var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])
-	var boosterCount = brute.skills.reduce((acc, obj) => {if(boosters.includes(obj)){acc++};return acc;}, 0)
+	var keepBoosters = brute.skills.reduce((acc, obj) => {if(boosters.includes(obj)){acc.push(obj)};return acc;}, [])
 	var not_boosters = skills.reduce((acc, obj) => {if(obj.type!="booster"){acc.push(obj.name)};return acc;}, [])
 	var not_boosterCount = brute.skills.reduce((acc, obj) => {if(not_boosters.includes(obj)){acc++};return acc;}, 0)
 	if(Math.random()*3<1){not_boosters.splice(not_boosters.indexOf("monk"), 1)};
     if(Math.random()*6<1){not_boosters.splice(not_boosters.indexOf("hideaway"), 1)};
 	if(Math.random()*6<1){not_boosters.splice(not_boosters.indexOf("chef"), 1)};
-	brute.skills = shuffle(boosters).slice(0,boosterCount).concat(shuffle(not_boosters).slice(0,not_boosterCount))
+	brute.skills = keepBoosters.concat(shuffle(not_boosters).slice(0,not_boosterCount))
 cl("new :",brute.skills,brute.weapons,brute.pets)
 	
 	}
@@ -66,8 +66,11 @@ cl("new :",brute.skills,brute.weapons,brute.pets)
 }
 
 
-function levelUp(brute){
+function levelUp(brute,random){
 	var choices = getLevelUpChoices(brute)
+	if(random)	{var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])
+		cl(choices)
+	}
 	var newbrute = updateBruteData(structuredClone(brute),choices[0])
 	return newbrute
 	
