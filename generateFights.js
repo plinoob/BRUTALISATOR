@@ -5838,7 +5838,7 @@ var weaponsFR={"fan": "Éventail",
 function simulServer(a){
 	
 	var bossDmg = parseInt(a["0"]?.data?.damageOnBoss?.increment)
-	if(bossDmg>0){bilac.boss+=bossDmg};return 0}
+	if(bossDmg>0){bilac.boss+=bossDmg};return 0;
 	
 	if(BACKUPS && a.where?.skill?.has == "backup"){return BACKUPS[a.where.userId]}
 }
