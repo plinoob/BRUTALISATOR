@@ -233,7 +233,8 @@ if(!Chaos){Chaos=class {
 var initialRandom
 if(!initialRandom){initialRandom=Math.random}
 function turnRandomToCHAOS(...args){
-	Math.random = new Chaos(...args).random
+	var chaobject=new Chaos(...args)
+	Math.random = chaobject.random.bind(chaobject)
 }
 
 function turnCHAOSToRandom(){Math.random=initialRandom}
