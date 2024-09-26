@@ -5890,9 +5890,9 @@ function sleep(ms) {
 }
 
 async function genFights() {var pos1=0,pos2=0
-cl(BACKUPS)
-cl({ brutes:  true?structuredClone(TEAM1[pos1]):TEAM1[pos1]})
-cl({ [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] })
+//cl(BACKUPS)
+//cl({ brutes:  true?structuredClone(TEAM1[pos1]):TEAM1[pos1]})
+//cl({ [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] })
 	var nbfights=0
 	while(bilac.j<FIGHT_TOTAL){
 		
