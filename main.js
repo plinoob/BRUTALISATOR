@@ -58,7 +58,6 @@ function levelUp(brute){
 
 
 function combatIsOk(){var name1=brutes[0];var name2=brutes[1];if(name1.indexOf("@")!=-1){name1=name1.split("@")[1]};if(name2.indexOf("@")!=-1){name2=name2.split("@")[1]};
-cl("combatOK?",name1,name2,brutes,isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1])
 return isNameValid(name1) && isNameValid(name2) && brutes[0]!=brutes[1]}
 
 	var combat_lancer = false
@@ -311,7 +310,7 @@ function addScript( src ,src2) {
 	cl("addscript",src);
 	fetch(src)
 	  .then(response => response.text())
-	  .then(src2?function(html){cl("OK on a le 1er",html);
+	  .then(src2?function(html){
 		  fetch(src2)
 	  .then(response => response.text())
 	  .then(function(html2){var s = document.createElement( 'script' );
@@ -402,7 +401,7 @@ var generateFights
 
 async function simulFights(arg){
 	cl("SIMULFIGHTS",JSON.stringify(arg))
-	if(!GENERATE_FIGHT){if(LOCAL){GENERATE_FIGHT = generateFights}else{cl("DL generateFight");GENERATE_FIGHT = await fetch(BRUTALISATOR+"generateFights.js");
+	if(!GENERATE_FIGHT){if(LOCAL){GENERATE_FIGHT = generateFights}else{cl("DL generateFight...");GENERATE_FIGHT = await fetch(BRUTALISATOR+"generateFights.js");
 	GENERATE_FIGHT = await GENERATE_FIGHT.text();
 	}}
 	
@@ -418,7 +417,6 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 ,backups,fight_per_rota,fight_total,return_first_win,loading=true,modifiers,seed}){
 
 	if(fightWorker)fightWorker.terminate()
-		cl("rota2",rota2)
 	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
 		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = [[bosses["+rota2+"]]];")
 	}
