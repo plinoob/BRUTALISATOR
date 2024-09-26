@@ -58,7 +58,7 @@ async function genBrute({
 	
 	var rnd=Math.random
 	
-	if(random){turnRandomToCHAOS(name))
+	if(random){turnRandomToCHAOS(name)}
 	
 	brute.gender = getRandomProperty(Gender)
 	brute.colors=getRandomColors(brute.gender)
