@@ -116,8 +116,9 @@ function isara(a){return(Array.isArray(a))};
 function int(a){return parseInt(a)}
 var U = undefined
 
+var Chaos
 //Random generator
-class Chaos{
+if(!Chaos){Chaos=class {
   constructor(...a){//Arguments : Anything            (INT FLOAT STRING et ARRAYS impacteront ; Objects impacteront en fonction de leur classe)
                     //L'objet vole 10 fois au départ... si non voulu : new Chaos().seed(_,_,_,_)
     var c=Chaos
@@ -226,7 +227,7 @@ class Chaos{
   
 }
 
-
+}
 
 
 
