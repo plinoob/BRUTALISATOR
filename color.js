@@ -41,7 +41,7 @@ async function genBrute({
 	
 	for(var i=1;i<level;i++){brute=levelUp(brute,random);}
 	
-	if(random){cl("prev :",brute.skills,brute.weapons,brute.pets)
+	if(random){
 	brute.weapons = shuffle(weapons.reduce((acc, obj) => {acc.push(obj.name);return acc;}, [])).slice(0,brute.weapons.length)
 	for(var i of brute.pets){var pet = pets.find((p) => p.name === i);brute.enduranceStat+=pet.enduranceMalus;
 	brute.enduranceValue = Math.floor(brute.enduranceStat * brute.enduranceModifier);}
@@ -55,7 +55,6 @@ async function genBrute({
     if(Math.random()*6>1){not_boosters.splice(not_boosters.indexOf("hideaway"), 1)};
 	if(Math.random()*6>1){not_boosters.splice(not_boosters.indexOf("chef"), 1)};
 	brute.skills = keepBoosters.concat(shuffle(not_boosters).slice(0,not_boosterCount))
-cl("new :",brute.skills,brute.weapons,brute.pets)
 	
 	}
 	return brute;
@@ -115,20 +114,18 @@ async function launchFight(){
 	brutes.sort()
 	for(var i=0;i<2;i++){
 if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
-	var previousmonk=0,previousplank=0
-	for(var s in skills){if(skills[s].name=="monk"){previousmonk = skills[s].odds;skills[s].odds=previousmonk/7};
-	if(skills[s].name=="hideaway"){previousplank = skills[s].odds;skills[s].odds=previousmonk/2}}
-	backups[i] = await genBrute({level:randomLevel(17,6),name:brutename+"$",random:true});
+	backups[i] = [await genBrute({level:randomLevel(17,6),name:brutename+"$",random:true})];
 	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename,random:true});
-	for(var s in skills){if(skills[s].name=="monk"){skills[s].odds = previousmonk;};if(skills[s].name=="hideaway"){skills[s].odds = previousplank;}}
-	turnCHAOSToRandom()}
+	turnCHAOSToRandom();
+	if(Math.random()>0.5){backups[i]=[]}
+	}
 else{var brutename=brutes[i];brutes[i]=await getBrute(brutename.split("@")[1])}
 	} 
 			simulFights({
 				fn:rien,
 				rota1:[[brutes[0]]],
 				rota2:[[brutes[1]]],//number = boss
-				backups:{[brutes[0].userId]:[backups[0]],[brutes[1].userId]:[backups[1]]},
+				backups:{[brutes[0].userId]:backups[0],[brutes[1].userId]:backups[1]},
 				fight_per_rota:1,
 				fight_total:1,
 				return_first_win:false,//undefined : nothing, true : first win, false : first fight
