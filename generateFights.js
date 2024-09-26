@@ -46,21 +46,19 @@ async function genBrute({
 	var template=heheheha
 	if(!LOCAL && BRUTE){template = await getBrute(BRUTE)}
 	
-	
-	
-
-	brute.name=name?name:(LOCAL?generateName():"_")
-	brute.userId=brute.name
-	brute.id=brute.name
-	
-	
-	
-	for(var chr in template){if(!(chr in brute)){brute[chr] = template[chr]}}
+	name=name?name:(LOCAL?generateName():"_")
 	
 	
 	if(seed){turnRandomToCHAOS(seed,name)}
 	
 	var brute = createRandomBruteStats()
+
+	brute.name=name
+	brute.userId=brute.name
+	brute.id=brute.name
+	
+	for(var chr in template){if(!(chr in brute)){brute[chr] = template[chr]}}
+	
 	brute.gender = getRandomProperty(Gender)
 	brute.colors=getRandomColors(brute.gender)
 	brute.body = getRandomBody(brute.gender)
