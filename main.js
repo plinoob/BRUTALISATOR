@@ -30,7 +30,7 @@ async function genBrute({
 	for(var chr in template){if(!(chr in brute)){brute[chr] = template[chr]}}
 	
 	var rnd=Math.random
-	
+
 	if(random){turnRandomToCHAOS(name)}
 	
 	brute.gender = getRandomProperty(Gender)
@@ -41,11 +41,25 @@ async function genBrute({
 	
 	for(var i=1;i<level;i++){brute=levelUp(brute);}
 	
+	if(random){cl("prev :",brute.skills,brute.weapons,brute.pets)
+	brute.weapons = shuffle(weapons.reduce((acc, obj) => {acc.push(obj.name);return acc;}, [])).slice(0,brute.weapons.length)
+	for(var i of brute.pets){var pet = pets.find((p) => p.name === petName);brute.enduranceStat+=pet.enduranceMalus;
+	brute.enduranceValue = Math.floor(brute.enduranceStat * brute.enduranceModifier);}
+	brute.pets = shuffle(pets.reduce((acc, obj) => {acc.push(obj.name);if(obj.name.startsWith("dog")){acc.push(obj.name)};return acc;}, [])).slice(0,brute.pets.length)
+	var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, []))
+	var boosterCount = brute.skills.reduce((acc, obj) => {if(boosters.includes(obj)){acc++};return acc;}, 0)
+	var not_boosters = skills.reduce((acc, obj) => {if(obj.type!="booster"){acc.push(obj.name)};return acc;}, []))
+	var not_boosterCount = brute.skills.reduce((acc, obj) => {if(not_boosters.includes(obj)){acc++};return acc;}, 0)
+	brute.skills = shuffle(boosters).slice(0,boosterCount).concat(shuffle(not_boosters).slice(0,not_boosterCount))
+cl("new :",brute.skills,brute.weapons,brute.pets)
 	
+	}
 	return brute;
 	
 	
-	
+	var noms = objets
+
+
 }
 
 
