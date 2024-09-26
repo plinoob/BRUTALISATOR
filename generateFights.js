@@ -5840,8 +5840,8 @@ function simulServer(a){
 	
 	var bossDmg = parseInt(a["0"]?.data?.damageOnBoss?.increment)
 	if(bossDmg>0){bilac.boss+=bossDmg};
-	cl(JSON.parse(BACKUPS),JSO.parse(a))
-	if(BACKUPS && a.where?.skill?.has == "backup"){return BACKUPS[a.where.userId]}
+	cl(JSON.stringify(BACKUPS),JSON.stringify(a))
+	if(BACKUPS && a.where?.skill?.has == "backup"){cl(BACKUPS[a.where.userId]);return BACKUPS[a.where.userId]}
 	return 0;
 }
 
