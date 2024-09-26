@@ -117,11 +117,12 @@ async function launchFight(){
 	brutes.sort()
 	for(var i=0;i<2;i++){
 if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
-	var previousmonk=0
-	for(var s in skills){if(skills[s].name=="monk"){previousmonk = skills[s].odds;skills[s].odds=previousmonk/10}}
+	var previousmonk=0,previousplank=0
+	for(var s in skills){if(skills[s].name=="monk"){previousmonk = skills[s].odds;skills[s].odds=previousmonk/7};
+	if(skills[s].name=="hideaway"){previousplank = skills[s].odds;skills[s].odds=previousmonk/2}}
 	backups[i] = await genBrute({level:randomLevel(17,6),name:brutename+"$",random:true});
 	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename,random:true});
-	for(var s in skills){if(skills[s].name=="monk"){skills[s].odds = previousmonk;}}
+	for(var s in skills){if(skills[s].name=="monk"){skills[s].odds = previousmonk;};if(skills[s].name=="hideaway"){skills[s].odds = previousplank;}}
 	turnCHAOSToRandom()}
 else{var brutename=brutes[i];brutes[i]=await getBrute(brutename.split("@")[1])}
 	} 
@@ -5839,7 +5840,7 @@ function simulServer(a){
 	
 	var bossDmg = parseInt(a["0"]?.data?.damageOnBoss?.increment)
 	if(bossDmg>0){bilac.boss+=bossDmg};return 0;
-	
+	cl("back ?",BACKUPS,a,a.where?.skill?.has == "backup")
 	if(BACKUPS && a.where?.skill?.has == "backup"){return BACKUPS[a.where.userId]}
 }
 
@@ -5889,7 +5890,9 @@ function sleep(ms) {
 }
 
 async function genFights() {var pos1=0,pos2=0
-cl(BACKUPS,{ brutes:  true?structuredClone(TEAM1[pos1]):TEAM1[pos1]},{ [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] });
+cl(BACKUPS)
+cl({ brutes:  true?structuredClone(TEAM1[pos1]):TEAM1[pos1]})
+cl({ [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] })
 	var nbfights=0
 	while(bilac.j<FIGHT_TOTAL){
 		

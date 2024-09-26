@@ -5146,7 +5146,7 @@ function makeInputDIV(n){
 
 
 
-function updateURL(){defiDIV.text("🤜💥🤛");
+function updateURL(){defiDIV.text("🤜🆚🤛");
 if(!combatIsOk()){return};window.history.replaceState(null,
 "","/?b1="+brutes[0]+"&b2="+brutes[1]+(seed?"&seed="+seed:""));defiDIV.text(brutes[0]+" a osé défier "+brutes[1]+" !")}
 
@@ -5159,7 +5159,7 @@ $("h3").each(function(){
 	$(this).parent().find('img:first').attr("src","/images/creation/noCharacter.webp").css("transform","scale("+(bruteDIVS.length==0?1:-1)+", 1)");
 	bruteDIVS.push($(this));
 })
-defiDIV.text("🤜💥🤛")
+defiDIV.text("🤜🆚🤛")
 $(".inputDIV").remove();
 var nimput=0
 $("h5").each(function(){
