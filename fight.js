@@ -1,4 +1,48 @@
-var weaponImages = {
+
+var heheheha = {"id":"d34f1d14-6d7b-4d87-abd2-614947732ba6","name":"heheheha","deletedAt":null,"createdAt":"2024-05-22T21:19:56.004Z","willBeDeletedAt":null,"deletionReason":null,"destinyPath":["RIGHT","LEFT","LEFT","RIGHT","LEFT"],"previousDestinyPath":["RIGHT","LEFT","LEFT","RIGHT","RIGHT","RIGHT","RIGHT","RIGHT","RIGHT","LEFT","RIGHT","RIGHT"],"level":6,"xp":3,"hp":83,"enduranceStat":4,"enduranceModifier":1,"enduranceValue":4,"strengthStat":5,"strengthModifier":1,"strengthValue":5,"agilityStat":5,"agilityModifier":1.5,"agilityValue":7,"speedStat":6,"speedModifier":1,"speedValue":6,"ranking":9,"gender":"female","userId":"565e2141-9982-406d-81ba-9aafdd219dc4","body":"10001210601","colors":"00000003030303031301020204020312","weapons":["piopio"],"skills":["fistsOfFury","felineAgility"],"pets":[],"masterId":null,"pupilsCount":6,"clanId":null,"registeredForTournament":false,"nextTournamentDate":null,"currentTournamentDate":"2024-09-24T00:00:00.000Z","currentTournamentStepWatched":0,"globalTournamentWatchedDate":"2024-09-23T00:00:00.000Z","globalTournamentRoundWatched":999,"lastFight":"2024-09-24T00:00:00.000Z","fightsLeft":7,"victories":468,"opponentsGeneratedAt":"2024-09-24T00:00:00.000Z","canRankUpSince":null,"favorite":false,"wantToJoinClanId":null,"tournamentWins":0,"eventId":null,"resets":2,"master":null,"clan":null,"user":{"id":"565e2141-9982-406d-81ba-9aafdd219dc4","name":"Ambryal"},"tournaments":[{"id":"9fc44ffc-bee2-486b-84bf-613e199a03a1","date":"2024-09-24T00:00:00.000Z","type":"DAILY","rounds":6,"eventId":null}],"inventory":[{"type":"bossTicket","count":1}]}
+
+
+
+async function genBrute({
+	level,
+	name=false,
+	
+}){
+	var template=heheheha
+	if(!LOCAL){template = await getBrute(BRUTE)}
+	
+	
+	
+	var brute = createRandomBruteStats()
+	brute.gender = getRandomProperty(Gender)
+	brute.colors=getRandomColors(brute.gender)
+	brute.body = getRandomBody(brute.gender)
+	brute.name=name?name:(LOCAL?generateName():"_")
+	brute.userId=brute.name
+	brute.id=brute.name
+	
+	
+	
+	for(var chr in template){if(!(chr in brute)){brute[chr] = template[chr]}}
+	
+	
+	
+	
+	for(var i=1;i<level;i++){brute=levelUp(brute);}
+	
+	return brute;
+	
+	
+	
+}
+
+
+function levelUp(brute){
+	var choices = getLevelUpChoices(brute)
+	var newbrute = updateBruteData(structuredClone(brute),choices[0])
+	return newbrute
+	
+}var weaponImages = {
   fan: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHhtbG5zOmZmZGVjPSJodHRwczovL3d3dy5mcmVlLWRlY29tcGlsZXIuY29tL2ZsYXNoIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgZmZkZWM6b2JqZWN0VHlwZT0ic2hhcGUiIGhlaWdodD0iNTQuNHB4IiB3aWR0aD0iNjAuNzVweCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMS4wLCAwLjAsIDAuMCwgMS4wLCAxLjMsIC04LjM1KSI+DQogICAgPHBhdGggZD0iTTQuNzUgMTEuNDUgUTE2Ljc1IDEzLjU1IDI4LjY1IDE2LjM1IEw1MC4xNSAyMS40IDU0LjY1IDIyLjM1IFE1My41NSAyNi44IDUxLjggMzAuOTUgTDMxLjQgMjIuMTUgUTI1LjEgMTkuNDUgMTguNTUgMTcuMSBMMTUuNSAxNi4wIDQuNzUgMTEuNDUgTTQ4Ljk1IDM2LjYgUTQ3LjI1IDM5LjU1IDQ1LjE1IDQyLjMgTDQ0LjIgNDMuNTUgNDIuNyA0Mi4xIFEzNi41NSAzNi4xNSAyNS45NSAyOC4zIDE3LjE1IDIxLjc1IDEwLjcgMTcuMjUgTDMuOCAxMi4wNSAxNS4xNSAxOC4wIFEyMi4wNSAyMS41IDMzLjE1IDI3LjY1IDQ0LjI1IDMzLjc1IDQ4Ljk1IDM2LjYgTTM1LjIgNTEuNCBRMjkuNyA1NC4wNSAyNi42NSA1NC45IEwyNS42NSA1NS4yIFEyMi43IDQ5LjA1IDE2LjAgMzYuNDUgTDMuMyAxMi43IDkuMCAxOC43NSBRMTkuMyAyOS45NSAyNi4zIDM5LjEgMzMuMyA0OC4yNSAzNS4yIDUxLjQgTTE1LjA1IDU3LjEgTDMuNyA1Ny42IDIuNCAxNC45IDkuNCAzOC4wNSAxNS4wNSA1Ny4xIiBmaWxsPSIjZmZmZmNjIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik0yLjQ1IDExLjA1IEwyLjkgMTEuMTUgNC43NSAxMS40NSAxNS41IDE2LjAgMTguNTUgMTcuMSBRMjUuMSAxOS40NSAzMS40IDIyLjE1IEw1MS44IDMwLjk1IDQ4Ljk1IDM2LjYgUTQ0LjI1IDMzLjc1IDMzLjE1IDI3LjY1IDIyLjA1IDIxLjUgMTUuMTUgMTguMCBMMy44IDEyLjA1IDEwLjcgMTcuMjUgUTE3LjE1IDIxLjc1IDI1Ljk1IDI4LjMgMzYuNTUgMzYuMTUgNDIuNyA0Mi4xIEw0NC4yIDQzLjU1IFEzOS4yNSA0OS41IDM1LjIgNTEuNCAzMy4zIDQ4LjI1IDI2LjMgMzkuMSAxOS4zIDI5Ljk1IDkuMCAxOC43NSBMMy4zIDEyLjcgMTYuMCAzNi40NSBRMjIuNyA0OS4wNSAyNS42NSA1NS4yIEwxNS4wNSA1Ny4xIDkuNCAzOC4wNSAyLjQgMTQuOSAyLjMgMTEuMDUgMi40IDExLjA1IDIuNDUgMTEuMDUiIGZpbGw9IiNlOGQ0YWQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTU0LjY1IDIyLjM1IEw1MC4xNSAyMS40IDI4LjY1IDE2LjM1IFExNi43NSAxMy41NSA0Ljc1IDExLjQ1IEwyLjkgMTEuMTUgMi40NSAxMS4wNSAyLjQgMTEuMDUgMi4yNSAxMC41NSAzLjU1IDkuMzUgMjIuMiAxMi4zIFEzNC43IDE0LjQgNTguNDUgMjAuMTUgNTguMiAyMS42IDU3LjE1IDIyLjggTDU0LjY1IDIyLjM1IE0zLjcgNTcuNiBMMy43IDYxLjc1IDAuNiA2MS43NSBRMC44NSA1MC4xIDAuMjUgMzguNSAtMC40NSAyNS44NSAtMC4yNSAxMy4zIEwtMC4wNSAxMC44NSAyLjE1IDEwLjU1IDIuMjUgMTAuNTUgMi4zIDExLjA1IDIuNCAxNC45IDMuNyA1Ny42IiBmaWxsPSIjNzI1MzI3IiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik00Ljc1IDExLjQ1IFExNi43NSAxMy41NSAyOC42NSAxNi4zNSBMNTAuMTUgMjEuNCA1NC42NSAyMi4zNSA1Ny4xNSAyMi44IFE1OC4yIDIxLjYgNTguNDUgMjAuMTUgMzQuNyAxNC40IDIyLjIgMTIuMyBMMy41NSA5LjM1IDIuMjUgMTAuNTUgMi40IDExLjA1IDIuNDUgMTEuMDUgMi45IDExLjE1IDQuNzUgMTEuNDUgTTUxLjggMzAuOTUgUTUzLjU1IDI2LjggNTQuNjUgMjIuMzUgTTU4LjQ1IDIwLjE1IEw1OC40NSAxOS45IDU4LjQ1IDIwLjE1IE00OC45NSAzNi42IEw1MS44IDMwLjk1IE00OC45NSAzNi42IFE0Ny4yNSAzOS41NSA0NS4xNSA0Mi4zIEw0NC4yIDQzLjU1IFEzOS4yNSA0OS41IDM1LjIgNTEuNCAyOS43IDU0LjA1IDI2LjY1IDU0LjkgTDI1LjY1IDU1LjIgMTUuMDUgNTcuMSAzLjcgNTcuNiAzLjcgNjEuNzUgMC42IDYxLjc1IFEwLjg1IDUwLjEgMC4yNSAzOC41IC0wLjQ1IDI1Ljg1IC0wLjI1IDEzLjMgTC0wLjA1IDEwLjg1IDIuMTUgMTAuNTUgMi4yNSAxMC41NSAyLjMgMTEuMDUgMi40IDE0LjkgMy43IDU3LjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMDAwMCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utb3BhY2l0eT0iMC40IiBzdHJva2Utd2lkdGg9IjEiLz4NCiAgPC9nPg0KPC9zdmc+DQo8IS0tIDEgLS0+',
   keyboard: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHhtbG5zOmZmZGVjPSJodHRwczovL3d3dy5mcmVlLWRlY29tcGlsZXIuY29tL2ZsYXNoIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgZmZkZWM6b2JqZWN0VHlwZT0ic2hhcGUiIGhlaWdodD0iNjguNDVweCIgd2lkdGg9IjkycHgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+DQogIDxnIHRyYW5zZm9ybT0ibWF0cml4KDEuMCwgMC4wLCAwLjAsIDEuMCwgMjQuNjUsIC0zLjI1KSI+DQogICAgPHBhdGggZD0iTTQ5Ljc1IDQzLjk1IFE0Ny41IDQzLjE1IDQ3LjMgNDIuOCBMNDcuMCA0My40IDMzLjkgMzYuMCAzNi4xNSAzNS43IDQ5LjE1IDQyLjEgNDkuMjUgNDIuMCA0OS45IDQxLjUgNTAuNzUgNDIuMiA0OS43NSA0My45NSBNNDUuMyA2OC41NSBMNDkuMiA2MS43NSA1Ny4zNSA0Ny42IDU5LjQ1IDQzLjk1IDU5Ljg1IDQzLjI1IDU5LjQgNDMuMDUgNTguOTUgNDIuOCA2NC45IDQzLjA1IDQ5LjIgNzAuNyA0NS4zIDY4LjU1IE0tMTIuOSAxNC41NSBMLTEyLjY1IDE0LjA1IC0xMi4zIDEzLjIgLTExLjc1IDEzLjIgLTkuOCAxNC40IC04LjcgMTIuNzUgLTcuNDUgMTIuODUgUS02LjY1IDE0LjA1IC03Ljc1IDE0Ljk1IC0xMC40NSAxNy4zIC0xMi45IDE0LjU1IE0xMC43IDIyLjA1IEwxMS41NSAyMS41IDEyLjA1IDIxLjkgOS44IDI0LjkgUTQuNyAyNC4zIDMuMyAxOS43NSBMMy43NSAxOS45NSA5Ljg1IDIyLjc1IDEwLjcgMjIuMDUgTTI4LjY1IDMxLjc1IEwzMS42IDMxLjIgUTI5LjU1IDM0LjI1IDI2LjAgMzMuMiAyMS42IDMxLjggMTguNCAyOC4yNSBMMTguODUgMjcuMzUgMjguNjUgMzEuNzUgTTQuNDUgMzUuMyBMNC45IDM0LjU1IDYuNSAzNS4xIDkuMDUgMzMuNzUgUTkuNTUgMzUuNyA3LjcgMzYuNDUgNS4zIDM3LjUgNC40NSAzNS4zIE0zMi42NSA2MS42NSBMMzIuNCA2MS41IDMwLjEgNjAuMjUgMjkuODUgNTkuMiBRMjkuODUgNTcuMyAzMi44NSA1OC4xNSAzNS44IDU5LjAgMzUuOCA2MC41NSAzNS44IDYxLjcgMzMuOSA2MS43IEwzMi42NSA2MS42NSBNMjEuMjUgNTUuNCBMLTUuMTUgNDAuOTUgLTIuNyAzNi43IDI0LjQgNTEuMSAyMS4yNSA1NS40IE00Mi4yIDY2Ljg1IEwzOS43NSA2NC42NSBRMzkuODUgNjMuODUgNDAuNDUgNjMuNDUgTDQxLjU1IDYzLjIgUTQ0LjAgNjMuNzUgNDUuNyA2Ni4wNSBMNDUuODUgNjcuMSA0NS4wIDY3LjggNDMuMjUgNjcuNDUgNDIuMiA2Ni44NSBNNDUuNiA1OS43NSBMNDYuNDUgNTcuMDUgNDQuNSA1NS42NSA0My41IDU3LjEgNDIuNyA1Ni40IDQzLjMgNTQuOCBRNDEuODUgNTQuMSA0Mi42NSA1My4yNSBMNDQuMiA1My4zIDQ3LjMgNDkuNyA0NS4yIDU0LjQ1IDQ1LjQ1IDU0LjAgNDcuMzUgNTUuNTUgNDkuODUgNTIuOSA0OS45NSA1My4zNSBRNDkuOTUgNTUuMyA0OC43NSA1Ni41NSBMNTAuOCA1OC42NSA0OS43IDU4Ljk1IDQ3LjkgNTguMCA0Ni40NSA2MC4yIDQ1LjYgNTkuNzUiIGZpbGw9IiNjN2M2OGQiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSJub25lIi8+DQogICAgPHBhdGggZD0iTTQ3LjMgNDIuOCBRNDcuNSA0My4xNSA0OS43NSA0My45NSBMNTAuNzUgNDIuMiA0OS45IDQxLjUgNDkuMjUgNDIuMCA0OS4xNSA0Mi4xIDM2LjE1IDM1LjcgMzMuOSAzNi4wIDQ3LjAgNDMuNCA0Ny4zIDQyLjggTTU5LjQ1IDQzLjk1IEw1Ny4zNSA0Ny42IDQ5LjIgNjEuNzUgNDUuMyA2OC41NSA0My4yNSA2Ny40NSA0NS4wIDY3LjggNDUuODUgNjcuMSA0NS43IDY2LjA1IFE0NC4wIDYzLjc1IDQxLjU1IDYzLjIgTDQwLjQ1IDYzLjQ1IFEzOS44NSA2My44NSAzOS43NSA2NC42NSBMNDIuMiA2Ni44NSAzMi42NSA2MS42NSAzMy45IDYxLjcgUTM1LjggNjEuNyAzNS44IDYwLjU1IDM1LjggNTkuMCAzMi44NSA1OC4xNSAyOS44NSA1Ny4zIDI5Ljg1IDU5LjIgTDMwLjEgNjAuMjUgMjEuMjUgNTUuNCAyNC40IDUxLjEgLTIuNyAzNi43IC01LjE1IDQwLjk1IC0yMS4xIDMyLjI1IC0yMy42NSAzMC44NSAtMTEuNTUgNS4yNSAtOS45IDQuMjUgNDcuMzUgMzAuODUgNjYuMzUgNDAuNSA2NC45IDQzLjA1IDU4Ljk1IDQyLjggNTkuNCA0My4wNSA1OS44NSA0My4yNSA1OS40NSA0My45NSBNNTcuMzUgNDcuNiBRNTIuMCA0NC43NSA0OS43NSA0My45NSA1Mi4wIDQ0Ljc1IDU3LjM1IDQ3LjYgTTQ5LjI1IDQyLjAgTDUwLjggMzguOTUgNTkuNCA0My4wNSA1MC44IDM4Ljk1IDQ5LjI1IDQyLjAgTS0xMi45IDE0LjU1IEwtMjEuMSAzMi4yNSAtMTIuOSAxNC41NSBRLTEwLjQ1IDE3LjMgLTcuNzUgMTQuOTUgLTYuNjUgMTQuMDUgLTcuNDUgMTIuODUgTC04LjcgMTIuNzUgLTkuOCAxNC40IC0xMS43NSAxMy4yIC0xMi4zIDEzLjIgLTEyLjY1IDE0LjA1IC0xMi45IDE0LjU1IE01MC44IDM4Ljk1IEwzNi4yNSAzMi4wIDMwLjIgMjkuMSAxNS42NSAyMi4xNSAxMS44IDIwLjMgLTQuMSAxMi43IC03LjggMTAuOTUgLTEwLjY1IDkuNiAtMTIuMiAxMy4wNSAtMTIuMyAxMy4yIC0xMi4yIDEzLjA1IC0xMC42NSA5LjYgLTcuOCAxMC45NSAtNC4xIDEyLjcgMTEuOCAyMC4zIDE1LjY1IDIyLjE1IDMwLjIgMjkuMSAzNi4yNSAzMi4wIDUwLjggMzguOTUgTTMuNzUgMTkuOTUgTDMuMyAxOS43NSBRNC43IDI0LjMgOS44IDI0LjkgTDEyLjA1IDIxLjkgMTEuNTUgMjEuNSAxMC43IDIyLjA1IDkuODUgMjIuNzUgMy43NSAxOS45NSAtNS41NSAxNS40IC00LjEgMTIuNyAtNS41NSAxNS40IDMuNzUgMTkuOTUgTTE1LjY1IDIyLjE1IEwxNC41IDI1LjAgMTguODUgMjcuMzUgMTQuNSAyNS4wIDE1LjY1IDIyLjE1IE0xMS44IDIwLjMgTDExLjQgMjAuNzUgUTExLjc1IDIwLjYgMTEuMDUgMjEuNiBMMTAuNyAyMi4wNSAxMS4wNSAyMS42IFExMS43NSAyMC42IDExLjQgMjAuNzUgTDExLjggMjAuMyBNMTguODUgMjcuMzUgTDE4LjQgMjguMjUgUTIxLjYgMzEuOCAyNi4wIDMzLjIgMjkuNTUgMzQuMjUgMzEuNiAzMS4yIEwyOC42NSAzMS43NSAxOC44NSAyNy4zNSBNMy45IDIzLjg1IFEyLjMgMjQuNzUgMy4xIDI2LjQgMy43IDI3LjcgNS40NSAyNy40IEw2LjggMjYuMzUgNS40NSAyNy40IFEzLjcgMjcuNyAzLjEgMjYuNCAyLjMgMjQuNzUgMy45IDIzLjg1IE00LjQ1IDM1LjMgUTUuMyAzNy41IDcuNyAzNi40NSA5LjU1IDM1LjcgOS4wNSAzMy43NSBMNi41IDM1LjEgNC45IDM0LjU1IDQuNDUgMzUuMyBNMzUuNDUgNDQuMSBMMzQuNyA0NS4yIDMyLjIgNTEuNTUgMzcuMzUgNTQuMDUgUTQwLjI1IDUxLjA1IDQxLjEgNDYuNSBMMzUuNDUgNDQuMSA0MS4xIDQ2LjUgUTQwLjI1IDUxLjA1IDM3LjM1IDU0LjA1IEwzMi4yIDUxLjU1IDM0LjcgNDUuMiAzNS40NSA0NC4xIE0yMS45NSA0MS4yIFEyMC42NSA0Mi4yNSAyMS41IDQzLjA1IDIyLjI1IDQzLjcgMjMuOSA0My44NSAyMi4yNSA0My43IDIxLjUgNDMuMDUgMjAuNjUgNDIuMjUgMjEuOTUgNDEuMiBNMjguNjUgMzEuNzUgTDMwLjIgMjkuMSAyOC42NSAzMS43NSBNMjMuOCAzMy42NSBMMjIuOCAzNC40NSBRMjMuNzUgMzYuNDUgMjYuMDUgMzYuNTUgMjMuNzUgMzYuNDUgMjIuOCAzNC40NSBMMjMuOCAzMy42NSBNMzYuMjUgMzIuMCBMMzUuMDUgMzUuMTUgMzYuMTUgMzUuNyAzNS4wNSAzNS4xNSAzNi4yNSAzMi4wIE0xMS4zNSAzNy42IEwxMC44NSAzOC42NSAxMS40NSAzOC45NSBRMTMuODUgMzkuMTUgMTYuMDUgMzguMjUgMTMuODUgMzkuMTUgMTEuNDUgMzguOTUgTDEwLjg1IDM4LjY1IDExLjM1IDM3LjYgTTI3LjQgNTEuMyBMMjguMTUgNTEuNyBRMzAuMzUgNTIuOCAzMS4yIDU0LjggTDI4LjYgNTguMTUgMzEuMiA1NC44IFEzMC4zNSA1Mi44IDI4LjE1IDUxLjcgTDI3LjQgNTEuMyBNNDYuNDUgNjAuMiBMNDcuOSA1OC4wIDQ5LjcgNTguOTUgNTAuOCA1OC42NSA0OC43NSA1Ni41NSBRNDkuOTUgNTUuMyA0OS45NSA1My4zNSBMNDkuODUgNTIuOSA0Ny4zNSA1NS41NSA0NS40NSA1NC4wIDQ1LjIgNTQuNDUgNDcuMyA0OS43IDQ0LjIgNTMuMyA0Mi42NSA1My4yNSBRNDEuODUgNTQuMSA0My4zIDU0LjggTDQyLjcgNTYuNCA0My41IDU3LjEgNDQuNSA1NS42NSA0Ni40NSA1Ny4wNSA0NS42IDU5Ljc1IDQ2LjQ1IDYwLjIgNDkuMiA2MS43NSA0Ni40NSA2MC4yIE00Ny4wIDQzLjQgTDQwLjE1IDU2LjcgNDUuNiA1OS43NSA0MC4xNSA1Ni43IDQ3LjAgNDMuNCBNLTEyLjUgMTguNzUgTC0xMi4yNSAxOS4zIC04Ljk1IDIwLjU1IC03Ljg1IDE5LjEgLTguOTUgMjAuNTUgLTEyLjI1IDE5LjMgLTEyLjUgMTguNzUgTS0xMi4yIDEzLjA1IEwtMTEuNzUgMTMuMiAtMTIuMiAxMy4wNSBNLTEwLjk1IDMxLjUgTC0xMS4yNSAzMS4zNSBRLTEzLjcgMjkuNjUgLTE2LjggMzAuMSAtMTMuNyAyOS42NSAtMTEuMjUgMzEuMzUgTC0xMC45NSAzMS41IE0tNi4zNSAyOC41IEwtNy4wIDI5LjYgUS03LjAgMzAuMTUgLTYuMCAzMC43IC00LjggMzEuNCAtMy4yNSAzMS4xNSAtNC44IDMxLjQgLTYuMCAzMC43IC03LjAgMzAuMTUgLTcuMCAyOS42IEwtNi4zNSAyOC41IE0tNi40IDM1LjY1IFEtNy4xNSAzNC43NSAtOC4yNSAzNC40IC0xMC40IDMzLjYgLTExLjA1IDM1LjcgLTEwLjQgMzMuNiAtOC4yNSAzNC40IC03LjE1IDM0Ljc1IC02LjQgMzUuNjUgTS04LjcgMTIuNzUgTC03LjggMTAuOTUgLTguNyAxMi43NSBNLTMuNyAyMC43IFEtNS4wNSAyMS41NSAtNS4wNSAyMi44NSAtNS4wNSAyMy4zIC00LjEgMjMuNzUgLTIuOTUgMjQuMyAtMS44IDI0LjA1IC0yLjk1IDI0LjMgLTQuMSAyMy43NSAtNS4wNSAyMy4zIC01LjA1IDIyLjg1IC01LjA1IDIxLjU1IC0zLjcgMjAuNyIgZmlsbD0iI2ZmZmZjYyIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiLz4NCiAgICA8cGF0aCBkPSJNNDcuMyA0Mi44IFE0Ny41IDQzLjE1IDQ5Ljc1IDQzLjk1IDUyLjAgNDQuNzUgNTcuMzUgNDcuNiBMNDkuMiA2MS43NSA0NS4zIDY4LjU1IDQ5LjIgNzAuNyA2NC45IDQzLjA1IDY2LjM1IDQwLjUgNDcuMzUgMzAuODUgLTkuOSA0LjI1IC0xMS41NSA1LjI1IC0yMy42NSAzMC44NSAtMjEuMSAzMi4yNSAtMTIuOSAxNC41NSBNNDkuMjUgNDIuMCBMNDkuMTUgNDIuMSAzNi4xNSAzNS43IDM1LjA1IDM1LjE1IDM2LjI1IDMyLjAgNTAuOCAzOC45NSA0OS4yNSA0Mi4wIE01OS40NSA0My45NSBMNTcuMzUgNDcuNiBNNTkuNCA0My4wNSBMNTkuODUgNDMuMjUgTTU5LjQgNDMuMDUgTDUwLjggMzguOTUgTS0xMi42NSAxNC4wNSBMLTEyLjMgMTMuMiAtMTIuMiAxMy4wNSAtMTAuNjUgOS42IC03LjggMTAuOTUgLTQuMSAxMi43IDExLjggMjAuMyAxNS42NSAyMi4xNSAzMC4yIDI5LjEgMzYuMjUgMzIuMCBNMy43NSAxOS45NSBMLTUuNTUgMTUuNCAtNC4xIDEyLjcgTTMuNzUgMTkuOTUgTDkuODUgMjIuNzUgMTAuNyAyMi4wNSAxMS4wNSAyMS42IFExMS43NSAyMC42IDExLjQgMjAuNzUgTDExLjggMjAuMyBNMTguODUgMjcuMzUgTDE0LjUgMjUuMCAxNS42NSAyMi4xNSBNMjguNjUgMzEuNzUgTDE4Ljg1IDI3LjM1IE02LjggMjYuMzUgTDUuNDUgMjcuNCBRMy43IDI3LjcgMy4xIDI2LjQgMi4zIDI0Ljc1IDMuOSAyMy44NSBNMTYuMDUgMzguMjUgUTEzLjg1IDM5LjE1IDExLjQ1IDM4Ljk1IEwxMC44NSAzOC42NSAxMS4zNSAzNy42IE0yNi4wNSAzNi41NSBRMjMuNzUgMzYuNDUgMjIuOCAzNC40NSBMMjMuOCAzMy42NSBNMzAuMiAyOS4xIEwyOC42NSAzMS43NSBNMjMuOSA0My44NSBRMjIuMjUgNDMuNyAyMS41IDQzLjA1IDIwLjY1IDQyLjI1IDIxLjk1IDQxLjIgTTM1LjQ1IDQ0LjEgTDQxLjEgNDYuNSBRNDAuMjUgNTEuMDUgMzcuMzUgNTQuMDUgTDMyLjIgNTEuNTUgMzQuNyA0NS4yIDM1LjQ1IDQ0LjEgTTMwLjEgNjAuMjUgTDMyLjQgNjEuNSBNMzAuMSA2MC4yNSBMMjEuMjUgNTUuNCAtNS4xNSA0MC45NSAtMjEuMSAzMi4yNSBNMjEuMjUgNTUuNCBMMjQuNCA1MS4xIC0yLjcgMzYuNyAtNS4xNSA0MC45NSBNMjguNiA1OC4xNSBMMzEuMiA1NC44IFEzMC4zNSA1Mi44IDI4LjE1IDUxLjcgTDI3LjQgNTEuMyBNNDIuMiA2Ni44NSBMNDMuMjUgNjcuNDUgNDUuMyA2OC41NSBNNDUuNiA1OS43NSBMNDYuNDUgNjAuMiA0OS4yIDYxLjc1IE00NS42IDU5Ljc1IEw0MC4xNSA1Ni43IDQ3LjAgNDMuNCBNNDIuMiA2Ni44NSBMMzIuNjUgNjEuNjUgTS0xMS43NSAxMy4yIEwtMTIuMiAxMy4wNSBNLTcuODUgMTkuMSBMLTguOTUgMjAuNTUgLTEyLjI1IDE5LjMgLTEyLjUgMTguNzUgTS05LjggMTQuNCBMLTExLjc1IDEzLjIgTS0xLjggMjQuMDUgUS0yLjk1IDI0LjMgLTQuMSAyMy43NSAtNS4wNSAyMy4zIC01LjA1IDIyLjg1IC01LjA1IDIxLjU1IC0zLjcgMjAuNyBNLTcuOCAxMC45NSBMLTguNyAxMi43NSBNLTExLjA1IDM1LjcgUS0xMC40IDMzLjYgLTguMjUgMzQuNCAtNy4xNSAzNC43NSAtNi40IDM1LjY1IE0tMy4yNSAzMS4xNSBRLTQuOCAzMS40IC02LjAgMzAuNyAtNy4wIDMwLjE1IC03LjAgMjkuNiBMLTYuMzUgMjguNSBNLTE2LjggMzAuMSBRLTEzLjcgMjkuNjUgLTExLjI1IDMxLjM1IEwtMTAuOTUgMzEuNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1vcGFjaXR5PSIwLjQiIHN0cm9rZS13aWR0aD0iMSIvPg0KICA8L2c+DQo8L3N2Zz4NCjwhLS0gMSAtLT4=',
   knife: 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+DQo8c3ZnIHhtbG5zOmZmZGVjPSJodHRwczovL3d3dy5mcmVlLWRlY29tcGlsZXIuY29tL2ZsYXNoIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgZmZkZWM6b2JqZWN0VHlwZT0ic2hhcGUiIGhlaWdodD0iNDMuOXB4IiB3aWR0aD0iNjguODVweCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4NCiAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMS4wLCAwLjAsIDAuMCwgMS4wLCAxNi42NSwgMi42NSkiPg0KICAgIDxwYXRoIGQ9Ik0xNS41NSAxOC4zNSBMNTEuMSAzOS42NSA1MS4yIDM5LjcgNTAuODUgMzkuNzUgNTAuODUgMzkuNyA0OC4wIDM5LjM1IFE0Ny4wNSAzOS4zNSA0NS40IDM4LjYgNDMuNyAzNy44IDQyLjk1IDM3LjggTDM4LjUgMzcuNTUgMzguNTUgMzcuNDUgUTM3LjMgMzcuNDUgMzQuNCAzNi4yNSAzMS40NSAzNS4wNSAzMC42NSAzNC4wIDI5Ljg1IDMyLjk1IDI2LjA1IDMyLjA1IDIyLjI1IDMxLjEgMjEuNTUgMjkuMCAyMC44NSAyNi45IDE4LjY1IDI2LjUgTDE0Ljk1IDI1LjQ1IFExMy4yIDIzLjY1IDEzLjIgMjIuNiBMMTIuOTUgMjEuOSAxNS41NSAxOC4zNSBNNy43IDE3LjkgUTcuNyAxNi4zNSA5LjM1IDE2LjQgMTAuOTUgMTYuNSAxMC45NSAxNy44IDEwLjggMTkuNiA5LjUgMTkuNiA3LjcgMTkuNiA3LjcgMTcuOSIgZmlsbD0iI2UwZThlYiIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiLz4NCiAgICA8cGF0aCBkPSJNMTUuNTUgMTguMzUgTDEyLjk1IDIxLjkgMTEuMjUgMjQuMTUgLTE1LjY1IDQuMTUgLTExLjM1IC0xLjY1IDE1LjU1IDE4LjM1IE03LjcgMTMuNjUgUTcuNyAxMi45NSAzLjIgMTAuNCBMLTIuODUgNy4wNSAtNS4zNSA1LjUgUS03LjAgNC40NSAtNy44IDMuNTUgLTkuMiAxLjkgLTEwLjI1IDEuODUgLTExLjIgMS44NSAtMTEuMiAyLjkgLTExLjIgNC4wIC05LjAgNS45NSBMLTQuNDUgOS4wNSBRNi4xNSAxNC44IDYuNSAxNC44IDcuNyAxNC44IDcuNyAxMy42NSBNNy43IDE3LjkgUTcuNyAxOS42IDkuNSAxOS42IDEwLjggMTkuNiAxMC45NSAxNy44IDEwLjk1IDE2LjUgOS4zNSAxNi40IDcuNyAxNi4zNSA3LjcgMTcuOSIgZmlsbD0iIzAwMDAwMCIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiLz4NCiAgICA8cGF0aCBkPSJNMTIuOTUgMjEuOSBMMTMuMiAyMi42IFExMy4yIDIzLjY1IDE0Ljk1IDI1LjQ1IEwxOC42NSAyNi41IFEyMC44NSAyNi45IDIxLjU1IDI5LjAgMjIuMjUgMzEuMSAyNi4wNSAzMi4wNSAyOS44NSAzMi45NSAzMC42NSAzNC4wIDMxLjQ1IDM1LjA1IDM0LjQgMzYuMjUgMzcuMyAzNy40NSAzOC41NSAzNy40NSBMMzguNSAzNy41NSA0Mi45NSAzNy44IFE0My43IDM3LjggNDUuNCAzOC42IDQ3LjA1IDM5LjM1IDQ4LjAgMzkuMzUgTDUwLjg1IDM5LjcgNTAuODUgMzkuNzUgUTQwLjI1IDQxLjM1IDMwLjQ1IDM3LjY1IDIwLjQ1IDMzLjg1IDExLjI1IDI0LjE1IEwxMi45NSAyMS45IiBmaWxsPSIjYjhjOWNmIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIHN0cm9rZT0ibm9uZSIvPg0KICAgIDxwYXRoIGQ9Ik03LjcgMTMuNjUgUTcuNyAxNC44IDYuNSAxNC44IDYuMTUgMTQuOCAtNC40NSA5LjA1IEwtOS4wIDUuOTUgUS0xMS4yIDQuMCAtMTEuMiAyLjkgLTExLjIgMS44NSAtMTAuMjUgMS44NSAtOS4yIDEuOSAtNy44IDMuNTUgLTcuMCA0LjQ1IC01LjM1IDUuNSBMLTIuODUgNy4wNSAzLjIgMTAuNCBRNy43IDEyLjk1IDcuNyAxMy42NSIgZmlsbD0iIzZiNWE1MCIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2U9Im5vbmUiLz4NCiAgICA8cGF0aCBkPSJNNTAuODUgMzkuNzUgTDUxLjIgMzkuNyA1MS4xIDM5LjY1IDE1LjU1IDE4LjM1IDEyLjk1IDIxLjkgMTEuMjUgMjQuMTUgLTE1LjY1IDQuMTUgLTExLjM1IC0xLjY1IDE1LjU1IDE4LjM1IE01MC44NSAzOS43NSBRNDAuMjUgNDEuMzUgMzAuNDUgMzcuNjUgMjAuNDUgMzMuODUgMTEuMjUgMjQuMTUgTTcuNyAxNy45IFE3LjcgMTkuNiA5LjUgMTkuNiAxMC44IDE5LjYgMTAuOTUgMTcuOCAxMC45NSAxNi41IDkuMzUgMTYuNCA3LjcgMTYuMzUgNy43IDE3LjkgWiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS1vcGFjaXR5PSIwLjQiIHN0cm9rZS13aWR0aD0iMSIvPg0KICA8L2c+DQo8L3N2Zz4NCjwhLS0gMSAtLT4=',
@@ -1761,6 +1805,747 @@ var EventFreeResets = 3;
 var BossName = /*exports.*//*$Enums.*/BossName = {
   GoldClaw: 'GoldClaw',
   EmberFang: 'EmberFang'
+};
+var availableBodyParts = {
+    male: {
+        p2: 7,
+        p3: 11,
+        p4: 4,
+        p7: 6,
+        p1: 1,
+        p1a: 1,
+        p1b: 1,
+        p6: 1,
+        p8: 4,
+        p7b: 2,
+        p5: 1,
+    },
+    female: {
+        p2: 0,
+        p3: 11,
+        p4: 3,
+        p7: 6,
+        p1: 1,
+        p1a: 1,
+        p1b: 1,
+        p6: 0,
+        p8: 4,
+        p7b: 2,
+        p5: 1,
+    },
+};
+
+var checkBodyPart = (value, expected) => value >= 0 && value <= expected;
+var checkBody = (user, gender, bodyString) => {
+    // Convert every char from hex to number
+    var inputs = {
+        p1: parseInt(bodyString[0] || '0', 16),
+        p1a: parseInt(bodyString[1] || '0', 16),
+        p1b: parseInt(bodyString[2] || '0', 16),
+        p2: parseInt(bodyString[3] || '0', 16),
+        p3: parseInt(bodyString[4] || '0', 16),
+        p4: parseInt(bodyString[5] || '0', 16),
+        p5: parseInt(bodyString[6] || '0', 16),
+        p6: parseInt(bodyString[7] || '0', 16),
+        p7: parseInt(bodyString[8] || '0', 16),
+        p7b: parseInt(bodyString[9] || '0', 16),
+        p8: parseInt(bodyString[10] || '0', 16),
+    };
+    if (!checkBodyPart(inputs.p2, availableBodyParts[gender].p2)
+        || !checkBodyPart(inputs.p3, availableBodyParts[gender].p3)
+        || !checkBodyPart(inputs.p4, availableBodyParts[gender].p4)
+        || !checkBodyPart(inputs.p7, availableBodyParts[gender].p7)
+        || !checkBodyPart(inputs.p1, availableBodyParts[gender].p1)
+        || !checkBodyPart(inputs.p1a, availableBodyParts[gender].p1a)
+        || !checkBodyPart(inputs.p1b, availableBodyParts[gender].p1b)
+        || !checkBodyPart(inputs.p6, availableBodyParts[gender].p6)
+        || !checkBodyPart(inputs.p8, availableBodyParts[gender].p8)
+        || !checkBodyPart(inputs.p7b, availableBodyParts[gender].p7b)
+        || !checkBodyPart(inputs.p5, availableBodyParts[gender].p5)) {
+        alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des fringues !!!");
+    }
+};
+var isValid = (value, array) => value >= 0 && value < array.length;
+var isValidWithSpecials = (value, array) => value >= 0 && (value < array.length || (value < 100 && value > (99 - colors.special.length)));
+var checkColors = (user, gender, colorString, includeSpecials = false) => {
+    // Split colors every 2 characters
+    var inputs = {
+        col0: +colorString.slice(0, 2),
+        col0a: +colorString.slice(2, 4),
+        col0c: +colorString.slice(4, 6),
+        col1: +colorString.slice(6, 8),
+        col1a: +colorString.slice(8, 10),
+        col1b: +colorString.slice(10, 12),
+        col1c: +colorString.slice(12, 14),
+        col1d: +colorString.slice(14, 16),
+        col2: +colorString.slice(16, 18),
+        col2a: +colorString.slice(18, 20),
+        col2b: +colorString.slice(20, 22),
+        col3: +colorString.slice(22, 24),
+        col3b: +colorString.slice(24, 26),
+        col4: +colorString.slice(26, 28),
+        col4a: +colorString.slice(28, 30),
+        col4b: +colorString.slice(30, 32),
+    };
+    var check = includeSpecials ? isValidWithSpecials : isValid;
+    if (!check(inputs.col0, colors[gender].skin)
+        || !check(inputs.col0a, colors[gender].skin)
+        || !check(inputs.col0c, colors[gender].skin)
+        || !check(inputs.col1, colors[gender].hair)
+        || !check(inputs.col1a, colors[gender].hair)
+        || !check(inputs.col1b, colors[gender].hair)
+        || !check(inputs.col1c, colors[gender].hair)
+        || !check(inputs.col1d, colors[gender].hair)
+        || !check(inputs.col3, colors[gender].clothing)
+        || !check(inputs.col2, colors[gender].clothing)
+        || !check(inputs.col2b, colors[gender].clothing)
+        || !check(inputs.col3b, colors[gender].clothing)
+        || !check(inputs.col2a, colors[gender].clothing)
+        || !check(inputs.col4, colors[gender].clothing)
+        || !check(inputs.col4a, colors[gender].clothing)
+        || !check(inputs.col4b, colors[gender].clothing)) {
+        alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des couleurs !!!");
+    }
+    // col0, col0a, col0c must be the same
+    if (inputs.col0 !== inputs.col0a || inputs.col0 !== inputs.col0c) {
+        alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des couleurs !!! (col0, col0a, col0c must be the same)");
+    }
+    // col1, col1a, col1b, col1c, col1d must be the same
+    if (inputs.col1 !== inputs.col1a
+        || inputs.col1 !== inputs.col1b
+        || inputs.col1 !== inputs.col1c
+        || inputs.col1 !== inputs.col1d) {
+        alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des couleurs !!! (col1, col1a, col1b, col1c, col1d must be the same)");
+
+    }
+	console.log("couleurs conformes");
+};
+var colors = {
+    male: {
+        skin: [
+            '#996600',
+            '#eccd57',
+            '#cb841b',
+            '#d79b75',
+            '#fbe6c8',
+            '#f8d198',
+        ],
+        hair: [
+            '#784129',
+            '#fff9ae',
+            '#b85f1d',
+            '#4f677d',
+            '#df7e37',
+            '#fbcd15',
+            '#ffaa1e',
+            '#952f04',
+            '#a2886f',
+            '#fff2df',
+        ],
+        clothing: [
+            '#7bad30',
+            '#b78104',
+            '#bb1111',
+            '#559399',
+            '#fae31f',
+            '#784129',
+            '#7a73c8',
+            '#fff9ae',
+            '#f0dc99',
+            '#b6e7a9',
+            '#d31818',
+            '#b85f1d',
+            '#97cbff',
+            '#8ba3d7',
+            '#df7e37',
+            '#d5eaff',
+            '#ffaa1e',
+            '#cbff97',
+            '#ffcc79',
+            '#fff2df',
+        ],
+    },
+    female: {
+        skin: [
+            '#996600',
+            '#f8cdc2',
+            '#cb841b',
+            '#eaaca6',
+            '#fbe6c8',
+            '#f8d198',
+        ],
+        hair: [
+            '#fff9ae',
+            '#b85f1d',
+            '#eea2c9',
+            '#8e63ad',
+            '#fbcd15',
+            '#ffaa1e',
+            '#952f04',
+            '#a2886f',
+            '#fff2df',
+        ],
+        clothing: [
+            '#7bad30',
+            '#b78104',
+            '#bb1111',
+            '#559399',
+            '#fae31f',
+            '#784129',
+            '#7a73c8',
+            '#fff9ae',
+            '#f0dc99',
+            '#b6e7a9',
+            '#d31818',
+            '#b85f1d',
+            '#97cbff',
+            '#8ba3d7',
+            '#df7e37',
+            '#d5eaff',
+            '#ffaa1e',
+            '#cbff97',
+            '#ffcc79',
+            '#fff2df',
+        ],
+    },
+    special: [
+        '#000000',
+    ],
+};
+var getRandomBody = (gender) => (0, generateBodyString)({
+    p2: (0, randomBetween)(0, availableBodyParts[gender].p2),
+    p3: (0, randomBetween)(0, availableBodyParts[gender].p3),
+    p4: (0, randomBetween)(0, availableBodyParts[gender].p4),
+    p7: (0, randomBetween)(0, availableBodyParts[gender].p7),
+    p1: (0, randomBetween)(0, availableBodyParts[gender].p1),
+    p1a: (0, randomBetween)(0, availableBodyParts[gender].p1a),
+    p1b: (0, randomBetween)(0, availableBodyParts[gender].p1b),
+    p6: (0, randomBetween)(0, availableBodyParts[gender].p6),
+    p8: (0, randomBetween)(0, availableBodyParts[gender].p8),
+    p7b: (0, randomBetween)(0, availableBodyParts[gender].p7b),
+    p5: (0, randomBetween)(0, availableBodyParts[gender].p5),
+});
+var getRandomColors = (gender) => {
+    var col0 = (0, randomBetween)(0, colors[gender].skin.length - 1);
+    var col0a = col0;
+    var col0c = col0;
+    var col1 = (0, randomBetween)(0, colors[gender].hair.length - 1);
+    var col1a = col1;
+    var col1b = col1;
+    var col1c = col1;
+    var col1d = col1;
+    var col3 = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col2 = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col2b = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col3b = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col2a = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col4 = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col4a = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    var col4b = (0, randomBetween)(0, colors[gender].clothing.length - 1);
+    return (0, generateColorString)({
+        col0,
+        col0a,
+        col0c,
+        col1,
+        col1a,
+        col1b,
+        col1c,
+        col1d,
+        col2,
+        col2a,
+        col2b,
+        col3,
+        col3b,
+        col4,
+        col4a,
+        col4b,
+    });
+};
+
+var bodyParts = {
+					p1:{
+						name :
+						{
+							male:"Armor",
+							female:"Armor"
+						},
+						type : "clothing"
+					},
+					p1a:{
+						name :
+						{
+							male:"Belt",
+							female:"Belt"
+						},
+						type : "clothing"
+					},
+					p1b:{
+						name :
+						{
+							male:"Roman Belt",
+							female:"Roman Belt"
+						},
+						type : "clothing"
+					},
+					p2:{
+						name :
+						{
+							male:"Size",
+							female:"Size"
+						},
+						type : "skin"
+					},
+					p3:{
+						name :
+						{
+							male:"Hair",
+							female:"Hair"
+						},
+						type : "hair"
+					},
+					p4:{
+						name :
+						{
+							male:"Beard",
+							female:"Front Hair"
+						},
+						type : "hair"
+					},
+					p5:{
+						name :
+						{
+							male:"Shirt",
+							female:"Shirt"
+						},
+						type : "clothing"
+					},
+					p6:{
+						name :
+						{
+							male:"Short",
+							female:"Short"
+						},
+						type : "clothing"
+					},
+					p7:{
+						name :
+						{
+							male:"Clothing",
+							female:"Clothing"
+						},
+						type : "clothing"
+					},
+					p7b:{
+						name :
+						{
+							male:"Shoes",
+							female:"Shoes"
+						},
+						type : "clothing"
+					},
+					p8:{
+						name :
+						{
+							male:"Nothing",
+							female:"Nothing"
+						},
+						type : "clothing"
+					},
+					
+}
+var getTempWeapon = (brute, weaponIndex) => {return 0
+};
+
+var getTempSkill = (brute, skillIndex) => {return 0
+};var DestinyChoiceType = /*exports.*//*$Enums.*/DestinyChoiceType = {
+  skill: 'skill',
+  weapon: 'weapon',
+  pet: 'pet',
+  stats: 'stats'
+};
+var BruteStat = /*exports.*//*$Enums.*/BruteStat = {
+  endurance: 'endurance',
+  strength: 'strength',
+  agility: 'agility',
+  speed: 'speed'
+};
+var getLevelUpChoices = (brute) => {
+    let preventPerk = false;
+    let perkType = null;
+    let perkName = null;
+    // First choice (Weapon/Skill/Pet)
+    // (+1/+1 Stats if picked something already learned)
+    let firstChoice = null;
+    var bruteStats = Object.values(BruteStat);
+    // Second choice (+2 Stat)
+    let secondChoice = {
+        type: 'stats',
+        stat1: bruteStats[(0, randomBetween)(0, bruteStats.length - 1)],
+        stat1Value: 2,
+    };
+    // Less likely to get a perk the more high level the brute is
+    if (brute.level >= 80 && (0, randomBetween)(0, brute.level) >= 80) {
+        preventPerk = true;
+    }
+    if (!preventPerk) {
+        var perk = (0, getRandomBonus)(brute);
+        if (perk) {
+            perkType = perk.type;
+            perkName = perk.name;
+        }
+        preventPerk = !perk;
+    }
+    // Chose +1/+1 stat instead
+    if (preventPerk) {
+        var { [(0, randomBetween)(0, bruteStats.length - 1)]: firstStat } = bruteStats;
+        let { [(0, randomBetween)(0, bruteStats.length - 1)]: secondStat } = bruteStats;
+        // Avoid duplicates
+        while (secondStat === firstStat) {
+            secondStat = bruteStats[(0, randomBetween)(0, bruteStats.length - 1)];
+        }
+        // Swap +1/+1 with +2
+        firstChoice = secondChoice;
+        secondChoice = {
+            type: 'stats',
+            stat1: firstStat,
+            stat1Value: 1,
+            stat2: secondStat,
+            stat2Value: 1,
+        };
+    }
+    else {
+        if (!perkType || !perkName) {
+            throw new Error('No perk type or name');
+        }
+        firstChoice = {
+            type: perkType,
+            skill: perkType === 'skill' ? perkName : undefined,
+            pet: perkType === 'pet' ? perkName : undefined,
+            weapon: perkType === 'weapon' ? perkName : undefined,
+        };
+    }
+    return [firstChoice, secondChoice];
+};
+var createRandomBruteStats = (baseStats, perkType, perkName) => {
+    let brute = {
+        level: 1,
+        xp: 0,
+        hp: 0,
+        enduranceStat: 0,
+        enduranceModifier: 1,
+        enduranceValue: 0,
+        strengthStat: 0,
+        strengthModifier: 1,
+        strengthValue: 0,
+        agilityStat: 0,
+        agilityModifier: 1,
+        agilityValue: 0,
+        speedStat: 0,
+        speedModifier: 1,
+        speedValue: 0,
+        skills: [],
+        pets: [],
+        ranking: BruteRankings[0],
+        weapons: [],
+    };
+    let perk = null;
+    // Predefined perk
+    if (perkType && perkName) {
+        perk = { type: perkType, name: perkName };
+        if (perkType === DestinyChoiceType.pet) {
+            brute.pets = [perkName];
+        }
+        else if (perkType === DestinyChoiceType.skill) {
+            brute.skills = [perkName];
+        }
+        else {
+            brute.weapons = [perkName];
+        }
+    }
+    else {
+        // Random perk
+        perk = (0, getRandomBonus)(brute, true);
+        if (!perk) {
+            throw new Error('No bonus found');
+        }
+        // Pet
+        brute.pets = perk.type === DestinyChoiceType.pet ? [perk.name] : [];
+        // Skill
+        brute.skills = perk.type === DestinyChoiceType.skill ? [perk.name] : [];
+        // Weapon
+        brute.weapons = perk.type === DestinyChoiceType.weapon ? [perk.name] : [];
+    }
+    // Stats boosters
+    if (perk.type === 'skill') {
+        var skill = brute.skills[0];
+        if (!skill) {
+            throw new Error('Skill not found');
+        }
+        brute = (0, applySkillModifiers)(brute, skill);
+    }
+    // Starting stats
+    var startingStats = baseStats || (0, getRandomStartingStats)();
+    brute.enduranceStat += startingStats.endurance;
+    brute.strengthStat += startingStats.strength;
+    brute.agilityStat += startingStats.agility;
+    brute.speedStat += startingStats.speed;
+    // Take into account the endurance malus from the pet
+    if (perk.type === DestinyChoiceType.pet) {
+        var pet = pets.find((p) => p.name === perk?.name);
+        if (!pet) {
+            throw new Error('Pet not found');
+        }
+        // Can go into negatives
+        brute.enduranceStat -= pet.enduranceMalus;
+    }
+    // Final stat values
+    brute.enduranceValue = Math.floor(brute.enduranceStat * brute.enduranceModifier);
+    brute.strengthValue = Math.floor(brute.strengthStat * brute.strengthModifier);
+    brute.agilityValue = Math.floor(brute.agilityStat * brute.agilityModifier);
+    brute.speedValue = Math.floor(brute.speedStat * brute.speedModifier);
+    // Final HP
+    brute.hp = (0, getHP)(1, brute.enduranceValue);
+    return brute;
+};
+var getRandomStartingStats = void 0;
+var getRandomStartingStats = () => {
+    // Starting budget
+    let availablePoints = BRUTE_STARTING_POINTS;
+    // Enrudance (2 to 5)
+    var endurance = (0, randomBetween)(2, 5);
+    availablePoints -= endurance;
+    // Strength (2 to 5)
+    var strength = Math.min((0, randomBetween)(2, 5), availablePoints - 2 * 2);
+    availablePoints -= strength;
+    // Agility (2 to 5)
+    var agility = Math.min((0, randomBetween)(2, 5), availablePoints - 2 * 1);
+    availablePoints -= agility;
+    // Speed (2 to 5)
+    var speed = availablePoints;
+    return {
+        endurance,
+        strength,
+        agility,
+        speed,
+    };
+};
+var getRandomStartingStats = getRandomStartingStats;
+var updateStat = (brute, stat, value) => {
+    switch (stat) {
+        case 'endurance':
+            return {
+                ...brute,
+                enduranceStat: brute.enduranceStat + value,
+            };
+        case 'strength':
+            return {
+                ...brute,
+                strengthStat: brute.strengthStat + value,
+            };
+        case 'agility':
+            return {
+                ...brute,
+                agilityStat: brute.agilityStat + value,
+            };
+        case 'speed':
+            return {
+                ...brute,
+                speedStat: brute.speedStat + value,
+            };
+        default:
+            throw new Error('Invalid stat');
+    }
+};
+var updateBruteData = (brute, destinyChoice) => {
+    let updatedBrute = {
+        ...brute,
+        pets: [...brute.pets],
+        skills: [...brute.skills],
+        weapons: [...brute.weapons],
+        xp: 0,
+        level: brute.level + 1,
+    };
+    // New skill
+    if (destinyChoice.type === 'skill') {
+        var skillName = destinyChoice.skill;
+        if (!skillName) {
+            throw new Error('No skill provided');
+        }
+        // Handle +2 fights for `regeneration`
+        if (skillName === SkillName.regeneration) {
+            updatedBrute.fightsLeft = (0, getFightsLeft)(updatedBrute, null) + 2;
+        }
+        updatedBrute.skills.push(skillName);
+        // STATS MODIFIERS
+        updatedBrute = (0, applySkillModifiers)(updatedBrute, skillName);
+    }
+    else if (destinyChoice.type === 'weapon') {
+        // New weapon
+        updatedBrute.weapons.push(destinyChoice.weapon);
+    }
+    else if (destinyChoice.type === 'pet') {
+        // New pet
+        var pet = pets.find((p) => p.name === destinyChoice.pet);
+        if (!pet) {
+            throw new Error('Pet not found');
+        }
+        updatedBrute.pets.push(destinyChoice.pet);
+        // Take into account the endurance malus from the pet
+        updatedBrute.enduranceStat -= pet.enduranceMalus;
+    }
+    else if (destinyChoice.stat1 && !destinyChoice.stat2) {
+        // +X stat
+        var stat = destinyChoice.stat1;
+        updatedBrute = updateStat(updatedBrute, stat, destinyChoice.stat1Value);
+    }
+    else {
+        // +X/+X
+        if (!destinyChoice.stat1 || !destinyChoice.stat2
+            || !destinyChoice.stat1Value || !destinyChoice.stat2Value) {
+            throw new Error('No stats provided');
+        }
+        updatedBrute = updateStat(updatedBrute, destinyChoice.stat1, destinyChoice.stat1Value);
+        updatedBrute = updateStat(updatedBrute, destinyChoice.stat2, destinyChoice.stat2Value);
+    }
+    // Final stat values
+    updatedBrute.enduranceValue = Math.floor(updatedBrute.enduranceStat * updatedBrute.enduranceModifier);
+    updatedBrute.strengthValue = Math.floor(updatedBrute.strengthStat * updatedBrute.strengthModifier);
+    updatedBrute.agilityValue = Math.floor(updatedBrute.agilityStat * updatedBrute.agilityModifier);
+    updatedBrute.speedValue = Math.floor(updatedBrute.speedStat * updatedBrute.speedModifier);
+    // Final HP
+    updatedBrute.hp = (0, getHP)(updatedBrute.level, updatedBrute.enduranceValue);
+    return updatedBrute;
+};
+var isNameValid = void 0;
+var isNameValid = (name) => {
+    if (!name?.match(/^[a-zA-Z0-9_-]*$/) || name.length < 3 || name.length > 16) {
+        return false;
+    }
+    return true;
+};
+var isNameValid = isNameValid;
+function getFightsLeft(){}var preventSomeBonuses = (brute, perkType, perkName) => {
+    let preventPerk = false;
+    // Check if the perk should be prevented
+    if (perkType === 'pet') {
+        switch (perkName) {
+            case 'dog1':
+                preventPerk = brute.pets.includes('dog1');
+                break;
+            case 'dog2':
+                preventPerk = !brute.pets.includes('dog1') || brute.pets.includes('dog2');
+                break;
+            case 'dog3':
+                preventPerk = !brute.pets.includes('dog1') || !brute.pets.includes('dog2') || brute.pets.includes('dog3');
+                break;
+            case 'panther':
+                // Allow for both panther and bear at a 1/1000 chance
+                preventPerk = brute.pets.includes('panther')
+                    || ((0, randomBetween)(1, 1000) > 1 ? brute.pets.includes('bear') : false);
+                break;
+            case 'bear':
+                // Allow for both panther and bear at a 1/1000 chance
+                preventPerk = brute.pets.includes('bear')
+                    || ((0, randomBetween)(1, 1000) > 1 ? brute.pets.includes('panther') : false);
+                break;
+            default:
+                break;
+        }
+    }
+    else if (perkType === 'skill') {
+        var selectedSkill = skills.find((skill) => skill.name === perkName);
+        var hasSkill = brute.skills.includes(perkName);
+        if (hasSkill) {
+            preventPerk = true;
+        }
+        else if (selectedSkill?.type === 'booster') {
+            // Decrease booster chances
+            var boosters = skills.filter((skill) => skill.type === 'booster');
+            var gottenBoosters = brute.skills.filter((skill) => boosters.find((booster) => booster.name === skill));
+            switch (gottenBoosters.length) {
+                case 0:
+                    preventPerk = false;
+                    break;
+                case 1:
+                    // 5% chance of getting a second booster
+                    preventPerk = (0, randomBetween)(1, 100) < 95;
+                    break;
+                case 2:
+                    // 2% chance of getting a third booster
+                    preventPerk = (0, randomBetween)(1, 100) < 98;
+                    break;
+                case 3:
+                    // 0.1% chance of getting a fourth booster
+                    preventPerk = (0, randomBetween)(1, 1000) < 999;
+                    break;
+                case 4:
+                    // 0.1% chance of getting a fifth booster
+                    preventPerk = (0, randomBetween)(1, 1000) < 999;
+                    break;
+                case 5:
+                    // 0.1% chance of getting a sixth booster
+                    preventPerk = (0, randomBetween)(1, 1000) < 999;
+                    break;
+                default:
+                    preventPerk = false;
+                    break;
+            }
+        }
+        else {
+            preventPerk = false;
+        }
+    }
+    else {
+        // Limit some weapons
+        var gottenLimitedWeapons = brute.weapons.filter((weapon) => limitedWeapons.includes(weapon));
+        if (limitedWeapons.find((w) => w === perkName)
+            && gottenLimitedWeapons.length >= MAX_LIMITED_WEAPONS) {
+            preventPerk = true;
+        }
+        else {
+            // Prevent unlocking a weapon if the brute already has it
+            preventPerk = brute.weapons.includes(perkName);
+        }
+    }
+    return preventPerk;
+};
+var getRandomBonus = (brute, rerollUntilFound = false, disabledSkills = [], disabledWeapons = [], disabledPets = []) => {
+    var enabledSkills = skills.filter((skill) => !disabledSkills.includes(skill.name));
+    var enabledWeapons = weapons.filter((weapon) => !disabledWeapons.includes(weapon.name));
+    var enabledPets = pets.filter((pet) => !disabledPets.includes(pet.name));
+    var enabledPerksOdds = [
+        { name: 'pet', odds: enabledPets.reduce((acc, pet) => acc + pet.odds, 0) },
+        { name: 'skill', odds: enabledSkills.reduce((acc, skill) => acc + skill.odds, 0) },
+        { name: 'weapon', odds: enabledWeapons.reduce((acc, weapon) => acc + weapon.odds, 0) },
+    ];
+    let perkName = null;
+    let perkType = null;
+    // Weapon/Skill/Pet ?
+    perkType = (0, weightedRandom)(enabledPerksOdds).name;
+    // Perk name ?
+    perkName = perkType === 'pet'
+        ? (0, weightedRandom)(pets).name
+        : perkType === 'skill'
+            ? (0, weightedRandom)(skills).name
+            : (0, weightedRandom)(weapons).name;
+    // Prevent some perks
+    let found = !preventSomeBonuses(brute, perkType, perkName);
+    while (rerollUntilFound && !found) {
+        // Reroll perk type
+        perkType = (0, weightedRandom)(enabledPerksOdds).name;
+        // Reroll perk name
+        perkName = perkType === 'pet'
+            ? (0, weightedRandom)(pets).name
+            : perkType === 'skill'
+                ? (0, weightedRandom)(skills).name
+                : (0, weightedRandom)(weapons).name;
+        // Prevent some perks
+        found = !preventSomeBonuses(brute, perkType, perkName);
+    }
+    return found ? {
+        type: perkType,
+        name: perkName,
+    } : null;
 };
 
 var applySpy = (fightData, brute, opponent) => {
@@ -4370,35 +5155,58 @@ var weaponsFR={"fan": "Éventail",
   "shuriken": "Shuriken",
   "broadsword": "Glaive",
 "scimitar": "Cimeterre",
- "sword": "Épée",};var getTempWeapon = (brute, weaponIndex) => {
-    if (weaponIndex === null) {
-        return null;
-    }
-    var unownedWeapons = weapons.filter((weapon) => !brute.weapons.includes(weapon.name));
-    var tempWeapon = unownedWeapons[weaponIndex % unownedWeapons.length];
-    if (!tempWeapon) {
-        throw new Error('No temp weapon found');
-    }
-    return tempWeapon.name;
-};
-var getTempWeapon = getTempWeapon;
-var unavailableTemporarySkills = [SkillName.backup];
-var getTempSkill = (brute, skillIndex) => {
-    if (skillIndex === null) {
-        return null;
-    }
-    var unownedSkills = skills.filter((skill) => !brute.skills.includes(skill.name)
-        && !unavailableTemporarySkills.includes(skill.name));
-    var tempSkill = unownedSkills[skillIndex % unownedSkills.length];
-    if (!tempSkill) {
-        throw new Error('No temp skill found');
-    }
-    return tempSkill.name;
-};
-var getTempSkill = getTempSkill;
-"use strict"
+ "sword": "Épée",};
 
-var ServerState = proxy;
-var updateAchievement = proxy;
-var getTempSkill = proxy
-var getTempWeapon = proxy
+
+
+function makeInputDIV(n){return div({0:div({3:"inputDIV",2:"img",22:"/images/creation/input.svg"}),2:"input",4:1,5:0})}
+
+
+function gaussianRandom() {
+    let u = 0, v = 0;
+    while (u === 0) u = Math.random(); // Évite 0 pour `u`
+    while (v === 0) v = Math.random(); // Évite 0 pour `v`
+    return Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+}
+
+// Exemple : générer un nombre gaussien avec une moyenne et un écart-type spécifique
+function gaussianRandomWithMeanAndStd(mean, stdDev) {
+    return mean + gaussianRandom() * stdDev;
+}
+
+function randomLevel(mean=33,std=3){return parseInt(Math.max(0,gaussianRandomWithMeanAndStd(mean,std)))}
+
+
+
+var defiDIV
+
+var initialURL = window.location.href
+var initialVERSUS = window.location.href.split("?")[0]
+
+var versusGetsList = window.location.href.split("?")[1].split("&")
+var versusGets = {};for(var v of versusGetsList){var agr = v.split("=");if(agr.length>1){versusGetsList[agr[0]]=agr[1]}}
+
+var seed = versusGets.seed?versusGets.seed:0
+var brutes = [(versusGets.b1)?versusGets.b1:"",(versusGets.b2)?versusGets.b2:""]
+var bruteInputs = []
+var bruteDIVS = []
+
+
+$("h2").each(function(){
+	if($(this).text().indexOf("Vous avez osé défier")!=-1){defiDIV = $(this);}
+})
+$("h3").each(function(){
+	bruteDIVS.push($(this));$(this).text(" ")
+})
+defiDIV.text(" ")
+$(".inputDIV").remove();
+$("h5").each(function(){
+	if($(this).text().indexOf("Niveau")!=-1){
+		$(this).text("Niveau ???")
+		var nimput = bruteInputs.length
+		makeInputDIV(nimput).parent().insertAfter($(this))
+	}
+	if($(this).text().indexOf("Lancer le combat")!=-1){$(this).parent().on("click mouseup",function(event){cl("lol");event.stopPropagation();event.preventDefault()})}
+})
+
+

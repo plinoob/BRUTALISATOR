@@ -206,17 +206,77 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 
 	
 	  }
+	  
+function setImageSrc(prevSrc,newSrc){
+	$("img[src$='"+prevSrc+"']").attr("src",newSrc)
+	
+}
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+async function arena(tries){
+	
+
+	
+	function makeInfoDiv(name){return div({17:"lol",15:0,6:{click:function(){openBruteCell(name)}}})}
+	
+		var searchString = "Niveau";  // Remplace "chaine" par la chaîne à rechercher
+var elements = $("p").filter(function() {
+    return $(this).text().startsWith(searchString);
+});
+
+var brutesNames = [BRUTE]
+var brutesDivs={}
+
+elements.each(function() {
+	var name = $(this).parent().children(":first").text()
+	brutesNames.push(name)
+	brutesDivs[name] = makeInfoDiv(name)
+brutesDivs[name].insertAfter($(this).parent().parent())
+});
+
+if(brutesNames.length<7){await sleep(800);if(tries>5){return};return arena(tries+1)}
+
+ brutes = await getAllBrutes(brutesNames)
+
+if(Math.random*100<1){setImageSrc(img_arbitre,img_lapin)}
+else if(Math.random*33<1){setImageSrc(img_arbitre,img_mains)}
+else if(Math.random*33<1){setImageSrc(img_arbitre,img_voyante)}
+else if(Math.random*2<1){setImageSrc(img_ours,img_ours1)}
+else{setImageSrc(img_ours,img_ours2)}
+
+
+
+var rota2 = [[brutes.shift()]]
+var rota1 = [] ; for(var b of brutes) rota1.push([b])
+
+				simulFights({
+					fn:function(res){stopLoading();for(var b of res){brutesDivs[b.nom].text(1-b.v/b.j)}
+					
+					},
+					rota1:rota1,
+					rota2:rota2,//number = boss
+					backups:false,
+					fight_per_rota:200,
+					fight_total:10000,
+					return_first_win:false,
+					})
+
+	
+}
+	  
+	  
+	  
 var LOCAL
 var fightToVizualise
 function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL){return}
 			var iframe = document.createElement('iframe');
 			document.body.appendChild(iframe);
 			$(iframe).css({"position":"absolute",top:0,bottom:0,left:0,right:0,"z-index":50000,width:"99.5%",height:"100%"})
-			$(iframe).on("mousedown",function(){$(iframe).remove()})
-			//brute1Id
+			// brute1Id
 iframe.onload = () => {
     var iframeWindow = iframe.contentWindow;
-
+iframeWindow.document.addEventListener('click', function(){$(iframe).remove()}, false);
     // Injecter le code dans l'iframe pour surcharger fetch
     iframeWindow.fetch = async function(url, options) {
         console.log(`Intercepted fetch call to: ${url}`);
@@ -273,7 +333,10 @@ function insertDivAfterElement(newDiv,referenceDiv) {
     referenceDiv.insertAdjacentElement('afterend', newDiv);
   }
 }
-
+var getRandomProperty = function (obj) {
+    var keys = Object.keys(obj);
+    return obj[keys[ keys.length * Math.random() << 0]];
+};
 function addStyle(styleString) {
   var style = document.createElement('style');
   style.textContent = styleString;
@@ -2435,6 +2498,401 @@ var bodyParts = {
 					},
 					
 }
+var getTempWeapon = (brute, weaponIndex) => {return 0
+};
+
+var getTempSkill = (brute, skillIndex) => {return 0
+};var DestinyChoiceType = /*exports.*//*$Enums.*/DestinyChoiceType = {
+  skill: 'skill',
+  weapon: 'weapon',
+  pet: 'pet',
+  stats: 'stats'
+};
+var BruteStat = /*exports.*//*$Enums.*/BruteStat = {
+  endurance: 'endurance',
+  strength: 'strength',
+  agility: 'agility',
+  speed: 'speed'
+};
+var getLevelUpChoices = (brute) => {
+    let preventPerk = false;
+    let perkType = null;
+    let perkName = null;
+    // First choice (Weapon/Skill/Pet)
+    // (+1/+1 Stats if picked something already learned)
+    let firstChoice = null;
+    var bruteStats = Object.values(BruteStat);
+    // Second choice (+2 Stat)
+    let secondChoice = {
+        type: 'stats',
+        stat1: bruteStats[(0, randomBetween)(0, bruteStats.length - 1)],
+        stat1Value: 2,
+    };
+    // Less likely to get a perk the more high level the brute is
+    if (brute.level >= 80 && (0, randomBetween)(0, brute.level) >= 80) {
+        preventPerk = true;
+    }
+    if (!preventPerk) {
+        var perk = (0, getRandomBonus)(brute);
+        if (perk) {
+            perkType = perk.type;
+            perkName = perk.name;
+        }
+        preventPerk = !perk;
+    }
+    // Chose +1/+1 stat instead
+    if (preventPerk) {
+        var { [(0, randomBetween)(0, bruteStats.length - 1)]: firstStat } = bruteStats;
+        let { [(0, randomBetween)(0, bruteStats.length - 1)]: secondStat } = bruteStats;
+        // Avoid duplicates
+        while (secondStat === firstStat) {
+            secondStat = bruteStats[(0, randomBetween)(0, bruteStats.length - 1)];
+        }
+        // Swap +1/+1 with +2
+        firstChoice = secondChoice;
+        secondChoice = {
+            type: 'stats',
+            stat1: firstStat,
+            stat1Value: 1,
+            stat2: secondStat,
+            stat2Value: 1,
+        };
+    }
+    else {
+        if (!perkType || !perkName) {
+            throw new Error('No perk type or name');
+        }
+        firstChoice = {
+            type: perkType,
+            skill: perkType === 'skill' ? perkName : undefined,
+            pet: perkType === 'pet' ? perkName : undefined,
+            weapon: perkType === 'weapon' ? perkName : undefined,
+        };
+    }
+    return [firstChoice, secondChoice];
+};
+var createRandomBruteStats = (baseStats, perkType, perkName) => {
+    let brute = {
+        level: 1,
+        xp: 0,
+        hp: 0,
+        enduranceStat: 0,
+        enduranceModifier: 1,
+        enduranceValue: 0,
+        strengthStat: 0,
+        strengthModifier: 1,
+        strengthValue: 0,
+        agilityStat: 0,
+        agilityModifier: 1,
+        agilityValue: 0,
+        speedStat: 0,
+        speedModifier: 1,
+        speedValue: 0,
+        skills: [],
+        pets: [],
+        ranking: BruteRankings[0],
+        weapons: [],
+    };
+    let perk = null;
+    // Predefined perk
+    if (perkType && perkName) {
+        perk = { type: perkType, name: perkName };
+        if (perkType === DestinyChoiceType.pet) {
+            brute.pets = [perkName];
+        }
+        else if (perkType === DestinyChoiceType.skill) {
+            brute.skills = [perkName];
+        }
+        else {
+            brute.weapons = [perkName];
+        }
+    }
+    else {
+        // Random perk
+        perk = (0, getRandomBonus)(brute, true);
+        if (!perk) {
+            throw new Error('No bonus found');
+        }
+        // Pet
+        brute.pets = perk.type === DestinyChoiceType.pet ? [perk.name] : [];
+        // Skill
+        brute.skills = perk.type === DestinyChoiceType.skill ? [perk.name] : [];
+        // Weapon
+        brute.weapons = perk.type === DestinyChoiceType.weapon ? [perk.name] : [];
+    }
+    // Stats boosters
+    if (perk.type === 'skill') {
+        var skill = brute.skills[0];
+        if (!skill) {
+            throw new Error('Skill not found');
+        }
+        brute = (0, applySkillModifiers)(brute, skill);
+    }
+    // Starting stats
+    var startingStats = baseStats || (0, getRandomStartingStats)();
+    brute.enduranceStat += startingStats.endurance;
+    brute.strengthStat += startingStats.strength;
+    brute.agilityStat += startingStats.agility;
+    brute.speedStat += startingStats.speed;
+    // Take into account the endurance malus from the pet
+    if (perk.type === DestinyChoiceType.pet) {
+        var pet = pets.find((p) => p.name === perk?.name);
+        if (!pet) {
+            throw new Error('Pet not found');
+        }
+        // Can go into negatives
+        brute.enduranceStat -= pet.enduranceMalus;
+    }
+    // Final stat values
+    brute.enduranceValue = Math.floor(brute.enduranceStat * brute.enduranceModifier);
+    brute.strengthValue = Math.floor(brute.strengthStat * brute.strengthModifier);
+    brute.agilityValue = Math.floor(brute.agilityStat * brute.agilityModifier);
+    brute.speedValue = Math.floor(brute.speedStat * brute.speedModifier);
+    // Final HP
+    brute.hp = (0, getHP)(1, brute.enduranceValue);
+    return brute;
+};
+var getRandomStartingStats = void 0;
+var getRandomStartingStats = () => {
+    // Starting budget
+    let availablePoints = BRUTE_STARTING_POINTS;
+    // Enrudance (2 to 5)
+    var endurance = (0, randomBetween)(2, 5);
+    availablePoints -= endurance;
+    // Strength (2 to 5)
+    var strength = Math.min((0, randomBetween)(2, 5), availablePoints - 2 * 2);
+    availablePoints -= strength;
+    // Agility (2 to 5)
+    var agility = Math.min((0, randomBetween)(2, 5), availablePoints - 2 * 1);
+    availablePoints -= agility;
+    // Speed (2 to 5)
+    var speed = availablePoints;
+    return {
+        endurance,
+        strength,
+        agility,
+        speed,
+    };
+};
+var getRandomStartingStats = getRandomStartingStats;
+var updateStat = (brute, stat, value) => {
+    switch (stat) {
+        case 'endurance':
+            return {
+                ...brute,
+                enduranceStat: brute.enduranceStat + value,
+            };
+        case 'strength':
+            return {
+                ...brute,
+                strengthStat: brute.strengthStat + value,
+            };
+        case 'agility':
+            return {
+                ...brute,
+                agilityStat: brute.agilityStat + value,
+            };
+        case 'speed':
+            return {
+                ...brute,
+                speedStat: brute.speedStat + value,
+            };
+        default:
+            throw new Error('Invalid stat');
+    }
+};
+var updateBruteData = (brute, destinyChoice) => {
+    let updatedBrute = {
+        ...brute,
+        pets: [...brute.pets],
+        skills: [...brute.skills],
+        weapons: [...brute.weapons],
+        xp: 0,
+        level: brute.level + 1,
+    };
+    // New skill
+    if (destinyChoice.type === 'skill') {
+        var skillName = destinyChoice.skill;
+        if (!skillName) {
+            throw new Error('No skill provided');
+        }
+        // Handle +2 fights for `regeneration`
+        if (skillName === SkillName.regeneration) {
+            updatedBrute.fightsLeft = (0, getFightsLeft)(updatedBrute, null) + 2;
+        }
+        updatedBrute.skills.push(skillName);
+        // STATS MODIFIERS
+        updatedBrute = (0, applySkillModifiers)(updatedBrute, skillName);
+    }
+    else if (destinyChoice.type === 'weapon') {
+        // New weapon
+        updatedBrute.weapons.push(destinyChoice.weapon);
+    }
+    else if (destinyChoice.type === 'pet') {
+        // New pet
+        var pet = pets.find((p) => p.name === destinyChoice.pet);
+        if (!pet) {
+            throw new Error('Pet not found');
+        }
+        updatedBrute.pets.push(destinyChoice.pet);
+        // Take into account the endurance malus from the pet
+        updatedBrute.enduranceStat -= pet.enduranceMalus;
+    }
+    else if (destinyChoice.stat1 && !destinyChoice.stat2) {
+        // +X stat
+        var stat = destinyChoice.stat1;
+        updatedBrute = updateStat(updatedBrute, stat, destinyChoice.stat1Value);
+    }
+    else {
+        // +X/+X
+        if (!destinyChoice.stat1 || !destinyChoice.stat2
+            || !destinyChoice.stat1Value || !destinyChoice.stat2Value) {
+            throw new Error('No stats provided');
+        }
+        updatedBrute = updateStat(updatedBrute, destinyChoice.stat1, destinyChoice.stat1Value);
+        updatedBrute = updateStat(updatedBrute, destinyChoice.stat2, destinyChoice.stat2Value);
+    }
+    // Final stat values
+    updatedBrute.enduranceValue = Math.floor(updatedBrute.enduranceStat * updatedBrute.enduranceModifier);
+    updatedBrute.strengthValue = Math.floor(updatedBrute.strengthStat * updatedBrute.strengthModifier);
+    updatedBrute.agilityValue = Math.floor(updatedBrute.agilityStat * updatedBrute.agilityModifier);
+    updatedBrute.speedValue = Math.floor(updatedBrute.speedStat * updatedBrute.speedModifier);
+    // Final HP
+    updatedBrute.hp = (0, getHP)(updatedBrute.level, updatedBrute.enduranceValue);
+    return updatedBrute;
+};
+var isNameValid = void 0;
+var isNameValid = (name) => {
+    if (!name?.match(/^[a-zA-Z0-9_-]*$/) || name.length < 3 || name.length > 16) {
+        return false;
+    }
+    return true;
+};
+var isNameValid = isNameValid;
+function getFightsLeft(){}var preventSomeBonuses = (brute, perkType, perkName) => {
+    let preventPerk = false;
+    // Check if the perk should be prevented
+    if (perkType === 'pet') {
+        switch (perkName) {
+            case 'dog1':
+                preventPerk = brute.pets.includes('dog1');
+                break;
+            case 'dog2':
+                preventPerk = !brute.pets.includes('dog1') || brute.pets.includes('dog2');
+                break;
+            case 'dog3':
+                preventPerk = !brute.pets.includes('dog1') || !brute.pets.includes('dog2') || brute.pets.includes('dog3');
+                break;
+            case 'panther':
+                // Allow for both panther and bear at a 1/1000 chance
+                preventPerk = brute.pets.includes('panther')
+                    || ((0, randomBetween)(1, 1000) > 1 ? brute.pets.includes('bear') : false);
+                break;
+            case 'bear':
+                // Allow for both panther and bear at a 1/1000 chance
+                preventPerk = brute.pets.includes('bear')
+                    || ((0, randomBetween)(1, 1000) > 1 ? brute.pets.includes('panther') : false);
+                break;
+            default:
+                break;
+        }
+    }
+    else if (perkType === 'skill') {
+        var selectedSkill = skills.find((skill) => skill.name === perkName);
+        var hasSkill = brute.skills.includes(perkName);
+        if (hasSkill) {
+            preventPerk = true;
+        }
+        else if (selectedSkill?.type === 'booster') {
+            // Decrease booster chances
+            var boosters = skills.filter((skill) => skill.type === 'booster');
+            var gottenBoosters = brute.skills.filter((skill) => boosters.find((booster) => booster.name === skill));
+            switch (gottenBoosters.length) {
+                case 0:
+                    preventPerk = false;
+                    break;
+                case 1:
+                    // 5% chance of getting a second booster
+                    preventPerk = (0, randomBetween)(1, 100) < 95;
+                    break;
+                case 2:
+                    // 2% chance of getting a third booster
+                    preventPerk = (0, randomBetween)(1, 100) < 98;
+                    break;
+                case 3:
+                    // 0.1% chance of getting a fourth booster
+                    preventPerk = (0, randomBetween)(1, 1000) < 999;
+                    break;
+                case 4:
+                    // 0.1% chance of getting a fifth booster
+                    preventPerk = (0, randomBetween)(1, 1000) < 999;
+                    break;
+                case 5:
+                    // 0.1% chance of getting a sixth booster
+                    preventPerk = (0, randomBetween)(1, 1000) < 999;
+                    break;
+                default:
+                    preventPerk = false;
+                    break;
+            }
+        }
+        else {
+            preventPerk = false;
+        }
+    }
+    else {
+        // Limit some weapons
+        var gottenLimitedWeapons = brute.weapons.filter((weapon) => limitedWeapons.includes(weapon));
+        if (limitedWeapons.find((w) => w === perkName)
+            && gottenLimitedWeapons.length >= MAX_LIMITED_WEAPONS) {
+            preventPerk = true;
+        }
+        else {
+            // Prevent unlocking a weapon if the brute already has it
+            preventPerk = brute.weapons.includes(perkName);
+        }
+    }
+    return preventPerk;
+};
+var getRandomBonus = (brute, rerollUntilFound = false, disabledSkills = [], disabledWeapons = [], disabledPets = []) => {
+    var enabledSkills = skills.filter((skill) => !disabledSkills.includes(skill.name));
+    var enabledWeapons = weapons.filter((weapon) => !disabledWeapons.includes(weapon.name));
+    var enabledPets = pets.filter((pet) => !disabledPets.includes(pet.name));
+    var enabledPerksOdds = [
+        { name: 'pet', odds: enabledPets.reduce((acc, pet) => acc + pet.odds, 0) },
+        { name: 'skill', odds: enabledSkills.reduce((acc, skill) => acc + skill.odds, 0) },
+        { name: 'weapon', odds: enabledWeapons.reduce((acc, weapon) => acc + weapon.odds, 0) },
+    ];
+    let perkName = null;
+    let perkType = null;
+    // Weapon/Skill/Pet ?
+    perkType = (0, weightedRandom)(enabledPerksOdds).name;
+    // Perk name ?
+    perkName = perkType === 'pet'
+        ? (0, weightedRandom)(pets).name
+        : perkType === 'skill'
+            ? (0, weightedRandom)(skills).name
+            : (0, weightedRandom)(weapons).name;
+    // Prevent some perks
+    let found = !preventSomeBonuses(brute, perkType, perkName);
+    while (rerollUntilFound && !found) {
+        // Reroll perk type
+        perkType = (0, weightedRandom)(enabledPerksOdds).name;
+        // Reroll perk name
+        perkName = perkType === 'pet'
+            ? (0, weightedRandom)(pets).name
+            : perkType === 'skill'
+                ? (0, weightedRandom)(skills).name
+                : (0, weightedRandom)(weapons).name;
+        // Prevent some perks
+        found = !preventSomeBonuses(brute, perkType, perkName);
+    }
+    return found ? {
+        type: perkType,
+        name: perkName,
+    } : null;
+};
+
 addStyle(`#table-wrapper {
   display: grid;
   grid-template-columns: auto 1fr; /* La première colonne pour le side-column, la deuxième pour le tableau */
