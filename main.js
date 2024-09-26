@@ -50,6 +50,7 @@ async function genBrute({
 	var boosterCount = brute.skills.reduce((acc, obj) => {if(boosters.includes(obj)){acc++};return acc;}, 0)
 	var not_boosters = skills.reduce((acc, obj) => {if(obj.type!="booster"){acc.push(obj.name)};return acc;}, [])
 	var not_boosterCount = brute.skills.reduce((acc, obj) => {if(not_boosters.includes(obj)){acc++};return acc;}, 0)
+	if(Math.random()*3<1){not_boosters.splice(not_boosters.indexOf("monk"), 1)};if(Math.random()*6<1){not_boosters.splice(not_boosters.indexOf("hideaway"), 1)};
 	brute.skills = shuffle(boosters).slice(0,boosterCount).concat(shuffle(not_boosters).slice(0,not_boosterCount))
 cl("new :",brute.skills,brute.weapons,brute.pets)
 	
