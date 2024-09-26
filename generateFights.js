@@ -391,7 +391,7 @@ if(url.length==3 && url[2]=="arena"){BRUTE = url[1];if(!arenaRunning && arenaBru
 async function arena(){arenaRunning=true
 arenaBruteAc = BRUTE
 
-if(!MODIFIERS){MODIFIERS=[];$("p").each(function(){
+if(!MODIFIERS){MODIFIERS=[];$("p").each(function(){if(MODIFIERS.length>0){return}
 	if($(this).text().indexOf("Modificateurs actifs")!=-1){for(var i in FightModifier){if($(this).parent().parent().text().indexOf(FightModifier[i])!=-1){MODIFIERS.push(i)}}}
 });cl("FIGHT MODIFIERS : ",MODIFIERS)}
 	
@@ -443,7 +443,8 @@ else{setImageSrc(img_ours,img_ours2)}
 					fight_per_rota:200,
 					fight_total:10000,
 					return_first_win:undefined,
-					loading:false
+					loading:false,
+					modifiers:MODIFIERS
 					})
 
 	
