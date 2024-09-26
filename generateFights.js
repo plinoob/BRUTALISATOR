@@ -40,7 +40,8 @@ var heheheha = {"id":"d34f1d14-6d7b-4d87-abd2-614947732ba6","name":"heheheha","d
 
 async function genBrute({
 	level,
-	name=false
+	name=false,
+	random
 }){
 	var template=heheheha
 	if(!LOCAL && BRUTE){template = await getBrute(BRUTE)}
@@ -48,16 +49,22 @@ async function genBrute({
 	name=name?name:(LOCAL?generateName():"_")
 		
 	var brute = createRandomBruteStats()
-
+	
 	brute.name=name
 	brute.userId=brute.name
 	brute.id=brute.name
 	
 	for(var chr in template){if(!(chr in brute)){brute[chr] = template[chr]}}
 	
+	var rnd=Math.random
+	
+	if(random){turnRandomToCHAOS(name))
+	
 	brute.gender = getRandomProperty(Gender)
 	brute.colors=getRandomColors(brute.gender)
 	brute.body = getRandomBody(brute.gender)
+	
+	Math.random = rnd
 	
 	for(var i=1;i<level;i++){brute=levelUp(brute);}
 	
@@ -112,7 +119,7 @@ async function launchFight(){
 if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
 	var previousmonk=0
 	for(var s in skills){if(skills[s].name=="monk"){previousmonk = skills[s].odds;skills[s].odds=previousmonk/10}}
-	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename});
+	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename,random:true});
 	for(var s in skills){if(skills[s].name=="monk"){skills[s].odds = previousmonk;}}
 	turnCHAOSToRandom()}
 else{var brutename=brutes[i];brutes[i]=await getBrute(brutename.split("@")[1])}
