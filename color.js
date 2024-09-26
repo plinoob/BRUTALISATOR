@@ -119,8 +119,9 @@ async function launchFight(){
 if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
 	backups[i] = [await genBrute({level:randomLevel(17,6),name:brutename+"$",random:true})];
 	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename,random:true});
-	turnCHAOSToRandom();
+	turnRandomToCHAOS(seed,brutes)
 	if(Math.random()>0.5){backups[i]=[]}
+	turnCHAOSToRandom();
 	}
 else{var brutename=brutes[i];brutes[i]=await getBrute(brutename.split("@")[1])}
 	} 
