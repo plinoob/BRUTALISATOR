@@ -45,7 +45,7 @@ async function genBrute({
 	brute.weapons = shuffle(weapons.reduce((acc, obj) => {acc.push(obj.name);return acc;}, [])).slice(0,brute.weapons.length)
 	for(var i of brute.pets){var pet = pets.find((p) => p.name === i);brute.enduranceStat+=pet.enduranceMalus;
 	brute.enduranceValue = Math.floor(brute.enduranceStat * brute.enduranceModifier);}
-	brute.pets = shuffle(pets.reduce((acc, obj) => {acc.push(obj.name);if(obj.name.startsWith("dog")){acc.push(obj.name)};return acc;}, [])).slice(0,brute.pets.length)
+	brute.pets = shuffle(pets.reduce((acc, obj) => {acc.push(obj.name);if(obj.name.startsWith("dog1")){acc.push(obj.name)};return acc;}, [])).slice(0,brute.pets.length)
 	var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])
 	var keepBoosters = brute.skills.reduce((acc, obj) => {if(boosters.includes(obj)){acc.push(obj)};return acc;}, [])
 	var not_boosters = skills.reduce((acc, obj) => {if(obj.type!="booster"){acc.push(obj.name)};return acc;}, [])
@@ -69,7 +69,8 @@ async function genBrute({
 
 function levelUp(brute,random){
 	var choices = getLevelUpChoices(brute)
-	if(random && choices[0].type == "skill")	{var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])
+	if(random && choices[0].type == "skill")	{
+		var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){if(obj.name!="immortality" || Math.random()*10<1){acc.push(obj.name)}};return acc;}, [])
 		if(boosters.includes(choices[0].skill)){for(var skill of brute.skills){if(boosters.includes(skill)){boosters.splice(boosters.indexOf(skill), 1)}}
 		choices[0].skill = shuffle(boosters)[0]
 	}
