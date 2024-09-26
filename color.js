@@ -81,7 +81,7 @@ var brutes = [(versusGets.b1)?versusGets.b1:"",(versusGets.b2)?versusGets.b2:""]
 cl("BRUTES : ",brutes)
 var bruteInputs = []
 var bruteDIVS = []
-
+var backups=[]
 async function launchFight(){		
 		if(combat_lancer) return
 		if(!combatIsOk()) return
@@ -92,6 +92,7 @@ async function launchFight(){
 if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
 	var previousmonk=0
 	for(var s in skills){if(skills[s].name=="monk"){previousmonk = skills[s].odds;skills[s].odds=previousmonk/10}}
+	backups[i] = await genBrute({level:randomLevel(17,6),name:brutename+"$",random:true});
 	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename,random:true});
 	for(var s in skills){if(skills[s].name=="monk"){skills[s].odds = previousmonk;}}
 	turnCHAOSToRandom()}
@@ -101,7 +102,7 @@ else{var brutename=brutes[i];brutes[i]=await getBrute(brutename.split("@")[1])}
 				fn:rien,
 				rota1:[[brutes[0]]],
 				rota2:[[brutes[1]]],//number = boss
-				backups:false,
+				backups:{[brutes[0].userId]:[backups[0]],[brutes[1].userId]:[backups[1]]},
 				fight_per_rota:1,
 				fight_total:1,
 				return_first_win:false,//undefined : nothing, true : first win, false : first fight
@@ -437,7 +438,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	generateFights = generateFights.replace("var TEAM1 ="+" []","var TEAM1 = "+JSON.stringify(rota1)+";")
 
 	if(rota1[0].length+(rota2[0]?rota2[0].length:1)>2){generateFights = generateFights.replace('var CLANWAR'+' = false','var CLANWAR = true'+";")}
-	if(backups){generateFights = generateFights.replace('var BACKUPS'+' = false','var BACKUPS = true'+";")}
+	if(backups){generateFights = generateFights.replace('var BACKUPS'+' = false','var BACKUPS = '+JSON.stringify(backups)";")}
 	if(return_first_win===true){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN;','var RETURN_FIRST_WIN = true'+";")}
 	if(return_first_win===false){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN;','var RETURN_FIRST_WIN = false'+";")}
 	
