@@ -124,7 +124,8 @@ async function launchFight(){
 				backups:false,
 				fight_per_rota:1,
 				fight_total:1,
-				return_first_win:false//undefined : nothing, true : first win, false : first fight
+				return_first_win:false,//undefined : nothing, true : first win, false : first fight
+				seed:[brutes[0].name,brutes[1].name,seed],
 				})}
 
 function gaussianRandom() {
