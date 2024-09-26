@@ -109,6 +109,124 @@ function gaussianRandomWithMeanAndStd(mean, stdDev) {
 
 function randomLevel(mean=33,std=3){return parseInt(Math.max(0,gaussianRandomWithMeanAndStd(mean,std)))}
 
+//-----------------------------------------------------------------------------------------------------------------
+
+var d32 = Math.pow(2,32)-1
+function isara(a){return(Array.isArray(a))};
+function int(a){return parseInt(a)}
+var U = undefined
+
+//Random generator
+class Chaos{
+  constructor(...a){//Arguments : Anything            (INT FLOAT STRING et ARRAYS impacteront ; Objects impacteront en fonction de leur classe)
+                    //L'objet vole 10 fois au départ... si non voulu : new Chaos().seed(_,_,_,_)
+    var c=Chaos
+	var l=Chaos.toSeed(a)
+	while(l.length<4){l.push(0)}
+	this.Seed=[l.shift(),l.shift(),l.shift(),l.shift()]
+	this.flap(10)
+	this.storm(l)
+	this.flap(10)
+	
+  }
+  
+  static toSeed(...a){//Arguments : Anything            ->              [INT...]
+  var l=[]
+  for(var i of a){var p=typeof(i);if(p==="number"){if(Number.isInteger(i)){l.push(this.int(i))}else{i=i.toString().split(".");l.push(this.int(i[0]));l.push(this.int(i[1]))}}
+  else if(p==="string"){for(var j=0;j<i.length;j++){l.push(this.int(i.charCodeAt(j)))};if(i.length===0){l.push(this.int(666))}}
+  else if(isara(i)){l.push(...this.toSeed(...i))}
+  else{l.push(...this.toSeed(p,(i!=null && i.constructor!=null && i.constructor.name)?i.constructor.name:0))}}
+  if(l.length===0){l.push(this.int(333))}
+  return l
+  }
+  static g=d32//2**32 -1
+  static int(a){var b=int(a)%this.g;return b===0?this.g:b}//Int -> Int 1 - 2**32-1
+  static trueSeed(){return this.int(Math.random() * this.g)}//crée une vraie seed
+  static trueChaos(){return new Chaos(Chaos.trueSeed(),Chaos.trueSeed(),Chaos.trueSeed(),Chaos.trueSeed())}//crée un vrai chaos
+    
+  //seed([]/...)   change les seeds -> this
+  seed(a){if(isara(a)){return this.seed(...a)}else{for(var i=0;i<arguments.length;i++){if(arguments[i]!==U){this.Seed[i]=Chaos.toSeed(arguments[i])[0]}}};return this}
+  
+  //secoue avec Anything arguments -> this
+  storm(...a){var l=Chaos.toSeed(a);for(var i=0;i<l.length;i+=4){this.seed(this.Seed[0]+(l[i]?l[i]:0),this.Seed[1]+(l[i+1]?l[i+1]:0),this.Seed[2]+(l[i+2]?l[i+2]:0),this.Seed[3]+(l[i+3]?l[i+3]:0));this.flap(3)}
+  return this}
+
+  flap(a=1){//next(0+) -> this
+	  for(var i=0;i<a;i++){
+	  // uint64_t s1 = s[0]
+	  var s1U = this.Seed[0], s1L = this.Seed[1];
+	  // uint64_t s0 = s[1]
+	  var s0U = this.Seed[2], s0L = this.Seed[3];
+
+	  // result = s0 + s1
+	  var sumL = (s0L >>> 0) + (s1L >>> 0);
+	  var resU = (s0U + s1U + (sumL / 2 >>> 31)) >>> 0;
+	  var resL = sumL >>> 0;
+
+	  // s[0] = s0
+	  this.Seed[0] = s0U;
+	  this.Seed[1] = s0L;
+
+	  // - t1 = [0, 0]
+	  var t1U = 0, t1L = 0;
+	  // - t2 = [0, 0]
+	  var t2U = 0, t2L = 0;
+
+	  // s1 ^= s1 << 23;
+	  // :: t1 = s1 << 23
+	  var a1 = 23;
+	  var m1 = 0xFFFFFFFF << (32 - a1);
+	  t1U = (s1U << a1) | ((s1L & m1) >>> (32 - a1));
+	  t1L = s1L << a1;
+	  // :: s1 = s1 ^ t1
+	  s1U = s1U ^ t1U;
+	  s1L = s1L ^ t1L;
+
+	  // t1 = ( s1 ^ s0 ^ ( s1 >> 17 ) ^ ( s0 >> 26 ) )
+	  // :: t1 = s1 ^ s0
+	  t1U = s1U ^ s0U;
+	  t1L = s1L ^ s0L;
+	  // :: t2 = s1 >> 18
+	  var a2 = 18;
+	  var m2 = 0xFFFFFFFF >>> (32 - a2);
+	  t2U = s1U >>> a2;
+	  t2L = (s1L >>> a2) | ((s1U & m2) << (32 - a2));
+	  // :: t1 = t1 ^ t2
+	  t1U = t1U ^ t2U;
+	  t1L = t1L ^ t2L;
+	  // :: t2 = s0 >> 5
+	  var a3 = 5;
+	  var m3 = 0xFFFFFFFF >>> (32 - a3);
+	  t2U = s0U >>> a3;
+	  t2L = (s0L >>> a3) | ((s0U & m3) << (32 - a3));
+	  // :: t1 = t1 ^ t2
+	  t1U = t1U ^ t2U;
+	  t1L = t1L ^ t2L;
+
+	  // s[1] = t1
+	  this.Seed[2] = t1U;
+	  this.Seed[3] = t1L;}
+	  
+	  if(a>0){this.r=resU * 2.3283064365386963e-10 + (resL >>> 12) * 2.220446049250313e-16;};return this
+	};
+  
+  //ran()->0,1           ran(10)->0,10            ran(5,8)->5,8              ran(5,8,3)->liste
+  ran(a=1,b,c){if(arguments.length<2){return(this.ran(0,a))}else if(c!==U){var l=[];for(var i=0;i<c;i++){l.push(this.ran(a,b))};return l};return Math.floor(this.flap().r*(b-a+1)+a)}
+  
+  //fan()->0-1           fan(10)->0-10            fan(5,8)->5-8              fan(5,8,3)->liste
+  fan(a=1,b,c){if(arguments.length<2){return(this.fan(0,a))}else if(c!==U){var l=[];for(var i=0;i<c;i++){l.push(this.fan(a,b))};return l};  return this.flap().r*(b-a)+a}
+  
+  //chaine de n lettres prises dans s
+  string(s,n){var l=this.ran(0,s.length-1,n),r="";for(var i=0;i<n;i++){r+=s.charAt(l[i])};return r}
+  
+  //id à n lettres
+  id(a=8){return this.string(lettres+LETTRES,a)}
+  
+  random(){return this.fan(0,1)}
+  
+}
+
+
 
 
 
@@ -296,7 +414,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	}
 	if(modifiers){generateFights = generateFights.replace("modifier"+"s: [],","modifiers: "+JSON.stringify(modifiers)+",")}
 	generateFights = generateFights.replace("var TEAM1 ="+" []","var TEAM1 = "+JSON.stringify(rota1)+";")
-	cl(generateFights)
+
 	if(rota1[0].length+(rota2[0]?rota2[0].length:1)>2){generateFights = generateFights.replace('var CLANWAR'+' = false','var CLANWAR = true'+";")}
 	if(backups){generateFights = generateFights.replace('var BACKUPS'+' = false','var BACKUPS = true'+";")}
 	if(return_first_win===true){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN;','var RETURN_FIRST_WIN = true'+";")}
@@ -364,9 +482,7 @@ if(url.length==3 && url[2]=="arena"){BRUTE = url[1];if(!arenaRunning && arenaBru
 async function arena(){arenaRunning=true
 arenaBruteAc = BRUTE
 
-if(!MODIFIERS){MODIFIERS=[];$("p").each(function(){if(MODIFIERS.length>0){return}
-	if($(this).text().indexOf("Modificateurs actifs")!=-1){for(var i in FightModifier){if($(this).parent().parent().text().indexOf(FightModifier[i])!=-1){MODIFIERS.push(i)}}}
-});cl("FIGHT MODIFIERS : ",MODIFIERS)}
+
 	
 	function makeInfoDiv(name){return div({17:"lol",15:0,6:{click:function(){openBruteCell(name)}}})}
 	
@@ -385,7 +501,12 @@ elements.each(function() {
 brutesDivs[name].insertAfter($(this).parent().parent())
 });
 
-if(brutesNames.length<7){arenaRunning=false;return}
+if(brutesNames.length<7){arenaRunning=false;return}//DOM exists
+
+
+if(!MODIFIERS){MODIFIERS=[];$("p").each(function(){if(MODIFIERS.length>0){return}
+	if($(this).text().indexOf("Modificateurs actifs")!=-1){for(var i in FightModifier){if($(this).parent().parent().text().indexOf(FightModifier[i])!=-1){MODIFIERS.push(FightModifier[i])}}}
+});cl("FIGHT MODIFIERS : ",MODIFIERS)}
 
 var  brutes = await getAllBrutes(brutesNames)
 
