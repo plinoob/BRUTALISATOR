@@ -270,7 +270,7 @@ var generateFights
 
 async function simulFights(arg){
 	cl("SIMULFIGHTS",JSON.stringify(arg))
-	if(!GENERATE_FIGHT){if(LOCAL){GENERATE_FIGHT = generateFights}else{GENERATE_FIGHT = await fetch(BRUTALISATOR+"generateFights.js");
+	if(!GENERATE_FIGHT){if(LOCAL){GENERATE_FIGHT = generateFights}else{cl("DL generateFight");GENERATE_FIGHT = await fetch(BRUTALISATOR+"generateFights.js");
 	GENERATE_FIGHT = await GENERATE_FIGHT.text();
 	}}
 	
@@ -283,7 +283,7 @@ async function simulFights(arg){
 
 
 async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
-,backups,fight_per_rota,fight_total,return_first_win,loading=true}){
+,backups,fight_per_rota,fight_total,return_first_win,loading=true,modifiers}){
 
 	if(fightWorker)fightWorker.terminate()
 		cl("rota2",rota2)
@@ -294,7 +294,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = "+JSON.stringify(rota2)+";")
 
 	}
-	
+	if(modifiers){generateFights = generateFights.replace("modifier"+"s: [],","modifiers: "+JSON.stringify(modifiers)+",")}
 	generateFights = generateFights.replace("var TEAM1 ="+" []","var TEAM1 = "+JSON.stringify(rota1)+";")
 	
 	if(rota1[0].length+(rota2[0]?rota2[0].length:1)>2){generateFights = generateFights.replace('var CLANWAR'+' = false','var CLANWAR = true'+";")}
@@ -350,7 +350,7 @@ var FIGHT_TYPE
 var BRUTE
 var CLAN
 
-
+var MODIFIERS
 var arenaRunning
 var arenaBruteAc
 
@@ -363,8 +363,10 @@ if(url.length==3 && url[2]=="arena"){BRUTE = url[1];if(!arenaRunning && arenaBru
 }
 async function arena(){arenaRunning=true
 arenaBruteAc = BRUTE
-	
 
+if(!MODIFIERS){MODIFIERS=[];$("p").each(function(){
+	if($(this).text().indexOf("Modificateurs actifs")!=-1){for(var i in FightModifier){if($(this).parent().parent().text().indexOf(FightModifier[i])!=-1){MODIFIERS.push(i)}}}
+});cl("FIGHT MODIFIERS : ",MODIFIERS)}
 	
 	function makeInfoDiv(name){return div({17:"lol",15:0,6:{click:function(){openBruteCell(name)}}})}
 	
@@ -1261,17 +1263,20 @@ if (typeof self.ExpectedError === 'undefined') {
       super(message);
     }
   };
-}var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
-  noThrows: 'noThrows',
-  focusOpponent: 'focusOpponent',
-  alwaysUseSupers: 'alwaysUseSupers',
-  drawEveryWeapon: 'drawEveryWeapon',
-  doubleAgility: 'doubleAgility',
-  randomSkill: 'randomSkill',
-  randomWeapon: 'randomWeapon',
-  bareHandsFirstHit: 'bareHandsFirstHit',
-  startWithWeapon: 'startWithWeapon'
+}
+FightModifier = {
+  noThrows: 'Mains collantes',
+  focusOpponent: 'Concentration',
+  alwaysUseSupers: 'Pouvoir illimité',
+  drawEveryWeapon: 'Ravitaillement infini',
+  doubleAgility: 'Gravité atténuée',
+  randomSkill: 'Compétence opportune',
+  randomWeapon: 'Arme opportune',
+  bareHandsFirstHit: 'Combat honorable',
+  startWithWeapon: 'Paré au combat'
 };
+
+
 var Gender = {
   male: 'male',
   female: 'female'

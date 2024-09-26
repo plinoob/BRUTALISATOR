@@ -690,17 +690,20 @@ if (typeof self.ExpectedError === 'undefined') {
       super(message);
     }
   };
-}var FightModifier = /*exports.*//*$Enums.*/FightModifier = {
-  noThrows: 'noThrows',
-  focusOpponent: 'focusOpponent',
-  alwaysUseSupers: 'alwaysUseSupers',
-  drawEveryWeapon: 'drawEveryWeapon',
-  doubleAgility: 'doubleAgility',
-  randomSkill: 'randomSkill',
-  randomWeapon: 'randomWeapon',
-  bareHandsFirstHit: 'bareHandsFirstHit',
-  startWithWeapon: 'startWithWeapon'
+}
+FightModifier = {
+  noThrows: 'Mains collantes',
+  focusOpponent: 'Concentration',
+  alwaysUseSupers: 'Pouvoir illimité',
+  drawEveryWeapon: 'Ravitaillement infini',
+  doubleAgility: 'Gravité atténuée',
+  randomSkill: 'Compétence opportune',
+  randomWeapon: 'Arme opportune',
+  bareHandsFirstHit: 'Combat honorable',
+  startWithWeapon: 'Paré au combat'
 };
+
+
 var Gender = {
   male: 'male',
   female: 'female'
