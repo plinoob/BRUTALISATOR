@@ -107,6 +107,7 @@ async function launchFight(){
 		if(!combatIsOk()) return
 		combat_lancer = true
 	stopLoading()
+	brutes.sort()
 	for(var i=0;i<2;i++){
 if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
 	var previousmonk=0
