@@ -3213,6 +3213,20 @@ var getRandomBonus = (brute, rerollUntilFound = false, disabledSkills = [], disa
         name: perkName,
     } : null;
 };
+var shuffle = (array) => {
+    var shuffledArray = [...array];
+    for (let i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var iItem = shuffledArray[i];
+        var jItem = shuffledArray[j];
+        if (typeof iItem === 'undefined' || typeof jItem === 'undefined') {
+            throw new Error('Item not found while shuffling array');
+        }
+        shuffledArray[i] = jItem;
+        shuffledArray[j] = iItem;
+    }
+    return shuffledArray;
+};
 
 addStyle(`#table-wrapper {
   display: grid;
