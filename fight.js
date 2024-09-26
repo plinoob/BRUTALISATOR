@@ -5148,7 +5148,7 @@ function makeInputDIV(n){
 
 function updateURL(){defiDIV.text("");
 if(!combatIsOk()){return};window.history.replaceState(null,
-"","/?b1="+brutes[0]+"&b2="+brutes[1]+(seed?"":"&seed="+seed));defiDIV.text(brutes[0]+" a osé défier "+brutes[1]+" !")}
+"","/?b1="+brutes[0]+"&b2="+brutes[1]+(seed?"&seed="+seed:""));defiDIV.text(brutes[0]+" a osé défier "+brutes[1]+" !")}
 
 
 
