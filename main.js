@@ -70,9 +70,10 @@ async function genBrute({
 function levelUp(brute,random){
 	var choices = getLevelUpChoices(brute)
 	if(random && choices[0].type == "skill")	{
-		var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){if(obj.name!="immortality" || Math.random()*10<1){acc.push(obj.name)}};return acc;}, [])
-		if(boosters.includes(choices[0].skill)){for(var skill of brute.skills){if(boosters.includes(skill)){boosters.splice(boosters.indexOf(skill), 1)}}
-		choices[0].skill = shuffle(boosters)[0]
+		var force='herculeanStrength'
+		var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){if(obj.name!="immortality" && obj.name!="reconnaissance"){acc.push(obj.name)}};return acc;}, [])
+		if(boosters.includes(choices[0].skill)){
+			if(choices[0].skill!=force && !brute.skills.includes(force) && Math.random()*3<1){choices[0].skill=force}
 	}
 	}
 	var chosed = 0
