@@ -82,7 +82,11 @@ async function launchFight(){
 	stopLoading()
 	for(var i=0;i<2;i++){
 if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
-	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename});turnCHAOSToRandom()}
+	var previousmonk=0
+	for(var s in skills){if(skills[s].name=="monk"){previousmonk = skills[s].odds;skills[s].odds=previousmonk/10}}
+	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename});
+	for(var s in skills){if(skills[s].name=="monk"){skills[s].odds = previousmonk;}}
+	turnCHAOSToRandom()}
 else{var brutename=brutes[i];brutes[i]=await getBrute(brutename.split("@")[1])}
 	} 
 			simulFights({
