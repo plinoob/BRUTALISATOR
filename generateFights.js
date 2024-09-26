@@ -1463,7 +1463,7 @@ if (typeof self.ExpectedError === 'undefined') {
     }
   };
 }
-FightModifier = {
+var FightModifier = {
   noThrows: 'Mains collantes',
   focusOpponent: 'Concentration',
   alwaysUseSupers: 'Pouvoir illimité',
