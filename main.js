@@ -473,7 +473,6 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	generateFights = generateFights.replace("var FIGHT_TOTAL"+" = 1","var FIGHT_TOTAL = "+fight_total+";")
 	if(seed!==U){	generateFights = generateFights.replace("if(false){tur"+"nRandomToCHAOS()}","if(true){turnRandomToCHAOS("+JSON.stringify(seed)+")}")
 }	
-	cl("seed",seed,generateFights)
 
 	var workerScript = 'var BRANCHE = "'+BRANCHE+'";'+generateFights
 
