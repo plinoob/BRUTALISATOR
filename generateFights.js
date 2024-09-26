@@ -41,17 +41,14 @@ var heheheha = {"id":"d34f1d14-6d7b-4d87-abd2-614947732ba6","name":"heheheha","d
 async function genBrute({
 	level,
 	name=false,
-	
+	seed,
 }){
 	var template=heheheha
 	if(!LOCAL && BRUTE){template = await getBrute(BRUTE)}
 	
 	
 	
-	var brute = createRandomBruteStats()
-	brute.gender = getRandomProperty(Gender)
-	brute.colors=getRandomColors(brute.gender)
-	brute.body = getRandomBody(brute.gender)
+
 	brute.name=name?name:(LOCAL?generateName():"_")
 	brute.userId=brute.name
 	brute.id=brute.name
@@ -61,9 +58,16 @@ async function genBrute({
 	for(var chr in template){if(!(chr in brute)){brute[chr] = template[chr]}}
 	
 	
+	if(seed){turnRandomToCHAOS(seed,name)}
 	
+	var brute = createRandomBruteStats()
+	brute.gender = getRandomProperty(Gender)
+	brute.colors=getRandomColors(brute.gender)
+	brute.body = getRandomBody(brute.gender)
 	
 	for(var i=1;i<level;i++){brute=levelUp(brute);}
+	
+	if(seed){turnCHAOSToRandom()}
 	
 	return brute;
 	
@@ -255,7 +259,15 @@ if(!Chaos){Chaos=class {
 }
 
 }
+var initialRandom
+if(!initialRandom){initialRandom=Math.random}
+function turnRandomToCHAOS(...args){
+	Math.random = new Chaos(...args).random
+}
 
+function turnCHAOSToRandom(){Math.random=initialRandom}
+
+if(false){turnRandomToCHAOS()}
 
 
 var nfps=60;var dicfps={};var dirfps=[];function fps(a){var f=dirfps.length;var t=function(){if(!(a in dicfps)){dicfps[a]=false;a(...arguments);setTimeout(function(){var b=dicfps[a];delk(dicfps,a);if(typeof(b)==typeof([])){dirfps[f](...b)}},nfps)}else{dicfps[a]=arguments;};};dirfps.push(t);return(t)};
@@ -429,7 +441,7 @@ async function simulFights(arg){
 
 
 async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
-,backups,fight_per_rota,fight_total,return_first_win,loading=true,modifiers}){
+,backups,fight_per_rota,fight_total,return_first_win,loading=true,modifiers,seed}){
 
 	if(fightWorker)fightWorker.terminate()
 		cl("rota2",rota2)
@@ -451,6 +463,8 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	generateFights = generateFights.replace("var FIGHTS_PER_ROTA"+" = 1","var FIGHTS_PER_ROTA = "+fight_per_rota+";")
 	generateFights = generateFights.replace("var FIGHT_TOTAL"+" = 1","var FIGHT_TOTAL = "+fight_total+";")
 	
+	if(seed!==U){	generateFights = generateFights.replace("if(false){tur"+"nRandomToCHAOS()}","if(true){turnRandomToCHAOS("+JSON.stringify(seed)+")}")
+}
 
 	var workerScript = 'var BRANCHE = "'+BRANCHE+'";'+generateFights
 
