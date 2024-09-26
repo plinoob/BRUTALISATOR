@@ -5124,7 +5124,7 @@ function makeInputDIV(n){
 	div({0:inpDIV,4:1,5:0,2:"img",22:"/images/creation/input.svg"})
 	
 	var inp= div({0:inpDIV,2:"input",4:1,5:0,
-	6:{"input change":function(){var br = $(this).val();brutes[n] = br; updateURL();bruteDIVS[n].text((br!="")?br:" ")}}}).val(brutes[n]).trigger("change")
+	6:{"input change":function(){var br = $(this).val();brutes[n] = br; updateURL();bruteDIVS[n].text((br!="")?br:"???")}}}).val(brutes[n]).trigger("change")
 	inp.css({
     "background": "transparent", // Fond transparent
     "border": "none",             // Pas de bordure
@@ -5135,7 +5135,7 @@ function makeInputDIV(n){
     "user-select": "none"         // Désactive la sélection du texte
 });
 	inp.keypress(async function (e) {
-  if (e.which == 13) {seed=window.location.href.split("seed=")[1];launchFight()
+  if (e.which == 13) {if(window.location.href.split("seed=").length>1){seed=window.location.href.split("seed=")[1]};launchFight()
 
 		  }
 		});
@@ -5146,7 +5146,7 @@ function makeInputDIV(n){
 
 
 
-function updateURL(){cl("UPDATEURL",window.location.href,initialVERSUS+"?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);defiDIV.text("");
+function updateURL(){cl("UPDATEURL",window.location.href,initialVERSUS+"?b1="+brutes[0]+"&b2="+brutes[1]+((seed!=0)?"&seed="+seed:""));defiDIV.text("");
 if(!combatIsOk()){return};window.history.replaceState(null,
 "","/?b1="+brutes[0]+"&b2="+brutes[1]+"&seed="+seed);defiDIV.text(brutes[0]+" a osé défier "+brutes[1]+" !")}
 
@@ -5173,7 +5173,7 @@ $("h5").each(function(){
 		
 		event.stopPropagation();event.preventDefault();
 
-		seed=window.location.href.split("seed=")[1];launchFight()
+		if(window.location.href.split("seed=").length>1){seed=window.location.href.split("seed=")[1]};launchFight()
 
 		
 		
