@@ -13,17 +13,13 @@ var heheheha = {"id":"d34f1d14-6d7b-4d87-abd2-614947732ba6","name":"heheheha","d
 
 async function genBrute({
 	level,
-	name=false,
-	seed,
+	name=false
 }){
 	var template=heheheha
 	if(!LOCAL && BRUTE){template = await getBrute(BRUTE)}
 	
 	name=name?name:(LOCAL?generateName():"_")
-	
-	
-	if(seed){turnRandomToCHAOS(seed,name)}
-	
+		
 	var brute = createRandomBruteStats()
 
 	brute.name=name
@@ -38,7 +34,6 @@ async function genBrute({
 	
 	for(var i=1;i<level;i++){brute=levelUp(brute);}
 	
-	if(seed){turnCHAOSToRandom()}
 	
 	return brute;
 	
@@ -85,8 +80,11 @@ async function launchFight(){
 		if(!combatIsOk()) return
 		combat_lancer = true
 	stopLoading()
-	for(var i=0;i<2;i++){if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];
-	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename})}else{var brutename=brutes[i];brutes[i]=await getBrute(brutename.split("@")[1])}} 
+	for(var i=0;i<2;i++){
+if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
+	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename});turnCHAOSToRandom()}
+else{var brutename=brutes[i];brutes[i]=await getBrute(brutename.split("@")[1])}
+	} 
 			simulFights({
 				fn:rien,
 				rota1:[[brutes[0]]],
