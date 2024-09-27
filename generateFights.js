@@ -803,8 +803,8 @@ else{setImageSrc(img_ours,img_ours2)}
 						cl(renforts)
 						
 						for(var i in userIds){var userId=userIds[i]
-							if(renforts[userId].length>0){cl(brutesDivs,i,brutes[i],brutes)
-								div({0:div({0:brutesDivs[brutes[i]].div,4:[50,"","",70],5:1,15:0,6:{click:function(){startLoading()}}}),
+							if(renforts[userId].length>0){
+								div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:1,15:0,6:{click:function(){startLoading()}}}),
 								2:"img",22:"/images/skills/backup.svg",9:{'filter': 'hue-rotate(' + "-60" + 'deg)'}})
 							}
 						}
