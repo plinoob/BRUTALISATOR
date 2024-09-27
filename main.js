@@ -729,7 +729,7 @@ var imged=true
 
 
 var rota2 = [[brutes[0]]]
-var rota1 = [] ; for(var b=1;b<brutes.length;b++) rota1.push(brutes[b])
+var rota1 = [] ; for(var b=1;b<brutes.length;b++) rota1.push([brutes[b]])
 
 				simulFights({
 					fn:function(res,ended){stopLoading();
@@ -763,16 +763,7 @@ else{setImageSrc(img_ours,img_ours2)}
 					loading:false,
 					modifiers:MODIFIERS
 					})
-					if(!backups){
-						var userIds = [];for(var b of brutes){userIds.push(b.userId)}
-						var users = await getAllProfiles(userIds)
-						var renfort = {}
-						for(var i=0;i<users.length;i++){var user=users[i];renfort[userIds[i]] = [];
-							for(var brute of user.brutes){if(parseInt(brute.level)<parseInt(brutes[i].level)){
-								renfort[UserIds[i]].push(await getBrute(brute.name))
-						}}}
-						cl(renforts)
-					}
+
 	
 }
 	  
