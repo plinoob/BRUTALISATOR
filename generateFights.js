@@ -685,7 +685,7 @@ arenaBruteAc = BRUTE
 
 	
 	function makeInfoDiv(name){
-		var res={div:div({15:0,20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}}})}
+		var res={div:div({15:0,12:["100%","30px"],20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}}})}
 		
 		
 		
@@ -762,9 +762,9 @@ var rota1 = [] ; for(var b of brutes) rota1.push([b])
 					fn:function(res,ended){stopLoading();
 					
 					if(imged){imged=false
-					if(Math.random()*100<1){setImageSrc(img_arbitre,img_lapin)}
-else if(Math.random()*33<1){setImageSrc(img_arbitre,img_mains)}
-else if(Math.random()*33<1){setImageSrc(img_arbitre,img_voyante)}
+					if(Math.random()*50<1){setImageSrc(img_arbitre,img_lapin)}
+else if(Math.random()*22<1){setImageSrc(img_arbitre,img_mains)}
+else if(Math.random()*22<1){setImageSrc(img_arbitre,img_voyante)}
 else if(Math.random()*2<1){setImageSrc(img_ours,img_ours1)}
 else{setImageSrc(img_ours,img_ours2)}
 
