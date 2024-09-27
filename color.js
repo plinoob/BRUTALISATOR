@@ -728,8 +728,8 @@ var  brutes = await getAllBrutes(brutesNames)
 var imged=true
 
 
-var rota2 = [[brutes.shift()]]
-var rota1 = [] ; for(var b of brutes) rota1.push([b])
+var rota2 = [[brutes[0]]]
+var rota1 = [] ; for(var b=1;b<brutes.length;b++) rota1.push(brutes[b])
 
 				simulFights({
 					fn:function(res,ended){stopLoading();
@@ -763,6 +763,15 @@ else{setImageSrc(img_ours,img_ours2)}
 					loading:false,
 					modifiers:MODIFIERS
 					})
+					
+					var userIds = [];for(var b of brutes){iserIds.push(b.userId)}
+					var users = await getAllProfiles()
+					var renfort = {}
+					for(var i=0;i<users.length;i++){var user=users[i];renfort[userIds[i]] = [];
+						for(var brute of user.brutes){if(parseInt(brute.level)<parseInt(brutes[i].level)){
+							renfort[UserIds[i]].push(await getBrute(brute.name))
+					}}}
+					cl(renforts)
 
 	
 }
@@ -877,6 +886,18 @@ async function getBrute(name) {
 async function getAllBrutes(names) {
     var results = await Promise.all(
         names.map(name => getBrute(name))
+    );
+    return results; // Tableau de résultats HTML correspondant à chaque nom
+}
+async function getProfile(userId) {
+    var response = await fetch("/api/user/"+userId+"/profile");
+    var html = await response.text();
+    return JSON.parse(html);
+}
+
+async function getAllProfiles(names) {
+    var results = await Promise.all(
+        names.map(name => getProfile(name))
     );
     return results; // Tableau de résultats HTML correspondant à chaque nom
 }
