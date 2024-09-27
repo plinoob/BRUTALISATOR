@@ -43,7 +43,7 @@ function interpolate(start, end, factor) {
 var palette = setupColorInterpolation([
     [0, '#D32F2F'], // Rouge
     [0.25, '#ED6C02'], // Orange
-    [0.66, '#733D2C'], // Vert
+    [0.66, '#595F9F'], // Vert
     [1, '#595FD1']  // Bleu
 ]);
 var beforePalette = setupColorInterpolation([
