@@ -599,7 +599,7 @@ arenaBruteAc = BRUTE
 		
 		
 		
-		var btn=div({2:"button",9:{
+		var btn=div({0:res.div,4:1,5:0,2:"button",9:{
 display: "block",
     margin: "8px auto",
     position: "relative",
