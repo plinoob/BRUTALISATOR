@@ -705,6 +705,8 @@ display: "block",
     "text-transform": "uppercase",
     "font-family": "LaBrute",
     "font-size": "1rem",
+			opacity:0.73,
+
     "box-shadow": "rgba(0, 0, 0, 0.3) 2px 3px",
     transition: "box-shadow 0.1s, top 0.1s, perspective 0.1s",
     perspective: "20px",
@@ -718,6 +720,7 @@ display: "block",
         'width': '95%',
         'height': '8px',
         'background-color': beforePalette(0.66),
+		opacity:0.73,
         'transform': 'rotateX(20deg) translateZ(-1px)',
         'z-index': '-1',
         'transition': 'height 0.1s, top 0.1s'}})
@@ -778,8 +781,8 @@ else{setImageSrc(img_ours,img_ours2)}
 						nombres[tx] = (nombres[tx] || 0) + 1
 						if(precision>0 && nombres[(coef*100).toFixed(precision-1)+""]==1) {continue}
 						brutesDivs[b.nom].tx.text(tx)
-						brutesDivs[b.nom].before.css("background-color",beforePalette(coef))
-						brutesDivs[b.nom].btn.css("background-color",palette(coef))
+						brutesDivs[b.nom].before.css({opacity:1,"background-color",beforePalette(coef)})
+						brutesDivs[b.nom].btn.css({opacity:1,"background-color",palette(coef)})
 						};precision++}
 					
 					},
@@ -804,7 +807,7 @@ else{setImageSrc(img_ours,img_ours2)}
 						
 						for(var i in userIds){var userId=userIds[i]
 							if(renforts[userId].length>0){
-								div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:[-50,-33],3:"renfort",15:0,6:{click:async function(){startLoading()
+								div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:[-40,-27],3:"renfort",15:0,6:{click:async function(){startLoading()
 								for(var d in brutesDivs){if(brutesDivs[d].div.find('.renfort').length==0){brutesDivs[d].div.remove()}}
 								for(var r in renforts){for(var n in renforts[r]){renforts[r][n] = await getBrute(renforts[r][n].name)}}
 								$(".renfort").remove()
