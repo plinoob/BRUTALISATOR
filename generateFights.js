@@ -791,7 +791,7 @@ else{setImageSrc(img_ours,img_ours2)}
 					modifiers:MODIFIERS
 					})
 					
-					var userIds = [];for(var b of brutes){iserIds.push(b.userId)}
+					var userIds = [];for(var b of brutes){userIds.push(b.userId)}
 					var users = await getAllProfiles()
 					var renfort = {}
 					for(var i=0;i<users.length;i++){var user=users[i];renfort[userIds[i]] = [];
