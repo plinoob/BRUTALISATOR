@@ -781,8 +781,8 @@ else{setImageSrc(img_ours,img_ours2)}
 						nombres[tx] = (nombres[tx] || 0) + 1
 						if(precision>0 && nombres[(coef*100).toFixed(precision-1)+""]==1) {continue}
 						brutesDivs[b.nom].tx.text(tx)
-						brutesDivs[b.nom].before.css({opacity:1,"background-color",beforePalette(coef)})
-						brutesDivs[b.nom].btn.css({opacity:1,"background-color",palette(coef)})
+						brutesDivs[b.nom].before.css({opacity:1,"background-color":beforePalette(coef)})
+						brutesDivs[b.nom].btn.css({opacity:1,"background-color":palette(coef)})
 						};precision++}
 					
 					},
