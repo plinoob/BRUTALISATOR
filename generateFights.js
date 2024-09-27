@@ -893,7 +893,7 @@ async function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL
 
 			var codeSource = fightSourceCode.replace("<script","<script>history.pushState(null, '', '"+"https://bru"+"te.eterna"
 			+"ltwin.org/irma-noob/fight/45341f08-9f9b-4073-a708-19e06d0f3c6f"+"');"+fetchCode+"var fightToVizualise = "
-			+JSON.stringify(fightToVizualise)+";"+"</script><script")
+			+JSON.stringify(fightToVizualise)+";"+"<"+"/sc"+"ript>"+"<s"+"cript")
 
 			document.body.appendChild(iframe);
 			$(iframe).css({"position":"absolute",top:0,bottom:0,left:0,right:0,"z-index":50000,width:"99.5%",height:"100%"})
@@ -918,7 +918,7 @@ function findFirstParentDiv(element) {
     parent = parent.parentElement;
   }
   
-  return null; // Si aucun parent <div> n'est trouvé
+  return null; // Si aucun parent  n'est trouvé
 }
 
 function insertDivAfterElement(newDiv,referenceDiv) {
