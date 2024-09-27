@@ -772,10 +772,14 @@ else{setImageSrc(img_ours,img_ours2)}
 					}
 					var nombres = [],flag=true,precision=0
 					while(flag){flag=false;for(var b of res){
-						var tx = ((1-b.v/b.j)*100).toFixed(precision)+""
+						var coef=1-b.v/b.j
+						var tx = (coef*100).toFixed(precision)+""
 						if(nombres.includes(tx)){flag=true}
 						nombres.push(tx)
-						brutesDivs[b.nom].tx.text(tx)}}
+						brutesDivs[b.nom].tx.text(tx)
+						brutesDivs[b.nom].before.css("background-color",beforePalette(coef))
+						//brutesDivs[b.nom].div.css("background-color",palette(coef))
+						}}
 					
 					},
 					rota1:rota1,
