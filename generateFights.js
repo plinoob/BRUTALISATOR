@@ -44,7 +44,7 @@ var palette = setupColorInterpolation([
     [0, '#D32F2F'], // Rouge
     [0.25, '#ED6C02'], // Orange
     [0.66, '#404572'], // Vert
-    [1, '#595FD1']  // Bleu
+    [1, '#5D65D8']  // Bleu
 ]);
 var beforePalette = setupColorInterpolation([
     [0, '#B51111'], // Rouge
@@ -772,11 +772,11 @@ else{setImageSrc(img_ours,img_ours2)}
 					var nombres = {},flag=true,precision=0
 					while(flag && precision<8){flag=false;for(var b of res){
 						var coef=1-b.v/b.j
-						if(precision>0 && nombres[(coef*100).toFixed(precision-1)+""]==1) continue
 						var tx = (coef*100).toFixed(precision)+""
 						
 						if(tx in nombres){flag=true}
 						nombres[tx] = (nombres[tx] || 0) + 1
+						if(precision>0 && nombres[(coef*100).toFixed(precision-1)+""]==1) {continue}
 						brutesDivs[b.nom].tx.text(tx)
 						brutesDivs[b.nom].before.css("background-color",beforePalette(coef))
 						brutesDivs[b.nom].btn.css("background-color",palette(coef))
@@ -797,14 +797,17 @@ else{setImageSrc(img_ours,img_ours2)}
 						var users = await getAllProfiles(userIds)
 						var renforts = {}
 						for(var i=0;i<users.length;i++){var user=users[i];renforts[userIds[i]] = [];
-							for(var brute of user.brutes){if(parseInt(brute.level)<parseInt(brutes[i].level)){
+							for(var brute of user.brutes){if(parseInt(brute.level)<parseInt(brutes[i].level) && ("backup" in brute.skills)){
 								renforts[userIds[i]].push(brute)
 						}}}
 						cl(renforts)
 						
-						//div({2:"img",22:"/images/skills/backup.svg",9:{'filter': 'hue-rotate(' + "-60" + 'deg)'}})
-						
-						
+						for(var i in userIds){var userId=userIds[i]
+							if(renforts[userId].length>0){
+								div({0:div({0:brutesDivs[brutes[i]].div,4:[50,"","",70],5:1,15:0,6:{click:function(){}}}),
+								2:"img",22:"/images/skills/backup.svg",9:{'filter': 'hue-rotate(' + "-60" + 'deg)'}})
+							}
+						}
 					}
 	
 }
