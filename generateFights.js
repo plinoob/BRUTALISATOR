@@ -29,7 +29,63 @@ var weaponImages = {
 var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
 
 function rien(){}
+//-----------------------------sort
 
+
+
+Array.prototype.sort = function(compareFn) {
+    // Si aucune fonction de comparaison n'est fournie, utiliser une fonction par défaut
+    compareFn = compareFn || function(a, b) {
+        if (a < b) return -1;
+        if (a > b) return 1;
+        return 0;
+    };
+
+    // Merge Sort
+    var mergeSort = (array) => {
+        if (array.length <= 1) {
+            return array;
+        }
+
+        // Diviser le tableau en deux moitiés
+        var mid = Math.floor(array.length / 2);
+        var left = mergeSort(array.slice(0, mid));
+        var right = mergeSort(array.slice(mid));
+
+        // Fusionner les deux moitiés triées
+        return merge(left, right, compareFn);
+    };
+
+    // Fonction pour fusionner deux tableaux triés
+    var merge = (left, right, compareFn) => {
+        let result = [];
+        let i = 0, j = 0;
+
+        // Comparer les éléments des deux moitiés et les fusionner dans le bon ordre
+        while (i < left.length && j < right.length) {
+            if (compareFn(left[i], right[j]) <= 0) {
+                result.push(left[i]);
+                i++;
+            } else {
+                result.push(right[j]);
+                j++;
+            }
+        }
+
+        // Ajouter les éléments restants
+        return result.concat(left.slice(i)).concat(right.slice(j));
+    };
+
+    // Retourner le tableau trié
+    var sortedArray = mergeSort(this);
+
+    // Remplacer les éléments du tableau d'origine
+    for (let i = 0; i < this.length; i++) {
+        this[i] = sortedArray[i];
+    }
+
+    return this;
+};
 
 //----------------------------FIGHT
 
