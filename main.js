@@ -663,7 +663,7 @@ arenaBruteAc = BRUTE
 		
 		
 		
-		var btn=div({0:res.div,4:1,5:[-50,-60],20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}},2:"button",9:{
+		var btn=res.btn=div({0:res.div,4:1,5:[-50,-60],20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}},2:"button",9:{
 display: "block",
     margin: "8px auto",
     "border-radius": "4px",
@@ -750,7 +750,7 @@ else{setImageSrc(img_ours,img_ours2)}
 						nombres.push(tx)
 						brutesDivs[b.nom].tx.text(tx)
 						brutesDivs[b.nom].before.css("background-color",beforePalette(coef))
-						brutesDivs[b.nom].div.css("background-color",palette(coef))
+						brutesDivs[b.nom].btn.css("background-color",palette(coef))
 						};precision++}
 					
 					},
@@ -766,12 +766,16 @@ else{setImageSrc(img_ours,img_ours2)}
 		if(!backups){
 						var userIds = [];for(var b of brutes){userIds.push(b.userId)}
 						var users = await getAllProfiles(userIds)
-						var renfort = {}
-						for(var i=0;i<users.length;i++){var user=users[i];renfort[userIds[i]] = [];
+						var renforts = {}
+						for(var i=0;i<users.length;i++){var user=users[i];renforts[userIds[i]] = [];
 							for(var brute of user.brutes){if(parseInt(brute.level)<parseInt(brutes[i].level)){
-								renfort[userIds[i]].push(await getBrute(brute.name))
+								renforts[userIds[i]].push(await getBrute(brute.name))
 						}}}
 						cl(renforts)
+						
+						//div({2:"img",22:"/images/skills/backup.svg",9:{'filter': 'hue-rotate(' + "-60" + 'deg)'}})
+						
+						
 					}
 	
 }
