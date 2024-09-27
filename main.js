@@ -775,7 +775,7 @@ else{setImageSrc(img_ours,img_ours2)}
 					})
 		if(!backups && WANTS_BACKUP){
 						for(var i in brutes){if(i=="0"){continue}
-							div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:[-40,-27],3:"pointbackup",18:0.73}),
+							div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:[-40,-27],3:"pointbackup",18:0.9}),
 								17:"...",24:"30px"})
 							
 						}
