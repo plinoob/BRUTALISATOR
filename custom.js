@@ -2556,7 +2556,8 @@ fetch(window.location.href)
 			}
 			
 			}
-			  
+			  cl("split à ",pos+jsfile+mid+end)
+			  cl(codeSource.split(pos+jsfile+mid+end))
 			codeSource = codeSource.split(pos+jsfile+mid+end);
 			codeSource = codeSource[0]+'<script>console.log("mais mdr")</script><script type="module">var MASTER = "'+master+'";'+'var BRANCHE = "'+BRANCHE+'";'+'var SHURIKEN = "'+SHURIKEN+'";'+color+js+"\nconsole.log('FIN');"+codeSource[1];
 			  
