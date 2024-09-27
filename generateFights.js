@@ -685,7 +685,7 @@ arenaBruteAc = BRUTE
 
 	
 	function makeInfoDiv(name){
-		var res={div:div({9:{position:"relative",height:"30px"}})}
+		var res={div:div({18:0.92,9:{position:"relative",height:"30px"}})}
 		
 		
 		
