@@ -10,6 +10,7 @@ function interpolate(start, end, factor) {
 	var sqrtEnd = Math.sqrt(end)
 	
     var res= sqrtStart + (sqrtEnd - sqrtStart)*factor; 
+	cl(start,end,factor,res*res)
 	return res*res
 	}
 
