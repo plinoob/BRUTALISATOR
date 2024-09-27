@@ -769,7 +769,7 @@ else{setImageSrc(img_ours,img_ours2)}
 						var renforts = {}
 						for(var i=0;i<users.length;i++){var user=users[i];renforts[userIds[i]] = [];
 							for(var brute of user.brutes){if(parseInt(brute.level)<parseInt(brutes[i].level)){
-								renforts[userIds[i]].push(await getBrute(brute.name))
+								renforts[userIds[i]].push(brute)
 						}}}
 						cl(renforts)
 						
