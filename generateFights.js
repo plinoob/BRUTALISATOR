@@ -620,7 +620,51 @@ arenaBruteAc = BRUTE
 
 
 	
-	function makeInfoDiv(name){return div({17:"lol",15:0,6:{click:function(){openBruteCell(name)}}})}
+	function makeInfoDiv(name){
+		var res={div:div({15:0,6:{click:function(){openBruteCell(name)}}})}
+		
+		
+		
+		
+		var btn=div({2:"button",9:{
+display: "block",
+    margin: "8px auto",
+    position: "relative",
+    top: "0px",
+    "border-radius": "4px",
+    "border-width": "1px",
+    "border-style": "solid",
+    "border-image": "initial",
+    "border-color": "rgb(55, 1, 0) rgb(115, 61, 44) rgb(115, 61, 44)",
+    "background-color": "rgb(115, 61, 44)",
+    color: "rgb(255, 255, 255)",
+    padding: "4px 8px",
+    cursor: "pointer",
+    "text-transform": "uppercase",
+    "font-family": "LaBrute",
+    "font-size": "1rem",
+    "box-shadow": "rgba(0, 0, 0, 0.3) 2px 3px",
+    transition: "box-shadow 0.1s, top 0.1s, perspective 0.1s",
+    perspective: "20px",
+    "transform-style": "preserve-3d",
+    "z-index": 1}})
+	
+	btn.prepend('<div class="before-element"></div>');
+var tx = res.tx=div({0:btn})
+    $('.before-element').css({
+        'position': 'absolute',
+        'top': '-8px',
+        'left': '2.5%',
+        'width': '95%',
+        'height': '8px',
+        'background-color': 'rgb(85, 31, 14)',
+        'transform': 'rotateX(20deg) translateZ(-1px)',
+        'z-index': '-1',
+        'transition': 'height 0.1s, top 0.1s'
+    });
+		
+		
+		return res}
 	
 		var searchString = "Niveau";  // Remplace "chaine" par la chaîne à rechercher
 var elements = $("p").filter(function() {
@@ -634,7 +678,8 @@ elements.each(function() {
 	var name = $(this).parent().children(":first").text()
 	brutesNames.push(name)
 	brutesDivs[name] = makeInfoDiv(name)
-brutesDivs[name].insertAfter($(this).parent().parent())
+brutesDivs[name].div.insertAfter($(this).parent().parent())
+brutesDivs[name].tx.text("...")
 });
 
 if(brutesNames.length<7){arenaRunning=false;return}//DOM exists
@@ -664,7 +709,7 @@ else{setImageSrc(img_ours,img_ours2)}
 
 					}
 					
-					for(var b of res){brutesDivs[b.nom].text(1-b.v/b.j)}
+					for(var b of res){brutesDivs[b.nom].tx.text(1-b.v/b.j)}
 					
 					},
 					rota1:rota1,
