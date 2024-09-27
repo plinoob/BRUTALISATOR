@@ -652,13 +652,18 @@ if(typeof(window)!="undefined"){
 if(url.length==3 && url[2]=="arena"){BRUTE = url[1];if(!arenaRunning && arenaBruteAc==BRUTE){arena()}}else{arenaRunning=false}
 },166)
 }
+
+var WANTS_BACKUP
+
 async function arena(backups){arenaRunning=true
+if(arenaBruteAc!=BRUTE){WANTS_BACKUP = false}
+if($(".bruteArenaBtn").length>0){WANTS_BACKUP=true}
 arenaBruteAc = BRUTE
 
 
 	
 	function makeInfoDiv(name){
-		var res={div:div({18:0.92,9:{position:"relative",height:"30px"}})}
+		var res={div:div({3:"bruteArenaBtn",18:0.92,9:{position:"relative",height:"30px"}})}
 		
 		
 		
@@ -768,7 +773,7 @@ else{setImageSrc(img_ours,img_ours2)}
 					loading:false,
 					modifiers:MODIFIERS
 					})
-		if(!backups){
+		if(!backups && WANTS_BACKUP){
 						var userIds = [];for(var b of brutes){userIds.push(b.userId)}
 						var users = await getAllProfiles(userIds)
 						for(var i in brutesDivs){if(brutesDivs[i].length==0){return}}
@@ -785,9 +790,15 @@ else{setImageSrc(img_ours,img_ours2)}
 								for(var d in brutesDivs){if(brutesDivs[d].div.find('.renfort').length==0){brutesDivs[d].div.remove()}else{brutesDivs[d].div.css("opacity",0.33)}}
 								for(var r in renforts){for(var n in renforts[r]){renforts[r][n] = await getBrute(renforts[r][n].name)}}
 								$(".renfort").remove()
+								$(".norenfort").remove()
 								arena(renforts)
 								}}}),
-								2:"img",22:"/images/skills/backup.svg",18:0.8,9:{height:"30px",'filter': 'hue-rotate(' + "-60" + 'deg)'}})
+								2:"img",22:"/images/skills/backup.svg",18:0.87,9:{height:"30px",'filter': 'hue-rotate(' + "-60" + 'deg)'}})
+							}
+							else{
+								div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:[-40,-27],3:"norenfort",18:0.73}),
+								17:"✅",24:"30px"})
+							
 							}
 						}
 					}
