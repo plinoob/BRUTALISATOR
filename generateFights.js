@@ -42,13 +42,13 @@ function interpolate(start, end, factor) {
 	}
 var palette = setupColorInterpolation([
     [0, '#D32F2F'], // Rouge
-    [0.25, '#ED6C02'], // Orange
+    //[0.25, '#ED6C02'], // Orange
     [0.66, '#40455E'], // Vert
     [1, '#5D65C4']  // Bleu
 ]);
 var beforePalette = setupColorInterpolation([
     [0, '#B51111'], // Rouge
-    [0.25, '#CF4E00'], // Orange
+    //[0.25, '#CF4E00'], // Orange
     [0.66, '#4E180B'], // Vert
     [1, '#2F336D']  // Bleu
 ]);
@@ -698,7 +698,7 @@ display: "block",
     "border-style": "solid",
     "border-image": "initial",
     "border-color": "rgb(55, 1, 0) rgb(115, 61, 44) rgb(115, 61, 44)",
-    "background-color": "rgb(115, 61, 44)",
+    "background-color": palette(0.5),
     color: "rgb(255, 255, 255)",
     padding: "4px 8px",
     cursor: "pointer",
@@ -717,7 +717,7 @@ display: "block",
         'left': '2.5%',
         'width': '95%',
         'height': '8px',
-        'background-color': 'rgb(85, 31, 14)',
+        'background-color': beforePalette(0.5),
         'transform': 'rotateX(20deg) translateZ(-1px)',
         'z-index': '-1',
         'transition': 'height 0.1s, top 0.1s'}})
@@ -803,7 +803,7 @@ else{setImageSrc(img_ours,img_ours2)}
 						cl(renforts)
 						
 						for(var i in userIds){var userId=userIds[i]
-							if(renforts[userId].length>0){
+							if(renforts[userId].length>0){cl(brutesDivs,i,brutes[i],brutes)
 								div({0:div({0:brutesDivs[brutes[i]].div,4:[50,"","",70],5:1,15:0,6:{click:function(){startLoading()}}}),
 								2:"img",22:"/images/skills/backup.svg",9:{'filter': 'hue-rotate(' + "-60" + 'deg)'}})
 							}
