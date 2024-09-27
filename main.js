@@ -3271,7 +3271,7 @@ if(combatIsOk()){launchFight()}
 else if(url.length==1){
 	
 	var ah=div({4:1,5:0,2:"textarea"})
-	var bh=div({4:[80,90,10,90],10:"#ff0000",15:0,6:{click:function(){
+	var bh=div({4:[80,40,10,40],10:"#ff0000",15:0,6:{click:function(){
 		
 		var s = document.createElement( 'script' );
 		  s.setAttribute('text',"text/javascript");
