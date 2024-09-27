@@ -825,10 +825,10 @@ else{setImageSrc(img_ours,img_ours2)}
 								$(".norenfort").remove()
 								arena(renforts)
 								}}}),
-								2:"img",22:"/images/skills/backup.svg",18:0.87,9:{height:"30px",'filter': 'hue-rotate(' + "-60" + 'deg)'}})
+								2:"img",22:"/images/skills/backup.svg",18:0.87,20:"Prendre en compte",9:{height:"30px",'filter': 'hue-rotate(' + "-60" + 'deg)'}})
 							}
 							else{
-								div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:[-40,-40],3:"norenfort",18:0.73}),
+								div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:[-40,-40],3:"norenfort",18:0.73,15:"default"}),
 								17:"✅",24:"30px"})
 							
 							}
