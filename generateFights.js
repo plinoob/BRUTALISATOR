@@ -819,7 +819,7 @@ else{setImageSrc(img_ours,img_ours2)}
 						for(var i in userIds){if(i=="0"){continue};var userId=userIds[i]
 							if(renforts[userId].length>0){
 								div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:[-40,-27],3:"renfort",15:0,6:{click:async function(){startLoading()
-								for(var d in brutesDivs){if(brutesDivs[d].div.find('.renfort').length==0){brutesDivs[d].div.remove()}else{brutesDivs[d].div.css("opacity",0.33)}}
+								for(var d in brutesDivs){if(brutesDivs[d].div.find('.renfort').length==0){brutesDivs[d].div.remove()}else{brutesDivs[d].div.css("opacity",0.5)}}
 								for(var r in renforts){for(var n in renforts[r]){renforts[r][n] = await getBrute(renforts[r][n].name)}}
 								$(".renfort").remove()
 								$(".norenfort").remove()
