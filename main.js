@@ -3277,7 +3277,7 @@ else if(url.length==1){
 		  s.setAttribute('text',"text/javascript");
 		  s.setAttribute('type',"module");
 		  s.textContent=ah.val()
-		  document.body.appendChild( s );})
+		  document.body.appendChild( s );
 		
 	}}})
 	
