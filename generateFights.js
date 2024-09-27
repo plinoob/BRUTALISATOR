@@ -43,7 +43,7 @@ function interpolate(start, end, factor) {
 var palette = setupColorInterpolation([
     [0, '#D32F2F'], // Rouge
     [0.25, '#ED6C02'], // Orange
-    [0.66, '#595F9F'], // Vert
+    [0.66, '#404572'], // Vert
     [1, '#595FD1']  // Bleu
 ]);
 var beforePalette = setupColorInterpolation([
@@ -769,12 +769,14 @@ else if(Math.random()*2<1){setImageSrc(img_ours,img_ours1)}
 else{setImageSrc(img_ours,img_ours2)}
 
 					}
-					var nombres = [],flag=true,precision=0
+					var nombres = {},flag=true,precision=0
 					while(flag && precision<8){flag=false;for(var b of res){
 						var coef=1-b.v/b.j
+						if(precision>0 && nombres[(coef*100).toFixed(precision-1)+""]==1) continue
 						var tx = (coef*100).toFixed(precision)+""
-						if(nombres.includes(tx)){flag=true}
-						nombres.push(tx)
+						
+						if(tx in nombres){flag=true}
+						nombres[tx] = (nombres[tx] || 0) + 1
 						brutesDivs[b.nom].tx.text(tx)
 						brutesDivs[b.nom].before.css("background-color",beforePalette(coef))
 						brutesDivs[b.nom].btn.css("background-color",palette(coef))
