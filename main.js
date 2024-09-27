@@ -684,9 +684,7 @@ display: "block",
     "transform-style": "preserve-3d",
     "z-index": 1}})
 	
-	btn.prepend('<div class="before-element"></div>');
-var tx = res.tx=div({0:btn})
-    $('.before-element').css({
+	res.before=div({0:btn,9:{
         'position': 'absolute',
         'top': '-8px',
         'left': '2.5%',
@@ -695,8 +693,9 @@ var tx = res.tx=div({0:btn})
         'background-color': 'rgb(85, 31, 14)',
         'transform': 'rotateX(20deg) translateZ(-1px)',
         'z-index': '-1',
-        'transition': 'height 0.1s, top 0.1s'
-    });
+        'transition': 'height 0.1s, top 0.1s'}})
+res.tx=div({0:btn})
+
 		
 		
 		return res}
