@@ -685,15 +685,10 @@ async function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL
 			
 			iframeDoc.write(codeSource);
 			iframeDoc.close();
-	
+	stopLoading()
     // Injecter le code dans l'iframe pour surcharger fetch
 
 };
-
-// Donner une URL à l'iframe
-iframe.src = "https://bru"+"te.eterna"+"ltwin.org/irma-noob/fight/45341f08-9f9b-4073-a708-19e06d0f3c6f"; 
-stopLoading()
-}
 
 function findFirstParentDiv(element) {
   let parent = element.parentElement;
