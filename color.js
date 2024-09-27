@@ -2,6 +2,58 @@
 var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
 
 function rien(){}
+
+//chroma
+// Fonction utilitaire pour l'interpolation entre deux valeurs numériques
+function interpolate(start, end, factor) {
+	var sqrtStart = Math.sqrt(start)
+	var sqrtEnd = Math.sqrt(end)
+	
+    var res= sqrtStart + (sqrtEnd - sqrtStart)*factor; 
+	return res*res
+	}
+
+// Fonction pour convertir une couleur hexadécimale en composantes RGB
+function hexToRgb(hex) {
+    var bigint = parseInt(hex.slice(1), 16);
+    return [(bigint >> 16) & 255, (bigint >> 8) & 255, bigint & 255];
+}
+
+// Fonction pour convertir les composantes RGB en couleur hexadécimale
+function rgbToHex(r, g, b) {
+    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+}
+
+// Fonction principale pour interpoler une couleur entre deux points
+function interpolateColor(startColor, endColor, factor) {
+    var startRgb = hexToRgb(startColor);
+    var endRgb = hexToRgb(endColor);
+
+    var r = Math.round(interpolate(startRgb[0], endRgb[0], factor));
+    var g = Math.round(interpolate(startRgb[1], endRgb[1], factor));
+    var b = Math.round(interpolate(startRgb[2], endRgb[2], factor));
+
+    return rgbToHex(r, g, b);
+}
+
+// Fonction pour configurer l'interpolation avec n couleurs et points
+function setupColorInterpolation(colors) {
+    return function(coef) {
+        // Trouver les deux points les plus proches
+        for (let i = 1; i < colors.length; i++) {
+            if (coef <= colors[i][0]) {
+                // Interpolation entre colors[i - 1] et colors[i]
+                var factor = (coef - colors[i - 1][0]) / (colors[i][0] - colors[i - 1][0]);
+                return interpolateColor(colors[i - 1][1], colors[i][1], factor);
+            }
+        }
+        return colors[colors.length - 1][1]; // Si coef est 1, retourner la dernière couleur
+    };
+}
+
+
+
+
 //-----------------------------sort
 
 var initialSort = Array.prototype.sort
