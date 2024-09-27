@@ -684,7 +684,7 @@ var WANTS_BACKUP
 
 async function arena(backups){arenaRunning=true
 if(arenaBruteAc!=BRUTE){WANTS_BACKUP = false}
-if($(".bruteArenaBtn").length>0){WANTS_BACKUP=true}
+if($(".bruteArenaBtn").length>0){WANTS_BACKUP=true;$(".bruteArenaBtn").remove()}
 arenaBruteAc = BRUTE
 
 
@@ -822,7 +822,7 @@ else{setImageSrc(img_ours,img_ours2)}
 								}}}),
 								2:"img",22:"/images/skills/backup.svg",18:0.87,9:{height:"30px",'filter': 'hue-rotate(' + "-60" + 'deg)'}})
 							}
-							else{
+							else{cl(i,brutes,brutesDivs)
 								div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:[-40,-27],3:"norenfort",18:0.73}),
 								17:"✅",24:"30px"})
 							
