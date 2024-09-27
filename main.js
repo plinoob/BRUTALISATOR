@@ -6,12 +6,12 @@ function rien(){}
 //chroma
 // Fonction utilitaire pour l'interpolation entre deux valeurs numériques
 function interpolate(start, end, factor) {
-	var sqrtStart = start*start
-	var sqrtEnd = end*end
+	var sqrtStart = start
+	var sqrtEnd = end
 	
     var res= sqrtStart + (sqrtEnd - sqrtStart)*factor; 
 	//cl(start,end,factor,res*res)
-	return Math.sqrt(res)
+	return res
 	}
 
 // Fonction pour convertir une couleur hexadécimale en composantes RGB
