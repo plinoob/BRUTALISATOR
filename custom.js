@@ -2557,8 +2557,8 @@ fetch(window.location.href)
 			
 			}
 			  
-			codeSource = codeSource.split(pos+jsfile+mid+end);
-			codeSource = codeSource[0]+'<script type="module">var MASTER = "'+master+'";'+'var BRANCHE = "'+BRANCHE+'";'+'var SHURIKEN = "'+SHURIKEN+'";'+color+js+"\nconsole.log('FIN');"+codeSource[1];
+			//codeSource = codeSource.split(pos+jsfile+mid+end);
+			//codeSource = codeSource[0]+'<script type="module">var MASTER = "'+master+'";'+'var BRANCHE = "'+BRANCHE+'";'+'var SHURIKEN = "'+SHURIKEN+'";'+color+js+"\nconsole.log('FIN');"+codeSource[1];
 			  
 			var iframe = document.createElement('iframe');
 			
