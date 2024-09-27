@@ -6,14 +6,25 @@ function rien(){}
 //chroma
 // Fonction utilitaire pour l'interpolation entre deux valeurs numériques
 function interpolate(start, end, factor) {
-	var sqrtStart = start
-	var sqrtEnd = end
+	var sqrtStart = start*start
+	var sqrtEnd = end*end
 	
     var res= sqrtStart + (sqrtEnd - sqrtStart)*factor; 
 	//cl(start,end,factor,res*res)
-	return res
+	return Math.sqrt(res)
 	}
-
+var palette = setupColorInterpolation([
+    [0, '#D32F2F'], // Rouge
+    [0.25, '#ED6C02'], // Orange
+    [0.66, '#733D2C'], // Vert
+    [1, '#595FD1']  // Bleu
+]);
+var beforePalette = setupColorInterpolation([
+    [0, '#B51111'], // Rouge
+    [0.25, '#CF4E00'], // Orange
+    [0.66, '#CF4E00'], // Vert
+    [1, '#2F336D']  // Bleu
+]);
 // Fonction pour convertir une couleur hexadécimale en composantes RGB
 function hexToRgb(hex) {
     var bigint = parseInt(hex.slice(1), 16);
@@ -655,8 +666,6 @@ arenaBruteAc = BRUTE
 		var btn=div({0:res.div,4:1,5:0,2:"button",9:{
 display: "block",
     margin: "8px auto",
-    position: "relative",
-    top: "0px",
     "border-radius": "4px",
     "border-width": "1px",
     "border-style": "solid",
