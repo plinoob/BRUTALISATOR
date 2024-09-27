@@ -684,7 +684,7 @@ var WANTS_BACKUP
 
 async function arena(backups){arenaRunning=true
 if(arenaBruteAc!=BRUTE){WANTS_BACKUP = false}
-if($(".bruteArenaBtn").length>0){WANTS_BACKUP=true;$(".bruteArenaBtn").remove()}
+if($(".bruteArenaBtn").length>0){WANTS_BACKUP=true;if(!backups){$(".bruteArenaBtn").remove()}}
 arenaBruteAc = BRUTE
 
 
@@ -802,7 +802,7 @@ else{setImageSrc(img_ours,img_ours2)}
 					})
 		if(!backups && WANTS_BACKUP){
 						for(var i in brutes){if(i=="0"){continue}
-							div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:[-40,-27],3:"pointbackup",18:0.9}),
+							div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:[-40,-40],3:"pointbackup",18:0.9}),
 								17:"...",24:"30px"})
 							
 						}
@@ -828,7 +828,7 @@ else{setImageSrc(img_ours,img_ours2)}
 								2:"img",22:"/images/skills/backup.svg",18:0.87,9:{height:"30px",'filter': 'hue-rotate(' + "-60" + 'deg)'}})
 							}
 							else{
-								div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:[-40,-27],3:"norenfort",18:0.73}),
+								div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:[-40,-40],3:"norenfort",18:0.73}),
 								17:"✅",24:"30px"})
 							
 							}
