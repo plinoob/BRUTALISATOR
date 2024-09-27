@@ -765,7 +765,7 @@ else{setImageSrc(img_ours,img_ours2)}
 					})
 					if(!backups){
 						var userIds = [];for(var b of brutes){userIds.push(b.userId)}
-						var users = await getAllProfiles()
+						var users = await getAllProfiles(userIds)
 						var renfort = {}
 						for(var i=0;i<users.length;i++){var user=users[i];renfort[userIds[i]] = [];
 							for(var brute of user.brutes){if(parseInt(brute.level)<parseInt(brutes[i].level)){
