@@ -3519,7 +3519,7 @@ if(!isTextInDOM(VERSION,"p")){alertAndStop(ERROR_VERSION);};
 parseURL()
 
 if(combatIsOk()){launchFight()}
-else if(url.length==1){
+else if(url.length==1){/*
 	
 	var ah=div({4:1,5:0,2:"textarea"})
 	var bh=div({4:[80,40,10,40],10:"#ff0000",15:0,6:{click:function(){
@@ -3534,7 +3534,7 @@ else if(url.length==1){
 	
 	
 	
-	//addScript(BRUTALISATOR+"custom.js")
+	//*/addScript(BRUTALISATOR+"custom.js")
 	}
 else if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATOR+"destiny.js")}
 else if(url.length==3 && url[2]=="arena" /*&& BRANCHE=="dev"*/){BRUTE = url[1];arena()}
