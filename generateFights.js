@@ -625,17 +625,19 @@ else{setImageSrc(img_ours,img_ours2)}
 	  
 var LOCAL
 var fightToVizualise
-function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL){return}
-			var iframe = document.createElement('iframe');
-			document.body.appendChild(iframe);
-			$(iframe).css({"position":"absolute",top:0,bottom:0,left:0,right:0,"z-index":50000,width:"99.5%",height:"100%"})
-			// brute1Id
-iframe.onload = () => {cl("IFRAME LOADED")
-    var iframeWindow = iframe.contentWindow;
-iframeWindow.document.addEventListener('click', function(){$(iframe).remove()}, false);
-    // Injecter le code dans l'iframe pour surcharger fetch
-    iframeWindow.fetch = async function(url, options) {
-        console.log(`Intercepted fetch call to: ${url}`);
+var fightSourceCode
+
+async function getFightSourceCode(){if(!fightSourceCode){
+	
+	var response = await fetch("https://bru"+"te.eterna"+"ltwin.org/irma-noob/fight/45341f08-9f9b-4073-a708-19e06d0f3c6f");
+    fightSourceCode = await response.text();
+	
+}
+}
+async function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL){return}
+			await getFightSourceCode()
+			    var fetchCode=`window.fetch = async function(url, options) {
+        console.log("Intercepted fetch call to:" +url);
         
         // Appeler le fetch original
         var response = await window.fetch(url, options);
@@ -661,7 +663,31 @@ iframeWindow.document.addEventListener('click', function(){$(iframe).remove()}, 
             statusText: response.statusText,
             headers: response.headers
         });
-    };
+    };`
+	
+				var iframe = document.createElement('iframe');
+							iframe.src = 'about:blank'; 
+
+			iframe.onload = () => {cl("IFRAME LOADED")
+					var iframeWindow = iframe.contentWindow;
+				iframeWindow.document.addEventListener('mousedown', function(){$(iframe).remove()}, false);
+			}
+
+			var codeSource = fightSourceCode.replace("<script","<script>history.pushState(null, '', '"+"https://bru"+"te.eterna"
+			+"ltwin.org/irma-noob/fight/45341f08-9f9b-4073-a708-19e06d0f3c6f"+"');"+fetchCode+"var fightToVizualise = "
+			+JSON.stringify(fightToVizualise)+";"+"</script><script")
+
+			document.body.appendChild(iframe);
+			$(iframe).css({"position":"absolute",top:0,bottom:0,left:0,right:0,"z-index":50000,width:"99.5%",height:"100%"})
+			var iframeDoc = iframe.contentWindow.document;
+
+			iframeDoc.open();
+			
+			iframeDoc.write(codeSource);
+			iframeDoc.close();
+	
+    // Injecter le code dans l'iframe pour surcharger fetch
+
 };
 
 // Donner une URL à l'iframe
