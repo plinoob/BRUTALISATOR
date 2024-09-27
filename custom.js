@@ -2569,7 +2569,7 @@ fetch(window.location.href)
 			var iframeDoc = iframe.contentWindow.document;
 
 			iframeDoc.open();
-			
+			cl("écriture : ",codeSource)
 			iframeDoc.write(codeSource);
 			iframeDoc.close();
 			stopLoading();
