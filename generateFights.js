@@ -804,8 +804,13 @@ else{setImageSrc(img_ours,img_ours2)}
 						
 						for(var i in userIds){var userId=userIds[i]
 							if(renforts[userId].length>0){
-								div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:1,15:0,6:{click:function(){startLoading()}}}),
-								2:"img",22:"/images/skills/backup.svg",9:{'filter': 'hue-rotate(' + "-60" + 'deg)'}})
+								div({0:div({0:brutesDivs[brutes[i].name].div,4:[50,"","",70],5:0,3:"renfort",15:0,6:{click:async function(){startLoading()
+								for(var d in brutesDivs){if(brutesDivs[d].div.find('.renfort').length>0){brutesDivs[d].div.remove()}}
+								for(var r in renforts){for(var n in renforts[r]){renforts[r][n] = await getBrute(renforts[r][n])}}
+								$(".renfort").remove()
+								arena(renforts)
+								}}}),
+								2:"img",22:"/images/skills/backup.svg",18:0.8,9:{height:"28px",'filter': 'hue-rotate(' + "-60" + 'deg)'}})
 							}
 						}
 					}
