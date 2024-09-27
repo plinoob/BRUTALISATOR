@@ -49,7 +49,7 @@ var palette = setupColorInterpolation([
 var beforePalette = setupColorInterpolation([
     [0, '#B51111'], // Rouge
     [0.25, '#CF4E00'], // Orange
-    [0.66, '#CF4E00'], // Vert
+    [0.66, '#4E180B'], // Vert
     [1, '#2F336D']  // Bleu
 ]);
 // Fonction pour convertir une couleur hexadécimale en composantes RGB
