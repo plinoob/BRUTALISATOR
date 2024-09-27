@@ -798,12 +798,13 @@ else{setImageSrc(img_ours,img_ours2)}
 		if(!backups){
 						var userIds = [];for(var b of brutes){userIds.push(b.userId)}
 						var users = await getAllProfiles(userIds)
+						for(var i in brutesDivs){if(brutesDivs[i].length==0){return}}
 						var renforts = {}
 						for(var i=0;i<users.length;i++){var user=users[i];renforts[userIds[i]] = [];
 							for(var brute of user.brutes){if(parseInt(brute.level)<parseInt(brutes[i].level) && (brute.skills.includes("backup"))){
 								renforts[userIds[i]].push(brute)
 						}}}
-						cl(renforts)
+						cl("renforts :",renforts)
 						
 						for(var i in userIds){var userId=userIds[i]
 							if(renforts[userId].length>0){
