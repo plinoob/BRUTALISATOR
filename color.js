@@ -658,12 +658,12 @@ arenaBruteAc = BRUTE
 
 	
 	function makeInfoDiv(name){
-		var res={div:div({15:0,12:["100%","30px"],20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}}})}
+		var res={div:div({15:0,9:{position:relative,height:"30px"},20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}}})}
 		
 		
 		
 		
-		var btn=div({0:res.div,4:1,5:0,2:"button",9:{
+		var btn=div({0:res.div,4:1,5:[-50,-60],2:"button",9:{
 display: "block",
     margin: "8px auto",
     "border-radius": "4px",
