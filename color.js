@@ -652,7 +652,7 @@ if(typeof(window)!="undefined"){
 if(url.length==3 && url[2]=="arena"){BRUTE = url[1];if(!arenaRunning && arenaBruteAc==BRUTE){arena()}}else{arenaRunning=false}
 },166)
 }
-async function arena(){arenaRunning=true
+async function arena(backups){arenaRunning=true
 arenaBruteAc = BRUTE
 
 
@@ -756,23 +756,23 @@ else{setImageSrc(img_ours,img_ours2)}
 					},
 					rota1:rota1,
 					rota2:rota2,//number = boss
-					backups:false,
+					backups:backups?backups:false,
 					fight_per_rota:200,
 					fight_total:10000,
 					return_first_win:undefined,
 					loading:false,
 					modifiers:MODIFIERS
 					})
-					
-					var userIds = [];for(var b of brutes){userIds.push(b.userId)}
-					var users = await getAllProfiles()
-					var renfort = {}
-					for(var i=0;i<users.length;i++){var user=users[i];renfort[userIds[i]] = [];
-						for(var brute of user.brutes){if(parseInt(brute.level)<parseInt(brutes[i].level)){
-							renfort[UserIds[i]].push(await getBrute(brute.name))
-					}}}
-					cl(renforts)
-
+					if(!backups){
+						var userIds = [];for(var b of brutes){userIds.push(b.userId)}
+						var users = await getAllProfiles()
+						var renfort = {}
+						for(var i=0;i<users.length;i++){var user=users[i];renfort[userIds[i]] = [];
+							for(var brute of user.brutes){if(parseInt(brute.level)<parseInt(brutes[i].level)){
+								renfort[UserIds[i]].push(await getBrute(brute.name))
+						}}}
+						cl(renforts)
+					}
 	
 }
 	  
