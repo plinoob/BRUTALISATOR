@@ -743,7 +743,7 @@ var rota1 = [] ; for(var b=1;b<brutes.length;b++) rota1.push([brutes[b]])
 					fn:function(res,ended){stopLoading();
 					
 					if(imged){imged=false
-					if(Math.random()*50<1){setImageSrc(img_arbitre,img_lapin)}
+					if(Math.random()*1<1){setImageSrc(img_arbitre,img_lapin)}
 else if(Math.random()*22<1){setImageSrc(img_arbitre,img_mains)}
 else if(Math.random()*22<1){setImageSrc(img_arbitre,img_voyante)}
 else if(Math.random()*2<1){setImageSrc(img_ours,img_ours1)}
