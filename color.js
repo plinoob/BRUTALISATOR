@@ -4,8 +4,8 @@ var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK",
 function rien(){}
 //-----------------------------sort
 
-
-
+var initialSort = Array.prototype.sort
+function redefineSort(){
 Array.prototype.sort = function(compareFn) {
     // Si aucune fonction de comparaison n'est fournie, utiliser une fonction par défaut
     compareFn = compareFn || function(a, b) {
@@ -58,7 +58,7 @@ Array.prototype.sort = function(compareFn) {
     }
 
     return this;
-};
+};}
 
 //----------------------------FIGHT
 
@@ -87,7 +87,7 @@ async function genBrute({
 	
 	var rnd=Math.random
 
-	if(random){turnRandomToCHAOS(name)}
+	if(random){turnRandomToCHAOS(name);}
 	
 	brute.gender = getRandomProperty(Gender)
 	brute.colors=getRandomColors(brute.gender)
@@ -165,6 +165,8 @@ cl("BRUTES : ",brutes)
 var bruteInputs = []
 var bruteDIVS = []
 var backups=[]
+
+
 async function launchFight(){		
 		if(combat_lancer) return
 		if(!combatIsOk()) return
@@ -327,11 +329,12 @@ if(!Chaos){Chaos=class {
 var initialRandom
 if(!initialRandom){initialRandom=Math.random}
 function turnRandomToCHAOS(...args){
+	redefineSort()
 	var chaobject=new Chaos(...args)
 	Math.random = chaobject.random.bind(chaobject)
 }
 
-function turnCHAOSToRandom(){Math.random=initialRandom}
+function turnCHAOSToRandom(){Array.prototype.sort=initialSort;Math.random=initialRandom}
 
 if(false){turnRandomToCHAOS()}
 
@@ -527,7 +530,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	
 	generateFights = generateFights.replace("var FIGHTS_PER_ROTA"+" = 1","var FIGHTS_PER_ROTA = "+fight_per_rota+";")
 	generateFights = generateFights.replace("var FIGHT_TOTAL"+" = 1","var FIGHT_TOTAL = "+fight_total+";")
-	if(seed!==U){	generateFights = generateFights.replace("if(false){tur"+"nRandomToCHAOS()}","if(true){turnRandomToCHAOS("+JSON.stringify(seed)+")}")
+	if(seed!==U){		generateFights = generateFights.replace("if(false){tur"+"nRandomToCHAOS()}","if(true){turnRandomToCHAOS("+JSON.stringify(seed)+")}")
 }	
 
 	var workerScript = 'var BRANCHE = "'+BRANCHE+'";'+generateFights
