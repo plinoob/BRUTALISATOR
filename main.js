@@ -15,13 +15,13 @@ function interpolate(start, end, factor) {
 	}
 var palette = setupColorInterpolation([
     [0, '#D32F2F'], // Rouge
-    //[0.25, '#ED6C02'], // Orange
+    [0.40, '#9E2424'], // Orange
     [0.66, '#40455E'], // Vert
     [1, '#5D65C4']  // Bleu
 ]);
 var beforePalette = setupColorInterpolation([
     [0, '#B51111'], // Rouge
-    //[0.25, '#CF4E00'], // Orange
+    [0.40, '#870D0D'], // Orange
     [0.66, '#4E180B'], // Vert
     [1, '#2F336D']  // Bleu
 ]);
