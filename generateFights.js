@@ -636,11 +636,13 @@ async function getFightSourceCode(){if(!fightSourceCode){
 }
 async function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL){return}
 			await getFightSourceCode()
-			    var fetchCode=`window.fetch = async function(url, options) {
+			    var fetchCode=`
+				var originalFetch=window.fetch;
+				window.fetch = async function(url, options) {
         console.log("Intercepted fetch call to:" +url);
         
         // Appeler le fetch original
-        var response = await window.fetch(url, options);
+        var response = await originalFetch(url, options);
         
         // Modifier la réponse (ici, on parse du JSON pour l'exemple)
         var data = await response.json();
