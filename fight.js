@@ -5191,7 +5191,6 @@ $("h3").each(function(){
 	$(this).parent().find('img:first').attr("src","/images/creation/noCharacter.webp").css("transform","scale("+(bruteDIVS.length==0?1:-1)+", 1)");
 	bruteDIVS.push($(this));
 })
-cl(LOCAL)
 if(!LOCAL) defiDIV.text("🤜🆚🤛")
 $(".inputDIV").remove();
 var nimput=0
