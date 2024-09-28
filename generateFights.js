@@ -971,8 +971,7 @@ var shurikenDIV
 if(typeof(document)!="undefined"){
 	
 	
-LOCAL = window.location.href.startsWith("C:/")
-cl(LOCAL,window.location.href)
+LOCAL = window.location.href.startsWith("file:")
 	
 	addStyle(`		#shuriken {
   display: flex;
