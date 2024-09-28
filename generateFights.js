@@ -252,7 +252,7 @@ versusGetsList = versusGetsList[1]?versusGetsList[1].split("&"):[]
 var versusGets = {};for(var v of versusGetsList){var agr = v.split("=");if(agr.length>1){versusGets[agr[0]]=agr[1]}}
 var seed = versusGets.seed?versusGets.seed:0
 var brutes = [(versusGets.b1)?versusGets.b1:"",(versusGets.b2)?versusGets.b2:""]
-cl("BRUTES : ",brutes)
+//cl("BRUTES : ",brutes)
 var bruteInputs = []
 var bruteDIVS = []
 var backups=[[],[]]
@@ -6186,7 +6186,7 @@ var firstwin
 var SLEEP_AT_STEP_1 = FIGHTS_PER_ROTA > 300 &&  FIGHTS_PER_ROTA * TEAM2.length > 700
 var SLEEP_AT_STEP_2 = !SLEEP_AT_STEP_1 && FIGHTS_PER_ROTA * TEAM2.length > 300 && FIGHTS_PER_ROTA * TEAM2.length * TEAM1.length > 700
 var SLEEP_AT_STEP_3 = !SLEEP_AT_STEP_1 && !SLEEP_AT_STEP_2
-cl("sleep",SLEEP_AT_STEP_1,SLEEP_AT_STEP_2,SLEEP_AT_STEP_3)
+//cl("sleep",SLEEP_AT_STEP_1,SLEEP_AT_STEP_2,SLEEP_AT_STEP_3)
 
 var bilan = [] ; for(var i=0;i<TEAM1.length;i++){bilan.push({nom:TEAM1[i][0].name,j:0,v:0,boss:0})}
 var bilac=bilan[0]

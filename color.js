@@ -225,7 +225,7 @@ versusGetsList = versusGetsList[1]?versusGetsList[1].split("&"):[]
 var versusGets = {};for(var v of versusGetsList){var agr = v.split("=");if(agr.length>1){versusGets[agr[0]]=agr[1]}}
 var seed = versusGets.seed?versusGets.seed:0
 var brutes = [(versusGets.b1)?versusGets.b1:"",(versusGets.b2)?versusGets.b2:""]
-cl("BRUTES : ",brutes)
+//cl("BRUTES : ",brutes)
 var bruteInputs = []
 var bruteDIVS = []
 var backups=[[],[]]
