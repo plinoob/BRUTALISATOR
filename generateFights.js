@@ -6202,9 +6202,8 @@ async function genFights() {var pos1=0,pos2=0
 //cl({ brutes:  true?structuredClone(TEAM1[pos1]):TEAM1[pos1]})
 //cl({ [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] })
 	var nbfights=0
-	while(bilac.j<FIGHT_TOTAL){cl(TEAM1[pos1][0].name)
+	while(bilac.j<FIGHT_TOTAL){
 	if(!PASS_SAME_BRUTE_FIGHTS || (BOSS!="brutes" || TEAM1[pos1][0].name != TEAM2[pos2][0].name)){
-		cl("FIGHT :",TEAM1[pos1].name,TEAM2[pos2].name)
 	  for (let i = 0; i < FIGHTS_PER_ROTA; i++) {
 		  var result = await generateFight({
 				prisma: proxy,
@@ -6224,7 +6223,6 @@ async function genFights() {var pos1=0,pos2=0
 	  if(SLEEP_AT_STEP_1)await sleep(1);
 	  
 	  pos2=(pos2+1)%TEAM2.length
-	  cl(pos2,TEAM2.length)
 	  if(!pos2){pos1=(pos1+1)%TEAM1.length;if(SLEEP_AT_STEP_2 || (SLEEP_AT_STEP_3 && !pos1)){await sleep(1);}}
 	  bilac=bilan[pos1]
 	}
