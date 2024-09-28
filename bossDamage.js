@@ -5211,7 +5211,7 @@ var weaponsFR={"fan": "Éventail",
 				
 				simulFights({
 					fn:function(res){team={};for(var brute of res){bilan[brute.nom]=brute.j;team[brute.nom] = brute.boss}
-					var sorted = Object.entries(team).sort(([, a], [, b]) => parseInt(team[b]*((regens.indexOf(b)!=-1)?9:7))-parseInt(team[a]*((regens.indexOf(a)!=-1)?9:7))).reduce((result, [key, value]) => {
+					var sorted = Object.entries(team).sort(([ia, a], [ib, b]) => parseInt(b*((regens.indexOf(ib)!=-1)?9:7))-parseInt(a*((regens.indexOf(ia)!=-1)?9:7))).reduce((result, [key, value]) => {
   result[key] = value;
   return result;
 }, {});team=sorted;ac()
