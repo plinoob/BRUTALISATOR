@@ -5206,7 +5206,7 @@ var weaponsFR={"fan": "Éventail",
 			}	
 				
 				
-				insertDivAfterElement(allDIVMERE[0],findFirstParentDiv(findTextInDOM("Afficher le détail des dégâts","h6")));
+				insertDivAfterElement(allDIVMERE[0],findFirstParentDiv(findTextInDOM("Boss","h4")));
 				
 				
 				simulFights({
