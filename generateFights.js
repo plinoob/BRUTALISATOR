@@ -6204,6 +6204,7 @@ async function genFights() {var pos1=0,pos2=0
 	var nbfights=0
 	while(bilac.j<FIGHT_TOTAL){
 	if(!PASS_SAME_BRUTE_FIGHTS || (BOSS!="brutes" || TEAM1[pos1][0].name != TEAM2[pos2][0].name)){
+		cl("FIGHT :",TEAM1[pos1].name,TEAM2[pos2].name)
 	  for (let i = 0; i < FIGHTS_PER_ROTA; i++) {
 		  var result = await generateFight({
 				prisma: proxy,
