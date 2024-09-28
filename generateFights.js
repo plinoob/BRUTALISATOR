@@ -779,11 +779,11 @@ else{setImageSrc(img_ours,img_ours2)}
 
 					}
 					var nombres = {},flag=true,precision=0
-					while(flag && precision<3){flag=false;for(var b of res){
+					while(flag && precision<4){flag=false;for(var b of res){
 						var coef=1-b.v/b.j
 						var tx = (coef*100).toFixed(precision)+""
 						
-						if(tx in nombres){flag=true}
+						if(coef!=0 && coef!=1 && (tx in nombres)){flag=true}
 						nombres[tx] = (nombres[tx] || 0) + 1
 						if(precision>0 && nombres[(coef*100).toFixed(precision-1)+""]==1) {continue}
 						brutesDivs[b.nom].tx.text(tx)
