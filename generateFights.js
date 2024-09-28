@@ -189,20 +189,20 @@ async function genBrute({
 	for(var i=1;i<level;i++){brute=levelUp(brute,random);}
 	
 	if(random){
-	brute.weapons = shuffle(weapons.reduce((acc, obj) => {acc.push(obj.name);return acc;}, [])).slice(0,brute.weapons.length)
-	for(var i of brute.pets){var pet = pets.find((p) => p.name === i);brute.enduranceStat+=pet.enduranceMalus;
-	brute.enduranceValue = Math.floor(brute.enduranceStat * brute.enduranceModifier);}
-	brute.pets = shuffle(pets.reduce((acc, obj) => {acc.push(obj.name);if(obj.name.startsWith("dog1")){acc.push(obj.name)};return acc;}, [])).slice(0,brute.pets.length)
-	var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])
-	var keepBoosters = brute.skills.reduce((acc, obj) => {if(boosters.includes(obj)){acc.push(obj)};return acc;}, [])
-	var not_boosters = skills.reduce((acc, obj) => {if(obj.type!="booster"){acc.push(obj.name)};return acc;}, [])
-	var not_boosterCount = brute.skills.reduce((acc, obj) => {if(not_boosters.includes(obj)){acc++};return acc;}, 0)
-	not_boosters.splice(not_boosters.indexOf("spy"), 1)
-	if(Math.random()*2>1){not_boosters.splice(not_boosters.indexOf("flashflood"), 1)};
-    if(Math.random()*5>1){not_boosters.splice(not_boosters.indexOf("monk"), 1)};
-    if(Math.random()*8>1){not_boosters.splice(not_boosters.indexOf("hideaway"), 1)};
-	if(Math.random()*8>1){not_boosters.splice(not_boosters.indexOf("chef"), 1)};
-	brute.skills = keepBoosters.concat(shuffle(not_boosters).slice(0,not_boosterCount))
+		brute.weapons = shuffle(weapons.reduce((acc, obj) => {acc.push(obj.name);return acc;}, [])).slice(0,brute.weapons.length)
+		for(var i of brute.pets){var pet = pets.find((p) => p.name === i);brute.enduranceStat+=pet.enduranceMalus;
+		brute.enduranceValue = Math.floor(brute.enduranceStat * brute.enduranceModifier);}
+		brute.pets = shuffle(pets.reduce((acc, obj) => {acc.push(obj.name);if(obj.name.startsWith("dog1")){acc.push(obj.name)};return acc;}, [])).slice(0,brute.pets.length)
+		var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])
+		var keepBoosters = brute.skills.reduce((acc, obj) => {if(boosters.includes(obj)){acc.push(obj)};return acc;}, [])
+		var not_boosters = skills.reduce((acc, obj) => {if(obj.type!="booster"){acc.push(obj.name)};return acc;}, [])
+		var not_boosterCount = brute.skills.reduce((acc, obj) => {if(not_boosters.includes(obj)){acc++};return acc;}, 0)
+		not_boosters.splice(not_boosters.indexOf("spy"), 1)
+		if(Math.random()*2>1){not_boosters.splice(not_boosters.indexOf("flashflood"), 1)};
+		if(Math.random()*5>1){not_boosters.splice(not_boosters.indexOf("monk"), 1)};
+		if(Math.random()*8>1){not_boosters.splice(not_boosters.indexOf("hideaway"), 1)};
+		if(Math.random()*8>1){not_boosters.splice(not_boosters.indexOf("chef"), 1)};
+		brute.skills = keepBoosters.concat(shuffle(not_boosters).slice(0,not_boosterCount))
 	
 	}
 	return brute;
@@ -601,8 +601,8 @@ async function simulFights(arg){
 
 
 async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
-,backups,fight_per_rota,fight_total,return_first_win,loading=true,modifiers,seed}){
-
+,backups,fight_per_rota,fight_total,return_first_win,loading=true,modifiers,seed,pass_same_brute_fight}){
+return new Promise((resolve, reject) => {
 	if(fightWorker)fightWorker.terminate()
 	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
 		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = [[bosses["+rota2+"]]];")
@@ -618,6 +618,7 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	if(backups){generateFights = generateFights.replace('var BACKUPS'+' = false','var BACKUPS = '+JSON.stringify(backups)+";")}
 	if(return_first_win===true){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN;','var RETURN_FIRST_WIN = true'+";")}
 	if(return_first_win===false){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN;','var RETURN_FIRST_WIN = false'+";")}
+	if(pass_same_brute_fight){generateFights = generateFights.replace('PASS_S'+'AME_BR'+'UTE_FIGHTS;','var PASS_'+'SAME_BRU'+'TE_FI'+'GHTS = true'+";")}
 	
 	generateFights = generateFights.replace("var FIGHTS_PER_ROTA"+" = 1","var FIGHTS_PER_ROTA = "+fight_per_rota+";")
 	generateFights = generateFights.replace("var FIGHT_TOTAL"+" = 1","var FIGHT_TOTAL = "+fight_total+";")
@@ -635,12 +636,12 @@ async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = bos
 	// Créer le worker à partir de l'URL du Blob
 	fightWorker = new Worker(workerUrl);
 	fightWorker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
-	e.data.ended=true};if(e.data.ended){stopLoading();fightWorker.terminate()};fn(e.data.bilan,e.data.ended);}
+	e.data.ended=true};if(e.data.ended){stopLoading();fightWorker.terminate();resolve(e.data.bilan);};fn(e.data.bilan,e.data.ended);}
 
 	if(loading)startLoading();
 	
 
-	
+})
 	  }
 	  
 function setImageSrc(prevSrc,newSrc){
@@ -6179,6 +6180,7 @@ var BACKUPS = false
 var BOSS = "brutes"
 var CLANWAR = false
 var RETURN_FIRST_WIN;
+var PASS_SAME_BRUTE_FIGHTS;
 
 var firstwin
 
@@ -6202,12 +6204,12 @@ async function genFights() {var pos1=0,pos2=0
 //cl({ [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] })
 	var nbfights=0
 	while(bilac.j<FIGHT_TOTAL){
-		
+	if(!PASS_SAME_BRUTE_FIGHTS || (BOSS!="brutes" || TEAM1[pos1][0].name != TEAM2[pos2][0].name)){
 	  for (let i = 0; i < FIGHTS_PER_ROTA; i++) {
 		  var result = await generateFight({
 				prisma: proxy,
-				team1: { brutes:  true?structuredClone(TEAM1[pos1]):TEAM1[pos1]},
-				team2: { [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] },
+				team1: { brutes:  structuredClone(TEAM1[pos1])},
+				team2: { [BOSS]: structuredClone(TEAM2[pos2]) },
 				modifiers: [],
 				backups: BACKUPS?true:false,
 				achievements: false,
@@ -6218,7 +6220,7 @@ async function genFights() {var pos1=0,pos2=0
 			if(bilac.nom==result.data.winner){if(RETURN_FIRST_WIN){firstwin=result.data;end();return};bilac.v++};
 			if(RETURN_FIRST_WIN===false){firstwin=result.data;end();return}
 			bilac.j++;
-	  }
+	}}
 	  if(SLEEP_AT_STEP_1)await sleep(1);
 	  
 	  pos2=(pos2+1)%TEAM2.length
