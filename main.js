@@ -3507,14 +3507,14 @@ var img_ours2 = "data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QBmRXhpZgAAT
 var img_arbitre = "/images/arena/referee.webp"
 var img_ours = "/images/arena/bear.webp"
 
-var VERSION = "v2.72.4"
-var ERROR_VERSION = "Mauvaise version de 💪BRUTALISATOR : "+VERSION+")"
+var VERSION = ["v2.72.4","v2.73.0"]
+var ERROR_VERSION = "Mauvaise version de 💪BRUTALISATOR : "+VERSION[VERSION.length-1]+")"
 var ERROR_WEBSITE = "Utilise 💪BRUTALISATOR sur une page Labrute !"
 var NOTHING_TO_DO = "💪BRUTALISATOR n'a pas encore de fonctionnalité pour cette page ! \n============== FONCTIONNALITÉS ================\n\n• CRÉATION : Customisation de l'apparence, choix du maître\n• CLAN : Estimation des dégâts journaliers\n• ARÈNE : Voyance\n• COMBAT : Récapitulatif des dommages\n• VERSUS : Génération et partage de combats entre brutes fictives\n• DESTINÉE : Meilleure visualisation"
 function alertAndStop(error){stopLoading();alert(error);throw new Error(error);}
 cl("START")
 if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alertAndStop(ERROR_WEBSITE);}
-if(!isTextInDOM(VERSION,"p")){alertAndStop(ERROR_VERSION);};
+var flag = false;for(version of VERSION){if(isTextInDOM(version,"p")){flag=true;break}};if(!flag){alertAndStop(ERROR_VERSION);};
 
 parseURL()
 
