@@ -6224,7 +6224,7 @@ async function genFights() {var pos1=0,pos2=0
 	  if(SLEEP_AT_STEP_1)await sleep(1);
 	  
 	  pos2=(pos2+1)%TEAM2.length
-	  cl(pos2)
+	  cl(pos2,TEAM2.length)
 	  if(!pos2){pos1=(pos1+1)%TEAM1.length;if(SLEEP_AT_STEP_2 || (SLEEP_AT_STEP_3 && !pos1)){await sleep(1);}}
 	  bilac=bilan[pos1]
 	}
