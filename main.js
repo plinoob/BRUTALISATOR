@@ -945,7 +945,7 @@ if(typeof(document)!="undefined"){
 	
 	
 LOCAL = window.location.href.startsWith("C:/")
-cl(LOCAL)
+cl(LOCAL,window.location.href)
 	
 	addStyle(`		#shuriken {
   display: flex;
