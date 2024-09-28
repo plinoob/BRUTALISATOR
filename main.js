@@ -864,8 +864,8 @@ async function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL
 				iframeWindow.document.addEventListener('mousedown', function(){$(iframe).remove()}, false);
 			}
 
-			var codeSource = fightSourceCode.replace("<script","<script>history.pushState(null, '', '"+"https://bru"+"te.eterna"
-			+"ltwin.org/irma-noob/fight/45341f08-9f9b-4073-a708-19e06d0f3c6f"+"');"+fetchCode+"var fightToVizualise = "
+			var codeSource = fightSourceCode.replace("<script","<script>history.pushState(null, '', '"+"https://br"+"ute.et"+"erna"+"ltwi"+"n.org/meuhm"
+			+"euh/fight/8e54a9ab-76b3-4562-a0f8-78722085584e"+"');"+fetchCode+"var fightToVizualise = "
 			+JSON.stringify(fightToVizualise)+";"+"<"+"/sc"+"ript>"+"<s"+"cript")
 
 			document.body.appendChild(iframe);
