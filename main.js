@@ -818,7 +818,7 @@ var fightSourceCode
 
 async function getFightSourceCode(){if(!fightSourceCode){
 	
-	var response = await fetch("https://bru"+"te.eterna"+"ltwin.org/irma-noob/fight/45341f08-9f9b-4073-a708-19e06d0f3c6f");
+	var response = await fetch("https://br"+"ute.et"+"erna"+"ltwi"+"n.org/meuhm"+"euh/fight/8e54a9ab-76b3-4562-a0f8-78722085584e");
     fightSourceCode = await response.text();
 	
 }
