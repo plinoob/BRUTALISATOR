@@ -2738,10 +2738,11 @@ var getOpponents = ({ fightData, fighter, bruteOnly, petOnly, }) => {
 };
 var getOpponents = getOpponents;
 var getRandomOpponent = ({ fightData, fighter, bruteOnly, petOnly, nonTrappedOnly, }) => {
+    var focusOpponent = fightData.modifiers.includes(FightModifier.focusOpponent);
     let opponents = (0, getOpponents)({
         fightData,
         fighter,
-        bruteOnly: bruteOnly || fightData.modifiers.includes(FightModifier.focusOpponent),
+        bruteOnly: bruteOnly || focusOpponent,
         petOnly,
     });
     // Filter out trapped pets
@@ -2749,6 +2750,10 @@ var getRandomOpponent = ({ fightData, fighter, bruteOnly, petOnly, nonTrappedOnl
     if (nonTrappedOnly) {
         // Filter out trapped brutes
         opponents = opponents.filter((f) => !f.trapped);
+    }
+    // Filter out backups if `focusOpponent` modifier
+    if (focusOpponent) {
+        opponents = opponents.filter((f) => !f.master);
     }
     if (!opponents.length) {
         return null;
@@ -2828,8 +2833,8 @@ var randomlyGetSuper = (fightData, fighter) => {
     if ((0, getOpponents)({ fightData, fighter, bruteOnly: true }).length === 0) {
         supers = supers.filter((skill) => skill.name !== SkillName.vampirism);
     }
-    // Filter out treat if no pets lost hp and not trapped
-    if (fightData.fighters.filter((f) => f.type === 'pet' && f.team === fighter.team && f.hp < f.maxHp && !f.trapped).length === 0) {
+    // Filter out treat if no pets lost hp or no pet trapped
+    if (fightData.fighters.filter((f) => f.type === 'pet' && f.team === fighter.team && ((f.hp < f.maxHp) || f.trapped)).length === 0) {
         supers = supers.filter((skill) => skill.name !== SkillName.treat);
     }
     if (!supers.length)
@@ -2934,8 +2939,8 @@ var registerHit = (fightData, stats, achievements, fighter, opponents, damage, t
             opponent.trapped = false;
             opponent.initiative = fightData.initiative + 0.5;
         }
+        // Max damage to 20% of opponent's health if `resistant`
         if (opponent.skills.find((sk) => sk.name === 'resistant')) {
-            // Max damage to 20% of opponent's health if `resistant`
             actualDamage[opponent.index] = Math.min(damage, Math.floor(opponent.maxHp * 0.2));
             if ((actualDamage[opponent.index] ?? damage) < damage) {
                 // Add resist step
@@ -2944,6 +2949,17 @@ var registerHit = (fightData, stats, achievements, fighter, opponents, damage, t
                     b: opponent.index,
                 });
             }
+        }
+        // 0 damage if immune
+        if (opponent.immune) {
+            actualDamage[opponent.index] = 0;
+            // Remove immune status
+            opponent.immune = false;
+            // Add resist step
+            fightData.steps.push({
+                a: StepType.Resist,
+                b: opponent.index,
+            });
         }
         var opponentDamage = actualDamage[opponent.index] ?? damage;
         // Reduce backup leave time instead of reducing hp
@@ -3432,13 +3448,21 @@ var activateSuper = (fightData, fighter, skill, stats, achievements) => {
         case SkillName.treat: {
             // Choose random ally pet
             var pets = fightData.fighters.filter((f) => f.type === 'pet' && f.team === fighter.team && f.hp > 0);
-            var pet = pets.find((p) => p.hp < p.maxHp && !p.trapped);
+            var pet = pets.find((p) => (p.hp < p.maxHp) || p.trapped);
             if (!pet) {
                 return false;
             }
             // HP healed (max 50%)
             var heal = Math.min(Math.floor(pet.maxHp * 0.5), pet.maxHp - pet.hp);
             pet.hp += heal;
+            // Untrap pet
+            if (pet.trapped) {
+                pet.trapped = false;
+            }
+            // Set pet initiative to fighter initiative (to act right after)
+            pet.initiative = fighter.initiative;
+            // Give immunity to pet
+            pet.immune = true;
             // Add move step
             fightData.steps.push({
                 a: StepType.Move,
@@ -4275,27 +4299,33 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
         l: loser.index,
     });
     // Reduce the size of the fighters data
-    var fighters = fightData.initialFighters.map((fighter) => ({
-        id: fighter.id,
-        index: fighter.index,
-        team: fighter.team,
-        name: fighter.name,
-        gender: fighter.gender,
-        body: fighter.body,
-        colors: fighter.colors,
-        rank: fighter.rank,
-        level: fighter.level,
-        agility: fighter.agility,
-        strength: fighter.strength,
-        speed: fighter.speed,
-        type: fighter.type,
-        master: fighter.master,
-        maxHp: fighter.maxHp,
-        hp: fighter.hp,
-        weapons: fighter.weapons.map((weapon) => WeaponByName[weapon.name]),
-        skills: fighter.skills.map((skill) => SkillByName[skill.name]),
-        shield: fighter.shield,
-    }));
+    var fighters = fightData.initialFighters.map((fighter) => {
+        var object = {
+            id: fighter.id,
+            index: fighter.index,
+            team: fighter.team,
+            name: fighter.name,
+            gender: fighter.gender,
+            body: fighter.body,
+            colors: fighter.colors,
+            rank: fighter.rank,
+            level: fighter.level,
+            agility: fighter.agility,
+            strength: fighter.strength,
+            speed: fighter.speed,
+            type: fighter.type,
+            master: fighter.master,
+            maxHp: fighter.maxHp,
+            hp: fighter.hp,
+            weapons: fighter.weapons.map((weapon) => WeaponByName[weapon.name]),
+            skills: fighter.skills.map((skill) => SkillByName[skill.name]),
+            shield: fighter.shield,
+        };
+        if (fighter.eventId) {
+            object.eventId = fighter.eventId;
+        }
+        return object;
+    });
     var brute1 = team1.brutes?.[0];
     var brute2 = team2.brutes?.[0];
     if (!brute1) {
@@ -4462,7 +4492,8 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
         await (0, updateAchievements)(prisma, achievementsStore, !!tournament);
     }
     return result;
-};var getDamage = (fighter, opponent, thrown) => {
+};
+var getDamage = (fighter, opponent, thrown) => {
     var base = thrown
         ? thrown.damage
         : (fighter.activeWeapon?.damage || fighter.baseDamage);
@@ -4671,6 +4702,7 @@ var getFighters = async ({ prisma, team1, team2, modifiers, clanFight, }) => {
             positiveIndex++;
             var fighter = {
                 id: brute.id,
+                eventId: brute.eventId ?? undefined,
                 index: positiveIndex,
                 team: teamSide,
                 name: brute.name,
