@@ -2614,9 +2614,10 @@ var observer = new MutationObserver((mutationsList) => {
 			
 			insertDivAfterElement(allDIV[0],findFirstParentDiv(findTextInDOM("Cellule de ","span")));
 			
-		    $(findTextInDOM("Plus de jeux EternalTwin","p")).css("visibility","hidden");
-		    $(findTextInDOM(VERSION,"p")).css("visibility","hidden");
-			$(document.querySelector('[role="alert"]')).css("visibility","hidden");
+		    $(findTextInDOM("Plus de jeux EternalTwin","p")).css("display","none");
+		    $(findTextInDOM("Remade with love","p")).css("display","none");
+		    $(findTextInDOM(VERSION,"p")).css("display","none");
+			$(document.querySelector('[role="alert"]')).css("display","none");
 		
 		
 var bruteElements = document.querySelectorAll('.bruteNameHover');
