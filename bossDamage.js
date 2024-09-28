@@ -5198,7 +5198,7 @@ var weaponsFR={"fan": "Éventail",
 			,display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS,{padding:"10px"}])})
 				
-			function ac(){cl(JSON.stringify(team))
+			function ac(){
 				allDIV.empty()
 			div({0:allDIV,17:getNamesFromTeam()})
 			div({0:allDIV,17:"   "})
