@@ -612,7 +612,7 @@ return new Promise((resolve, reject) => {
 	var worker = fightWorker
 	
 	worker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
-	e.data.ended=true};cl(e);if(e.data.ended){stopLoading();worker.terminate();resolve(e.data.bilan);};fn(e.data.bilan,e.data.ended);}
+	e.data.ended=true};if(e.data.ended){stopLoading();worker.terminate();resolve(e.data.bilan);};fn(e.data.bilan,e.data.ended);}
 
 	if(loading)startLoading();
 	
@@ -974,8 +974,8 @@ LOCAL = window.location.href.startsWith("file:")
 }
 	`)
 $("#shuriken").remove()
-shurikenDIV = div({0:body,1:"shuriken",9:{height:"73px",position:"fixed",top:"73px",right:"73px"}})
-div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image"})
+shurikenDIV = div({0:body,1:"shuriken",9:{position:"fixed",top:"33px",right:"33px"}})
+div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image",9:{height:"133px",}})
   baseCSS= {	"font-family": "Roboto, Helvetica, Arial, sans-serif",
     "font-weight": "400",
     "font-size": "1rem",

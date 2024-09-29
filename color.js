@@ -612,7 +612,7 @@ return new Promise((resolve, reject) => {
 	var worker = fightWorker
 	
 	worker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
-	e.data.ended=true};cl(e);if(e.data.ended){stopLoading();worker.terminate();resolve(e.data.bilan);};fn(e.data.bilan,e.data.ended);}
+	e.data.ended=true};if(e.data.ended){stopLoading();worker.terminate();resolve(e.data.bilan);};fn(e.data.bilan,e.data.ended);}
 
 	if(loading)startLoading();
 	
@@ -974,8 +974,8 @@ LOCAL = window.location.href.startsWith("file:")
 }
 	`)
 $("#shuriken").remove()
-shurikenDIV = div({0:body,1:"shuriken",9:{height:"73px",position:"fixed",top:"73px",right:"73px"}})
-div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image"})
+shurikenDIV = div({0:body,1:"shuriken",9:{position:"fixed",top:"33px",right:"33px"}})
+div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image",9:{height:"133px",}})
   baseCSS= {	"font-family": "Roboto, Helvetica, Arial, sans-serif",
     "font-weight": "400",
     "font-size": "1rem",
@@ -3549,6 +3549,11 @@ cursor:pointer;
 }`)
 
 
+PRESET = [
+
+
+]
+
 var getChoosedBody = function(gender){cl("BODY CALLED"); setGender(gender);var res = generateBodyString(BODY);checkBody("Ambryal",GENDER,res);return res}
 
 
@@ -3682,8 +3687,22 @@ div({15:0,6:{click:function(){makeRandomColors();clickOnRandomColors()}},1:"pale
 $("#randomBody").remove()
 div({18:0.6,17:"🎲",0:div({15:0,6:{click:function(){makeRandomBody();clickOnRandomBody()}},1:"randomBody",13:5000000,0:body,26:1,4:[27,"","",36],24:66,9:uni([{ "font-size":"0.821429rem"},
 textBoxCSS,baseCSS])})})
-			
-			
+
+$("#preset").remove()
+var presetDIV=div({1:"preset",13:5000000,0:body,26:1,4:[27,80,"",2],24:18,9:uni([{ "font-size":"0.821429rem"},
+textBoxCSS,baseCSS])})
+div({0:presetDIV,17:"📋",15:0,6:{click:function(){copyToClipboard(JSON.stringify({GENDER,COLORS:getChoosedColors(GENDER),BODY:getChoosedBody(GENDER)}));blink()}}})
+//for(){}
+
+function blink(){var l={c:0.66,i:66,o:333};div({4:0,10:l.c,13:d32-3}).fadeOut(0).fadeIn(l.i).fadeOut(l.o,function(){$(this).remove()})}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(function() {
+        console.log('Texte copié dans le presse-papiers :', text);
+    }).catch(function(err) {
+        console.error('Erreur lors de la copie :', err);
+    });
+}			
 function createDynamicDivs() {
 	div({0:masterDIV,1:"master-container",4:[33,0,0,0]})
     var container = document.getElementById('master-container');
