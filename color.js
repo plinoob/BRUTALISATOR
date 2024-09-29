@@ -3691,7 +3691,7 @@ textBoxCSS,baseCSS])})})
 $("#preset").remove()
 var presetDIV=div({1:"preset",50:0,13:5000000,0:body,26:1,4:[27,80,"",2],24:18,9:uni([{ "font-size":"0.821429rem"},
 textBoxCSS,baseCSS])})
-div({0:presetDIV,17:"📋",15:0,6:{click:function(){copyToClipboard(JSON.stringify({GENDER,COLORS:getChoosedColors(GENDER),BODY:getChoosedBody(GENDER)}));blink()}}})
+div({0:presetDIV,17:"📋",24:30,15:0,6:{click:function(){copyToClipboard(JSON.stringify({GENDER,COLORS:getChoosedColors(GENDER),BODY:getChoosedBody(GENDER)}));blink()}}})
 //for(){}
 
 function blink(){var l={c:0.66,i:66,o:333};div({4:0,10:l.c,13:d32-3}).fadeOut(0).fadeIn(l.i).fadeOut(l.o,function(){$(this).remove()})}
