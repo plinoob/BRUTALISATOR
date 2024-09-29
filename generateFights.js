@@ -265,14 +265,14 @@ async function launchFight(){
 	stopLoading()
 	brutes.sort()
 	for(var i=0;i<2;i++){
-if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
+if(brutes[i].startsWith("$")){var brutename=brutes[i];brutes[i]=await getBruteFromRumble(...brutename.split("$")[1].split("_"))}
+else if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
 	backups[i] = [await genBrute({level:randomLevel(17,6),name:brutename+"$",random:true})];
 	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename,random:true});
 	turnRandomToCHAOS(seed,brutes)
 	if(Math.random()>0.5){backups[i]=[]}
 	turnCHAOSToRandom();
 	}
-else if(brutes[i].startsWith("$")){var brutename=brutes[i];brutes[i]=await getBruteFromRumble(...brutename.split("$")[1].split("_"))}
 else{var brutename=brutes[i];brutes[i]=await getBrute(brutename.split("@")[1])}
 	} 
 			simulFights({
