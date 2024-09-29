@@ -655,6 +655,32 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function genDestiny(brute,level){
+	var destiny = []
+	while(destiny.length<level - 1){
+		var choices = getLevelUpChoices(brute);
+		if(choices[0].skill && boosters.includes(choices[0].skill)){choices[1]=choices[0]};
+		destiny.push(choices);
+		brute=updateBruteData(structuredClone(brute),choices[0])
+		}
+		return destiny
+}
+		
+		
+async function genBruteFromTrail(name,level){
+	var trail=rumble[name]
+		turnRandomToCHAOS(name)
+		var brute = await genBrute({level:1,name});
+		var detiny = genDestiny(brute,level)
+		turnCHAOSToRandom()
+		
+		var plan = []
+		for(var i=0;i<trail.length;i++){if(plan.length>=level){break};
+			var step=trail[i];if(step===0){plan.push(0)}else if(step===1){plan.push(1)}else{plan[step-2]=1-plan[step-2]}}
+		if(plan.length>=level){plan.pop()}
+		for(var step of plan){brute=updateBruteData(structuredClone(brute),detiny[brute.level-1][step])}
+		return brute
+}
 
 var url
 function parseURL(){

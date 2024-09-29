@@ -628,6 +628,32 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function genDestiny(brute,level){
+	var destiny = []
+	while(destiny.length<level - 1){
+		var choices = getLevelUpChoices(brute);
+		if(choices[0].skill && boosters.includes(choices[0].skill)){choices[1]=choices[0]};
+		destiny.push(choices);
+		brute=updateBruteData(structuredClone(brute),choices[0])
+		}
+		return destiny
+}
+		
+		
+async function genBruteFromTrail(name,level){
+	var trail=rumble[name]
+		turnRandomToCHAOS(name)
+		var brute = await genBrute({level:1,name});
+		var detiny = genDestiny(brute,level)
+		turnCHAOSToRandom()
+		
+		var plan = []
+		for(var i=0;i<trail.length;i++){if(plan.length>=level){break};
+			var step=trail[i];if(step===0){plan.push(0)}else if(step===1){plan.push(1)}else{plan[step-2]=1-plan[step-2]}}
+		if(plan.length>=level){plan.pop()}
+		for(var step of plan){brute=updateBruteData(structuredClone(brute),detiny[brute.level-1][step])}
+		return brute
+}
 
 var url
 function parseURL(){
@@ -3538,6 +3564,7 @@ else if(url.length==1){/*
 	
 	//*/addScript(BRUTALISATOR+"custom.js")
 	}
+else if(url.length==4 && url[2]=="clan" && url[2]=="ranking"){BRUTE = url[1];window.location.href="/"+BRUTE+"/clan/4c007438-9aa0-419e-af73-d82f8dc39eae";setInterval(function(){cl("mdrr")},1000)}
 else if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATOR+"destiny.js")}
 else if(url.length==3 && url[2]=="arena" /*&& BRANCHE=="dev"*/){BRUTE = url[1];arena()}
 else if(url.length==4 && url[2]=="versus"){BRUTE = url[1];addScript(BRUTALISATOR+"fight.js")}
