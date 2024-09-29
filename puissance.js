@@ -2499,19 +2499,16 @@ var bruteData
 
 
 async function puissance(){
-	
-	if(!rumble){await getRumble()}
-	
 	if(!bruteData){bruteData = await getBrute(BRUTE)}
-	
 	var brute = bruteData
 	var lv=brute.level
+	if(!rumble){await getRumble(lv)}
+	
+	
 	
 	var rota2 = []
 	
-	cl("read trails")
-	for(var name in rumble){cl(name);if(name!="WINRATES"){if(rumble.WINRATES[name][lv-1]>0){rota2.push([await genBruteFromTrail(name,brute.level)])}}}
-	cl("trails OK",rota2)
+	for(var b of rumble){if(rota2.length<1000){rota2.push([b])}}
 	
 	
 				simulFights({
