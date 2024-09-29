@@ -633,7 +633,7 @@ function genDestiny(brute,level){
 	var destiny = []
 	while(destiny.length<level - 1){
 		var choices = getLevelUpChoices(brute);
-		if(choices[0].skill && boosters.includes(choices[0].skill)){choices[1]=choices[0]};
+		if(choices[0].skill && getBoosters().includes(choices[0].skill)){choices[1]=choices[0]};
 		destiny.push(choices);
 		brute=updateBruteData(structuredClone(brute),choices[0])
 		}
@@ -1036,9 +1036,8 @@ padding: "0px"}
 
 }
 
-var boosters
+function getBoosters(){return skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])}
 
-if(skills)boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])
 
 
 function stopLoading(){$(shurikenDIV).css("display","none")}
