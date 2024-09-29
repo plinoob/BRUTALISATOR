@@ -3552,8 +3552,10 @@ cursor:pointer;
 PRESET = [
 
 ]
+var PRESAC
 
-var getChoosedBody = function(gender){cl("BODY CALLED"); setGender(gender);var res = generateBodyString(BODY);checkBody("Ambryal",GENDER,res);return res}
+var getChoosedBody = function(gender){cl("BODY CALLED"); setGender(gender);var res = generateBodyString(BODY);
+if(PRESAC && ["male","female"][PRESAC[0]]==GENDER){res = PRESAC[2]};checkBody("Ambryal",GENDER,res);return res}
 
 
 
@@ -3592,6 +3594,7 @@ var getChoosedColors = function(gender) {cl("COLOR CALLED"); setGender(gender);
         col4a,
         col4b,
     });
+	if(PRESAC && ["male","female"][PRESAC[0]]==GENDER){res = PRESAC[1]}
 	checkColors("Ambryal",GENDER,res)
 	return res
 };
@@ -3660,11 +3663,11 @@ MODIFIED=true;
 
 }
 
-function clickOnRandomBody(){
+function clickOnRandomBody(once){
 	
 MODIFIED=true;
 		var element=document.querySelector('[aria-label="Changer l\'apparence"]')
-		element.click();setTimeout(function(){element.click();},50);
+		element.click();if(!once){setTimeout(function(){element.click();},50);}
 
 	
 }
@@ -3677,7 +3680,8 @@ var masterDIV = div({1:"masterDIV",13:5000000,0:body,26:1,4:[3,55,75,3],9:uni([{
 			textBoxCSS,baseCSS])})
 
 div({0:masterDIV,4:[15,"","",25],5:0,17:"<b><u>Master</u></b>",24:30,18:0.73})
-var masterInput = div({0:masterDIV,4:[16,"","",70],9:{"font-family":"inherit",color:"inherit",border:"1px solid #BAB68F"},24:20,5:0,2:"input",19:15,10:"#FBF7C1",6:{"change":function(){MASTER = masterInput.val()}}})
+var masterInput = div({0:masterDIV,4:[16,"","",70],9:{"font-family":"inherit",color:"inherit",border:"1px solid #BAB68F"},24:20,5:0,2:"input",19:15,10:"#FBF7C1",
+6:{"change":function(){MASTER = masterInput.val()}}})
 masterInput.val(MASTER)
 $("#palette").remove()
 div({15:0,6:{click:function(){makeRandomColors();clickOnRandomColors()}},1:"palette",13:5000000,0:body,26:1,4:[27,"","",43],17:"🎨",24:66,9:uni([{ "font-size":"0.821429rem"},
@@ -3690,8 +3694,18 @@ textBoxCSS,baseCSS])})})
 $("#preset").remove()
 var presetDIV=div({1:"preset",50:0,13:5000000,0:body,26:1,4:[27,80,"",2],24:18,9:uni([{ "font-size":"0.821429rem"},
 textBoxCSS,baseCSS])})
-div({0:presetDIV,17:"📋",24:30,15:0,6:{click:function(){copyToClipboard(JSON.stringify([GENDER=="male"?0:1,getChoosedColors(GENDER),getChoosedBody(GENDER),MASTER]));blink()}}})
+div({0:presetDIV,17:"📋",24:30,15:0,6:{click:function(){
+	copyToClipboard(JSON.stringify([GENDER=="male"?0:1,getChoosedColors(GENDER),getChoosedBody(GENDER),BRUTE_INPUT.val(),MASTER]));blink()}}})
 //for(){}
+
+var BRUTE_INPUT=$('input[aria-invalid="false"]')
+
+function makePresetDiv(l){div({6:{click:function(){
+	PRESAC=l;
+	BRUTE_INPUT.val(PRESAC[3]).trigger("input change")
+	setTimeout(function(){
+	clickOnRandomBody(["male","female"][PRESAC[0]]!=GENDER);
+	if(l[4].length>0){return};masterInput.val(l[4]);masterInput.trigger("change");},100)}}})}
 
 function blink(){var l={c:0.66,i:66,o:333};div({4:0,10:l.c,13:d32-3}).fadeOut(0).fadeIn(l.i).fadeOut(l.o,function(){$(this).remove()})}
 
