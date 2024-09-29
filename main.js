@@ -650,8 +650,10 @@ async function getBruteFromRumble(level,rank){
 }
 
 async function getRumble() {
+	cl("dl rumble...")
     rumble = await fetch(BRUTALISATOR+"rumble.js");
-	rumble = await JSON.parse(rumble.replace("var rumble = ",""));
+	rumble=await rumble.text()
+	rumble = JSON.parse(rumble.replace("var rumble = ",""));
 }
 
 var rumble
