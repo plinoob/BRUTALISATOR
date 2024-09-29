@@ -2552,13 +2552,13 @@ var weaponsFR={"fan": "Éventail",
 
 // Créer un observer qui surveille les changements dans le DOM
 var observer = new MutationObserver((mutationsList) => {
-  for (var mutation of mutationsList) {
+  for (const mutation of mutationsList) {
     // Parcourir les nouveaux nœuds ajoutés
     mutation.addedNodes.forEach(node => {
       // Vérifier si le nœud est une div
       if (node.nodeName === 'DIV') {
         // Vérifier si la div contient des balises <p>
-        var pElements = node.querySelectorAll('p');
+        const pElements = node.querySelectorAll('p');
         if(pElements.length==0)return
         if (fightLog=="") {
           // Loguer le contenu de chaque balise <p>
@@ -2689,15 +2689,15 @@ var rows = document.querySelectorAll('tr');
 // Parcourir chaque élément <tr>
 rows.forEach(row => {
   // Récupérer les deux premiers <td> du <tr>
-  var tds = row.querySelectorAll('td');
+  const tds = row.querySelectorAll('td');
 
   if (tds.length >= 2) {
     // Pour chacun des deux premiers <td>
     for (let i = 0; i < 2; i++) {
-      var td = tds[i];
+      const td = tds[i];
       
       // Récupérer le premier <p> dans le <td>
-      var p = td.querySelector('p');
+      const p = td.querySelector('p');
       
       if (p) {
         // Afficher le contenu du <p>
@@ -2713,7 +2713,7 @@ rows.forEach(row => {
 }
 
 function getBrutesNames(){
-var spans = document.querySelectorAll('span');
+const spans = document.querySelectorAll('span');
 var nbBrutes = 0
 // Parcourir chaque élément <tr>
 spans.forEach(spans => {

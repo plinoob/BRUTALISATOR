@@ -2576,7 +2576,7 @@ fetch(window.location.href)
 			stopLoading();
 			setInterval(() => {
     try {
-        var iframeUrl = iframe.contentWindow.location.href;
+        const iframeUrl = iframe.contentWindow.location.href;
         if(iframeUrl.endsWith("cell")){window.location.href = iframeUrl;}
         // Redirige la page principale vers l'URL de l'iframe
         
