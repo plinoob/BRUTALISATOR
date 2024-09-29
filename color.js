@@ -3623,6 +3623,9 @@ var PRESET = [
 ]
 var PRESAC
 
+for(var i in PRESET){if(typeof(PRESET[i])==typeof("")){PRESET[i]=unzipString(PRESET[i])}}
+cl("presets :",PRESET)
+
 var getChoosedBody = function(gender){cl("BODY CALLED"); setGender(gender);var res = generateBodyString(BODY);
 if(PRESAC && ["male","female"][PRESAC[0]]==GENDER){res = PRESAC[2]};checkBody("Ambryal",GENDER,res);return res}
 
