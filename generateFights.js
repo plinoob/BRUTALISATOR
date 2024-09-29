@@ -257,6 +257,7 @@ var bruteInputs = []
 var bruteDIVS = []
 var backups=[[],[]]
 
+async function lauchFightVersusChampion(){var brute = await getBrute(BRUTE);brutes=["@"+BRUTE,"$"+brute.level+"_1"];launchFight()}
 
 async function launchFight(){		
 		if(combat_lancer) return

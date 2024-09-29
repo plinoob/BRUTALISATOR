@@ -230,6 +230,7 @@ var bruteInputs = []
 var bruteDIVS = []
 var backups=[[],[]]
 
+async function lauchFightVersusChampion(){var brute = await getBrute(BRUTE);brutes=["@"+BRUTE,"$"+brute.level+"_1"];launchFight()}
 
 async function launchFight(){		
 		if(combat_lancer) return
@@ -3561,7 +3562,7 @@ var img_ours = "/images/arena/bear.webp"
 var VERSION = ["v2.72","v2.73"]
 var ERROR_VERSION = "Mauvaise version de 💪BRUTALISATOR : "+VERSION[VERSION.length-1]+")"
 var ERROR_WEBSITE = "Utilise 💪BRUTALISATOR sur une page Labrute !"
-var NOTHING_TO_DO = "💪BRUTALISATOR n'a pas encore de fonctionnalité pour cette page ! \n============== FONCTIONNALITÉS ================\n\n• CRÉATION : Customisation de l'apparence, choix du maître\n• CLAN : Estimation des dégâts journaliers\n• ARÈNE : Voyance\n• COMBAT : Récapitulatif des dommages\n• VERSUS : Génération et partage de combats entre brutes fictives\n• DESTINÉE : Meilleure visualisation"
+var NOTHING_TO_DO = "💪BRUTALISATOR n'a pas encore de fonctionnalité pour cette page ! \n============== FONCTIONNALITÉS ================\n\n• CRÉATION : Customisation de l'apparence, choix du maître\n• ARÈNE : Voyance\n• COMBAT : Récapitulatif des dommages\n• RECHERCHE DE CLAN : Ouverture directe du clan MGE\n• CLAN : Estimation des dégâts journaliers\n• TOURNOI : Affrontement contre le VRAI champion\n• VERSUS : Génération et partage de combats entre brutes fictives\n• DESTINÉE : Meilleure visualisation"
 function alertAndStop(error){stopLoading();alert(error);throw new Error(error);}
 cl("START")
 if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alertAndStop(ERROR_WEBSITE);}
@@ -3587,7 +3588,8 @@ else if(url.length==1){/*
 	
 	//*/addScript(BRUTALISATOR+"custom.js")
 	}
-else if(url.length==4 && url[2]=="clan" && url[3]=="ranking"){BRUTE = url[1];window.location.href="/"+BRUTE+"/clan/4c007438-9aa0-419e-af73-d82f8dc39eae";setInterval(function(){cl("mdrr")},1000)}
+else if(url.length==4 && url[2]=="tournament"){BRUTE = url[1];lauchFightVersusChampion()}
+else if(url.length==4 && url[2]=="clan" && url[3]=="ranking"){BRUTE = url[1];window.location.href="/"+BRUTE+"/clan/4c007438-9aa0-419e-af73-d82f8dc39eae";}
 else if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATOR+"destiny.js")}
 else if(url.length==3 && url[2]=="arena" /*&& BRANCHE=="dev"*/){BRUTE = url[1];arena()}
 else if(url.length==3 && url[2]=="cell" /*&& BRANCHE=="dev"*/){BRUTE = url[1];addScript(BRUTALISATOR+"puissance.js")}
