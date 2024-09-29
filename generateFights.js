@@ -671,8 +671,8 @@ async function getBruteFromRumble(level,rank){
 	if(!rumble) await getRumble()
 	var brutes = []
 	for(var b in rumble){if(b!="WINRATES"){brutes.push(b)}}
-	brutes.sort(function(a,b){return rumble.WINRATES[b][level] - rumble.WINRATES[a][level]})
-	cl(brutes[rank-1]," : ",rumble.WINRATES[brutes[rank-1]][level]," wr")
+	brutes.sort(function(a,b){return rumble.WINRATES[b][level-1] - rumble.WINRATES[a][level-1]})
+	cl(brutes[rank-1]," : ",rumble.WINRATES[brutes[rank-1]][level-1]," wr")
 	return await genBruteFromTrail(brutes[rank-1],level)
 }
 
