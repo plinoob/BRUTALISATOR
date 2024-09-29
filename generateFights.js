@@ -601,9 +601,10 @@ async function simulFights(arg){
 
 
 async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
-,backups,fight_per_rota,fight_total,return_first_win,loading=true,modifiers,seed,pass_same_brute_fight}){
+,backups,fight_per_rota,fight_total,return_first_win,loading=true,
+modifiers,seed,pass_same_brute_fight,multiple_workers}){
 return new Promise((resolve, reject) => {
-	if(fightWorker)fightWorker.terminate()
+	if(fightWorker && !multiple_workers)fightWorker.terminate()
 	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
 		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = [[bosses["+rota2+"]]];")
 	}
@@ -635,8 +636,10 @@ return new Promise((resolve, reject) => {
 
 	// Créer le worker à partir de l'URL du Blob
 	fightWorker = new Worker(workerUrl);
-	fightWorker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
-	e.data.ended=true};if(e.data.ended){stopLoading();fightWorker.terminate();resolve(e.data.bilan);};fn(e.data.bilan,e.data.ended);}
+	var worker = fightWorker
+	
+	worker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
+	e.data.ended=true};cl(e);if(e.data.ended){stopLoading();worker.terminate();resolve(e.data.bilan);};fn(e.data.bilan,e.data.ended);}
 
 	if(loading)startLoading();
 	
@@ -998,7 +1001,7 @@ LOCAL = window.location.href.startsWith("file:")
 }
 	`)
 $("#shuriken").remove()
-shurikenDIV = div({0:body,1:"shuriken",9:{position:"fixed",top:"33px",right:"33px"}})
+shurikenDIV = div({0:body,1:"shuriken",9:{height:"73px",position:"fixed",top:"73px",right:"73px"}})
 div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image"})
   baseCSS= {	"font-family": "Roboto, Helvetica, Arial, sans-serif",
     "font-weight": "400",
@@ -6228,6 +6231,7 @@ async function genFights() {var pos1=0,pos2=0
 	}
 	cl("fini",Date.now()-startTime)
 	ended = Date.now()-startTime
+	end()
 }
 
 
