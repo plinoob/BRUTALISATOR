@@ -3723,14 +3723,14 @@ $("#preset").remove()
 var presetDIV=div({1:"preset",50:0,13:5000000,0:body,26:1,4:[27,86,"",2],24:18,9:uni([{ "font-size":"0.821429rem"},
 textBoxCSS,baseCSS])})
 div({0:presetDIV,17:"📋",24:30,15:0,6:{click:function(){
-	copyToClipboard(JSON.stringify([GENDER=="male"?0:1,getChoosedColors(GENDER),getChoosedBody(GENDER),BRUTE_INPUT.val(),MASTER]));blink()}}})
+	copyToClipboard(JSON.stringify([GENDER=="male"?0:1,getChoosedColors(GENDER),getChoosedBody(GENDER),$('input[aria-invalid="false"]').val(),MASTER]));blink()}}})
 for(var p of PRESET){makePresetDiv(p)}
 
-var BRUTE_INPUT=$('input[aria-invalid="false"]')
 
 function makePresetDiv(l){cl("lol");div({15:0,17:l[3],0:presetDIV,6:{click:function(){
 	PRESAC=l;
-	BRUTE_INPUT.val(PRESAC[3]).trigger("input change")
+	cl("input",$('input[aria-invalid="false"]'))
+	$('input[aria-invalid="false"]').val(PRESAC[3]).trigger("input change")
 	setTimeout(function(){
 	clickOnRandomBody(["male","female"][PRESAC[0]]!=GENDER);
 	if(l[4].length>0){return};masterInput.val(l[4]);masterInput.trigger("change");},100)}}})}
