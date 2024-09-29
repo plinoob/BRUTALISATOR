@@ -3702,7 +3702,7 @@ for(var p of PRESET){makePresetDiv(p)}
 
 var BRUTE_INPUT=$('input[aria-invalid="false"]')
 
-function makePresetDiv(l){cl("lol");div({0:presetDIV,6:{click:function(){
+function makePresetDiv(l){cl("lol");div({17:l[3],0:presetDIV,6:{click:function(){
 	PRESAC=l;
 	BRUTE_INPUT.val(PRESAC[3]).trigger("input change")
 	setTimeout(function(){
