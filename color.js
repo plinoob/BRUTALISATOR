@@ -3729,11 +3729,10 @@ for(var p of PRESET){makePresetDiv(p)}
 
 function makePresetDiv(l){cl("lol");div({15:0,17:l[3],0:presetDIV,6:{click:function(){
 	PRESAC=l;
-	cl("input",$('input[aria-invalid="false"]'))
 	copyToClipboard(PRESAC[3])
-	setTimeout(function(){cl("timeouted",l)
+	setTimeout(function(){
 	clickOnRandomBody(["male","female"][PRESAC[0]]!=GENDER);
-	if(l[4].length>0){return};masterInput.val(l[4]);masterInput.trigger("change");},100)}}})}
+	if(!l[4].length){return};masterInput.val(l[4]);masterInput.trigger("change");},100)}}})}
 
 function blink(){var l={c:0.66,i:66,o:3333};div({4:0,10:"#ff0000",18:0.6,13:d32-3}).fadeOut(0).fadeIn(l.i).fadeOut(l.o,function(){$(this).remove()})}
 
