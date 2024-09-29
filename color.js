@@ -683,7 +683,7 @@ async function getBruteFromRumble(level,rank){
 async function getRumble(level) {
 	if(rumble && rumble[0].level==level) return
 	cl("dl rumble...")
-    rumble = await fetch(BRUTALISATOR+"rumble/"+level+".json");
+    rumble = await fetch(BRUTALISATOR+"rumble/"+level+".json.js");
 	rumble=await rumble.text()
 	cl("unzip...")
 	cl(rumble)
