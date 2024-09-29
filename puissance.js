@@ -2526,7 +2526,7 @@ async function puissance(){
 
 puissance()
 
-
+"⚡️🔥"
 
 
 

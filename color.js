@@ -686,9 +686,7 @@ async function getRumble(level) {
     rumble = await fetch(BRUTALISATOR+"rumble/"+level+".json.js");
 	rumble=await rumble.text()
 	cl("unzip...")
-	cl(rumble)
 	rumble = unzipString(rumble);
-	cl(rumble)
 }
 
 var rumble
@@ -3621,6 +3619,7 @@ cursor:pointer;
 
 var PRESET = [
 	//[1,"00000003030303031301020204020312","10001210601","heheheha",""],
+	[1,"04040406060606061919191019100504","11100010504","MGE-RousseSvelte","heheheha"],
 ]
 var PRESAC
 
@@ -3765,7 +3764,7 @@ $("#preset").remove()
 var presetDIV=div({1:"preset",50:0,13:5000000,0:body,26:1,4:[27,86,"",2],24:18,9:uni([{ "font-size":"0.821429rem"},
 textBoxCSS,baseCSS])})
 div({0:presetDIV,17:"📋",24:30,15:0,6:{click:function(){
-	copyToClipboard(JSON.stringify([GENDER=="male"?0:1,getChoosedColors(GENDER),getChoosedBody(GENDER),$('input[aria-invalid="false"]').val(),MASTER]));}}})
+	copyToClipboard(zipString([GENDER=="male"?0:1,getChoosedColors(GENDER),getChoosedBody(GENDER),$('input[aria-invalid="false"]').val(),MASTER]));}}})
 for(var p of PRESET){makePresetDiv(p)}
 
 
