@@ -3550,7 +3550,9 @@ cursor:pointer;
 
 
 PRESET = [
-
+	[0,"00000009090909090304040417150404","00017101423","heheheha","Armiv1"],
+	[0,"00000009090909090304040417150404","00017101423","heheha","Ar1"],
+	
 ]
 var PRESAC
 
@@ -3696,11 +3698,11 @@ var presetDIV=div({1:"preset",50:0,13:5000000,0:body,26:1,4:[27,80,"",2],24:18,9
 textBoxCSS,baseCSS])})
 div({0:presetDIV,17:"📋",24:30,15:0,6:{click:function(){
 	copyToClipboard(JSON.stringify([GENDER=="male"?0:1,getChoosedColors(GENDER),getChoosedBody(GENDER),BRUTE_INPUT.val(),MASTER]));blink()}}})
-//for(){}
+for(var p of PRESET){makePresetDiv(p)}
 
 var BRUTE_INPUT=$('input[aria-invalid="false"]')
 
-function makePresetDiv(l){div({6:{click:function(){
+function makePresetDiv(l){div({0:presetDIV,6:{click:function(){
 	PRESAC=l;
 	BRUTE_INPUT.val(PRESAC[3]).trigger("input change")
 	setTimeout(function(){
