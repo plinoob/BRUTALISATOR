@@ -647,7 +647,8 @@ return new Promise((resolve, reject) => {
 
 })
 	  }
-	  
+var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])
+
 function setImageSrc(prevSrc,newSrc){
 	$("img[src$='"+prevSrc+"']").attr("src",newSrc)
 	
