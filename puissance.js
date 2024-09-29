@@ -2510,7 +2510,7 @@ async function puissance(){
 	var rota2 = []
 	
 	cl("read trails")
-	for(var name in rumble){if(name!="WINRATES"){cl(rumble.WINRATES[name][lv-1]);if(rumble.WINRATES[name][lv-1]>0){rota2.push([await genBruteFromTrail(name,brute.level)])}}}
+	for(var name in rumble){if(name!="WINRATES"){if(rumble.WINRATES[name][lv-1]>0){rota2.push([await genBruteFromTrail(name,brute.level)])}}}
 	cl("trails OK",rota2)
 	
 	
