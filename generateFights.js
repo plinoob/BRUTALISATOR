@@ -677,7 +677,7 @@ async function getBruteFromRumble(level,rank){
 }
 
 async function getRumble(){
-	addscript(BRUTALISATOR+"rumble.js")
+	addScript(BRUTALISATOR+"rumble.js")
 	while(!rumble){sleep(0.1)}
 }
 
