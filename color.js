@@ -1036,7 +1036,9 @@ padding: "0px"}
 
 }
 
-var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])
+var boosters
+
+if(skills)boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])
 
 
 function stopLoading(){$(shurikenDIV).css("display","none")}
