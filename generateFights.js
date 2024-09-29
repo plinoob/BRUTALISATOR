@@ -713,7 +713,7 @@ async function getRumble(level) {
     rumble = await fetch(BRUTALISATOR+"rumble/"+level+".json.js");
 	rumble=await rumble.text()
 	cl("unzip...")
-	cl(rumble)
+	cl([rumble])
 	rumble = unzipString(rumble);
 	cl(rumble)
 }
