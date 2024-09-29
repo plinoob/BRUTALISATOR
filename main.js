@@ -245,6 +245,7 @@ if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,br
 	if(Math.random()>0.5){backups[i]=[]}
 	turnCHAOSToRandom();
 	}
+else if(brutes[i].startsWith("$")){var brutename=brutes[i];brutes[i]=await getBruteFromRumble(...brutename.split("$")[1].split("_"))}
 else{var brutename=brutes[i];brutes[i]=await getBrute(brutename.split("@")[1])}
 	} 
 			simulFights({
@@ -639,8 +640,23 @@ function genDestiny(brute,level){
 		return destiny
 }
 		
-		
+async function getBruteFromRumble(level,rank){
+	if(!rumble) await getRumble()
+	var brutes = []
+	for(var b in rumble){if(b!="WINRATES"){brutes.push(b)}}
+	brutes.sort(function(a,b){return rumble.WINRATES[b][level] - rumble.WINRATES[a][level]})
+	cl(brutes[rank-1]," : ",rumble.WINRATES[brutes[rank-1]][level]," wr")
+	return await genBruteFromTrail(brutes[rank-1],level)
+}
+
+async function getRumble(){
+	addscript(BRUTALISATOR+"rumble.js")
+	while(!rumble){sleep(0.1)}
+}
+
+var rumble
 async function genBruteFromTrail(name,level){
+	if(!rumble) await getRumble()
 	var trail=rumble[name]
 		turnRandomToCHAOS(name)
 		var brute = await genBrute({level:1,name});
