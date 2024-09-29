@@ -650,19 +650,8 @@ async function getBruteFromRumble(level,rank){
 }
 
 async function getRumble() {
-    addScript(BRUTALISATOR + "rumble.js");
-    // Attendre que la variable "rumble" soit définie
-    await new Promise((resolve) => {
-        var checkRumble = () => {
-            if (typeof rumble !== 'undefined') {
-                resolve();
-            } else {
-                setTimeout(checkRumble, 100); // Réessayer après 100ms
-            }
-        };
-        checkRumble();
-    });
-    // Ici, "rumble" est défini et tu peux l'utiliser
+    rumble = await fetch(BRUTALISATOR+"rumble.js");
+	rumble = await JSON.parse(rumble.replace("var rumble = ",""));
 }
 
 var rumble
