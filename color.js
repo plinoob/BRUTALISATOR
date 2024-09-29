@@ -3723,19 +3723,19 @@ $("#preset").remove()
 var presetDIV=div({1:"preset",50:0,13:5000000,0:body,26:1,4:[27,86,"",2],24:18,9:uni([{ "font-size":"0.821429rem"},
 textBoxCSS,baseCSS])})
 div({0:presetDIV,17:"📋",24:30,15:0,6:{click:function(){
-	copyToClipboard(JSON.stringify([GENDER=="male"?0:1,getChoosedColors(GENDER),getChoosedBody(GENDER),$('input[aria-invalid="false"]').val(),MASTER]));blink()}}})
+	copyToClipboard(JSON.stringify([GENDER=="male"?0:1,getChoosedColors(GENDER),getChoosedBody(GENDER),$('input[aria-invalid="false"]').val(),MASTER]));}}})
 for(var p of PRESET){makePresetDiv(p)}
 
 
 function makePresetDiv(l){cl("lol");div({15:0,17:l[3],0:presetDIV,6:{click:function(){
 	PRESAC=l;
 	cl("input",$('input[aria-invalid="false"]'))
-	$('input[aria-invalid="false"]').val(PRESAC[3]).trigger("input change")
-	setTimeout(function(){
+	copyToClipboard(PRESAC[3])
+	setTimeout(function(){cl("timeouted",l)
 	clickOnRandomBody(["male","female"][PRESAC[0]]!=GENDER);
 	if(l[4].length>0){return};masterInput.val(l[4]);masterInput.trigger("change");},100)}}})}
 
-function blink(){var l={c:0.66,i:66,o:333};div({4:0,10:l.c,13:d32-3}).fadeOut(0).fadeIn(l.i).fadeOut(l.o,function(){$(this).remove()})}
+function blink(){var l={c:0.66,i:66,o:3333};div({4:0,10:"#ff0000",18:0.6,13:d32-3}).fadeOut(0).fadeIn(l.i).fadeOut(l.o,function(){$(this).remove()})}
 
 function copyToClipboard(text) {
     navigator.clipboard.writeText(text).then(function() {
@@ -3743,6 +3743,7 @@ function copyToClipboard(text) {
     }).catch(function(err) {
         console.error('Erreur lors de la copie :', err);
     });
+	blink()
 }			
 function createDynamicDivs() {
 	div({0:masterDIV,1:"master-container",4:[33,0,0,0]})
