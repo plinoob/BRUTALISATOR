@@ -649,9 +649,20 @@ async function getBruteFromRumble(level,rank){
 	return await genBruteFromTrail(brutes[rank-1],level)
 }
 
-async function getRumble(){
-	addScript(BRUTALISATOR+"rumble.js")
-	while(!rumble){await sleep(100);cl(rumble)}
+async function getRumble() {
+    addScript(BRUTALISATOR + "rumble.js");
+    // Attendre que la variable "rumble" soit définie
+    await new Promise((resolve) => {
+        var checkRumble = () => {
+            if (typeof rumble !== 'undefined') {
+                resolve();
+            } else {
+                setTimeout(checkRumble, 100); // Réessayer après 100ms
+            }
+        };
+        checkRumble();
+    });
+    // Ici, "rumble" est défini et tu peux l'utiliser
 }
 
 var rumble
