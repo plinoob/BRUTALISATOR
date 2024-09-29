@@ -2518,7 +2518,7 @@ async function puissance(){
 					rota1:[[brute]],
 					rota2:rota2,//number = boss
 					backups:false,
-					fight_per_rota:rota2.length,
+					fight_per_rota:1,
 					fight_total:rota2.length*20,
 					})
 }
