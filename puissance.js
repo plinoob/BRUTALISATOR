@@ -2501,8 +2501,12 @@ var bruteData
 
 async function puissance(){
 	
-	
-	for(var i=1;i<201;i++){cl(i,(await getRumble(i))[0].name)}
+	var champions = {}
+	for(var i=1;i<201;i++){
+		await getRumble(i)
+		for(var j=0;j<1000;j++){var b=rumble[j];if(!(b.name in champions)){champions[b.name]=1;cl(i,b.name,j+1);break}}
+		
+		}
 	
 	
 	
