@@ -692,6 +692,7 @@ async function getRumble(level) {
 	cl("unzip...")
 	rumble = unzipString(rumble);
 	cl(rumble)
+	return rumble
 }
 
 var rumble
