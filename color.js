@@ -2832,7 +2832,7 @@ var availableBodyParts = {
         p5: 1,
     },
 };
-
+var ILLEGAL_BODY
 var checkBodyPart = (value, expected) => value >= 0 && value <= expected;
 var checkBody = (user, gender, bodyString) => {
     // Convert every char from hex to number
@@ -2860,9 +2860,10 @@ var checkBody = (user, gender, bodyString) => {
         || !checkBodyPart(inputs.p8, availableBodyParts[gender].p8)
         || !checkBodyPart(inputs.p7b, availableBodyParts[gender].p7b)
         || !checkBodyPart(inputs.p5, availableBodyParts[gender].p5)) {
-        alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des fringues !!!");
+        if(!ILLEGAL_BODY)alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des fringues !!!");
     }
 };
+var ILLEGAL_COLORS
 var isValid = (value, array) => value >= 0 && value < array.length;
 var isValidWithSpecials = (value, array) => value >= 0 && (value < array.length || (value < 100 && value > (99 - colors.special.length)));
 var checkColors = (user, gender, colorString, includeSpecials = false) => {
@@ -2902,18 +2903,18 @@ var checkColors = (user, gender, colorString, includeSpecials = false) => {
         || !check(inputs.col4, colors[gender].clothing)
         || !check(inputs.col4a, colors[gender].clothing)
         || !check(inputs.col4b, colors[gender].clothing)) {
-        alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des couleurs !!!");
+        if(!ILLEGAL_COLORS)alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des couleurs !!!");
     }
     // col0, col0a, col0c must be the same
     if (inputs.col0 !== inputs.col0a || inputs.col0 !== inputs.col0c) {
-        alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des couleurs !!! (col0, col0a, col0c must be the same)");
+        if(!ILLEGAL_COLORS)alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des couleurs !!! (col0, col0a, col0c must be the same)");
     }
     // col1, col1a, col1b, col1c, col1d must be the same
     if (inputs.col1 !== inputs.col1a
         || inputs.col1 !== inputs.col1b
         || inputs.col1 !== inputs.col1c
         || inputs.col1 !== inputs.col1d) {
-        alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des couleurs !!! (col1, col1a, col1b, col1c, col1d must be the same)");
+        if(!ILLEGAL_COLORS)alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des couleurs !!! (col1, col1a, col1b, col1c, col1d must be the same)");
 
     }
 	console.log("couleurs conformes");
@@ -3754,7 +3755,7 @@ var masterDIV = div({1:"masterDIV",13:5000000,0:body,26:1,4:[3,55,75,3],9:uni([{
 
 div({0:masterDIV,4:[15,"","",25],5:0,17:"<b><u>Master</u></b>",24:30,18:0.73})
 var masterInput = div({0:masterDIV,4:[16,"","",70],9:{"font-family":"inherit",color:"inherit",border:"1px solid #BAB68F"},24:20,5:0,2:"input",19:15,10:"#FBF7C1",
-6:{"change":function(){MASTER = masterInput.val()}}})
+6:{"change":function(){if(masterInput.val().startsWith("$")){COLORS=masterInput.val().split("$")[1];ILLEGAL_COLORS=true;clickOnRandomColors()}else{MASTER = masterInput.val()}}}})
 masterInput.val(MASTER)
 $("#palette").remove()
 div({15:0,6:{click:function(){makeRandomColors();clickOnRandomColors()}},1:"palette",13:5000000,0:body,26:1,4:[27,"","",43],17:"🎨",24:66,9:uni([{ "font-size":"0.821429rem"},
