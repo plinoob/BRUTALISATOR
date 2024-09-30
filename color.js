@@ -1,8 +1,6 @@
 
 var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
 
-var OUTER_WORLD_COLORS = ["88888803030303038888990388888888","99999900000000009907070799070707","88888899999999998815158888158815","00000088888888881416161616161688","01010102020202028888888816880488","01010104040404990800000001000000"]
-
 function rien(){}
 
 //chroma
@@ -270,7 +268,6 @@ async function launchFight(){
 	brutes.sort()
 	for(var i=0;i<2;i++){
 if(brutes[i].startsWith("$")){var brutename=brutes[i];brutes[i]=await getBruteFromRumble(...brutename.split("$")[1].split("_"));
-brutes[i].colors = OUTER_WORLD_COLORS[new Chaos(brutes[i].name).ran(0,5)]
 cl(brutes[i].name,brutes[i].wr,"winrate")}
 else if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
 	backups[i] = [await genBrute({level:randomLevel(17,6),name:brutename+"$",random:true})];
