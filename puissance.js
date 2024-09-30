@@ -2551,7 +2551,7 @@ async function getBestChamps(){
 			wr[bestTop].push([name,bestLvl])
 		}
 		var flag=true
-		var n=0;for(var i in wr){if(!flag){break};for(var j of wr[i]){if(!flag){break};n++;if(n>l.length/3){champions[j[1]]=j[0];l=listLevels();flag=false}}}
+		var n=0;for(var i in wr){if(!flag){break};for(var j of wr[i]){if(!flag){break};n++;if(n>l.length/4){champions[j[1]]=j[0];l=listLevels();flag=false}}}
 		if(!(l.length%10)){cl(l.length)}
 
 	}
