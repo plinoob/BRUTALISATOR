@@ -3669,6 +3669,7 @@ var getChoosedColors = function(gender) {cl("COLOR CALLED"); setGender(gender);
         col4b,
     });
 	if(PRESAC && ["male","female"][PRESAC[0]]==GENDER){res = PRESAC[1]}
+	cl("COLORS : ",res)
 	checkColors("Ambryal",GENDER,res)
 	return res
 };
