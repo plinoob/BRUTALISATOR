@@ -687,6 +687,7 @@ async function getRumble(level) {
 	rumble=await rumble.text()
 	cl("unzip...")
 	rumble = unzipString(rumble);
+	cl(rumble)
 }
 
 var rumble

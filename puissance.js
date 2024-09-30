@@ -2502,7 +2502,7 @@ var bruteData
 async function puissance(){
 	
 	
-	for(var i=1;i<201;i++){cl(i,await getRumble(lv)[0].name)}
+	for(var i=1;i<201;i++){cl(i,(await getRumble(lv))[0].name)}
 	
 	
 	
