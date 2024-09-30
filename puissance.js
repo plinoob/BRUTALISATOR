@@ -2539,15 +2539,26 @@ async function getBestChamps(){
 	
 	champions = []
 
-	var wr=[];for(var top in levels){wr.push([])}
-	for(var i in levels){
-		if(champions[i]){continue}
-		for(var top in levels[i]){var b = levels[i][top];var flag=true;for(var j of wr[top]){if(j[0]==b.name){flag=false;j[1]++;j[2].push(parseInt(i));break}};if(flag){wr[top].push(b.name,1,[parseInt(i)])}}
+	var l=listLevels()
+	while(l.length){
+		var wr=[];for(var top in levels[0]){wr.push([])}
+		
+		for(var name in levels[0]){if(champions.includes(name)){continue};var bestTop=1500,bestLvl
+			for(var i in levels){if(champions[i]){continue}
+				for(var top in levels[i]){
+					if(parseInt(top)>=bestTop){break};var b = levels[i][top];if(b.name==name){bestTop=parseInt(top);bestLvl=i}}
+					}
+			wr[bestTop].push(name,bestLvl)
 		}
-	var li=[0]
-	for(var t of top){for(var l of t){if(!champions.includes(l[0])){for(var lvls of l[2]){if(!champions[lvls]){champions[lvls]=l[0];li=listLevels();break;}}};if(!li.length){break}};if(!li.length){break}}
+		
+		var n=0;for(var i in wr){for(var j of wr[i]){n++;if(n==l.length){champions[j[1]]=j[0];l=listLevels();continue}}}
+		
+	}
 	cl("WR DEUXIEME :",getWr())
 	bilan()
+	
+	
+	
 
 }
 getBestChamps()
