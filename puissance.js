@@ -2510,7 +2510,7 @@ function getRankInLevels(level,name){
 }
 function bilan(){for(var i in champions){cl(i,getRankInLevels(i,champions[i]))}}
 function getWr(){var current_wr = 0;for(var i in levels){current_wr+=getFighterInLevels(i,champions[i]).wr};return current_wr}
-
+function listLevels(){var l=[];for(var i in levels){if(!champions[i]){l.push(parseInt(i))}};return l}
 async function getBestChamps(){
 	
 	for(var i=1;i<201;i++){
@@ -2524,6 +2524,19 @@ async function getBestChamps(){
 	cl("WR OPTIMAL :",wr_opti)
 	cl("WR GLOUTON :",getWr())
 	bilan()
+	
+	champions=[]
+	
+	var l=listLevels()
+	while(l.length){
+		var bestName,bestWr=0,bestLvl
+		for(var i of l){for(var b of levels[i]){if(b.wr>bestWr){bestWr=b.wr;bestName=b.name;bestLvl=i}}}
+		champions[bestLvl]=bestName
+		l=listLevels()
+	}
+	cl("WR TRY :",getWr())
+	bilan()
+	
 	
 	
 }
