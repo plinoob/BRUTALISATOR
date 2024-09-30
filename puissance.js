@@ -2499,26 +2499,25 @@ var shuffle = (array) => {
 var bruteData
 
 var champions = []
-var wr={}
+var levels=[]
 var wr_opti = 0
 
-function getWr(){var current_wr = 0;for(var i of champions){current_wr+=wr[i].wr}}
+function getWr(){var current_wr = 0;for(var i in levels){current_wr+=levels[i][champions[i]].wr};return current_wr}
 
 async function getBestChamps(){
 	
 	for(var i=1;i<201;i++){
-		cl(i)
 		await getRumble(i)
+		levels.push(rumble)
 		wr_opti+=rumble[0].wr
-		var flag=true
-		for(var j in rumble){var b=rumble[j];if(flag && !champions.includes(b.name)){champions.push(b.name);flag=false};if(!(b.name in wr)){wr[b.name]=[]};wr[b.name].push(b.wr)}
+		for(var j in rumble){var b=rumble[j];if(!champions.includes(b.name)){champions.push(b.name);break};}
 		}
 	cl("WR OPTIMAL :",wr_opti)
 	cl("WR GLOUTON :",getWr())
 	
 	
 }
-
+getBestChamps()
 async function puissance(){
 	
 
@@ -2550,7 +2549,7 @@ async function puissance(){
 }
 
 
-puissance()
+//puissance()
 
 "⚡️🔥"
 
