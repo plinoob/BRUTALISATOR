@@ -268,7 +268,9 @@ async function launchFight(){
 	stopLoading()
 	brutes.sort()
 	for(var i=0;i<2;i++){
-if(brutes[i].startsWith("$")){var brutename=brutes[i];brutes[i]=await getBruteFromRumble(...brutename.split("$")[1].split("_"));cl(brutes[i].name,brutes[i].wr,"winrate")}
+if(brutes[i].startsWith("$")){var brutename=brutes[i];brutes[i]=await getBruteFromRumble(...brutename.split("$")[1].split("_"));
+brutes[i].colors = OUTER_WORLD_COLORS[new Chaos(brutes[i].name).ran(0,5)]
+cl(brutes[i].name,brutes[i].wr,"winrate")}
 else if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
 	backups[i] = [await genBrute({level:randomLevel(17,6),name:brutename+"$",random:true})];
 	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename,random:true});
