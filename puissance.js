@@ -2498,22 +2498,37 @@ var shuffle = (array) => {
 
 var bruteData
 
+var champions = []
+var wr={}
+var wr_opti = 0
+
+function getWr(){var current_wr = 0;for(var i of champions){current_wr+=wr[i].wr}}
+
+async function getBestChamps(){
+	
+	for(var i=1;i<201;i++){
+		cl(i)
+		await getRumble(i)
+		wr_opti+=rumble[0].wr
+		var flag=true
+		for(var j in rumble){var b=rumble[j];if(flag && !champions.includes(b.name)){champions.push(b.name);flag=false};if(!(b.name in wr)){wr[b.name]=[]};wr[b.name].push(b.wr)}
+		}
+	cl("WR OPTIMAL :",wr_opti)
+	cl("WR GLOUTON :",getWr())
+	
+	
+}
 
 async function puissance(){
 	
-	var champions = {}
-	for(var i=1;i<201;i++){
-		await getRumble(i)
-		for(var j=0;j<1000;j++){var b=rumble[j];if(!(b.name in champions)){champions[b.name]=1;cl(i,b.name,j+1);break}}
-		
-		}
+
 	
 	
 	
 	if(!bruteData){bruteData = await getBrute(BRUTE)}
 	var brute = bruteData
 	var lv=brute.level
-	if(!rumble){await getRumble(lv)}
+	await getRumble(lv)
 	
 	
 	
