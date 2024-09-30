@@ -2537,8 +2537,18 @@ async function getBestChamps(){
 	cl("WR TRY :",getWr())
 	bilan()
 	
-	
-	
+	champions = []
+
+	var wr=[];for(var top in levels){wr.push([])}
+	for(var i in levels){
+		if(champions[i]){continue}
+		for(var top in levels[i]){var b = levels[i][top];var flag=true;for(var j of wr[top]){if(j[0]==b.name){flag=false;j[1]++;j[2].push(parseInt(i));break}};if(flag){wr[top].push(b.name,1,[parseInt(i)])}}
+		}
+	var li=[0]
+	for(var t of top){for(var l of t){if(!champions.includes(l[0])){for(var lvls of l[2]){if(!champions[lvls]){champions[lvls]=l[0];li=listLevels();break;}}};if(!li.length){break}};if(!li.length){break}}
+	cl("WR DEUXIEME :",getWr())
+	bilan()
+
 }
 getBestChamps()
 async function puissance(){
