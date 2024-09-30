@@ -2550,10 +2550,11 @@ async function getBestChamps(){
 					}
 			wr[bestTop].push([name,bestLvl])
 		}
-
+		cl(wr,champions)
 		var flag=true
 		var n=0;for(var i in wr){if(!flag){break};for(var j of wr[i]){if(!flag){break};n++;if(n==l.length){champions[j[1]]=j[0];l=listLevels();flag=false}}}
-		
+		cl(wr,champions)
+		return
 	}
 	cl("WR DEUXIEME :",getWr())
 	bilan()
