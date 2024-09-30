@@ -2510,8 +2510,10 @@ async function getBestChamps(){
 		await getRumble(i)
 		levels.push(rumble)
 		wr_opti+=rumble[0].wr
+		cl(i)
 		for(var j in rumble){var b=rumble[j];if(!champions.includes(b.name)){champions.push(b.name);break};}
 		}
+	cl(champions,levels)
 	cl("WR OPTIMAL :",wr_opti)
 	cl("WR GLOUTON :",getWr())
 	
