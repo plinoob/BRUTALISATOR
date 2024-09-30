@@ -2536,7 +2536,7 @@ async function getBestChamps(){
 	}
 	cl("WR TRY :",getWr())
 	bilan()
-	
+	cl(JSON.stringify(champions))
 	champions = []
 
 	var l=listLevels()
@@ -2557,7 +2557,7 @@ async function getBestChamps(){
 	}
 	cl("WR DEUXIEME :",getWr())
 	bilan()
-	
+	cl(JSON.stringify(champions))
 	
 	
 
