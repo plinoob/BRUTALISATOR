@@ -2508,7 +2508,7 @@ function getFighterInLevels(level,name){
 function getRankInLevels(level,name){
 	for(var i in levels[level]){if(levels[level][i].name==name){return i}}
 }
-function bilan(){for(var i in champions){cl(i,getRankInLevels(i,champions[i])}}
+function bilan(){for(var i in champions){cl(i,getRankInLevels(i,champions[i]))}}
 function getWr(){var current_wr = 0;for(var i in levels){current_wr+=getFighterInLevels(i,champions[i]).wr};return current_wr}
 
 async function getBestChamps(){
