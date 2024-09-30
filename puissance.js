@@ -2530,7 +2530,7 @@ async function getBestChamps(){
 	var l=listLevels()
 	while(l.length){
 		var bestName,bestWr=0,bestLvl
-		for(var i of l){for(var b of levels[i]){if(b.wr>bestWr){bestWr=b.wr;bestName=b.name;bestLvl=i}}}
+		for(var i of l){for(var b of levels[i]){if(b.wr>bestWr && !champions.includes(b.name)){bestWr=b.wr;bestName=b.name;bestLvl=i}}}
 		champions[bestLvl]=bestName
 		l=listLevels()
 	}
