@@ -3669,7 +3669,7 @@ var getChoosedColors = function(gender) {cl("COLOR CALLED"); setGender(gender);
         col4b,
     });
 	if(PRESAC && ["male","female"][PRESAC[0]]==GENDER){res = PRESAC[1]}
-	cl("COLORS : ",res)
+	if(ILLEGAL_COLORS)res = ILLEGAL_COLORS
 	checkColors("Ambryal",GENDER,res)
 	return res
 };
@@ -3756,7 +3756,7 @@ var masterDIV = div({1:"masterDIV",13:5000000,0:body,26:1,4:[3,55,75,3],9:uni([{
 
 div({0:masterDIV,4:[15,"","",25],5:0,17:"<b><u>Master</u></b>",24:30,18:0.73})
 var masterInput = div({0:masterDIV,4:[16,"","",70],9:{"font-family":"inherit",color:"inherit",border:"1px solid #BAB68F"},24:20,5:0,2:"input",19:15,10:"#FBF7C1",
-6:{"change":function(){if(masterInput.val().startsWith("$")){COLORS=masterInput.val().split("$")[1];ILLEGAL_COLORS=true;clickOnRandomColors()}else{MASTER = masterInput.val()}}}})
+6:{"change":function(){if(masterInput.val().startsWith("$")){ILLEGAL_COLORS=masterInput.val().split("$")[1];clickOnRandomColors()}else{MASTER = masterInput.val()}}}})
 masterInput.val(MASTER)
 $("#palette").remove()
 div({15:0,6:{click:function(){makeRandomColors();clickOnRandomColors()}},1:"palette",13:5000000,0:body,26:1,4:[27,"","",43],17:"🎨",24:66,9:uni([{ "font-size":"0.821429rem"},
