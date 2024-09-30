@@ -2505,7 +2505,10 @@ var wr_opti = 0
 function getFighterInLevels(level,name){
 	for(var i of levels[level]){if(i.name==name){return i}}
 }
-
+function getRankInLevels(level,name){
+	for(var i in levels[level]){if(levels[level][i].name==name){return i}}
+}
+function bilan(){for(var i in champions){cl(i,getRankInLevels(i,champions[i])}}
 function getWr(){var current_wr = 0;for(var i in levels){current_wr+=getFighterInLevels(i,champions[i]).wr};return current_wr}
 
 async function getBestChamps(){
@@ -2520,6 +2523,7 @@ async function getBestChamps(){
 	cl(champions,levels)
 	cl("WR OPTIMAL :",wr_opti)
 	cl("WR GLOUTON :",getWr())
+	bilan()
 	
 	
 }
