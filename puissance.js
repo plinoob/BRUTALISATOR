@@ -2502,7 +2502,11 @@ var champions = []
 var levels=[]
 var wr_opti = 0
 
-function getWr(){var current_wr = 0;for(var i in levels){current_wr+=levels[i][champions[i]].wr};return current_wr}
+function getFighterInLevels(level,name){
+	for(var i of levels[level]){if(i.name==name){return i}}
+}
+
+function getWr(){var current_wr = 0;for(var i in levels){current_wr+=getFighterInLevels(i,champions[i]).wr};return current_wr}
 
 async function getBestChamps(){
 	
