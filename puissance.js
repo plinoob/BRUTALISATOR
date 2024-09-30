@@ -2500,6 +2500,12 @@ var bruteData
 
 
 async function puissance(){
+	
+	
+	for(var i=1;i<201;i++){cl(i,await getRumble(lv)[0].name)}
+	
+	
+	
 	if(!bruteData){bruteData = await getBrute(BRUTE)}
 	var brute = bruteData
 	var lv=brute.level
