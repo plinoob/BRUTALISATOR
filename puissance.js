@@ -2543,7 +2543,7 @@ async function getBestChamps(){
 	while(l.length){
 		var wr=[];for(var top in levels[0]){wr.push([])}
 		
-		for(var name in levels[0]){if(champions.includes(name)){continue};var bestTop=1500,bestLvl
+		for(var brute of levels[0]){var name=brute.name;if(champions.includes(name)){continue};var bestTop=1500,bestLvl
 			for(var i in levels){if(champions[i]){continue}
 				for(var top in levels[i]){
 					if(parseInt(top)>=bestTop){break};var b = levels[i][top];if(b.name==name){bestTop=parseInt(top);bestLvl=i}}
