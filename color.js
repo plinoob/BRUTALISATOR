@@ -968,7 +968,7 @@ async function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL
 
 			iframe.onload = () => {//cl("IFRAME LOADED")
 					const iframeWindow = iframe.contentWindow;
-				iframeWindow.document.addEventListener('mousedown', function(){$(iframe).remove();location.reload();}, false);
+				iframeWindow.document.addEventListener('mousedown', function(){$(iframe).remove();}, false);
 			}
 
 			var codeSource = fightSourceCode.replace("<script","<script>history.pushState(null, '', '"+FIGHT_EXAMPLE+"');"+fetchCode+"var fightToVizualise = "
