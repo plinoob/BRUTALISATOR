@@ -2593,7 +2593,11 @@ res.tx=div({0:btn,17:"..."})
 
 
 
-for(var i=0;i<200;i++){await getRumble(i+1);for(var b of rumble){if(b.name.indexOf("bison")!=-1 || b.name.indexOf("dark")!=-1 || b.name.indexOf("salmon")!=-1){cl(b,i,b.champion)}}}
+async function test(){
+	for(var i=0;i<200;i++){await getRumble(i+1);
+	for(var b of rumble){cl(b.name);if(b.name.indexOf("bison")!=-1 || b.name.indexOf("dark")!=-1 || b.name.indexOf("salmon")!=-1){cl(b,i,b.champion)}}}
+}
+test()
 
 
 
