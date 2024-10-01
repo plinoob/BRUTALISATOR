@@ -2502,14 +2502,14 @@ var shuffle = (array) => {
 var bruteData
 var brutedatac
 
-async function puissance(){
+async function puissance(surpuissance){
 	function makeInfoDiv(){
-		var res={div:div({20:"PUISSANCE",1:"puissance",9:{position:"relative",height:"30px"}})}
+		var res={div:div({20:surpuissance?"SURPUISSANCE":"PUISSANCE",6:{click:function(){puissance(!surpuissance)}},1:"puissance",9:{position:"relative",height:"30px"}})}
 		
 		
 		
 		
-		var btn=res.btn=div({0:res.div,4:1,5:[-50,-60],2:"button",9:{
+		var btn=res.btn=div({15:0,0:res.div,4:1,5:[-50,-60],2:"button",9:{
 display: "block",
     margin: "8px auto",
     "border-radius": "4px",
@@ -2565,7 +2565,7 @@ res.tx=div({0:btn,17:"..."})
 	cl(puissance.div)
 	var rota2 = []
 	
-	for(var b of rumble){if(true || rota2.length<1000){rota2.push([b])}}
+	for(var b of rumble){if(!surpuissance || rota2.length<333){rota2.push([b])}}
 	
 	
 				simulFights({
@@ -2582,7 +2582,7 @@ res.tx=div({0:btn,17:"..."})
 					rota2:rota2,//number = boss
 					backups:false,
 					fight_per_rota:1,
-					fight_total:rota2.length*66,
+					fight_total:rota2.length*66*(surpuissance?6:1),
 					})
 }
 
