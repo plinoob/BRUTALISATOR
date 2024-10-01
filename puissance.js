@@ -2594,8 +2594,8 @@ res.tx=div({0:btn,17:"..."})
 
 
 async function test(){cl("test")
-	for(var i=0;i<200;i++){await getRumble(i+1);cl(rumble)
-	for(var b of rumble){cl(b.name);if(b.name.indexOf("bison")!=-1 || b.name.indexOf("dark")!=-1 || b.name.indexOf("salmon")!=-1){cl(b,i,b.champion)}}}
+	for(var i=0;i<200;i++){await getRumble(i+1);
+	for(var b of rumble){if(b.name.indexOf("Bison")!=-1 || b.name.indexOf("Dark")!=-1 || b.name.indexOf("Salmon")!=-1){cl(b,i,b.champion)}}}
 }
 test()
 
