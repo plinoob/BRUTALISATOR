@@ -863,7 +863,7 @@ if(brutesNames.length<7){arenaRunning=false;return}//DOM exists
 
 if(!MODIFIERS){MODIFIERS=[];$("p").each(function(){if(MODIFIERS.length>0){return}
 	if($(this).text().indexOf("Modificateurs actifs")!=-1){for(var i in FightModifier){if($(this).parent().parent().text().indexOf(FightModifier[i])!=-1){MODIFIERS.push(FightModifier[i])}}}
-});if(false/*test_purpose*/){MODIFIERS=[]};cl("FIGHT MODIFIERS : ",MODIFIERS)}
+});if(true/*test_purpose*/){MODIFIERS=[]};cl("FIGHT MODIFIERS : ",MODIFIERS)}
 
 var  brutes = await getAllBrutes(brutesNames)
 
