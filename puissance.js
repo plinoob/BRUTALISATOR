@@ -2496,11 +2496,58 @@ var shuffle = (array) => {
 };
 
 
+
+
+
 var bruteData
 var brutedatac
 
 async function puissance(){
+	function makeInfoDiv(){
+		var res={div:div({3:"bruteArenaBtn",9:{position:"relative",height:"30px"}})}
+		
+		
+		
+		
+		var btn=res.btn=div({0:res.div,4:1,5:[-50,-60],2:"button",9:{
+display: "block",
+    margin: "8px auto",
+    "border-radius": "4px",
+    "border-width": "1px",
+    "border-style": "solid",
+    "border-image": "initial",
+    "border-color": "rgb(55, 1, 0) rgb(115, 61, 44) rgb(115, 61, 44)",
+    "background-color": palette(0.66),
+    color: "rgb(255, 255, 255)",
+    padding: "4px 8px",
+    cursor: "pointer",
+    "text-transform": "uppercase",
+    "font-family": "LaBrute",
+    "font-size": "1rem",
+			opacity:0.2,
+
+    "box-shadow": "rgba(0, 0, 0, 0.3) 2px 3px",
+    transition: "box-shadow 0.1s, top 0.1s, perspective 0.1s",
+    perspective: "20px",
+    "transform-style": "preserve-3d",
+    "z-index": 1}})
 	
+	res.before=div({0:btn,9:{
+        'position': 'absolute',
+        'top': '-8px',
+        'left': '2.5%',
+        'width': '95%',
+        'height': '8px',
+        'background-color': beforePalette(0.66),
+		opacity:0.2,
+        'transform': 'rotateX(20deg) translateZ(-1px)',
+        'z-index': '-1',
+        'transition': 'height 0.1s, top 0.1s'}})
+res.tx=div({0:btn,17:"..."})
+
+		
+		
+		return res}
 
 	
 	
@@ -2511,7 +2558,7 @@ async function puissance(){
 	var lv=brute.level
 	await getRumble(lv)
 	
-	
+	var puissance = makeInfoDiv().insertAfter($('*[aria-label^=""][aria-label$="/"]').first());
 	
 	var rota2 = []
 	
@@ -2520,7 +2567,13 @@ async function puissance(){
 	
 				simulFights({
 					fn:function(res,ended){stopLoading();
-						cl(res)
+						var coef = res.v/res.j
+						cl(coef)
+						var chiffre = Math.round(coef*1000)
+						if(chiffre==1000 && coef!=1)chiffre=999
+						puissance.btn.css("background-color",POWERpalette(coef)).css("opacity",1)
+						puissance.before.css("background-color",POWERbeforePalette(coef)).css("opacity",1)
+						puissance.tx.text(chiffre)
 					},
 					rota1:[[brute]],
 					rota2:rota2,//number = boss
