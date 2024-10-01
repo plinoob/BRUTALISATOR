@@ -2568,8 +2568,7 @@ res.tx=div({0:btn,17:"..."})
 	
 				simulFights({
 					fn:function(res,ended){stopLoading();
-						cl(res)
-						var coef = res.v/res.j
+						var coef = res[0].v/res[0].j
 						cl(coef)
 						var chiffre = Math.round(coef*1000)
 						if(chiffre==1000 && coef!=1)chiffre=999
