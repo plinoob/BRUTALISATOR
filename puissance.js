@@ -2504,7 +2504,7 @@ var brutedatac
 
 async function puissance(){
 	function makeInfoDiv(){
-		var res={div:div({3:"bruteArenaBtn",9:{position:"relative",height:"30px"}})}
+		var res={div:div({1:"puissance",9:{position:"relative",height:"30px"}})}
 		
 		
 		
@@ -2557,7 +2557,7 @@ res.tx=div({0:btn,17:"..."})
 	var brutedatac=BRUTE
 	var lv=brute.level
 	await getRumble(lv)
-	
+	$("#puissance").remove()
 	var puissance = makeInfoDiv()
 		var flag=true
 		var elements = $("h3").filter(function() {
@@ -2583,7 +2583,7 @@ res.tx=div({0:btn,17:"..."})
 					rota2:rota2,//number = boss
 					backups:false,
 					fight_per_rota:1,
-					fight_total:rota2.length*20,
+					fight_total:rota2.length*100,
 					})
 }
 

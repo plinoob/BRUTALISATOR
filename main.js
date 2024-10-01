@@ -27,13 +27,13 @@ var beforePalette = setupColorInterpolation([
 ]);
 var POWERpalette = setupColorInterpolation([
     [0, '#FFB3C1'], // Rouge
-    [0.50, '#A3534B'], // Orange
+    [0.50, '#BF2820'], // Orange
     [0.7, '#FAAE7B'], // Vert
     [1, '#3E3870']  // Bleu
 ]);
 var POWERbeforePalette = setupColorInterpolation([
     [0, '#BA848E'], // Rouge
-    [0.50, '#562C28'], // Orange
+    [0.50, '#9B201A'], // Orange
     [0.7, '#9E6E4F'], // Vert
     [1, '#19162D']  // Bleu
 ]);    
