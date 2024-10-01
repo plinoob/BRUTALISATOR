@@ -2558,7 +2558,8 @@ res.tx=div({0:btn,17:"..."})
 	var lv=brute.level
 	await getRumble(lv)
 	
-	var puissance = makeInfoDiv().insertAfter($('*[aria-label^=""][aria-label$="/"]').first());
+	var puissance = makeInfoDiv()
+	puissance.div.insertAfter($('*[aria-label^=""][aria-label$="/"]').first());
 	
 	var rota2 = []
 	
