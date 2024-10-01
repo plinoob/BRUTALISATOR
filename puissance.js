@@ -2502,9 +2502,9 @@ var shuffle = (array) => {
 var bruteData
 var brutedatac
 
-async function puissance(surpuissance){
+async function power(surpuissance){
 	function makeInfoDiv(){
-		var res={div:div({20:surpuissance?"SURPUISSANCE":"PUISSANCE",6:{click:function(){puissance(!surpuissance)}},1:"puissance",9:{position:"relative",height:"30px"}})}
+		var res={div:div({20:surpuissance?"SURPUISSANCE":"PUISSANCE",6:{click:function(){power(!surpuissance)}},1:"puissance",9:{position:"relative",height:"30px"}})}
 		
 		
 		
@@ -2587,7 +2587,7 @@ res.tx=div({0:btn,17:"..."})
 }
 
 
-puissance()
+power()
 
 "⚡️🔥"
 
