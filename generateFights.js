@@ -55,13 +55,13 @@ var beforePalette = setupColorInterpolation([
 var POWERpalette = setupColorInterpolation([
     [0, '#E5A0AE'], // Rouge
     [0.50, '#BF2820'], // Orange
-    [0.7, '#FAAE7B'], // Vert
+    [0.7, '#EFBF00'], // Vert
     [1, '#3E3870']  // Bleu
 ]);
 var POWERbeforePalette = setupColorInterpolation([
     [0, '#AA7984'], // Rouge
     [0.50, '#9B201A'], // Orange
-    [0.7, '#9E6E4F'], // Vert
+    [0.7, '#CEA100'], // Vert
     [1, '#19162D']  // Bleu
 ]);    
 var BONUSpalette = setupColorInterpolation([
