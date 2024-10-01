@@ -285,7 +285,10 @@ var bruteInputs = []
 var bruteDIVS = []
 var backups=[[],[]]
 
-async function lauchFightVersusChampion(){var brute = await getBrute(BRUTE);brutes=["@"+BRUTE,"$"+brute.level+"_1"];launchFight()}
+async function lauchFightVersusChampion(){var brute = await getBrute(BRUTE);brutes=["@"+BRUTE,"$"+brute.level+"_champion"];
+const date = new Date();
+const formattedDate = date.toLocaleDateString('fr-FR'); // Format: JJ/MM/AAAA
+console.log(formattedDate);seed=formattedDate;launchFight()}
 
 async function launchFight(){		
 		if(combat_lancer) return
@@ -294,8 +297,14 @@ async function launchFight(){
 	stopLoading()
 	brutes.sort()
 	for(var i=0;i<2;i++){
-if(brutes[i].startsWith("$")){var brutename=brutes[i];brutes[i]=await getBruteFromRumble(...brutename.split("$")[1].split("_"));
-cl(brutes[i].name,brutes[i].wr,"winrate")}
+if(brutes[i].startsWith("$")){var brutename=brutes[i];
+var top 
+if(brutename.split("$")[1].split("_")[1]=="champion"){await getRumble(brutename.split("$")[1].split("_")[0]);
+
+for(var j in rumble){if(rumble[j].champion){top=parseInt(j)+1;brutes[i]=rumble[j];break}}}else{
+top=parseInt(brutename.split("$")[1].split("_")[0])+1
+brutes[i]=await getBruteFromRumble(...brutename.split("$")[1].split("_"));}
+cl(brutes[i].name,"top"+top,(brutes[i].wr*100).toFixed(2)+"%",'(top1 : '+(rumble[0].wr*100).toFixed(2)+"%)")}
 else if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
 	backups[i] = [await genBrute({level:randomLevel(17,6),name:brutename+"$",random:true})];
 	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename,random:true});

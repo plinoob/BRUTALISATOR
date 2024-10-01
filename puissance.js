@@ -2497,80 +2497,17 @@ var shuffle = (array) => {
 
 
 var bruteData
+var brutedatac
 
-var champions = []
-var levels=[]
-var wr_opti = 0
-
-function getFighterInLevels(level,name){
-	for(var i of levels[level]){if(i.name==name){return i}}
-}
-function getRankInLevels(level,name){
-	for(var i in levels[level]){if(levels[level][i].name==name){return i}}
-}
-function bilan(){for(var i in champions){cl(i,getRankInLevels(i,champions[i]))}}
-function getWr(){var current_wr = 0;for(var i in levels){current_wr+=getFighterInLevels(i,champions[i]).wr};return current_wr}
-function listLevels(){var l=[];for(var i in levels){if(!champions[i]){l.push(parseInt(i))}};return l}
-async function getBestChamps(){
-	
-	for(var i=1;i<201;i++){
-		await getRumble(i)
-		levels.push(rumble)
-		wr_opti+=rumble[0].wr
-		cl(i)
-		for(var j in rumble){var b=rumble[j];if(!champions.includes(b.name)){champions.push(b.name);break};}
-		}
-	cl(champions,levels)
-	cl("WR OPTIMAL :",wr_opti)
-	cl("WR GLOUTON :",getWr())
-	bilan()
-	
-	champions=[]
-	
-	var l=listLevels()
-	while(l.length){
-		var bestName,bestWr=0,bestLvl
-		for(var i of l){for(var b of levels[i]){if(b.wr>bestWr && !champions.includes(b.name)){bestWr=b.wr;bestName=b.name;bestLvl=i}}}
-		champions[bestLvl]=bestName
-		l=listLevels()
-	}
-	cl("WR TRY :",getWr())
-	bilan()
-	cl(JSON.stringify(champions))
-	champions = []
-
-	var l=listLevels()
-	while(l.length){
-		var wr=[];for(var top in levels[0]){wr.push([])}
-		
-		for(var brute of levels[0]){var name=brute.name;if(champions.includes(name)){continue};var bestTop=1500,bestLvl
-			for(var i in levels){if(champions[i]){continue}
-				for(var top in levels[i]){
-					if(parseInt(top)>=bestTop){break};var b = levels[i][top];if(b.name==name){bestTop=parseInt(top);bestLvl=i}}
-					}
-			wr[bestTop].push([name,bestLvl])
-		}
-		var flag=true
-		var n=0;for(var i in wr){if(!flag){break};for(var j of wr[i]){if(!flag){break};n++;if(n>l.length/4){champions[j[1]]=j[0];l=listLevels();flag=false}}}
-		if(!(l.length%10)){cl(l.length)}
-
-	}
-	cl("WR DEUXIEME :",getWr())
-	bilan()
-	cl(JSON.stringify(champions))
-	
-	
-
-}
-getBestChamps()
 async function puissance(){
 	
 
 	
 	
 	
-	if(!bruteData){bruteData = await getBrute(BRUTE)}
+	if(!bruteData || BRUTE!=brutedatac){bruteData = await getBrute(BRUTE)}
 	var brute = bruteData
+	var brutedatac=BRUTE
 	var lv=brute.level
 	await getRumble(lv)
 	
