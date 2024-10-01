@@ -2560,7 +2560,7 @@ res.tx=div({0:btn,17:"..."})
 	
 	var puissance = makeInfoDiv()
 	puissance.div.insertAfter($('*[aria-label^=""][aria-label$="/"]').first());
-	
+	cl(puissance.div)
 	var rota2 = []
 	
 	for(var b of rumble){if(rota2.length<1000){rota2.push([b])}}
@@ -2568,6 +2568,7 @@ res.tx=div({0:btn,17:"..."})
 	
 				simulFights({
 					fn:function(res,ended){stopLoading();
+						cl(res)
 						var coef = res.v/res.j
 						cl(coef)
 						var chiffre = Math.round(coef*1000)
