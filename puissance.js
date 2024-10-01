@@ -2559,8 +2559,10 @@ res.tx=div({0:btn,17:"..."})
 	await getRumble(lv)
 	
 	var puissance = makeInfoDiv()
-	cl($('*[aria-label^=""][aria-label$="/"]').first())
-	puissance.div.insertAfter($('*[aria-label^=""][aria-label$="/"]').first());
+		var flag=true
+		var elements = $("h3").filter(function() {
+    if( flag && $(this).text().startsWith("Niveau")){flag=false;$(this).parent().append(puissance.div)};
+});
 	cl(puissance.div)
 	var rota2 = []
 	
