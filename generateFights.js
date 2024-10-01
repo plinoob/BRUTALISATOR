@@ -304,7 +304,7 @@ if(brutename.split("$")[1].split("_")[1]=="champion"){await getRumble(brutename.
 for(var j in rumble){if(rumble[j].champion){top=parseInt(j)+1;brutes[i]=rumble[j];break}}}else{
 top=parseInt(brutename.split("$")[1].split("_")[1])
 brutes[i]=await getBruteFromRumble(...brutename.split("$")[1].split("_"));}
-cl(brutes[i].name+" top"+top+" "+(brutes[i].wr*100).toFixed(2)+"% "+' (top1 : '+(rumble[0].wr*100).toFixed(2)+"%)")}
+cl("[===  "+brutes[i].name+" top"+top+" "+(brutes[i].wr*100).toFixed(2)+"% "+' (top1 : '+(rumble[0].wr*100).toFixed(2)+"%)  ===]")}
 else if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(seed,brutename)
 	backups[i] = [await genBrute({level:randomLevel(17,6),name:brutename+"$",random:true})];
 	brutes[i] = await genBrute({level:randomLevel(56,5),name:brutename,random:true});

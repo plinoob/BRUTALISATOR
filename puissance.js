@@ -2583,7 +2583,7 @@ res.tx=div({0:btn,17:"..."})
 					rota2:rota2,//number = boss
 					backups:false,
 					fight_per_rota:1,
-					fight_total:rota2.length*100,
+					fight_total:rota2.length*80,
 					})
 }
 
