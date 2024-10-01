@@ -3654,7 +3654,7 @@ else if(url.length==3 && url[2]=="arena" /*&& BRANCHE=="dev"*/){BRUTE = url[1];a
 else if(url.length==3 && url[2]=="cell" /*&& BRANCHE=="dev"*/){BRUTE = url[1];addScript(BRUTALISATOR+"puissance.js")}
 else if(url.length==4 && url[2]=="versus"){BRUTE = url[1];addScript(BRUTALISATOR+"fight.js")}
 else if(url.length==4 && url[2]=="clan"){CLAN = url[3];addScript(BRUTALISATOR+"bossDamage.js")}
-else if(/*BRANCHE == "dev" && */url.length==3 && url[1]=="user"){addScript(BRUTALISATOR+"devTools.js")}
+else if(BRANCHE == "dev" && url.length==3 && url[1]=="user"){addScript(BRUTALISATOR+"devTools.js")}
 else if(FIGHT_TYPE){addScript(BRUTALISATOR+"damageChart.js")}
 
 else{alertAndStop(NOTHING_TO_DO)}
