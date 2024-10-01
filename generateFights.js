@@ -962,14 +962,14 @@ async function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL
 			    var fetchCode=`
 				var originalFetch=window.fetch;
 				window.fetch = async function(url, options) {
-        console.log("Intercepted fetch call to:" +url);
+        //console.log("Intercepted fetch call to:" +url);
         
         // Appeler le fetch original
         const response = await originalFetch(url, options);
         
         // Modifier la réponse (ici, on parse du JSON pour l'exemple)
         const data = await response.json();
-        console.log('Original data:', data);
+        //console.log('Original data:', data);
         
         // Exemple de modification des données
         //data.modified = true;
@@ -993,7 +993,7 @@ async function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL
 				var iframe = document.createElement('iframe');
 							iframe.src = 'about:blank'; 
 
-			iframe.onload = () => {cl("IFRAME LOADED")
+			iframe.onload = () => {//cl("IFRAME LOADED")
 					const iframeWindow = iframe.contentWindow;
 				iframeWindow.document.addEventListener('mousedown', function(){$(iframe).remove()}, false);
 			}
