@@ -593,7 +593,7 @@ if(typeof(window)!="undefined"){	urrl= window.location.href;
 	setInt = setInterval(function(){if(fightWorker)fightWorker.postMessage(5);
 	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();
 	if(fightWorker)fightWorker.terminate()
-		$("#mynetwork").remove()}
+		$("#mynetwork").remove();$("#puissance").remove()}
 },333)}
 
 var GENERATE_FIGHT
