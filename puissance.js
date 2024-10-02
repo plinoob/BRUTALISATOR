@@ -2709,7 +2709,23 @@ function analyse(){
 }
 
 
-function makeAnaDiv(perkType,perk,coef){}
+function makeAnaDiv(perkType,perk,coef){
+	
+	if(perkType.startsWith("weapon")){
+	var useElement = $('use[xlink\\:href="#sprite0"]')[0];cl("useElement",useElement);;
+const bbox = useElement.getBoundingClientRect();
+
+const div = document.createElement('div');
+div.style.position = 'absolute';
+div.style.top = `${bbox.top}px`;
+div.style.left = `${bbox.left}px`;
+div.style.width = '100px';
+div.style.height = '50px';
+div.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
+
+document.body.appendChild(div);
+	}
+}
 
 
 
