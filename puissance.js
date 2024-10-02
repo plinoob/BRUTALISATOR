@@ -2618,7 +2618,6 @@ res.tx=div({0:btn,17:"..."})
 		var elements = $("h3").filter(function() {
     if( flag && $(this).text().startsWith("Niveau")){flag=false;$(this).parent().append(puissance.div)};
 });
-	cl(puissance.div)
 	var rota2 = []
 	
 	for(var b of rumble){if(!surpuissance || rota2.length<333){rota2.push([b])}}
