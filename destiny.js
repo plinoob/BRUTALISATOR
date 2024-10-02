@@ -1,4 +1,59 @@
-var applySkillModifiers = (brute, skill) => {
+
+function applySkillModifiers = (brute, skill) => {
+    const updatedBrute = { ...brute };
+    // Vitality modifier
+    if (skill === 'vitality') {
+        updatedBrute.enduranceModifier /= 1.5;
+        updatedBrute.enduranceStat -= 3;
+    }
+    // Immortality modifier
+    if (skill === 'immortality') {
+        updatedBrute.enduranceModifier /= 3.5;
+        updatedBrute.strengthModifier /= 0.75;
+        updatedBrute.agilityModifier /= 0.75;
+        updatedBrute.speedModifier /= 0.75;
+    }
+    // Herculean strength modifier
+    if (skill === 'herculeanStrength') {
+        updatedBrute.strengthModifier /= 1.5;
+        updatedBrute.strengthStat -= 3;
+    }
+    // Feline agility modifier
+    if (skill === 'felineAgility') {
+        updatedBrute.agilityModifier /= 1.5;
+        updatedBrute.agilityStat -= 3;
+    }
+    // Lightning bolt modifier
+    if (skill === 'lightningBolt') {
+        updatedBrute.speedModifier /= 1.5;
+        updatedBrute.speedStat -= 3;
+    }
+    // Reconnaissance modifier
+    if (skill === 'reconnaissance') {
+        updatedBrute.speedModifier /= 2.5;
+        updatedBrute.speedStat -= 5;
+    }
+    // Armor modifier
+    if (skill === 'armor') {
+        updatedBrute.speedModifier /= 0.9;
+    }
+    return refreshStats(updatedBrute);
+};
+
+
+function refreshStats = (brute) => {
+    const updatedBrute = { ...brute };
+
+
+    // Final stat values
+    updatedBrute.enduranceValue = Math.floor(updatedBrute.enduranceStat * updatedBrute.enduranceModifier);
+    updatedBrute.strengthValue = Math.floor(updatedBrute.strengthStat * updatedBrute.strengthModifier);
+    updatedBrute.agilityValue = Math.floor(updatedBrute.agilityStat * updatedBrute.agilityModifier);
+    updatedBrute.speedValue = Math.floor(updatedBrute.speedStat * updatedBrute.speedModifier);
+    // Final HP
+    updatedBrute.hp = (0, getHP)(updatedBrute.level, updatedBrute.enduranceValue);
+    return updatedBrute;
+};var applySkillModifiers = (brute, skill) => {
     var updatedBrute = { ...brute };
     // Vitality modifier
     if (skill === 'vitality') {
