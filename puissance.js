@@ -2940,13 +2940,13 @@ function analyse(){
 
 
 
-	var brutesPlus = [[],[],[],[],[],[]],bruteIndex=0;for(var t in statsHaved){for(var s of statsHaved[t]){
+	var brutesPlus = [[],[],[],[],[]],bruteIndex=0;for(var t in statsHaved){for(var s of statsHaved[t]){
 			if(t=="stats"){brutesPlus[bruteIndex].push([addPerkFrom(brute,{type:t,stats:s,stat1:s,stat1Value:2})])}
-			else{brutesPlus[bruteIndex].push([removePerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})])};bruteIndex=(bruteIndex+1)%6}}
+			else{brutesPlus[bruteIndex].push([removePerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})])};bruteIndex=(bruteIndex+1)%5}}
 			
 
 
-	
+	cl(brutesPlus)
 	
 	
 	
@@ -2960,8 +2960,8 @@ function potentiel(){
 	for(var s of weapons){if(!statsHaved.weapons.includes(s.name)){statsNotHaved.weapons.push(s.name)}}
 	for(var s of pets){if(!statsHaved.pets.includes(s.name)){statsNotHaved.pets.push(s.name)}}
 	
-	var brutesMoins = [[],[],[],[],[],[]],bruteIndex=0;for(var t in statsNotHaved){for(var s of statsNotHaved[t]){
-			brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})]);bruteIndex=(bruteIndex+1)%6}}
+	var brutesMoins = [[],[],[],[],[]],bruteIndex=0;for(var t in statsNotHaved){for(var s of statsNotHaved[t]){
+			brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})]);bruteIndex=(bruteIndex+1)%5}}
 
 }
 
