@@ -661,12 +661,11 @@ simulFights({
 
 
 var setInt
-var fightWorker
 	clearInterval(setInt);
 	var urrl
 
 if(typeof(window)!="undefined"){	urrl= window.location.href;
-	setInt = setInterval(function(){if(fightWorker)fightWorker.postMessage(5);
+	setInt = setInterval(function(){if(fightWorkers && fightWorkers.length){for(var w of fightWorkers){w.postMessage(5);}}
 	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();
 	terminateWorkers()
 		$("#mynetwork").remove();$("#puissance").remove()}
