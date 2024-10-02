@@ -585,6 +585,8 @@ function findTextInDOM(text,balise) {
   return elem;
 }
 
+var bruteData
+var brutedatac
 var PUISSANCE
 var POWERSTEP
 /*

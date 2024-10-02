@@ -2554,8 +2554,6 @@ var shuffle = (array) => {
 
 
 
-var bruteData
-var brutedatac
 
  
 async function power(surpuissance){
