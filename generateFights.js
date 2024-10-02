@@ -668,7 +668,7 @@ var fightWorker
 if(typeof(window)!="undefined"){	urrl= window.location.href;
 	setInt = setInterval(function(){if(fightWorker)fightWorker.postMessage(5);
 	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();
-	if(fightWorker)fightWorker.terminate()
+	terminateWorkers()
 		$("#mynetwork").remove();$("#puissance").remove()}
 },333)}
 
@@ -688,12 +688,15 @@ async function simulFights(arg){
 	arg.generateFights = generateFights;simulFights_no_fetch(arg);
 }
 
+var fightWorkers
+
+function terminateWorkers(){if(!fightWorkers){fightWorkers=[]};while(fightWorkers.length){fightWorkers.pop().terminate()}}
 
 async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
 ,backups,fight_per_rota,fight_total,return_first_win,loading=true,
 modifiers,seed,pass_same_brute_fight,multiple_workers}){
 return new Promise((resolve, reject) => {
-	if(fightWorker && !multiple_workers)fightWorker.terminate()
+	if(!multiple_workers){terminateWorkers()}
 	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
 		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = [[bosses["+rota2+"]]];")
 	}
@@ -724,11 +727,11 @@ return new Promise((resolve, reject) => {
 	var workerUrl = URL.createObjectURL(blob);
 
 	// Créer le worker à partir de l'URL du Blob
-	fightWorker = new Worker(workerUrl);
-	var worker = fightWorker
-	
-	fightWorker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
-	e.data.ended=true};if(e.data.ended){stopLoading();fightWorker.terminate();resolve(e.data.bilan);};fn(e.data.bilan,e.data.ended);}
+	 
+	var worker = new Worker(workerUrl);fightWorkers.push(worker)
+	fightWorker = worker
+	worker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
+	e.data.ended=true};if(e.data.ended){stopLoading();worker.terminate();resolve(e.data.bilan);};fn(e.data.bilan,e.data.ended);}
 
 	if(loading)startLoading();
 	
