@@ -5429,9 +5429,9 @@ function makeAnaDiv(perkType,perk,sens){
 			const centerY = bbox.top + window.scrollY + (bbox.height / 2);
 
 			const weapondiv = div({5:0,13:10000000,1:perkType+perk,3:"power"})[0];
-			div.style.position = 'absolute';
-			div.style.top = `${centerY - (div.offsetHeight / 2)}px`;
-			div.style.left = `${centerX - (div.offsetWidth / 2)}px`;
+			weapondiv.style.position = 'absolute';
+			weapondiv.style.top = `${centerY - (weapondiv.offsetHeight / 2)}px`;
+			weapondiv.style.left = `${centerX - (weapondiv.offsetWidth / 2)}px`;
 
 			weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
 
