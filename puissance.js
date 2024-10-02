@@ -2711,6 +2711,14 @@ function analyse(){
 
 function makeAnaDiv(perkType,perk,coef){
 	
+		var useElement = $('src="/images/skills/immortality.svg"').parent().parent().parent();cl("immo",useElement);
+				$("#petsMinestDiv").remove()
+			div({1:"petsMinestDiv",0:useElement,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+			,display: "flex","flex-direction": "line"},
+			textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
+	
+	
+	
 	if(perkType.startsWith("weapon")){
 	var useElement = $('use[xlink\\:href="#sprite0"]')[0];cl("useElement",useElement);;
 const bbox = useElement.getBoundingClientRect();
@@ -2729,12 +2737,13 @@ document.body.appendChild(weapondiv);
 		
 		}
 		else if(perkType.startsWith("skill")){var useElement = $('src="/images/skills/'+perk+'.svg"').parent().parent().parent();div({0:useElement,17:"LOL"})}
+		else{cl(perkType,perk)}
 }
 
 
 
 function afficheur(bilan){
-	
+
 	var perkType
 	var perk
 	var sens
