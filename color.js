@@ -584,7 +584,7 @@ function findTextInDOM(text,balise) {
   });
   return elem;
 }
-
+var surpuissance
 var bruteData
 var brutedatac
 var PUISSANCE
