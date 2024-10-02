@@ -2556,9 +2556,9 @@ var shuffle = (array) => {
 
 
  
-async function power(surpuissance){
+async function power(){
 	function makeInfoDiv(){
-		var res={div:div({20:surpuissance?"SURPUISSANCE":"PUISSANCE",6:{click:function(){power(!surpuissance)}},1:"puissance",9:{position:"relative",height:"30px"}})}
+		var res={div:div({20:surpuissance?"SURPUISSANCE":"PUISSANCE",6:{click:function(){surpuissance=!surpuissance;power()}},1:"puissance",9:{position:"relative",height:"30px"}})}
 		
 		
 		
@@ -2715,16 +2715,20 @@ function makeAnaDiv(perkType,perk,coef){
 	var useElement = $('use[xlink\\:href="#sprite0"]')[0];cl("useElement",useElement);;
 const bbox = useElement.getBoundingClientRect();
 
-const div = document.createElement('div');
-div.style.position = 'absolute';
-div.style.top = `${bbox.top}px`;
-div.style.left = `${bbox.left}px`;
-div.style.width = '100px';
-div.style.height = '50px';
-div.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
+const weapondiv = document.createElement('div');
+weapondiv.style.position = 'absolute';
+weapondiv.style.top = `${bbox.top}px`;
+weapondiv.style.left = `${bbox.left}px`;
+weapondiv.style.width = '100px';
+weapondiv.style.height = '50px';
+weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
 
-document.body.appendChild(div);
-	}
+document.body.appendChild(weapondiv);
+	}else if(perkType.startsWith("skill")){
+		var useElement = $('src="/images/skills/'+perk+'.svg"')[0];cl("useElement",useElement);;
+		
+		}
+		else if(perkType.startsWith("skill")){var useElement = $('src="/images/skills/'+perk+'.svg"').parent().parent().parent();div({0:useElement,17:"LOL"})}
 }
 
 
