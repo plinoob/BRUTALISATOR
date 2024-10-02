@@ -2556,8 +2556,7 @@ var shuffle = (array) => {
 
 var bruteData
 var brutedatac
-var PUISSANCE
-var POWERSTEP
+
  
 async function power(surpuissance){
 	function makeInfoDiv(){
@@ -2740,7 +2739,7 @@ function potentiel(){
 
 
 
-if(!LOCAL){cl(POWERSTEP,bruteData,BRUTE,brutedatac)
+if(!LOCAL){cl(POWERSTEP,bruteData,BRUTE,brutedatac,PUISSANCE)
 	if(!bruteData || BRUTE!=brutedatac){POWERSTEP=0}
 cl(POWERSTEP,bruteData,BRUTE,brutedatac)
 	if(!POWERSTEP){POWERSTEP=1;power()}

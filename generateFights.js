@@ -612,6 +612,8 @@ function findTextInDOM(text,balise) {
   return elem;
 }
 
+var PUISSANCE
+var POWERSTEP
 /*
 simulFights({
 	fn,
