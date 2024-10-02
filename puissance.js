@@ -2687,12 +2687,7 @@ function analyse(){
 			if(t=="stats"){brutesPlus[bruteIndex].push([addPerkFrom(brute,{type:t,stats:s,stat1:s,stat1Value:2})])}
 			else{brutesPlus[bruteIndex].push([removePerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})])};bruteIndex=(bruteIndex+1)%5}}
 			
-
-
-	cl(brutesPlus)
 	
-	return
-	multiple_workers
 	
 	var rota2 = []
 	for(var pluses of brutesPlus){
