@@ -2725,13 +2725,17 @@ function makeAnaDiv(perkType,perk,sens){
 			
 			var div2=div({0:petDiv})
 			div({0:div2,17:{dog1:"🐶",dog2:"🐶",dog3:"🐶",panther:"🐺",bear:"🐻"}[perk]})
-			return div({0:div2,1:perkType+perk})
+			var res=div({0:div2,1:perkType+perk})
+			cl("return : ",res)
+			return res
 
 		}
 		if(perkType.startsWith("skill")){
 						
 			var useElement = $('img[src="/images/skills/'+perk+'.svg"]');
-			return div({0:useElement.parent(),3:"power",1:perkType+perk})
+			var res=div({0:useElement.parent(),3:"power",1:perkType+perk})
+			cl("return : ",res)
+			return res
 
 		}
 		if(perkType.startsWith("weapon")){
@@ -2747,13 +2751,17 @@ function makeAnaDiv(perkType,perk,sens){
 			weapondiv.style.height = '50px';
 			weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
 
+			cl("return : ",$(weapondiv))
+
 			return $(weapondiv)
 		
 		
 		}else if(perkType.startsWith("stat")){
 			
 			var useElement = findFirstParentDiv(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[perk],"span"))
-			return div({0:$(useElement),1:perkType+perk})
+			var res=div({0:$(useElement),1:perkType+perk})
+			cl("return : ",res)
+			return res
 			
 		}
 	}
@@ -2770,7 +2778,7 @@ function afficheur(bilan){
 	for(var b of bilan){var l=b.nom.split("$");perkType=l[2];perk=l[3];sens=perk[1]=="+"
 				var btn=$("#"+perkType+perk)
 				if(!btn.length){btn=makeAnaDiv(perkType,perk,sens)}
-				cl(btn);btn.text(b.v/b.j)
+				cl(btn,perkType,perk,sens);btn.text(b.v/b.j)
 	}
 	
 	}
