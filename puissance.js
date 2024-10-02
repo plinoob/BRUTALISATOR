@@ -2692,7 +2692,7 @@ function analyse(){
 	var rota2 = []
 	for(var pluses of brutesPlus){
 		for(var b of rumble){if(!surpuissance || rota2.length<333){rota2.push([b])}}
-		
+		cl("FIGHT TOTAL :",pluses.length*rota2.length*88*(surpuissance?6:1),pluses.length,rota2.length,88,(surpuissance?6:1))
 		
 					simulFights({
 						fn:afficheur,
@@ -2711,7 +2711,7 @@ function analyse(){
 
 function makeAnaDiv(perkType,perk,coef){
 	
-		var useElement = $('img[src="/images/skills/immortality.svg"]').parent().parent().parent();cl("immo",useElement);
+		var useElement = $('img[src="/images/skills/immortality.svg"]').parent().parent().parent();
 				$("#petsMinestDiv").remove()
 			div({1:"petsMinestDiv",0:useElement,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
@@ -2733,7 +2733,7 @@ weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
 
 document.body.appendChild(weapondiv);
 	}else if(perkType.startsWith("skill")){
-		var useElement = $('img[src="/images/skills/'+perk+'.svg"]')[0];cl("useElement",useElement);;
+		var useElement = $('img[src="/images/skills/'+perk+'.svg"]')[0];
 		
 		}
 		else if(perkType.startsWith("pet")){cl(perkType,perk);"🐶🐺🐻"}

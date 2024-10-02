@@ -727,8 +727,8 @@ return new Promise((resolve, reject) => {
 	fightWorker = new Worker(workerUrl);
 	var worker = fightWorker
 	
-	worker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
-	e.data.ended=true};if(e.data.ended){stopLoading();worker.terminate();resolve(e.data.bilan);};fn(e.data.bilan,e.data.ended);}
+	fightWorker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
+	e.data.ended=true};if(e.data.ended){stopLoading();fightWorker.terminate();resolve(e.data.bilan);};fn(e.data.bilan,e.data.ended);}
 
 	if(loading)startLoading();
 	
