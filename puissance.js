@@ -2501,7 +2501,7 @@ var shuffle = (array) => {
 
 var bruteData
 var brutedatac
-
+var PUISSANCE
 async function power(surpuissance){
 	function makeInfoDiv(){
 		var res={div:div({20:surpuissance?"SURPUISSANCE":"PUISSANCE",6:{click:function(){power(!surpuissance)}},1:"puissance",9:{position:"relative",height:"30px"}})}
@@ -2571,7 +2571,7 @@ res.tx=div({0:btn,17:"..."})
 				simulFights({
 					fn:function(res,ended){stopLoading();
 						var coef = res[0].v/res[0].j
-						cl(coef)
+						PUISSANCE=coef
 						var chiffre = Math.round(coef*1000)
 						if(chiffre==1000 && coef!=1)chiffre=999
 						puissance.btn.css("background-color",POWERpalette(coef)).css("opacity",1)
@@ -2717,7 +2717,7 @@ var tenebre={
 
 
 var bruteData = tenebre
-var brutedatac = tenebre.name
+var brutedatac = BRUTE = tenebre.name
 
 
 
@@ -2751,7 +2751,7 @@ async function test(){cl("test")
 }
 test()
 
-stats=[];for(var i in BruteStat){stats.push(i)} perkTypes={stat:stats,skill:skills,pet:pets,weapon:weapons}
+
 */
 
 
