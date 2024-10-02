@@ -2743,12 +2743,12 @@ document.body.appendChild(weapondiv);
 
 
 function afficheur(bilan){
-
+	cl(bilan)
 	var perkType
 	var perk
 	var sens
 	
-	for(var b of bilan){var l=b.name.split("$");perkType=l[2];perk=l[3];sens=perk[1]=="+"
+	for(var b of bilan){var l=b.nom.split("$");perkType=l[2];perk=l[3];sens=perk[1]=="+"
 				if(!sens || (perkType=="stats")){makeAnaDiv(perkType,perk,b.v/b.j)}
 	}
 	
