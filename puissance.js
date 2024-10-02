@@ -5422,16 +5422,16 @@ function makeAnaDiv(perkType,perk,sens){
 
 		}
 		if(perkType.startsWith("weapon")){
-						
+			
 			var useElement = $('#_w'+weaponSprites[perk])[0];cl("useElement",useElement);;
 			const bbox = useElement.getBoundingClientRect();
 
-			const weapondiv = div({1:perkType+perk,3:"power"})[0];
-			weapondiv.style.position = 'absolute';
-			weapondiv.style.top = `${bbox.top}px`;
-			weapondiv.style.left = `${bbox.left}px`;
-			weapondiv.style.width = '100px';
-			weapondiv.style.height = '50px';
+			const weapondiv = div({13:10000000,1:perkType+perk,3:"power"})[0];
+			div.style.position = 'absolute';
+			div.style.top = `${absoluteTop}px`;
+			div.style.left = `${absoluteLeft}px`;
+			div.style.width = '100px';
+			div.style.height = '50px';
 			weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
 
 			cl("weapon",$(weapondiv))
