@@ -2721,8 +2721,9 @@ function potentiel(){
 
 
 
-if(!LOCAL){
+if(!LOCAL){cl(POWERSTEP,bruteData,BRUTE,brutedatac)
 	if(!bruteData || BRUTE!=brutedatac){POWERSTEP=0}
+cl(POWERSTEP,bruteData,BRUTE,brutedatac)
 	if(!POWERSTEP){POWERSTEP=1;power()}
 	else if(POWERSTEP==1){POWERSTEP=2;analyse()}
 	else{POWERSTEP=3;power()}
