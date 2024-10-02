@@ -1119,7 +1119,7 @@ function startLoading(){$(shurikenDIV).css("display","")}
 var BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+BRANCHE+"/";
 
 
-function applySkillModifiers (brute, skill){
+function unApplySkillModifiers (brute, skill){
     const updatedBrute = { ...brute };
     // Vitality modifier
     if (skill === 'vitality') {
