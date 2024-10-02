@@ -2737,7 +2737,7 @@ document.body.appendChild(weapondiv);
 		
 		}
 		else if(perkType.startsWith("skill")){var useElement = $('src="/images/skills/'+perk+'.svg"').parent().parent().parent();div({0:useElement,17:"LOL"})}
-		else{cl(perkType,perk)}
+		else{cl(perkType,perk);"🐶🐺🐻"}
 }
 
 
