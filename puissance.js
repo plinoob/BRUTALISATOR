@@ -2609,7 +2609,7 @@ res.tx=div({0:btn,17:"..."})
 	
 	if(!bruteData || BRUTE!=brutedatac){bruteData = await getBrute(BRUTE)}
 	var brute = bruteData
-	var brutedatac=BRUTE
+	brutedatac=BRUTE
 	var lv=brute.level
 	cl("LEVEL",lv)
 	await getRumble(lv)
@@ -2897,8 +2897,8 @@ var tenebre2={
     ]
 }
 
-var bruteData = tenebre
-var brutedatac = BRUTE = tenebre.name
+bruteData = tenebre
+brutedatac = BRUTE = tenebre.name
 
 cl("BRUTE",BRUTE)
 
