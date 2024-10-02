@@ -2626,7 +2626,6 @@ res.tx=div({0:btn,17:"..."})
 				simulFights({
 					fn:function(res,ended){stopLoading();
 						var coef = res[0].v/res[0].j
-						cl(coef)
 						PUISSANCE=coef
 						var chiffre = Math.round(coef*1000)
 						if(chiffre==1000 && coef!=1)chiffre=999
@@ -2724,7 +2723,8 @@ function makeAnaDiv(perkType,perk,coef){
 	var useElement = $('use[xlink\\:href="#sprite0"]')[0];cl("useElement",useElement);;
 const bbox = useElement.getBoundingClientRect();
 
-const weapondiv = document.createElement('div');
+$("#weaponDiv"+perk).remove()
+const weapondiv = div({1:"weaponDiv"+perk});
 weapondiv.style.position = 'absolute';
 weapondiv.style.top = `${bbox.top}px`;
 weapondiv.style.left = `${bbox.left}px`;
@@ -2733,8 +2733,11 @@ weapondiv.style.height = '50px';
 weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
 
 document.body.appendChild(weapondiv);
+cl(weapondiv)
 	}else if(perkType.startsWith("skill")){
 		var useElement = $('img[src="/images/skills/'+perk+'.svg"]')[0];
+		$("#skillDiv"+perk).remove()
+		div({0:useElement.parent(),1:"skillDiv"+perk,17:coef})
 		
 		}
 		else if(perkType.startsWith("pet")){cl(perkType,perk);"🐶🐺🐻"}
