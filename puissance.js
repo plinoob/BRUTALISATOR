@@ -2639,6 +2639,10 @@ res.tx=div({0:btn,17:"..."})
 					fight_total:rota2.length*66*(surpuissance?6:1),
 					})
 }
+	
+		return res}
+
+
 var tenebre={
     "id": "e9ca17c1-d918-4d85-96d2-1f23e633fc45",
     "name": "Tenebre-Obscure",
@@ -2892,10 +2896,6 @@ var tenebre2={
         }
     ]
 }
-	
-		return res}
-
-
 
 var bruteData = tenebre
 var brutedatac = BRUTE = tenebre.name
