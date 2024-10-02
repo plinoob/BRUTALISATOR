@@ -2745,7 +2745,9 @@ function makeAnaDiv(perkType,perk,sens){
 			weapondiv.style.left = `${bbox.left}px`;
 			weapondiv.style.width = '100px';
 			weapondiv.style.height = '50px';
-			weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';		
+			weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
+
+			return $(weapondiv)
 		
 		
 		}else if(perkType.startsWith("stat")){
