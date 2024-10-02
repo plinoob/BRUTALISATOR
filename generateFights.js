@@ -1183,7 +1183,7 @@ function unApplySkillModifiers (brute, skill){
     // Armor modifier
     if (skill === 'armor') {
         updatedBrute.speedModifier /= 0.9;
-    };cl(updatedBrute)
+    };
     return refreshStats(updatedBrute);
 };
 
