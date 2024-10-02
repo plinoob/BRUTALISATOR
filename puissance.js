@@ -2754,6 +2754,7 @@ function makeAnaDiv(perkType,perk,sens){
 			return div({0:$(useElement),1:perkType+perk})
 			
 		}
+	}
 	
 }
 
