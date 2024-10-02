@@ -2733,6 +2733,7 @@ function makeAnaDiv(perkType,perk,sens){
 						
 			var useElement = $('img[src="/images/skills/'+perk+'.svg"]');
 			var res=div({0:useElement.parent(),3:"power",1:perkType+perk})
+			cl("skill",perk,res,useElement)
 			return res
 
 		}
@@ -2749,13 +2750,14 @@ function makeAnaDiv(perkType,perk,sens){
 			weapondiv.style.height = '50px';
 			weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
 
-
+			cl("weapon",$(weapondiv))
 			return $(weapondiv)
 		
 		
 		}else if(perkType.startsWith("stat")){
 			
 			var useElement = findFirstParentDiv(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[perk],"span"))
+			cl("stat",useElement)
 			var res=div({0:$(useElement),1:perkType+perk})
 			return res
 			
