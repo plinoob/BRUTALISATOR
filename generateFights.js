@@ -647,6 +647,8 @@ var bruteData
 var brutedatac
 var PUISSANCE
 var POWERSTEP
+var statsHaved
+var statsNotHaved
 /*
 simulFights({
 	fn,

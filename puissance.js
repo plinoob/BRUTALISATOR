@@ -2656,8 +2656,7 @@ var stats=[];for(var i in BruteStat){stats.push(i)}
 var perkTypes={stats:"stats",skills:"skill",pets:"pet",weapons:"weapon"}
 var perkTypesNoStats={skills:"skill",pets:"pet",weapons:"weapon"}
 
-var statsHaved
-var statsNotHaved
+
 
 function removePerkFrom(brute,perk){
 	var brute = structuredClone(brute)
@@ -2675,6 +2674,8 @@ function addPerkFrom(brute,perk){
 }
 
 function analyse(){
+
+
 
 	var brute = bruteData
 
@@ -2709,40 +2710,52 @@ function analyse(){
 }
 
 
-function makeAnaDiv(perkType,perk,coef){
+function makeAnaDiv(perkType,perk,sens){
 	
-		var useElement = $('img[src="/images/skills/immortality.svg"]').parent().parent().parent();
-				$("#petsMinestDiv").remove()
-			div({1:"petsMinestDiv",0:useElement,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
-			,display: "flex","flex-direction": "line"},
-			textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
-	
-	
-	
-	if(perkType.startsWith("weapon")){
-	var useElement = $('use[xlink\\:href="#sprite0"]')[0];cl("useElement",useElement);;
-const bbox = useElement.getBoundingClientRect();
-
-$("#weaponDiv"+perk).remove()
-const weapondiv = div({1:"weaponDiv"+perk});
-weapondiv.style.position = 'absolute';
-weapondiv.style.top = `${bbox.top}px`;
-weapondiv.style.left = `${bbox.left}px`;
-weapondiv.style.width = '100px';
-weapondiv.style.height = '50px';
-weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
-
-document.body.appendChild(weapondiv);
-cl(weapondiv)
-	}else if(perkType.startsWith("skill")){
-		var useElement = $('img[src="/images/skills/'+perk+'.svg"]');
-		$("#skillDiv"+perk).remove()
-		div({0:useElement.parent(),1:"skillDiv"+perk,17:coef})
+	if(!sens && !perkType.startsWith("stat")){
 		
-		}
-		else if(perkType.startsWith("pet")){cl(perkType,perk);"🐶🐺🐻"}
-}
+		if(perkType.startsWith("pet")){
+						
+			var petDiv = $("#petDivMin")
+			if(!petDiv.length){var useElement = $('img[src="/images/skills/immortality.svg"]').parent().parent().parent();
+			petDiv=div({1:"petDivMin",3:"power",0:useElement,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+			,display: "flex","flex-direction": "line"},
+			textBoxCSS,baseCSS,{"margin": "16px 40px"}])})}
+			
+			
+			var div2=div({0:petDiv})
+			div({0:div2,17:{dog1:"🐶",dog2:"🐶",dog3:"🐶",panther:"🐺",bear:"🐻"}[perk]})
+			return div({0:div2,1:perkType+perk})
 
+		}
+		if(perkType.startsWith("skill")){
+						
+			var useElement = $('img[src="/images/skills/'+perk+'.svg"]');
+			return div({0:useElement.parent(),3:"power",1:perkType+perk})
+
+		}
+		if(perkType.startsWith("weapon")){
+						
+			var useElement = $('use[xlink\\:href="#sprite4"]')[0];cl("useElement",useElement);;
+			const bbox = useElement.getBoundingClientRect();
+
+			const weapondiv = div({1:perkType+perk,3:"power"})[0];
+			weapondiv.style.position = 'absolute';
+			weapondiv.style.top = `${bbox.top}px`;
+			weapondiv.style.left = `${bbox.left}px`;
+			weapondiv.style.width = '100px';
+			weapondiv.style.height = '50px';
+			weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';		
+		
+		
+		}else if(perkType.startsWith("stat")){
+			
+			var useElement = findFirstParentDiv(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[perk],"span"))
+			return div({0:$(useElement),1:perkType+perk})
+			
+		}
+	
+}
 
 
 function afficheur(bilan){
@@ -2752,17 +2765,20 @@ function afficheur(bilan){
 	var sens
 	
 	for(var b of bilan){var l=b.nom.split("$");perkType=l[2];perk=l[3];sens=perk[1]=="+"
-				if(!sens || (perkType=="stats")){makeAnaDiv(perkType,perk,b.v/b.j)}
+				var btn=$("#"+perkType+perk)
+				if(!btn.length){btn=makeAnaDiv(perkType,perk,sens)}
+				btn.text(b.v/b.j)
 	}
 	
-	cl(bilan[0])}
+	}
 
 function potentiel(){
 	
 	statsNotHaved = {skills:[],weapons:[],pets:[]};
 	for(var s of skills){if(s.name!="regeneration" && s.name!="backup" && !statsHaved.skills.includes(s.name)){statsNotHaved.skills.push(s.name)}}
 	for(var s of weapons){if(!statsHaved.weapons.includes(s.name)){statsNotHaved.weapons.push(s.name)}}
-	for(var s of pets){if(!statsHaved.pets.includes(s.name)){statsNotHaved.pets.push(s.name)}}
+	dogFlag=true;for(var s of pets){if(!statsHaved.pets.includes(s.name) && (!s.name.startsWith("dog") || dogFlag)){
+			if(s.name.startsWith("dog")){dogFlag=false};statsNotHaved.pets.push(s.name)}}
 	
 	var brutesMoins = [[],[],[],[],[]],bruteIndex=0;for(var t in statsNotHaved){for(var s of statsNotHaved[t]){
 			brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})]);bruteIndex=(bruteIndex+1)%5}}
