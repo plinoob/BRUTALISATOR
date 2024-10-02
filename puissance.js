@@ -2641,7 +2641,7 @@ res.tx=div({0:btn,17:"..."})
 					rota2:rota2,//number = boss
 					backups:false,
 					fight_per_rota:1,
-					fight_total:rota2.length*66*(surpuissance?6:1),
+					fight_total:rota2.length*88*(surpuissance?6:1),
 					})
 	
 	if(POWERSTEP==3){POWERSTEP=0;potentiel()}
@@ -2695,10 +2695,29 @@ function analyse(){
 
 	cl(brutesPlus)
 	
+	return
+	multiple_workers
+	
+	var rota2 = []
+	for(var pluses of brutesPlus){
+		for(var b of rumble){if(!surpuissance || rota2.length<333){rota2.push([b])}}
+		
+		
+					simulFights({
+						fn:afficheur,
+						rota1:pluses,
+						rota2:rota2,//number = boss
+						backups:false,
+						fight_per_rota:1,
+						fight_total:rota1.length*rota2.length*88*(surpuissance?6:1),
+						multiple_workers:true,
+						})
+	}
 	
 	
 }
 
+function afficheur(bilan){cl(bilan[0])}
 
 function potentiel(){
 	
