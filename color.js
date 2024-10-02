@@ -4010,7 +4010,9 @@ createTable();
                 body: options.body,
 				options:options
             });
-			if(url=="/api/brute/create?") {options.body = options.body.replace('"master":null',(MASTER=="")?'"master":null':'"master":"'+MASTER+'"')
+			if(url=="/api/brute/create?") {options.body = 
+			options.body.replace('"master":null',(MASTER=="")?'"master":null':'"master":"'+MASTER+'"')
+				.replace('"event":null',(ROYALE=="")?'"event":null':'"event":"'+ROYALE+'"')
 			}
 			return originalFetch.apply(this, [url,options]);
 			

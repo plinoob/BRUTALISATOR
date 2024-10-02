@@ -2604,10 +2604,11 @@ fetch(window.location.href)
 			  
 			var url = window.location.href.split("?")
 			var master = ""
+			var royale=""
 			if(url.length>1){url=url[1].split("&");
 			for(var argstr of url){
 				var argsplit=argstr.split("=");
-				if(argsplit.length>1){if(argsplit[0]=="ref"){master=argsplit[1]}}
+				if(argsplit.length>1){if(argsplit[0]=="ref"){master=argsplit[1]}else if(argsplit[0]=="event"){royale=argsplit[1]}}
 				
 			}
 			
@@ -2615,7 +2616,7 @@ fetch(window.location.href)
 			  cl("split à ",pos+jsfile+mid+end)
 			  cl(codeSource.split(pos+jsfile+mid+end))
 			codeSource = codeSource.split(pos+jsfile+mid+end);
-			codeSource = codeSource[0]+'<script>console.log("mais lol")</script><script type="module">var MASTER = "'+master+'";'+'var BRANCHE = "'+BRANCHE+'";'+'var SHURIKEN = "'+SHURIKEN+'";'+color+js+"\nconsole.log('FIN');"+codeSource[1];
+			codeSource = codeSource[0]+'<script>console.log("mais lol")</script><script type="module">var MASTER = "'+master+'";var ROYALE = "'+royale+'";'+'var BRANCHE = "'+BRANCHE+'";'+'var SHURIKEN = "'+SHURIKEN+'";'+color+js+"\nconsole.log('FIN');"+codeSource[1];
 			  
 			var iframe = document.createElement('iframe');
 			
