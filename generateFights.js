@@ -227,7 +227,7 @@ var heheheha = {"id":"d34f1d14-6d7b-4d87-abd2-614947732ba6","name":"heheheha","d
 "user":{"id":"565e2141-9982-406d-81ba-9aafdd219dc4","name":"Ambryal"},"tournaments":[{"id":"9fc44ffc-bee2-486b-84bf-613e199a03a1","date":"2024-09-24T00:00:00.000Z","type":"DAILY","rounds":6,"eventId":null}],"inventory":[{"type":"bossTicket","count":1}]}
 
 function removePetMalus(brute,pet){
-	var pet = pets.find((p) => p.name === pet);brute.enduranceStat+=pet.enduranceMalus * factor;
+	var pet = pets.find((p) => p.name === pet);brute.enduranceStat+=pet.enduranceMalus;
 		brute.enduranceValue = Math.floor(brute.enduranceStat * brute.enduranceModifier);
 		brute.hp = (0, getHP)(brute.level, brute.enduranceValue);
 }
