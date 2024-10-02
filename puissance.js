@@ -2739,7 +2739,7 @@ var brutedatac = tenebre.name
 
 
 
-power()
+if(!LOCAL)power()
 
 "⚡️🔥"
 
