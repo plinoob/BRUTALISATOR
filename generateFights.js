@@ -226,7 +226,7 @@ var heheheha = {"id":"d34f1d14-6d7b-4d87-abd2-614947732ba6","name":"heheheha","d
 "canRankUpSince":null,"favorite":false,"wantToJoinClanId":null,"tournamentWins":0,"eventId":null,"resets":2,"master":null,"clan":null,
 "user":{"id":"565e2141-9982-406d-81ba-9aafdd219dc4","name":"Ambryal"},"tournaments":[{"id":"9fc44ffc-bee2-486b-84bf-613e199a03a1","date":"2024-09-24T00:00:00.000Z","type":"DAILY","rounds":6,"eventId":null}],"inventory":[{"type":"bossTicket","count":1}]}
 
-function addPetMalus(brute,pet,factor=1){
+function removePetMalus(brute,pet){
 	var pet = pets.find((p) => p.name === pet);brute.enduranceStat+=pet.enduranceMalus * factor;
 		brute.enduranceValue = Math.floor(brute.enduranceStat * brute.enduranceModifier);
 		brute.hp = (0, getHP)(brute.level, brute.enduranceValue);
@@ -264,7 +264,7 @@ async function genBrute({
 	
 	if(random){
 		brute.weapons = shuffle(weapons.reduce((acc, obj) => {acc.push(obj.name);return acc;}, [])).slice(0,brute.weapons.length)
-		for(var i of brute.pets){addPetMalus(brute,i,-1)};
+		for(var i of brute.pets){removePetMalus(brute,i)};
 		brute.pets = shuffle(pets.reduce((acc, obj) => {acc.push(obj.name);if(obj.name.startsWith("dog1")){acc.push(obj.name)};return acc;}, [])).slice(0,brute.pets.length)
 		var boosters = skills.reduce((acc, obj) => {if(obj.type=="booster"){acc.push(obj.name)};return acc;}, [])
 		var keepBoosters = brute.skills.reduce((acc, obj) => {if(boosters.includes(obj)){acc.push(obj)};return acc;}, [])
