@@ -2711,7 +2711,7 @@ function analyse(){
 
 function makeAnaDiv(perkType,perk,coef){
 	
-		var useElement = $('src="/images/skills/immortality.svg"').parent().parent().parent();cl("immo",useElement);
+		var useElement = $('img[src="/images/skills/immortality.svg"]').parent().parent().parent();cl("immo",useElement);
 				$("#petsMinestDiv").remove()
 			div({1:"petsMinestDiv",0:useElement,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
@@ -2733,11 +2733,10 @@ weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
 
 document.body.appendChild(weapondiv);
 	}else if(perkType.startsWith("skill")){
-		var useElement = $('src="/images/skills/'+perk+'.svg"')[0];cl("useElement",useElement);;
+		var useElement = $('img[src="/images/skills/'+perk+'.svg"]')[0];cl("useElement",useElement);;
 		
 		}
-		else if(perkType.startsWith("skill")){var useElement = $('src="/images/skills/'+perk+'.svg"').parent().parent().parent();div({0:useElement,17:"LOL"})}
-		else{cl(perkType,perk);"🐶🐺🐻"}
+		else if(perkType.startsWith("pet")){cl(perkType,perk);"🐶🐺🐻"}
 }
 
 
