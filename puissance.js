@@ -5443,7 +5443,7 @@ function makeAnaDiv(perkType,perk,sens){
 			
 			var useElement = findFirstParentDiv(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[perk],(perk=="endurance")?"p":"span"))
 			cl("stat",useElement)
-			var res=div({9:(perk=="endurance")?{}:{display:"inline",margin-left:"10px"},0:$(useElement),1:perkType+perk})
+			var res=div({9:(perk=="endurance")?{}:{display:"inline","margin-left":"10px"},0:$(useElement),1:perkType+perk})
 			return res
 			
 		}
