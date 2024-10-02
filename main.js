@@ -611,7 +611,7 @@ var setInt
 if(typeof(window)!="undefined"){	urrl= window.location.href;
 	setInt = setInterval(function(){if(fightWorkers && fightWorkers.length){for(var w of fightWorkers){w.postMessage(5);}}
 	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();
-	terminateWorkers()
+	terminateWorkers();$("#power").remove()
 		$("#mynetwork").remove();$("#puissance").remove()}
 },333)}
 
