@@ -2735,7 +2735,7 @@ weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
 document.body.appendChild(weapondiv);
 cl(weapondiv)
 	}else if(perkType.startsWith("skill")){
-		var useElement = $('img[src="/images/skills/'+perk+'.svg"]')[0];
+		var useElement = $('img[src="/images/skills/'+perk+'.svg"]');
 		$("#skillDiv"+perk).remove()
 		div({0:useElement.parent(),1:"skillDiv"+perk,17:coef})
 		
