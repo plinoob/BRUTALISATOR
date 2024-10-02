@@ -2544,8 +2544,7 @@ display: "block",
         'transition': 'height 0.1s, top 0.1s'}})
 res.tx=div({0:btn,17:"..."})
 
-		
-		
+	
 		return res}
 
 	
@@ -2641,21 +2640,21 @@ var tenebre={
         "LEFT"
     ],
     "previousDestinyPath": [],
-    "level": 20,
+    "level": 26,
     "xp": 7,
-    "hp": 122,
-    "enduranceStat": 5,
+    "hp": 143,
+    "enduranceStat": 6,
     "enduranceModifier": 1.5,
-    "enduranceValue": 7,
+    "enduranceValue": 9,
     "strengthStat": 9,
     "strengthModifier": 1,
     "strengthValue": 9,
-    "agilityStat": 7,
+    "agilityStat": 10,
     "agilityModifier": 1,
-    "agilityValue": 7,
-    "speedStat": 10,
+    "agilityValue": 10,
+    "speedStat": 18,
     "speedModifier": 1.5,
-    "speedValue": 15,
+    "speedValue": 27,
     "ranking": 11,
     "gender": "female",
     "userId": "35b69181-da4f-4f3c-8208-642261f93250",
