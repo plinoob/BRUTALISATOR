@@ -2557,6 +2557,8 @@ var shuffle = (array) => {
 var bruteData
 var brutedatac
 var PUISSANCE
+var POWERSTEP
+ 
 async function power(surpuissance){
 	function makeInfoDiv(){
 		var res={div:div({20:surpuissance?"SURPUISSANCE":"PUISSANCE",6:{click:function(){power(!surpuissance)}},1:"puissance",9:{position:"relative",height:"30px"}})}
@@ -2641,6 +2643,9 @@ res.tx=div({0:btn,17:"..."})
 					fight_per_rota:1,
 					fight_total:rota2.length*66*(surpuissance?6:1),
 					})
+	
+	if(POWERSTEP==3){POWERSTEP=0;potentiel()}
+	
 }
 
 var tenebre={
@@ -2904,6 +2909,61 @@ cl("BRUTE",BRUTE)
 
 
 
+var stats=[];for(var i in BruteStat){stats.push(i)}
+var perkTypes={stats:"stats",skills:"skill",pets:"pet",weapons:"weapon"}
+var perkTypesNoStats={skills:"skill",pets:"pet",weapons:"weapon"}
+
+var statsHaved
+var statsNotHaved
+
+function removePerkFrom(brute,perk){
+	var brute = structuredClone(brute)
+	brute.name=brute.name+"$-$"+perk.type+"$"+perk[perk.type]
+	if(perk.type=="weapon"){brute.weapons=brute.weapons.filter(a => a !== perk.weapon)}
+	else if(perk.type=="pet"){brute.pets=brute.pets.filter(a => a !== perk.pet);addPetMalus(brute,perk.pet,-1)}
+	else{brute = unApplySkillModifiers(brute,perk.skill);brute.skills=brute.skills.filter(a => a !== perk.skill);}
+	return brute
+}
+function addPerkFrom(brute,perk){
+	var brute=structuredClone(brute)
+	brute.level-=1
+	brute.name=brute.name+"$+$"+perk.type+"$"+perk[perk.type]
+	return updateBruteData(brute,perk)
+}
+
+function analyse(){
+
+	var brute = bruteData
+
+	statsHaved = {stats};for(var i in perkTypesNoStats){statsHaved[i] = brute[i]}
+
+
+
+
+	var brutesPlus = [[],[],[],[],[],[]],bruteIndex=0;for(var t in statsHaved){for(var s of statsHaved[t]){
+			if(t=="stats"){brutesPlus[bruteIndex].push([addPerkFrom(brute,{type:t,stats:s,stat1:s,stat1Value:2})])}
+			else{brutesPlus[bruteIndex].push([removePerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})])};bruteIndex=(bruteIndex+1)%6}}
+			
+
+
+	
+	
+	
+	
+}
+
+
+function potentiel(){
+	
+	statsNotHaved = {skills:[],weapons:[],pets:[]};
+	for(var s of skills){if(s.name!="regeneration" && s.name!="backup" && !statsHaved.skills.includes(s.name)){statsNotHaved.skills.push(s.name)}}
+	for(var s of weapons){if(!statsHaved.weapons.includes(s.name)){statsNotHaved.weapons.push(s.name)}}
+	for(var s of pets){if(!statsHaved.pets.includes(s.name)){statsNotHaved.pets.push(s.name)}}
+	
+	var brutesMoins = [[],[],[],[],[],[]],bruteIndex=0;for(var t in statsNotHaved){for(var s of statsNotHaved[t]){
+			brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})]);bruteIndex=(bruteIndex+1)%6}}
+
+}
 
 
 
@@ -2914,14 +2974,13 @@ cl("BRUTE",BRUTE)
 
 
 
-
-
-
-
-
-
-if(!LOCAL)power()
-
+if(!LOCAL){
+	if(!bruteData || BRUTE!=brutedatac){POWERSTEP=0}
+	if(!POWERSTEP){POWERSTEP=1;power()}
+	else if(POWERSTEP==1){POWERSTEP=2;analyse()}
+	else{POWERSTEP=3;power()}
+	
+}
 "⚡️🔥"
 
 
