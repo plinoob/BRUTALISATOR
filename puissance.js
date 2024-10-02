@@ -2585,22 +2585,174 @@ res.tx=div({0:btn,17:"..."})
 					fight_total:rota2.length*66*(surpuissance?6:1),
 					})
 }
+var tenebre={
+    "id": "e9ca17c1-d918-4d85-96d2-1f23e633fc45",
+    "name": "Tenebre-Obscure",
+    "deletedAt": null,
+    "createdAt": "2024-06-21T00:56:33.357Z",
+    "willBeDeletedAt": null,
+    "deletionReason": null,
+    "destinyPath": [
+        "RIGHT",
+        "RIGHT",
+        "LEFT",
+        "LEFT",
+        "LEFT",
+        "RIGHT",
+        "RIGHT",
+        "LEFT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "LEFT",
+        "RIGHT",
+        "LEFT",
+        "RIGHT",
+        "LEFT",
+        "LEFT",
+        "LEFT",
+        "LEFT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "LEFT",
+        "LEFT",
+        "RIGHT",
+        "LEFT",
+        "LEFT",
+        "LEFT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "LEFT"
+    ],
+    "previousDestinyPath": [],
+    "level": 20,
+    "xp": 7,
+    "hp": 122,
+    "enduranceStat": 5,
+    "enduranceModifier": 1.5,
+    "enduranceValue": 7,
+    "strengthStat": 9,
+    "strengthModifier": 1,
+    "strengthValue": 9,
+    "agilityStat": 7,
+    "agilityModifier": 1,
+    "agilityValue": 7,
+    "speedStat": 10,
+    "speedModifier": 1.5,
+    "speedValue": 15,
+    "ranking": 11,
+    "gender": "female",
+    "userId": "35b69181-da4f-4f3c-8208-642261f93250",
+    "body": "00103210312",
+    "colors": "04040400000000000612040115131810",
+    "weapons": [
+        "whip"
+    ],
+    "skills": [
+        "vitality",
+        "vampirism",
+        "thief",
+        "untouchable",
+        "toughenedSkin",
+        "lightningBolt",
+    ],
+    "pets": [
+        "dog1",
+        "panther"
+    ],
+    "masterId": null,
+    "pupilsCount": 2,
+    "clanId": "4c007438-9aa0-419e-af73-d82f8dc39eae",
+    "registeredForTournament": false,
+    "nextTournamentDate": null,
+    "currentTournamentDate": "2024-07-17T00:00:00.000Z",
+    "currentTournamentStepWatched": 0,
+    "globalTournamentWatchedDate": "2024-10-02T00:00:00.000Z",
+    "globalTournamentRoundWatched": 999,
+    "lastFight": "2024-10-02T00:00:00.000Z",
+    "fightsLeft": 0,
+    "victories": 506,
+    "opponentsGeneratedAt": "2024-10-01T00:00:00.000Z",
+    "canRankUpSince": "2024-07-17T00:00:00.000Z",
+    "favorite": false,
+    "wantToJoinClanId": null,
+    "tournamentWins": 1,
+    "eventId": null,
+    "resets": 0,
+    "master": null,
+    "clan": {
+        "id": "4c007438-9aa0-419e-af73-d82f8dc39eae",
+        "name": "Molière Gaming Evolution"
+    },
+    "user": {
+        "id": "35b69181-da4f-4f3c-8208-642261f93250",
+        "name": "Moliere3"
+    },
+    "tournaments": [],
+    "inventory": [
+        {
+            "type": "bossTicket",
+            "count": 2
+        }
+    ]
+}
 
 
-//power()
+
+
+
+var bruteData = tenebre
+var brutedatac = tenebre.name
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+power()
 
 "⚡️🔥"
 
 
-
+/*
 async function test(){cl("test")
 	for(var i=0;i<200;i++){await getRumble(i+1);
 	for(var b of rumble){if((b.name.indexOf("Bison")!=-1 || b.name.indexOf("Dark")!=-1 || b.name.indexOf("Red")!=-1) && (b.champion || i==0)){cl(b.name,i,b.champion)}}}
 }
 test()
 
-
-
+stats=[];for(var i in BruteStat){stats.push(i)} perkTypes={stat:stats,skill:skills,pet:pets,weapon:weapons}
+*/
 
 
 
