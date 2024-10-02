@@ -2754,7 +2754,8 @@ function makeAnaDiv(perkType,perk,sens){
 			return $(weapondiv)
 		
 		
-		}else if(perkType.startsWith("stat")){
+		}
+	}else if(perkType.startsWith("stat")){
 			
 			var useElement = findFirstParentDiv(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[perk],"span"))
 			cl("stat",useElement)
@@ -2762,7 +2763,6 @@ function makeAnaDiv(perkType,perk,sens){
 			return res
 			
 		}
-	}
 	
 }
 
