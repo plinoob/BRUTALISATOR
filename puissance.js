@@ -2713,7 +2713,22 @@ function analyse(){
 	
 }
 
-function afficheur(bilan){cl(bilan[0])}
+
+function makeAnaDiv(perkType,perk,coef){}
+
+
+
+function afficheur(bilan){
+	
+	var perkType
+	var perk
+	var sens
+	
+	for(var b of bilan){var l=b.name.split("$");perkType=l[2];perk=l[3];sens=perk[1]=="+"
+				if(!sens || (perkType=="stats")){makeAnaDiv(perkType,perk,b.v/b.j)}
+	}
+	
+	cl(bilan[0])}
 
 function potentiel(){
 	
