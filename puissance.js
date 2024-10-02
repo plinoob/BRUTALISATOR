@@ -5425,18 +5425,18 @@ function makeAnaDiv(perkType,perk,sens){
 			
 			var useElement = $('#_w'+weaponSprites[perk])[0];cl("useElement",useElement);;
 			const bbox = useElement.getBoundingClientRect();
+			const centerX = bbox.left + window.scrollX + (bbox.width / 2);
+			const centerY = bbox.top + window.scrollY + (bbox.height / 2);
 
-			const weapondiv = div({13:10000000,1:perkType+perk,3:"power"})[0];
+			const weapondiv = div({5:0,13:10000000,1:perkType+perk,3:"power"})[0];
 			div.style.position = 'absolute';
-			div.style.top = `${absoluteTop}px`;
-			div.style.left = `${absoluteLeft}px`;
-			div.style.width = '100px';
-			div.style.height = '50px';
+			div.style.top = `${centerY - (div.offsetHeight / 2)}px`;
+			div.style.left = `${centerX - (div.offsetWidth / 2)}px`;
+
 			weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
 
 			cl("weapon",$(weapondiv))
 			return $(weapondiv)
-		
 		
 		}
 	}else if(perkType.startsWith("stat")){
