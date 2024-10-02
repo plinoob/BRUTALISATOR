@@ -2555,6 +2555,7 @@ res.tx=div({0:btn,17:"..."})
 	var brute = bruteData
 	var brutedatac=BRUTE
 	var lv=brute.level
+	cl("LEVEL",lv)
 	await getRumble(lv)
 	$("#puissance").remove()
 	var puissance = makeInfoDiv()
