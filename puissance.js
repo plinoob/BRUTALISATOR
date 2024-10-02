@@ -2626,6 +2626,7 @@ res.tx=div({0:btn,17:"..."})
 				simulFights({
 					fn:function(res,ended){stopLoading();
 						var coef = res[0].v/res[0].j
+						cl(coef)
 						PUISSANCE=coef
 						var chiffre = Math.round(coef*1000)
 						if(chiffre==1000 && coef!=1)chiffre=999
@@ -2690,8 +2691,8 @@ function analyse(){
 	
 	
 	var rota2 = []
+	for(var b of rumble){if(!surpuissance || rota2.length<333){rota2.push([b])}}
 	for(var pluses of brutesPlus){
-		for(var b of rumble){if(!surpuissance || rota2.length<333){rota2.push([b])}}
 		cl("FIGHT TOTAL :",pluses.length*rota2.length*88*(surpuissance?6:1),pluses.length,rota2.length,88,(surpuissance?6:1))
 		
 					simulFights({
