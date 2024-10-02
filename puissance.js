@@ -2902,8 +2902,8 @@ var tenebre2={
     ]
 }
 
-bruteData = tenebre
-brutedatac = BRUTE = tenebre.name
+bruteData = tenebre2
+brutedatac = BRUTE = tenebre2.name
 
 cl("BRUTE",BRUTE)
 
