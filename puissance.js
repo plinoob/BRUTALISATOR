@@ -2700,7 +2700,7 @@ function analyse(){
 						rota2:rota2,//number = boss
 						backups:false,
 						fight_per_rota:1,
-						fight_total:rota1.length*rota2.length*88*(surpuissance?6:1),
+						fight_total:pluses.length*rota2.length*88*(surpuissance?6:1),
 						multiple_workers:true,
 						})
 	}
