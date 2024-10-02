@@ -5461,7 +5461,7 @@ function afficheur(bilan){
 				var btn=$("#"+perkType+perk)
 				if(!btn.length){btn=makeAnaDiv(perkType,perk,sens)}
 				cl(perkType,perk,sens)
-				btn.text(b.v/b.j)
+				btn.text((PUISSANCE-(b.v/b.j)).toFixed(4))
 	}
 	
 	}
