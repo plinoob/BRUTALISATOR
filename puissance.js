@@ -5346,7 +5346,7 @@ function removePerkFrom(brute,perk){
 	var brute = structuredClone(brute)
 	brute.name=brute.name+"$-$"+perk.type+"$"+perk[perk.type]
 	if(perk.type=="weapon"){brute.weapons=brute.weapons.filter(a => a !== perk.weapon)}
-	else if(perk.type=="pet"){brute.pets=brute.pets.filter(a => a !== perk.pet);addPetMalus(brute,perk.pet,-1)}
+	else if(perk.type=="pet"){brute.pets=brute.pets.filter(a => a !== perk.pet);addPetMalus(brute,perk.pet,1)}
 	else{brute = unApplySkillModifiers(brute,perk.skill);brute.skills=brute.skills.filter(a => a !== perk.skill);}
 	return brute
 }
@@ -5416,7 +5416,7 @@ function makeAnaDiv(perkType,perk,sens){
 		if(perkType.startsWith("skill")){
 						
 			var useElement = $('img[src="/images/skills/'+perk+'.svg"]');
-			var res=div({0:useElement.parent(),3:"power",1:perkType+perk})
+			var res=div({9:{"max-width":"100%"},0:useElement.parent(),3:"power",1:perkType+perk})
 			cl("skill",perk,res,useElement)
 			return res
 
@@ -5443,7 +5443,7 @@ function makeAnaDiv(perkType,perk,sens){
 			
 			var useElement = findFirstParentDiv(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[perk],(perk=="endurance")?"p":"span"))
 			cl("stat",useElement)
-			var res=div({0:$(useElement),1:perkType+perk})
+			var res=div({9:(perk=="endurance")?{}:{display:"inline",margin-left:"10px"},0:$(useElement),1:perkType+perk})
 			return res
 			
 		}
