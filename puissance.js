@@ -5318,8 +5318,8 @@ res.tx=div({0:btn,17:"..."})
 						PUISSANCE=coef
 						var chiffre = Math.round(coef*1000)
 						if(chiffre==1000 && coef!=1)chiffre=999
-						puissance.btn.css("background-color",POWERpalette(1)).css("opacity",1)
-						puissance.before.css("background-color",POWERbeforePalette(1)).css("opacity",1)
+						puissance.btn.css("background-color",POWERpalette(coef)).css("opacity",1)
+						puissance.before.css("background-color",POWERbeforePalette(coef)).css("opacity",1)
 						puissance.tx.text(chiffre)
 					},
 					rota1:[[brute]],
@@ -5411,8 +5411,8 @@ function makeAnaDiv(perkType,perk,sens){
 			
 			
 			var div2=div({0:petDiv})
-			div({0:div2,17:{dog1:"🐶",dog2:"🐶",dog3:"🐶",panther:"🐺",bear:"🐻"}[perk]})
-			var res=div({0:div2})
+			div({0:div2,50:0,17:{dog1:"🐶",dog2:"🐶",dog3:"🐶",panther:"🐺",bear:"🐻"}[perk]})
+			var res=div({9:{margin:"2px"},0:div2})
 			return makeInfoDiv(res,perkType,perk)
 
 		}
@@ -5512,9 +5512,9 @@ function afficheur(bilan){
 				if(b.j){
 				var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001)	
 				btn.text(n3m(bonus))
-				btn.parent().css({"background-color":BONUSpalette(bonus/100),opacity:0.8})
-				$("#before"+perkType+perk).css({"background-color":BONUSbeforePalette(bonus/100),opacity:0.8})
-				btn.parent().parent().css({"transform":"scale("+(0.8+Math.min(0,Math.max(0.2,0.2*bonus/100)))+")"})
+				btn.parent().css({"background-color":BONUSpalette(bonus/50),opacity:0.8})
+				$("#before"+perkType+perk).css({"background-color":BONUSbeforePalette(bonus/50),opacity:0.8})
+				btn.parent().parent().css({"transform":"scale("+(0.8+Math.max(0,Math.min(0.2,0.2*bonus/100)))+")"})
 				}
 	}
 	
@@ -5525,7 +5525,7 @@ function potentiel(){
 	statsNotHaved = {skills:[],weapons:[],pets:[]};
 	for(var s of skills){if(s.name!="regeneration" && s.name!="backup" && !statsHaved.skills.includes(s.name)){statsNotHaved.skills.push(s.name)}}
 	for(var s of weapons){if(!statsHaved.weapons.includes(s.name)){statsNotHaved.weapons.push(s.name)}}
-	dogFlag=true;for(var s of pets){if(!statsHaved.pets.includes(s.name) && (!s.name.startsWith("dog") || dogFlag)){
+	var dogFlag=true;for(var s of pets){if(!statsHaved.pets.includes(s.name) && (!s.name.startsWith("dog") || dogFlag)){
 			if(s.name.startsWith("dog")){dogFlag=false};statsNotHaved.pets.push(s.name)}}
 	
 	var brutesMoins = [[],[],[],[],[]],bruteIndex=0;for(var t in statsNotHaved){for(var s of statsNotHaved[t]){
