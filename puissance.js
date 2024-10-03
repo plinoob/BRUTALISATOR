@@ -2502,6 +2502,132 @@ var shuffle = (array) => {
 var bruteData
 var brutedatac
 
+var myo = {
+    "id": "bdcb6417-f9aa-4715-92ec-03c5c7321138",
+    "name": "Myosine",
+    "deletedAt": null,
+    "createdAt": "2024-07-10T19:47:33.103Z",
+    "willBeDeletedAt": null,
+    "deletionReason": null,
+    "destinyPath": [
+        "RIGHT",
+        "LEFT",
+        "RIGHT",
+        "LEFT",
+        "LEFT",
+        "RIGHT",
+        "LEFT",
+        "RIGHT",
+        "LEFT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "LEFT",
+        "RIGHT",
+        "LEFT",
+        "RIGHT",
+        "RIGHT",
+        "LEFT",
+        "LEFT",
+        "LEFT",
+        "RIGHT",
+        "LEFT",
+        "LEFT",
+        "RIGHT",
+        "LEFT",
+        "RIGHT",
+        "RIGHT"
+    ],
+    "previousDestinyPath": [
+        "RIGHT",
+        "LEFT",
+        "RIGHT",
+        "LEFT",
+        "LEFT",
+        "RIGHT",
+        "LEFT",
+        "LEFT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "RIGHT",
+        "LEFT",
+        "RIGHT",
+        "LEFT"
+    ],
+    "level": 28,
+    "xp": 17,
+    "hp": 152,
+    "enduranceStat": 10,
+    "enduranceModifier": 1,
+    "enduranceValue": 10,
+    "strengthStat": 13,
+    "strengthModifier": 1,
+    "strengthValue": 13,
+    "agilityStat": 17,
+    "agilityModifier": 1,
+    "agilityValue": 17,
+    "speedStat": 14,
+    "speedModifier": 1.5,
+    "speedValue": 21,
+    "ranking": 11,
+    "gender": "female",
+    "userId": "5c9ad348-6d58-41cf-bed8-5f556be8ccb9",
+    "body": "00100310523",
+    "colors": "04040406060606060714191413040403",
+    "weapons": [
+        "axe"
+    ],
+    "skills": [
+        "fierceBrute",
+        "bodybuilder",
+        "net",
+        "backup",
+        "lightningBolt",
+        "shield",
+        "martialArts"
+    ],
+    "pets": [],
+    "masterId": null,
+    "pupilsCount": 0,
+    "clanId": "4c007438-9aa0-419e-af73-d82f8dc39eae",
+    "registeredForTournament": true,
+    "nextTournamentDate": "2024-10-04T00:00:00.000Z",
+    "currentTournamentDate": "2024-10-03T00:00:00.000Z",
+    "currentTournamentStepWatched": 6,
+    "globalTournamentWatchedDate": "2024-10-03T00:00:00.000Z",
+    "globalTournamentRoundWatched": 999,
+    "lastFight": "2024-10-03T00:00:00.000Z",
+    "fightsLeft": 0,
+    "victories": 254,
+    "opponentsGeneratedAt": "2024-10-03T00:00:00.000Z",
+    "canRankUpSince": null,
+    "favorite": false,
+    "wantToJoinClanId": null,
+    "tournamentWins": 0,
+    "eventId": null,
+    "resets": 0,
+    "master": null,
+    "clan": {
+        "id": "4c007438-9aa0-419e-af73-d82f8dc39eae",
+        "name": "Molière Gaming Evolution"
+    },
+    "user": {
+        "id": "5c9ad348-6d58-41cf-bed8-5f556be8ccb9",
+        "name": "Plinoob4"
+    },
+    "tournaments": [
+        {
+            "id": "0edfca0c-7562-4f9c-b718-8b3a680a50a8",
+            "date": "2024-10-03T00:00:00.000Z",
+            "type": "DAILY",
+            "rounds": 6,
+            "eventId": null
+        }
+    ],
+    "inventory": []
+}
+
 async function power(surpuissance){
 	function makeInfoDiv(){
 		var res={div:div({20:surpuissance?"SURPUISSANCE":"PUISSANCE",6:{click:function(){power(!surpuissance)}},1:"puissance",9:{position:"relative",height:"30px"}})}
@@ -2580,7 +2706,7 @@ res.tx=div({0:btn,17:"..."})
 					},
 					rota1:[[brute]],
 					rota2:rota2,//number = boss
-					backups:false,
+   				    backups:{[brute.userId]:myo},
 					fight_per_rota:1,
 					fight_total:rota2.length*66*(surpuissance?6:1),
 					})
