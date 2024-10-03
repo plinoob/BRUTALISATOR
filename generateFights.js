@@ -602,10 +602,11 @@ function n3m(x, p = 2, v = 0) {
     }
     if (!isNaN(float(x)) && /^-?[0-9\s\.]*$/.test(str(x))) {
         var parts = float(x).toString().split("."),
-        parol = parts[0].length;
+        parol = (parts[0]=="0")?0:parts[0].length;
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         if (parts[1]) {
-            parts[1] = str(float(float("." + ((parol < Math.max(p, 4) || v) ? parts[1] : (parts[1].substr(0, (parol < Math.max(p, 5)) ? 1 : 0))))[parts[0] === "0" ? "toPrecision" : "toFixed"](v ? v : (parol < Math.max(p, 5) ? Math.max(2, Math.max((p - parol), 0)) : Math.max((p - parol), 0))))).split(".")[1];
+            parts[1] = str(float(float("." + ((parol < p || v) ? parts[1] : "0"))[parts[0] === "0" ? "toPrecision" : "toFixed"](v ? v : 
+			(parol < p ? Math.max(0, Math.max((p - parol), 0)) : 0)))).split(".")[1];
             if (parts[1]) {
                 parts[1] = parts[1].replace(/\B(?<=(?<!\d)(\d{3})+)/g, " ")
             }
