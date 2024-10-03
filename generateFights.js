@@ -99,7 +99,7 @@ var POWERbeforePalette = setupColorInterpolation([
 ]);    
 var BONUSpalette = setupColorInterpolation([
     [0, '#42C971'], // Rouge4DB0B7
-    [0.5, '#4CD3A4'], // Rouge
+    [0.5, '#4ED3A4'], // Rouge
     [1, '#268E98']  // Bleu
 ]);
 var BONUSbeforePalette = setupColorInterpolation([
