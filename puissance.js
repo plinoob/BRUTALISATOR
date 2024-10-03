@@ -5399,11 +5399,11 @@ function makeAnaDiv(perkType,perk,sens){
 		if(perkType.startsWith("pet")){
 						
 			var petDiv = $("#petDivMin")
-			if(!petDiv.length){var useElement = $(findTextInDOM("Force","p")).parent().parent().parent().parent().parent()
+			if(!petDiv.length){var useElement = $(findTextInDOM("Force","p")).parent().parent().parent().parent()
 				cl("divpet",useElement)
-			petDiv=div({1:"petDivMin",3:"power",0:useElement,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+			petDiv=div({1:"petDivMin",3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
-			textBoxCSS,baseCSS,{"margin": "16px 40px"}])})}
+			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)}
 			
 			
 			var div2=div({0:petDiv})
