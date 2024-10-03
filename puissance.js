@@ -5449,13 +5449,13 @@ function makeAnaDiv(perkType,perk,sens){
 	
 }
 function makeInfoDiv(parent,perkType,perk){
-		var res={div:div({0:parent,18:0.92,9:{position:"relative",height:"30px","max-width":"100%"}})}
+		var res={div:div({2:"span",0:parent,18:0.92,9:{height:"30px","max-width":"100%"}})}
 		
 		
 		
 		
-		var btn=res.btn=div({0:res.div,4:1,5:[-50,-60],20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}},2:"button",9:{
-display: "block",
+		var btn=res.btn=div({0:res.div,20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}},2:"button",9:{
+
     margin: "8px auto",
     "border-radius": "4px",
     "border-width": "1px",
@@ -5465,7 +5465,7 @@ display: "block",
     "background-color": BONUSpalette(0.66),
     color: "rgb(255, 255, 255)",
     padding: "4px 8px",
-    cursor: "pointer",
+ 
     "text-transform": "uppercase",
     "font-family": "LaBrute",
     "font-size": "1rem",
