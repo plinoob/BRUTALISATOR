@@ -5453,9 +5453,9 @@ function makeAnaDiv(perkType,perk,sens){
 	
 }
 function makeInfoDiv(parent,perkType,perk){
-		var res={div:div({2:"span",0:parent,18:0.92,9:{transform:"scale(0.8)",height:"30px","max-width":"100%"}})}
+		var res={div:div({2:"span",0:parent,9:{height:"30px","max-width":"100%"}})}
 		
-		
+		parent.css("transform","scale(0.8)")
 		
 		
 		var btn=res.btn=div({0:res.div,20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}},2:"button",9:{
@@ -5514,7 +5514,7 @@ function afficheur(bilan){
 				btn.text(n3m(bonus))
 				btn.parent().css({"background-color":BONUSpalette(bonus/50),opacity:0.8})
 				$("#before"+perkType+perk).css({"background-color":BONUSbeforePalette(bonus/50),opacity:0.8})
-				btn.parent().parent().css({"transform":"scale("+(0.8+Math.max(0,Math.min(0.2,0.2*bonus/100)))+")"})
+				btn.parent().parent().parent().css({"transform":"scale("+(0.8+Math.max(0,Math.min(0.2,0.2*bonus/100)))+")"})
 				}
 	}
 	
