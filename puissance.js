@@ -5455,7 +5455,7 @@ function makeAnaDiv(perkType,perk,sens){
 function makeInfoDiv(parent,perkType,perk){
 		var res={div:div({2:"span",0:parent,9:{height:"30px","max-width":"100%"}})}
 		
-		var btn=res.btn=div({0:res.div,20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}},2:"button",9:{
+		var btn=res.btn=div({0:res.div,6:{click:function(){openBruteCell(name)}},2:"button",9:{
 	transform:"scale(0.8)",
     margin: "8px auto",
     "border-radius": "4px",
@@ -5507,7 +5507,7 @@ function afficheur(bilan){
 				cl(perkType,perk,sens)
 				
 				if(b.j){
-					var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001) * (perk.startsWith("stat")?-1:1)
+					var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001) * (perkType.startsWith("stat")?-1:1)
 					btn.text(n3m(bonus))
 					btn.parent().css({"background-color":BONUSpalette(bonus/50),opacity:0.8})
 					$("#before"+perkType+perk).css({"background-color":BONUSbeforePalette(bonus/50),opacity:0.8})
