@@ -607,7 +607,7 @@ function n3m(x, p = 2, v = 0) {
         if (parts[1]) {
             parts[1] = str(float(float("." + ((parol < p || v) ? parts[1] : "0"))[parts[0] === "0" ? "toPrecision" : "toFixed"](v ? v : 
 			(parol < p ? Math.max(0, Math.max((p - parol), 0)) : 0)))).split(".")[1];
-			while(!parts[1] || parol-parts[1].length<p){parts[1]=(parts[1] || "")+"0"}
+			while(parol-(parts[1]?parts[1].length:0)<p){parts[1]=(parts[1] || "")+"0";cl(parts[1])}
             if (parts[1]) {
                 parts[1] = parts[1].replace(/\B(?<=(?<!\d)(\d{3})+)/g, " ")
             }
