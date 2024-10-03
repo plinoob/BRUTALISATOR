@@ -508,7 +508,36 @@ var fediv={
 73:function(a,b,c){if(typeof(a[b])==typeof("")){if(vexist(typeof(ima_exist)) && (a[b] in ima)){a[b]={0:a[b]}}
 else{a[b]=[a[b],"",[1,1,1],[0,0],[]]}};if(Array.isArray(a[b])){if(!isara(a[b][a[b].length-1])){fon(c,...a[b])}else{a[b].push(c);fonde(a[b])}}else{fon(c,a[b])}}
 }
+function n3m(x, p = 2, v = 0) {
+    if (isara(x)) {
+        for (var i = 0; i < x.length; i++) {
+            x[i] = n3m(x[i])
+        }
+        return x
+    }
+	x = x.toString(); // Convertir en chaîne de caractères pour manipulation
 
+    // Vérifier si x est en notation scientifique
+    var sciMatch = x.match(/^([-+]?[0-9]*\.?[0-9]+)[eE]([-+]?[0-9]+)$/);
+    var sciPart = "";
+    if (sciMatch) {
+        x = sciMatch[1]; // Partie numérique
+        sciPart = "e" + sciMatch[2]; // Partie exponentielle
+    }
+    if (!isNaN(float(x)) && /^-?[0-9\s\.]*$/.test(str(x))) {
+        var parts = float(x).toString().split("."),
+        parol = parts[0].length;
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        if (parts[1]) {
+            parts[1] = str(float(float("." + ((parol < Math.max(p, 4) || v) ? parts[1] : (parts[1].substr(0, (parol < Math.max(p, 5)) ? 1 : 0))))[parts[0] === "0" ? "toPrecision" : "toFixed"](v ? v : (parol < Math.max(p, 5) ? Math.max(2, Math.max((p - parol), 0)) : Math.max((p - parol), 0))))).split(".")[1];
+            if (parts[1]) {
+                parts[1] = parts[1].replace(/\B(?<=(?<!\d)(\d{3})+)/g, " ")
+            }
+        }
+        x = parts[1] ? parts.join(".") : parts[0];
+    }
+    return x + sciPart; 
+}
 function dov(a=body,b={}){if(b===0){b={}};if(arguments.length===1){b=a;a=body};return(div(uni([{0:a,4:0},b])))}
 function div(a){var fiv={0:body,1:"nvl_mc",2:"div",17:""};
 for(var i in fiv){if(i in a){fiv[i]=a[i]}}
@@ -611,7 +640,7 @@ var setInt
 if(typeof(window)!="undefined"){	urrl= window.location.href;
 	setInt = setInterval(function(){if(fightWorkers && fightWorkers.length){for(var w of fightWorkers){w.postMessage(5);}}
 	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();
-	terminateWorkers();$("#power").remove()
+	terminateWorkers();$(".power").remove();bruteData=undefined
 		$("#mynetwork").remove();$("#puissance").remove()}
 },333)}
 

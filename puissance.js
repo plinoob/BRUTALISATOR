@@ -5363,9 +5363,7 @@ function analyse(){
 
 	var brute = bruteData
 
-	statsHaved = {stats};for(var i in perkTypesNoStats){statsHaved[i] = brute[i]}
-
-
+	statsHaved = {stats};for(var i in perkTypesNoStats){statsHaved[i] = brute[i].filter((s)=>{s.name!="regeneration" && s.name!="backup"})}
 
 
 	var brutesPlus = [[],[],[],[],[]],bruteIndex=0;for(var t in statsHaved){for(var s of statsHaved[t]){
@@ -5401,7 +5399,8 @@ function makeAnaDiv(perkType,perk,sens){
 		if(perkType.startsWith("pet")){
 						
 			var petDiv = $("#petDivMin")
-			if(!petDiv.length){var useElement = $('img[src="/images/skills/immortality.svg"]').parent().parent().parent();
+			if(!petDiv.length){var useElement = $(findTextInDOM("Force","p")).parent().parent().parent().parent().parent()
+				cl("divpet",useElement)
 			petDiv=div({1:"petDivMin",3:"power",0:useElement,26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])})}
@@ -5409,16 +5408,16 @@ function makeAnaDiv(perkType,perk,sens){
 			
 			var div2=div({0:petDiv})
 			div({0:div2,17:{dog1:"🐶",dog2:"🐶",dog3:"🐶",panther:"🐺",bear:"🐻"}[perk]})
-			var res=div({0:div2,1:perkType+perk})
-			return res
+			var res=div({0:div2})
+			return makeInfoDiv(res,perkType,perk)
 
 		}
 		if(perkType.startsWith("skill")){
 						
 			var useElement = $('img[src="/images/skills/'+perk+'.svg"]');
-			var res=div({9:{"max-width":"100%"},0:useElement.parent(),3:"power",1:perkType+perk})
+			var res=div({9:{"max-width":"100%"},0:useElement.parent(),3:"power"})
 			cl("skill",perk,res,useElement)
-			return res
+			return makeInfoDiv(res,perkType,perk)
 
 		}
 		if(perkType.startsWith("weapon")){
@@ -5428,7 +5427,7 @@ function makeAnaDiv(perkType,perk,sens){
 			const centerX = bbox.left + window.scrollX + (bbox.width / 2);
 			const centerY = bbox.top + window.scrollY + (bbox.height / 2);
 
-			const weapondiv = div({5:0,13:10000000,1:perkType+perk,3:"power"})[0];
+			const weapondiv = div({5:0,13:10000000,3:"power"})[0];
 			weapondiv.style.position = 'absolute';
 			weapondiv.style.top = `${centerY - (weapondiv.offsetHeight / 2)}px`;
 			weapondiv.style.left = `${centerX - (weapondiv.offsetWidth / 2)}px`;
@@ -5436,20 +5435,64 @@ function makeAnaDiv(perkType,perk,sens){
 			weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
 
 			cl("weapon",$(weapondiv))
-			return $(weapondiv)
+			return makeInfoDiv($(weapondiv),perkType,perk)
 		
 		}
 	}else if(perkType.startsWith("stat")){
 			
 			var useElement = findFirstParentDiv(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[perk],(perk=="endurance")?"p":"span"))
 			cl("stat",useElement)
-			var res=div({9:(perk=="endurance")?{}:{display:"inline","margin-left":"10px"},0:$(useElement),1:perkType+perk})
-			return res
+			var res=div({9:(perk=="endurance")?{}:{display:"inline","margin-left":"10px"},0:$(useElement)})
+			return makeInfoDiv(res,perkType,perk)
 			
 		}
 	
 }
+function makeInfoDiv(parent,perkType,perk){
+		var res={div:div({0:parent,18:0.92,9:{position:"relative",height:"30px","max-width":"100%"}})}
+		
+		
+		
+		
+		var btn=res.btn=div({0:res.div,4:1,5:[-50,-60],20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}},2:"button",9:{
+display: "block",
+    margin: "8px auto",
+    "border-radius": "4px",
+    "border-width": "1px",
+    "border-style": "solid",
+    "border-image": "initial",
+    "border-color": "rgb(55, 1, 0) rgb(115, 61, 44) rgb(115, 61, 44)",
+    "background-color": BONUSpalette(0.66),
+    color: "rgb(255, 255, 255)",
+    padding: "4px 8px",
+    cursor: "pointer",
+    "text-transform": "uppercase",
+    "font-family": "LaBrute",
+    "font-size": "1rem",
+			opacity:0.2,
 
+    "box-shadow": "rgba(0, 0, 0, 0.3) 2px 3px",
+    transition: "box-shadow 0.1s, top 0.1s, perspective 0.1s",
+    perspective: "20px",
+    "transform-style": "preserve-3d",
+    "z-index": 1}})
+	
+	res.before=div({0:btn,1:"before"+perkType+perk,9:{
+        'position': 'absolute',
+        'top': '-8px',
+        'left': '2.5%',
+        'width': '95%',
+        'height': '8px',
+        'background-color': BONUSbeforePalette(0.66),
+		opacity:0.2,
+        'transform': 'rotateX(20deg) translateZ(-1px)',
+        'z-index': '-1',
+        'transition': 'height 0.1s, top 0.1s'}})
+res.tx=div({0:btn,1:perkType+perk,17:"..."})
+
+		
+		
+		return res}
 
 function afficheur(bilan){
 	cl(bilan)
@@ -5461,7 +5504,10 @@ function afficheur(bilan){
 				var btn=$("#"+perkType+perk)
 				if(!btn.length){btn=makeAnaDiv(perkType,perk,sens)}
 				cl(perkType,perk,sens)
-				btn.text((PUISSANCE-(b.v/b.j)).toFixed(4))
+				var bonus = ((1-PUISSANCE)||0.0001)/((PUISSANCE-(b.j?(b.v/b.j):0)))
+				btn.text(n3m(bonus))
+				btn.parent().css({"background-color":BONUSPalette(bonus/100),opacity:0.8})
+				$("#before"+perkType+perk).css({"background-color":BONUSbeforePalette(bonus/100),opacity:0.8})
 	}
 	
 	}
