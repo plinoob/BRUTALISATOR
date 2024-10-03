@@ -5242,7 +5242,12 @@ var weaponsFR={"fan": "Éventail",
  
 async function power(){
 	function makeInfoDiv(){
-		var res={div:div({20:surpuissance?"SURPUISSANCE":"PUISSANCE",6:{click:function(){surpuissance=!surpuissance;power()}},1:"puissance",9:{position:"relative",height:"30px"}})}
+		var res={div:div({20:surpuissance?((surpuissance==1)?"SURPUISSANCE":"ULTRAPUISSANCE"):"PUISSANCE",
+		
+		
+		6:{click:function(){if(!surpuissance){surpuissance=1;}else if(surpuissance==1){surpuissance=2}else{surpuissance=0};
+			power();if(POWERSTEP==2){analyse()}
+		}},1:"puissance",9:{position:"relative",height:"30px"}})}
 		
 		
 		
@@ -5304,7 +5309,7 @@ res.tx=div({0:btn,17:"..."})
 });
 	var rota2 = []
 	
-	for(var b of rumble){if(!surpuissance || rota2.length<333){rota2.push([b])}}
+	for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}
 	
 	
 				simulFights({
@@ -5313,18 +5318,18 @@ res.tx=div({0:btn,17:"..."})
 						PUISSANCE=coef
 						var chiffre = Math.round(coef*1000)
 						if(chiffre==1000 && coef!=1)chiffre=999
-						puissance.btn.css("background-color",POWERpalette(coef)).css("opacity",1)
-						puissance.before.css("background-color",POWERbeforePalette(coef)).css("opacity",1)
+						puissance.btn.css("background-color",POWERpalette(1)).css("opacity",1)
+						puissance.before.css("background-color",POWERbeforePalette(1)).css("opacity",1)
 						puissance.tx.text(chiffre)
 					},
 					rota1:[[brute]],
 					rota2:rota2,//number = boss
 					backups:false,
 					fight_per_rota:1,
-					fight_total:rota2.length*88*(surpuissance?6:1),
+					fight_total:rota2.length*100,
 					})
 	
-	if(POWERSTEP==3){POWERSTEP=0;potentiel()}
+	if(POWERSTEP==3){potentiel()}
 	
 }
 
@@ -5441,14 +5446,14 @@ function makeAnaDiv(perkType,perk,sens){
 			
 			var useElement = findFirstParentDiv(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[perk],(perk=="endurance")?"p":"span"))
 			cl("stat",useElement)
-			var res=div({3:"power",9:(perk=="endurance")?{transfom:"scale(0.7,0.7)",display:"flex","justify-content":"center"}:{display:"inline","margin-left":"10px"},0:$(useElement)})
+			var res=div({3:"power",9:(perk=="endurance")?{display:"flex"}:{display:"inline","margin-left":"10px"},0:$(useElement)})
 			return makeInfoDiv(res,perkType,perk)
 			
 		}
 	
 }
 function makeInfoDiv(parent,perkType,perk){
-		var res={div:div({2:"span",0:parent,18:0.92,9:{height:"30px","max-width":"100%"}})}
+		var res={div:div({2:"span",0:parent,18:0.92,9:{transform:"scale(0.8)",height:"30px","max-width":"100%"}})}
 		
 		
 		
@@ -5503,10 +5508,14 @@ function afficheur(bilan){
 				var btn=$("#"+perkType+perk)
 				if(!btn.length){btn=makeAnaDiv(perkType,perk,sens)}
 				cl(perkType,perk,sens)
-				var bonus = ((1-PUISSANCE)||0.0001)/((PUISSANCE-(b.j?(b.v/b.j):0)))
+				
+				if(b.j){
+				var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001)	
 				btn.text(n3m(bonus))
 				btn.parent().css({"background-color":BONUSpalette(bonus/100),opacity:0.8})
 				$("#before"+perkType+perk).css({"background-color":BONUSbeforePalette(bonus/100),opacity:0.8})
+				btn.parent().parent().css({"transform":"scale("+(0.8+Math.min(0,Math.max(0.2,0.2*bonus/100)))+")"})
+				}
 	}
 	
 	}
@@ -5535,8 +5544,7 @@ function potentiel(){
 
 if(!LOCAL){cl(POWERSTEP,bruteData,BRUTE,brutedatac,PUISSANCE)
 	if(!bruteData || BRUTE!=brutedatac){POWERSTEP=0}
-cl(POWERSTEP,bruteData,BRUTE,brutedatac)
-	if(!POWERSTEP){POWERSTEP=1;power()}
+	if(!POWERSTEP || POWERSTEP==3){POWERSTEP=1;power()}
 	else if(POWERSTEP==1){POWERSTEP=2;analyse()}
 	else{POWERSTEP=3;power()}
 	
