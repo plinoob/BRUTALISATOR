@@ -93,19 +93,19 @@ var POWERpalette = setupColorInterpolation([
 var POWERbeforePalette = setupColorInterpolation([
     [0, '#AA7984'], // Rouge
     [0.50, '#9B201A'], // Orange
-    [0.75, '#CE9700'], // Vert
+    [0.75, '#BA8500'], // Vert
     [0.95, '#19162D'], // Vert
     [1, '#359999']  // Bleu
 ]);    
 var BONUSpalette = setupColorInterpolation([
-    [0, '#42C971'], // Rouge4DB0B7
-    [0.5, '#4ED3A4'], // Rouge
+    [0, '#1FD35B'], // Rouge4DB0B7
+    [0.5, '#4EAFA4'], // Rouge
     [1, '#268E98']  // Bleu
 ]);
 var BONUSbeforePalette = setupColorInterpolation([
     [0, '#378753'], // Rouge
-    [0.5, '#367B7F'], // Rouge
-    [1, '#217C84']  // Bleu
+    [0.5, '#3A8279'], // Rouge
+    [1, '#1F777F']  // Bleu
 ]);    
 var MALUSpalette = setupColorInterpolation([
     [0, '#F47D42'], // Rouge

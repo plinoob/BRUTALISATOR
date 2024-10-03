@@ -5403,7 +5403,7 @@ function makeAnaDiv(perkType,perk,sens){
 		if(perkType.startsWith("pet")){
 						
 			var petDiv = $("#petDivMin")
-			if(!petDiv.length){var useElement = $(findTextInDOM("Force","span")).parent().parent().parent().parent()
+			if(!petDiv.length){var useElement = $('img[src^="/images/skills/"]').last().parent().parent();//$(findTextInDOM("Force","span")).parent().parent().parent().parent()
 				cl("divpet",useElement)
 			petDiv=div({1:"petDivMin",3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line"},
@@ -5501,14 +5501,13 @@ function afficheur(bilan){
 	for(var b of bilan){var l=b.nom.split("$");perkType=l[2];perk=l[3];sens=l[1]=="+"
 				var btn=$("#"+perkType+perk)
 				if(!btn.length){btn=makeAnaDiv(perkType,perk,sens)}
-				cl(perkType,perk,sens)
 				
 				if(b.j){
 					var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001) * (sens?-1:1)
 					btn.text(n3m(bonus))
 					btn.parent().css({"background-color":(bonus>0)?BONUSpalette(bonus/50):MALUSpalette(-bonus/50),opacity:0.8})
 					$("#before"+perkType+perk).css({"background-color":(bonus>0)?BONUSbeforePalette(bonus/50):MALUSbeforePalette(-bonus/50),opacity:0.8})
-					btn.parent().parent().css("opacity",(Math.abs(bonus)<0.1)?0:1)
+					btn.parent().parent().css("opacity",(Math.abs(bonus)<0.4)?0:1)
 				}
 	}
 	
