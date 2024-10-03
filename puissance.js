@@ -5246,7 +5246,7 @@ async function power(){
 		
 		
 		6:{click:function(){if(!surpuissance){surpuissance=1;}else if(surpuissance==1){surpuissance=2}else{surpuissance=0};
-			power();cl("POWERSTEP",POWERSTEP,surpuissance);if(POWERSTEP==2){analyse()}
+			power();
 		}},1:"puissance",9:{position:"relative",height:"30px"}})}
 		
 		
@@ -5329,7 +5329,7 @@ res.tx=div({0:btn,17:"..."})
 					fight_total:150000,
 					})
 	
-	if(POWERSTEP==3){potentiel()}
+	if(POWERSTEP==2){analyse()}else if(POWERSTEP==3){potentiel()}
 	
 }
 
@@ -5419,7 +5419,7 @@ function makeAnaDiv(perkType,perk,sens){
 		if(perkType.startsWith("skill")){
 						
 			var useElement = $('img[src="/images/skills/'+perk+'.svg"]');
-			var res=div({9:{display:"flex","justify-content":"center","max-width":"100%"},0:useElement.parent(),3:"power"})
+			var res=div({9:{transform:"translate(-4px,0)",display:"flex","justify-content":"center","max-width":"100%"},0:useElement.parent(),3:"power"})
 			cl("skill",perk,res,useElement)
 			return makeInfoDiv(res,perkType,perk)
 
@@ -5446,7 +5446,7 @@ function makeAnaDiv(perkType,perk,sens){
 			
 			var useElement = findFirstParentDiv(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[perk],(perk=="endurance")?"p":"span"))
 			cl("stat",useElement)
-			var res=div({3:"power",9:(perk=="endurance")?{display:"flex"}:{display:"inline","margin-left":"10px"},0:$(useElement)})
+			var res=div({3:"power",9:(perk=="endurance")?{transform:"translate(-4px,0)",display:"flex"}:{display:"inline","margin-left":"10px"},0:$(useElement)})
 			return makeInfoDiv(res,perkType,perk)
 			
 		}
@@ -5456,7 +5456,7 @@ function makeInfoDiv(parent,perkType,perk){
 		var res={div:div({2:"span",0:parent,9:{height:"30px","max-width":"100%"}})}
 		
 		var btn=res.btn=div({0:res.div,6:{click:function(){openBruteCell(name)}},2:"button",9:{
-	transform:"scale(0.8) translate(-5px,0)",
+	transform:"scale(0.8)",
     margin: "8px auto",
     "border-radius": "4px",
     "border-width": "1px",
