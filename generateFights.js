@@ -566,6 +566,24 @@ var fediv={
 73:function(a,b,c){if(typeof(a[b])==typeof("")){if(vexist(typeof(ima_exist)) && (a[b] in ima)){a[b]={0:a[b]}}
 else{a[b]=[a[b],"",[1,1,1],[0,0],[]]}};if(Array.isArray(a[b])){if(!isara(a[b][a[b].length-1])){fon(c,...a[b])}else{a[b].push(c);fonde(a[b])}}else{fon(c,a[b])}}
 }
+
+function str(a){return a.toString()}
+function int(a){return parseInt(a)}
+function float(a){return parseFloat(a)}
+
+// a in b
+function isin(a,b){return b.indexOf(a)!=-1}
+
+//Longueur d'objets
+function len(a){return Object.keys(a).length}
+
+function isara(a){return(Array.isArray(a))};
+//ATTENTION - isobj(array) -> true
+function isobj(a){return(typeof(a)==="object")};
+function isnum(a){return typeof(a)==="number"};
+function isflo(b){return((parseFloat(b)-b+666).toString()==="666")}
+function isint(b){return((parseInt(b)-b+666).toString()==="666")}
+function isU(a){return a===U}
 function n3m(x, p = 2, v = 0) {
     if (isara(x)) {
         for (var i = 0; i < x.length; i++) {
