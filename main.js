@@ -286,6 +286,7 @@ else if(brutes[i].indexOf("@")==-1){var brutename=brutes[i];turnRandomToCHAOS(se
 	turnCHAOSToRandom();
 	}
 else{var brutename=brutes[i];brutes[i]=await getBrute(brutename.split("@")[1])}
+	    console.log(backups[i])
 	} 
 			simulFights({
 				fn:rien,
