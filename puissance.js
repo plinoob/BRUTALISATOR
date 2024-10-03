@@ -2693,7 +2693,7 @@ res.tx=div({0:btn,17:"..."})
 	var backs = new Proxy({}, {
   get: (target, name) => name in target ? target[name] : []
 	})
-        backs[[brute.userId]] = myo
+        backs[[brute.userId]] = [myo]
 	for(var b of rumble){if(!surpuissance || rota2.length<333){rota2.push([b])}}
 	
 	
