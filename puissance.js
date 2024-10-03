@@ -5441,7 +5441,7 @@ function makeAnaDiv(perkType,perk,sens){
 			
 			var useElement = findFirstParentDiv(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[perk],(perk=="endurance")?"p":"span"))
 			cl("stat",useElement)
-			var res=div({9:(perk=="endurance")?{transfom:"scale(0.7,0.7)",display:"flex","justify-content":"center"}:{display:"inline","margin-left":"10px"},0:$(useElement)})
+			var res=div(3:"power",{9:(perk=="endurance")?{transfom:"scale(0.7,0.7)",display:"flex","justify-content":"center"}:{display:"inline","margin-left":"10px"},0:$(useElement)})
 			return makeInfoDiv(res,perkType,perk)
 			
 		}
