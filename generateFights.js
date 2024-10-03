@@ -1129,7 +1129,7 @@ function getBoosters(){return skills.reduce((acc, obj) => {if(obj.type=="booster
 function stopLoading(){$(shurikenDIV).css("display","none")}
 function startLoading(){$(shurikenDIV).css("display","")}
 
-var BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+BRANCHE+"/";
+var BRUTALISATOR = "https://raw.githubusercontent.com/plinoob/BRUTALISATOR/"+BRANCHE+"/";
 
 var applySkillModifiers = (brute, skill) => {
     var updatedBrute = { ...brute };
