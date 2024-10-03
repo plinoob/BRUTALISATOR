@@ -5246,7 +5246,7 @@ async function power(){
 		
 		
 		6:{click:function(){if(!surpuissance){surpuissance=1;}else if(surpuissance==1){surpuissance=2}else{surpuissance=0};
-			power();cl("POWERSTEP",POWERSTEP,surpuissance)if(POWERSTEP==2){analyse()}
+			power();cl("POWERSTEP",POWERSTEP,surpuissance);if(POWERSTEP==2){analyse()}
 		}},1:"puissance",9:{position:"relative",height:"30px"}})}
 		
 		
