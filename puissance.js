@@ -2706,7 +2706,7 @@ res.tx=div({0:btn,17:"..."})
 					},
 					rota1:[[brute]],
 					rota2:rota2,//number = boss
-   				    backups:{[brute.userId]:myo},
+   				        backups:{[brute.userId]:myo},
 					fight_per_rota:1,
 					fight_total:rota2.length*66*(surpuissance?6:1),
 					})
