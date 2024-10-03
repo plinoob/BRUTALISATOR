@@ -2690,7 +2690,10 @@ res.tx=div({0:btn,17:"..."})
 });
 	cl(puissance.div)
 	var rota2 = []
-	
+	var backs = new Proxy({}, {
+  get: (target, name) => name in target ? target[name] : []
+	})
+        backs[[brute.userId]] = myo
 	for(var b of rumble){if(!surpuissance || rota2.length<333){rota2.push([b])}}
 	
 	
@@ -2706,7 +2709,7 @@ res.tx=div({0:btn,17:"..."})
 					},
 					rota1:[[brute]],
 					rota2:rota2,//number = boss
-   				        backups:{[brute.userId]:[myo]},
+   				        backups:backs,
 					fight_per_rota:1,
 					fight_total:rota2.length*66*(surpuissance?6:1),
 					})
