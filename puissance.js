@@ -5507,7 +5507,7 @@ function afficheur(bilan){
 				cl(perkType,perk,sens)
 				
 				if(b.j){
-					var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001) * (perkType.startsWith("stat")?-1:1) * (sens?1:-1)
+					var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001) * (sens?-1:1)
 					btn.text(n3m(bonus))
 					btn.parent().css({"background-color":BONUSpalette(bonus/50),opacity:0.8})
 					$("#before"+perkType+perk).css({"background-color":BONUSbeforePalette(bonus/50),opacity:0.8})
