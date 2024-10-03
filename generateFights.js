@@ -108,12 +108,12 @@ var BONUSbeforePalette = setupColorInterpolation([
     [1, '#217C84']  // Bleu
 ]);    
 var MALUSpalette = setupColorInterpolation([
-    [0, '#F26419'], // Rouge
-    [1, '#8C1C13']  // Bleu
+    [0, '#F47D42'], // Rouge
+    [1, '#CB1C13']  // Bleu
 ]);//0.8+t/5
 var MALUSbeforePalette = setupColorInterpolation([
-    [0, '#F26419'], // Rouge
-    [1, '#8C1C13']  // Bleu
+    [0, '#C66537'], // Rouge
+    [1, '#931D14']  // Bleu
 ]);    
 // Fonction pour convertir une couleur hexadécimale en composantes RGB
 function hexToRgb(hex) {

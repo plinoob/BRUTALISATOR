@@ -5242,7 +5242,7 @@ var weaponsFR={"fan": "Éventail",
  
 async function power(){
 	function makeInfoDiv(){
-		var res={div:div({20:surpuissance?((surpuissance==1)?"SURPUISSANCE":"ULTRAPUISSANCE"):"PUISSANCE",
+		var res={div:div({20:surpuissance?((surpuissance==1)?"SURPUISSANCE":"TURBOPUISSANCE"):"PUISSANCE",
 		
 		
 		6:{click:function(){if(!surpuissance){surpuissance=1;}else if(surpuissance==1){surpuissance=2}else{surpuissance=0};
@@ -5509,8 +5509,9 @@ function afficheur(bilan){
 				if(b.j){
 					var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001) * (sens?-1:1)
 					btn.text(n3m(bonus))
-					btn.parent().css({"background-color":BONUSpalette(bonus/50),opacity:0.8})
-					$("#before"+perkType+perk).css({"background-color":BONUSbeforePalette(bonus/50),opacity:0.8})
+					btn.parent().css({"background-color":(bonus>0)?BONUSpalette(bonus/50):MALUSpalette(-bonus/50),opacity:0.8})
+					$("#before"+perkType+perk).css({"background-color":(bonus>0)?BONUSbeforePalette(bonus/50):MALUSbeforePalette(-bonus/50),opacity:0.8})
+					btn.parent().parent().css("opacity",(Math.abs(bonus)<0.1)?0:1)
 				}
 	}
 	
