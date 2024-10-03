@@ -5363,8 +5363,7 @@ function analyse(){
 
 	var brute = bruteData
 
-	statsHaved = {stats};for(var i in perkTypesNoStats){statsHaved[i] = brute[i].filter((s)=>{s.name!="regeneration" && s.name!="backup"})}
-
+	statsHaved = {stats};for(var i in perkTypesNoStats){statsHaved[i] = brute[i].filter(s=>s.name!="regeneration" && s.name!="backup")}
 
 	var brutesPlus = [[],[],[],[],[]],bruteIndex=0;for(var t in statsHaved){for(var s of statsHaved[t]){
 			if(t=="stats"){brutesPlus[bruteIndex].push([addPerkFrom(brute,{type:t,stats:s,stat1:s,stat1Value:2})])}
