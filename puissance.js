@@ -5456,7 +5456,7 @@ function makeInfoDiv(parent,perkType,perk){
 		var res={div:div({2:"span",0:parent,9:{height:"30px","max-width":"100%"}})}
 		
 		var btn=res.btn=div({0:res.div,6:{click:function(){openBruteCell(name)}},2:"button",9:{
-	transform:"scale(0.8)",
+	transform:"scale(0.8) translate(-5px,0)",
     margin: "8px auto",
     "border-radius": "4px",
     "border-width": "1px",
