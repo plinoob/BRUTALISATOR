@@ -5561,6 +5561,8 @@ function afficheur(bilan){
 
 function potentiel(){
 	
+	var brute = bruteData
+	
 	statsNotHaved = {skills:[],weapons:[],pets:[]};
 	for(var s of skills){if(s.name!="regeneration" && s.name!="backup" && !statsHaved.skills.includes(s.name)){statsNotHaved.skills.push(s.name)}}
 	for(var s of weapons){if(!statsHaved.weapons.includes(s.name)){statsNotHaved.weapons.push(s.name)}}
