@@ -5326,7 +5326,7 @@ res.tx=div({0:btn,17:"..."})
 					rota2:rota2,//number = boss
 					backups:false,
 					fight_per_rota:1,
-					fight_total:rota2.length*100,
+					fight_total:150000,
 					})
 	
 	if(POWERSTEP==3){potentiel()}
@@ -5377,7 +5377,7 @@ function analyse(){
 	
 	
 	var rota2 = []
-	for(var b of rumble){if(!surpuissance || rota2.length<333){rota2.push([b])}}
+	for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}
 	for(var pluses of brutesPlus){
 		cl("FIGHT TOTAL :",pluses.length*rota2.length*88*(surpuissance?6:1),pluses.length,rota2.length,88,(surpuissance?6:1))
 		
@@ -5387,7 +5387,7 @@ function analyse(){
 						rota2:rota2,//number = boss
 						backups:false,
 						fight_per_rota:1,
-						fight_total:pluses.length*rota2.length*88*(surpuissance?6:1),
+						fight_total:100000,
 						multiple_workers:true,
 						})
 	}
@@ -5507,7 +5507,7 @@ function afficheur(bilan){
 				cl(perkType,perk,sens)
 				
 				if(b.j){
-					var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001) * (perkType.startsWith("stat")?-1:1)
+					var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001) * (perkType.startsWith("stat")?-1:1) * (sens?1:-1)
 					btn.text(n3m(bonus))
 					btn.parent().css({"background-color":BONUSpalette(bonus/50),opacity:0.8})
 					$("#before"+perkType+perk).css({"background-color":BONUSbeforePalette(bonus/50),opacity:0.8})
@@ -5526,6 +5526,23 @@ function potentiel(){
 	
 	var brutesMoins = [[],[],[],[],[]],bruteIndex=0;for(var t in statsNotHaved){for(var s of statsNotHaved[t]){
 			brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})]);bruteIndex=(bruteIndex+1)%5}}
+
+
+	var rota2 = []
+	for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}
+	for(var mines of brutesMoins){
+		
+					simulFights({
+						fn:afficheur,
+						rota1:mines,
+						rota2:rota2,//number = boss
+						backups:false,
+						fight_per_rota:1,
+						fight_total:100000,
+						multiple_workers:true,
+						})
+	}
+
 
 }
 
