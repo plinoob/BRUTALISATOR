@@ -5246,7 +5246,7 @@ async function power(){
 		
 		
 		6:{click:function(){if(!surpuissance){surpuissance=1;}else if(surpuissance==1){surpuissance=2}else{surpuissance=0};
-			power();if(POWERSTEP==2){analyse()}
+			power();cl("POWERSTEP",POWERSTEP,surpuissance)if(POWERSTEP==2){analyse()}
 		}},1:"puissance",9:{position:"relative",height:"30px"}})}
 		
 		
@@ -5507,11 +5507,10 @@ function afficheur(bilan){
 				cl(perkType,perk,sens)
 				
 				if(b.j){
-				var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001)	
-				btn.text(n3m(bonus))
-				btn.parent().css({"background-color":BONUSpalette(bonus/50),opacity:0.8})
-				$("#before"+perkType+perk).css({"background-color":BONUSbeforePalette(bonus/50),opacity:0.8})
-				btn.parent().css({"transform":"scale("+(0.8+Math.max(0,Math.min(0.2,0.2*bonus/100)))+")"})
+					var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001) * (perk.startsWith("stat")?-1:1)
+					btn.text(n3m(bonus))
+					btn.parent().css({"background-color":BONUSpalette(bonus/50),opacity:0.8})
+					$("#before"+perkType+perk).css({"background-color":BONUSbeforePalette(bonus/50),opacity:0.8})
 				}
 	}
 	
@@ -5544,7 +5543,7 @@ if(!LOCAL){cl(POWERSTEP,bruteData,BRUTE,brutedatac,PUISSANCE)
 	if(!POWERSTEP || POWERSTEP==3){POWERSTEP=1;power()}
 	else if(POWERSTEP==1){POWERSTEP=2;analyse()}
 	else{POWERSTEP=3;power()}
-	
+	cl("POOOOWERSTEP",POWERSTEP)
 }
 "⚡️🔥"
 
