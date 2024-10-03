@@ -5414,7 +5414,7 @@ function makeAnaDiv(perkType,perk,sens){
 		if(perkType.startsWith("skill")){
 						
 			var useElement = $('img[src="/images/skills/'+perk+'.svg"]');
-			var res=div({9:{"max-width":"100%"},0:useElement.parent(),3:"power"})
+			var res=div({9:{display:"flex","justify-content":"center","max-width":"100%"},0:useElement.parent(),3:"power"})
 			cl("skill",perk,res,useElement)
 			return makeInfoDiv(res,perkType,perk)
 
