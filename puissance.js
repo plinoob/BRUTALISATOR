@@ -5368,7 +5368,7 @@ function analyse(){
 
 	var brute = bruteData
 
-	statsHaved = {stats};for(var i in perkTypesNoStats){statsHaved[i] = brute[i].filter(s=>s.name!="regeneration" && s.name!="backup")}
+	statsHaved = {stats};for(var i in perkTypesNoStats){statsHaved[i] = brute[i].filter(s=>s!="regeneration" && s!="backup")}
 
 	var brutesPlus = [[],[],[],[],[]],bruteIndex=0;for(var t in statsHaved){for(var s of statsHaved[t]){
 			if(t=="stats"){brutesPlus[bruteIndex].push([addPerkFrom(brute,{type:t,stats:s,stat1:s,stat1Value:2})])}
@@ -5420,7 +5420,7 @@ function makeAnaDiv(perkType,perk,sens){
 						
 			var useElement = $('img[src="/images/skills/'+perk+'.svg"]');
 			var res=div({9:{transform:"translate(-4px,0)",display:"flex","justify-content":"center","max-width":"100%"},0:useElement.parent(),3:"power"})
-			cl("skill",perk,res,useElement)
+
 			return makeInfoDiv(res,perkType,perk)
 
 		}
@@ -5436,16 +5436,13 @@ function makeAnaDiv(perkType,perk,sens){
 			weapondiv.style.top = `${centerY - (weapondiv.offsetHeight / 2)}px`;
 			weapondiv.style.left = `${centerX - (weapondiv.offsetWidth / 2)}px`;
 
-			weapondiv.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
-
-			cl("weapon",$(weapondiv))
 			return makeInfoDiv($(weapondiv),perkType,perk)
 		
 		}
 	}else if(perkType.startsWith("stat")){
 			
 			var useElement = findFirstParentDiv(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[perk],(perk=="endurance")?"p":"span"))
-			cl("stat",useElement)
+
 			var res=div({3:"power",9:(perk=="endurance")?{transform:"translate(-4px,0)",display:"flex"}:{display:"inline","margin-left":"10px"},0:$(useElement)})
 			return makeInfoDiv(res,perkType,perk)
 			
