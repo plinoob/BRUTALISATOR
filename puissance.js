@@ -5313,7 +5313,7 @@ res.tx=div({0:btn,17:"..."})
 	
 	
 				simulFights({
-					fn:function(res,ended){stopLoading();
+					fn:function(res,ended){if(POWERSTEP==1 || !POWERSTEP){stopLoading();}
 						var coef = res[0].v/res[0].j
 						PUISSANCE=coef
 						var chiffre = Math.round(coef*1000)
@@ -5447,6 +5447,51 @@ function makeAnaDiv(perkType,perk,sens){
 			return makeInfoDiv(res,perkType,perk)
 			
 		}
+	else{
+		//=============================================================== POTENTIEL =========================================================
+		
+		if(perkType.startsWith("pet")){
+						
+			var petDiv = $("#petDivMax")
+			if(!petDiv.length){var useElement = $(findTextInDOM("Force","span")).parent().parent().parent().parent()
+				cl("divpet",useElement)
+			petDiv=div({1:"petDivMax",3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+			,display: "flex","flex-direction": "line"},
+			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)}
+			
+			
+			var div2=div({0:petDiv})
+			div({0:div2,50:0,17:{dog1:"🐶",dog2:"🐶",dog3:"🐶",panther:"🐺",bear:"🐻"}[perk]})
+			var res=div({9:{margin:"2px"},0:div2})
+			return makeInfoDiv(res,perkType,perk)
+
+		}
+		if(perkType.startsWith("skill")){
+						
+			var skillDiv = $("#SkillsMax")
+			if(!skillDiv.length){
+				skillDiv=div({1:"SkillsMax",4:[10,80,"",5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+				,display: "flex","flex-direction": "line"},
+				textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
+			}
+			var res=div({9:{transform:"translate(-4px,0)",display:"flex","justify-content":"center","max-width":"100%"},0:skillDiv,3:"power"})
+
+			return makeInfoDiv(res,perkType,perk)
+
+		}
+		if(perkType.startsWith("weapon")){
+			
+			var weaponDiv = $("#WeaponsMax")
+			if(!weaponDiv.length){
+				weaponDiv=div({1:"WeaponsMax",4:[10,80,"",5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+				,display: "flex","flex-direction": "line"},
+				textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
+			}
+			var res=div({9:{transform:"translate(-4px,0)",display:"flex","justify-content":"center","max-width":"100%"},0:weaponDiv,3:"power"})
+
+			return makeInfoDiv(res,perkType,perk)
+		
+	}
 	
 }
 function makeInfoDiv(parent,perkType,perk){
