@@ -5492,6 +5492,7 @@ function makeAnaDiv(perkType,perk,sens){
 			return makeInfoDiv(res,perkType,perk)
 		
 	}
+	}
 	
 }
 function makeInfoDiv(parent,perkType,perk){
