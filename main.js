@@ -695,7 +695,7 @@ if(typeof(window)!="undefined"){	urrl= window.location.href;
 				$(divname+' .tx').each(function() {
 				if($(this).text()!="..."){l.push([$(this),parseFloat($(this).text())])}
 			});
-			l.sort(function(a,b){return a[1]-b[1]})
+			l.sort(function(a,b){return (a[1]-b[1] || a[0].attr("id")-b[0].attr("id"))})
 			for(var d of l){$(divname).prepend(d[0].parent().parent().parent())}	
 		}}
 },333)}
