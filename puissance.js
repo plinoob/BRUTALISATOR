@@ -5470,7 +5470,7 @@ function makeAnaDiv(perkType,perk,sens){
 						
 			var skillDiv = $("#SkillsMax")
 			if(!skillDiv.length){
-				skillDiv=div({1:"SkillsMax",13:10000000,4:[10,80,"",5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+				skillDiv=div({1:"SkillsMax",13:300000001,4:[10,80,"",5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
 				textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
 			}
@@ -5483,7 +5483,7 @@ function makeAnaDiv(perkType,perk,sens){
 			
 			var weaponDiv = $("#WeaponsMax")
 			if(!weaponDiv.length){
-				weaponDiv=div({1:"WeaponsMax",13:10000000,4:[10,5,"",80],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+				weaponDiv=div({1:"WeaponsMax",13:300000001,4:[10,5,"",80],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
 				textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
 			}
