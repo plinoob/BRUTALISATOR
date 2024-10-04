@@ -5500,7 +5500,7 @@ function makeInfoDiv(parent,perkType,perk,sens=true){
 		var res={div:div({2:"span",0:parent,9:{height:"30px","max-width":"100%"}})}
 		
 		var btn=res.btn=div({0:res.div,6:{click:function(){openBruteCell(name)}},2:"button",9:{
-	transform:"scale(0.8)"+(sens?"":" translate(0,-33%)"),
+	transform:"scale(0.8)"+(sens?"":" translate(0,-50%)"),
     margin: "8px auto",
     "border-radius": "4px",
     "border-width": "1px",
@@ -5553,7 +5553,7 @@ function afficheur(bilan){
 					btn.text(n3m(bonus))
 					btn.parent().css({"background-color":(bonus>0)?(sens?BONUSPLUSpalette(bonus/50):BONUSpalette(bonus/50)):MALUSpalette(-bonus/50),opacity:0.8})
 					$("#before"+perkType+perk).css({"background-color":(bonus>0)?(sens?BONUSPLUSbeforePalette(bonus/50):BONUSbeforePalette(bonus/50)):MALUSbeforePalette(-bonus/50),opacity:0.8})
-					btn.parent().parent().css("opacity",(Math.abs(bonus)<0.4)?0:1)
+					btn.parent().parent().css("opacity",(Math.abs(bonus)<0.6)?0:1)
 				}
 	}
 	

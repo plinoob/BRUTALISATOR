@@ -45,25 +45,25 @@ var BONUSpalette = setupColorInterpolation([
     [1, '#268E98']  // Bleu
 ]);
 var BONUSbeforePalette = setupColorInterpolation([
-    [0, '#169942'], // Rouge
-    [0.5, '#33726B'], // Rouge
-    [1, '#1A646B']  // Bleu
+    [0, '#117733'], // Rouge
+    [0.5, '#2B605A'], // Rouge
+    [1, '#134A4F']  // Bleu
 ]);    
 var BONUSPLUSpalette = setupColorInterpolation([
     [0, '#B4D17B'], // Rouge4DB0B7
     [1, '#9B1568']  // Bleu
 ]);
 var BONUSPLUSbeforePalette = setupColorInterpolation([
-    [0, '#889E5D'], // Rouge
-    [1, '#660E45']  // Bleu
+    [0, '#5E6D40'], // Rouge
+    [1, '#680E47']  // Bleu
 ]);    
 var MALUSpalette = setupColorInterpolation([
     [0, '#F47D42'], // Rouge
     [1, '#CB1C13']  // Bleu
 ]);//0.8+t/5
 var MALUSbeforePalette = setupColorInterpolation([
-    [0, '#C66537'], // Rouge
-    [1, '#931D14']  // Bleu
+    [0, '#9B4F2B'], // Rouge
+    [1, '#720E0B']  // Bleu
 ]);    
 // Fonction pour convertir une couleur hexadécimale en composantes RGB
 function hexToRgb(hex) {
