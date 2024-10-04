@@ -753,7 +753,7 @@ if(typeof(window)!="undefined"){	urrl= window.location.href;
 				$(divname+' .tx').each(function() {
 				if($(this).text()!="..."){l.push([$(this),parseFloat($(this).text())])}
 			});
-			l.sort(function(a,b){if(a[1]==b[1]){cl(a[0].attr("id"),b[0].attr("id"),a[0]);a[0].attr("id")-b[0].attr("id")};return (a[1]-b[1])})
+			l.sort(function(a,b){if(a[1]==b[1]){return a[0].attr("id").localeCompare(b[0].attr("id"))};return (a[1]-b[1])})
 			for(var d of l){$(divname).prepend(d[0].parent().parent().parent())}	
 		}}
 },333)}
