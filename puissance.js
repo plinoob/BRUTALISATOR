@@ -5487,7 +5487,7 @@ function makeAnaDiv(perkType,perk,sens){
 				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
 				textBoxCSS,baseCSS,{"padding": "5px"}])})
 			}
-			var res=div({9:{display:"flex","justify-content":"center","max-width":"100%"},0:weaponDiv,3:"power"})
+			var res=div({9:{margin:"3px",display:"flex","justify-content":"center","max-width":"100%"},0:weaponDiv,3:"power"})
 			div({0:res,2:"img",22:weaponImages[perk],9:{height:"18px"}})
 			
 			return makeInfoDiv(res,perkType,perk,false)
@@ -5533,7 +5533,7 @@ function makeInfoDiv(parent,perkType,perk,sens=true){
         'transform': 'rotateX(20deg) translateZ(-1px)',
         'z-index': '-1',
         'transition': 'height 0.1s, top 0.1s'}})
-res.tx=div({0:btn,1:perkType+perk,17:"..."})
+res.tx=div({3:"tx",0:btn,1:perkType+perk,17:"..."})
 
 		
 		
