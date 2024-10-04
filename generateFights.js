@@ -593,7 +593,6 @@ else{a[b]=[a[b],"",[1,1,1],[0,0],[]]}};if(Array.isArray(a[b])){if(!isara(a[b][a[
 }
 
 function str(a){return a.toString()}
-function int(a){return parseInt(a)}
 function float(a){return parseFloat(a)}
 
 // a in b
