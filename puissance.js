@@ -5497,7 +5497,8 @@ function makeAnaDiv(perkType,perk,sens){
 	
 }
 function makeInfoDiv(parent,perkType,perk,sens=true){
-		var res={div:div({2:"span",0:parent,9:{height:"30px","max-width":"100%"}})}
+		var res={div:div({2:"span",0:parent,9:{height:"30px","max-width":"100%"},6:{click:function(e){
+			if(e.which==2){var brute = await getBrute(BRUTE);brutes=["@"+BRUTE,"$"+brute.level+"_1_"+perkType+"_"+perk];launchFight()}}}})}
 		
 		var btn=res.btn=div({0:res.div,6:{click:function(){openBruteCell(name)}},2:"button",9:{
 	transform:"scale(0.8)"+(sens?"":" translate(0,-50%)"),

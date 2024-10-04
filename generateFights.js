@@ -356,7 +356,20 @@ async function launchFight(){
 	for(var i=0;i<2;i++){
 if(brutes[i].startsWith("$")){var brutename=brutes[i];
 var top 
-if(brutename.split("$")[1].split("_")[1]=="champion"){await getRumble(brutename.split("$")[1].split("_")[0]);
+if(brutename.split("$")[1].split("_").length==4){
+	var l=brutename.split("$")[1].split("_")
+	var lvl = parseInt(l[0])
+	var nm = parseInt(l[1])
+	var perkType=l[2]+"s"
+	var perk=l[3]
+	
+	await getRumble(brutename.split("$")[1].split("_")[0]);
+	
+	for(var b of rumble){if(b[perkType].includes(perk)){nm--;if(!nm){brutes[i]=b;break}}}
+	
+
+}
+else if(brutename.split("$")[1].split("_")[1]=="champion"){await getRumble(brutename.split("$")[1].split("_")[0]);
 
 for(var j in rumble){if(rumble[j].champion){top=parseInt(j)+1;brutes[i]=rumble[j];break}}}else{
 top=parseInt(brutename.split("$")[1].split("_")[1])
@@ -739,8 +752,7 @@ if(typeof(window)!="undefined"){	urrl= window.location.href;
 				if($(this).text()!="..."){l.push([$(this),parseFloat($(this).text())])}
 			});
 			l.sort(function(a,b){return a[1]-b[1]})
-			cl(l)
-			for(var d of l){$(divname).prepend(d[0].parent().parent().parent().parent())}	
+			for(var d of l){$(divname).prepend(d[0].parent().parent().parent())}	
 		}}
 },333)}
 
