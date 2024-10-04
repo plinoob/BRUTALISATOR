@@ -307,7 +307,7 @@ if(brutename.split("$")[1].split("_").length==4){
 	
 	await getRumble(brutename.split("$")[1].split("_")[0]);
 	
-	for(var b of rumble){if(b[perkType].includes(perk)){nm--;if(!nm){brutes[i]=b;break}}}
+	top=0;for(var b of rumble){top++;if(b[perkType].includes(perk)){nm--;if(!nm){brutes[i]=b;break}}}
 	
 
 }
@@ -684,7 +684,7 @@ var setInt
 var refreshPotentielLoop=0
 if(typeof(window)!="undefined"){	urrl= window.location.href;
 	setInt = setInterval(function(){
-		refreshPotentielLoop = (refreshPotentielLoop+1)%4
+		refreshPotentielLoop = (refreshPotentielLoop+1)%5
 		if (fightWorkers && fightWorkers.size) {fightWorkers.forEach(worker => worker.postMessage(5));}
 	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();
 	terminateWorkers();$(".power").remove();bruteData=undefined
