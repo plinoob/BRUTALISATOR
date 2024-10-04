@@ -5563,14 +5563,14 @@ function potentiel(){
 	
 	var brute = bruteData
 	
-	statsNotHaved = {stats,skills:[],weapons:[],pets:[]};cl(statsNotHaved)
+	statsNotHaved = {stats,skills:[],weapons:[],pets:[]};
 	for(var s of skills){if(s.name!="regeneration" && s.name!="backup" && !statsHaved.skills.includes(s.name)){statsNotHaved.skills.push(s.name)}}
 	for(var s of weapons){if(!statsHaved.weapons.includes(s.name)){statsNotHaved.weapons.push(s.name)}}
 	var dogFlag=true;for(var s of pets){if(!statsHaved.pets.includes(s.name) && (!s.name.startsWith("dog") || dogFlag)){
 			if(s.name.startsWith("dog")){dogFlag=false};statsNotHaved.pets.push(s.name)}}
 	
 	var brutesMoins = [[],[],[],[],[]],bruteIndex=0;for(var t in statsNotHaved){for(var s of statsNotHaved[t]){
-			if(t=="stats"){brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:t,stats:s,stat1:s,stat1Value:2})])}
+			if(t=="stats"){cl(t,s,{type:t,stats:s,stat1:s,stat1Value:2},statsNotHaved);brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:t,stats:s,stat1:s,stat1Value:2})])}
 			brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})]);bruteIndex=(bruteIndex+1)%5}}
 
 
