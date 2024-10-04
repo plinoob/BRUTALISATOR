@@ -5242,9 +5242,7 @@ function makeInfoDiv(n){
 		var res={div:div({
 		
 		
-		6:{click:function(){if(!surpuissance){surpuissance=1;}else if(surpuissance==1){surpuissance=2}else{surpuissance=0};
-			power();
-		}},9:{position:"relative",height:"30px"}})}
+		9:{transform:"translate(0,66%)",position:"relative",height:"30px"}})}
 		
 		
 		
@@ -5344,7 +5342,7 @@ async function levelUp(){
 	
 	
 	for(var i in l){
-		simu([l[i]],i,rota2)
+		simu([[l[i]]],i,rota2)
 	}
 	
 	
