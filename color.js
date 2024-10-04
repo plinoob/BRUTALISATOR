@@ -716,7 +716,9 @@ async function simulFights(arg){
 	arg.generateFights = generateFights;simulFights_no_fetch(arg);
 }
 
-var fightWorkers = new Set(); 
+var fightWorkers 
+
+if(!fightWorkers){fightWorkers= new Set();} 
 
 function terminateWorkers() {fightWorkers.forEach(worker => worker.terminate());fightWorkers.clear();}
 
