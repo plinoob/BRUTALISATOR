@@ -5360,7 +5360,7 @@ async function levelUp(){
 
 
 
-
+terminateWorkers()
 
 
 
