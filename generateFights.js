@@ -739,7 +739,7 @@ if(typeof(window)!="undefined"){	urrl= window.location.href;
 				if($(this).text()!="..."){l.push([$(this),parseFloat($(this).text())])}
 			});
 			l.sort(function(a,b){return a[1]-b[1]})
-			for(var d of l){$(divname).prepend(d[0])}	
+			for(var d of l){$(divname).prepend(d[0].parent().parent().parent().parent())}	
 		}}
 },333)}
 
