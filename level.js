@@ -5337,7 +5337,7 @@ async function levelUp(){
 	cl(brute.level,bruteLeft.level,bruteRight.level)
 	
 	var n=0
-	$("p").each(function(){if($(this).text()=="Valider"){$(this).append(makeInfoDiv(n).div);n+=2}})
+	$("p").each(function(){if($(this).text()=="Valider"){$(this).parent().parent().append(makeInfoDiv(n).div);n+=2}})
 	
 	
 	
