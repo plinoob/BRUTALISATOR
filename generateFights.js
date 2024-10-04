@@ -720,7 +720,7 @@ var setInt
 	var urrl
 
 if(typeof(window)!="undefined"){	urrl= window.location.href;
-	setInt = setInterval(function(){if(fightWorkers && fightWorkers.length){for(var w of fightWorkers){w.postMessage(5);}}
+	setInt = setInterval(function(){if (fightWorkers && fightWorkers.size) {fightWorkers.forEach(worker => worker.postMessage(5));}
 	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();
 	terminateWorkers();$(".power").remove();bruteData=undefined
 		$("#mynetwork").remove();$("#puissance").remove()}
@@ -742,9 +742,9 @@ async function simulFights(arg){
 	arg.generateFights = generateFights;simulFights_no_fetch(arg);
 }
 
-var fightWorkers
+var fightWorkers = new Set(); 
 
-function terminateWorkers(){if(!fightWorkers){fightWorkers=[]};while(fightWorkers.length){fightWorkers.pop().terminate()}}
+function terminateWorkers() {fightWorkers.forEach(worker => worker.terminate());fightWorkers.clear();}
 
 async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
 ,backups,fight_per_rota,fight_total,return_first_win,loading=true,
@@ -782,10 +782,11 @@ return new Promise((resolve, reject) => {
 
 	// Créer le worker à partir de l'URL du Blob
 	 
-	var worker = new Worker(workerUrl);fightWorkers.push(worker)
+	var worker = new Worker(workerUrl);fightWorkers.add(worker);
 	fightWorker = worker
 	worker.onmessage=function(e){if(e.data.firstwin){visualizeFight(e.data.firstwin);
-	e.data.ended=true};if(e.data.ended){stopLoading();worker.terminate();resolve(e.data.bilan);};fn(e.data.bilan,e.data.ended);}
+	e.data.ended=true};if(e.data.ended){fightWorkers.delete(worker);worker.terminate();if(!fightWorkers.size){stopLoading()};
+	resolve(e.data.bilan);};fn(e.data.bilan,e.data.ended);}
 
 	if(loading)startLoading();
 	
