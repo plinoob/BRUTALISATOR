@@ -5347,20 +5347,7 @@ var perkTypesNoStats={skills:"skill",pets:"pet",weapons:"weapon"}
 
 
 
-function removePerkFrom(brute,perk){
-	var brute = structuredClone(brute)
-	brute.name=brute.name+"$-$"+perk.type+"$"+perk[perk.type]
-	if(perk.type=="weapon"){brute.weapons=brute.weapons.filter(a => a !== perk.weapon)}
-	else if(perk.type=="pet"){brute.pets=brute.pets.filter(a => a !== perk.pet);removePetMalus(brute,perk.pet)}
-	else{brute = unApplySkillModifiers(brute,perk.skill);brute.skills=brute.skills.filter(a => a !== perk.skill);}
-	return brute
-}
-function addPerkFrom(brute,perk){
-	var brute=structuredClone(brute)
-	brute.level-=1
-	brute.name=brute.name+"$+$"+perk.type+"$"+perk[perk.type]
-	return updateBruteData(brute,perk)
-}
+
 
 function analyse(){
 

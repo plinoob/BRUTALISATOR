@@ -5235,6 +5235,85 @@ var weaponsFR={"fan": "Éventail",
 "scimitar": "Cimeterre",
  "sword": "Épée",};
 
+var pui = 0
+
+
+function makeInfoDiv(n){
+		var res={div:div({
+		
+		
+		6:{click:function(){if(!surpuissance){surpuissance=1;}else if(surpuissance==1){surpuissance=2}else{surpuissance=0};
+			power();
+		}},9:{position:"relative",height:"30px"}})}
+		
+		
+		
+		
+		var btn=res.btn=div({15:0,0:res.div,4:1,5:[-50,-60],2:"button",9:{
+display: "block",
+    margin: "8px auto",
+    "border-radius": "4px",
+    "border-width": "1px",
+    "border-style": "solid",
+    "border-image": "initial",
+    "border-color": "rgb(55, 1, 0) rgb(115, 61, 44) rgb(115, 61, 44)",
+    "background-color": palette(0.66),
+    color: "rgb(255, 255, 255)",
+    padding: "4px 8px",
+    "text-transform": "uppercase",
+    "font-family": "LaBrute",
+    "font-size": "1rem",
+			opacity:0.2,
+
+    "box-shadow": "rgba(0, 0, 0, 0.3) 2px 3px",
+    transition: "box-shadow 0.1s, top 0.1s, perspective 0.1s",
+    perspective: "20px",
+    "transform-style": "preserve-3d",
+    "z-index": 1}})
+	
+	res.before=div({0:btn,1:"levelupbefore"+n,9:{
+        'position': 'absolute',
+        'top': '-8px',
+        'left': '2.5%',
+        'width': '95%',
+        'height': '8px',
+        'background-color': beforePalette(0.66),
+		opacity:0.2,
+        'transform': 'rotateX(20deg) translateZ(-1px)',
+        'z-index': '-1',
+        'transition': 'height 0.1s, top 0.1s'}})
+res.tx=div({0:btn,1:"leveluptx"+n,17:"..."})
+
+	
+		return res}
+
+
+
+async function simu(b,n,rota2){
+	
+		simulFights({
+						fn:function(bilan){var b=bilan[0];if(b.j){
+							var bonus = ((pui-(b.v/b.j)))*100/((1-pui)||0.001)
+							if(n==1){pui = b.v/b.j}
+							else if(pui!=0){$("#leveluptx"+n).text(n3m(bonus))
+								btn.parent().css({"background-color":(bonus>0)?(BONUSpalette(bonus/50)):MALUSpalette(-bonus/50),opacity:0.96})
+								$("#levelupbefore"+n).css({"background-color":(bonus>0)?(BONUSbeforePalette(bonus/50)):MALUSbeforePalette(-bonus/50),opacity:0.96})
+					
+							}
+							
+							
+						}},
+						rota1:b,
+						rota2:rota2,//number = boss
+						backups:false,
+						fight_per_rota:1,
+						fight_total:100000,
+						multiple_workers:true,
+					})
+	
+	
+}
+
 
 
 async function levelUp(){
@@ -5246,10 +5325,28 @@ async function levelUp(){
 	
 	while(destiny.RIGHT.current || destiny.LEFT.current){destiny = destiny.RIGHT.current?destiny.RIGHT.current:destiny.LEFT.current}
 	
-	cl(destiny.RIGHT,destiny.LEFT)
+	var bruteLeft=updateBruteData(structuredClone(brute),destiny.LEFT)
+	var bruteRight=updateBruteData(structuredClone(brute),destiny.RIGHT)
+
+	brute = updateBruteData(structuredClone(brute),{type:"skill",skill:"backup"})
+	
+	var l = [bruteLeft,brute,bruteRight]
+	
+	await getRumble(brute.level)
+	var rota2 = []
+	
+	for(var b of rumble){rota2.push([b])}
+	cl(brute.level,bruteLeft.level,bruteRight.level)
+	
+	var n=0
+	$("p").each(function(){if($(this).text()=="Valider"){$(this).append(makeInfoDiv(n).div);n+=2}})
+	
+	var i = 
 	
 	
-	
+	for(var i in l){
+		simu([l[i]],i,rota2)
+	}
 	
 	
 	
