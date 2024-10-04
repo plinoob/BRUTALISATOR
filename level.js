@@ -5369,7 +5369,7 @@ async function levelUp(){
 
 
 
-levelUp()
+if(!LOCAL) levelUp()
 
 
 
