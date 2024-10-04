@@ -5456,7 +5456,7 @@ function makeAnaDiv(perkType,perk,sens){
 			if(!petDiv.length){var useElement = $(findTextInDOM("Force","span")).parent().parent().parent().parent()
 				cl("divpet",useElement)
 			petDiv=div({1:"petDivMax",3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
-			,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
+			,display: "flex","flex-direction": "line","align-items": "center"},
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)}
 			
 			  
@@ -5484,7 +5484,7 @@ function makeAnaDiv(perkType,perk,sens){
 			var weaponDiv = $("#WeaponsMax")
 			if(!weaponDiv.length){
 				weaponDiv=div({1:"WeaponsMax",4:[10,80,"",5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
-				,display: "flex","flex-direction": "line"},
+				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
 				textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
 			}
 			var res=div({9:{transform:"translate(-4px,0)",display:"flex","justify-content":"center","max-width":"100%"},0:weaponDiv,3:"power"})
