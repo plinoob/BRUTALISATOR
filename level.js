@@ -5291,7 +5291,7 @@ async function simu(b,n,rota2){
 	
 		simulFights({
 						fn:function(bilan){var b=bilan[0];if(b.j){
-							var bonus = ((pui-(b.v/b.j)))*100/((1-pui)||0.001)
+							var bonus = -((pui-(b.v/b.j)))*100/((1-pui)||0.001)
 							if(n==1){pui = b.v/b.j}
 							else if(pui!=0){$("#leveluptx"+n).text(n3m(bonus))
 								$("#leveluptx"+n).parent().css({"background-color":(bonus>0)?(BONUSpalette(bonus/50)):MALUSpalette(-bonus/50),opacity:0.96})
