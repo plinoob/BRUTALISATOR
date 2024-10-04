@@ -5242,7 +5242,7 @@ function makeInfoDiv(n){
 		var res={div:div({
 		
 		
-		9:{transform:"translate(0,10%)",position:"relative",height:"30px"}})}
+		9:{transform:"translate(70px,10%)",position:"relative",height:"30px"}})}
 		
 		
 		
