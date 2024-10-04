@@ -739,13 +739,15 @@ simulFights({
 var setInt
 	clearInterval(setInt);
 	var urrl
-
+var refreshPotentielLoop=0
 if(typeof(window)!="undefined"){	urrl= window.location.href;
-	setInt = setInterval(function(){if (fightWorkers && fightWorkers.size) {fightWorkers.forEach(worker => worker.postMessage(5));}
+	setInt = setInterval(function(){
+		refreshPotentielLoop = (refreshPotentielLoop+1)%4
+		if (fightWorkers && fightWorkers.size) {fightWorkers.forEach(worker => worker.postMessage(5));}
 	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();
 	terminateWorkers();$(".power").remove();bruteData=undefined
 		$("#mynetwork").remove();$("#puissance").remove()}
-		for(var divname of ["#SkillsMax","#WeaponsMax"]){
+		for(var divname of ["#SkillsMax","#WeaponsMax"]){if(refreshPotentielLoop){break}
 			var l=[]	
 			if($(divname).length){
 				$(divname+' .tx').each(function() {
