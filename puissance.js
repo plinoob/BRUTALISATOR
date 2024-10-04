@@ -5570,8 +5570,8 @@ function potentiel(){
 			if(s.name.startsWith("dog")){dogFlag=false};statsNotHaved.pets.push(s.name)}}
 	
 	var brutesMoins = [[],[],[],[],[]],bruteIndex=0;for(var t in statsNotHaved){for(var s of statsNotHaved[t]){
-			if(t=="stats"){cl(t,s,{type:t,stats:s,stat1:s,stat1Value:2},statsNotHaved);brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:t,stats:s,stat1:s,stat1Value:2})])}
-			brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})]);bruteIndex=(bruteIndex+1)%5}}
+			if(t=="stats"){brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:t,stats:s,stat1:s,stat1Value:2})])}
+			else{brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})]);bruteIndex=(bruteIndex+1)%5}}}
 
 
 	var rota2 = []
