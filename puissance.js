@@ -5475,7 +5475,7 @@ function makeAnaDiv(perkType,perk,sens){
 				textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
 			}
 			var res=div({9:{transform:"translate(-4px,0)",display:"flex","justify-content":"center","max-width":"100%"},0:skillDiv,3:"power"})
-			div({0:res,2:"img",22:weaponImages[perk],9:{height:"18px"}})
+			div({0:res,2:"img",22:"/images/skills/"+perk+".svg",9:{height:"18px"}})
 			return makeInfoDiv(res,perkType,perk)
 
 		}
@@ -5488,7 +5488,7 @@ function makeAnaDiv(perkType,perk,sens){
 				textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
 			}
 			var res=div({9:{transform:"translate(-4px,0)",display:"flex","justify-content":"center","max-width":"100%"},0:weaponDiv,3:"power"})
-			div({0:res,2:"img",22:"/images/skills/"+perk+".svg",9:{height:"18px"}})
+			div({0:res,2:"img",22:weaponImages[perk],9:{height:"18px"}})
 			
 			return makeInfoDiv(res,perkType,perk)
 		
