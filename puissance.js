@@ -5537,7 +5537,7 @@ res.tx=div({0:btn,1:perkType+perk,17:"..."})
 
 		
 		
-		return res}
+		return res.tx}
 
 function afficheur(bilan){
 	var perkType
