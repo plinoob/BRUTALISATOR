@@ -5540,7 +5540,6 @@ res.tx=div({0:btn,1:perkType+perk,17:"..."})
 		return res}
 
 function afficheur(bilan){
-	cl(bilan)
 	var perkType
 	var perk
 	var sens
@@ -5552,8 +5551,8 @@ function afficheur(bilan){
 				if(b.j){
 					var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001) * (sens?-1:1)
 					btn.text(n3m(bonus))
-					btn.parent().css({"background-color":(bonus>0)?BONUSpalette(bonus/50):MALUSpalette(-bonus/50),opacity:0.8})
-					$("#before"+perkType+perk).css({"background-color":(bonus>0)?BONUSbeforePalette(bonus/50):MALUSbeforePalette(-bonus/50),opacity:0.8})
+					btn.parent().css({"background-color":(bonus>0)?(sens?BONUSPLUSpalette(bonus/50):BONUSpalette(bonus/50)):MALUSpalette(-bonus/50),opacity:0.8})
+					$("#before"+perkType+perk).css({"background-color":(bonus>0)?(sens?BONUSPLUSbeforePalette(bonus/50):BONUSbeforePalette(bonus/50)):MALUSbeforePalette(-bonus/50),opacity:0.8})
 					btn.parent().parent().css("opacity",(Math.abs(bonus)<0.4)?0:1)
 				}
 	}
@@ -5564,13 +5563,14 @@ function potentiel(){
 	
 	var brute = bruteData
 	
-	statsNotHaved = {skills:[],weapons:[],pets:[]};
+	statsNotHaved = {stats,skills:[],weapons:[],pets:[]};
 	for(var s of skills){if(s.name!="regeneration" && s.name!="backup" && !statsHaved.skills.includes(s.name)){statsNotHaved.skills.push(s.name)}}
 	for(var s of weapons){if(!statsHaved.weapons.includes(s.name)){statsNotHaved.weapons.push(s.name)}}
 	var dogFlag=true;for(var s of pets){if(!statsHaved.pets.includes(s.name) && (!s.name.startsWith("dog") || dogFlag)){
 			if(s.name.startsWith("dog")){dogFlag=false};statsNotHaved.pets.push(s.name)}}
 	
 	var brutesMoins = [[],[],[],[],[]],bruteIndex=0;for(var t in statsNotHaved){for(var s of statsNotHaved[t]){
+			if(t=="stats"){brutesPlus[bruteIndex].push([addPerkFrom(brute,{type:t,stats:s,stat1:s,stat1Value:2})])}
 			brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})]);bruteIndex=(bruteIndex+1)%5}}
 
 
