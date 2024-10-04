@@ -5470,12 +5470,12 @@ function makeAnaDiv(perkType,perk,sens){
 						
 			var skillDiv = $("#SkillsMax")
 			if(!skillDiv.length){
-				skillDiv=div({1:"SkillsMax",4:[10,80,"",5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+				skillDiv=div({1:"SkillsMax",13:10000000,4:[10,80,"",5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
 				textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
 			}
 			var res=div({9:{transform:"translate(-4px,0)",display:"flex","justify-content":"center","max-width":"100%"},0:skillDiv,3:"power"})
-
+			div({0:res,2:"img",22:weaponImages[perk],9:{height:"18px"}})
 			return makeInfoDiv(res,perkType,perk)
 
 		}
@@ -5483,12 +5483,13 @@ function makeAnaDiv(perkType,perk,sens){
 			
 			var weaponDiv = $("#WeaponsMax")
 			if(!weaponDiv.length){
-				weaponDiv=div({1:"WeaponsMax",4:[10,80,"",5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+				weaponDiv=div({1:"WeaponsMax",13:10000000,4:[10,5,"",80],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
 				textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
 			}
 			var res=div({9:{transform:"translate(-4px,0)",display:"flex","justify-content":"center","max-width":"100%"},0:weaponDiv,3:"power"})
-
+			div({0:res,2:"img",22:"/images/skills/"+perk+".svg",9:{height:"18px"}})
+			
 			return makeInfoDiv(res,perkType,perk)
 		
 	}
