@@ -5472,11 +5472,11 @@ function makeAnaDiv(perkType,perk,sens){
 			if(!skillDiv.length){
 				skillDiv=div({1:"SkillsMax",13:300000001,4:[10,80,"",5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
-				textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
+				textBoxCSS,baseCSS,{"padding": "5px"}])})
 			}
-			var res=div({9:{transform:"translate(-4px,0)",display:"flex","justify-content":"center","max-width":"100%"},0:skillDiv,3:"power"})
+			var res=div({9:{display:"flex","justify-content":"center","max-width":"100%"},0:skillDiv,3:"power"})
 			div({0:res,2:"img",22:"/images/skills/"+perk+".svg",9:{height:"18px"}})
-			return makeInfoDiv(res,perkType,perk)
+			return makeInfoDiv(res,perkType,perk,false)
 
 		}
 		if(perkType.startsWith("weapon")){
@@ -5485,22 +5485,22 @@ function makeAnaDiv(perkType,perk,sens){
 			if(!weaponDiv.length){
 				weaponDiv=div({1:"WeaponsMax",13:300000001,4:[10,5,"",80],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
-				textBoxCSS,baseCSS,{"margin": "16px 40px"}])})
+				textBoxCSS,baseCSS,{"padding": "5px"}])})
 			}
-			var res=div({9:{transform:"translate(-4px,0)",display:"flex","justify-content":"center","max-width":"100%"},0:weaponDiv,3:"power"})
+			var res=div({9:{display:"flex","justify-content":"center","max-width":"100%"},0:weaponDiv,3:"power"})
 			div({0:res,2:"img",22:weaponImages[perk],9:{height:"18px"}})
 			
-			return makeInfoDiv(res,perkType,perk)
+			return makeInfoDiv(res,perkType,perk,false)
 		
 	}
 	}
 	
 }
-function makeInfoDiv(parent,perkType,perk){
+function makeInfoDiv(parent,perkType,perk,sens=true){
 		var res={div:div({2:"span",0:parent,9:{height:"30px","max-width":"100%"}})}
 		
 		var btn=res.btn=div({0:res.div,6:{click:function(){openBruteCell(name)}},2:"button",9:{
-	transform:"scale(0.8)",
+	transform:"scale(0.8)"+(sens?"":" translate(0,-33%)"),
     margin: "8px auto",
     "border-radius": "4px",
     "border-width": "1px",
