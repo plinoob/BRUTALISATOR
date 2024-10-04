@@ -353,7 +353,6 @@ function randomLevel(mean=33,std=3){return parseInt(Math.max(0,gaussianRandomWit
 //-----------------------------------------------------------------------------------------------------------------
 
 var d32 = Math.pow(2,32)-1
-function isara(a){return(Array.isArray(a))};
 function int(a){return parseInt(a)}
 var U = undefined
 
