@@ -5321,7 +5321,7 @@ async function levelUp(){
 	destiny = JSON.parse(await destiny.text())
 	cl(destiny)
 	
-	while(destiny.RIGHT.current || destiny.LEFT.current){destiny = destiny.RIGHT.current?destiny.RIGHT.current:destiny.LEFT.current}
+	while(destiny.RIGHT.current || destiny.LEFT.current){destiny = destiny.RIGHT.current?destiny.RIGHT:destiny.LEFT}
 	
 	var bruteLeft=updateBruteData(structuredClone(brute),destiny.LEFT)
 	var bruteRight=updateBruteData(structuredClone(brute),destiny.RIGHT)
