@@ -5341,7 +5341,6 @@ async function levelUp(){
 	var n=0
 	$("p").each(function(){if($(this).text()=="Valider"){$(this).append(makeInfoDiv(n).div);n+=2}})
 	
-	var i = 
 	
 	
 	for(var i in l){
