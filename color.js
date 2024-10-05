@@ -1195,7 +1195,7 @@ div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image",9:{height:"133px",}})
 }
 SOMBRE = !document.querySelector('[aria-label="Mode sombre"]')
 if(SOMBRE){
-textBoxCSS = {color: "#D2DFF2",
+textBoxCSS = {color: "#E1E7EF",
     "box-shadow": "rgb(159, 168, 218) 0px 0px 0px 1px, rgb(121, 134, 203) 0px 0px 1px 4.5px, rgb(63, 81, 181) 0px 0px 0px 6px, rgb(40, 53, 147) 3px 3px 0px 6px",
     "background-color": "rgb(20, 30, 41)",
     "border-radius": "5px",
