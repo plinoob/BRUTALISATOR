@@ -1193,13 +1193,22 @@ div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image",9:{height:"133px",}})
     "line-height": "1.5",
     "letter-spacing": "0.00938em",
 }
-
+if(!document.querySelector('[aria-label="Mode sombre"]')){
+textBoxCSS = {color: "rgb(255, 255, 255)",
+    "box-shadow": "rgb(159, 168, 218) 0px 0px 0px 1px, rgb(121, 134, 203) 0px 0px 1px 4.5px, rgb(63, 81, 181) 0px 0px 0px 6px, rgb(40, 53, 147) 3px 3px 0px 6px",
+    "background-color": "rgb(20, 30, 41)",
+    "border-radius": "5px",
+    margin: "16px 8px",
+padding: "0px"}
+	
+}else{
 textBoxCSS = {color: "rgb(176, 107, 79)",
     "box-shadow": "rgb(222, 195, 127) 0px 0px 0px 1px, rgb(246, 238, 144) 0px 0px 1px 4.5px, rgb(114, 82, 84) 0px 0px 0px 6px, rgb(188, 123, 74) 3px 3px 0px 6px",
     "background-color": "rgb(251, 242, 175)",
     "border-radius": "5px",
     margin: "16px 8px",
 padding: "0px"}
+}
 
 }
 
