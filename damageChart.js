@@ -2666,7 +2666,7 @@ var observer = new MutationObserver((mutationsList) => {
 			return s}
 			
 			function getDamageFromTeam(team){var s = "";
-			for(var i of team){var bruteSTR = '<font opacity="0.88" font-size="0.751429rem" color="rgb(140, 81, 64)"><b>'+i[1]+"</b></font>"+"\n"
+			for(var i of team){var bruteSTR = '<font opacity="0.88" font-size="0.751429rem" color="'+(SOMBRE?'#E08A88':'rgb(140, 81, 64)')+'"><b>'+i[1]+"</b></font>"+"\n"
 			s+=bruteSTR
 			}
 			return s}
@@ -2757,7 +2757,7 @@ for(var i in sorted){
 if($('#floatingDiv').length>0){div({9:{"text-align":"right"},2:"span",17:s,0:$('#floatingDiv').empty()})}
 s=""
 for(var i in sorted){
-	s+='<font text-align="left" opacity="0.88" font-size="0.661429rem" color="rgb(140, 81, 64)">'+sorted[i]+"</font>"+"\n"
+	s+='<font text-align="left" opacity="0.88" font-size="0.661429rem" color="'+(SOMBRE?'#E08A88':'rgb(140, 81, 64)')+'">'+sorted[i]+"</font>"+"\n"
 }
 
 if($('#floatingDiv').length>0){div({2:"span",17:s,0:$('#floatingDiv')})}
