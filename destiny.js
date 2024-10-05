@@ -4091,7 +4091,7 @@ function zu(){return zu=Object.assign||function(g){for(var t=1;t<arguments.lengt
 
 
 $("#mynetwork").remove()
-div({1:"mynetwork",4:0,13:500000000,10:"#"+SOMBRE?"202934":"EEBB83",12:["100%","100%"]})
+div({1:"mynetwork",4:0,13:500000000,10:SOMBRE?"#202934":"#EEBB83",12:["100%","100%"]})
     // Exemple de JSON, tu le chargeras probablement via une requête ou localement
 
 function isLeaf(node) {if(node.currentDestiny)return false
