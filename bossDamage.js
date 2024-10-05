@@ -5271,7 +5271,7 @@ var weaponsFR={"fan": "Éventail",
 			return s}
 			
 			function getDamageFromTeam(){var s = "";
-			for(var i in team){var bruteSTR = '<font opacity="0.66" font-size="0.751429rem" color="'+(SOMBRE?'#E08A88':'rgb(255,140,100)')+'"><b>'
+			for(var i in team){var bruteSTR = '<font opacity="0.66" font-size="0.751429rem" color="'+(SOMBRE?'#DB8F8E':'rgb(255,140,100)')+'"><b>'
 			+parseInt(team[i]*((regens.indexOf(i)!=-1)?9:7)/bilan[i])+"</b></font>"+"\n"
 			s+=bruteSTR
 			}
