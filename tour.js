@@ -2599,7 +2599,7 @@ function clickOnFirstBrute(){
 	if(firstImage.length && !clickedOnFirstBrute){clickedOnFirstBrute=true;$(firstImage).click()
     }}
 function clickOnArena(){var elem ;$("a").each(function(){if($(this).attr("href").includes("arena")){elem=$(this)}});cl(elem);
-	if(elem && !clickedOnArena){clickedOnArena=true;cl("CLIKC onaaaaaaaaaaaa :",elem);
+	if(elem && !clickedOnArena){clickedOnArena=true;cl("CLIKC iiii :",elem);
 	
 history.pushState(null, '', '/'BRUTE+"/arena");
 }}
