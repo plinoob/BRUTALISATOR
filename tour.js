@@ -2604,7 +2604,7 @@ async function Hall(){clickedOnHall = false}
 async function Versus(){clickedOnBestMatchup = false}
 async function Fight(){clickedOnLaunchFight = false}
 
-actions={
+var actions={
 	Hall : {
 		Profil:[,clickOnProfilSpan],
 		End:[isEnded,endTour]
