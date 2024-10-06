@@ -643,6 +643,20 @@ function isTextInDOM(text,balise) {
   return found;
 }
 
+function findFirstTextInDOM(text,balise) {
+  // Récupérer tous les éléments de la page
+  const elements = document.querySelectorAll(balise);
+  var elem
+  // Parcourir tous les éléments et vérifier leur texte
+  elements.forEach(element => {
+    if (element.textContent.includes(text)) {
+      console.log('Élément trouvé :', element.textContent);
+	  return element;
+    }
+  });
+  
+}
+
 function findTextInDOM(text,balise) {
   // Récupérer tous les éléments de la page
   const elements = document.querySelectorAll(balise);
