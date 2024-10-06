@@ -2667,6 +2667,7 @@ async function Tour(){
 		else if(url[2].startsWith("tournament")){BRUTE = url[1];currentLoc="Tournoi";Tournoi()}
 		
 	}
+	stopLoading()
 	
 }
 
