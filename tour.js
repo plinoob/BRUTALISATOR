@@ -2601,14 +2601,8 @@ function clickOnFirstBrute(){
 function clickOnArena(){var elem ;$("a").each(function(){if($(this).attr("href").includes("arena")){elem=$(this)}});cl(elem);
 	if(elem && !clickedOnArena){clickedOnArena=true;cl("CLIKC onaaaaaaaaaaaa :",elem);
 	
-elem.on('click', function(event) {
-    event.preventDefault();
-    // Ton code ici pour simuler le clic
-});
-
-elem[0].dispatchEvent(new MouseEvent('click'));
-	
-	elem.mouseup();elem.trigger("click");}}
+history.pushState(null, '', '/'BRUTE+"/arena");
+}}
 function clickOnHall(){var elem = findTextInDOM("Hall","span");if(elem && !clickedOnHall){clickedOnHall=true;$(elem).click()}}
 function clickOnDinoReward(){var elem = findTextInDOM("Eternal DinoRPG","button");if(elem){dinoReward=true;$(elem).click()}}
 function clickOnLaunchFight(){var elem = findTextInDOM("Lancer le combat","div");if(elem && !clickedOnLaunchFight){clickedOnLaunchFight=true;$(elem).click()}}
