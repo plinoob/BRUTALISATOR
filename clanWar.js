@@ -2634,11 +2634,11 @@ $('a').filter(function() {
 		
 		var ah=makeInfoDiv(dv)
 		ah.tx.text(n3m(res))
-		ah.btn.css({"background-color":clanWarpalette(res/moliere),opacity:0.8})
-		ah.before.css({"background-color":clanWarBEFOREpalette(res/moliere),opacity:0.8})
+		ah.btn.css({"background-color":clanWarpalette(Math.max(0,(res/moliere-0.8)*1.66)),opacity:0.8})
+		ah.before.css({"background-color":clanWarBEFOREpalette(Math.max(0,(res/moliere-0.8)*1.66)),opacity:0.8})
 		
 		
-		div({0:dv,24:30,17:encour?"⚠️":""})
+		div({0:dv,24:24,17:encour?"⚠️":""})
 		
 		
     }
