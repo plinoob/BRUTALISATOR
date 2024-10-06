@@ -2645,6 +2645,7 @@ var currentLoc = "Hall"
 
 async function Tour(){
 	while(!tourTerminer){
+		startLoading()
 		for(var loc in actions){
 			if(loc == currentLoc){
 				for(var opts in actions[loc]){
