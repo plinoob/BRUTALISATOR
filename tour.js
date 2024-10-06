@@ -2594,7 +2594,8 @@ function clickOnFirstBrute(){
 }).first();
 	if(firstImage.length && !clickedOnFirstBrute){clickedOnFirstBrute=true;$(firstImage).click()
     }}
-function clickOnArena(){var elem = document.querySelector('[href="/'+BRUTE+'/arena"]');if(elem && !clickedOnArena){clickedOnArena=true;$(elem).click()}}
+function clickOnArena(){var elem $("a").each(function(){if($(this).attr("href").includes("arena")){elem=$(this)}});cl(elem);
+if(elem && !clickedOnArena){clickedOnArena=true;$(elem).click()}}
 function clickOnHall(){var elem = findTextInDOM("Hall","span");if(elem && !clickedOnHall){clickedOnHall=true;$(elem).click()}}
 function clickOnDinoReward(){var elem = findTextInDOM("Eternal DinoRPG","button");if(elem){dinoReward=true;$(elem).click()}}
 function clickOnLaunchFight(){var elem = findTextInDOM("Lancer le combat","div");if(elem && !clickedOnLaunchFight){clickedOnLaunchFight=true;$(elem).click()}}
