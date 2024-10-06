@@ -2573,8 +2573,8 @@ async function endTour(){tourTerminer = true;cl("Tour terminé")}
 async function isEnded(){return tourEnded}
 async function dinoRewards(){return dinoReward}
 async function notDinoRewards(){return !dinoReward}
-async function fightsLeft(){return findTextInDOM("Il te reste ","p")}
-async function noFightLeft(){return !findTextInDOM("Il te reste ","p")}
+async function fightsLeft(){return isTextInDOM("Il te reste ","p")}
+async function noFightLeft(){return isTextInDOM("Nouveau niveau !","button") || isTextInDOM("dés demain","p")}
 async function bruteAlreadyDone(){return alreadyDone}
 async function isArenaEnough(){cl("check arena?")}
 async function isArenaNotEnough(){cl("check arena?")}
