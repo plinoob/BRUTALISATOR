@@ -2664,6 +2664,7 @@ async function Tour(){
 		else if(url.length>2 && url[2] == "fight"){BRUTE = url[1];currentLoc="Fight"}
 		else if(url.length==3 && url[1]=="user"){currentLoc="Profil"}
 		else if(url.length==3 && url[2]=="arena"){BRUTE = url[1];currentLoc="Arena"}
+		else if(url[2].startsWith("tournament")){BRUTE = url[1];currentLoc="Tournoi"}
 		
 	}
 	
