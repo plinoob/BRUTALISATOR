@@ -2591,7 +2591,7 @@ res.tx=div({3:"tx",0:btn,17:"..."})
 
 		
 		
-		return res.tx}
+		return res}
 
 
 
