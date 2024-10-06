@@ -3852,8 +3852,8 @@ else{window.location.href="/"+BRUTE+"/clan/4c007438-9aa0-419e-af73-d82f8dc39eae"
 }
 else if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATOR+"destiny.js")}
 else if(url.length==3 && url[2]=="level-up"){BRUTE = url[1];addScript(BRUTALISATOR+"level.js")}
-else if(url.length==3 && url[2]=="arena" /*&& BRANCHE=="dev"*/){addScript(BRUTALISATOR+"clanWar.js")}//BRUTE = url[1];arena()}
-else if(url.length==3 && url[2]=="cell" /*&& BRANCHE=="dev"*/){BRUTE = url[1];addScript(BRUTALISATOR+"puissance.js")}
+else if(url.length==3 && url[2]=="arena" /*&& BRANCHE=="dev"*/){BRUTE = url[1];arena()}
+else if(url.length==3 && url[2]=="cell" /*&& BRANCHE=="dev"*/){addScript(BRUTALISATOR+"clanWar.js")}//BRUTE = url[1];addScript(BRUTALISATOR+"puissance.js")}
 else if(url.length==4 && url[2]=="versus"){BRUTE = url[1];addScript(BRUTALISATOR+"fight.js")}
 else if(url.length==4 && url[2]=="clan"){CLAN = url[3];addScript(BRUTALISATOR+"bossDamage.js")}
 else if(BRANCHE == "dev" && url.length==3 && url[1]=="user"){addScript(BRUTALISATOR+"devTools.js")}
