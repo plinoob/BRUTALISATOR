@@ -2554,7 +2554,7 @@ function makeInfoDiv(parent){
 		var res={div:div({2:"span",0:parent,9:{height:"30px","max-width":"100%"}})}
 		
 		var btn=res.btn=div({0:res.div,2:"button",9:{
-	transform:"scale(0.8)"+(sens?"":" translate(0,-50%)"),
+	transform:"scale(0.8)"+(" translate(0,-10%)"),
     margin: "8px auto",
     "border-radius": "4px",
     "border-width": "1px",
@@ -2576,7 +2576,7 @@ function makeInfoDiv(parent){
     "transform-style": "preserve-3d",
     "z-index": 1}})
 	
-	res.before=div({0:btn,1:"before"+perkType+perk,9:{
+	res.before=div({0:btn,9:{
         'position': 'absolute',
         'top': '-8px',
         'left': '2.5%',
@@ -2587,7 +2587,7 @@ function makeInfoDiv(parent){
         'transform': 'rotateX(20deg) translateZ(-1px)',
         'z-index': '-1',
         'transition': 'height 0.1s, top 0.1s'}})
-res.tx=div({3:"tx",0:btn,1:perkType+perk,17:"..."})
+res.tx=div({3:"tx",0:btn,17:"..."})
 
 		
 		
