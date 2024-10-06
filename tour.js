@@ -2570,45 +2570,45 @@ var dinoReward = false
 
 var tourTerminer = false
 
-async function endTour(){tourTerminer = true;cl("Tour terminé")}
+function endTour(){tourTerminer = true;cl("Tour terminé")}
 
-async function isEnded(){return tourEnded}
-async function dinoRewards(){return dinoReward}
-async function notDinoRewards(){return !dinoReward}
-async function fightsLeft(){return inscrit() && isTextInDOM("Il te reste ","p")}
-async function noFightLeft(){return inscrit() && (isTextInDOM("Nouveau niveau !","button") || isTextInDOM("dés demain","p"))}
-async function bruteAlreadyDone(){return alreadyDone}
-async function isArenaEnough(){cl("check arena?")}
-async function isArenaNotEnough(){cl("check arena?")}
-async function inscrit(){return !(isTextInDOM("Tournoi","button")) || clickedOnInscrire || isTextInDOM("rute inscrite","p")}
-async function notInscrit(){return !inscrit}
-
-
-async function clickOnNextBrute(){var elem = document.querySelector('[aria-label="Brute suivante"]');if(elem && !clickedOnNextBrute){clickedOnNextBrute = true;}}
-async function clickOnTournoi(){var elem = findTextInDOM("Tournoi","button");if(elem && !clickedOnTournoi){clickedOnTournoi=true;$(elem).click()}}
-async function inscrire(){var elem = findTextInDOM("Marquer comme vu","button");if(elem && !clickedOnInscrire){clickedOnInscrire=true;$(elem).click()}}
-async function clickOnProfilSpan(){var elem = findTextInDOM("Profil de ","span");if(elem && !clickedOnProfil){clickedOnProfil=true;$(elem).click()}}
-async function clickOnFirstBrute(){var elem = findTextInDOM("Niveau","p");if(elem && !clickedOnFirstBrute){clickedOnFirstBrute=true;$(elem).click()}}
-async function clickOnArena(){var elem = document.querySelector('[href="/'+BRUTE+'/arena"]');if(elem && !clickedOnArena){clickedOnArena=true;$(elem).click()}}
-async function clickOnHall(){var elem = findTextInDOM("Hall","span");if(elem && !clickedOnHall){clickedOnHall=true;$(elem).click()}}
-async function clickOnDinoReward(){var elem = findTextInDOM("Eternal DinoRPG","button");if(elem){dinoReward=true;$(elem).click()}}
-async function clickOnLaunchFight(){var elem = findTextInDOM("Lancer le combat","div");if(elem && !clickedOnLaunchFight){clickedOnLaunchFight=true;$(elem).click()}}
-async function clickOnCell(){var elem = findTextInDOM("Cellule de ","span");if(elem && !clickedOnCell){clickedOnCell=true;$(elem).click()}}
-async function clickOnBestMatchup(){cl("chepa")}
-async function makeSureArenaIsRunning(){cl("chepa")}
-
-async function precedent(){if(!clickedOnCell){clickedOnCell=true;history.back()};}
+function isEnded(){return tourEnded}
+function dinoRewards(){return dinoReward}
+function notDinoRewards(){return !dinoReward}
+function fightsLeft(){return inscrit() && isTextInDOM("Il te reste ","p")}
+function noFightLeft(){return inscrit() && (isTextInDOM("Nouveau niveau !","button") || isTextInDOM("dés demain","p"))}
+function bruteAlreadyDone(){return alreadyDone}
+function isArenaEnough(){cl("check arena?")}
+function isArenaNotEnough(){cl("check arena?")}
+function inscrit(){return !(isTextInDOM("Tournoi","button")) || clickedOnInscrire || isTextInDOM("rute inscrite","p")}
+function notInscrit(){return !inscrit}
 
 
+function clickOnNextBrute(){var elem = document.querySelector('[aria-label="Brute suivante"]');if(elem && !clickedOnNextBrute){clickedOnNextBrute = true;}}
+function clickOnTournoi(){var elem = findTextInDOM("Tournoi","button");if(elem && !clickedOnTournoi){clickedOnTournoi=true;$(elem).click()}}
+function inscrire(){var elem = findTextInDOM("Marquer comme vu","button");if(elem && !clickedOnInscrire){clickedOnInscrire=true;$(elem).click()}}
+function clickOnProfilSpan(){var elem = findTextInDOM("Profil de ","span");if(elem && !clickedOnProfil){clickedOnProfil=true;$(elem).click()}}
+function clickOnFirstBrute(){var elem = findTextInDOM("Niveau","p");if(elem && !clickedOnFirstBrute){clickedOnFirstBrute=true;$(elem).click()}}
+function clickOnArena(){var elem = document.querySelector('[href="/'+BRUTE+'/arena"]');if(elem && !clickedOnArena){clickedOnArena=true;$(elem).click()}}
+function clickOnHall(){var elem = findTextInDOM("Hall","span");if(elem && !clickedOnHall){clickedOnHall=true;$(elem).click()}}
+function clickOnDinoReward(){var elem = findTextInDOM("Eternal DinoRPG","button");if(elem){dinoReward=true;$(elem).click()}}
+function clickOnLaunchFight(){var elem = findTextInDOM("Lancer le combat","div");if(elem && !clickedOnLaunchFight){clickedOnLaunchFight=true;$(elem).click()}}
+function clickOnCell(){var elem = findTextInDOM("Cellule de ","span");if(elem && !clickedOnCell){clickedOnCell=true;$(elem).click()}}
+function clickOnBestMatchup(){cl("chepa")}
+function makeSureArenaIsRunning(){cl("chepa")}
 
-async function Arena(){clickedOnArena = false}
-async function Cell(){if(brutesDone.includes(BRUTE)){alreadyDone = true}else{brutesDone.push(BRUTE)};if(BRUTE!=tourBruteAC){clickedOnNextBrute=clickedOnInscrire=false};
+function precedent(){if(!clickedOnCell){clickedOnCell=true;history.back()};}
+
+
+
+function Arena(){clickedOnArena = false}
+function Cell(){if(brutesDone.includes(BRUTE)){alreadyDone = true}else{brutesDone.push(BRUTE)};if(BRUTE!=tourBruteAC){clickedOnNextBrute=clickedOnInscrire=false};
 						clickedOnFirstBrute=clickedOnCell = false}
-async function Profil(){clickedOnProfil=false}
-async function Hall(){clickedOnHall = false}
-async function Versus(){clickedOnBestMatchup = false}
-async function Fight(){clickedOnLaunchFight = false}
-async function Tournoi(){clickedOnTournoi = false}
+function Profil(){clickedOnProfil=false}
+function Hall(){clickedOnHall = false}
+function Versus(){clickedOnBestMatchup = false}
+function Fight(){clickedOnLaunchFight = false}
+function Tournoi(){clickedOnTournoi = false}
 
 var actions={
 	Hall : {
@@ -2658,13 +2658,13 @@ async function Tour(){
 		
 		parseURL()
 		
-		if(url.length==2 && url[1]=="hall"){currentLoc="Hall"}
-		else if(url.length==3 && url[2]=="cell"){BRUTE = url[1];currentLoc="Cell"}
-		else if(url.length==4 && url[2]=="versus"){BRUTE = url[1];currentLoc="Versus"}
-		else if(url.length>2 && url[2] == "fight"){BRUTE = url[1];currentLoc="Fight"}
-		else if(url.length==3 && url[1]=="user"){currentLoc="Profil"}
-		else if(url.length==3 && url[2]=="arena"){BRUTE = url[1];currentLoc="Arena"}
-		else if(url[2].startsWith("tournament")){BRUTE = url[1];currentLoc="Tournoi"}
+		if(url.length==2 && url[1]=="hall"){currentLoc="Hall";Hall()}
+		else if(url.length==3 && url[2]=="cell"){BRUTE = url[1];currentLoc="Cell";Cell()}
+		else if(url.length==4 && url[2]=="versus"){BRUTE = url[1];currentLoc="Versus";Versus()}
+		else if(url.length>2 && url[2] == "fight"){BRUTE = url[1];currentLoc="Fight";Fight()}
+		else if(url.length==3 && url[1]=="user"){currentLoc="Profil";Profil()}
+		else if(url.length==3 && url[2]=="arena"){BRUTE = url[1];currentLoc="Arena";Arena()}
+		else if(url[2].startsWith("tournament")){BRUTE = url[1];currentLoc="Tournoi";Tournoi()}
 		
 	}
 	
