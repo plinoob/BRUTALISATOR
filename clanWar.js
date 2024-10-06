@@ -2576,7 +2576,7 @@ $('a').filter(function() {
 		var dv=div({3:"clanwar",0:$(this).parent()})
 		
 		var encour = false
-		for(var tp of ["attacks","defenses"]){for(var i in clan[tp]){if(clan[tp][i].type=="official" && clan[tp][i].status==waitingForRewards){encour=true}}}
+		for(var tp of ["attacks","defenses"]){for(var i in clan[tp]){if(clan[tp][i].type=="official" && clan[tp][i].status=="waitingForRewards"){encour=true}}}
 		
 		
 		div({0:dv,17:res})
