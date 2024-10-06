@@ -2562,6 +2562,7 @@ $('a').filter(function() {
     var match = href.match(/\/clan\/([^\/]+)/);
     if (match) {
         var secondPart = match[1]; // La deuxième partie de l'URL
-        console.log(secondPart);
+        console.log(secondPart,$(this));
+		$(this).parent().append(div({17:"lol"}))
     }
 });
