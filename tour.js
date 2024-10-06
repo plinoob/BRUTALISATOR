@@ -2608,7 +2608,7 @@ function precedent(){if(!clickedOnCell){clickedOnCell=true;history.back()};}
 
 function Arena(){clickedOnArena = false}
 function Cell(){if(clickedOnNextBrute && brutesDone.includes(BRUTE)){alreadyDone = true}
-else if(!brutesDone.include(BRUTE)){brutesDone.push(BRUTE)};if(BRUTE!=tourBruteAC){tourBruteAC=BRUTE;clickedOnNextBrute=clickedOnInscrire=false};
+else if(!brutesDone.includes(BRUTE)){brutesDone.push(BRUTE)};if(BRUTE!=tourBruteAC){tourBruteAC=BRUTE;clickedOnNextBrute=clickedOnInscrire=false};
 						clickedOnFirstBrute=clickedOnCell = false}
 function Profil(){clickedOnProfil=false}
 function Hall(){clickedOnHall = false}
