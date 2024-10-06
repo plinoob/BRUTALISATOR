@@ -2595,9 +2595,9 @@ res.tx=div({3:"tx",0:btn,17:"..."})
 
 
 var moliere = await fetch("/api/clan/"+MOLIEREID);
-moliere = JSON.parse(await clan.text());
+moliere = JSON.parse(await moliere.text());
 var lvls=[]
-for(var b of clan.brutes){lvls.push(b.level)}
+for(var b of moliere.brutes){lvls.push(b.level)}
 var moliere= lvls
 	  .sort((a, b) => b - a)  // Trier en ordre décroissant
 	  .slice(0, 28)           // Prendre les 28 premiers
