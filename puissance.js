@@ -5500,7 +5500,7 @@ function makeInfoDiv(parent,perkType,perk,sens=true){
 		var res={div:div({2:"span",0:parent,9:{height:"30px","max-width":"100%"},6:{mousedown:async function(e){e.preventDefault();
 			if(e.which==2){window.open(window.location.href.split(".org/")[0]+".org/"+"?b1=@"+BRUTE+"&b2=$"+bruteData.level+"_1_"+perkType+"_"+perk, '_blank');}}}})}
 		
-		var btn=res.btn=div({0:res.div,6:{click:function(){openBruteCell(name)}},2:"button",9:{
+		var btn=res.btn=div({0:res.div,2:"button",9:{
 	transform:"scale(0.8)"+(sens?"":" translate(0,-50%)"),
     margin: "8px auto",
     "border-radius": "4px",

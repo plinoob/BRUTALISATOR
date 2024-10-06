@@ -2550,6 +2550,52 @@ var shuffle = (array) => {
     return shuffledArray;
 };
 
+function makeInfoDiv(parent){
+		var res={div:div({2:"span",0:parent,9:{height:"30px","max-width":"100%"}})}
+		
+		var btn=res.btn=div({0:res.div,2:"button",9:{
+	transform:"scale(0.8)"+(sens?"":" translate(0,-50%)"),
+    margin: "8px auto",
+    "border-radius": "4px",
+    "border-width": "1px",
+    "border-style": "solid",
+    "border-image": "initial",
+    "border-color": "rgb(55, 1, 0) rgb(115, 61, 44) rgb(115, 61, 44)",
+    "background-color": BONUSpalette(0.66),
+    color: "rgb(255, 255, 255)",
+    padding: "4px 8px",
+ 
+    "text-transform": "uppercase",
+    "font-family": "LaBrute",
+    "font-size": "1rem",
+			opacity:0.2,
+
+    "box-shadow": "rgba(0, 0, 0, 0.3) 2px 3px",
+    transition: "box-shadow 0.1s, top 0.1s, perspective 0.1s",
+    perspective: "20px",
+    "transform-style": "preserve-3d",
+    "z-index": 1}})
+	
+	res.before=div({0:btn,1:"before"+perkType+perk,9:{
+        'position': 'absolute',
+        'top': '-8px',
+        'left': '2.5%',
+        'width': '95%',
+        'height': '8px',
+        'background-color': BONUSbeforePalette(0.66),
+		opacity:0.2,
+        'transform': 'rotateX(20deg) translateZ(-1px)',
+        'z-index': '-1',
+        'transition': 'height 0.1s, top 0.1s'}})
+res.tx=div({3:"tx",0:btn,1:perkType+perk,17:"..."})
+
+		
+		
+		return res.tx}
+
+
+
+
 $(".clanwar").remove()
 
 $('a').filter(function() {
@@ -2573,14 +2619,20 @@ $('a').filter(function() {
 			  .sort((a, b) => b - a)  // Trier en ordre décroissant
 			  .slice(0, 28)           // Prendre les 28 premiers
 			  .reduce((sum, num) => sum + num, 0);  // Calculer la somme
-		var dv=div({3:"clanwar",0:$(this).parent()})
+		var dv=div({9:{display:"flex"},3:"clanwar",0:$(this).parent()})
 		
 		var encour = false
 		for(var tp of ["attacks","defenses"]){for(var i in clan[tp]){if(clan[tp][i].type=="official" && clan[tp][i].status=="waitingForRewards"){encour=true}}}
 		
+		var ah=makeInfoDiv(dv)
+		ah.tx.text(n3m(res))
+		ah.btn.css({"background-color":clanWarpalette(res/1000),opacity:0.8})
+		ah.before.css({"background-color":clanWarBEFOREpalette(res/1000),opacity:0.8})
 		
-		div({0:dv,17:res})
-		div({0:dv,17:encour})
+		
+		div({0:dv,24:30,17:encour?"⚠️":""})
+		
+		
     }
 });
 
