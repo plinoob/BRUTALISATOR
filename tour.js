@@ -2638,6 +2638,7 @@ async function Tour(){
 			if(loc == currentLoc){
 				for(var opts in actions[loc]){
 					var steps = actions[loc][opts]
+					cl(steps)
 					cl(steps[0].name)
 					if(steps[0]()){cl(steps[1].name);steps[1]();break}
 				}
