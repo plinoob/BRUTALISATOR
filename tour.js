@@ -2585,7 +2585,7 @@ function notInscrit(){return !inscrit}
 
 
 function clickOnNextBrute(){var elem = document.querySelector('[aria-label="Brute suivante"]');if(elem && !clickedOnNextBrute){clickedOnNextBrute = true;}}
-function clickOnTournoi(){var elem = findFirstTextInDOM("Tournoi","button");if(elem && !clickedOnTournoi){clickedOnTournoi=true;$(elem).click()}}
+function clickOnTournoi(){var elem = findFirstTextInDOM("Tournoi","button");cl(elem,clickedOnTournoi);if(elem && !clickedOnTournoi){clickedOnTournoi=true;$(elem).click()}}
 function inscrire(){var elem = findTextInDOM("Marquer comme vu","button");if(elem && !clickedOnInscrire){clickedOnInscrire=true;$(elem).click()}}
 function clickOnProfilSpan(){var elem = findTextInDOM("Profil de ","span");if(elem && !clickedOnProfil){clickedOnProfil=true;$(elem).click()}}
 function clickOnFirstBrute(){
