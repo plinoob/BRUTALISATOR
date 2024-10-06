@@ -2635,8 +2635,8 @@ var actions={
 		},
 	Cell : {
 		Tournoi : [notInscrit,clickOnTournoi],
-		Arena : [fightsLeft,clickOnArena],
-		Cell : [noFightLeft,clickOnNextBrute],
+		//Arena : [fightsLeft,clickOnArena],
+		Cell : [inscrit,clickOnNextBrute],//Cell : [noFightLeft,clickOnNextBrute],
 		Hall : [bruteAlreadyDone,clickOnHall],
 		},
 	Arena : {
