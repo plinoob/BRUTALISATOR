@@ -2550,19 +2550,6 @@ var shuffle = (array) => {
     return shuffledArray;
 };
 
-
-
-
-
-
-a 
-
-
-span ""
-button ""
-div ""
-span "cuihcuih"
-
 var tourBruteAC = BRUTE
 var brutesDone = []
 var alreadyDone = false
