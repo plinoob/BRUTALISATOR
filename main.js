@@ -3838,7 +3838,7 @@ else if(url.length==1){/*
 	}
 else if(url.length==2 && url[1]=="hall"){addScript(BRUTALISATOR+"tour.js")}
 else if(url[2].startsWith("tournament")){BRUTE = url[1];lauchFightVersusChampion()}
-else if(url.length==4 && url[2]=="clan" && url[3]=="ranking"){BRUTE = url[1];
+else if(url.length==4 && url[2]=="clan" && url[3]=="ranking"){BRUTE = url[1];cl("clan?",isTextInDOM("Mon clan","p"))
 if(isTextInDOM("Mon clan","p")){addScript(BRUTALISATOR+"clanWar.js")}
 else{window.location.href="/"+BRUTE+"/clan/4c007438-9aa0-419e-af73-d82f8dc39eae";}
 }
