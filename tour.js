@@ -2578,8 +2578,8 @@ function notDinoRewards(){return !dinoReward}
 function fightsLeft(){return inscrit() && isTextInDOM("Il te reste ","p")}
 function noFightLeft(){return inscrit() && (isTextInDOM("Nouveau niveau !","button") || isTextInDOM("dés demain","p"))}
 function bruteAlreadyDone(){return alreadyDone}
-function isArenaEnough(){cl("check arena?")}
-function isArenaNotEnough(){cl("check arena?")}
+function isArenaEnough(){cl("check arena?",brutesDivs)}
+function isArenaNotEnough(){return !isArenaEnough()}
 function inscrit(){return !(isTextInDOM("Tournoi","button")) || clickedOnInscrire || isTextInDOM("rute inscrite","p")}
 function notInscrit(){return !inscrit()}
 
@@ -2600,7 +2600,7 @@ function clickOnDinoReward(){var elem = findTextInDOM("Eternal DinoRPG","button"
 function clickOnLaunchFight(){var elem = findTextInDOM("Lancer le combat","div");if(elem && !clickedOnLaunchFight){clickedOnLaunchFight=true;$(elem).click()}}
 function clickOnCell(){var elem = findTextInDOM("Cellule de ","span");if(elem && !clickedOnCell){clickedOnCell=true;$(elem).click()}}
 function clickOnBestMatchup(){cl("chepa")}
-function makeSureArenaIsRunning(){cl("chepa")}
+function makeSureArenaIsRunning(){if(!arenaRunning){arena()}}
 
 function precedent(){if(!clickedOnCell){clickedOnCell=true;history.back()};}
 

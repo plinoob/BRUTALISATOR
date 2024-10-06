@@ -883,6 +883,8 @@ if(url.length==3 && url[2]=="arena"){BRUTE = url[1];if(!arenaRunning && arenaBru
 }
 
 var WANTS_BACKUP
+var brutesNames
+var brutesDivs
 
 async function arena(backups){arenaRunning=true
 if(arenaBruteAc!=BRUTE){WANTS_BACKUP = false}
@@ -942,8 +944,8 @@ var elements = $("p").filter(function() {
     return $(this).text().startsWith(searchString);
 });
 
-var brutesNames = [BRUTE]
-var brutesDivs={}
+brutesNames = [BRUTE]
+brutesDivs={}
 
 elements.each(function() {
 	var name = $(this).parent().children(":first").text()
