@@ -651,7 +651,7 @@ function findTextInDOM(text,balise) {
   elements.forEach(element => {
     if (element.textContent.includes(text)) {
       console.log('Élément trouvé :', element.textContent);
-	  if(!elem)elem = element
+	  elem = element
     }
   });
   return elem;

@@ -2588,7 +2588,13 @@ function clickOnNextBrute(){var elem = document.querySelector('[aria-label="Brut
 function clickOnTournoi(){var elem = findTextInDOM("Tournoi","button");if(elem && !clickedOnTournoi){clickedOnTournoi=true;$(elem).click()}}
 function inscrire(){var elem = findTextInDOM("Marquer comme vu","button");if(elem && !clickedOnInscrire){clickedOnInscrire=true;$(elem).click()}}
 function clickOnProfilSpan(){var elem = findTextInDOM("Profil de ","span");if(elem && !clickedOnProfil){clickedOnProfil=true;$(elem).click()}}
-function clickOnFirstBrute(){var elem = findTextInDOM("Niveau","p");if(elem && !clickedOnFirstBrute){clickedOnFirstBrute=true;$(elem).click()}}
+function clickOnFirstBrute(){
+  var firstImage = $('img').filter(function() {
+    return $(this).attr('src').startsWith('/images/rankings');
+}).first();
+	
+	if(elem && !clickedOnFirstBrute){clickedOnFirstBrute=true;$(elem).click()
+    }}
 function clickOnArena(){var elem = document.querySelector('[href="/'+BRUTE+'/arena"]');if(elem && !clickedOnArena){clickedOnArena=true;$(elem).click()}}
 function clickOnHall(){var elem = findTextInDOM("Hall","span");if(elem && !clickedOnHall){clickedOnHall=true;$(elem).click()}}
 function clickOnDinoReward(){var elem = findTextInDOM("Eternal DinoRPG","button");if(elem){dinoReward=true;$(elem).click()}}
