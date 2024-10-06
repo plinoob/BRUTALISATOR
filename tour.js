@@ -2580,7 +2580,7 @@ function noFightLeft(){return inscrit() && (isTextInDOM("Nouveau niveau !","butt
 function bruteAlreadyDone(){return alreadyDone}
 function isArenaEnough(){cl("check arena?",brutesDivs)}
 function isArenaNotEnough(){return !isArenaEnough()}
-function inscrit(){return !(isTextInDOM("Tournoi","button")) || clickedOnInscrire || isTextInDOM("rute inscrite","p")}
+function inscrit(){return (!(isTextInDOM("Tournoi","button")) && !isTextInDOM("Marquer comme vu","button")) || clickedOnInscrire || isTextInDOM("rute inscrite","p")}
 function notInscrit(){return !inscrit()}
 
 
