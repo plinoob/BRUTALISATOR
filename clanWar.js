@@ -2550,6 +2550,7 @@ var shuffle = (array) => {
     return shuffledArray;
 };
 
+$(".clanwar").remove()
 
 $('a').filter(function() {
     // Vérifie si href contient "/clan/"
@@ -2572,7 +2573,7 @@ $('a').filter(function() {
 			  .sort((a, b) => b - a)  // Trier en ordre décroissant
 			  .slice(0, 28)           // Prendre les 28 premiers
 			  .reduce((sum, num) => sum + num, 0);  // Calculer la somme
-		var dv=div({0:$(this).parent()})
+		var dv=div({3:"clanwar",0:$(this).parent()})
 		
 		var encour = false
 		for(var tp of ["attacks","defenses"]){for(var i in clan[tp]){if(clan[tp][i].type=="official" && clan[tp][i].status==waitingForRewards){encour=true}}}
