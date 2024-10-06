@@ -651,10 +651,10 @@ function findFirstTextInDOM(text,balise) {
   elements.forEach(element => {
     if (element.textContent.includes(text)) {
       console.log('Élément trouvé :', element.textContent);
-	  return element;
+	  if(!elem)elem= element;
     }
   });
-  
+  return elem
 }
 
 function findTextInDOM(text,balise) {
