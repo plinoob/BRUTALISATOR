@@ -2585,7 +2585,11 @@ function notInscrit(){return !inscrit()}
 
 
 function clickOnNextBrute(){var elem = document.querySelector('[aria-label="Brute suivante"]');if(elem && !clickedOnNextBrute){clickedOnNextBrute = true;}}
-function clickOnTournoi(){var elem = findFirstTextInDOM("Tournoi","button");cl(elem,clickedOnTournoi);if(elem && !clickedOnTournoi){clickedOnTournoi=true;$(elem).click()}}
+function clickOnTournoi(){
+	var eleminscrire = findTextInDOM("Tournoi du","h6")
+	if(eleminscrire){$(eleminscrire).parent().find("div").click();return}
+	
+	var elem = findFirstTextInDOM("Tournoi","button");cl(elem,clickedOnTournoi);if(elem && !clickedOnTournoi){clickedOnTournoi=true;$(elem).click()}}
 function inscrire(){var elem = findTextInDOM("Marquer comme vu","button");if(elem && !clickedOnInscrire){clickedOnInscrire=true;$(elem).click()}}
 function clickOnProfilSpan(){var elem = findTextInDOM("Profil de ","span");if(elem && !clickedOnProfil){clickedOnProfil=true;$(elem).click()}}
 function clickOnFirstBrute(){
@@ -2608,7 +2612,7 @@ function precedent(){if(!clickedOnCell){clickedOnCell=true;history.back()};}
 
 
 function Arena(){clickedOnArena = false}
-function Cell(){if(clickedOnNextBrute && brutesDone.includes(BRUTE)){alreadyDone = true}
+function Cell(){clickedOnInscrire=false;if(clickedOnNextBrute && brutesDone.includes(BRUTE)){alreadyDone = true}
 else if(!brutesDone.includes(BRUTE)){brutesDone.push(BRUTE)};if(BRUTE!=tourBruteAC){tourBruteAC=BRUTE;clickedOnNextBrute=clickedOnInscrire=false};
 						clickedOnFirstBrute=clickedOnCell = false}
 function Profil(){clickedOnProfil=false}
