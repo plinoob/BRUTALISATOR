@@ -2592,7 +2592,6 @@ function clickOnFirstBrute(){
   var firstImage = $('img').filter(function() {
     return $(this).attr('src').startsWith('/images/rankings');
 }).first();
-	
 	if(elem && !clickedOnFirstBrute){clickedOnFirstBrute=true;$(elem).click()
     }}
 function clickOnArena(){var elem = document.querySelector('[href="/'+BRUTE+'/arena"]');if(elem && !clickedOnArena){clickedOnArena=true;$(elem).click()}}
