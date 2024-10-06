@@ -2554,7 +2554,7 @@ var shuffle = (array) => {
 $('a').filter(function() {
     // Vérifie si href contient "/clan/"
     return $(this).attr('href').includes('/clan/');
-}).each(function() {
+}).each(async function() {
     // Récupère l'URL
     var href = $(this).attr('href');
 
@@ -2563,6 +2563,48 @@ $('a').filter(function() {
     if (match) {
         var secondPart = match[1]; // La deuxième partie de l'URL
         console.log(secondPart,$(this));
-		$(this).parent().append(div({17:"lol"}))
+		
+		var clan = await fetch("/api/clan/"+secondPart);
+		clan = JSON.parse(await clan.text());
+		var lvls=[]
+		for(var b of clan.brutes){lvls.push(b.level)}
+		var res= lvls
+			  .sort((a, b) => b - a)  // Trier en ordre décroissant
+			  .slice(0, 28)           // Prendre les 28 premiers
+			  .reduce((sum, num) => sum + num, 0);  // Calculer la somme
+		var dv=div({0:$(this).parent()})
+		
+		var encour = false
+		for(var tp of ["attacks","defenses"]){for(var i in clan[tp]){if(clan[tp][i].type=="official" && clan[tp][i].status==waitingForRewards){encour=true}}}
+		
+		
+		div({0:dv,17:res})
+		div({0:dv,17:encour})
     }
 });
+
+
+//   
+
+
+4c007438-9aa0-419e-af73-d82f8dc39eae
+
+
+    "attacks": [{
+            "id": "8678dde9-3b4e-4863-8cb2-1519c120248f",
+            "status": "waitingForRewards",
+            "type": "official",
+            "defender": {
+                "id": "7bea8f77-e542-48c1-a6eb-e2478445278e",
+                "name": "Brutele",
+                "master": {
+                    "id": "3c00d96e-a39a-4aa7-a4c3-309b3ab1d89a",
+                    "gender": "male",
+                    "name": "top1toptop1",
+                    "body": "00154211601",
+                    "colors": "00000005050505051011151210101713"
+                }
+            }
+        }
+    ],
+    "defenses": []
