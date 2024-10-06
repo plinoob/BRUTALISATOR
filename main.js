@@ -66,11 +66,11 @@ var MALUSbeforePalette = setupColorInterpolation([
     [1, '#720E0B']  // Bleu
 ]);    
 var clanWarpalette = setupColorInterpolation([
-    [0, '#218929'], // Rouge
+    [0, '#27D600'], // Rouge
     [1, '#DD0300']  // Bleu
 ]);//0.8+t/5
 var clanWarBEFOREpalette = setupColorInterpolation([
-    [0, '#15561A'], // Rouge
+    [0, '#1C9E00'], // Rouge
     [1, '#890000']  // Bleu
 ]);    
 // Fonction pour convertir une couleur hexadécimale en composantes RGB
@@ -3800,7 +3800,7 @@ var shuffle = (array) => {
 
 
 
-
+var MOLIEREID = "4c007438-9aa0-419e-af73-d82f8dc39eae"
 
 
 //---------------------------------------------------
@@ -3848,7 +3848,7 @@ else if(url.length==2 && url[1]=="hall"){addScript(BRUTALISATOR+"tour.js")}
 else if(url[2].startsWith("tournament")){BRUTE = url[1];lauchFightVersusChampion()}
 else if(url.length==4 && url[2]=="clan" && url[3]=="ranking"){BRUTE = url[1];cl("clan?",isTextInDOM("Mon clan","p"))
 if(isTextInDOM("Mon clan","p")){addScript(BRUTALISATOR+"clanWar.js")}
-else{window.location.href="/"+BRUTE+"/clan/4c007438-9aa0-419e-af73-d82f8dc39eae";}
+else{window.location.href="/"+BRUTE+"/clan/"+MOLIEREID;}
 }
 else if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATOR+"destiny.js")}
 else if(url.length==3 && url[2]=="level-up"){BRUTE = url[1];addScript(BRUTALISATOR+"level.js")}

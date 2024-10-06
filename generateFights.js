@@ -124,11 +124,11 @@ var MALUSbeforePalette = setupColorInterpolation([
     [1, '#720E0B']  // Bleu
 ]);    
 var clanWarpalette = setupColorInterpolation([
-    [0, '#218929'], // Rouge
+    [0, '#27D600'], // Rouge
     [1, '#DD0300']  // Bleu
 ]);//0.8+t/5
 var clanWarBEFOREpalette = setupColorInterpolation([
-    [0, '#15561A'], // Rouge
+    [0, '#1C9E00'], // Rouge
     [1, '#890000']  // Bleu
 ]);    
 // Fonction pour convertir une couleur hexadécimale en composantes RGB

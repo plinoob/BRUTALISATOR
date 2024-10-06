@@ -2594,8 +2594,16 @@ res.tx=div({3:"tx",0:btn,17:"..."})
 		return res}
 
 
-
-
+var moliere = await fetch("/api/clan/"+MOLIEREID);
+moliere = JSON.parse(await clan.text());
+var lvls=[]
+for(var b of clan.brutes){lvls.push(b.level)}
+var moliere= lvls
+	  .sort((a, b) => b - a)  // Trier en ordre décroissant
+	  .slice(0, 28)           // Prendre les 28 premiers
+	  .reduce((sum, num) => sum + num, 0);  // Calculer la somme
+	  
+	  
 $(".clanwar").remove()
 
 $('a').filter(function() {
@@ -2626,8 +2634,8 @@ $('a').filter(function() {
 		
 		var ah=makeInfoDiv(dv)
 		ah.tx.text(n3m(res))
-		ah.btn.css({"background-color":clanWarpalette(res/1000),opacity:0.8})
-		ah.before.css({"background-color":clanWarBEFOREpalette(res/1000),opacity:0.8})
+		ah.btn.css({"background-color":clanWarpalette(res/moliere),opacity:0.8})
+		ah.before.css({"background-color":clanWarBEFOREpalette(res/moliere),opacity:0.8})
 		
 		
 		div({0:dv,24:30,17:encour?"⚠️":""})
