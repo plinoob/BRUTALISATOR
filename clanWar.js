@@ -2583,28 +2583,3 @@ $('a').filter(function() {
     }
 });
 
-
-//   
-
-
-4c007438-9aa0-419e-af73-d82f8dc39eae
-
-
-    "attacks": [{
-            "id": "8678dde9-3b4e-4863-8cb2-1519c120248f",
-            "status": "waitingForRewards",
-            "type": "official",
-            "defender": {
-                "id": "7bea8f77-e542-48c1-a6eb-e2478445278e",
-                "name": "Brutele",
-                "master": {
-                    "id": "3c00d96e-a39a-4aa7-a4c3-309b3ab1d89a",
-                    "gender": "male",
-                    "name": "top1toptop1",
-                    "body": "00154211601",
-                    "colors": "00000005050505051011151210101713"
-                }
-            }
-        }
-    ],
-    "defenses": []
