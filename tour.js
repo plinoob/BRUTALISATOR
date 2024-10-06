@@ -2592,7 +2592,7 @@ function clickOnFirstBrute(){
   var firstImage = $('img').filter(function() {
     return $(this).attr('src').startsWith('/images/rankings');
 }).first();
-	if(elem && !clickedOnFirstBrute){clickedOnFirstBrute=true;$(elem).click()
+	if(firstImage.length && !clickedOnFirstBrute){clickedOnFirstBrute=true;$(firstImage).click()
     }}
 function clickOnArena(){var elem = document.querySelector('[href="/'+BRUTE+'/arena"]');if(elem && !clickedOnArena){clickedOnArena=true;$(elem).click()}}
 function clickOnHall(){var elem = findTextInDOM("Hall","span");if(elem && !clickedOnHall){clickedOnHall=true;$(elem).click()}}
