@@ -5450,7 +5450,7 @@ function makeAnaDiv(perkType,perk,sens){
 			if(!petDiv.length){var useElement = $(findTextInDOM("Force","span")).parent().parent().parent().parent()
 				cl("divpet",useElement)
 			petDiv=div({1:"petDivMax",3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
-			,display: "flex","flex-direction": "line","align-items": "center"},
+			,display: "flex","flex-direction": "line","align-items": "center","justify-content":"space-evenly"},
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)}
 			
 			  
@@ -5593,7 +5593,7 @@ function makePetDiv(){
 			var useElement = $('img[src^="/images/skills/"]').last().parent().parent();
 				cl("divpet",useElement)
 			petDiv=div({1:"petDivMin",3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
-			,display: "flex","flex-direction": "line","align-items": "center"},
+			,display: "flex","flex-direction": "line","align-items": "center","justify-content":"space-evenly"},
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)
 			function scrollonpetdiv(pet){return function(e){e.preventDefault();e.stopEventPropagation();cl(pet,e)}}
 			petDivs={}
