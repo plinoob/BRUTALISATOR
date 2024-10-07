@@ -5352,7 +5352,7 @@ function removePerkFrom(brute,perk,level){
 	var brute = structuredClone(brute)
 	if(level)brute.level--
 	if(!level)brute.name=brute.name+"$-$"+perk.type+"$"+perk[perk.type]
-	else brute.id=Math.random()
+	else brute.id=Math.random().toString()
 	if(perk.type=="weapon"){brute.weapons=brute.weapons.filter(a => a !== perk.weapon)}
 	else if(perk.type=="pet"){brute.pets=brute.pets.filter(a => a !== perk.pet);removePetMalus(brute,perk.pet)}
 	else{brute = unApplySkillModifiers(brute,perk.skill);brute.skills=brute.skills.filter(a => a !== perk.skill);}
@@ -5362,7 +5362,7 @@ function addPerkFrom(brute,perk,level){
 	var brute=structuredClone(brute)
 	if(!level){brute.level-=1
 	brute.name=brute.name+"$+$"+perk.type+"$"+perk[perk.type]}
-	else{brute.id=Math.random()}
+	else{brute.id=Math.random().toString()}
 	return updateBruteData(brute,perk)
 }
 
@@ -5618,6 +5618,7 @@ function makeScrollablePerks(){
 	for(var s of skills){makeScrollableskillperk(s)}
 	}
 
+function clickOnHall(){var elem = findTextInDOM("Hall","span");$(elem).click()}
 
 function makeScrollableweaponperk(w){
 	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks")
@@ -5635,7 +5636,7 @@ function makeScrollableskillperk(s){
 	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",function(e){e.preventDefault();cl(s,e)})}
 	}
 
-function actu(){history.pushState(null, '', '/'+BRUTE+"/lol");history.back()}
+function actu(){clickOnHall();setTimeout(function(){history.back()},100)}
 
 if(!changedFetch){
 	
