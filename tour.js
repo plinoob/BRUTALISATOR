@@ -2584,7 +2584,7 @@ function inscrit(){return (!(isTextInDOM("Tournoi","button")) && !isTextInDOM("M
 function notInscrit(){return !inscrit()}
 
 
-function clickOnNextBrute(){var elem = document.querySelector('[aria-label="Brute suivante"]');if(elem && !clickedOnNextBrute){clickedOnNextBrute = true;}}
+function clickOnNextBrute(){var elem = document.querySelector('[aria-label="Brute suivante"]');cl(elem);if(elem && !clickedOnNextBrute){clickedOnNextBrute = true;$(elem).click()}}
 function clickOnTournoi(){
 	var eleminscrire = findTextInDOM("Tournoi du","h6")
 	if(eleminscrire){$(eleminscrire).parent().find("div").click();return}
