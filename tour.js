@@ -2578,7 +2578,7 @@ function notDinoRewards(){return !dinoReward}
 function fightsLeft(){return inscrit() && isTextInDOM("Il te reste ","p")}
 function noFightLeft(){return inscrit() && (isTextInDOM("Nouveau niveau !","button") || isTextInDOM("dés demain","p"))}
 function bruteAlreadyDone(){return alreadyDone}
-function isArenaEnough(){cl("check arena?",brutesDivs,arena_turns)}
+function isArenaEnough(){return arena_turns>=4000}
 function isArenaNotEnough(){return !isArenaEnough()}
 function inscrit(){return ((!(isTextInDOM("Tournoi","button")) || isTextInDOM("Monter de rang","button")) 
 	&& !isTextInDOM("Marquer comme vu","button")) || clickedOnInscrire || isTextInDOM("rute inscrite","p")}
@@ -2608,7 +2608,7 @@ function clickOnHall(){var elem = findTextInDOM("Hall","span");if(elem && !click
 function clickOnDinoReward(){var elem = findTextInDOM("Eternal DinoRPG","button");if(elem){dinoReward=true;$(elem).click()}}
 function clickOnLaunchFight(){var elem = findTextInDOM("Lancer le combat","div");if(elem && !clickedOnLaunchFight){clickedOnLaunchFight=true;$(elem).click()}}
 function clickOnCell(){var elem = findTextInDOM("Cellule de ","span");if(elem && !clickedOnCell){clickedOnCell=true;$(elem).click()}}
-function clickOnBestMatchup(){cl("chepa")}
+function clickOnBestMatchup(){var bm="",bw=0;for(var i in brutesDivs){var w=parseFloat(brutesDivs.tx.text());if(w>bw){bw=w;bm=i}};cl(bm,bw,findTextInDOM(bm,"p"))}
 function makeSureArenaIsRunning(){if(!arenaRunning){arena()}}
 
 function precedent(){if(!clickedOnCell){clickedOnCell=true;history.back()};}
