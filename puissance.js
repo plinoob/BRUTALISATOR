@@ -5640,7 +5640,7 @@ function makeScrollableskillperk(s){
 
 function actu(){if(bruteModifAc){bruteData=bruteModifAc};clickOnHall();$(".power").remove();setTimeout(function(){history.back()
 	
-setTimeout(power,333)
+setTimeout(function(){$(".power").remove();power()},1000)
 },10)}
 
 if(!changedFetch){
