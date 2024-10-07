@@ -5313,7 +5313,7 @@ res.tx=div({0:btn,17:"..."})
 	
 	
 				simulFights({
-					fn:function(res,ended){if(POWERSTEP==1 || !POWERSTEP){stopLoading();}
+					fn:function(res,ended){cl(res[0]);if(POWERSTEP==1 || !POWERSTEP){stopLoading();}
 						var coef = res[0].v/res[0].j
 						PUISSANCE=coef
 						var chiffre = Math.round(coef*1000)
@@ -5667,7 +5667,11 @@ if(!changedFetch){
     };
 }
 
-if(!intModif) intModif = setInterval(function(){if(window.location.href.includes("/cell")){makeScrollablePerks()}},100)
+if(!intModif) intModif = setInterval(function(){if(window.location.href.includes("/cell")){makeScrollablePerks()
+	
+
+
+}},100)
 
 makeScrollablePerks()
 
