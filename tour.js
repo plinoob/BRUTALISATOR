@@ -2608,7 +2608,7 @@ function clickOnHall(){var elem = findTextInDOM("Hall","span");if(elem && !click
 function clickOnDinoReward(){var elem = findTextInDOM("Eternal DinoRPG","button");if(elem){dinoReward=true;$(elem).click()}}
 function clickOnLaunchFight(){var elem = findTextInDOM("Lancer le combat","div");if(elem && !clickedOnLaunchFight){clickedOnLaunchFight=true;$(elem).click()}}
 function clickOnCell(){var elem = findFirstTextInDOM("Cellule de ","span");if(elem && !clickedOnCell){clickedOnCell=true;$(elem).click()}}
-function clickOnBestMatchup(){var bm="",bw=0;for(var i in brutesDivs){var w=parseFloat(brutesDivs[i].tx.text());if(w>bw){bw=w;bm=i}};
+function clickOnBestMatchup(){var bm="",bw=0;for(var i in brutesDivs){var w=parseFloat(brutesDivs[i].tx.text());if(w>=bw){bw=w;bm=i}};
 	if(!clickedOnBestMatchup){clickedOnBestMatchup=true;findTextInDOM(bm,"p").click()}}
 function makeSureArenaIsRunning(){if(!arenaRunning){arena()}}
 
@@ -2625,7 +2625,7 @@ function Hall(){clickedOnHall = false}
 function Versus(){clickedOnBestMatchup = false}
 function Fight(){clickedOnLaunchFight = false}
 function Tournoi(){clickedOnTournoi = false}
-cl("nnnnnnnnnnnnnnn")
+cl("pppppppppppppppppppppppp")
 var actions={
 	Hall : {
 		End:[isEnded,endTour],
@@ -2638,8 +2638,8 @@ var actions={
 	Cell : {
 		Tournoi : [notInscrit,clickOnTournoi],
 		Arena : [fightsLeft,clickOnArena],
-		Cell : [noFightLeft,clickOnNextBrute],//Cell : [inscrit,clickOnNextBrute],//
 		Hall : [bruteAlreadyDone,clickOnHall],
+		Cell : [noFightLeft,clickOnNextBrute],//Cell : [inscrit,clickOnNextBrute],//
 		},
 	Arena : {
 		Versus : [isArenaEnough,clickOnBestMatchup],
