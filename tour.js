@@ -2625,7 +2625,7 @@ function Hall(){clickedOnHall = false}
 function Versus(){clickedOnBestMatchup = false}
 function Fight(){clickedOnLaunchFight = false}
 function Tournoi(){clickedOnTournoi = false}
-cl("uuuuuuuuuuuuuuuuu")
+cl("ooooooooooo")
 var actions={
 	Hall : {
 		End:[isEnded,endTour],
@@ -2671,7 +2671,7 @@ async function Tour(){
 				}
 			}
 		}
-		await sleep(5000)
+		await sleep(3000)
 		
 		parseURL()
 		
