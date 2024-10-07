@@ -5645,19 +5645,22 @@ if(!changedFetch){
         //console.log("Intercepted fetch call to:" +url);
         
         // Appeler le fetch original
-        const response = await originalFetch(url, options);
-        
-        // Modifier la réponse (ici, on parse du JSON pour l'exemple)
-        const data = await response.json();
-        console.log("fetch",url, data);
-        
-        
-        // Retourner une nouvelle réponse modifiée
-        return new Response(JSON.stringify(data), {
+		
+			const response = await originalFetch(url, options);
+			
+		if(url=="/api/brute/"+BRUTE+"/for-hook" && bruteModifAc){
+			console.log("fetch",url, response);
+			        return new Response(JSON.stringify(bruteModifAc), {
             status: response.status,
             statusText: response.statusText,
             headers: response.headers
         });
+        }
+        
+        // Retourner une nouvelle réponse modifiée
+
+		
+		return response
     };
 }
 
