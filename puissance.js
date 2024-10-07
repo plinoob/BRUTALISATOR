@@ -5595,10 +5595,9 @@ function makePetDiv(){
 			petDiv=div({1:"petDivMin",3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line","align-items": "center"},
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)
-			var midPetDiv = div({0:petDiv,4:["","","",50],5:[-50,0]})
 			function scrollonpetdiv(pet){return function(e){e.preventDefault();e.stopEventPropagation();cl(pet,e)}}
 			petDivs={}
-			petDivs.dog=div({0:midPetDiv,6:{"scroll":scrollonpetdiv("dog")}})
+			petDivs.dog=div({0:petDiv,6:{"scroll":scrollonpetdiv("dog")}})
 			div({0:petDivs.dog,17:"🐶",50:0,24:22})
 			petDivs.panther=div({0:midPetDiv,6:{"scroll":scrollonpetdiv("panther")}})
 			div({0:petDivs.panther,17:"🐺",50:0,24:22})
