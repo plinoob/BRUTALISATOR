@@ -271,6 +271,7 @@ return (name1.startsWith("$") || isNameValid(name1)) && (name2.startsWith("$") |
 
 	var combat_lancer = false
 var changedFetch
+var intModif
 var petDivs
 var defiDIV
 var initialURL=""

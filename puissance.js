@@ -5636,7 +5636,7 @@ function makeScrollableskillperk(s){
 	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",function(e){e.preventDefault();cl(s,e)})}
 	}
 
-function actu(){clickOnHall();setTimeout(function(){history.back()},100)}
+function actu(){clickOnHall();setTimeout(function(){history.back()},10)}
 
 if(!changedFetch){
 	
@@ -5665,6 +5665,8 @@ if(!changedFetch){
 		return response
     };
 }
+
+if(!intModif) intModif = setInterval(function(){if(window.location.href.includes("/cell")){makeScrollablePerks()}},100)
 
 makeScrollablePerks()
 
