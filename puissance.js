@@ -5599,9 +5599,9 @@ function makePetDiv(){
 			petDivs={}
 			petDivs.dog=div({0:petDiv,6:{"scroll":scrollonpetdiv("dog")}})
 			div({0:petDivs.dog,17:"🐶",50:0,24:22})
-			petDivs.panther=div({0:midPetDiv,6:{"scroll":scrollonpetdiv("panther")}})
+			petDivs.panther=div({0:petDiv,6:{"scroll":scrollonpetdiv("panther")}})
 			div({0:petDivs.panther,17:"🐺",50:0,24:22})
-			petDivs.bear=div({0:midPetDiv,6:{"scroll":scrollonpetdiv("bear")}})
+			petDivs.bear=div({0:petDiv,6:{"scroll":scrollonpetdiv("bear")}})
 			div({0:petDivs.bear,17:"🐻",50:0,24:22})
 			
 			}
