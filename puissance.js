@@ -5611,7 +5611,7 @@ function makeScrollablePerks(){
 	
 	for(var w of weapons){makeScrollableweaponperk(w)}
 	makePetDiv()
-	for(var w of skills){makeScrollableskillperk(s)}
+	for(var s of skills){makeScrollableskillperk(s)}
 	}
 
 
