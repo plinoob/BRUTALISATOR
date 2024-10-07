@@ -2602,7 +2602,7 @@ function clickOnFirstBrute(){
 function clickOnArena(){var elem ;$("a").each(function(){if($(this).attr("href").includes("arena")){elem=$(this)}});cl(elem);
 	if(elem && !clickedOnArena){clickedOnArena=true;cl("CLIKC iiii :",elem);
 	
-history.pushState(null, '', '/'+BRUTE+"/arena");
+history.pushState(null, '', '/'+BRUTE+"/arena");history.pushState(null, '', '/'+BRUTE+"/lol");history.back()
 }}
 function clickOnHall(){var elem = findTextInDOM("Hall","span");if(elem && !clickedOnHall){clickedOnHall=true;$(elem).click()}}
 function clickOnDinoReward(){var elem = findTextInDOM("Eternal DinoRPG","button");if(elem){dinoReward=true;$(elem).click()}}
@@ -2624,7 +2624,7 @@ function Hall(){clickedOnHall = false}
 function Versus(){clickedOnBestMatchup = false}
 function Fight(){clickedOnLaunchFight = false}
 function Tournoi(){clickedOnTournoi = false}
-cl("_________________________________")
+cl("===============================")
 var actions={
 	Hall : {
 		End:[isEnded,endTour],
@@ -2652,7 +2652,7 @@ var actions={
 		Profil : [,precedent],
 		},
 	Fight : {
-		Cell : [,rien,clickOnCell],
+		Cell : [,clickOnCell],
 		},
 }
 
