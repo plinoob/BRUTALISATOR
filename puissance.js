@@ -5628,7 +5628,7 @@ function makeScrollableskillperk(s){
 
 
 
-
+makeScrollablePerks()
 
 if(!LOCAL){cl(POWERSTEP,bruteData,BRUTE,brutedatac,PUISSANCE)
 	if(!bruteData || BRUTE!=brutedatac){POWERSTEP=0}
