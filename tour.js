@@ -2576,7 +2576,7 @@ function isEnded(){return tourEnded}
 function dinoRewards(){return dinoReward}
 function notDinoRewards(){return !dinoReward}
 function fightsLeft(){return inscrit() && isTextInDOM("Il te reste ","p")}
-function noFightLeft(){cl(inscrit(),isTextInDOM("se repose","p"));return inscrit() && (isTextInDOM("Nouveau niveau !","button") || isTextInDOM("se repose","p"))}
+function noFightLeft(){return inscrit() && (isTextInDOM("Nouveau niveau !","button") || isTextInDOM("se repose","p"))}
 function bruteAlreadyDone(){return alreadyDone}
 function isArenaEnough(){return arena_turns>=2000}
 function isArenaNotEnough(){return !isArenaEnough()}
@@ -2585,12 +2585,12 @@ function inscrit(){return ((!(isTextInDOM("Tournoi","button")) || isTextInDOM("M
 function notInscrit(){return !inscrit()}
 
 
-function clickOnNextBrute(){var elem = document.querySelector('[aria-label="Brute suivante"]');cl(elem);if(elem && !clickedOnNextBrute){clickedOnNextBrute = true;$(elem).click()}}
+function clickOnNextBrute(){var elem = document.querySelector('[aria-label="Brute suivante"]');if(elem && !clickedOnNextBrute){clickedOnNextBrute = true;$(elem).click()}}
 function clickOnTournoi(){
 	var eleminscrire = findTextInDOM("Tournoi du","h6")
 	if(eleminscrire){$(eleminscrire).parent().find("div").click();return}
 	
-	var elem = findFirstTextInDOM("Tournoi","button");cl(elem,clickedOnTournoi);if(elem && !clickedOnTournoi){clickedOnTournoi=true;$(elem).click()}}
+	var elem = findFirstTextInDOM("Tournoi","button");if(elem && !clickedOnTournoi){tourEnded=true;clickedOnTournoi=true;$(elem).click()}}
 function inscrire(){var elem = findTextInDOM("Marquer comme vu","button");if(elem && !clickedOnInscrire){clickedOnInscrire=true;$(elem).click()}}
 function clickOnProfilSpan(){var elem = findTextInDOM("Profil de ","span");if(elem && !clickedOnProfil){clickedOnProfil=true;$(elem).click()}}
 function clickOnFirstBrute(){
@@ -2599,8 +2599,8 @@ function clickOnFirstBrute(){
 }).first();
 	if(firstImage.length && !clickedOnFirstBrute){clickedOnFirstBrute=true;$(firstImage).click()
     }}
-function clickOnArena(){var elem ;$("a").each(function(){if($(this).attr("href").includes("arena")){elem=$(this)}});cl(elem);
-	if(elem && !clickedOnArena){clickedOnArena=true;cl("CLIKC iiii :",elem);
+function clickOnArena(){var elem ;$("a").each(function(){if($(this).attr("href").includes("arena")){elem=$(this)}});
+	if(elem && !clickedOnArena){clickedOnArena=true;
 	
 history.pushState(null, '', '/'+BRUTE+"/arena");history.pushState(null, '', '/'+BRUTE+"/lol");history.back()
 }}
@@ -2610,7 +2610,7 @@ function clickOnLaunchFight(){var elem = findTextInDOM("Lancer le combat","div")
 function clickOnCell(){var elem = findFirstTextInDOM("Cellule de ","span");if(elem && !clickedOnCell){clickedOnCell=true;$(elem).click()}}
 function clickOnBestMatchup(){var bm="",bw=0;for(var i in brutesDivs){var w=parseFloat(brutesDivs[i].tx.text());if(w>=bw){bw=w;bm=i}};
 	if(!clickedOnBestMatchup){clickedOnBestMatchup=true;findTextInDOM(bm,"p").click()}}
-function makeSureArenaIsRunning(){if(!arenaRunning){arena()}}
+function makeSureArenaIsRunning(){if(!arenaRunning){arena()}} 
 
 function precedent(){if(!clickedOnCell){clickedOnCell=true;history.back()};}
 
@@ -2625,7 +2625,7 @@ function Hall(){clickedOnHall = false}
 function Versus(){clickedOnBestMatchup = false}
 function Fight(){clickedOnLaunchFight = false}
 function Tournoi(){clickedOnTournoi = false}
-cl("jjjjjjjjjjjjjjjj")
+cl("aaaaaaaaaa")
 var actions={
 	Hall : {
 		End:[isEnded,endTour],
@@ -2678,7 +2678,7 @@ async function Tour(){
 		parseURL()
 		
 		if(url.join("")==lastloop){nloop++}else{nloop=0;lastloop=url.join("")}
-		if(nloop%7==6){
+		if(nloop%6==5){
 			 clickedOnFirstBrute = false
 			 clickedOnNextBrute = false
 			 clickedOnProfil = false
