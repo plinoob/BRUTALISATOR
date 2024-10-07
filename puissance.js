@@ -5625,7 +5625,7 @@ function makeScrollableweaponperk(w){
 	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks")
 		.on("wheel",function(e){e.preventDefault();var brute=bruteData;
 	if(brute.weapons.includes(w.name)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:"weapon",weapon:w.name},true))}
-	else{bruteModifAc=addPerkFrom(brute,{type:"weapon",weapon:w.name},false)}
+	else{bruteModifAc=addPerkFrom(brute,{type:"weapon",weapon:w.name},true)}
 	;cl(bruteModifAc)
 	bruteModifAc.name=brute.name
 	actu()
