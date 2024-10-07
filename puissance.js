@@ -5602,11 +5602,11 @@ function makePetDiv(){
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)
 			function scrollonpetdiv(pet){return function(e){e.preventDefault();cl(pet,e)}}
 			petDivs={}
-			petDivs.dog=div({0:petDiv,6:{"wheel":scrollonpetdiv("dog")}})
+			petDivs.dog=div({0:petDiv,6:{"wheel":modifdog}})
 			div({0:petDivs.dog,17:"🐶",50:0,24:22})
-			petDivs.panther=div({0:petDiv,6:{"wheel":scrollonpetdiv("panther")}})
+			petDivs.panther=div({0:petDiv,6:{"wheel":modif("pet","panther")}})
 			div({0:petDivs.panther,17:"🐺",50:0,24:22})
-			petDivs.bear=div({0:petDiv,6:{"wheel":scrollonpetdiv("bear")}})
+			petDivs.bear=div({0:petDiv,6:{"wheel":modif("pet","bear")}})
 			div({0:petDivs.bear,17:"🐻",50:0,24:22})
 			
 			}
@@ -5623,19 +5623,33 @@ function clickOnHall(){var elem = findTextInDOM("Hall","span");$(elem).click()}
 
 function makeScrollableweaponperk(w){
 	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks")
-		.on("wheel",function(e){e.preventDefault();var brute=bruteData;
-	if(brute.weapons.includes(w.name)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:"weapon",weapon:w.name},true))}
-	else{bruteModifAc=addPerkFrom(brute,{type:"weapon",weapon:w.name},true)}
+		.on("wheel",modif("weapon",w.name))}
+	}
+
+function modifdog(e){
+	
+	cl(e)
+	
+}
+
+function modif(perkType,perk){
+
+	return function(e){e.preventDefault();var brute=bruteData;
+	if(perkType!="stats"){
+		if(brute[perkType].includes(perk)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:perkType,[perkType]:perk},true))}
+		else{bruteModifAc=addPerkFrom(brute,{type:perkType,[perkType]:perk},true)}
+	}
+	else{}
 	;cl(bruteModifAc)
 	bruteModifAc.name=brute.name
 	actu()
-	})}
 	}
-
+	
+}
 
 function makeScrollableskillperk(s){
 	var d=$('img[src="/images/skills/'+s.name+'.svg"]:not(.artificial)');
-	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",function(e){e.preventDefault();cl(s,e)})}
+	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",modif("skill",s.name))}
 	}
 
 function actu(){if(bruteModifAc){bruteData=bruteModifAc};clickOnHall();$(".power").remove();setTimeout(function(){history.back()
