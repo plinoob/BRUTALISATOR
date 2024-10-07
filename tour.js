@@ -2590,7 +2590,7 @@ function clickOnTournoi(){
 	var eleminscrire = findTextInDOM("Tournoi du","h6")
 	if(eleminscrire){$(eleminscrire).parent().find("div").click();return}
 	
-	var elem = findFirstTextInDOM("Tournoi","button");if(elem && !clickedOnTournoi){tourEnded=true;clickedOnTournoi=true;$(elem).click()}}
+	var elem = findFirstTextInDOM("Tournoi","button");if(elem && !clickedOnTournoi){clickedOnTournoi=true;$(elem).click()}}
 function inscrire(){var elem = findTextInDOM("Marquer comme vu","button");if(elem && !clickedOnInscrire){clickedOnInscrire=true;$(elem).click()}}
 function clickOnProfilSpan(){var elem = findTextInDOM("Profil de ","span");if(elem && !clickedOnProfil){clickedOnProfil=true;$(elem).click()}}
 function clickOnFirstBrute(){
@@ -2604,7 +2604,7 @@ function clickOnArena(){var elem ;$("a").each(function(){if($(this).attr("href")
 	
 history.pushState(null, '', '/'+BRUTE+"/arena");history.pushState(null, '', '/'+BRUTE+"/lol");history.back()
 }}
-function clickOnHall(){var elem = findTextInDOM("Hall","span");if(elem && !clickedOnHall){clickedOnHall=true;$(elem).click()}}
+function clickOnHall(){var elem = findTextInDOM("Hall","span");if(elem && !clickedOnHall){tourEnded=true;clickedOnHall=true;$(elem).click()}}
 function clickOnDinoReward(){var elem = findTextInDOM("Eternal DinoRPG","button");if(elem){dinoReward=true;$(elem).click()}}
 function clickOnLaunchFight(){var elem = findTextInDOM("Lancer le combat","div");if(elem && !clickedOnLaunchFight){clickedOnLaunchFight=true;$(elem).click()}}
 function clickOnCell(){var elem = findFirstTextInDOM("Cellule de ","span");if(elem && !clickedOnCell){clickedOnCell=true;$(elem).click()}}
@@ -2625,7 +2625,7 @@ function Hall(){clickedOnHall = false}
 function Versus(){clickedOnBestMatchup = false}
 function Fight(){clickedOnLaunchFight = false}
 function Tournoi(){clickedOnTournoi = false}
-cl("aaaaaaaaaa")
+cl("gggggggggggg")
 var actions={
 	Hall : {
 		End:[isEnded,endTour],
