@@ -5345,19 +5345,22 @@ var stats=[];for(var i in BruteStat){stats.push(i)}
 var perkTypes={stats:"stats",skills:"skill",pets:"pet",weapons:"weapon"}
 var perkTypesNoStats={skills:"skill",pets:"pet",weapons:"weapon"}
 
+var bruteModifAc
 
 
-function removePerkFrom(brute,perk){
+function removePerkFrom(brute,perk,level){
 	var brute = structuredClone(brute)
-	brute.name=brute.name+"$-$"+perk.type+"$"+perk[perk.type]
+	if(level)brute.level--
+	if(!level)brute.name=brute.name+"$-$"+perk.type+"$"+perk[perk.type]
+	else brute.id=Math.random()
 	if(perk.type=="weapon"){brute.weapons=brute.weapons.filter(a => a !== perk.weapon)}
 	else if(perk.type=="pet"){brute.pets=brute.pets.filter(a => a !== perk.pet);removePetMalus(brute,perk.pet)}
 	else{brute = unApplySkillModifiers(brute,perk.skill);brute.skills=brute.skills.filter(a => a !== perk.skill);}
 	return brute
 }
-function addPerkFrom(brute,perk){
+function addPerkFrom(brute,perk,level){
 	var brute=structuredClone(brute)
-	brute.level-=1
+	if(!level)brute.level-=1
 	brute.name=brute.name+"$+$"+perk.type+"$"+perk[perk.type]
 	return updateBruteData(brute,perk)
 }
@@ -5615,9 +5618,12 @@ function makeScrollablePerks(){
 	}
 
 
-
 function makeScrollableweaponperk(w){
-	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",function(e){e.preventDefault();cl(w,e)})}
+	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks")
+		.on("wheel",function(e){e.preventDefault();var brute=bruteData;
+	if(brute.weapons.includes(w.name)){bruteModifAc=removePerkFrom(brute,{type:"weapon",weapon:w.name},true)}
+	else{bruteModifAc=addPerkFrom(brute,{type:"weapon",weapon:w.name},true)}
+	;cl(bruteModifAc)})}
 	}
 
 
