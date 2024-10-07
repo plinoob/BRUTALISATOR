@@ -2578,7 +2578,7 @@ function notDinoRewards(){return !dinoReward}
 function fightsLeft(){return inscrit() && isTextInDOM("Il te reste ","p")}
 function noFightLeft(){cl(inscrit(),isTextInDOM("se repose","p"));return inscrit() && (isTextInDOM("Nouveau niveau !","button") || isTextInDOM("se repose","p"))}
 function bruteAlreadyDone(){return alreadyDone}
-function isArenaEnough(){return arena_turns>=4000}
+function isArenaEnough(){return arena_turns>=2000}
 function isArenaNotEnough(){return !isArenaEnough()}
 function inscrit(){return ((!(isTextInDOM("Tournoi","button")) || isTextInDOM("Monter de rang","button")) 
 	&& !isTextInDOM("Marquer comme vu","button")) || clickedOnInscrire || isTextInDOM("rute inscrite","p")}
@@ -2625,7 +2625,7 @@ function Hall(){clickedOnHall = false}
 function Versus(){clickedOnBestMatchup = false}
 function Fight(){clickedOnLaunchFight = false}
 function Tournoi(){clickedOnTournoi = false}
-cl("ooooooooooo")
+cl("iiiiiiiiiiii")
 var actions={
 	Hall : {
 		End:[isEnded,endTour],
@@ -2671,7 +2671,7 @@ async function Tour(){
 				}
 			}
 		}
-		await sleep(3000)
+		await sleep(1000)
 		
 		parseURL()
 		
