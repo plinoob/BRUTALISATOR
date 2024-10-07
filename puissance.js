@@ -5539,6 +5539,7 @@ res.tx=div({3:"tx",0:btn,1:perkType+perk,17:"..."})
 		return res.tx}
 
 function afficheur(bilan){
+	cl(bilan)
 	var perkType
 	var perk
 	var sens
