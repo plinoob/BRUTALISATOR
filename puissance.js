@@ -5627,6 +5627,7 @@ function makeScrollableweaponperk(w){
 	if(brute.weapons.includes(w.name)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:"weapon",weapon:w.name},true))}
 	else{bruteModifAc=addPerkFrom(brute,{type:"weapon",weapon:w.name},false)}
 	;cl(bruteModifAc)
+	bruteModifAc.name=brute.name
 	actu()
 	})}
 	}
