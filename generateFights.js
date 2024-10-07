@@ -1212,6 +1212,7 @@ function addStyle(styleString) {
 }
 
 async function getBrute(name) {
+	name=name.toLowerCase()
     const response = await fetch(`/api/brute/${name}/for-hook`);
     const html = await response.text();
     return JSON.parse(html);

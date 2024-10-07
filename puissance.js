@@ -5649,7 +5649,7 @@ if(!changedFetch){
 		
 			const response = await originalFetch(url, options);
 			cl(url,"fetch")
-		if(url=="/api/brute/"+BRUTE.toLowerCase()+"/for-hook" && bruteModifAc){
+		if(url.includes("/api/brute/"+BRUTE.toLowerCase()+"/for-hook") && bruteModifAc){
 			console.log("fetch",url, response);
 			        return new Response(JSON.stringify(bruteModifAc), {
             status: response.status,
