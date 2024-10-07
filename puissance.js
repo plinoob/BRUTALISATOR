@@ -5402,17 +5402,11 @@ function makeAnaDiv(perkType,perk,sens){
 		
 		if(perkType.startsWith("pet")){
 						
-			var petDiv = $("#petDivMin")
-			if(!petDiv.length){var useElement = $('img[src^="/images/skills/"]').last().parent().parent();//$(findTextInDOM("Force","span")).parent().parent().parent().parent()
-				cl("divpet",useElement)
-			petDiv=div({1:"petDivMin",3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
-			,display: "flex","flex-direction": "line","align-items": "center"},
-			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)}
+			var petDiv = makePetDiv()
 			
 			
-			var div2=div({0:petDiv})
-			div({0:div2,50:0,17:{dog1:"🐶",dog2:"🐶",dog3:"🐶",panther:"🐺",bear:"🐻"}[perk]})
-			var res=div({9:{margin:"2px"},0:div2})
+			
+			var res=div({9:{margin:"2px"},0:petDivs[{dog1:"dog",dog2:"dog",dog3:"dog",panther:"panther",bear:"bear"}[perk]]})
 			return makeInfoDiv(res,perkType,perk)
 
 		}
@@ -5475,7 +5469,7 @@ function makeAnaDiv(perkType,perk,sens){
 				textBoxCSS,baseCSS,{"padding": "5px"}])})
 			}
 			var res=div({9:{display:"flex","justify-content":"center","max-width":"100%"},0:skillDiv,3:"power"})
-			div({0:res,2:"img",22:"/images/skills/"+perk+".svg",9:{height:"18px"}})
+			div({0:res,3:"artificial",2:"img",22:"/images/skills/"+perk+".svg",9:{height:"18px"}})
 			return makeInfoDiv(res,perkType,perk,false)
 
 		}
@@ -5593,10 +5587,45 @@ function potentiel(){
 
 }
 
+function makePetDiv(){
+			var petDiv=$("#petDivMin")
+			if(!petDiv.length || !petDivs){$("#petDivMin").remove();
+			var useElement = $('img[src^="/images/skills/"]').last().parent().parent();
+				cl("divpet",useElement)
+			petDiv=div({1:"petDivMin",3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+			,display: "flex","flex-direction": "line","align-items": "center"},
+			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)
+			var midPetDiv = div({0:petDiv,4:["","","",50],5:[-50,0]})
+			function scrollonpetdiv(pet){return function(e){cl(pet,e)}}
+			petDivs={}
+			petDivs.dog=div({0:midPetDiv,6:{"scroll",scrollonpetdiv("dog")}})
+			div({0:petDivs.dog,17:"🐶",50:0,24:22})
+			petDivs.panther=div({0:midPetDiv,6:{"scroll",scrollonpetdiv("panther")}})
+			div({0:petDivs.panther,17:"🐺",50:0,24:22})
+			petDivs.bear=div({0:midPetDiv,6:{"scroll",scrollonpetdiv("bear")}})
+			div({0:petDivs.bear,17:"🐻",50:0,24:22})
+			
+			}
+			return petDiv}
+
+function makeScrollablePerks(){
+	
+	for(var w of weapons){makeScrollableweaponperk(w)}
+	makePetDiv()
+	for(var w of skills){makeScrollableskillperk(s)}
+	}
 
 
 
+function makeScrollableweaponperk(w){
+	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("scroll",function(e){cl(w,e)})}
+	}
 
+
+function makeScrollableskillperk(s){
+	var d=$('img[src="/images/skills/'+perk+'.svg"]:not(.artificial)');
+	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("scroll",function(e){cl(s,e)})}
+	}
 
 
 
@@ -5610,7 +5639,6 @@ if(!LOCAL){cl(POWERSTEP,bruteData,BRUTE,brutedatac,PUISSANCE)
 	cl("POOOOWERSTEP",POWERSTEP)
 }
 "⚡️🔥"
-
 
 /*
 async function test(){cl("test")
