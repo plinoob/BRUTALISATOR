@@ -2576,7 +2576,7 @@ function isEnded(){return tourEnded}
 function dinoRewards(){return dinoReward}
 function notDinoRewards(){return !dinoReward}
 function fightsLeft(){return inscrit() && isTextInDOM("Il te reste ","p")}
-function noFightLeft(){return inscrit() && (isTextInDOM("Nouveau niveau !","button") || isTextInDOM("dés demain","p"))}
+function noFightLeft(){cl(inscrit(),isTextInDOM("se repose","p"));return inscrit() && (isTextInDOM("Nouveau niveau !","button") || isTextInDOM("se repose","p"))}
 function bruteAlreadyDone(){return alreadyDone}
 function isArenaEnough(){return arena_turns>=4000}
 function isArenaNotEnough(){return !isArenaEnough()}
