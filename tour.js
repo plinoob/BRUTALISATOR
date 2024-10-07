@@ -2658,6 +2658,8 @@ var actions={
 }
 
 var currentLoc = "Hall"
+var lastloop = ""
+var nloop = 0
 
 async function Tour(){
 	while(!tourTerminer){
@@ -2674,6 +2676,19 @@ async function Tour(){
 		await sleep(1000)
 		
 		parseURL()
+		
+		if(url.join("")==lastloop){nloop++}else{nloop=0;lastloop=url.join("")}
+		if(nloop%7==6){
+			 clickedOnFirstBrute = false
+			 clickedOnNextBrute = false
+			 clickedOnProfil = false
+			 clickedOnArena = false
+			 clickedOnHall = false
+			 clickedOnLaunchFight = false
+			 clickedOnBestMatchup = false
+			 clickedOnCell = false
+			 clickedOnTournoi = false
+			 clickedOnInscrire = false}
 		
 		if(url.length==2 && url[1]=="hall"){currentLoc="Hall";Hall()}
 		else if(url.length==3 && url[2]=="cell"){BRUTE = url[1];currentLoc="Cell";Cell()}
