@@ -2617,7 +2617,7 @@ function precedent(){if(!clickedOnCell){clickedOnCell=true;history.back()};}
 
 
 function Arena(){clickedOnArena = false}
-function Cell(){clickedOnInscrire=false;if(clickedOnNextBrute && brutesDone.includes(BRUTE)){alreadyDone = true}
+function Cell(){clickedOnInscrire=false;if(clickedOnNextBrute && brutesDone.includes(BRUTE) && BRUTE!=tourBruteAC){alreadyDone = true}
 else if(!brutesDone.includes(BRUTE)){brutesDone.push(BRUTE)};if(BRUTE!=tourBruteAC){tourBruteAC=BRUTE;clickedOnNextBrute=clickedOnInscrire=false};
 						clickedOnFirstBrute=clickedOnCell = false}
 function Profil(){clickedOnProfil=false}
@@ -2625,7 +2625,7 @@ function Hall(){clickedOnHall = false}
 function Versus(){clickedOnBestMatchup = false}
 function Fight(){clickedOnLaunchFight = false}
 function Tournoi(){clickedOnTournoi = false}
-cl("pppppppppppppppppppppppp")
+cl("jjjjjjjjjjjjjjjj")
 var actions={
 	Hall : {
 		End:[isEnded,endTour],
