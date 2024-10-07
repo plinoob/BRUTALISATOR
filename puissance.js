@@ -5638,7 +5638,7 @@ if(!LOCAL){cl(POWERSTEP,bruteData,BRUTE,brutedatac,PUISSANCE)
 	else{POWERSTEP=3;power()}
 	cl("POOOOWERSTEP",POWERSTEP)
 }
-"⚡️🔥"
+cl("⚡️🔥")
 
 /*
 async function test(){cl("test")
