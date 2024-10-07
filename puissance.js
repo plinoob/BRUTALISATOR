@@ -5648,7 +5648,7 @@ if(!changedFetch){
         // Appeler le fetch original
 		
 			const response = await originalFetch(url, options);
-			
+			cl(url,"fetch")
 		if(url=="/api/brute/"+BRUTE.toLowerCase()+"/for-hook" && bruteModifAc){
 			console.log("fetch",url, response);
 			        return new Response(JSON.stringify(bruteModifAc), {
