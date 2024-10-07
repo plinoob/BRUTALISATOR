@@ -5596,7 +5596,7 @@ function makePetDiv(){
 			,display: "flex","flex-direction": "line","align-items": "center"},
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)
 			var midPetDiv = div({0:petDiv,4:["","","",50],5:[-50,0]})
-			function scrollonpetdiv(pet){return function(e){cl(pet,e)}}
+			function scrollonpetdiv(pet){return function(e){e.preventDefault();e.stopEventPropagation();cl(pet,e)}}
 			petDivs={}
 			petDivs.dog=div({0:midPetDiv,6:{"scroll":scrollonpetdiv("dog")}})
 			div({0:petDivs.dog,17:"🐶",50:0,24:22})
@@ -5618,13 +5618,13 @@ function makeScrollablePerks(){
 
 
 function makeScrollableweaponperk(w){
-	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("scroll",function(e){cl(w,e)})}
+	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("scroll",function(e){e.preventDefault();e.stopEventPropagation();cl(w,e)})}
 	}
 
 
 function makeScrollableskillperk(s){
 	var d=$('img[src="/images/skills/'+perk+'.svg"]:not(.artificial)');
-	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("scroll",function(e){cl(s,e)})}
+	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("scroll",function(e){e.preventDefault();e.stopEventPropagation();cl(s,e)})}
 	}
 
 
