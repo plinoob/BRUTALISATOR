@@ -5637,7 +5637,10 @@ function makeScrollableskillperk(s){
 	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",function(e){e.preventDefault();cl(s,e)})}
 	}
 
-function actu(){if(bruteModifAc){bruteData=bruteModifAc};clickOnHall();setTimeout(function(){history.back()},10)}
+function actu(){if(bruteModifAc){bruteData=bruteModifAc};clickOnHall();$(".power").remove();setTimeout(function(){history.back()
+	
+setTimeout(power,333)
+},10)}
 
 if(!changedFetch){
 	
