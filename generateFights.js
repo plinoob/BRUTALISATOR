@@ -764,7 +764,8 @@ if(typeof(window)!="undefined"){	urrl= window.location.href;
 	setInt = setInterval(function(){
 		refreshPotentielLoop = (refreshPotentielLoop+1)%5
 		if (fightWorkers && fightWorkers.size) {fightWorkers.forEach(worker => worker.postMessage(5));}
-	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();
+	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();//CHANGEMENT PAGE
+	arena_turns=0
 	terminateWorkers();$(".power").remove();bruteData=undefined
 		$("#mynetwork").remove();$("#puissance").remove()}
 		for(var divname of ["#SkillsMax","#WeaponsMax"]){if(refreshPotentielLoop){break}
@@ -951,6 +952,7 @@ if(url.length==3 && url[2]=="arena"){BRUTE = url[1];if(!arenaRunning && arenaBru
 var WANTS_BACKUP
 var brutesNames
 var brutesDivs
+var arena_turns = 0
 
 async function arena(backups){arenaRunning=true
 if(arenaBruteAc!=BRUTE){WANTS_BACKUP = false}
@@ -1049,6 +1051,7 @@ else{setImageSrc(img_ours,img_ours2)}
 					}
 					var nombres = {},flag=true,precision=0
 					while(flag && precision<4){flag=false;for(var b of res){
+						arena_turns=b.j
 						var coef=1-b.v/b.j
 						var tx = (coef*100).toFixed(precision)+""
 						
