@@ -5622,7 +5622,7 @@ function makeScrollableweaponperk(w){
 
 
 function makeScrollableskillperk(s){
-	var d=$('img[src="/images/skills/'+perk+'.svg"]:not(.artificial)');
+	var d=$('img[src="/images/skills/'+s.name+'.svg"]:not(.artificial)');
 	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("scroll",function(e){e.preventDefault();e.stopEventPropagation();cl(s,e)})}
 	}
 
