@@ -2624,7 +2624,7 @@ function Hall(){clickedOnHall = false}
 function Versus(){clickedOnBestMatchup = false}
 function Fight(){clickedOnLaunchFight = false}
 function Tournoi(){clickedOnTournoi = false}
-cl("uuuuuuuuuuuu")
+cl("_________________________________")
 var actions={
 	Hall : {
 		End:[isEnded,endTour],
