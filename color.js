@@ -270,6 +270,7 @@ function combatIsOk(){var name1=brutes[0];var name2=brutes[1];if(name1.indexOf("
 return (name1.startsWith("$") || isNameValid(name1)) && (name2.startsWith("$") || isNameValid(name2)) && brutes[0]!=brutes[1]}
 
 	var combat_lancer = false
+var changedFetch
 var petDivs
 var defiDIV
 var initialURL=""

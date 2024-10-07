@@ -5623,7 +5623,9 @@ function makeScrollableweaponperk(w){
 		.on("wheel",function(e){e.preventDefault();var brute=bruteData;
 	if(brute.weapons.includes(w.name)){bruteModifAc=removePerkFrom(brute,{type:"weapon",weapon:w.name},true)}
 	else{bruteModifAc=addPerkFrom(brute,{type:"weapon",weapon:w.name},true)}
-	;cl(bruteModifAc)})}
+	;cl(bruteModifAc)
+	actu()
+	})}
 	}
 
 
@@ -5632,7 +5634,32 @@ function makeScrollableskillperk(s){
 	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",function(e){e.preventDefault();cl(s,e)})}
 	}
 
+function actu(){history.pushState(null, '', '/'+BRUTE+"/lol");history.back()}
 
+if(!changedFetch){
+	
+	changedFetch=true
+	
+	var originalFetch=window.fetch;
+				window.fetch = async function(url, options) {
+        //console.log("Intercepted fetch call to:" +url);
+        
+        // Appeler le fetch original
+        const response = await originalFetch(url, options);
+        
+        // Modifier la réponse (ici, on parse du JSON pour l'exemple)
+        const data = await response.json();
+        console.log("fetch",url, data);
+        
+        
+        // Retourner une nouvelle réponse modifiée
+        return new Response(JSON.stringify(data), {
+            status: response.status,
+            statusText: response.statusText,
+            headers: response.headers
+        });
+    };
+}
 
 makeScrollablePerks()
 
