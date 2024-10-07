@@ -5360,8 +5360,9 @@ function removePerkFrom(brute,perk,level){
 }
 function addPerkFrom(brute,perk,level){
 	var brute=structuredClone(brute)
-	if(!level)brute.level-=1
-	brute.name=brute.name+"$+$"+perk.type+"$"+perk[perk.type]
+	if(!level){brute.level-=1
+	brute.name=brute.name+"$+$"+perk.type+"$"+perk[perk.type]}
+	else{brute.id=Math.random()}
 	return updateBruteData(brute,perk)
 }
 
