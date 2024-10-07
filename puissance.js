@@ -5636,7 +5636,7 @@ function modif(perkType,perk){
 
 	return function(e){e.preventDefault();var brute=bruteData;
 	if(perkType!="stats"){
-		if(brute[perkType].includes(perk)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:perkType,[perkType]:perk},true))}
+		if(brute[perkType+"s"].includes(perk)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:perkType,[perkType]:perk},true))}
 		else{bruteModifAc=addPerkFrom(brute,{type:perkType,[perkType]:perk},true)}
 	}
 	else{}
