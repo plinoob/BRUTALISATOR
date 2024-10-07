@@ -2635,8 +2635,8 @@ var actions={
 		},
 	Cell : {
 		Tournoi : [notInscrit,clickOnTournoi],
-		//Arena : [fightsLeft,clickOnArena],
-		Cell : [inscrit,clickOnNextBrute],//Cell : [noFightLeft,clickOnNextBrute],
+		Arena : [fightsLeft,clickOnArena],
+		Cell : [noFightLeft,clickOnNextBrute],//Cell : [inscrit,clickOnNextBrute],//
 		Hall : [bruteAlreadyDone,clickOnHall],
 		},
 	Arena : {
@@ -2651,7 +2651,7 @@ var actions={
 		Profil : [,precedent],
 		},
 	Fight : {
-		Cell : [,clickOnCell],
+		Cell : [,rien,clickOnCell],
 		},
 }
 
