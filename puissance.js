@@ -5500,7 +5500,7 @@ function makeInfoDiv(parent,perkType,perk,sens=true){
 			if(e.which==2){window.open(window.location.href.split(".org/")[0]+".org/"+"?b1=@"+BRUTE+"&b2=$"+bruteData.level+"_1_"+perkType+"_"+perk, '_blank');}}}})}
 		
 		var btn=res.btn=div({0:res.div,2:"button",9:{
-	transform:"scale(0.8)"+(sens?(perkType=="skill"?"translate(0,-6px)":(perkType=="weapon"?"translate(-50%,-50%)":"")):(perkType=="weapon"?" translate(0,-50%)":" translate(0,-50%)")),
+	transform:"scale(0.8)"+(sens?(perkType=="skill"?"translate(0,-6px)":(perkType=="weapon"?"translate(-50%,-50%)":"")):(perkType=="weapon"?" translate(0,-30%)":" translate(0,-50%)")),
     margin: perkType=="weapon"?"":"8px auto",
     "border-radius": "4px",
     "border-width": "1px",
@@ -5705,7 +5705,7 @@ if(!changedFetch){
 if(!intModif) intModif = setInterval(function(){
 	
 	parseURL()
-	if(url[2]=="cell"){BRUTE=url[1];if(bruteModifAc && bruteModifAc.name!=BRUTE){bruteModifAc=bruteData=undefined};if(bruteData){makeScrollablePerks()
+	if(url[2]=="cell"){BRUTE=url[1];if(bruteModifAc && bruteModifAc.name!=BRUTE){bruteModifAc=bruteData=POWERSTEP=undefined};if(bruteData){makeScrollablePerks()
 	if(needToRebuild && $('img[src="/images/skills/backup.svg"]:not(.artificial)').length){needToRebuild=false;$(".power").remove();power()}}
 
 
