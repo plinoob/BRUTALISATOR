@@ -946,7 +946,7 @@ display: "block",
         'transform': 'rotateX(20deg) translateZ(-1px)',
         'z-index': '-1',
         'transition': 'height 0.1s, top 0.1s'}})
-res.tx=div({0:btn})
+res.tx=div({0:btn,26:1})
 
 		
 		
