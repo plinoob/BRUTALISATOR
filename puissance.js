@@ -5496,7 +5496,7 @@ function makeAnaDiv(perkType,perk,sens){
 	
 }
 function makeInfoDiv(parent,perkType,perk,sens=true){
-		var res={div:div({2:"span",0:parent,9:{height:"30px","max-width":"100%"},6:{mousedown:async function(e){e.preventDefault();
+		var res={div:div({2:(perkType=="weapon" && sens)?"div":"span",0:parent,9:(perkType=="weapon" && sens)?{}:{height:"30px","max-width":"100%"},6:{mousedown:async function(e){e.preventDefault();
 			if(e.which==2){window.open(window.location.href.split(".org/")[0]+".org/"+"?b1=@"+BRUTE+"&b2=$"+bruteData.level+"_1_"+perkType+"_"+perk, '_blank');}}}})}
 		
 		var btn=res.btn=div({0:res.div,2:"button",9:{
