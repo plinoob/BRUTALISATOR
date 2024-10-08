@@ -5624,6 +5624,8 @@ function clickOnHall(){var elem = findTextInDOM("Hall","span");$(elem).click()}
 function makeScrollableweaponperk(w){
 	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks")
 		.on("mousedown",modif("weapon",w.name))}
+	var d=$("#weapon"+w.name).parent().parent().parent()
+	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("mousedown",modif("skill",w.name))}
 	}
 
 function modifdog(e){
@@ -5657,11 +5659,13 @@ function modif(perkType,perk){
 function makeScrollableskillperk(s){
 	var d=$('img[src="/images/skills/'+s.name+'.svg"]:not(.artificial)');
 	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("mousedown",modif("skill",s.name))}
+	var d=$("#skill"+s.name).parent().parent().parent()
+	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("mousedown",modif("skill",s.name))}
 	}
-
+var needToRebuild
 function actu(){if(bruteModifAc){bruteData=bruteModifAc};clickOnHall();$(".power").remove();setTimeout(function(){history.back()
 	
-setTimeout(function(){$(".power").remove();power()},1000)
+setTimeout(function(){needToRebuild=true},333)
 },10)}
 
 if(!changedFetch){
@@ -5693,7 +5697,7 @@ if(!changedFetch){
 }
 
 if(!intModif) intModif = setInterval(function(){if(window.location.href.includes("/cell")){makeScrollablePerks()
-	
+	if($('img[src="/images/skills/'+s.name+'.svg"]:not(.artificial)') && needToRebuild){needToRebuild=false;$(".power").remove();power()}
 
 
 }},100)
