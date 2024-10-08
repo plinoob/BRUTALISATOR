@@ -5429,10 +5429,10 @@ function makeAnaDiv(perkType,perk,sens){
 			const centerX = bbox.left + window.scrollX + (bbox.width / 2);
 			const centerY = bbox.top + window.scrollY + (bbox.height / 2);
 
-			const weapondiv = div({5:0,13:10000000,3:"power"})[0];
+			const weapondiv = div({5:0,13:10000000,3:"power",12:["0px","0px"]})[0];
 			weapondiv.style.position = 'absolute';
-			weapondiv.style.top = `${centerY - (weapondiv.offsetHeight / 2)}px`;
-			weapondiv.style.left = `${centerX - (weapondiv.offsetWidth / 2)}px`;
+			weapondiv.style.top = `${centerY}px`;
+			weapondiv.style.left = `${centerX)}px`;
 
 			return makeInfoDiv($(weapondiv),perkType,perk)
 		
@@ -5499,7 +5499,7 @@ function makeInfoDiv(parent,perkType,perk,sens=true){
 			if(e.which==2){window.open(window.location.href.split(".org/")[0]+".org/"+"?b1=@"+BRUTE+"&b2=$"+bruteData.level+"_1_"+perkType+"_"+perk, '_blank');}}}})}
 		
 		var btn=res.btn=div({0:res.div,2:"button",9:{
-	transform:"scale(0.8)"+(sens?"":" translate(0,-50%)"),
+	transform:"scale(0.8)"+(sens?(perkType=="skill"?"translate(0,-6px)":""):" translate(0,-50%)"),
     margin: "8px auto",
     "border-radius": "4px",
     "border-width": "1px",
@@ -5602,11 +5602,11 @@ function makePetDiv(){
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)
 			function scrollonpetdiv(pet){return function(e){e.preventDefault();cl(pet,e)}}
 			petDivs={}
-			petDivs.dog=div({0:petDiv,6:{"wheel":modifdog}})
+			petDivs.dog=div({0:petDiv,6:{"mousedown":modifdog}})
 			div({0:petDivs.dog,17:"🐶",50:0,24:22})
-			petDivs.panther=div({0:petDiv,6:{"wheel":modif("pet","panther")}})
+			petDivs.panther=div({0:petDiv,6:{"mousedown":modif("pet","panther")}})
 			div({0:petDivs.panther,17:"🐺",50:0,24:22})
-			petDivs.bear=div({0:petDiv,6:{"wheel":modif("pet","bear")}})
+			petDivs.bear=div({0:petDiv,6:{"mousedown":modif("pet","bear")}})
 			div({0:petDivs.bear,17:"🐻",50:0,24:22})
 			
 			}
@@ -5623,23 +5623,30 @@ function clickOnHall(){var elem = findTextInDOM("Hall","span");$(elem).click()}
 
 function makeScrollableweaponperk(w){
 	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks")
-		.on("wheel",modif("weapon",w.name))}
+		.on("mousedown",modif("weapon",w.name))}
 	}
 
 function modifdog(e){
 	
-	cl(e)
+	if(e.which==2){return};var way=e.which==1;
+	
+	var brute=bruteData;
+	var p=brute.pets,dog1=p.includes("dog1"),dog2=p.includes("dog2"),dog3=p.includes("dog3"),
+	if(!dog1 || (!dog2 && !way)){return modif("pet","dog1")(e)}
+	else if(!dog2 || (!dog3 && !way)){return modif("pet","dog2")(e)}
+	else{return modif("pet","dog3")(e)}
 	
 }
 
 function modif(perkType,perk){
 
-	return function(e){e.preventDefault();var brute=bruteData;
+	return function(e){e.preventDefault();if(e.which==2){return};var way=e.which==1;var brute=bruteData;
 	if(perkType!="stats"){
 		if(brute[perkType+"s"].includes(perk)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:perkType,[perkType]:perk},true))}
 		else{bruteModifAc=addPerkFrom(brute,{type:perkType,[perkType]:perk},true)}
 	}
-	else{}
+	else{if(brute[perk+"Stat"]<3 || way){brute[perk+"Stat"]+=2;brute.level+=1}
+	else{brute[perk+"Stat"]-=2;brute.level-=1};bruteModifAc=refreshStats(brute)}
 	;cl(bruteModifAc)
 	bruteModifAc.name=brute.name
 	actu()
@@ -5649,7 +5656,7 @@ function modif(perkType,perk){
 
 function makeScrollableskillperk(s){
 	var d=$('img[src="/images/skills/'+s.name+'.svg"]:not(.artificial)');
-	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",modif("skill",s.name))}
+	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("mousedown",modif("skill",s.name))}
 	}
 
 function actu(){if(bruteModifAc){bruteData=bruteModifAc};clickOnHall();$(".power").remove();setTimeout(function(){history.back()
