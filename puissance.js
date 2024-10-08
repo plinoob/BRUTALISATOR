@@ -5499,8 +5499,8 @@ function makeInfoDiv(parent,perkType,perk,sens=true){
 			if(e.which==2){window.open(window.location.href.split(".org/")[0]+".org/"+"?b1=@"+BRUTE+"&b2=$"+bruteData.level+"_1_"+perkType+"_"+perk, '_blank');}}}})}
 		
 		var btn=res.btn=div({0:res.div,2:"button",9:{
-	transform:"scale(0.8)"+(sens?(perkType=="skill"?"translate(0,-6px)":""):" translate(0,-50%)"),
-    margin: "8px auto",
+	transform:"scale(0.8)"+(sens?(perkType=="skill"?"translate(0,-6px)":(perkType=="weapon"?"translate(-50%,-50%)":"")):" translate(0,-50%)"),
+    margin: perkType=="weapon"?"":"8px auto",
     "border-radius": "4px",
     "border-width": "1px",
     "border-style": "solid",
