@@ -5432,7 +5432,7 @@ function makeAnaDiv(perkType,perk,sens){
 			const weapondiv = div({5:0,13:10000000,3:"power",12:["0px","0px"]})[0];
 			weapondiv.style.position = 'absolute';
 			weapondiv.style.top = `${centerY}px`;
-			weapondiv.style.left = `${centerX)}px`;
+			weapondiv.style.left = `${centerX}px`;
 
 			return makeInfoDiv($(weapondiv),perkType,perk)
 		
