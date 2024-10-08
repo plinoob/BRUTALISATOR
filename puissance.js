@@ -5696,8 +5696,11 @@ if(!changedFetch){
     };
 }
 
-if(!intModif) intModif = setInterval(function(){if(window.location.href.includes("/cell")){makeScrollablePerks()
-	if(needToRebuild && $('img[src="/images/skills/backup.svg"]:not(.artificial)').length){needToRebuild=false;$(".power").remove();power()}
+if(!intModif) intModif = setInterval(function(){
+	
+	parseURL()
+	if(url[2]=="cell"){BRUTE=url[1];if(bruteModifAc && bruteModifAc.name!=BRUTE){bruteModifAc=bruteData=undefined};if(bruteData){makeScrollablePerks()
+	if(needToRebuild && $('img[src="/images/skills/backup.svg"]:not(.artificial)').length){needToRebuild=false;$(".power").remove();power()}}
 
 
 }},100)
