@@ -5560,10 +5560,13 @@ function afficheur(bilan){
 	
 	}
 
+var statsHaved
+var statsNotHaved
 function potentiel(){
 	
 	var brute = bruteData
 	
+	statsHaved = {stats};for(var i in perkTypesNoStats){statsHaved[i] = brute[i].filter(s=>s!="regeneration" && s!="backup")}
 	statsNotHaved = {stats,skills:[],weapons:[],pets:[]};
 	for(var s of skills){if(s.name!="regeneration" && s.name!="backup" && !statsHaved.skills.includes(s.name)){statsNotHaved.skills.push(s.name)}}
 	for(var s of weapons){if(!statsHaved.weapons.includes(s.name)){statsNotHaved.weapons.push(s.name)}}
@@ -5712,7 +5715,7 @@ makeScrollablePerks()
 
 if(!LOCAL){cl(POWERSTEP,bruteData,BRUTE,brutedatac,PUISSANCE)
 	if(!bruteData || BRUTE!=brutedatac){POWERSTEP=0}
-	if(!POWERSTEP || POWERSTEP==3){POWERSTEP=1;power()}
+	if(!POWERSTEP || POWERSTEP==3){$(".power").remove();POWERSTEP=1;power()}
 	else if(POWERSTEP==1){POWERSTEP=2;analyse()}
 	else{POWERSTEP=3;power()}
 	cl("POOOOWERSTEP",POWERSTEP)
