@@ -5350,6 +5350,7 @@ var bruteModifAc
 
 function removePerkFrom(brute,perk,level){
 	var brute = structuredClone(brute)
+	if(level && brute.level<2){return brute}
 	if(level)brute.level--
 	if(!level)brute.name=brute.name+"$-$"+perk.type+"$"+perk[perk.type]
 	else brute.id=Math.random().toString()
@@ -5647,7 +5648,7 @@ function modif(perkType,perk){
 		if(brute[perkType+"s"].includes(perk)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:perkType,[perkType]:perk},true))}
 		else{bruteModifAc=addPerkFrom(brute,{type:perkType,[perkType]:perk},true)}
 	}
-	else{if(brute[perk+"Stat"]<3 || way){brute[perk+"Stat"]+=2;brute.level+=1}
+	else{if(brute[perk+"Stat"]<3 || way || brute.level<2){brute[perk+"Stat"]+=2;brute.level+=1}
 	else{brute[perk+"Stat"]-=2;brute.level-=1};bruteModifAc=refreshStats(brute)}
 	;cl(bruteModifAc)
 	bruteModifAc.name=brute.name
