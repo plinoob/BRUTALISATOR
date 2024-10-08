@@ -5597,7 +5597,7 @@ function makePetDiv(){
 			var petDiv=$("#petDivMin")
 			if(!petDiv.length || !petDivs){$("#petDivMin").remove();
 			var useElement = $('img[src^="/images/skills/"]').last().parent().parent();
-				cl("divpet",useElement)
+				cl("DIV PET :: = ==",useElement)
 			petDiv=div({1:"petDivMin",3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line","align-items": "center","justify-content":"space-evenly"},
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)
