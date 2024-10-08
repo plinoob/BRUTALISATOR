@@ -87,14 +87,14 @@ var POWERpalette = setupColorInterpolation([
     [0, '#E5A0AE'], // Rouge
     [0.50, '#BF2820'], // Orange
     [0.75, '#EAAF00'], // Vert
-    [0.95, '#3E3870'], // Vert
+    [0.92, '#3E3870'], // Vert
     [1, '#54C4C4']  // Bleu
 ]);
 var POWERbeforePalette = setupColorInterpolation([
     [0, '#AA7984'], // Rouge
     [0.50, '#9B201A'], // Orange
     [0.75, '#BA8500'], // Vert
-    [0.95, '#19162D'], // Vert
+    [0.92, '#19162D'], // Vert
     [1, '#359999']  // Bleu
 ]);    
 var BONUSpalette = setupColorInterpolation([
@@ -768,7 +768,7 @@ if(typeof(window)!="undefined"){	urrl= window.location.href;
 		if (fightWorkers && fightWorkers.size) {fightWorkers.forEach(worker => worker.postMessage(5));}
 	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();//CHANGEMENT PAGE
 	arena_turns=0
-	terminateWorkers();$(".power").remove();if(!bruteModifAc)bruteData=undefined
+	terminateWorkers();$(".power").remove();if(!urrl.includes("/hall") && !urrl.includes("/cell")){POWERSTEP=surpuissance=undefined;};if(!bruteModifAc)bruteData=undefined
 		$("#mynetwork").remove();$("#puissance").remove()}
 		for(var divname of ["#SkillsMax","#WeaponsMax"]){if(refreshPotentielLoop){break}
 			var l=[]	
