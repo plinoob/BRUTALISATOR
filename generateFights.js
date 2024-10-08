@@ -704,7 +704,7 @@ function isTextInDOM(text,balise) {
   // Parcourir tous les éléments et vérifier leur texte
   elements.forEach(element => {
     if (element.textContent.includes(text)) {
-      console.log('Élément trouvé :', element.textContent);
+      //console.log('Élément trouvé :', element.textContent);
 	  found = true
     }
   });
@@ -718,7 +718,7 @@ function findFirstTextInDOM(text,balise) {
   // Parcourir tous les éléments et vérifier leur texte
   elements.forEach(element => {
     if (element.textContent.includes(text)) {
-      console.log('Élément trouvé :', element.textContent);
+      //console.log('Élément trouvé :', element.textContent);
 	  if(!elem)elem= element;
     }
   });

@@ -2625,7 +2625,7 @@ function Hall(){clickedOnHall = false}
 function Versus(){clickedOnBestMatchup = false}
 function Fight(){clickedOnLaunchFight = false}
 function Tournoi(){clickedOnTournoi = false}
-cl("gggggggggggg")
+//cl("gggggggggggg")
 var actions={
 	Hall : {
 		End:[isEnded,endTour],
@@ -2668,8 +2668,9 @@ async function Tour(){
 			if(loc == currentLoc){
 				for(var opts in actions[loc]){
 					var steps = actions[loc][opts]
-					if(steps[0])cl(steps[0].name)
-					if(!steps[0] || steps[0]()){cl(steps[1].name);steps[1]();break}
+					//if(steps[0])cl(steps[0].name)
+					if(!steps[0] || steps[0]()){//cl(steps[1].name);
+							steps[1]();break}
 				}
 			}
 		}
