@@ -5697,7 +5697,7 @@ if(!changedFetch){
 }
 
 if(!intModif) intModif = setInterval(function(){if(window.location.href.includes("/cell")){makeScrollablePerks()
-	if(needToRebuild && $('img[src="/images/skills/backup.svg"]:not(.artificial)')){needToRebuild=false;$(".power").remove();power()}
+	if(needToRebuild && $('img[src="/images/skills/backup.svg"]:not(.artificial)').length){needToRebuild=false;$(".power").remove();power()}
 
 
 }},100)
