@@ -5631,7 +5631,7 @@ function modifdog(e){
 	if(e.which==2){return};var way=e.which==1;
 	
 	var brute=bruteData;
-	var p=brute.pets,dog1=p.includes("dog1"),dog2=p.includes("dog2"),dog3=p.includes("dog3"),
+	var p=brute.pets,dog1=p.includes("dog1"),dog2=p.includes("dog2"),dog3=p.includes("dog3");
 	if(!dog1 || (!dog2 && !way)){return modif("pet","dog1")(e)}
 	else if(!dog2 || (!dog3 && !way)){return modif("pet","dog2")(e)}
 	else{return modif("pet","dog3")(e)}
