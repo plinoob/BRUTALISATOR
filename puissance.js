@@ -5313,7 +5313,8 @@ res.tx=div({0:btn,17:"..."})
 	
 	
 				simulFights({
-					fn:function(res,ended){cl(res[0]);if(POWERSTEP==1 || !POWERSTEP){stopLoading();}
+					fn:function(res,ended){//cl(res[0]);
+						if(POWERSTEP==1 || !POWERSTEP){stopLoading();}
 						var coef = res[0].v/res[0].j
 						PUISSANCE=coef
 						var chiffre = Math.round(coef*1000)
