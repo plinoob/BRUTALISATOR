@@ -5680,8 +5680,9 @@ if(!changedFetch){
         // Appeler le fetch original
 		
 			const response = await originalFetch(url, options);
-			cl(url,"fetch")
+			cl(url,"fetch",url.includes("/api/brute/"+BRUTE.toLowerCase()+"/for-hook") || url.includes("/api/brute/"+BRUTE+"/for-hook"),bruteModifAc)
 		if((url.includes("/api/brute/"+BRUTE.toLowerCase()+"/for-hook") || url.includes("/api/brute/"+BRUTE+"/for-hook")) && bruteModifAc){
+			
 			console.log("fetch",url, response);
 			        return new Response(JSON.stringify(bruteModifAc), {
             status: response.status,
