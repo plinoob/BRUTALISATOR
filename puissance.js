@@ -5539,7 +5539,7 @@ res.tx=div({3:"tx",0:btn,1:perkType+perk,17:"..."})
 		return res.tx}
 
 function afficheur(bilan){
-	cl(bilan)
+	//cl(bilan)
 	var perkType
 	var perk
 	var sens
@@ -5651,6 +5651,7 @@ function modif(perkType,perk){
 	else{brute[perk+"Stat"]-=2;brute.level-=1};bruteModifAc=refreshStats(brute)}
 	;cl(bruteModifAc)
 	bruteModifAc.name=brute.name
+	bruteData=bruteModifAc
 	actu()
 	}
 	
@@ -5663,7 +5664,7 @@ function makeScrollableskillperk(s){
 	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("mousedown",modif("skill",s.name))}
 	}
 var needToRebuild
-function actu(){if(bruteModifAc){bruteData=bruteModifAc};clickOnHall();$(".power").remove();setTimeout(function(){history.back()
+function actu(){if(bruteModifAc){bruteData=bruteModifAc};$(".power").remove();clickOnHall();$(".power").remove();setTimeout(function(){history.back()
 	
 setTimeout(function(){needToRebuild=true},333)
 },10)}
