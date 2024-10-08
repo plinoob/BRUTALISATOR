@@ -5620,6 +5620,8 @@ function makeScrollablePerks(){
 	
 	for(var w of weapons){makeScrollableweaponperk(w)}
 	makePetDiv()
+	for(var p of pets){var d=$("#pet"+p.name).parent().parent().parent()
+		if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("mousedown",p.name.startsWith("dog")?modifdog:modif("pet",p.name))}}
 	for(var s of skills){makeScrollableskillperk(s)}
 	}
 
@@ -5629,7 +5631,7 @@ function makeScrollableweaponperk(w){
 	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks")
 		.on("mousedown",modif("weapon",w.name))}
 	var d=$("#weapon"+w.name).parent().parent().parent()
-	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("mousedown",modif("skill",w.name))}
+	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("mousedown",modif("weapon",w.name))}
 	}
 
 function modifdog(e){
