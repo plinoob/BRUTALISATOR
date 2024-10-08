@@ -5650,7 +5650,10 @@ function modif(perkType,perk){
 
 	return function(e){e.preventDefault();if(e.which==2){return};var way=e.which==1;var brute=bruteData;
 	if(perkType!="stats"){
-		if(brute[perkType+"s"].includes(perk)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:perkType,[perkType]:perk},true))}
+		if(brute[perkType+"s"].includes(perk)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:perkType,[perkType]:perk},true))
+				if(perk=="dog3"){bruteModifAc=refreshStats(removePerkFrom(bruteModifAc,{type:perkType,[perkType]:"dog2"},true))
+								bruteModifAc=refreshStats(removePerkFrom(bruteModifAc,{type:perkType,[perkType]:"dog1"},true))}
+		}
 		else{bruteModifAc=addPerkFrom(brute,{type:perkType,[perkType]:perk},true)}
 	}
 	else{if(brute[perk+"Stat"]<3 || way || brute.level<2){brute[perk+"Stat"]+=2;brute.level+=1}
