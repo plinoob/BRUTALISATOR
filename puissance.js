@@ -5345,7 +5345,6 @@ var stats=[];for(var i in BruteStat){stats.push(i)}
 var perkTypes={stats:"stats",skills:"skill",pets:"pet",weapons:"weapon"}
 var perkTypesNoStats={skills:"skill",pets:"pet",weapons:"weapon"}
 
-var bruteModifAc
 
 
 function removePerkFrom(brute,perk,level){

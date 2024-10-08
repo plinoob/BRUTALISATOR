@@ -699,6 +699,7 @@ simulFights({
 	})
 */
 
+var bruteModifAc
 
 var setInt
 	clearInterval(setInt);
@@ -710,7 +711,7 @@ if(typeof(window)!="undefined"){	urrl= window.location.href;
 		if (fightWorkers && fightWorkers.size) {fightWorkers.forEach(worker => worker.postMessage(5));}
 	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();//CHANGEMENT PAGE
 	arena_turns=0
-	terminateWorkers();$(".power").remove();bruteData=undefined
+	terminateWorkers();$(".power").remove();if(!bruteModifAc)bruteData=undefined
 		$("#mynetwork").remove();$("#puissance").remove()}
 		for(var divname of ["#SkillsMax","#WeaponsMax"]){if(refreshPotentielLoop){break}
 			var l=[]	
