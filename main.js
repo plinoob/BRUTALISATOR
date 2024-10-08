@@ -685,6 +685,7 @@ var bruteData
 var brutedatac
 var PUISSANCE
 var POWERSTEP
+function resetBruteModifAc(){bruteModifAc=bruteData=POWERSTEP=surpuissance=undefined}
 /*
 simulFights({
 	fn,
@@ -897,7 +898,7 @@ var brutesNames
 var brutesDivs
 var arena_turns = 0
 
-async function arena(backups){arenaRunning=true
+async function arena(backups){arenaRunning=true;resetBruteModifAc()
 if(arenaBruteAc!=BRUTE){WANTS_BACKUP = false}
 if($(".bruteArenaBtn").length>0){WANTS_BACKUP=true;if(!backups){$(".bruteArenaBtn").remove()}}
 arenaBruteAc = BRUTE
