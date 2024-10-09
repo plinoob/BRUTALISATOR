@@ -86,14 +86,16 @@ var beforePalette = setupColorInterpolation([
 var POWERpalette = setupColorInterpolation([
     [0, '#E5A0AE'], // Rouge
     [0.50, '#BF2820'], // Orange
-    [0.75, '#EAAF00'], // Vert
-    [0.92, '#3E3870'], // Vert
+    [0.75, '#EAAF00'], // Vert6D1366
+    [0.82, '#6D1366'], // Vert6D1366
+    [0.92, '#3E3870'], // Vert3A0A37
     [1, '#54C4C4']  // Bleu
 ]);
 var POWERbeforePalette = setupColorInterpolation([
     [0, '#AA7984'], // Rouge
     [0.50, '#9B201A'], // Orange
     [0.75, '#BA8500'], // Vert
+    [0.82, '#3A0A37'], // Vert
     [0.92, '#19162D'], // Vert
     [1, '#359999']  // Bleu
 ]);    
@@ -1060,6 +1062,7 @@ else{setImageSrc(img_ours,img_ours2)}
 						if(coef!=0 && coef!=1 && (tx in nombres)){flag=true}
 						nombres[tx] = (nombres[tx] || 0) + 1
 						if(precision>0 && nombres[(coef*100).toFixed(precision-1)+""]==1) {continue}
+						if(tx.startsWith("100")){tx="100"}
 						brutesDivs[b.nom].tx.text(tx)
 						brutesDivs[b.nom].before.css({opacity:1,"background-color":beforePalette(coef)})
 						brutesDivs[b.nom].btn.css({opacity:1,"background-color":palette(coef)})
