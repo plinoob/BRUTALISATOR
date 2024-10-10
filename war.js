@@ -2565,6 +2565,18 @@ async function simulWar(){
 			clans[1]=await fetch("/api/clan/"+gu[at=="attacks"?"defender":"attacker"].id);
 			clans[1] = JSON.parse(await clans[1].text());
 			}}}
+			
+			
+			
+			
+			
+			
+		var used=fetch("/api/clan/"+CLAN+"/war/"+WAR)
+		cl(used)
+			
+			
+			
+			
 		cl(clans[1])
 		for(var side of [0,1]){
 			
