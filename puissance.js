@@ -5617,7 +5617,7 @@ function makeScrollablePerks(){//===============================================
 
 	var niv=findFirstTextInDOM("Niveau","h3");if(niv && !$(niv).hasClass("scrollablePerks")){
 		$(niv).addClass("scrollablePerks").on("wheel",function(e){var brute=bruteData;
-		var way = e.originalEvent.deltaY<0;cl(e.originalEvent)
+		var way = e.originalEvent.deltaY<0;if(!e.originalEvent.ctrlKey)return
 		if(!way){if(brute.level<2){return};brute.level--}else{brute.level++};bruteModifAc=refreshStats(brute);
 		bruteData=bruteModifAc
 		actu()})}
