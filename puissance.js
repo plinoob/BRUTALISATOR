@@ -5629,7 +5629,8 @@ function makeScrollablePerks(){
 	
 function makeScrollableStatsPerks(){
 	
-	for(var stat in stats){var d=$(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[stat],(perk=="endurance")?"p":"span")).parent().parent()
+	for(var stat in stats){var d=$(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[stat],
+	(stat=="endurance")?"p":"span")).parent().parent()
 
 		if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",modif("stat",stat))}
 	}
