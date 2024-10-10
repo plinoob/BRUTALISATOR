@@ -5235,17 +5235,19 @@ var weaponsFR={"fan": "Éventail",
 "scimitar": "Cimeterre",
  "sword": "Épée",};
 
-
+var archiRumble
 
 
 
  
 async function power(){
 	function makeInfoDiv(){
-		var res={div:div({20:surpuissance?((surpuissance==1)?"SURPUISSANCE":"TURBOPUISSANCE"):"PUISSANCE",
+		var res={div:div({20:surpuissance?((surpuissance==1)?"SURPUISSANCE":((surpuissance==2)?"TURBOPUISSANCE":"ARCHIPUISSANCE")):"PUISSANCE",
 		
 		
-		6:{click:function(){if(!surpuissance){surpuissance=1;}else if(surpuissance==1){surpuissance=2}else{surpuissance=0};
+		6:{click:function(e){
+			if(e.which==2){e.preventDefault();surpuissance=surpuissance==3?0:3}
+			else{if(!surpuissance){surpuissance=1;}else if(surpuissance==1){surpuissance=2}else{surpuissance=0};}
 			power();
 		}},1:"puissance",9:{position:"relative",height:"30px"}})}
 		
@@ -5309,12 +5311,25 @@ res.tx=div({0:btn,26:1,17:"..."})
 });
 	if(flag)return setTimeout(power,100)
 	var rota2 = []
+	var rota1 = [[brute]]
 	
-	for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}
+	if(surpuissance==3){if(!archiRumble){var r1=shuffle(rumble),r2=shuffle(rumble),ru1=[],ru2=[];
+		for(var i=0;i<r1.length;i+=7){ru1.push([r1[i],r1[i+1],r1[i+2],r1[i+3],r1[i+4],r1[i+5],r1[i+6]])}
+		for(var i=0;i<r2.length;i+=6){ru2.push([brute,r2[i],r2[i+1],r2[i+2],r2[i+3],r2[i+4],r2[i+5]])}
+		
+		;archiRumble=[ru1,ru2];}
+		rota1=archiRumble[1]
+		rota2=archiRumble[0]
+		
+		}
+	else{for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}}
+	
+	
+	
 	
 	
 				simulFights({
-					fn:function(res,ended){//cl(res[0]);
+					fn:function(res,ended){cl(res);
 						if(POWERSTEP==1 || !POWERSTEP){stopLoading();}
 						var coef = res[0].v/res[0].j
 						PUISSANCE=coef
@@ -5324,7 +5339,7 @@ res.tx=div({0:btn,26:1,17:"..."})
 						puissance.before.css("background-color",POWERbeforePalette(coef)).css("opacity",1)
 						puissance.tx.text(chiffre)
 					},
-					rota1:[[brute]],
+					rota1:rota1,
 					rota2:rota2,//number = boss
 					backups:false,
 					fight_per_rota:1,
