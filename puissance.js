@@ -5618,7 +5618,7 @@ function makeScrollablePerks(){//===============================================
 	var niv=findFirstTextInDOM("Niveau","h3");if(niv && !$(niv).hasClass("scrollablePerks")){
 		$(niv).addClass("scrollablePerks").on("wheel",function(e){var brute=bruteData;
 		var way = e.originalEvent.deltaY<0
-		if(brute.level>1 && !way){brute.level--}else{brute.level++};bruteModifAc=refreshStats(brute);
+		if(!way){if(brute.level>1){return};brute.level--}else{brute.level++};bruteModifAc=refreshStats(brute);
 		bruteData=bruteModifAc
 		actu()})}
 	for(var w of weapons){makeScrollableweaponperk(w)}
@@ -5633,7 +5633,6 @@ function makeScrollableStatsPerks(){
 	
 	for(var stat of stats){var d=$(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[stat],
 	(stat=="endurance")?"p":"span")).parent().parent()
-	cl(stat,d)
 		if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",modif("stat",stat))}
 	}
 	
@@ -5674,8 +5673,8 @@ function modif(perkType,perk){
 		}
 		else{bruteModifAc=addPerkFrom(brute,{type:perkType,[perkType]:perk},true)}
 	}
-	else{if(brute[perk+"Stat"]<3 || way || brute.level<2){brute[perk+"Stat"]+=2;brute.level+=1}
-	else{brute[perk+"Stat"]-=2;brute.level-=1};bruteModifAc=refreshStats(brute)}
+	else{if(way){brute[perk+"Stat"]+=2;brute.level+=1}
+	else{if(brute[perk+"Stat"]<3 || brute.level<2){return};brute[perk+"Stat"]-=2;brute.level-=1};bruteModifAc=refreshStats(brute)}
 	cl(bruteModifAc)
 	bruteModifAc.name=brute.name
 	bruteData=bruteModifAc
