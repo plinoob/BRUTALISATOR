@@ -5617,7 +5617,7 @@ function makeScrollablePerks(){//===============================================
 
 	var niv=findFirstTextInDOM("Niveau","h3");if(niv && !$(niv).hasClass("scrollablePerks")){
 		$(niv).addClass("scrollablePerks").on("wheel",function(e){var brute=bruteData;
-		var way = e.originalEvent.deltaY<0;if(!e.originalEvent.ctrlKey)return
+		var way = e.originalEvent.deltaY<0;if(!e.originalEvent.ctrlKey)return;e.preventDefault()
 		if(!way){if(brute.level<2){return};brute.level--}else{brute.level++};bruteModifAc=refreshStats(brute);
 		bruteData=bruteModifAc
 		actu()})}
@@ -5661,9 +5661,11 @@ function modifdog(e){
 
 function modif(perkType,perk){
 
-	return function(e){e.preventDefault();if(e.which==2){return};
+	return function(e){
 	
 	if(perkType=="stat"){var way = e.originalEvent.deltaY<0;if(!e.originalEvent.ctrlKey)return}
+	
+	e.preventDefault();if(e.which==2){return};
 	
 	var brute=bruteData;
 	if(perkType!="stat"){
