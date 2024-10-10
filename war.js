@@ -2572,6 +2572,7 @@ async function simulWar(){
 			
 			
 		var used=await fetch("/api/clan/"+CLAN+"/war/"+WAR)
+		used= JSON.parse(await used.text());
 		cl(used)
 			
 			
