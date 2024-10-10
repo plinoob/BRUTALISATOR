@@ -5245,7 +5245,7 @@ async function power(){
 		var res={div:div({20:surpuissance?((surpuissance==1)?"SURPUISSANCE":((surpuissance==2)?"TURBOPUISSANCE":"ARCHIPUISSANCE")):"PUISSANCE",
 		
 		
-		6:{click:function(e){
+		6:{mousedown:function(e){
 			if(e.which==2){e.preventDefault();surpuissance=surpuissance==3?0:3}
 			else{if(!surpuissance){surpuissance=1;}else if(surpuissance==1){surpuissance=2}else{surpuissance=0};}
 			power();
