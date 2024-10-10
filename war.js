@@ -2556,7 +2556,7 @@ async function simulWar(){
 	
 		var clans=[]
 		
-		var clans[0] = await fetch("/api/clan/"+CLAN);
+		clans[0] = await fetch("/api/clan/"+CLAN);
 		clans[0] = JSON.parse(await clans[0].text());
 		cl(clans[0])
 		for(var side of [0,1]){
