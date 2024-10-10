@@ -2558,7 +2558,12 @@ async function simulWar(){
 		
 		clans[0] = await fetch("/api/clan/"+CLAN);
 		clans[0] = JSON.parse(await clans[0].text());
-		cl(clans[0])
+		
+		for(var at of ["defenses","attacks"]){for(var gu of clans[0][at]){if(gu.id==WAR){
+			clans[1]=await fetch("/api/clan/"+gu[at=="attacks"?"attacker":"defender"].id);
+			clans[1] = JSON.parse(await clans[1].text());
+			}}}
+		cl(clans[1])
 		for(var side of [0,1]){
 			
 			var sidiv = $("#sidiv"+side)
