@@ -2585,7 +2585,7 @@ async function simulWar(){
 				var rota2=[];for(var b of fighters[1]){rota2.push(b)}
 
 				simulFights({
-					fn:function(res,ended){//cl(res);
+					fn:function(res,ended){
 						cl(res)
 					},
 					rota1:rota1,
