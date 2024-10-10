@@ -2582,9 +2582,9 @@ async function simulWar(){
 			
 			var sidiv = $("#sidiv"+side)
 			if(!sidiv.length){
-				sidiv=div({1:"sidiv"+side,13:300000001,4:[10,!side?5:77,"",!side?77:5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+				sidiv=div({1:"sidiv"+side,13:300000001,4:[10,side?7:82,"",side?82:7],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
-				textBoxCSS,baseCSS,{"padding": "5px"}])})
+				textBoxCSS,baseCSS,{"padding": "0 5 0 5"}])})
 			}
 			sidiv.empty()
 			
@@ -2618,7 +2618,7 @@ async function simulWar(){
 					fight_total:100000,
 					clanwar:true
 					})
-				}
+				}else{stopWorkers();res.btn.css("opacity",0);res.before.css("opacity",0)}
 
 
 
@@ -2674,7 +2674,7 @@ display: "block",
         'transform': 'rotateX(20deg) translateZ(-1px)',
         'z-index': '-1',
         'transition': 'height 0.1s, top 0.1s'}})
-	res.tx=div({0:btn,26:1})
+	res.tx=div({17:"...",0:btn,26:1})
 		
 		
 		
