@@ -2590,7 +2590,7 @@ async function simulWar(){
 						var b=bilan[0]
 						if(b.j>0){
 						var coef=(1-b.v/b.j)
-						var tx=n3m(Math.round(coef*100),3))
+						var tx=n3m(Math.round(coef*100),3)
 						if(tx.startsWith("100")){tx="100"}
 						else if(b.v==0){tx="0"}
 						res.tx.text(tx)
