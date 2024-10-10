@@ -28,7 +28,7 @@ var beforePalette = setupColorInterpolation([
 var POWERpalette = setupColorInterpolation([
     [0, '#E5A0AE'], // Rouge
     [0.50, '#BF2820'], // Orange
-    [0.75, '#EAAF00'], // Vert6D1366
+    [0.75, '#E2A600'], // Vert6D1366
     [0.82, '#AF506D'], // Vert6D1366
     [0.86, '#6A5468'], // Vert6D1366
     [0.92, '#3E3870'], // Vert3A0A37
