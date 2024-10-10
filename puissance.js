@@ -5328,7 +5328,7 @@ res.tx=div({0:btn,26:1,17:"..."})
 	
 	
 				simulFights({
-					fn:function(res,ended){cl(res);
+					fn:function(res,ended){//cl(res);
 						if(POWERSTEP==1 || !POWERSTEP){stopLoading();}
 						
 						var resj=res[0].j,resv=res[0].v
@@ -5402,13 +5402,20 @@ function analyse(){
 			
 	
 	
-	var rota2 = []
-	for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}
+		var rota2 = []
+	var rota1 = [[brute]]
+	
+	if(surpuissance==3){
+		rota2=archiRumble[0]
+		}
+	else{for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}}
 	for(var pluses of brutesPlus){
+					var r1=[]
+					for(var ar of archiRumble[1]){for(var pl of pluses){r1.push([pl[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6]])}}
 		
 					simulFights({
 						fn:afficheur,
-						rota1:pluses,
+						rota1:r1,
 						rota2:rota2,//number = boss
 						backups:false,
 						fight_per_rota:1,
@@ -5564,6 +5571,10 @@ function afficheur(bilan){
 	var perk
 	var sens
 	
+	var persos={}
+	for(var b of bilan){if(!(b.nom in persos)){persos[b.nom]={nom:b.nom,v:0,j:0}};persos[b.nom].j+=b.j;persos[b.nom].v+=b.v;}
+	bilan=[];for(var b in persos){bilan.push(persos[b])}
+	
 	for(var b of bilan){var l=b.nom.split("$");perkType=l[2];perk=l[3];sens=l[1]=="+"
 				var btn=$("#"+perkType+perk)
 				if(!btn.length){btn=makeAnaDiv(perkType,perk,sens)}
@@ -5597,13 +5608,20 @@ function potentiel(){
 			else{brutesMoins[bruteIndex].push([addPerkFrom(brute,{type:perkTypes[t],[perkTypes[t]]:s})]);bruteIndex=(bruteIndex+1)%5}}}
 
 
-	var rota2 = []
-	for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}
+		var rota2 = []
+	var rota1 = [[brute]]
+	
+	if(surpuissance==3){
+		rota2=archiRumble[0]
+		}
+	else{for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}}
 	for(var mines of brutesMoins){
+					var r1=[]
+					for(var ar of archiRumble[1]){for(var pl of mines){r1.push([pl[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6]])}}
 		
 					simulFights({
 						fn:afficheur,
-						rota1:mines,
+						rota1:r1,
 						rota2:rota2,//number = boss
 						backups:false,
 						fight_per_rota:1,
