@@ -2582,7 +2582,7 @@ async function simulWar(){
 			
 			var sidiv = $("#sidiv"+side)
 			if(!sidiv.length){
-				sidiv=div({1:"sidiv"+side,13:300000001,4:[10,!side?5:70,"",!side?70:5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+				sidiv=div({1:"sidiv"+side,13:300000001,4:[10,!side?5:77,"",!side?77:5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
 				textBoxCSS,baseCSS,{"padding": "5px"}])})
 			}
@@ -2593,9 +2593,9 @@ async function simulWar(){
 					fighters[side]=fighters[side].filter(function(item) {return item !== brute.name
 				})}else if(fighters[side].length<7){dv.css("background-color","rgba(0,0,0,0.2");fighters[side].push(brute.name)}
 				
-				var rota1=[];for(var b of fighters[0]){rota1.push(b)}
-				var rota2=[];for(var b of fighters[1]){rota2.push(b)}
-
+				var rota1=[];for(var b of fighters[0]){rota1.push(brutes[b])}
+				var rota2=[];for(var b of fighters[1]){rota2.push(brutes[b])}
+				if(rota1.length && rota2.length){
 				simulFights({
 					fn:function(bilan,ended){stopLoading()
 						cl(bilan)
@@ -2611,14 +2611,14 @@ async function simulWar(){
 						}
 						
 					},
-					rota1:rota1,
-					rota2:rota2,//number = boss
+					rota1:[rota1],
+					rota2:[rota2],//number = boss
 					backups:false,
 					fight_per_rota:500,
 					fight_total:100000,
 					clanwar:true
 					})
-
+				}
 
 
 
@@ -2628,8 +2628,8 @@ async function simulWar(){
 			var l=[]
 			for(var brute of clans[side].brutes){brutes[brute.name]=brute;l.push([brute.level,brute.name,brute])}
 			l.sort(function(a,b){return b[0]-a[0]})
-			for(var b of l){var dv=div({26:0,15:0,9:{"border-radius": "15px",display: "flex","justify-content": "space-between","width": "75%"}
-			,0:sidiv,6:{mousedown:bruteClic(b[2],side,dv)}});div({0:dv,17:b[1]});div({0:dv,17:"<b>"+b[0]+"</b>"})}
+			for(var b of l){var dv=div({26:0,15:0,9:{padding:"10px","border-radius": "15px",display: "flex","justify-content": "space-between","width": "75%"}
+			,0:sidiv});div.on("mousedown",bruteClic(b[2],side,dv));div({0:dv,17:b[1]});div({0:dv,17:"<b>"+b[0]+"</b>"})}
 	
 		}
 		
