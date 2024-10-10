@@ -5617,7 +5617,7 @@ function makeScrollablePerks(){//===============================================
 
 	var niv=findFirstTextInDOM("Niveau","h3");if(niv && !$(niv).hasClass("scrollablePerks")){
 		$(niv).addClass("scrollablePerks").on("wheel",function(e){var brute=bruteData;
-		var way = e.originalEvent.deltaY>0
+		var way = e.originalEvent.deltaY<0
 		if(brute.level>1 && !way){brute.level--}else{brute.level++};bruteModifAc=refreshStats(brute);
 		bruteData=bruteModifAc
 		actu()})}
@@ -5664,10 +5664,10 @@ function modif(perkType,perk){
 
 	return function(e){e.preventDefault();if(e.which==2){return};
 	
-	if(perkType=="stat"){var way = e.originalEvent.deltaY>0}
+	if(perkType=="stat"){var way = e.originalEvent.deltaY<0}
 	
 	var brute=bruteData;
-	if(perkType!="stats"){
+	if(perkType!="stat"){
 		if(brute[perkType+"s"].includes(perk)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:perkType,[perkType]:perk},true))
 				if(perk=="dog3"){bruteModifAc=refreshStats(removePerkFrom(bruteModifAc,{type:perkType,[perkType]:"dog2"},true))
 								bruteModifAc=refreshStats(removePerkFrom(bruteModifAc,{type:perkType,[perkType]:"dog1"},true))}
@@ -5743,7 +5743,7 @@ if(!LOCAL){//cl(POWERSTEP,bruteData,BRUTE,brutedatac,PUISSANCE)
 	else{POWERSTEP=3;power()}
 	//cl("POOOOWERSTEP",POWERSTEP)
 }
-cl("⚡️🔥uuu")
+cl("⚡️🔥")
 
 /*
 async function test(){cl("test")
