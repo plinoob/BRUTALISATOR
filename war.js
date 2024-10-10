@@ -2571,7 +2571,7 @@ async function simulWar(){
 			
 			
 			
-		var used=fetch("/api/clan/"+CLAN+"/war/"+WAR)
+		var used=await fetch("/api/clan/"+CLAN+"/war/"+WAR)
 		cl(used)
 			
 			
