@@ -5333,7 +5333,7 @@ res.tx=div({0:btn,26:1,17:"..."})
 						var resj=res[0].j,resv=res[0].v
 						if(surpuissance==3){resj=resv=0;for(var re of res){resj+=re.j;resv+=re.v}}
 						
-						var coef = resv/resj
+						var coef = resv/resj;if(surpuissance==3){coef=adjustArchiValue(coef*1000)/1000}
 						PUISSANCE=coef
 						var chiffre = Math.round(coef*1000)
 						if(chiffre==1000 && coef!=1)chiffre=999
@@ -5563,6 +5563,14 @@ res.tx=div({3:"tx",26:1,0:btn,1:perkType+perk,17:"..."})
 		
 		
 		return res.tx}
+		
+function adjustArchiValue(value) {
+var way=value>500
+    if(way){value=1000-value}
+	value=(value/500)**3*500
+	if(way){value=1000-value}
+	return value
+}
 
 function afficheur(bilan){
 	//cl(bilan)
@@ -5579,7 +5587,8 @@ function afficheur(bilan){
 				if(!btn.length){btn=makeAnaDiv(perkType,perk,sens)}
 				
 				if(b.j){
-					var bonus = ((PUISSANCE-(b.v/b.j)))*100/((1-PUISSANCE)||0.001) * (sens?-1:1)
+					var coef = (b.v/b.j);if(surpuissance==3) coef=adjustArchiValue(coef*1000)/1000
+					var bonus = ((PUISSANCE-coef))*100/((1-PUISSANCE)||0.001) * (sens?-1:1)
 					btn.text(n3m(bonus))
 					btn.parent().css({"background-color":(bonus>0)?(sens?BONUSPLUSpalette(bonus/50):BONUSpalette(bonus/50)):MALUSpalette(-bonus/50),opacity:0.8})
 					$("#before"+perkType+perk).css({"background-color":(bonus>0)?(sens?BONUSPLUSbeforePalette(bonus/50):BONUSbeforePalette(bonus/50)):MALUSbeforePalette(-bonus/50),opacity:0.8})
