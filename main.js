@@ -751,7 +751,7 @@ function terminateWorkers() {fightWorkers.forEach(worker => worker.terminate());
 
 async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
 ,backups,fight_per_rota,fight_total,return_first_win,loading=true,
-modifiers,seed,pass_same_brute_fight,multiple_workers}){
+modifiers,seed,pass_same_brute_fight,multiple_workers,go_around}){
 return new Promise((resolve, reject) => {
 	if(!multiple_workers){terminateWorkers()}
 	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
@@ -769,6 +769,7 @@ return new Promise((resolve, reject) => {
 	if(return_first_win===true){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN;','var RETURN_FIRST_WIN = true'+";")}
 	if(return_first_win===false){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN;','var RETURN_FIRST_WIN = false'+";")}
 	if(pass_same_brute_fight){generateFights = generateFights.replace('var PASS_S'+'AME_BR'+'UTE_FIGHTS;','var PASS_'+'SAME_BRU'+'TE_FI'+'GHTS = true'+";")}
+	if(go_around){generateFights = generateFights.replace('var GO_A'+'ROUND;','var PASS_'+'var GO_A'+'ROUND = true'+";")}
 	
 	generateFights = generateFights.replace("var FIGHTS_PER_ROTA"+" = 1","var FIGHTS_PER_ROTA = "+fight_per_rota+";")
 	generateFights = generateFights.replace("var FIGHT_TOTAL"+" = 1","var FIGHT_TOTAL = "+fight_total+";")

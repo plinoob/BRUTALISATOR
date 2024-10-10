@@ -5349,6 +5349,7 @@ res.tx=div({0:btn,26:1,17:"..."})
 					fight_per_rota:1,
 					fight_total:150000,
 					pass_same_brute_fight:surpuissance==3,
+					go_around=surpuissance==3,
 					})
 	
 	if(POWERSTEP==2){analyse()}else if(POWERSTEP==3){potentiel()}
