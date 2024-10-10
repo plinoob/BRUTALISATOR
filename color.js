@@ -887,6 +887,7 @@ var FIGHT_TYPE
 
 var BRUTE
 var CLAN
+var WAR
 
 var MODIFIERS
 var arenaRunning
