@@ -714,7 +714,7 @@ if(typeof(window)!="undefined"){	urrl= window.location.href;
 	setInt = setInterval(function(){
 		refreshPotentielLoop = (refreshPotentielLoop+1)%5
 		if (fightWorkers && fightWorkers.size) {fightWorkers.forEach(worker => worker.postMessage(5));}
-	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();//CHANGEMENT PAGE
+	if(window.location.href!=urrl){urrl=window.location.href;	if(iframe){$(iframe).remove()};stopLoading();//CHANGEMENT PAGE
 	arena_turns=0
 	terminateWorkers();$(".power").remove();if(!urrl.includes("/hall") && !urrl.includes("/cell")){POWERSTEP=archiRumble=surpuissance=undefined;};if(!bruteModifAc)bruteData=undefined
 		$("#mynetwork").remove();$("#puissance").remove()}
@@ -1075,6 +1075,7 @@ async function getFightSourceCode(){if(!fightSourceCode){
 	
 }
 }
+var iframe
 async function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL){return}
 			await getFightSourceCode()
 			    var fetchCode=`
@@ -1107,8 +1108,8 @@ async function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL
             headers: response.headers
         });
     };`
-	
-				var iframe = document.createElement('iframe');
+				if(iframe){$(iframe).remove()}
+				 iframe = document.createElement('iframe');
 							iframe.src = 'about:blank'; 
 
 			iframe.onload = () => {//cl("IFRAME LOADED")

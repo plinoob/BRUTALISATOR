@@ -5420,6 +5420,8 @@ function analyse(){
 						fight_per_rota:1,
 						fight_total:100000,
 						multiple_workers:true,
+						pass_same_brute_fight:surpuissance==3,
+						go_around:surpuissance==3,
 						})
 	}
 	
@@ -5635,6 +5637,8 @@ function potentiel(){
 						fight_per_rota:1,
 						fight_total:100000,
 						multiple_workers:true,
+						pass_same_brute_fight:surpuissance==3,
+						go_around:surpuissance==3,
 						})
 	}
 
