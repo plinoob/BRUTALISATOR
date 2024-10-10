@@ -2640,7 +2640,7 @@ async function simulWar(){
 		
 		
 		
-		var btn=res.btn=div({0:res.div,4:1,5:[-50,-60],2:"button",9:{
+		var btn=res.btn=div({0:res.div,4:1,5:[-50,-100],2:"button",9:{
 display: "block",
     margin: "8px auto",
     "border-radius": "4px",
