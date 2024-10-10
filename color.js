@@ -753,7 +753,7 @@ function terminateWorkers() {fightWorkers.forEach(worker => worker.terminate());
 
 async function simulFights_no_fetch({generateFights,fn,rota1,rota2//number = boss
 ,backups,fight_per_rota,fight_total,return_first_win,loading=true,
-modifiers,seed,pass_same_brute_fight,multiple_workers,go_around}){
+modifiers,seed,pass_same_brute_fight,multiple_workers,go_around,clanwar}){
 return new Promise((resolve, reject) => {
 	if(!multiple_workers){terminateWorkers()}
 	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
@@ -766,7 +766,7 @@ return new Promise((resolve, reject) => {
 	if(modifiers){generateFights = generateFights.replace("modifier"+"s: [],","modifiers: "+JSON.stringify(modifiers)+",")}
 	generateFights = generateFights.replace("var TEAM1 ="+" []","var TEAM1 = "+JSON.stringify(rota1)+";")
 
-	if(rota1[0].length+(rota2[0]?rota2[0].length:1)>2){cl("CLAN WAR !!!!");generateFights = generateFights.replace('var CLANWAR'+' = false','var CLANWAR = true'+";")}
+	if(clanwar || (rota1[0].length+(rota2[0]?rota2[0].length:1)>2)){generateFights = generateFights.replace('var CLANWAR'+' = false','var CLANWAR = true'+";")}
 	if(backups){generateFights = generateFights.replace('var BACKUPS'+' = false','var BACKUPS = '+JSON.stringify(backups)+";")}
 	if(return_first_win===true){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN;','var RETURN_FIRST_WIN = true'+";")}
 	if(return_first_win===false){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN;','var RETURN_FIRST_WIN = false'+";")}

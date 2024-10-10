@@ -2555,6 +2555,8 @@ var shuffle = (array) => {
 async function simulWar(){
 	
 		var clans=[]
+		var fighters=[[],[]]
+		var brutes={}
 		
 		clans[0] = await fetch("/api/clan/"+CLAN);
 		clans[0] = JSON.parse(await clans[0].text());
@@ -2574,15 +2576,36 @@ async function simulWar(){
 			}
 			sidiv.empty()
 			
-			function bruteClic(brute){return function(e){e.preventDefault();if(e.which==2){openBruteCell(brute.name)}else{
-				cl(brute)
+			function bruteClic(brute,side,dv){return function(e){e.preventDefault();if(e.which==2){openBruteCell(brute.name)}else{
+				if(fighters[side].includes(brute.name)){dv.css("background-color","rgba(0,0,0,0")
+					fighters[side]=fighters[side].filter(function(item) {return item !== brute.name
+				})}else if(fighters[side].length<7){dv.css("background-color","rgba(0,0,0,0.2");fighters[side].push(brute.name)}
 				
+				var rota1=[];for(var b of fighters[0]){rota1.push(b)}
+				var rota2=[];for(var b of fighters[1]){rota2.push(b)}
+
+				simulFights({
+					fn:function(res,ended){//cl(res);
+						cl(res)
+					},
+					rota1:rota1,
+					rota2:rota2,//number = boss
+					backups:false,
+					fight_per_rota:500,
+					fight_total:100000,
+					clanwar:true
+					})
+
+
+
+
+
 			}}}
 			
 			var l=[]
-			for(var brute of clans[side].brutes){l.push([brute.level,brute.name,brute])}
+			for(var brute of clans[side].brutes){brutes[brute.name]=brute;l.push([brute.level,brute.name,brute])}
 			l.sort(function(a,b){return b[0]-a[0]})
-			for(var b of l){var dv=div({19:15,0:sidiv,6:{mousedown:bruteClic(b[2])}});div({0:dv,17:b[1]});div({0:dv,17:b[0]})}
+			for(var b of l){var dv=div({19:15,0:sidiv,6:{mousedown:bruteClic(b[2],side,dv)}});div({0:dv,17:b[1]});div({0:dv,17:b[0]})}
 	
 		}
 		
