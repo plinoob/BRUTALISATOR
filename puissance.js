@@ -5745,10 +5745,11 @@ if(!changedFetch){
         // Appeler le fetch original
 		
 			const response = await originalFetch(url, options);
-			cl(url,"fetch",url.includes("/api/brute/"+BRUTE.toLowerCase()+"/for-hook") || url.includes("/api/brute/"+BRUTE+"/for-hook"),bruteModifAc)
-		if((url.includes("/api/brute/"+BRUTE.toLowerCase()+"/for-hook") || url.includes("/api/brute/"+BRUTE+"/for-hook")) && bruteModifAc){
+			var brutefetched=url.split("/api/brute/");if(brutefetched.length>1){brutefetched=brutefetched[1];brutefetched=brutefetched.split("/for-hook")[0].toLowerCase()}
+			cl(url,"fetch",brutefetched==BRUTE.toLowerCase(),bruteModifAc)
+		if((brutefetched==BRUTE.toLowerCase()) && bruteModifAc){
 			
-			console.log("fetch",url, response);
+			console.log("modif fetch :",url, response);
 			        return new Response(JSON.stringify(bruteModifAc), {
             status: response.status,
             statusText: response.statusText,
@@ -5767,7 +5768,7 @@ if(!intModif) intModif = setInterval(function(){
 	
 	parseURL()
 	if(url[2]=="cell"){BRUTE=url[1];if(bruteModifAc && bruteModifAc.name!=BRUTE){resetBruteModifAc()};if(bruteData){makeScrollablePerks()
-	if(needToRebuild && $('img[src="/images/skills/backup.svg"]:not(.artificial)').length){needToRebuild=false;$(".power").remove();power()}}
+	if(needToRebuild && $('img[src="/images/skills/backup.svg"]:not(.artificial)').length){needToRebuild=false;$(".power").remove();archiRumble=undefined;power()}}
 
 
 }},100)
