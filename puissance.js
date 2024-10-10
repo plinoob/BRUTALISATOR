@@ -5731,7 +5731,7 @@ makeScrollablePerks()
 if(!LOCAL){//cl(POWERSTEP,bruteData,BRUTE,brutedatac,PUISSANCE)
 	if(!bruteData || BRUTE!=brutedatac){POWERSTEP=0}
 	if(!POWERSTEP || POWERSTEP==3){$(".power").remove();POWERSTEP=1;power()}
-	else if(POWERSTEP==1){POWERSTEP=2;if(!$("#puissance").length)power() else analyse()}
+	else if(POWERSTEP==1){POWERSTEP=2;if(!$("#puissance").length){power()}else analyse()}
 	else{POWERSTEP=3;power()}
 	//cl("POOOOWERSTEP",POWERSTEP)
 }
