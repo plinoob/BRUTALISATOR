@@ -5616,7 +5616,7 @@ function makePetDiv(){
 function makeScrollablePerks(){
 
 	var niv=findFirstTextInDOM("Niveau","h3");if(niv && !$(niv).hasClass("scrollablePerks")){
-		niv.addClass("scrollablePerks").on("wheel",function(e){cl(e);var brute=bruteData;if(brute.level>1){brute.level--;bruteModifAc=refreshStats(brute);
+		$(niv).addClass("scrollablePerks").on("wheel",function(e){cl(e);var brute=bruteData;if(brute.level>1){brute.level--;bruteModifAc=refreshStats(brute);
 		bruteData=bruteModifAc
 		actu()}})}
 	for(var w of weapons){makeScrollableweaponperk(w)}
@@ -5735,7 +5735,7 @@ if(!LOCAL){//cl(POWERSTEP,bruteData,BRUTE,brutedatac,PUISSANCE)
 	else{POWERSTEP=3;power()}
 	//cl("POOOOWERSTEP",POWERSTEP)
 }
-cl("⚡️🔥uuuu")
+cl("⚡️🔥ooo")
 
 /*
 async function test(){cl("test")
