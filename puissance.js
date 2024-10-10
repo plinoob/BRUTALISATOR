@@ -5618,7 +5618,7 @@ function makeScrollablePerks(){//===============================================
 	var niv=findFirstTextInDOM("Niveau","h3");if(niv && !$(niv).hasClass("scrollablePerks")){
 		$(niv).addClass("scrollablePerks").on("wheel",function(e){var brute=bruteData;
 		var way = e.originalEvent.deltaY<0
-		if(!way){if(brute.level>1){return};brute.level--}else{brute.level++};bruteModifAc=refreshStats(brute);
+		if(!way){if(brute.level<2){return};brute.level--}else{brute.level++};bruteModifAc=refreshStats(brute);
 		bruteData=bruteModifAc
 		actu()})}
 	for(var w of weapons){makeScrollableweaponperk(w)}
