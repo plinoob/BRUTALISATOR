@@ -17,7 +17,7 @@ var palette = setupColorInterpolation([
     [0, '#D32F2F'], // Rouge
     [0.40, '#9E2424'], // Orange
     [0.66, '#40455E'], // Vert
-    [1, '#5D65C4']  // Bleu
+    [1, '#5D65C4']  // Bleu 
 ]);
 var beforePalette = setupColorInterpolation([
     [0, '#B51111'], // Rouge
@@ -29,7 +29,8 @@ var POWERpalette = setupColorInterpolation([
     [0, '#E5A0AE'], // Rouge
     [0.50, '#BF2820'], // Orange
     [0.75, '#EAAF00'], // Vert6D1366
-    [0.82, '#6D1366'], // Vert6D1366
+    [0.82, '#AF506D'], // Vert6D1366
+    [0.86, '#6A5468'], // Vert6D1366
     [0.92, '#3E3870'], // Vert3A0A37
     [1, '#54C4C4']  // Bleu
 ]);
@@ -37,7 +38,8 @@ var POWERbeforePalette = setupColorInterpolation([
     [0, '#AA7984'], // Rouge
     [0.50, '#9B201A'], // Orange
     [0.75, '#BA8500'], // Vert
-    [0.82, '#3A0A37'], // Vert
+    [0.82, '#843C53'], // Vert
+    [0.86, '#473946'], // Vert
     [0.92, '#19162D'], // Vert
     [1, '#359999']  // Bleu
 ]);    

@@ -5307,6 +5307,7 @@ res.tx=div({0:btn,26:1,17:"..."})
 		var elements = $("h3").filter(function() {
     if( flag && $(this).text().startsWith("Niveau")){flag=false;$(this).parent().append(puissance.div)};
 });
+	if(flag)return setTimeout(power,100)
 	var rota2 = []
 	
 	for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}
@@ -5618,12 +5619,25 @@ function makePetDiv(){
 
 function makeScrollablePerks(){
 	
+	
+
+	
+	
 	for(var w of weapons){makeScrollableweaponperk(w)}
 	makePetDiv()
 	for(var p of pets){var d=$("#pet"+p.name).parent().parent().parent()
 		if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("mousedown",p.name.startsWith("dog")?modifdog:modif("pet",p.name))}}
 	for(var s of skills){makeScrollableskillperk(s)}
+	makeScrollableStatsPerks()
 	}
+	
+function makeScrollableStatsPerks(){
+	
+	for(var stat in stats){var d=$("#stat"+stat).parent().parent().parent().parent().parent()
+		if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",modif("stat",stat)}
+	}
+	
+}
 
 function clickOnHall(){var elem = findTextInDOM("Hall","span");$(elem).click()}
 
@@ -5648,7 +5662,7 @@ function modifdog(e){
 
 function modif(perkType,perk){
 
-	return function(e){e.preventDefault();if(e.which==2){return};var way=e.which==1;var brute=bruteData;
+	return function(e){e.preventDefault();cl(e);if(e.which==2){return};var way=e.which==1;var brute=bruteData;
 	if(perkType!="stats"){
 		if(brute[perkType+"s"].includes(perk)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:perkType,[perkType]:perk},true))
 				if(perk=="dog3"){bruteModifAc=refreshStats(removePerkFrom(bruteModifAc,{type:perkType,[perkType]:"dog2"},true))
@@ -5721,7 +5735,7 @@ makeScrollablePerks()
 if(!LOCAL){cl(POWERSTEP,bruteData,BRUTE,brutedatac,PUISSANCE)
 	if(!bruteData || BRUTE!=brutedatac){POWERSTEP=0}
 	if(!POWERSTEP || POWERSTEP==3){$(".power").remove();POWERSTEP=1;power()}
-	else if(POWERSTEP==1){POWERSTEP=2;analyse()}
+	else if(POWERSTEP==1){POWERSTEP=2;if(!$("#puissance").length)power() else analyse()}
 	else{POWERSTEP=3;power()}
 	cl("POOOOWERSTEP",POWERSTEP)
 }
