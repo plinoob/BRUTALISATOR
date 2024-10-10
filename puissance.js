@@ -5235,7 +5235,6 @@ var weaponsFR={"fan": "Éventail",
 "scimitar": "Cimeterre",
  "sword": "Épée",};
 
-var archiRumble
 
 
 

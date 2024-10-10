@@ -689,7 +689,9 @@ var bruteData
 var brutedatac
 var PUISSANCE
 var POWERSTEP
-function resetBruteModifAc(){bruteModifAc=bruteData=POWERSTEP=surpuissance=undefined}
+var archiRumble
+
+function resetBruteModifAc(){bruteModifAc=bruteData=POWERSTEP=archiRumble=surpuissance=undefined}
 /*
 simulFights({
 	fn,
@@ -714,7 +716,7 @@ if(typeof(window)!="undefined"){	urrl= window.location.href;
 		if (fightWorkers && fightWorkers.size) {fightWorkers.forEach(worker => worker.postMessage(5));}
 	if(window.location.href!=urrl){urrl=window.location.href;	stopLoading();//CHANGEMENT PAGE
 	arena_turns=0
-	terminateWorkers();$(".power").remove();if(!urrl.includes("/hall") && !urrl.includes("/cell")){POWERSTEP=surpuissance=undefined;};if(!bruteModifAc)bruteData=undefined
+	terminateWorkers();$(".power").remove();if(!urrl.includes("/hall") && !urrl.includes("/cell")){POWERSTEP=archiRumble=surpuissance=undefined;};if(!bruteModifAc)bruteData=undefined
 		$("#mynetwork").remove();$("#puissance").remove()}
 		for(var divname of ["#SkillsMax","#WeaponsMax"]){if(refreshPotentielLoop){break}
 			var l=[]	
