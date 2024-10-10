@@ -2582,7 +2582,7 @@ async function simulWar(){
 			
 			var sidiv = $("#sidiv"+side)
 			if(!sidiv.length){
-				sidiv=div({1:"sidiv"+side,13:300000001,4:[10,side?7:82,"",side?82:7],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
+				sidiv=div({1:"sidiv"+side,13:300000001,4:[10,side?7:78,"",side?78:7],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
 				textBoxCSS,baseCSS,{"padding": "5px"}])})
 			}
