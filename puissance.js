@@ -5409,7 +5409,7 @@ function analyse(){
 		}
 	else{for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}}
 	for(var pluses of brutesPlus){
-					var r1=rota1
+					var r1=pluses
 					if(surpuissance==3){r1=[]
 					for(var ar of archiRumble[1]){for(var pl of pluses){r1.push([pl[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6]])}}}
 		
@@ -5576,7 +5576,7 @@ var way=value>500
 }
 
 function afficheur(bilan){
-	cl(bilan)
+	//cl(bilan)
 	var perkType
 	var perk
 	var sens
@@ -5585,7 +5585,7 @@ function afficheur(bilan){
 	for(var b of bilan){if(!(b.nom in persos)){persos[b.nom]={nom:b.nom,v:0,j:0}};persos[b.nom].j+=b.j;persos[b.nom].v+=b.v;}
 	bilan=[];for(var b in persos){bilan.push(persos[b])}
 	
-	for(var b of bilan){cl(b.nom);var l=b.nom.split("$");perkType=l[2];perk=l[3];sens=l[1]=="+"
+	for(var b of bilan){var l=b.nom.split("$");perkType=l[2];perk=l[3];sens=l[1]=="+"
 				if(perk=="dog1"){cl(bilan)}
 				var btn=$("#"+perkType+perk)
 				if(!btn.length){btn=makeAnaDiv(perkType,perk,sens)}
@@ -5628,7 +5628,7 @@ function potentiel(){
 		}
 	else{for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}}
 	for(var mines of brutesMoins){
-					var r1=rota1
+					var r1=mines
 					if(surpuissance==3){r1=[]
 					for(var ar of archiRumble[1]){for(var pl of mines){r1.push([pl[0],ar[1],ar[2],ar[3],ar[4],ar[5],ar[6]])}}}
 		
