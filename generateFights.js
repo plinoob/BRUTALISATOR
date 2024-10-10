@@ -827,7 +827,7 @@ return new Promise((resolve, reject) => {
 	if(return_first_win===true){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN;','var RETURN_FIRST_WIN = true'+";")}
 	if(return_first_win===false){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN;','var RETURN_FIRST_WIN = false'+";")}
 	if(pass_same_brute_fight){generateFights = generateFights.replace('var PASS_S'+'AME_BR'+'UTE_FIGHTS;','var PASS_'+'SAME_BRU'+'TE_FI'+'GHTS = true'+";")}
-	if(go_around){generateFights = generateFights.replace('var GO_A'+'ROUND;','var PASS_'+'var GO_A'+'ROUND = true'+";")}
+	if(go_around){generateFights = generateFights.replace('var GO_A'+'ROUND;','var GO_A'+'ROUND = true'+";")}
 	
 	generateFights = generateFights.replace("var FIGHTS_PER_ROTA"+" = 1","var FIGHTS_PER_ROTA = "+fight_per_rota+";")
 	generateFights = generateFights.replace("var FIGHT_TOTAL"+" = 1","var FIGHT_TOTAL = "+fight_total+";")
