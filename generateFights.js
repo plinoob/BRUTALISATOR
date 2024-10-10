@@ -6551,7 +6551,7 @@ function sleep(ms) {
 }
 
 function isTheirSameBrute(i1,i2){
-	for(var i of i1){for(var j of j2){if(i.name==j.name){return false}}}
+	for(var i of i1){for(var j of i2){if(i.name==j.name){return false}}}
 	return true
 }
 
