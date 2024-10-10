@@ -5717,7 +5717,7 @@ function modif(perkType,perk){
 	
 	if(perkType=="stat"){var way = e.originalEvent.deltaY<0;if(!e.originalEvent.ctrlKey)return}
 	
-	e.preventDefault();e.stopPropagation()();if(e.which==2){return};
+	e.preventDefault();e.stopPropagation();if(e.which==2){return};
 	
 	var brute=bruteData;
 	if(perkType!="stat"){
