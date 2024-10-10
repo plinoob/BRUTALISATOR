@@ -5616,9 +5616,11 @@ function makePetDiv(){
 function makeScrollablePerks(){//===================================================
 
 	var niv=findFirstTextInDOM("Niveau","h3");if(niv && !$(niv).hasClass("scrollablePerks")){
-		$(niv).addClass("scrollablePerks").on("wheel",function(e){cl(e,e.deltaY);var brute=bruteData;if(brute.level>1){brute.level--;bruteModifAc=refreshStats(brute);
+		$(niv).addClass("scrollablePerks").on("wheel",function(e){var brute=bruteData;
+		var way = e.originalEvent.deltaY>0
+		if(brute.level>1 && !way){brute.level--}else{brute.level++};bruteModifAc=refreshStats(brute);
 		bruteData=bruteModifAc
-		actu()}})}
+		actu()})}
 	for(var w of weapons){makeScrollableweaponperk(w)}
 	makePetDiv()
 	for(var p of pets){var d=$("#pet"+p.name).parent().parent().parent()
@@ -5629,7 +5631,7 @@ function makeScrollablePerks(){//===============================================
 	
 function makeScrollableStatsPerks(){
 	
-	for(var stat in stats){var d=$(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[stat],
+	for(var stat of stats){var d=$(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[stat],
 	(stat=="endurance")?"p":"span")).parent().parent()
 	cl(stat,d)
 		if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",modif("stat",stat))}
@@ -5660,7 +5662,11 @@ function modifdog(e){
 
 function modif(perkType,perk){
 
-	return function(e){e.preventDefault();cl(e);cl(e.deltaY);if(e.which==2){return};var way=e.which==1;var brute=bruteData;
+	return function(e){e.preventDefault();if(e.which==2){return};
+	
+	if(perkType=="stat"){var way = e.originalEvent.deltaY>0}
+	
+	var brute=bruteData;
 	if(perkType!="stats"){
 		if(brute[perkType+"s"].includes(perk)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:perkType,[perkType]:perk},true))
 				if(perk=="dog3"){bruteModifAc=refreshStats(removePerkFrom(bruteModifAc,{type:perkType,[perkType]:"dog2"},true))
