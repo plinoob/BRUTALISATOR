@@ -5585,6 +5585,7 @@ function afficheur(bilan){
 	bilan=[];for(var b in persos){bilan.push(persos[b])}
 	
 	for(var b of bilan){var l=b.nom.split("$");perkType=l[2];perk=l[3];sens=l[1]=="+"
+				if(perk=="dog1"){cl(bilan)}
 				var btn=$("#"+perkType+perk)
 				if(!btn.length){btn=makeAnaDiv(perkType,perk,sens)}
 				
