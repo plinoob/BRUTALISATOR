@@ -2584,7 +2584,7 @@ async function simulWar(){
 			if(!sidiv.length){
 				sidiv=div({1:"sidiv"+side,13:300000001,4:[10,side?7:82,"",side?82:7],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
-				textBoxCSS,baseCSS,{"padding": "0 5 0 5"}])})
+				textBoxCSS,baseCSS,{"padding": "5px"}])})
 			}
 			sidiv.empty()
 			
@@ -2628,7 +2628,7 @@ async function simulWar(){
 			var l=[]
 			for(var brute of clans[side].brutes){brutes[brute.name]=brute;l.push([brute.level,brute.name,brute])}
 			l.sort(function(a,b){return b[0]-a[0]})
-			for(var b of l){var dv=div({26:0,15:0,9:{padding:"10px","border-radius": "15px",display: "flex","justify-content": "space-between","width": "75%"}
+			for(var b of l){var dv=div({26:0,15:0,9:{padding:"1px 10px","border-radius": "15px",display: "flex","justify-content": "space-between","width": "75%"}
 			,0:sidiv});dv.on("mousedown",bruteClic(b[2],side,dv));div({0:dv,17:b[1]});div({0:dv,17:"<b>"+b[0]+"</b>"})}
 	
 		}
