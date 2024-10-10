@@ -2580,7 +2580,6 @@ async function simulWar(){
 
 
 
-
-simulWar()
+if(!LOCAL) simulWar()
 
 
