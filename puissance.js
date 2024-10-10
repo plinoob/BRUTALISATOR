@@ -5576,7 +5576,7 @@ var way=value>500
 }
 
 function afficheur(bilan){
-	//cl(bilan)
+	cl(bilan)
 	var perkType
 	var perk
 	var sens
