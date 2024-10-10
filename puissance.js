@@ -5629,7 +5629,8 @@ function makeScrollablePerks(){
 	
 function makeScrollableStatsPerks(){
 	
-	for(var stat in stats){var d=$("#stat"+stat).parent().parent().parent().parent().parent();cl("stat",d)
+	for(var stat in stats){var d=$(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[stat],(perk=="endurance")?"p":"span")).parent().parent()
+
 		if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",modif("stat",stat))}
 	}
 	
@@ -5658,7 +5659,7 @@ function modifdog(e){
 
 function modif(perkType,perk){
 
-	return function(e){e.preventDefault();cl(e);if(e.which==2){return};var way=e.which==1;var brute=bruteData;
+	return function(e){e.preventDefault();cl(e);cl(e.deltaY);if(e.which==2){return};var way=e.which==1;var brute=bruteData;
 	if(perkType!="stats"){
 		if(brute[perkType+"s"].includes(perk)){bruteModifAc=refreshStats(removePerkFrom(brute,{type:perkType,[perkType]:perk},true))
 				if(perk=="dog3"){bruteModifAc=refreshStats(removePerkFrom(bruteModifAc,{type:perkType,[perkType]:"dog2"},true))
