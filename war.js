@@ -2618,7 +2618,7 @@ async function simulWar(){
 					fight_total:100000,
 					clanwar:true
 					})
-				}else{stopWorkers();res.btn.css("opacity",0);res.before.css("opacity",0)}
+				}else{terminateWorkers();res.btn.css("opacity",0);res.before.css("opacity",0)}
 
 
 
