@@ -5385,7 +5385,6 @@ function analyse(){
 	var rota2 = []
 	for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}
 	for(var pluses of brutesPlus){
-		cl("FIGHT TOTAL :",pluses.length*rota2.length*88*(surpuissance?6:1),pluses.length,rota2.length,88,(surpuissance?6:1))
 		
 					simulFights({
 						fn:afficheur,
@@ -5426,7 +5425,7 @@ function makeAnaDiv(perkType,perk,sens){
 		}
 		if(perkType.startsWith("weapon")){
 			
-			var useElement = $('#_w'+weaponSprites[perk])[0];cl("useElement",useElement);;
+			var useElement = $('#_w'+weaponSprites[perk])[0];
 			const bbox = useElement.getBoundingClientRect();
 			const centerX = bbox.left + window.scrollX + (bbox.width / 2);
 			const centerY = bbox.top + window.scrollY + (bbox.height / 2);
@@ -5454,7 +5453,6 @@ function makeAnaDiv(perkType,perk,sens){
 						
 			var petDiv = $("#petDivMax")
 			if(!petDiv.length){var useElement = $(findTextInDOM("Force","span")).parent().parent().parent().parent()
-				cl("divpet",useElement)
 			petDiv=div({1:"petDivMax",3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line","align-items": "center","justify-content":"space-evenly"},
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)}
@@ -5601,11 +5599,9 @@ function makePetDiv(){
 			var petDiv=$("#petDivMin")
 			if(!petDiv.length || !petDivs){$("#petDivMin").remove();
 			var useElement = $('img[src^="/images/skills/"]').last().parent().parent();
-				cl("DIV PET :: = ==",useElement)
 			petDiv=div({1:"petDivMin",3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
 			,display: "flex","flex-direction": "line","align-items": "center","justify-content":"space-evenly"},
 			textBoxCSS,baseCSS,{"margin": "16px 40px"}])}).insertAfter(useElement)
-			function scrollonpetdiv(pet){return function(e){e.preventDefault();cl(pet,e)}}
 			petDivs={}
 			petDivs.dog=div({0:petDiv,6:{"mousedown":modifdog}})
 			div({0:petDivs.dog,17:"🐶",50:0,24:22})
