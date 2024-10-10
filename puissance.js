@@ -5630,7 +5630,7 @@ function makeScrollablePerks(){
 function makeScrollableStatsPerks(){
 	
 	for(var stat in stats){var d=$("#stat"+stat).parent().parent().parent().parent().parent();cl("stat",d)
-		if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",modif("stat",stat)}
+		if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",modif("stat",stat))}
 	}
 	
 }
