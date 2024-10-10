@@ -6550,13 +6550,19 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function isTheirSameBrute(i1,i2){
+	for(var i of i1){for(var j of j2){if(i.name==j.name){return false}}}
+	return true
+}
+
 async function genFights() {var pos1=0,pos2=0
 //cl(BACKUPS)
 //cl({ brutes:  true?structuredClone(TEAM1[pos1]):TEAM1[pos1]})
 //cl({ [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] })
-	var nbfights=0
+	if(PASS_SAME_BRUTE_FIGHTS){var fights_to_not_pass=[];for(var i1 of TEAM1){var l=[];for(var i2 of TEAM2){l.push(isTheirSameBrute(i1,i2))};fights_to_not_pass.push(l)}}
+	var nbfights=0   TEAM1[pos1][0].name != TEAM2[pos2][0].name
 	while(bilac.j<FIGHT_TOTAL){
-	if(!PASS_SAME_BRUTE_FIGHTS || (BOSS!="brutes" || TEAM1[pos1][0].name != TEAM2[pos2][0].name)){
+	if(!PASS_SAME_BRUTE_FIGHTS || (BOSS!="brutes" || fights_to_not_pass[pos1][pos2])){
 	  for (let i = 0; i < FIGHTS_PER_ROTA; i++) {
 		  const result = await generateFight({
 				prisma: proxy,
