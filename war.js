@@ -2577,9 +2577,11 @@ async function simulWar(){
 			var l=[]
 			for(var brute of clans[side].brutes){l.push([brute.level,brute.name,brute])}
 			l.sort(function(a,b){return b[0]-a[0]})
-			for(var b of l){var dv=div({0:sidiv,6:{mousedown:bruteClic(b[2])}});div({0:dv,17:b[1]});div({0:dv,17:b[0]})}
+			for(var b of l){var dv=div({19:15,0:sidiv,6:{mousedown:bruteClic(b[2])}});div({0:dv,17:b[1]});div({0:dv,17:b[0]})}
 	
 		}
+		
+		stopLoading()
 }
 
 
