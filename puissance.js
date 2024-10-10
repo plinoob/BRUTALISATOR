@@ -5314,9 +5314,8 @@ res.tx=div({0:btn,26:1,17:"..."})
 	var rota1 = [[brute]]
 	
 	if(surpuissance==3){if(!archiRumble){var r1=shuffle(rumble),r2=shuffle(rumble),ru1=[],ru2=[];
-		for(var i=0;i<r1.length;i+=7){ru1.push([r1[i],r1[i+1],r1[i+2],r1[i+3],r1[i+4],r1[i+5],r1[i+6]])}
-		for(var i=0;i<r2.length;i+=6){ru2.push([brute,r2[i],r2[i+1],r2[i+2],r2[i+3],r2[i+4],r2[i+5]])}
-		cl(r1,ru1,r2,ru2)
+		for(var i=0;i<r1.length-6;i+=7){ru1.push([r1[i],r1[i+1],r1[i+2],r1[i+3],r1[i+4],r1[i+5],r1[i+6]])}
+		for(var i=0;i<r2.length-5;i+=6){ru2.push([brute,r2[i],r2[i+1],r2[i+2],r2[i+3],r2[i+4],r2[i+5]])}
 		;archiRumble=[ru1,ru2];}
 		rota1=archiRumble[1]
 		rota2=archiRumble[0]
