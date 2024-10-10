@@ -5633,7 +5633,7 @@ function makeScrollablePerks(){
 	
 function makeScrollableStatsPerks(){
 	
-	for(var stat in stats){var d=$("#stat"+stat).parent().parent().parent().parent().parent()
+	for(var stat in stats){var d=$("#stat"+stat).parent().parent().parent().parent().parent();cl("stat",d)
 		if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",modif("stat",stat)}
 	}
 	
@@ -5672,7 +5672,7 @@ function modif(perkType,perk){
 	}
 	else{if(brute[perk+"Stat"]<3 || way || brute.level<2){brute[perk+"Stat"]+=2;brute.level+=1}
 	else{brute[perk+"Stat"]-=2;brute.level-=1};bruteModifAc=refreshStats(brute)}
-	;cl(bruteModifAc)
+	cl(bruteModifAc)
 	bruteModifAc.name=brute.name
 	bruteData=bruteModifAc
 	actu()
@@ -5732,14 +5732,14 @@ if(!intModif) intModif = setInterval(function(){
 
 makeScrollablePerks()
 
-if(!LOCAL){cl(POWERSTEP,bruteData,BRUTE,brutedatac,PUISSANCE)
+if(!LOCAL){//cl(POWERSTEP,bruteData,BRUTE,brutedatac,PUISSANCE)
 	if(!bruteData || BRUTE!=brutedatac){POWERSTEP=0}
 	if(!POWERSTEP || POWERSTEP==3){$(".power").remove();POWERSTEP=1;power()}
 	else if(POWERSTEP==1){POWERSTEP=2;if(!$("#puissance").length)power() else analyse()}
 	else{POWERSTEP=3;power()}
-	cl("POOOOWERSTEP",POWERSTEP)
+	//cl("POOOOWERSTEP",POWERSTEP)
 }
-cl("⚡️🔥")
+cl("⚡️🔥aaaaa")
 
 /*
 async function test(){cl("test")
