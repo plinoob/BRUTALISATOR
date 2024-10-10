@@ -2635,12 +2635,12 @@ async function simulWar(){
 		
 		
 
-		var res={div:div({3:"bruteArenaBtn",18:0.92,9:{position:"relative",height:"30px"}})}
+		var res={div:div({3:"bruteArenaBtn",18:0.8,9:{position:"relative",height:"50px"}})}
 		res.div.insertAfter($(findFirstTextInDOM("Attaquant","th")).parent().parent().parent().parent().children(":first"))
 		
 		
 		
-		var btn=res.btn=div({0:res.div,4:1,5:[-50,-100],2:"button",9:{
+		var btn=res.btn=div({0:res.div,4:1,2:"button",9:{transform:"translate(-50%, -100%) scale(1.33)",
 display: "block",
     margin: "8px auto",
     "border-radius": "4px",
