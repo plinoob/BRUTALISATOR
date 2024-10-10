@@ -5613,10 +5613,10 @@ function makePetDiv(){
 			}
 			return petDiv}
 
-function makeScrollablePerks(){
+function makeScrollablePerks(){//===================================================
 
 	var niv=findFirstTextInDOM("Niveau","h3");if(niv && !$(niv).hasClass("scrollablePerks")){
-		$(niv).addClass("scrollablePerks").on("wheel",function(e){cl(e);var brute=bruteData;if(brute.level>1){brute.level--;bruteModifAc=refreshStats(brute);
+		$(niv).addClass("scrollablePerks").on("wheel",function(e){cl(e,e.deltaY);var brute=bruteData;if(brute.level>1){brute.level--;bruteModifAc=refreshStats(brute);
 		bruteData=bruteModifAc
 		actu()}})}
 	for(var w of weapons){makeScrollableweaponperk(w)}
@@ -5631,7 +5631,7 @@ function makeScrollableStatsPerks(){
 	
 	for(var stat in stats){var d=$(findTextInDOM({strength:"Force",endurance:"points de vie",agility:"Agilité",speed:"Rapidité"}[stat],
 	(stat=="endurance")?"p":"span")).parent().parent()
-
+	cl(stat,d)
 		if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("wheel",modif("stat",stat))}
 	}
 	
