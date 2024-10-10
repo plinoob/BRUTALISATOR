@@ -6560,7 +6560,7 @@ async function genFights() {var pos1=0,pos2=0
 //cl({ brutes:  true?structuredClone(TEAM1[pos1]):TEAM1[pos1]})
 //cl({ [BOSS]: true?structuredClone(TEAM2[pos2]):TEAM2[pos2] })
 	if(PASS_SAME_BRUTE_FIGHTS){var fights_to_not_pass=[];for(var i1 of TEAM1){var l=[];for(var i2 of TEAM2){l.push(isTheirSameBrute(i1,i2))};fights_to_not_pass.push(l)}}
-	var nbfights=0   TEAM1[pos1][0].name != TEAM2[pos2][0].name
+	var nbfights=0   
 	while(bilac.j<FIGHT_TOTAL){
 	if(!PASS_SAME_BRUTE_FIGHTS || (BOSS!="brutes" || fights_to_not_pass[pos1][pos2])){
 	  for (let i = 0; i < FIGHTS_PER_ROTA; i++) {
