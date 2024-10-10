@@ -2585,8 +2585,19 @@ async function simulWar(){
 				var rota2=[];for(var b of fighters[1]){rota2.push(b)}
 
 				simulFights({
-					fn:function(res,ended){stopLoading()
-						cl(res)
+					fn:function(bilan,ended){stopLoading()
+						cl(bilan)
+						var b=bilan[0]
+						if(b.j>0){
+						var coef=(1-b.v/b.j)
+						var tx=n3m(Math.round(coef*100),3))
+						if(tx.startsWith("100")){tx="100"}
+						else if(b.v==0){tx="0"}
+						res.tx.text(tx)
+						res.before.css({opacity:1,"background-color":beforePalette(coef)})
+						res.btn.css({opacity:1,"background-color":palette(coef)})
+						}
+						
 					},
 					rota1:rota1,
 					rota2:rota2,//number = boss
