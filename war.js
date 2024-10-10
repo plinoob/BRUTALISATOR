@@ -2562,7 +2562,7 @@ async function simulWar(){
 		clans[0] = JSON.parse(await clans[0].text());
 		
 		for(var at of ["defenses","attacks"]){for(var gu of clans[0][at]){if(gu.id==WAR){cl(gu,at)
-			clans[1]=await fetch("/api/clan/"+gu[at=="attacks"?"attacker":"defender"].id);
+			clans[1]=await fetch("/api/clan/"+gu[at=="attacks"?"defender":"attacker"].id);
 			clans[1] = JSON.parse(await clans[1].text());
 			}}}
 		cl(clans[1])
@@ -2585,7 +2585,7 @@ async function simulWar(){
 				var rota2=[];for(var b of fighters[1]){rota2.push(b)}
 
 				simulFights({
-					fn:function(res,ended){
+					fn:function(res,ended){stopLoading()
 						cl(res)
 					},
 					rota1:rota1,
@@ -2612,7 +2612,7 @@ async function simulWar(){
 		
 
 		var res={div:div({3:"bruteArenaBtn",18:0.92,9:{position:"relative",height:"30px"}})}
-		res.div.insertAfter(findFirstTextInDOM("Attaquant","th").parent().parent().parent().parent())
+		res.div.insertAfter(findFirstTextInDOM("Attaquant","th").parent().parent().parent().parent().children(":first"))
 		
 		
 		
