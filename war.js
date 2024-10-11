@@ -2578,13 +2578,12 @@ async function simulWar(){
 			var fight = await fetch("/api/clan/war/"+WAR+"/fight/"+f.id+"?")
 			fight = JSON.parse(await fight.text());
 			fight=JSON.parse(fight.fighters)
-			cl(fight)
+			for(fighter of fight){fighterUsed.push(fighter.name)}
 		}
 			
 			
 			
 			
-		cl(clans[1])
 		for(var side of [0,1]){
 			
 			var sidiv = $("#sidiv"+side)
@@ -2608,7 +2607,7 @@ async function simulWar(){
 						cl(bilan)
 						var b=bilan[0]
 						if(b.j>0){
-						var coef=(1-b.v/b.j)
+						var coef=(b.v/b.j)
 						var tx=n3m(Math.round(coef*100),3)
 						if(tx.startsWith("100")){tx="100"}
 						else if(b.v==0){tx="0"}
@@ -2635,7 +2634,7 @@ async function simulWar(){
 			var l=[]
 			for(var brute of clans[side].brutes){brutes[brute.name]=brute;l.push([brute.level,brute.name,brute])}
 			l.sort(function(a,b){return b[0]-a[0]})
-			for(var b of l){var dv=div({26:0,15:0,9:{padding:"1px 10px","border-radius": "15px",display: "flex","justify-content": "space-between","width": "75%"}
+			for(var b of l){var dv=div({26:0,15:0,9:{padding:"1px 17px","border-radius": "15px",display: "flex","justify-content": "space-between","width": "80%"}
 			,0:sidiv});dv.on("mousedown",bruteClic(b[2],side,dv));div({0:dv,17:b[1]});div({0:dv,17:"<b>"+b[0]+"</b>"})}
 	
 		}
