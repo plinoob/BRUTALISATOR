@@ -2634,7 +2634,7 @@ async function simulWar(){
 			var l=[]
 			for(var brute of clans[side].brutes){if(fighterUsed.includes(brute.name))continue;brutes[brute.name]=brute;l.push([brute.level,brute.name,brute])}
 			l.sort(function(a,b){return b[0]-a[0]})
-			for(var b of l){var dv=div({26:0,15:0,9:{padding:"1px 17px","border-radius": "15px",display: "flex","justify-content": "space-between","width": "80%"}
+			for(var b of l){var dv=div({26:0,15:0,9:{padding:"1px 17px",margin:"1px","border-radius": "15px",display: "flex","justify-content": "space-between","width": "80%"}
 			,0:sidiv});dv.on("mousedown",bruteClic(b[2],side,dv));div({0:dv,17:b[1]});div({0:dv,17:"<b>"+b[0]+"</b>"})}
 	
 		}
