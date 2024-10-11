@@ -5761,7 +5761,7 @@ if(!changedFetch){
 		
 			const response = await originalFetch(url, options);
 			var brutefetched=url.split("/api/brute/");if(brutefetched.length>1){brutefetched=brutefetched[1];brutefetched=brutefetched.split("/for-hook")[0].toLowerCase()}
-			cl(url,"fetch",brutefetched==BRUTE.toLowerCase(),bruteModifAc)
+			cl(url,"fetch",brutefetched,BRUTE.toLowerCase(),brutefetched==BRUTE.toLowerCase(),bruteModifAc)
 		if((brutefetched==BRUTE.toLowerCase()) && bruteModifAc){
 			
 			console.log("modif fetch :",url, response);
@@ -5782,7 +5782,7 @@ if(!changedFetch){
 if(!intModif) intModif = setInterval(function(){
 	
 	parseURL()
-	if(url[2]=="cell"){BRUTE=url[1];if(bruteModifAc && bruteModifAc.name!=BRUTE){resetBruteModifAc()};if(bruteData){makeScrollablePerks()
+	if(url[2]=="cell"){BRUTE=url[1];if(bruteModifAc && bruteModifAc.name.toLowerCase()!=BRUTE.toLowerCase()){resetBruteModifAc()};if(bruteData){makeScrollablePerks()
 	if(needToRebuild && $('img[src="/images/skills/backup.svg"]:not(.artificial)').length){needToRebuild=false;$(".power").remove();archiRumble=undefined;power()}}
 
 
