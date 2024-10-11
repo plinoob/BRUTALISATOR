@@ -2577,6 +2577,7 @@ async function simulWar(){
 		for(var f of used.fights){
 			var fight = await fetch("/api/clan/war/"+WAR+"/fight/"+f.id+"?")
 			fight = JSON.parse(await fight.text());
+			fight=JSON.parse(fight.fighters)
 			cl(fight)
 		}
 			
