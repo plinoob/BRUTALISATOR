@@ -2641,9 +2641,9 @@ async function simulWar(){
 		}
 		
 		
-
-		var res={div:div({3:"bruteArenaBtn",18:0.8,9:{position:"relative",height:"50px"}})}
-		res.div.insertAfter($(findFirstTextInDOM("Attaquant","th")).parent().parent().parent().parent().children(":first"))
+		$(".power").remove()
+		var res={div:div({3:"power",18:0.8,9:{position:"relative",height:"50px"}})}
+		res.div.insertAfter($(findFirstTextInDOM("En cours","h3")).parent().children(":first"))
 		
 		
 		
