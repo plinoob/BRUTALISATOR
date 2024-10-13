@@ -2641,8 +2641,8 @@ async function simulWar(){
 		}
 		
 		
-		$(".power").remove()
-		var res={div:div({3:"power",18:0.8,9:{position:"relative",height:"50px"}})}
+		$("#clanwarsim").remove()
+		var res={div:div({3:"power",1:"clanwarsim",18:0.8,9:{position:"relative",height:"50px"}})}
 		res.div.insertAfter($(findFirstTextInDOM("En cours","h3")).parent().children(":first"))
 		
 		
