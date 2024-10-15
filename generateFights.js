@@ -791,7 +791,7 @@ var GENERATE_FIGHT
 var generateFights
 
 async function simulFights(arg){
-	cl("SIMULFIGHTS",JSON.stringify(arg))
+	//cl("SIMULFIGHTS",JSON.stringify(arg))
 	if(!GENERATE_FIGHT){if(LOCAL){GENERATE_FIGHT = generateFights}else{cl("DL generateFight...");GENERATE_FIGHT = await fetch(BRUTALISATOR+"generateFights.js");
 	GENERATE_FIGHT = await GENERATE_FIGHT.text();
 	}}
@@ -815,7 +815,7 @@ modifiers,seed,pass_same_brute_fight,multiple_workers,go_around,clanwar}){
 return new Promise((resolve, reject) => {
 	if(!multiple_workers){terminateWorkers()}
 	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
-		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = [[bosses["+rota2+"]]];")
+		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = [[bosses["+rota2+"],bosses[0],]];")
 	}
 	else{
 		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = "+JSON.stringify(rota2)+";")
