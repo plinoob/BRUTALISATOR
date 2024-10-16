@@ -5329,7 +5329,8 @@ res.tx=div({0:btn,26:1,17:"..."})
 				simulFights({
 					fn:function(res,ended){//cl(res);
 						if(POWERSTEP==1 || !POWERSTEP){stopLoading();}
-						
+						puissance.tx.text(res[0].j)
+						return
 						var resj=res[0].j,resv=res[0].v
 						if(surpuissance==3){resj=resv=0;for(var re of res){resj+=re.j;resv+=re.v}}
 						
