@@ -815,7 +815,7 @@ modifiers,seed,pass_same_brute_fight,multiple_workers,go_around,clanwar}){
 return new Promise((resolve, reject) => {
 	if(!multiple_workers){terminateWorkers()}
 	if(typeof(rota2)=="number"){generateFights = generateFights.replace('var BOSS'+' = "brutes"','bosses['+rota2+'].startHP=100000;var BOSS = "bosses"'+";")
-		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = [[bosses["+rota2+"],bosses[0],]];")
+		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = [[bosses["+rota2+"]]];")
 	}
 	else{
 		generateFights = generateFights.replace("var TEAM2 ="+" []","var TEAM2 = "+JSON.stringify(rota2)+";")
@@ -6590,7 +6590,7 @@ async function genFights() {var pos1=0,pos2=0
 	  if(!pos2 || GO_AROUND){pos1=(pos1+1)%TEAM1.length;if(SLEEP_AT_STEP_2 || (SLEEP_AT_STEP_3 && !pos1)){await sleep(1);}}
 	  bilac=bilan[pos1]
 	}
-	cl("fini",Date.now()-startTime)
+	//cl("fini",Date.now()-startTime)
 	ended = Date.now()-startTime
 	end()
 }
