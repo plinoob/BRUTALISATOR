@@ -1030,6 +1030,10 @@ elements.each(function() {
 	brutesNames.push(name)
 	brutesDivs[name] = makeInfoDiv(name)
 brutesDivs[name].div.insertAfter($(this).parent().parent())
+$(this).parent().parent().parent().css({display: "flex",
+    "flex-direction": "column",
+    "align-content": "space-around",
+    "flex-wrap": "wrap"})
 brutesDivs[name].tx.text("...")
 });
 
