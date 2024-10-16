@@ -5690,7 +5690,7 @@ function makeScrollableStatsPerks(){
 	
 }
 
-function clickOnHall(){var elem = findTextInDOM("Hall","span");$(elem).click()}
+function clickOnProfilSpan(){var elem = findTextInDOM("Profil de ","span");if(elem && !clickedOnProfil){clickedOnProfil=true;$(elem).click()}}
 
 function makeScrollableweaponperk(w){
 	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks")
@@ -5744,7 +5744,7 @@ function makeScrollableskillperk(s){
 	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("mousedown",modif("skill",s.name))}
 	}
 var needToRebuild
-function actu(){if(bruteModifAc){bruteData=bruteModifAc};$(".power").remove();clickOnHall();$(".power").remove();setTimeout(function(){history.back()
+function actu(){if(bruteModifAc){bruteData=bruteModifAc};$(".power").remove();clickOnProfilSpan();$(".power").remove();setTimeout(function(){history.back()
 	
 setTimeout(function(){needToRebuild=true},333)
 },10)}
