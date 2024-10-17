@@ -3888,7 +3888,7 @@ for(var i in PRESET){if(typeof(PRESET[i])==typeof("")){PRESET[i]=unzipString(PRE
 cl("presets :",PRESET)
 
 var getChoosedBody = function(gender){cl("BODY CALLED"); setGender(gender);var res = generateBodyString(BODY);
-if(PRESAC && ["male","female"][PRESAC[0]]==GENDER){res = PRESAC[2]};checkBody("Ambryal",GENDER,res);return res}
+if(PRESAC && ["male","female"][PRESAC[0]]==GENDER){res = PRESAC[2]};if(BRANCHE!="dev")checkBody("Ambryal",GENDER,res);return res}
 
 
 
@@ -3929,7 +3929,7 @@ var getChoosedColors = function(gender) {cl("COLOR CALLED"); setGender(gender);
     });
 	if(PRESAC && ["male","female"][PRESAC[0]]==GENDER){res = PRESAC[1]}
 	if(ILLEGAL_COLORS)res = ILLEGAL_COLORS
-	checkColors("Ambryal",GENDER,res)
+	if(BRANCHE!="dev")checkColors("Ambryal",GENDER,res)
 	return res
 };
 
