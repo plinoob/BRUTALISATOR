@@ -3967,7 +3967,7 @@ else{BODY = GENDER_BODY[gender];COLORS = GENDER_COLORS[gender]}};createTable()}
 
 function createCell(cell,i,j,l){
 	
-	if(j>=l[3])return
+	if(BRANCHE!="dev" && j>=l[3])return
 	
 	$(cell).css({cursor:"pointer"})
 
@@ -4107,6 +4107,7 @@ function createTable() {
 	
 	
 	for(var el of Grid){if(el[3]>n){n=el[3]}}
+	if(BRANCHE=="dev")n+=2
 	cl(n,m)
 	
     // Ajoute les cellules de la colonne latérale
@@ -4129,6 +4130,7 @@ function createTable() {
         cell.classList.add('grid-item');
 		var line = Math.floor(i / n) 
 		var column = (i % n)
+		if(BRANCHE=="dev" && column==n-2){column=88}else if(BRANCHE=="dev" && column==n-1){column=99}
         createCell(cell,line,column,Grid[line])
         container.appendChild(cell);
     }
