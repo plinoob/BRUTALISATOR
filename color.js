@@ -3981,7 +3981,7 @@ function createCell(cell,i,j,l){
 		
 	}
 	else{
-		cell.textContent = (BODY[l[1]]==j)?"✅":number_as_emoji[j];
+		cell.textContent = (BODY[l[1]]==j)?"✅":(j>20?j:number_as_emoji[j]);
 		
 		$(cell).on("click",function(){BODY[l[1]]=j;clickOnRandomBody()
 		})
