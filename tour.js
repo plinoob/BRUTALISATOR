@@ -2580,7 +2580,7 @@ function noFightLeft(){return inscrit() && (isTextInDOM("Nouveau niveau !","butt
 function bruteAlreadyDone(){return alreadyDone}
 function isArenaEnough(){return arena_turns>=2000}
 function isArenaNotEnough(){return !isArenaEnough()}
-function inscrit(){return ((!(isTextInDOM("Tournoi","button")) || isTextInDOM("Monter de rang","button")) 
+function inscrit(){return ((!(isTextInDOM("Tournoi","button")) || isTextInDOM("Monter de rang","button") || isImgInDOM("/images/event.webp")) 
 	&& !isTextInDOM("Marquer comme vu","button")) || clickedOnInscrire || isTextInDOM("rute inscrite","p")}
 function notInscrit(){return !inscrit()}
 
@@ -2625,6 +2625,17 @@ function Hall(){clickedOnHall = false}
 function Versus(){clickedOnBestMatchup = false}
 function Fight(){clickedOnLaunchFight = false}
 function Tournoi(){clickedOnTournoi = false}
+
+
+function isImgInDOM(src){
+	  var firstImage = $('img').filter(function() {
+    return $(this).attr('src').includes(src);
+});return firstImage.length
+}
+
+
+
+
 //cl("gggggggggggg")
 var actions={
 	Hall : {
