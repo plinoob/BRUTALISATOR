@@ -57,7 +57,7 @@ var weaponSprites = {
   };
 
 
-var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof"]
+var MASTERS = ["heheheha","Tenebre-Obscure","Armiv1","Larron","MGE-spiritBLACK","Poubellas","MGE-Bof","cuicuipitiwaso"]
 
 function rien(){}
 
