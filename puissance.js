@@ -5496,9 +5496,9 @@ function makeAnaDiv(perkType,perk,sens){
 						
 			var skillDiv = $("#SkillsMax")
 			if(!skillDiv.length){
-				skillDiv=div({1:"SkillsMax",13:300000001,4:[10,80,"",5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
-				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
-				textBoxCSS,baseCSS,{"padding": "5px"}])})
+				skillDiv=div({1:"SkillsMax",13:300000001,4:[10,80,5,5],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem",position:"fixed"
+				,display: "flex","flex-direction": "column","flex-wrap":"wrap","direction":"rtl","justify-content": "start","align-items": "center"},
+				textBoxCSS,baseCSS,{"padding": "5px 20px"}])})
 			}
 			var res=div({9:{display:"flex","justify-content":"center","max-width":"100%"},0:skillDiv,3:"power"})
 			div({0:res,3:"artificial",2:"img",22:"/images/skills/"+perk+".svg",9:{height:"18px"}})
@@ -5509,9 +5509,9 @@ function makeAnaDiv(perkType,perk,sens){
 			
 			var weaponDiv = $("#WeaponsMax")
 			if(!weaponDiv.length){
-				weaponDiv=div({1:"WeaponsMax",13:300000001,4:[10,5,"",80],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem"
-				,display: "flex","flex-direction": "column","justify-content": "start","align-items": "center"},
-				textBoxCSS,baseCSS,{"padding": "5px"}])})
+				weaponDiv=div({1:"WeaponsMax",13:300000001,4:[10,5,5,80],3:"power",26:1,15:"default",9:uni([{ "font-size":"0.821429rem",position:"fixed"
+				,display: "flex","flex-direction": "column","flex-wrap":"wrap","justify-content": "start","align-items": "center"},
+				textBoxCSS,baseCSS,{"padding": "5px 20px"}])})
 			}
 			var res=div({9:{margin:"3px",display:"flex","justify-content":"center","max-width":"100%"},0:weaponDiv,3:"power"})
 			div({0:res,2:"img",22:weaponImages[perk],9:{height:"18px"}})
@@ -5743,7 +5743,7 @@ function makeScrollableskillperk(s){
 	if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks").on("mousedown",modif("skill",s.name))}
 	}
 var needToRebuild
-function actu(){if(bruteModifAc){bruteData=bruteModifAc};$(".power").remove();clickOnProfilSpan();$(".power").remove();setTimeout(function(){history.back()
+function actu(){terminateWorkers();if(bruteModifAc){bruteData=bruteModifAc};clickOnProfilSpan();setTimeout(function(){$(".power").remove();history.back()
 	
 setTimeout(function(){needToRebuild=true},333)
 },10)}
