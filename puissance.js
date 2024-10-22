@@ -5560,7 +5560,7 @@ function makeInfoDiv(parent,perkType,perk,sens=true){
         'transform': 'rotateX(20deg) translateZ(-1px)',
         'z-index': '-1',
         'transition': 'height 0.1s, top 0.1s'}})
-res.tx=div({3:"tx",26:1,0:btn,1:perkType+perk,17:"..."})
+res.tx=div({9:{direction:"ltr"},3:"tx",26:1,0:btn,1:perkType+perk,17:"..."})
 
 		
 		
