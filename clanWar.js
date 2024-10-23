@@ -2635,7 +2635,10 @@ $('a').filter(function() {
 		for(var tp of ["attacks","defenses"]){for(var i in clan[tp]){if(clan[tp][i].type=="official"){
 			if(clan[tp][i].status=="waitingForRewards"){
 				encour=true}
-				else{score = clan[tp][i].defenderWins+" - "+clan[tp][i].attackerWins}}}}
+				else if(clan[tp][i].status=="ongoing"){
+					var clanwar = await fetch("/api/clan/"+clan.id+"/war/"+clan[tp][i].id);
+					clanwar = JSON.parse(await clanwar.text());
+					score = clanwar.defenderWins+" - "+clanwar.attackerWins}}}}
 		
 		var ah=makeInfoDiv(dv)
 		ah.tx.text(n3m(res))
