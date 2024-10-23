@@ -2631,7 +2631,6 @@ $('a').filter(function() {
 		var dv=div({1:secondPart,9:{display:"flex"},3:"clanwar",0:$(this).parent()})
 		
 		var encour = false,score=""  
-		cl(clan)
 		for(var tp of ["attacks","defenses"]){for(var i in clan[tp]){if(clan[tp][i].type=="official"){
 			if(clan[tp][i].status=="waitingForRewards"){
 				encour=true}
@@ -2646,7 +2645,7 @@ $('a').filter(function() {
 		ah.before.css({"background-color":clanWarBEFOREpalette(Math.max(0,(res/moliere-0.8)*1.66)),opacity:0.8})
 		
 		
-		div({0:dv,24:24,17:encour?"⚠️":score})
+		div({0:dv,5:encour?[0,0]:["4px","8px"],24:encour?24:18,17:encour?"⚠️":score})
 		
 		
     }
