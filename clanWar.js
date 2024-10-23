@@ -2645,7 +2645,7 @@ $('a').filter(function() {
 		ah.before.css({"background-color":clanWarBEFOREpalette(Math.max(0,(res/moliere-0.8)*1.66)),opacity:0.8})
 		
 		
-		div({0:dv,5:encour?[0,0]:["4px","8px"],24:encour?24:16,17:encour?"⚠️":"<b>"+score+"</b>"})
+		div({0:dv,5:encour?[0,0]:["4px","9px"],24:encour?24:16,17:encour?"⚠️":"<b>"+score+"</b>"})
 		
 		
     }
