@@ -2631,6 +2631,7 @@ $('a').filter(function() {
 		var dv=div({1:secondPart,9:{display:"flex"},3:"clanwar",0:$(this).parent()})
 		
 		var encour = false,score=""  
+		cl(clan)
 		for(var tp of ["attacks","defenses"]){for(var i in clan[tp]){if(clan[tp][i].type=="official"){
 			if(clan[tp][i].status=="waitingForRewards"){
 				encour=true}
