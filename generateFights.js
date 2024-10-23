@@ -824,7 +824,7 @@ return new Promise((resolve, reject) => {
 	if(modifiers){generateFights = generateFights.replace("modifier"+"s: [],","modifiers: "+JSON.stringify(modifiers)+",")}
 	generateFights = generateFights.replace("var TEAM1 ="+" []","var TEAM1 = "+JSON.stringify(rota1)+";")
 
-	if(clanwar || (rota1[0].length+(rota2[0]?rota2[0].length:1)>2)){generateFights = generateFights.replace('var CLANWAR'+' = false','var CLANWAR = true'+";")}
+	if(clanwar!==false && (clanwar===true || (rota1[0].length+(rota2[0]?rota2[0].length:1)>2))){generateFights = generateFights.replace('var CLANWAR'+' = false','var CLANWAR = true'+";")}
 	if(backups){generateFights = generateFights.replace('var BACKUPS'+' = false','var BACKUPS = '+JSON.stringify(backups)+";")}
 	if(return_first_win===true){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN;','var RETURN_FIRST_WIN = true'+";")}
 	if(return_first_win===false){generateFights = generateFights.replace('var RETURN_FIR'+'ST_WIN;','var RETURN_FIRST_WIN = false'+";")}

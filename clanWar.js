@@ -2630,8 +2630,11 @@ $('a').filter(function() {
 		$("#"+secondPart).remove()
 		var dv=div({1:secondPart,9:{display:"flex"},3:"clanwar",0:$(this).parent()})
 		
-		var encour = false
-		for(var tp of ["attacks","defenses"]){for(var i in clan[tp]){if(clan[tp][i].type=="official" && clan[tp][i].status=="waitingForRewards"){encour=true}}}
+		var encour = false,score=""  
+		for(var tp of ["attacks","defenses"]){for(var i in clan[tp]){if(clan[tp][i].type=="official"){
+			if(clan[tp][i].status=="waitingForRewards"){
+				encour=true}
+				else{score = clan[tp][i].defenderWins+" - "+clan[tp][i].attackerWins}}}}
 		
 		var ah=makeInfoDiv(dv)
 		ah.tx.text(n3m(res))
@@ -2639,7 +2642,7 @@ $('a').filter(function() {
 		ah.before.css({"background-color":clanWarBEFOREpalette(Math.max(0,(res/moliere-0.8)*1.66)),opacity:0.8})
 		
 		
-		div({0:dv,24:24,17:encour?"⚠️":""})
+		div({0:dv,24:24,17:encour?"⚠️":score})
 		
 		
     }
