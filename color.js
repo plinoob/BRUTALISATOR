@@ -3881,8 +3881,11 @@ var PRESET = [
 	"eJyLNtRRMjABQzMYNLQEQwMQNjA1MFHSUTI0BDINDKE8X3dX3aD80uLi1OCy1JySVKBQRioYJirFAgDbpxRO",
 	"eJyLNtBRMkAHpqhQSUfJ0MDQ0NjIwNDIwADI83V31XUxKfLWdTZJdgTyM1LBMFEpFgB4ghGf",
 	"eJyLNtBRMjABQ2MYNDQwNDI0NzAztDS0BJKmSkAlhoaGSSaGhkYGJkCer7urblRmVX4pkK0UCwDMIQ5u",
-	[1,"05050506060606060505050505050505","11006100421","guard",""],
-	[1,"05050599999999999999999999990505","11001100401","assassin",""],
+	"eJyLNtRRMjAGQ1M4NDa0NLQ0MAJiUxBLCajEwNDA1MjAwNjIEMjzLMpNBFKORbmZZYZKsQDaYA7f",
+	"eJyLNtRRMjAEQ3M4NDa0NLQ0sACSBiCWko6SoaGBgYmxoYGZgQmQ55yRWlaUX5KZlwrkBOSXJqXm5CQWK8UCAIElEvA=",
+	[1,"03030300000000001407070707070707","00076011600","jug1",""],
+	[1,"02020200000000000504030704050404","00075410404","jug2",""],
+	[1,"00000001010101010505050705050505","10072301500","jug3",""],
 ]
 var PRESAC
 
@@ -4003,7 +4006,7 @@ function clickOnRandomBody(once){
 	
 MODIFIED=true;
 		var element=document.querySelector('[aria-label="Changer l\'apparence"]')
-		element.click();if(!once){setTimeout(function(){element.click();},50);}
+		element.click();if(!once){setTimeout(function(){element.click();},80);}
 
 	
 }
