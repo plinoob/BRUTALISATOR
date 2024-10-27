@@ -2696,11 +2696,14 @@ async function Tour(){
 			 clickedOnProfil = false
 			 clickedOnArena = false
 			 clickedOnHall = false
-			 clickedOnLaunchFight = false
 			 clickedOnBestMatchup = false
 			 clickedOnCell = false
 			 clickedOnTournoi = false
-			 clickedOnInscrire = false}
+			 clickedOnInscrire = false
+		}
+		if(nloop%2==1){
+			clickedOnLaunchFight = false
+		}
 		
 		if(url.length==2 && url[1]=="hall"){currentLoc="Hall";Hall()}
 		else if(url.length==3 && url[2]=="cell"){BRUTE = url[1];currentLoc="Cell";Cell()}
