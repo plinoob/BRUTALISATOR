@@ -1078,7 +1078,7 @@ async function getFightSourceCode(){if(!fightSourceCode){
 	
 	const response = await fetch(FIGHT_EXAMPLE);
     fightSourceCode = await response.text();
-	
+	cl("FIGHT EXEMPLE",FIGHT_EXAMPLE,fightSourceCode)
 }
 }
 var iframe
