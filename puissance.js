@@ -821,9 +821,9 @@ var Gender = {
   male: 'male',
   female: 'female'
 };
-var getFinalStat = (brute, stat, modifiers, randomSkillIndex) => {
+var getFinalStat = (brute, stat, modifiers) => {
     var multiplier = stat === 'agility' ? modifiers.includes(FightModifier.doubleAgility) ? 2 : 1 : 1;
-    var randomSkill = (0, getTempSkill)(brute, randomSkillIndex);
+    var randomSkill = (0, getTempSkill)(brute, modifiers);
     // No random skill, return normal stat
     if (!randomSkill) {
         return brute[`${stat}Value`] * multiplier;
@@ -834,8 +834,8 @@ var getFinalStat = (brute, stat, modifiers, randomSkillIndex) => {
     return Math.floor(newBrute[`${stat}Stat`] * newBrute[`${stat}Modifier`]) * multiplier;
 };
 var getFinalStat = getFinalStat;
-var getFinalHP = (brute, randomSkillIndex) => {
-    var randomSkill = (0, getTempSkill)(brute, randomSkillIndex);
+var getFinalHP = (brute, modifiers) => {
+    var randomSkill = (0, getTempSkill)(brute, modifiers);
     // No random skill, return normal HP
     if (!randomSkill) {
         return (0, getHP)(brute.level, brute.enduranceValue);
@@ -865,6 +865,7 @@ var LogType = /*exports.*//*$Enums.*/LogType = {
   childup: 'childup',
   up: 'up',
   lvl: 'lvl',
+  ascend: 'ascend',
   tournament: 'tournament',
   tournamentXp: 'tournamentXp',
   bossDefeat: 'bossDefeat'
@@ -964,12 +965,13 @@ var PetName = /*exports.*//*$Enums.*/PetName = {
   panther: 'panther',
   bear: 'bear'
 };
-var randomBetween = (min, max) => {
+var randomBetween = (min, max, generator) => {
     if (min > max)
         return 0;
     if (min === max)
         return min;
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    var random = generator ? generator.next() : Math.random();
+    return Math.floor(random * (max - min + 1) + min);
 };
 var randomItem = void 0;
 var randomItem = (items) => {
@@ -1682,6 +1684,7 @@ var SkillModifiers = {
     ],
     [SkillName.shield]: [
         { stat: FightStat.BLOCK, value: 45, percent: true },
+        { stat: FightStat.DAMAGE, value: -25, percent: true },
     ],
     [SkillName.armor]: [
         { stat: FightStat.ARMOR, value: 25, percent: true },
@@ -1739,7 +1742,9 @@ var SkillModifiers = {
     [SkillName.spy]: [],
     [SkillName.saboteur]: [],
     [SkillName.backup]: [],
-    [SkillName.hideaway]: [],
+    [SkillName.hideaway]: [
+        { stat: FightStat.BLOCK, value: 25, percent: true, details: 'againstThrows' },
+    ],
     [SkillName.monk]: [
         { stat: FightStat.COUNTER, value: 40, percent: true },
         { stat: FightStat.INITIATIVE, value: -200 },
@@ -1849,7 +1854,8 @@ var EventFightsPerDay = 10;
 var EventFreeResets = 3;
 var BossName = /*exports.*//*$Enums.*/BossName = {
   GoldClaw: 'GoldClaw',
-  EmberFang: 'EmberFang'
+  EmberFang: 'EmberFang',
+  Cerberus: 'Cerberus'
 };
 var availableBodyParts = {
     male: {
@@ -2198,12 +2204,47 @@ var bodyParts = {
 						type : "clothing"
 					},
 					
-}
-var getTempWeapon = (brute, weaponIndex) => {return 0
+}var getTempWeapon = void 0;
+var getTempWeapon = (brute, modifiers) => {
+    if (!modifiers.includes(FightModifier.randomWeapon)) {
+        return null;
+    }
+    // Seeded random number
+    var random = new rand_seed(`${brute.id}-randomWeapon-${moment.utc().format('YYYY-MM-DD')}`);
+    var weaponIndex = (0, randomBetween)(0, 200, random);
+    var unownedWeapons = weapons.filter((weapon) => !brute.weapons.includes(weapon.name));
+    if (unownedWeapons.length === 0) {
+        return null;
+    }
+    var tempWeapon = unownedWeapons[weaponIndex % unownedWeapons.length];
+    if (!tempWeapon) {
+        throw new Error('No temp weapon found');
+    }
+    return tempWeapon.name;
 };
-
-var getTempSkill = (brute, skillIndex) => {return 0
-};var DestinyChoiceType = /*exports.*//*$Enums.*/DestinyChoiceType = {
+var getTempWeapon = getTempWeapon;
+var getTempSkill = void 0;
+var unavailableTemporarySkills = [SkillName.backup];
+var getTempSkill = (brute, modifiers) => {
+    if (!modifiers.includes(FightModifier.randomSkill)) {
+        return null;
+    }
+    // Seeded random number
+    var random = new rand_seed(`${brute.id}-randomSkill-${moment.utc().format('YYYY-MM-DD')}`);
+    var skillIndex = (0, randomBetween)(0, 200, random);
+    var unownedSkills = skills.filter((skill) => !brute.skills.includes(skill.name)
+        && !unavailableTemporarySkills.includes(skill.name));
+    if (unownedSkills.length === 0) {
+        return null;
+    }
+    var tempSkill = unownedSkills[skillIndex % unownedSkills.length];
+    if (!tempSkill) {
+        throw new Error('No temp skill found');
+    }
+    return tempSkill.name;
+};
+var getTempSkill = getTempSkill;
+var DestinyChoiceType = /*exports.*//*$Enums.*/DestinyChoiceType = {
   skill: 'skill',
   weapon: 'weapon',
   pet: 'pet',
@@ -2418,8 +2459,8 @@ var updateBruteData = (brute, destinyChoice) => {
             throw new Error('No skill provided');
         }
         // Handle +2 fights for `regeneration`
-        if (skillName === SkillName.regeneration) {
-            updatedBrute.fightsLeft = (0, getFightsLeft)(updatedBrute, null) + 2;
+        if (skillName === SkillName.regeneration && !brute.eventId) {
+            updatedBrute.fightsLeft = (0, getFightsLeft)(updatedBrute, []) + 2;
         }
         updatedBrute.skills.push(skillName);
         // STATS MODIFIERS
@@ -2674,6 +2715,7 @@ var fightBackgrounds = [
 ];
 var bear = pets.find((p) => p.name === PetName.bear);
 var panther = pets.find((p) => p.name === PetName.panther);
+var dog1 = pets.find((p) => p.name === PetName.dog1);
 var bosses = [
     {
         name: BossName.GoldClaw,
@@ -2692,6 +2734,9 @@ var bosses = [
         disarm: bear.disarm,
         damage: bear.damage,
         reach: 3,
+        count: 1,
+        reward: 1,
+        odds: 10,
     },
     {
         name: BossName.EmberFang,
@@ -2710,6 +2755,30 @@ var bosses = [
         disarm: panther.disarm,
         damage: panther.damage,
         reach: 3,
+        count: 1,
+        reward: 1,
+        odds: 10,
+    },
+    {
+        name: BossName.Cerberus,
+        base: PetName.dog1,
+        scale: 2.15,
+        initiative: 1.5,
+        strength: dog1.strength * 7.5,
+        agility: dog1.agility,
+        speed: dog1.speed,
+        hp: 10000,
+        counter: dog1.counter,
+        combo: 0,
+        block: dog1.block,
+        evasion: -0.2,
+        accuracy: 0.75,
+        disarm: dog1.disarm,
+        damage: dog1.damage,
+        reach: 1,
+        count: 3,
+        reward: 0.2,
+        odds: 1,
     },
 ];
 var getFighterStat = (fighter, stat, onlyStat) => {
@@ -2995,8 +3064,8 @@ var fighterArrives = (fightData, fighter) => {
             step.w = WeaponByName[possibleWeapon.name];
         }
     }
-    // Poison fighters (not for bosses)
-    if (fighter.skills.find((skill) => skill.name === SkillName.chef)) {
+    // Poison fighters (not on bosses) (doesn't trigger for backups)
+    if (!fighter.master && fighter.skills.find((skill) => skill.name === SkillName.chef)) {
         (0, getOpponents)({ fightData, fighter }).forEach((opponent) => {
             if (opponent.type !== 'boss') {
                 opponent.poisoned = true;
@@ -3020,11 +3089,16 @@ var registerHit = (fightData, stats, achievements, fighter, opponents, damage, t
             ? Math.round((((0, randomBetween)(...bombDamageRangeOnPets[opponent.name]) / 100) * opponent.maxHp))
             : damage,
     }), {});
+    var previousTrappedOpponents = opponents.filter((opponent) => opponent.trapped);
     opponents.forEach((opponent) => {
         // Remove the net and reset initiative
         if (opponent.trapped) {
             opponent.trapped = false;
             opponent.initiative = fightData.initiative + 0.5;
+            // Stun brute opponents
+            if (opponent.type === 'brute') {
+                opponent.stunned = true;
+            }
         }
         // Max damage to 20% of opponent's health if `resistant`
         if (opponent.skills.find((sk) => sk.name === 'resistant')) {
@@ -3125,7 +3199,7 @@ var registerHit = (fightData, stats, achievements, fighter, opponents, damage, t
                 fighter.hitBy[opponent.index] = 0;
             }
             // Remove stun if hit while stunned
-            if (opponent.stunned) {
+            if (!previousTrappedOpponents.some((o) => o.id === opponent.id) && opponent.stunned) {
                 opponent.stunned = false;
             }
             if (!thrown && !sourceName && !flashFloodWeapon && opponent.type === 'brute') {
@@ -3547,7 +3621,7 @@ var activateSuper = (fightData, fighter, skill, stats, achievements) => {
                 pet.trapped = false;
             }
             // Set pet initiative to fighter initiative (to act right after)
-            pet.initiative = fighter.initiative;
+            pet.initiative = fighter.initiative - 0.01;
             // Give immunity to pet
             pet.immune = true;
             // Add move step
@@ -3569,8 +3643,6 @@ var activateSuper = (fightData, fighter, skill, stats, achievements) => {
                 a: StepType.MoveBack,
                 f: fighter.index,
             });
-            // Increase own initiative
-            fighter.initiative += 0.3 + fighter.tempo;
             break;
         }
         default:
@@ -3618,7 +3690,7 @@ var drawWeapon = (fightData, fighter) => {
     // Draw a weapon
     var possibleWeapon = (0, randomlyDrawWeapon)(fightData, fighter.weapons);
     // Decrease `keepWeaponChance` each turn and abort until true
-    if (!drawEveryWeapon && Math.random() < fighter.keepWeaponChance) {
+    if (fighter.activeWeapon && !drawEveryWeapon && Math.random() < fighter.keepWeaponChance) {
         fighter.keepWeaponChance *= 0.5;
         return false;
     }
@@ -3666,7 +3738,7 @@ var drawWeapon = (fightData, fighter) => {
     }
     return false;
 };
-var block = (fighter, opponent, ease = 1) => {
+var block = ({ fighter, opponent, thrown = false, ease = 1, }) => {
     // No block if opponent is dead
     if (opponent.hp <= 0)
         return false;
@@ -3679,9 +3751,13 @@ var block = (fighter, opponent, ease = 1) => {
     // No block for pets and bosses
     if (opponent.type === 'pet' || opponent.type === 'boss')
         return false;
+    let opponentBlock = getFighterStat(opponent, 'block');
+    // +25% block if blocking a throwing a weapon with `Hideaway`
+    if (thrown && opponent.skills.find((sk) => sk.name === SkillName.hideaway)) {
+        opponentBlock += 0.25;
+    }
     return Math.random() * ease
-        < (getFighterStat(opponent, 'block')
-            - getFighterStat(fighter, 'accuracy', 'weapon'));
+        < (opponentBlock - getFighterStat(fighter, 'accuracy', 'weapon'));
 };
 var evade = (fighter, opponent, difficulty = 1) => {
     // No evasion if opponent is dead
@@ -3761,7 +3837,7 @@ var attack = (fightData, fighter, opponent, stats, achievements, isCounter = fal
         return { blocked: false };
     // Get damage
     let damage = (0, getDamage)(fighter, opponent);
-    var blocked = block(fighter, opponent);
+    var blocked = block({ fighter, opponent });
     var evaded = evade(fighter, opponent);
     var brokeShield = breakShield(fighter, opponent);
     // Prepare attempt step
@@ -4051,8 +4127,9 @@ var playFighterTurn = (fightData, stats, achievements) => {
                 ? (0, randomBetween)(0, 1) === 0
                     ? 'thrown'
                     : 'melee'
-                // 1/28 chance to throw a weapon otherwise
-                : (0, randomBetween)(0, 27) === 0
+                // 1/33 chance to throw a weapon otherwise
+                // (influenced by weapon hit speed)
+                : (0, randomBetween)(0, Math.round(33 - fighter.activeWeapon.tempo * 5)) === 0
                     ? 'thrown' : 'melee'
             : 'melee';
     if (attackType === 'thrown' && fightData.modifiers.includes(FightModifier.noThrows)) {
@@ -4150,7 +4227,12 @@ var playFighterTurn = (fightData, stats, achievements) => {
                 updateStats(stats, currentFighter.id, 'consecutiveThrows', 1);
                 checkAchievements(stats, achievements);
                 // Check if opponent blocked (harder than melee)
-                if (!deflected && block(currentFighter, currentOpponent, 2)) {
+                if (!deflected && block({
+                    fighter: currentFighter,
+                    opponent: currentOpponent,
+                    thrown: true,
+                    ease: 2,
+                })) {
                     damage = 0;
                     // Add block step
                     fightData.steps.push({
@@ -4261,6 +4343,7 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
     team1.brutes?.concat(team2.brutes ?? []).forEach((brute) => {
         achievementsStore[brute.id] = {
             userId: brute.userId,
+            eventId: brute.eventId,
             achievements: {},
         };
         stats[brute.id] = {
@@ -4301,8 +4384,17 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
             }
         }
     }
+    if (team1.bosses?.length || team2.bosses?.length) {
+        // Handle bosses coming as multiple instances
+        team1.bosses?.forEach((boss) => {
+            team1.bosses?.push(...Array(boss.count - 1).fill({ ...boss }));
+        });
+        team2.bosses?.forEach((boss) => {
+            team2.bosses?.push(...Array(boss.count - 1).fill({ ...boss }));
+        });
+    }
     // Global fight data
-    var fightDataFighters = await (0, getFighters)({
+    var fightDataFighters = (0, getFighters)({
         prisma,
         team1: { brutes: team1.brutes ?? [], backups: team1Backups, bosses: team1.bosses ?? [] },
         team2: { brutes: team2.brutes ?? [], backups: team2Backups, bosses: team2.bosses ?? [] },
@@ -4434,7 +4526,10 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
     if (team1.bosses?.length || team2.bosses?.length) {
         // Update clan limit and boss if boss slain
         var bossFighter = fightData.fighters.find((fighter) => fighter.type === 'boss');
-        if (bossFighter && bossFighter.hp <= 0) {
+        var anyBossStillAlive = fightData.fighters
+            .some((fighter) => fighter.type === 'boss' && fighter.hp > 0);
+        if (bossFighter && !anyBossStillAlive) {
+            var boss = bosses.find((b) => b.name === bossFighter.name);
             var clan = await prisma.clan.findUnique({
                 where: { id: clanId },
                 select: {
@@ -4457,6 +4552,9 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
                     },
                 },
             });
+            if (!boss) {
+                throw new Error('Boss not found');
+            }
             if (!clan) {
                 throw new Error('Clan not found');
             }
@@ -4501,7 +4599,7 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
                 where: { id: clanId },
                 data: {
                     // Set new boss
-                    boss: (0, randomItem)(bosses).name,
+                    boss: (0, weightedRandom)(bosses).name,
                     damageOnBoss: 0,
                     // Increase clan limit
                     limit: Math.min(CLAN_SIZE_LIMIT, clan.limit + 5),
@@ -4518,7 +4616,7 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
             clan.bossDamages.forEach((damage) => {
                 userIds.add(damage.brute.userId || '');
             });
-            var goldGains = Math.floor(BOSS_GOLD_REWARD / userIds.size);
+            var goldGains = Math.floor((boss.reward * BOSS_GOLD_REWARD) / userIds.size);
             await prisma.user.updateMany({
                 where: { id: { in: Array.from(userIds) } },
                 data: {
@@ -4540,15 +4638,16 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
         }
         else {
             // Update damage on boss + store it
-            var initialBoss = fightData.initialFighters.find((fighter) => fighter.type === 'boss');
-            var finalBoss = fightData.fighters.find((fighter) => fighter.type === 'boss');
-            if (!initialBoss || !finalBoss) {
-                throw new Error('Boss not found');
-            }
+            var initialBossesHp = fightData.initialFighters
+                .filter((fighter) => fighter.type === 'boss')
+                .reduce((sum, boss) => (boss.hp > 0 ? sum + boss.hp : sum), 0);
+            var finalBossesHp = fightData.fighters
+                .filter((fighter) => fighter.type === 'boss')
+                .reduce((sum, boss) => (boss.hp > 0 ? sum + boss.hp : sum), 0);
             if (!clanId) {
                 throw new Error('Clan ID not found');
             }
-            var damage = initialBoss.hp - finalBoss.hp;
+            var damage = initialBossesHp - finalBossesHp;
             await prisma.clan.update({
                 where: { id: clanId },
                 data: {
@@ -4586,14 +4685,18 @@ var getDamage = (fighter, opponent, thrown) => {
         : (fighter.activeWeapon?.damage || fighter.baseDamage);
     let skillsMultiplier = 1;
     // Using Piledriver ?
-    var piledriver = fighter.activeSkills.find((sk) => sk.name === 'hammer');
+    var piledriver = fighter.activeSkills.find((sk) => sk.name === SkillName.hammer);
     // +50% damage for `weaponsMaster` on sharp weapons
-    if (fighter.activeWeapon?.types.includes('sharp') && fighter.skills.find((sk) => sk.name === 'weaponsMaster') && !thrown) {
+    if (fighter.activeWeapon?.types.includes(WeaponType.SHARP)
+        && fighter.skills.find((sk) => sk.name === SkillName.weaponsMaster)
+        && !thrown) {
         skillsMultiplier += 0.5;
     }
     if (!piledriver) {
         // +100% damage for `martialArts` without a weapon or with a mug
-        if ((!fighter.activeWeapon || fighter.activeWeapon.name === 'mug') && fighter.skills.find((sk) => sk.name === 'martialArts') && !thrown) {
+        if ((!fighter.activeWeapon || fighter.activeWeapon.name === WeaponName.mug)
+            && fighter.skills.find((sk) => sk.name === SkillName.martialArts)
+            && !thrown) {
             skillsMultiplier += 1;
         }
     }
@@ -4625,6 +4728,10 @@ var getDamage = (fighter, opponent, thrown) => {
     // -25% damage if fighter uses a damaged weapon
     if (fighter.activeWeapon && fighter.damagedWeapons.includes(fighter.activeWeapon.name)) {
         damage = Math.floor(damage * 0.75);
+    }
+    // -45% damage for `shield`
+    if (fighter.shield) {
+        damage = Math.floor(damage * 0.55);
     }
     // Reduce damage with opponent's armor if not thrown
     if (!thrown) {
@@ -4738,8 +4845,8 @@ var handleSkills = (brute, fighter) => {
         fighter.monk = true;
     }
 };
-var handleModifiers = (brute, randomWeaponIndex, randomSkillIndex) => {
-    var randomWeaponName = (0, getTempWeapon)(brute, randomWeaponIndex);
+var handleModifiers = (brute, modifiers) => {
+    var randomWeaponName = (0, getTempWeapon)(brute, modifiers);
     if (randomWeaponName) {
         var randomWeapon = weapons.find((weapon) => weapon.name === randomWeaponName);
         if (!randomWeapon) {
@@ -4747,7 +4854,7 @@ var handleModifiers = (brute, randomWeaponIndex, randomSkillIndex) => {
         }
         brute.weapons.push(randomWeaponName);
     }
-    var randomSkillName = (0, getTempSkill)(brute, randomSkillIndex);
+    var randomSkillName = (0, getTempSkill)(brute, modifiers);
     if (randomSkillName) {
         var randomSkill = skills.find((skill) => skill.name === randomSkillName);
         if (!randomSkill) {
@@ -4757,9 +4864,7 @@ var handleModifiers = (brute, randomWeaponIndex, randomSkillIndex) => {
     }
 };
 var getTempo = (speed) => 0.10 + (20 / (10 + (speed * 1.5))) * 0.90;
-var getFighters = async ({ prisma, team1, team2, modifiers, clanFight, }) => {
-    var randomWeaponIndex = await ServerState.getRandomWeapon(prisma);
-    var randomSkillIndex = await ServerState.getRandomSkill(prisma);
+var getFighters = ({ team1, team2, modifiers, clanFight, }) => {
     let spawnedPets = 0;
     var fighters = [];
     let positiveIndex = 0;
@@ -4780,11 +4885,11 @@ var getFighters = async ({ prisma, team1, team2, modifiers, clanFight, }) => {
             }
             // Fetch brute stats before handling modifiers,
             // as both depend on the skills, which get modified
-            var bruteHP = (0, getFinalHP)(brute, randomSkillIndex);
-            var bruteSpeed = (0, getFinalStat)(brute, 'speed', modifiers, randomSkillIndex);
-            var bruteStrength = (0, getFinalStat)(brute, 'strength', modifiers, randomSkillIndex);
-            var bruteAgility = (0, getFinalStat)(brute, 'agility', modifiers, randomSkillIndex);
-            handleModifiers(brute, randomWeaponIndex, randomSkillIndex);
+            var bruteHP = (0, getFinalHP)(brute, modifiers);
+            var bruteSpeed = (0, getFinalStat)(brute, 'speed', modifiers);
+            var bruteStrength = (0, getFinalStat)(brute, 'strength', modifiers);
+            var bruteAgility = (0, getFinalStat)(brute, 'agility', modifiers);
+            handleModifiers(brute, modifiers);
             // Brute stats
             positiveIndex++;
             var fighter = {
@@ -4917,11 +5022,11 @@ var getFighters = async ({ prisma, team1, team2, modifiers, clanFight, }) => {
             var arrivesAt = (0, randomBetween)(1, 500) / 100;
             // Fetch backup stats before handling modifiers,
             // as both depend on the skills, which get modified
-            var backupHP = (0, getFinalHP)(backup, randomSkillIndex);
-            var backupSpeed = (0, getFinalStat)(backup, 'speed', modifiers, randomSkillIndex);
-            var backupStrength = (0, getFinalStat)(backup, 'strength', modifiers, randomSkillIndex);
-            var backupAgility = (0, getFinalStat)(backup, 'agility', modifiers, randomSkillIndex);
-            handleModifiers(backup, randomWeaponIndex, randomSkillIndex);
+            var backupHP = (0, getFinalHP)(backup, modifiers);
+            var backupSpeed = (0, getFinalStat)(backup, 'speed', modifiers);
+            var backupStrength = (0, getFinalStat)(backup, 'strength', modifiers);
+            var backupAgility = (0, getFinalStat)(backup, 'agility', modifiers);
+            handleModifiers(backup, modifiers);
             spawnedPets++;
             var backupFighter = {
                 id: `${-spawnedPets}`,
@@ -4986,8 +5091,8 @@ var getFighters = async ({ prisma, team1, team2, modifiers, clanFight, }) => {
             fighters.push(backupFighter);
         }
         // Boss
-        positiveIndex++;
         for (var boss of team.bosses) {
+            positiveIndex++;
             spawnedPets++;
             fighters.push({
                 id: `${-spawnedPets}`,

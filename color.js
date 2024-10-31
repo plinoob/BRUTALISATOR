@@ -2032,9 +2032,9 @@ var Gender = {
   male: 'male',
   female: 'female'
 };
-var getFinalStat = (brute, stat, modifiers, randomSkillIndex) => {
+var getFinalStat = (brute, stat, modifiers) => {
     var multiplier = stat === 'agility' ? modifiers.includes(FightModifier.doubleAgility) ? 2 : 1 : 1;
-    var randomSkill = (0, getTempSkill)(brute, randomSkillIndex);
+    var randomSkill = (0, getTempSkill)(brute, modifiers);
     // No random skill, return normal stat
     if (!randomSkill) {
         return brute[`${stat}Value`] * multiplier;
@@ -2045,8 +2045,8 @@ var getFinalStat = (brute, stat, modifiers, randomSkillIndex) => {
     return Math.floor(newBrute[`${stat}Stat`] * newBrute[`${stat}Modifier`]) * multiplier;
 };
 var getFinalStat = getFinalStat;
-var getFinalHP = (brute, randomSkillIndex) => {
-    var randomSkill = (0, getTempSkill)(brute, randomSkillIndex);
+var getFinalHP = (brute, modifiers) => {
+    var randomSkill = (0, getTempSkill)(brute, modifiers);
     // No random skill, return normal HP
     if (!randomSkill) {
         return (0, getHP)(brute.level, brute.enduranceValue);
@@ -2076,6 +2076,7 @@ var LogType = /*exports.*//*$Enums.*/LogType = {
   childup: 'childup',
   up: 'up',
   lvl: 'lvl',
+  ascend: 'ascend',
   tournament: 'tournament',
   tournamentXp: 'tournamentXp',
   bossDefeat: 'bossDefeat'
@@ -2175,12 +2176,13 @@ var PetName = /*exports.*//*$Enums.*/PetName = {
   panther: 'panther',
   bear: 'bear'
 };
-var randomBetween = (min, max) => {
+var randomBetween = (min, max, generator) => {
     if (min > max)
         return 0;
     if (min === max)
         return min;
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    var random = generator ? generator.next() : Math.random();
+    return Math.floor(random * (max - min + 1) + min);
 };
 var randomItem = void 0;
 var randomItem = (items) => {
@@ -2893,6 +2895,7 @@ var SkillModifiers = {
     ],
     [SkillName.shield]: [
         { stat: FightStat.BLOCK, value: 45, percent: true },
+        { stat: FightStat.DAMAGE, value: -25, percent: true },
     ],
     [SkillName.armor]: [
         { stat: FightStat.ARMOR, value: 25, percent: true },
@@ -2950,7 +2953,9 @@ var SkillModifiers = {
     [SkillName.spy]: [],
     [SkillName.saboteur]: [],
     [SkillName.backup]: [],
-    [SkillName.hideaway]: [],
+    [SkillName.hideaway]: [
+        { stat: FightStat.BLOCK, value: 25, percent: true, details: 'againstThrows' },
+    ],
     [SkillName.monk]: [
         { stat: FightStat.COUNTER, value: 40, percent: true },
         { stat: FightStat.INITIATIVE, value: -200 },
@@ -3060,7 +3065,8 @@ var EventFightsPerDay = 10;
 var EventFreeResets = 3;
 var BossName = /*exports.*//*$Enums.*/BossName = {
   GoldClaw: 'GoldClaw',
-  EmberFang: 'EmberFang'
+  EmberFang: 'EmberFang',
+  Cerberus: 'Cerberus'
 };
 var availableBodyParts = {
     male: {
@@ -3409,12 +3415,47 @@ var bodyParts = {
 						type : "clothing"
 					},
 					
-}
-var getTempWeapon = (brute, weaponIndex) => {return 0
+}var getTempWeapon = void 0;
+var getTempWeapon = (brute, modifiers) => {
+    if (!modifiers.includes(FightModifier.randomWeapon)) {
+        return null;
+    }
+    // Seeded random number
+    var random = new rand_seed(`${brute.id}-randomWeapon-${moment.utc().format('YYYY-MM-DD')}`);
+    var weaponIndex = (0, randomBetween)(0, 200, random);
+    var unownedWeapons = weapons.filter((weapon) => !brute.weapons.includes(weapon.name));
+    if (unownedWeapons.length === 0) {
+        return null;
+    }
+    var tempWeapon = unownedWeapons[weaponIndex % unownedWeapons.length];
+    if (!tempWeapon) {
+        throw new Error('No temp weapon found');
+    }
+    return tempWeapon.name;
 };
-
-var getTempSkill = (brute, skillIndex) => {return 0
-};var DestinyChoiceType = /*exports.*//*$Enums.*/DestinyChoiceType = {
+var getTempWeapon = getTempWeapon;
+var getTempSkill = void 0;
+var unavailableTemporarySkills = [SkillName.backup];
+var getTempSkill = (brute, modifiers) => {
+    if (!modifiers.includes(FightModifier.randomSkill)) {
+        return null;
+    }
+    // Seeded random number
+    var random = new rand_seed(`${brute.id}-randomSkill-${moment.utc().format('YYYY-MM-DD')}`);
+    var skillIndex = (0, randomBetween)(0, 200, random);
+    var unownedSkills = skills.filter((skill) => !brute.skills.includes(skill.name)
+        && !unavailableTemporarySkills.includes(skill.name));
+    if (unownedSkills.length === 0) {
+        return null;
+    }
+    var tempSkill = unownedSkills[skillIndex % unownedSkills.length];
+    if (!tempSkill) {
+        throw new Error('No temp skill found');
+    }
+    return tempSkill.name;
+};
+var getTempSkill = getTempSkill;
+var DestinyChoiceType = /*exports.*//*$Enums.*/DestinyChoiceType = {
   skill: 'skill',
   weapon: 'weapon',
   pet: 'pet',
@@ -3629,8 +3670,8 @@ var updateBruteData = (brute, destinyChoice) => {
             throw new Error('No skill provided');
         }
         // Handle +2 fights for `regeneration`
-        if (skillName === SkillName.regeneration) {
-            updatedBrute.fightsLeft = (0, getFightsLeft)(updatedBrute, null) + 2;
+        if (skillName === SkillName.regeneration && !brute.eventId) {
+            updatedBrute.fightsLeft = (0, getFightsLeft)(updatedBrute, []) + 2;
         }
         updatedBrute.skills.push(skillName);
         // STATS MODIFIERS

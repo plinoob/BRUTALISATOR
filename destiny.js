@@ -763,9 +763,9 @@ var Gender = {
   male: 'male',
   female: 'female'
 };
-var getFinalStat = (brute, stat, modifiers, randomSkillIndex) => {
+var getFinalStat = (brute, stat, modifiers) => {
     var multiplier = stat === 'agility' ? modifiers.includes(FightModifier.doubleAgility) ? 2 : 1 : 1;
-    var randomSkill = (0, getTempSkill)(brute, randomSkillIndex);
+    var randomSkill = (0, getTempSkill)(brute, modifiers);
     // No random skill, return normal stat
     if (!randomSkill) {
         return brute[`${stat}Value`] * multiplier;
@@ -776,8 +776,8 @@ var getFinalStat = (brute, stat, modifiers, randomSkillIndex) => {
     return Math.floor(newBrute[`${stat}Stat`] * newBrute[`${stat}Modifier`]) * multiplier;
 };
 var getFinalStat = getFinalStat;
-var getFinalHP = (brute, randomSkillIndex) => {
-    var randomSkill = (0, getTempSkill)(brute, randomSkillIndex);
+var getFinalHP = (brute, modifiers) => {
+    var randomSkill = (0, getTempSkill)(brute, modifiers);
     // No random skill, return normal HP
     if (!randomSkill) {
         return (0, getHP)(brute.level, brute.enduranceValue);
@@ -807,6 +807,7 @@ var LogType = /*exports.*//*$Enums.*/LogType = {
   childup: 'childup',
   up: 'up',
   lvl: 'lvl',
+  ascend: 'ascend',
   tournament: 'tournament',
   tournamentXp: 'tournamentXp',
   bossDefeat: 'bossDefeat'
@@ -906,12 +907,13 @@ var PetName = /*exports.*//*$Enums.*/PetName = {
   panther: 'panther',
   bear: 'bear'
 };
-var randomBetween = (min, max) => {
+var randomBetween = (min, max, generator) => {
     if (min > max)
         return 0;
     if (min === max)
         return min;
-    return Math.floor(Math.random() * (max - min + 1) + min);
+    var random = generator ? generator.next() : Math.random();
+    return Math.floor(random * (max - min + 1) + min);
 };
 var randomItem = void 0;
 var randomItem = (items) => {
@@ -1624,6 +1626,7 @@ var SkillModifiers = {
     ],
     [SkillName.shield]: [
         { stat: FightStat.BLOCK, value: 45, percent: true },
+        { stat: FightStat.DAMAGE, value: -25, percent: true },
     ],
     [SkillName.armor]: [
         { stat: FightStat.ARMOR, value: 25, percent: true },
@@ -1681,7 +1684,9 @@ var SkillModifiers = {
     [SkillName.spy]: [],
     [SkillName.saboteur]: [],
     [SkillName.backup]: [],
-    [SkillName.hideaway]: [],
+    [SkillName.hideaway]: [
+        { stat: FightStat.BLOCK, value: 25, percent: true, details: 'againstThrows' },
+    ],
     [SkillName.monk]: [
         { stat: FightStat.COUNTER, value: 40, percent: true },
         { stat: FightStat.INITIATIVE, value: -200 },
@@ -1791,7 +1796,8 @@ var EventFightsPerDay = 10;
 var EventFreeResets = 3;
 var BossName = /*exports.*//*$Enums.*/BossName = {
   GoldClaw: 'GoldClaw',
-  EmberFang: 'EmberFang'
+  EmberFang: 'EmberFang',
+  Cerberus: 'Cerberus'
 };
 var availableBodyParts = {
     male: {
@@ -2140,12 +2146,47 @@ var bodyParts = {
 						type : "clothing"
 					},
 					
-}
-var getTempWeapon = (brute, weaponIndex) => {return 0
+}var getTempWeapon = void 0;
+var getTempWeapon = (brute, modifiers) => {
+    if (!modifiers.includes(FightModifier.randomWeapon)) {
+        return null;
+    }
+    // Seeded random number
+    var random = new rand_seed(`${brute.id}-randomWeapon-${moment.utc().format('YYYY-MM-DD')}`);
+    var weaponIndex = (0, randomBetween)(0, 200, random);
+    var unownedWeapons = weapons.filter((weapon) => !brute.weapons.includes(weapon.name));
+    if (unownedWeapons.length === 0) {
+        return null;
+    }
+    var tempWeapon = unownedWeapons[weaponIndex % unownedWeapons.length];
+    if (!tempWeapon) {
+        throw new Error('No temp weapon found');
+    }
+    return tempWeapon.name;
 };
-
-var getTempSkill = (brute, skillIndex) => {return 0
-};var DestinyChoiceType = /*exports.*//*$Enums.*/DestinyChoiceType = {
+var getTempWeapon = getTempWeapon;
+var getTempSkill = void 0;
+var unavailableTemporarySkills = [SkillName.backup];
+var getTempSkill = (brute, modifiers) => {
+    if (!modifiers.includes(FightModifier.randomSkill)) {
+        return null;
+    }
+    // Seeded random number
+    var random = new rand_seed(`${brute.id}-randomSkill-${moment.utc().format('YYYY-MM-DD')}`);
+    var skillIndex = (0, randomBetween)(0, 200, random);
+    var unownedSkills = skills.filter((skill) => !brute.skills.includes(skill.name)
+        && !unavailableTemporarySkills.includes(skill.name));
+    if (unownedSkills.length === 0) {
+        return null;
+    }
+    var tempSkill = unownedSkills[skillIndex % unownedSkills.length];
+    if (!tempSkill) {
+        throw new Error('No temp skill found');
+    }
+    return tempSkill.name;
+};
+var getTempSkill = getTempSkill;
+var DestinyChoiceType = /*exports.*//*$Enums.*/DestinyChoiceType = {
   skill: 'skill',
   weapon: 'weapon',
   pet: 'pet',
@@ -2360,8 +2401,8 @@ var updateBruteData = (brute, destinyChoice) => {
             throw new Error('No skill provided');
         }
         // Handle +2 fights for `regeneration`
-        if (skillName === SkillName.regeneration) {
-            updatedBrute.fightsLeft = (0, getFightsLeft)(updatedBrute, null) + 2;
+        if (skillName === SkillName.regeneration && !brute.eventId) {
+            updatedBrute.fightsLeft = (0, getFightsLeft)(updatedBrute, []) + 2;
         }
         updatedBrute.skills.push(skillName);
         // STATS MODIFIERS
@@ -2572,8 +2613,8 @@ var FR = {
   "myHordes.desc": "MyHordes: Le premier jeu de survie zombie gratuit se déroulant dans un monde hostile peuplé de morts-vivants !",
   "eMush": "eMush",
   "eMush.desc": "eMush: Vous êtes sur le point de vous réveiller à bord du Daedalus avec 15 autres rebelles. Comme vous, ils fuient le Mush, un champignon parasite qui ravage la Terre et menace l'Humanité.",
-  "eternalDinoRPG": "Eternal DinoRPG",
-  "eternalDinoRPG.desc": "Eternal DinoRPG: Élevez vos dinoz dans un jeu d'aventure extraordinaire !",
+  "dinorpg": "DinoRPG",
+  "dinorpg.desc": "DinoRPG: Raise your dinoz in an extraordinary adventure game!",
   "neoparc": "Neoparc",
   "neoparc.desc": "Neoparc: Combattez d'autres Dinoz et gagnez ainsi petit à petit de l'expérience lors de combats sans merci !",
   "eternalfest": "Eternalfest",
@@ -2645,6 +2686,8 @@ var FR = {
   "log.childup": "Ton élève {{value}} est passé au niveau suivant.",
   "log.up": "{{brute}} a atteint le niveau {{value}}.",
   "log.lvl": "{{brute}} a atteint le rang {{value}}.",
+  "log.ascend": "{{brute}} s'est élevé.",
+  "log.ascends": "{{brute}} s'est maintenant élevé {{value}} fois.",
   "log.tournament": "Le tournoi du {{date}} a été annulé, retente ta chance !",
   "log.tournamentXp": "Tournois d'hier",
   "log.fight": "Ta brute a combattu {{value}}.",
@@ -2996,9 +3039,10 @@ var FR = {
   "drawChance": "Chance d'utilisation",
   "reach": "Portée",
   "account": "Compte",
-  "login": "Connexion",
+  "login": "Log in",
   "loginError": "Erreur de connexion",
-  "logout": "Déconnexion",
+  "logout": "Log out",
+  "settings": "Settings",
   "logoutSuccess": "Déconnexion réussie",
   "loginSuccess": "Connexion réussie",
   "invalidName": "Nom invalide. Les caractères autorisés sont a-z, A-Z, 0-9, _ et -. Il doit faire entre 3 et 16 caractères.",
@@ -3008,6 +3052,11 @@ var FR = {
   "nextBrute": "Brute suivante",
   "hall": "Hall",
   "userProfile": "Profil de {{user}}",
+  "profile": "Profile",
+  "wiki": "Wiki",
+  "feed": "Feed",
+  "notifications": "Notifications",
+  "allRead": "All read",
   "newBrute": "Nouvelle brute",
   "gold": "Or",
   "sacrifice": "Sacrifier",
@@ -3038,7 +3087,10 @@ var FR = {
   "setAsWatched": "Marquer comme vu",
   "rankUp": "Monter de rang",
   "tournamentVictoriesUntilRankUp": "Vous avez besoin de {{value}} victoires de tournoi quotidien pour monter de rang.",
+  "tournamentVictoriesUntilAscend": "Vous avez besoin de {{value}} victoires de tournoi quotidien pour vous élever.",
   "rankUpConfirm": "Voulez-vous vraiment monter de rang ? Votre brute repassera au niveau 1 avec la même destinée.",
+  "ascendConfirmShort": "Voulez-vous vraiment vous élever ?",
+  "ascendConfirm": "Votre brute retournera au niveau 1 et gardera son rang, les récompenses de ses ascensions précédentes ainsi que l'attribut sélectionné, qui sera remplacé par des statistiques partout dans sa destinée.",
   "finals": "Finale",
   "semiFinals": "Demi-finale",
   "quarterFinals": "Quart de finale",
@@ -4020,6 +4072,7 @@ var FR = {
   "banReason.innapropriateBruteName": "Nom de brute inapproprié",
   "banReason.multipleAccounts": "Comptes multiples",
   "afterBlock": "après blocage",
+  "againstThrows": "against throws",
   "created": "Créée le {{date}}",
   "copyUserId": "Copier l'ID utilisateur",
   "userIdCopied": "ID de l'utilisateur copié dans le presse-papiers.",
@@ -4050,7 +4103,57 @@ var FR = {
   "event.battleRoyale.rule.8": "Le prochain événement commencera {{count}} jours après la fin de l'événement en cours",
   "event.battleRoyale.rule.9": "Chaque événement a un niveau maximum aléatoire, le niveau maximum de l'événement actuel est {{count}}",
   "event.ongoing": "Cet événement est en cours, vous ne pouvez plus participer avec une brute.",
-  "event.started": "Un nouvel événement vient de commencer, participez avant qu'il ne soit trop tard !"
+  "event.started": "Un nouvel événement vient de commencer, participez avant qu'il ne soit trop tard !",
+  "perkType.weapon": "Arme",
+  "perkType.skill": "Compétence",
+  "perkType.pet": "Familier",
+  "ascensions": "Ascensions",
+  "ascendWith.firstDog": "un Chien",
+  "ascendWith.secondDog": "un second Chien",
+  "ascendWith.thirdDog": "un troisième Chien",
+  "youAreAboutToAscend": "Vous êtes sur le point de vous élever",
+  "youWillAscendWithDog": "Vous vous élèverez avec {{one_or_a_second_pet_dog}}",
+  "youWillAscendWith": "Vous avez choisi de vous élever avec l'attribut suivant : {{perkName}} ({{perkType}}).",
+  "youMustSelectToAscend": "Vous devez sélectionner une arme, une compétence ou un familier pour vous élever.",
+  "ascensionExplanationText": "L'Ascension vous permet de recommencer avec un attribut permanent supplémentaire. Vous reviendrez au niveau 1 mais conserverez votre rang, les récompenses de vos ascensions précédentes, ainsi que l'attribut que vous êtes sur le point de sélectionner.",
+  "rankingPrioritizeAscensions": "Le classement priorise le nombre d'ascensions par rapport au niveau et à l'expérience !",
+  "fasterFights": "Faster fights",
+  "displayVersusPage": "Display versus page",
+  "wiki.howToRankup": "How to rank up?",
+  "wiki.winDaily": "Win daily tournament(s)",
+  "wiki.wins_one": "{{count}} win",
+  "wiki.wins_other": "{{count}} wins",
+  "wiki.restartAfterRankup": "You will then restart at lvl 1 with the same destiny, but with the possibility to make different level up choices if you want to.",
+  "wiki.previousDestiny": "The previous destiny will be highlighted in red when leveling up.",
+  "wiki.howToGetGold": "How to get gold?",
+  "wiki.sacrifice": "Sacrifice a brute",
+  "wiki.level": "lvl {{count}}",
+  "wiki.noSacrificeSameDay": "You can't sacrifice a brute the day of its creation.",
+  "wiki.sameNameAfterSacrifice": "Once sacrified, you can create a new brute using the same name.",
+  "wiki.winDailyTourney": "Win a daily tournament",
+  "wiki.winGlobalTourney": "Win a global tournament",
+  "wiki.beatClanBoss": "Beat the clan boss",
+  "wiki.howWork": "How do they work?",
+  "wiki.manualRegister": "Manual registration",
+  "wiki.allowRankUp": "Allows you to rank up",
+  "wiki.xpPerWin": "{{count}} XP per fight won",
+  "wiki.autoRegister": "Automatic registration",
+  "wiki.activePreviousDay": "Must have fought the previous day",
+  "wiki.addedDelayedXP": "If you won {{daily}} fights in the daily tournament and {{global}} fights in the global tournament, you'll get {{total}} XP the following day.",
+  "wiki.howToUseGold": "How to use your gold?",
+  "wiki.createNewBrutes": "Create new brutes",
+  "wiki.count": "{{count}}th",
+  "wiki.resetBrute": "Reset your brute",
+  "wiki.resetExample": "At some point you might want to reset your brute because you didn't like what you got after level 10 for example; or you might want to explore another branch of your destiny.",
+  "wiki.resetExample2": "It will cost you 100 gold and your brute will restart at level 1 with the same rank.",
+  "wiki.clans": "Clans",
+  "wiki.increaseClanCapacity": "How to increase its capacity?",
+  "wiki.defeatBoss": "Defeat the boss",
+  "wiki.bossExplanation": "The boss has a given amount of HP, it will require multiple daily fights to beat it. Once you defeat it, you will unlock 5 more brutes slots for your clan (50 members limit). You will also earn a boss ticket (no utility yet) & gold.",
+  "wiki.pupils": "Pupils",
+  "wiki.whatPupilBenefits": "What are their benefits?",
+  "wiki.pupilBenefits": "None (for now)",
+  "wiki.pupilExplanation": "Pupils don't give XP as they used to in previous game versions. But you can still get pupils by sharing the link in the top right corner of your cell."
 }
 ;/**
  * vis-network
