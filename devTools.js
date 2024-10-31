@@ -2177,49 +2177,6 @@ var bodyParts = {
 					},
 					
 }
-var getTempWeapon = void 0;
-var getTempWeapon = (brute, modifiers) => {
-    if (!modifiers.includes(FightModifier.randomWeapon)) {
-        return null;
-    }
-    // Seeded random number
-    var random = new rand_seed(`${brute.id}-randomWeapon-${moment.utc().format('YYYY-MM-DD')}`);
-    var weaponIndex = (0, randomBetween)(0, 200, random);
-    var unownedWeapons = weapons.filter((weapon) => !brute.weapons.includes(weapon.name));
-    if (unownedWeapons.length === 0) {
-        return null;
-    }
-    var tempWeapon = unownedWeapons[weaponIndex % unownedWeapons.length];
-    if (!tempWeapon) {
-        throw new Error('No temp weapon found');
-    }
-    return tempWeapon.name;
-};
-var getTempWeapon = getTempWeapon;
-
-var getTempSkill = void 0;
-var unavailableTemporarySkills = [SkillName.backup];
-var getTempSkill = (brute, modifiers) => {return 3;
-    console.log("tempskills",modifiers.includes(FightModifier.randomSkill),FightModifier.randomSkill)
-    if (!modifiers.includes(FightModifier.randomSkill)) {
-        return null;
-    }
-    // Seeded random number
-    var random = new rand_seed(`${brute.id}-randomSkill-${moment.utc().format('YYYY-MM-DD')}`);
-    var skillIndex = (0, randomBetween)(0, 200, random);
-    var unownedSkills = skills.filter((skill) => !brute.skills.includes(skill.name)
-        && !unavailableTemporarySkills.includes(skill.name));
-    if (unownedSkills.length === 0) {
-        return null;
-    }
-    var tempSkill = unownedSkills[skillIndex % unownedSkills.length];
-    if (!tempSkill) {
-        throw new Error('No temp skill found');
-    }
-    return tempSkill.name;
-};
-var getTempSkill = getTempSkill;
-
 var DestinyChoiceType = /*exports.*//*$Enums.*/DestinyChoiceType = {
   skill: 'skill',
   weapon: 'weapon',
