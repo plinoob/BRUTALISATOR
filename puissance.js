@@ -5853,7 +5853,8 @@ function makeScrollableStatsPerks(){
 
 function clickOnProfilSpan(){		history.pushState(null, '',"/hall")
 	history.pushState(null, '', '/lol');
-	history.back();return;var elem = $("a[href^='/hall']")[0];;cl("clickedonhall",elem);if(elem){$(elem).click()}}
+	history.back();return;//dont work var elem = $("a[href^='/hall']")[0];;cl("clickedonhall",elem);if(elem){$(elem).click()}
+	}
 
 function makeScrollableweaponperk(w){
 	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks")
@@ -5910,7 +5911,7 @@ var needToRebuild
 function actu(){terminateWorkers();if(bruteModifAc){bruteData=bruteModifAc};clickOnProfilSpan();setTimeout(function(){$(".power").remove();history.back()
 	
 setTimeout(function(){needToRebuild=true},333)
-},10000)}
+},10)}
 
 if(!changedFetch){
 	
