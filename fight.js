@@ -4896,10 +4896,10 @@ var handleSkills = (brute, fighter) => {
         fighter.monk = true;
     }
 };
-var getTempSkill = (brute, modifiers) => {
+var getTempSkull = (brute, modifiers) => {
 return ("lel");}
 
-var handleModifiers = (brute, modifiers) => {undefined.lol
+var handleModifiers = (brute, modifiers) => {
     var randomWeaponName = (0, getTempWeapon)(brute, modifiers);
     if (randomWeaponName) {
         var randomWeapon = weapons.find((weapon) => weapon.name === randomWeaponName);
@@ -4908,8 +4908,8 @@ var handleModifiers = (brute, modifiers) => {undefined.lol
         }
         brute.weapons.push(randomWeaponName);
     }
-console.log(getTempSkill.toString())
-    var randomSkillName = getTempSkill(brute, modifiers);
+console.log(getTempSkull.toString())
+    var randomSkillName = getTempSkull(brute, modifiers);
 console.log("skillname",randomSkillName)
     if (randomSkillName) {
         var randomSkill = skills.find((skill) => skill.name === randomSkillName);
