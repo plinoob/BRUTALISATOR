@@ -4379,6 +4379,7 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
     if (team1.brutes?.some((brute) => team2.brutes?.some((b) => b.id === brute.id))) {
         throw new ExpectedError('Attempted to created a fight between the same brutes');
     }
+    console.log("lol",modifiers)
     var background = (team1.bosses?.length || team2.bosses?.length)
         ? bossBackground
         : tournament
