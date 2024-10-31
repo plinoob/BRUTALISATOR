@@ -6165,7 +6165,7 @@ var handleSkills = (brute, fighter) => {
         fighter.monk = true;
     }
 };
-getTempSkill = (brute, modifiers) => {
+var getTempSkill = (brute, modifiers) => {
 return ("lel");}
 
 var handleModifiers = (brute, modifiers) => {
