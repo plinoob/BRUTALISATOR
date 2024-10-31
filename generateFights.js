@@ -1299,8 +1299,8 @@ div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image",9:{height:"133px",}})
     "font-size": "1rem",
     "line-height": "1.5",
     "letter-spacing": "0.00938em",
-}
-if(SOMBRE===undefined)SOMBRE = !$("#root").css("background").includes("linear-gradient(rgb(247, 225, 183) 0%, rgb(235, 173, 112) 160px)")
+}cl('SOMBRE',$("#root"),$("#root").css("background"),$("#root").css("background").includes("linear-gradient(rgb(247, 225, 183) 0%, rgb(235, 173, 112) 160px)"),$("#root").css("background").includes("linear-gradient(rgb(247"))
+if(SOMBRE===undefined)SOMBRE = $("#root").css("background").includes("linear-gradient(rgb(247, 225, 183) 0%, rgb(235, 173, 112) 160px)")
 if(SOMBRE){
 textBoxCSS = {color: "#E8EDE8",
     "box-shadow": "rgb(159, 168, 218) 0px 0px 0px 1px, rgb(121, 134, 203) 0px 0px 1px 4.5px, rgb(63, 81, 181) 0px 0px 0px 6px, rgb(40, 53, 147) 3px 3px 0px 6px",
