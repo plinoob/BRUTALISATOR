@@ -2633,7 +2633,7 @@ function clickOnTournoi(){
 	
 	var elem = findFirstTextInDOM("Tournoi","button");if(elem && !clickedOnTournoi){clickedOnTournoi=true;$(elem).click()}}
 function inscrire(){var elem = findTextInDOM("Marquer comme vu","button");if(elem && !clickedOnInscrire){clickedOnInscrire=true;$(elem).click()}}
-function clickOnProfilSpan(){var elem = findTextInDOM("Profil de ","span");if(elem && !clickedOnProfil){clickedOnProfil=true;$(elem).click()}}
+function clickOnProfil(){var elem = $("svg[data-testid^='PersonIcon']")[0];cl("profile",elem);cl("hall",$("a[href^='/hall']")[0]);if(elem && !clickedOnProfil){clickedOnProfil=true;$(elem).click()}}
 function clickOnFirstBrute(){
   var firstImage = $('img').filter(function() {
     return $(this).attr('src').startsWith('/images/rankings');
@@ -2645,7 +2645,7 @@ function clickOnArena(){var elem ;$("a").each(function(){if($(this).attr("href")
 	
 history.pushState(null, '', '/'+BRUTE+"/arena");history.pushState(null, '', '/'+BRUTE+"/lol");history.back()
 }}
-function clickOnHall(){var elem = findTextInDOM("Hall","span");if(elem && !clickedOnHall){tourEnded=true;clickedOnHall=true;$(elem).click()}}
+function clickOnHall(){var elem = $("a[href^='/hall']")[0];if(elem && !clickedOnHall){tourEnded=true;clickedOnHall=true;$(elem).click()}}
 function clickOnDinoReward(){var elem = findTextInDOM("Eternal DinoRPG","button");if(elem){dinoReward=true;$(elem).click()}}
 function clickOnLaunchFight(){var elem = findTextInDOM("Lancer le combat","div");if(elem && !clickedOnLaunchFight){clickedOnLaunchFight=true;$(elem).click()}}
 function clickOnCell(){var elem = findFirstTextInDOM("Cellule de ","span");if(elem && !clickedOnCell){clickedOnCell=true;$(elem).click()}}
@@ -2681,7 +2681,7 @@ function isImgInDOM(src){
 var actions={
 	Hall : {
 		End:[isEnded,endTour],
-		Profil:[,clickOnProfilSpan],
+		Profil:[,clickOnProfil],
 		},
 	Profil : {
 		Profil : [notDinoRewards,clickOnDinoReward],
@@ -2694,15 +2694,15 @@ var actions={
 		Cell : [noFightLeft,clickOnNextBrute],//Cell : [inscrit,clickOnNextBrute],//
 		},
 	Arena : {
-		Versus : [isArenaEnough,clickOnBestMatchup],
+		Fight/*Versus*/ : [isArenaEnough,clickOnBestMatchup],
 		Arena : [isArenaNotEnough,makeSureArenaIsRunning],
 		},
 	Versus : {
-		Profil : [,clickOnLaunchFight],
+		Fight : [,clickOnLaunchFight],
 		},
 	Tournoi : {
 		Tournoi : [notInscrit,inscrire],
-		Profil : [,precedent],
+		Cell : [,precedent],
 		},
 	Fight : {
 		Cell : [,clickOnCell],
