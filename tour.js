@@ -2635,7 +2635,7 @@ function clickOnTournoi(){
 function inscrire(){var elem = findTextInDOM("Marquer comme vu","button");if(elem && !clickedOnInscrire){clickedOnInscrire=true;$(elem).click()}}
 function clickOnProfil(){var elem = $("svg[data-testid^='PersonIcon']")[0];
 	if(elem && !clickedOnProfil){clickedOnProfil=true;$(elem).parent().parent().click();setTimeout(function(){$("a[href^='/user']")[0].click();
-		setTimeout(function(){var elem=$("div[role^='presentation']")[0];cl(elem,"presentation");$(elem).click();},200)
+		setTimeout(function(){cl("MDRRRRRR");$(elem).parent().parent().click()},200)
 	     },500)}}
 function clickOnFirstBrute(){
   var firstImage = $('img').filter(function() {
