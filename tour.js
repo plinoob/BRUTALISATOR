@@ -2633,7 +2633,8 @@ function clickOnTournoi(){
 	
 	var elem = findFirstTextInDOM("Tournoi","button");if(elem && !clickedOnTournoi){clickedOnTournoi=true;$(elem).click()}}
 function inscrire(){var elem = findTextInDOM("Marquer comme vu","button");if(elem && !clickedOnInscrire){clickedOnInscrire=true;$(elem).click()}}
-function clickOnProfil(){var elem = $("svg[data-testid^='PersonIcon']")[0];cl("profile",elem);cl("hall",$("a[href^='/hall']")[0]);if(elem && !clickedOnProfil){clickedOnProfil=true;$(elem).click()}}
+function clickOnProfil(){var elem = $("svg[data-testid^='PersonIcon']")[0];cl("profile",elem);cl("hall",$("a[href^='/hall']")[0]);
+	if(elem && !clickedOnProfil){clickedOnProfil=true;$(elem).parent().parent().click()}}
 function clickOnFirstBrute(){
   var firstImage = $('img').filter(function() {
     return $(this).attr('src').startsWith('/images/rankings');

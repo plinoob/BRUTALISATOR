@@ -5851,7 +5851,7 @@ function makeScrollableStatsPerks(){
 	
 }
 
-function clickOnProfilSpan(){var elem = findTextInDOM("Profil de ","span");if(elem){$(elem).click()}}
+function clickOnProfilSpan(){var elem = $("a[href^='/hall']")[0];if(elem){$(elem).click()}}
 
 function makeScrollableweaponperk(w){
 	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks")
