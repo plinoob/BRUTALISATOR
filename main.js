@@ -1325,6 +1325,7 @@ function refreshStats (brute){
     updatedBrute.hp = (0, getHP)(updatedBrute.level, updatedBrute.enduranceValue);
     return updatedBrute;
 };
+
 var applySkillModifiers = (brute, skill) => {
     var updatedBrute = { ...brute };
     // Vitality modifier
@@ -1365,6 +1366,7 @@ var applySkillModifiers = (brute, skill) => {
     }
     return updatedBrute;
 };
+
 var WeaponName = /*exports.*//*$Enums.*/WeaponName = {
   fan: 'fan',
   keyboard: 'keyboard',
@@ -1393,6 +1395,7 @@ var WeaponName = /*exports.*//*$Enums.*/WeaponName = {
   scimitar: 'scimitar',
   sword: 'sword'
 };
+
 var WeaponId;
 (function (WeaponId) {
     WeaponId[WeaponId["fan"] = 0] = "fan";
@@ -2011,6 +2014,7 @@ var WEAPONS_SFX = {
         return acc;
     }, {}),
 };
+
 if (typeof self.ExpectedError === 'undefined') {
   self.ExpectedError = class ExpectedError extends Error {
     constructor(message = '') {
@@ -2018,6 +2022,7 @@ if (typeof self.ExpectedError === 'undefined') {
     }
   };
 }
+
 var FightModifier = {
   noThrows: 'Mains collantes',
   focusOpponent: 'Concentration',
@@ -2031,10 +2036,12 @@ var FightModifier = {
 };
 
 
+
 var Gender = {
   male: 'male',
   female: 'female'
 };
+
 var getFinalStat = (brute, stat, modifiers) => {
     var multiplier = stat === 'agility' ? modifiers.includes(FightModifier.doubleAgility) ? 2 : 1 : 1;
     var randomSkill = (0, getTempSkill)(brute, modifiers);
@@ -2060,18 +2067,21 @@ var getFinalHP = (brute, modifiers) => {
     return (0, getHP)(newBrute.level, Math.floor(newBrute.enduranceStat * newBrute.enduranceModifier));
 };
 var getFinalHP = getFinalHP;
+
 var getHP = (level, endurance) => Math.floor(50
     + (Math.max(endurance, 0)
         + level * 0.25) * 6);
 var getHP = getHP;
 var readableHPFormula = (level, endurance) => `50 + (max(${endurance}, 0) + ${level} * 0.25) * 6`;
 var readableHPFormula = readableHPFormula;
+
 var InventoryItemType = /*exports.*//*$Enums.*/InventoryItemType = {
   visualReset: 'visualReset',
   bossTicket: 'bossTicket',
   nameChange: 'nameChange',
   favoriteFight: 'favoriteFight'
 };
+
 var LogType = /*exports.*//*$Enums.*/LogType = {
   win: 'win',
   lose: 'lose',
@@ -2084,12 +2094,14 @@ var LogType = /*exports.*//*$Enums.*/LogType = {
   tournamentXp: 'tournamentXp',
   bossDefeat: 'bossDefeat'
 };
+
 var pad = (n, width, z = '0') => {
     var nString = `${n}`;
     return nString.length >= width
         ? nString
         : new Array(width - nString.length + 1).join(z) + n.toString();
 };
+
 var readBodyString = (bodyString) => ({
     p1: parseInt(bodyString[0] || '0', 16),
     p1a: parseInt(bodyString[1] || '0', 16),
@@ -2172,6 +2184,7 @@ var generateColorString = (colorObject) => [
     (0, pad)(colorObject.col4a, 2),
     (0, pad)(colorObject.col4b, 2),
 ].join('');
+
 var PetName = /*exports.*//*$Enums.*/PetName = {
   dog1: 'dog1',
   dog2: 'dog2',
@@ -2179,6 +2192,7 @@ var PetName = /*exports.*//*$Enums.*/PetName = {
   panther: 'panther',
   bear: 'bear'
 };
+
 var randomBetween = (min, max, generator) => {
     if (min > max)
         return 0;
@@ -2187,6 +2201,7 @@ var randomBetween = (min, max, generator) => {
     var random = generator ? generator.next() : Math.random();
     return Math.floor(random * (max - min + 1) + min);
 };
+
 var randomItem = void 0;
 var randomItem = (items) => {
     if (!items.length) {
@@ -2207,6 +2222,7 @@ var randomItem = (items) => {
     return item;
 };
 var randomItem = randomItem;
+
 var SkillName = /*exports.*//*$Enums.*/SkillName = {
   herculeanStrength: 'herculeanStrength',
   felineAgility: 'felineAgility',
@@ -2258,6 +2274,7 @@ var SkillName = /*exports.*//*$Enums.*/SkillName = {
   treat: 'treat',
   repulse: 'repulse'
 };
+
 var weightedRandom = (items) => {
     var firstItem = items[0];
     if (!firstItem) {
@@ -2278,6 +2295,7 @@ var weightedRandom = (items) => {
     }
     return items[i] || firstItem;
 };
+
 var pets = [
     {
         name: PetName.bear,
@@ -2411,6 +2429,7 @@ var getPetStat = (brute, pet, stat) => {
     return base + Math.ceil(scaling * bruteStat);
 };
 var getPetStat = getPetStat;
+
 var SkillId;
 (function (SkillId) {
     SkillId[SkillId["herculeanStrength"] = 0] = "herculeanStrength";
@@ -2972,6 +2991,7 @@ var SkillModifiers = {
         { stat: FightStat.DEFLECT, value: 30, percent: true },
     ],
 };
+
 var FIGHTS_PER_DAY = 6;
 var ARENA_OPPONENTS_COUNT = 6;
 var ARENA_OPPONENTS_MAX_GAP = 2;
@@ -3066,11 +3086,13 @@ var ClanWarPointReward = 1000;
 var EventPauseDuration = 3;
 var EventFightsPerDay = 10;
 var EventFreeResets = 3;
+
 var BossName = /*exports.*//*$Enums.*/BossName = {
   GoldClaw: 'GoldClaw',
   EmberFang: 'EmberFang',
   Cerberus: 'Cerberus'
 };
+
 var availableBodyParts = {
     male: {
         p2: 7,
@@ -3099,6 +3121,7 @@ var availableBodyParts = {
         p5: 1,
     },
 };
+
 var ILLEGAL_BODY
 var checkBodyPart = (value, expected) => value >= 0 && value <= expected;
 var checkBody = (user, gender, bodyString) => {
@@ -3130,6 +3153,7 @@ var checkBody = (user, gender, bodyString) => {
         if(!ILLEGAL_BODY)alert("L'utilisateur Ambryal a été pris la main dans le sac a modifier des fringues !!!");
     }
 };
+
 var ILLEGAL_COLORS
 var isValid = (value, array) => value >= 0 && value < array.length;
 var isValidWithSpecials = (value, array) => value >= 0 && (value < array.length || (value < 100 && value > (99 - colors.special.length)));
@@ -3186,6 +3210,7 @@ var checkColors = (user, gender, colorString, includeSpecials = false) => {
     }
 	console.log("couleurs conformes");
 };
+
 var colors = {
     male: {
         skin: [
@@ -3278,6 +3303,7 @@ var colors = {
         '#000000',
     ],
 };
+
 var getRandomBody = (gender) => (0, generateBodyString)({
     p2: (0, randomBetween)(0, availableBodyParts[gender].p2),
     p3: (0, randomBetween)(0, availableBodyParts[gender].p3),
@@ -3291,6 +3317,7 @@ var getRandomBody = (gender) => (0, generateBodyString)({
     p7b: (0, randomBetween)(0, availableBodyParts[gender].p7b),
     p5: (0, randomBetween)(0, availableBodyParts[gender].p5),
 });
+
 var getRandomColors = (gender) => {
     var col0 = (0, randomBetween)(0, colors[gender].skin.length - 1);
     var col0a = col0;
@@ -3327,6 +3354,7 @@ var getRandomColors = (gender) => {
         col4b,
     });
 };
+
 
 var bodyParts = {
 					p1:{
@@ -3418,7 +3446,8 @@ var bodyParts = {
 						type : "clothing"
 					},
 					
-}var getTempWeapon = void 0;
+}
+var getTempWeapon = void 0;
 var getTempWeapon = (brute, modifiers) => {
     if (!modifiers.includes(FightModifier.randomWeapon)) {
         return null;
@@ -3437,6 +3466,7 @@ var getTempWeapon = (brute, modifiers) => {
     return tempWeapon.name;
 };
 var getTempWeapon = getTempWeapon;
+
 var getTempSkill = void 0;
 var unavailableTemporarySkills = [SkillName.backup];
 var getTempSkill = (brute, modifiers) => {
@@ -3458,18 +3488,21 @@ var getTempSkill = (brute, modifiers) => {
     return tempSkill.name;
 };
 var getTempSkill = getTempSkill;
+
 var DestinyChoiceType = /*exports.*//*$Enums.*/DestinyChoiceType = {
   skill: 'skill',
   weapon: 'weapon',
   pet: 'pet',
   stats: 'stats'
 };
+
 var BruteStat = /*exports.*//*$Enums.*/BruteStat = {
   endurance: 'endurance',
   strength: 'strength',
   agility: 'agility',
   speed: 'speed'
 };
+
 var getLevelUpChoices = (brute) => {
     let preventPerk = false;
     let perkType = null;
@@ -3527,6 +3560,7 @@ var getLevelUpChoices = (brute) => {
     }
     return [firstChoice, secondChoice];
 };
+
 var createRandomBruteStats = (baseStats, perkType, perkName) => {
     let brute = {
         level: 1,
@@ -3608,6 +3642,7 @@ var createRandomBruteStats = (baseStats, perkType, perkName) => {
     brute.hp = (0, getHP)(1, brute.enduranceValue);
     return brute;
 };
+
 var getRandomStartingStats = void 0;
 var getRandomStartingStats = () => {
     // Starting budget
@@ -3631,6 +3666,7 @@ var getRandomStartingStats = () => {
     };
 };
 var getRandomStartingStats = getRandomStartingStats;
+
 var updateStat = (brute, stat, value) => {
     switch (stat) {
         case 'endurance':
@@ -3717,6 +3753,7 @@ var updateBruteData = (brute, destinyChoice) => {
     updatedBrute.hp = (0, getHP)(updatedBrute.level, updatedBrute.enduranceValue);
     return updatedBrute;
 };
+
 var isNameValid = void 0;
 var isNameValid = (name) => {
     if (!name?.match(/^[a-zA-Z0-9_-]*$/) || name.length < 3 || name.length > 16) {
@@ -3725,7 +3762,9 @@ var isNameValid = (name) => {
     return true;
 };
 var isNameValid = isNameValid;
-function getFightsLeft(){}var preventSomeBonuses = (brute, perkType, perkName) => {
+
+function getFightsLeft(){}
+var preventSomeBonuses = (brute, perkType, perkName) => {
     let preventPerk = false;
     // Check if the perk should be prevented
     if (perkType === 'pet') {
@@ -3848,6 +3887,7 @@ var getRandomBonus = (brute, rerollUntilFound = false, disabledSkills = [], disa
         name: perkName,
     } : null;
 };
+
 var shuffle = (array) => {
     var shuffledArray = [...array];
     for (let i = array.length - 1; i > 0; i--) {
