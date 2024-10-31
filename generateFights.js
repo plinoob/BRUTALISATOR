@@ -1300,6 +1300,7 @@ div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image",9:{height:"133px",}})
     "line-height": "1.5",
     "letter-spacing": "0.00938em",
 }
+cl('SOMBRE',$("#root"),$("#root").css("background"),"linear-gradient(rgb(247, 225, 183) 0%, rgb(235, 173, 112) 160px)")
 if(SOMBRE===undefined)SOMBRE = $("#root").css("background") !== "linear-gradient(rgb(247, 225, 183) 0%, rgb(235, 173, 112) 160px)"
 if(SOMBRE){
 textBoxCSS = {color: "#E8EDE8",
