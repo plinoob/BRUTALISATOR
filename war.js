@@ -2638,7 +2638,7 @@ async function simulWar(){
 			function bruteClic(brute,side,dv){return function(e){e.preventDefault();if(e.which==2){openBruteCell(brute.name)}else{
 				if(fighters[side].includes(brute.name)){dv.css("background-color","rgba(0,0,0,0)")
 					fighters[side]=fighters[side].filter(function(item) {return item !== brute.name
-				})}else if(fighters[side].length<7){dv.css("background-color",SOMBRE?"rgba(255,255,255,0.1)":"rgba(0,0,0,0.1)");fighters[side].push(brute.name)}
+				})}else if(fighters[side].length<7){dv.css("background-color",SOMBRE?"rgba(255,255,255,0.2)":"rgba(0,0,0,0.1)");fighters[side].push(brute.name)}
 				
 				var rota1=[];for(var b of fighters[0]){rota1.push(brutes[b])}
 				var rota2=[];for(var b of fighters[1]){rota2.push(brutes[b])}
