@@ -41,6 +41,7 @@ function unApplySkillModifiers (brute, skill){
 };
 
 
+
 function refreshStats (brute){
     const updatedBrute = { ...brute };
 
@@ -53,7 +54,8 @@ function refreshStats (brute){
     // Final HP
     updatedBrute.hp = (0, getHP)(updatedBrute.level, updatedBrute.enduranceValue);
     return updatedBrute;
-};var applySkillModifiers = (brute, skill) => {
+};
+var applySkillModifiers = (brute, skill) => {
     var updatedBrute = { ...brute };
     // Vitality modifier
     if (skill === 'vitality') {

@@ -1268,6 +1268,7 @@ function startLoading(){$(shurikenDIV).css("display","")}
 var BRUTALISATOR = "https://raw.githubusercontent.com/Ambryal/BRUTALISATOR/"+BRANCHE+"/";
 
 
+
 function unApplySkillModifiers (brute, skill){
     const updatedBrute = { ...brute };
     // Vitality modifier
@@ -1310,6 +1311,7 @@ function unApplySkillModifiers (brute, skill){
 };
 
 
+
 function refreshStats (brute){
     const updatedBrute = { ...brute };
 
@@ -1322,7 +1324,8 @@ function refreshStats (brute){
     // Final HP
     updatedBrute.hp = (0, getHP)(updatedBrute.level, updatedBrute.enduranceValue);
     return updatedBrute;
-};var applySkillModifiers = (brute, skill) => {
+};
+var applySkillModifiers = (brute, skill) => {
     var updatedBrute = { ...brute };
     // Vitality modifier
     if (skill === 'vitality') {
