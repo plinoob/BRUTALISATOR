@@ -1122,10 +1122,10 @@ async function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL
 					const iframeWindow = iframe.contentWindow;
 				iframeWindow.document.addEventListener('mousedown', function(){$(iframe).remove();}, false);
 			}
-
+			
 			var codeSource = fightSourceCode.replace("<script","<script>history.pushState(null, '', '"+FIGHT_EXAMPLE+"');"+fetchCode+"var fightToVizualise = "
 			+JSON.stringify(fightToVizualise)+";"+"<"+"/sc"+"ript>"+"<s"+"cript")
-
+cl("SOUCEE CODE",codeSource)
 			document.body.appendChild(iframe);
 			$(iframe).css({"position":"absolute",top:0,bottom:0,left:0,right:0,"z-index":50000,width:"99.5%",height:"100%"})
 			var iframeDoc = iframe.contentWindow.document;
