@@ -2259,6 +2259,7 @@ var getTempWeapon = getTempWeapon;
 var getTempSkill = void 0;
 var unavailableTemporarySkills = [SkillName.backup];
 var getTempSkill = (brute, modifiers) => {
+    console.log("tempskills",modifiers.includes(FightModifier.randomSkill),FightModifier.randomSkill)
     if (!modifiers.includes(FightModifier.randomSkill)) {
         return null;
     }
@@ -4379,7 +4380,6 @@ var generateFight = async ({ prisma, team1, team2, modifiers, backups, achieveme
     if (team1.brutes?.some((brute) => team2.brutes?.some((b) => b.id === brute.id))) {
         throw new ExpectedError('Attempted to created a fight between the same brutes');
     }
-    console.log("lol",modifiers)
     var background = (team1.bosses?.length || team2.bosses?.length)
         ? bossBackground
         : tournament
@@ -4898,7 +4898,6 @@ var handleSkills = (brute, fighter) => {
 };
 var handleModifiers = (brute, modifiers) => {
     var randomWeaponName = (0, getTempWeapon)(brute, modifiers);
-    console.log(randomWeaponName, "tempweapon")
     if (randomWeaponName) {
         var randomWeapon = weapons.find((weapon) => weapon.name === randomWeaponName);
         if (!randomWeapon) {
@@ -4907,7 +4906,6 @@ var handleModifiers = (brute, modifiers) => {
         brute.weapons.push(randomWeaponName);
     }
     var randomSkillName = (0, getTempSkill)(brute, modifiers);
-    console.log(randomSkillName, "tempskill")
     if (randomSkillName) {
         var randomSkill = skills.find((skill) => skill.name === randomSkillName);
         if (!randomSkill) {

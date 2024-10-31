@@ -2200,6 +2200,7 @@ var getTempWeapon = getTempWeapon;
 var getTempSkill = void 0;
 var unavailableTemporarySkills = [SkillName.backup];
 var getTempSkill = (brute, modifiers) => {
+    console.log("tempskills",modifiers.includes(FightModifier.randomSkill),FightModifier.randomSkill)
     if (!modifiers.includes(FightModifier.randomSkill)) {
         return null;
     }
