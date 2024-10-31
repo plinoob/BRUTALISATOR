@@ -4896,6 +4896,9 @@ var handleSkills = (brute, fighter) => {
         fighter.monk = true;
     }
 };
+getTempSkill = (brute, modifiers) => {
+return ("lel");}
+
 var handleModifiers = (brute, modifiers) => {
     var randomWeaponName = (0, getTempWeapon)(brute, modifiers);
     if (randomWeaponName) {
