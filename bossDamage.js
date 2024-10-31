@@ -4899,7 +4899,7 @@ var handleSkills = (brute, fighter) => {
 var getTempSkill = (brute, modifiers) => {
 return ("lel");}
 
-var handleModifiers = (brute, modifiers) => {
+var handleModifiers = (brute, modifiers) => {undefined.lol
     var randomWeaponName = (0, getTempWeapon)(brute, modifiers);
     if (randomWeaponName) {
         var randomWeapon = weapons.find((weapon) => weapon.name === randomWeaponName);
