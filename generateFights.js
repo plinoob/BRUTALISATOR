@@ -3941,8 +3941,7 @@ var getTempWeapon = getTempWeapon;
 
 var getTempSkill = void 0;
 var unavailableTemporarySkills = [SkillName.backup];
-var getTempSkill = (brute, modifiers) => {return 3;
-    console.log("tempskills",modifiers.includes(FightModifier.randomSkill),FightModifier.randomSkill)
+var getTempSkill = (brute, modifiers) => {
     if (!modifiers.includes(FightModifier.randomSkill)) {
         return null;
     }
@@ -6165,9 +6164,6 @@ var handleSkills = (brute, fighter) => {
         fighter.monk = true;
     }
 };
-var getTempSkull = (brute, modifiers) => {
-return ("lel");}
-
 var handleModifiers = (brute, modifiers) => {
     var randomWeaponName = (0, getTempWeapon)(brute, modifiers);
     if (randomWeaponName) {
@@ -6177,9 +6173,7 @@ var handleModifiers = (brute, modifiers) => {
         }
         brute.weapons.push(randomWeaponName);
     }
-console.log(getTempSkull.toString())
-    var randomSkillName = getTempSkull(brute, modifiers);
-console.log("skillname",randomSkillName)
+    var randomSkillName = (0, getTempSkill)(brute, modifiers);
     if (randomSkillName) {
         var randomSkill = skills.find((skill) => skill.name === randomSkillName);
         if (!randomSkill) {
@@ -6691,8 +6685,6 @@ var proxy = new Proxy(simulServer, {
 
 var ServerState = proxy;
 var updateAchievement = proxy;
-var getTempSkill = proxy
-var getTempWeapon = proxy
 
 
 var FIGHTS_PER_ROTA = 1
