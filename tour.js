@@ -2692,7 +2692,7 @@ var actions={
 		},
 	Profil : {
 		Profil : [notDinoRewards,clickOnDinoReward],
-		Cell : [dinoRewards,clickclickOnFirstBrute],
+		Cell : [dinoRewards,clickOnFirstBrute],
 		},
 	Cell : {
 		Tournoi : [notInscrit,clickOnTournoi],
