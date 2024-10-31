@@ -1238,6 +1238,7 @@ div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image",9:{height:"133px",}})
     "line-height": "1.5",
     "letter-spacing": "0.00938em",
 }
+cl($("body").css("background-color"))
 if(SOMBRE===undefined)SOMBRE = !document.querySelector('[aria-label="Mode sombre"]')
 if(SOMBRE){
 textBoxCSS = {color: "#E8EDE8",
