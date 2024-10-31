@@ -2646,7 +2646,12 @@ function clickOnArena(){var elem ;$("a").each(function(){if($(this).attr("href")
 	
 history.pushState(null, '', '/'+BRUTE+"/arena");history.pushState(null, '', '/'+BRUTE+"/lol");history.back()
 }}
-function clickOnHall(){var elem = $("a[href^='/hall']")[0];cl($("a[href^='/hall']")[0],"HALL clicked");if(elem && !clickedOnHall){tourEnded=true;clickedOnHall=true;$(elem).click()}}
+function clickOnHall(){
+	
+		history.pushState(null, '',"/hall")
+	history.pushState(null, '', '/lol');
+	history.back();return;
+	var elem = $("a[href^='/hall']")[0];cl($("a[href^='/hall']")[0],"HALL clicked");if(elem && !clickedOnHall){tourEnded=true;clickedOnHall=true;$(elem).click()}}
 function clickOnDinoReward(){var elem = findTextInDOM("DinoRPG","button");if(elem){dinoReward=true;$(elem).click()}}
 function clickOnLaunchFight(){var elem = findTextInDOM("Lancer le combat","div");if(elem && !clickedOnLaunchFight){clickedOnLaunchFight=true;$(elem).click()}}
 function clickOnCell(){var elem = findFirstTextInDOM("Cellule de ","span");if(elem && !clickedOnCell){clickedOnCell=true;$(elem).click()}}

@@ -5851,7 +5851,9 @@ function makeScrollableStatsPerks(){
 	
 }
 
-function clickOnProfilSpan(){var elem = $("a[href^='/hall']")[0];;cl("clickedonhall",elem);if(elem){$(elem).click()}}
+function clickOnProfilSpan(){		history.pushState(null, '',"/hall")
+	history.pushState(null, '', '/lol');
+	history.back();return;var elem = $("a[href^='/hall']")[0];;cl("clickedonhall",elem);if(elem){$(elem).click()}}
 
 function makeScrollableweaponperk(w){
 	var d=$('#_w'+weaponSprites[w.name]);if(!d.hasClass("scrollablePerks")){d.addClass("scrollablePerks")
