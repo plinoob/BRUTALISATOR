@@ -4909,7 +4909,6 @@ var handleModifiers = (brute, modifiers) => {
         brute.weapons.push(randomWeaponName);
     }
     var randomSkillName = (0, getTempSkill)(brute, modifiers);
-console.log(randomSkillName)
     if (randomSkillName) {
         var randomSkill = skills.find((skill) => skill.name === randomSkillName);
         if (!randomSkill) {
