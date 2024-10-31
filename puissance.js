@@ -5908,7 +5908,7 @@ var needToRebuild
 function actu(){terminateWorkers();if(bruteModifAc){bruteData=bruteModifAc};clickOnProfilSpan();setTimeout(function(){$(".power").remove();history.back()
 	
 setTimeout(function(){needToRebuild=true},333)
-},10)}
+},10000)}
 
 if(!changedFetch){
 	
