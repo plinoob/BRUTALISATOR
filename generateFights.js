@@ -4103,6 +4103,17 @@ var bosses = [
     },
 ];
 
+var skillTargetsFilter = (skill) => {
+    switch (skill) {
+        case SkillName.tamer: {
+            // Target non-eaten dead pets
+            return (f) => f.type === 'pet' && f.hp <= 0 && !f.eaten;
+        }
+        default: {
+            return () => true;
+        }
+    }
+};
 var getFighterStat = (fighter, stat, onlyStat) => {
     // Special case for dexterity as it only exists on weapons
     if (stat === 'dexterity') {
@@ -4276,8 +4287,9 @@ var randomlyGetSuper = (fightData, fighter) => {
     let supers = fighter.skills.filter((skill) => skill.uses);
     if (!supers.length)
         return null;
-    // Filter out tamer if no dead pets
-    if (fightData.fighters.filter((f) => f.type === 'pet' && f.hp <= 0).length === 0) {
+    // Filter out tamer if no valid target and lost less than 20% HP
+    if (fightData.fighters.filter(skillTargetsFilter(SkillName.tamer)).length === 0
+        && fighter.hp > fighter.maxHp * 0.8) {
         supers = supers.filter((skill) => skill.name !== SkillName.tamer);
     }
     // Filter out thief if opponents have no weapons in hand
@@ -4303,12 +4315,9 @@ var randomlyGetSuper = (fightData, fighter) => {
     if ((0, getOpponents)({ fightData, fighter }).filter((f) => !f.trapped).length === 0) {
         supers = supers.filter((skill) => skill.name !== SkillName.net);
     }
-    // Filter out vampirism if more than 50% hp
-    if (fighter.hp > fighter.maxHp / 2) {
-        supers = supers.filter((skill) => skill.name !== SkillName.vampirism);
-    }
-    // Filter out vampirism if no brute opponent
-    if ((0, getOpponents)({ fightData, fighter, bruteOnly: true }).length === 0) {
+    // Filter out vampirism if more than 50% hp or no brute opponent
+    if (fighter.hp > fighter.maxHp / 2
+        || (0, getOpponents)({ fightData, fighter, bruteOnly: true }).length === 0) {
         supers = supers.filter((skill) => skill.name !== SkillName.vampirism);
     }
     // Filter out treat if no pets lost hp or no pet trapped
@@ -4577,13 +4586,19 @@ var activateSuper = (fightData, fighter, skill, stats, achievements) => {
         // Steal opponent's weapon if he has one
         case SkillName.thief: {
             // Choose brute opponent
-            var opponent = getRandomOpponent({ fightData, fighter, bruteOnly: true });
+            var opponents = (0, getOpponents)({ fightData, fighter, bruteOnly: true })
+                .filter((f) => f.activeWeapon);
+            if (!opponents.length) {
+                return false;
+            }
+            var opponent = (0, randomItem)(opponents);
             if (!opponent) {
                 return false;
             }
             // Abort if no weapon
-            if (!opponent.activeWeapon)
-                return false;
+            if (!opponent.activeWeapon) {
+                throw new Error('No weapon to steal');
+            }
             // 20% chance to steal if fighter already has a weapon
             if (fighter.activeWeapon && (0, randomBetween)(1, 5) !== 1) {
                 return false;
@@ -4845,12 +4860,9 @@ var activateSuper = (fightData, fighter, skill, stats, achievements) => {
             break;
         }
         case SkillName.tamer: {
-            // Get non eaten dead pets
-            var deadPets = fightData.fighters.filter((f) => f.type === 'pet' && f.hp <= 0 && !f.eaten);
+            // Get targets
+            var deadPets = fightData.fighters.filter(skillTargetsFilter(SkillName.tamer));
             if (deadPets.length === 0)
-                return false;
-            // Abort if less than 20 HP lost
-            if (fighter.hp > fighter.maxHp - 20)
                 return false;
             // Get random dead pet
             var pet = (0, randomItem)(deadPets);
@@ -6053,9 +6065,9 @@ var getDamage = (fighter, opponent, thrown) => {
     if (fighter.activeWeapon && fighter.damagedWeapons.includes(fighter.activeWeapon.name)) {
         damage = Math.floor(damage * 0.75);
     }
-    // -45% damage for `shield`
+    // -25% damage for `shield`
     if (fighter.shield) {
-        damage = Math.floor(damage * 0.55);
+        damage = Math.floor(damage * 0.75);
     }
     // Reduce damage with opponent's armor if not thrown
     if (!thrown) {
