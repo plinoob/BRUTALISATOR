@@ -3591,8 +3591,8 @@ var activateSuper = (fightData, fighter, skill, stats, achievements) => {
         case SkillName.tamer: {
             // Get targets
             var deadPets = fightData.fighters.filter(skillTargetsFilter(SkillName.tamer));
-            if (deadPets.length === 0)
-                return false;
+            if (deadPets.length === 0){console.log("mdrrr");
+                return false;}
             // Get random dead pet
             var pet = (0, randomItem)(deadPets);
             let healPercentage = 0;
