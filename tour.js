@@ -2659,7 +2659,7 @@ function clickOnDinoReward(){var elem = findTextInDOM("DinoRPG","button");if(ele
 function clickOnLaunchFight(){var elem = findTextInDOM("Lancer le combat","div");if(elem && !clickedOnLaunchFight){clickedOnLaunchFight=true;$(elem).click()}}
 function clickOnCell(){var elem = findFirstTextInDOM("Cellule de ","span");if(elem && !clickedOnCell){clickedOnCell=true;$(elem).click()}}
 function clickOnBestMatchup(){var bm="",bw=0;for(var i in brutesDivs){var w=parseFloat(brutesDivs[i].tx.text());if(w>=bw){bw=w;bm=i}};
-	if(!clickedOnBestMatchup){clickedOnBestMatchup=true;findTextInDOM(bm,"p").click()}}
+	if(!clickedOnBestMatchup){clickedOnBestMatchup=true;var elem = findTextInDOM(bm,"p");if(elem)elem.click()}}
 function makeSureArenaIsRunning(){if(!arenaRunning){arena()}} 
 
 function precedent(){if(!clickedOnCell){clickedOnCell=true;history.back()};}
@@ -2672,8 +2672,8 @@ else if(!brutesDone.includes(BRUTE)){brutesDone.push(BRUTE)};if(BRUTE!=tourBrute
 						clickedOnFirstBrute=clickedOnCell = false}
 function Profil(){clickedOnProfil=false}
 function Hall(){clickedOnHall = false}
-function Versus(){clickedOnBestMatchup = false}
-function Fight(){clickedOnLaunchFight = false}
+function Versus(){}
+function Fight(){clickedOnBestMatchup = false;clickedOnLaunchFight = false}
 function Tournoi(){clickedOnTournoi = false}
 
 
