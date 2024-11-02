@@ -3666,7 +3666,7 @@ var activateSuper = (fightData, fighter, skill, stats, achievements) => {
             var damage = (0, getDamage)(fighter, opponent) + fighter.speed;
             registerHit(fightData, stats, achievements, fighter, [opponent], damage, false, 'haste');
             // Increase own initiative
-            fighter.initiative += 0.3 + fighter.tempo;
+            fighter.initiative += fighter.tempo;
             break;
         }
         case SkillName.treat: {
