@@ -865,7 +865,10 @@ async function getRumble(level) {
 	rumble=await rumble.text()
 	//cl("unzip...")
 	rumble = unzipString(rumble);
-	//cl(rumble)
+	cl(rumble,rumble.length)
+	if(true){cl("remove not scrapped");rumble = rumble.filter(item => ("scrapped" in item))}
+	cl(rumble,rumble.length)
+	
 	return rumble
 }
 
@@ -1238,7 +1241,7 @@ div({0:shurikenDIV,2:"img",22:SHURIKEN,1:"shuriken-image",9:{height:"133px",}})
     "letter-spacing": "0.00938em",
 }
 
-if(SOMBRE===undefined)SOMBRE = !($("#root").css("background").includes("linear-gradient(rgb(247, 225, 183) 0%, rgb(235, 173, 112) 160px)"))
+if(SOMBRE===undefined && $("#root").length)SOMBRE = !($("#root").css("background").includes("linear-gradient(rgb(247, 225, 183) 0%, rgb(235, 173, 112) 160px)"))
 
 if(SOMBRE){
 textBoxCSS = {color: "#E8EDE8",

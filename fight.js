@@ -3018,7 +3018,7 @@ var randomlyGetSuper = (fightData, fighter) => {
         return null;
     // Filter out tamer if no valid target and lost less than 20% HP
     if (fightData.fighters.filter(skillTargetsFilter(SkillName.tamer)).length === 0
-        || fighter.hp > fighter.maxHp * 0.8) {
+        && fighter.hp > fighter.maxHp * 0.8) {
         supers = supers.filter((skill) => skill.name !== SkillName.tamer);
     }
     // Filter out thief if opponents have no weapons in hand
@@ -3591,8 +3591,8 @@ var activateSuper = (fightData, fighter, skill, stats, achievements) => {
         case SkillName.tamer: {
             // Get targets
             var deadPets = fightData.fighters.filter(skillTargetsFilter(SkillName.tamer));
-            if (deadPets.length === 0){console.log("mdrrr");
-                return false;}
+            if (deadPets.length === 0)
+                return false;
             // Get random dead pet
             var pet = (0, randomItem)(deadPets);
             let healPercentage = 0;
@@ -3666,7 +3666,7 @@ var activateSuper = (fightData, fighter, skill, stats, achievements) => {
             var damage = (0, getDamage)(fighter, opponent) + fighter.speed;
             registerHit(fightData, stats, achievements, fighter, [opponent], damage, false, 'haste');
             // Increase own initiative
-            fighter.initiative += fighter.tempo;
+            fighter.initiative += 0.3 + fighter.tempo;
             break;
         }
         case SkillName.treat: {
