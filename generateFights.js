@@ -1151,7 +1151,7 @@ async function getFightSourceCode(){if(!fightSourceCode){
 }
 }
 var iframe
-async function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL){return}
+async function visualizeFight(fight){fightToVizualise = fight;cl(fight,JSON.stringify(fight));if(LOCAL){return}
 			await getFightSourceCode()
 			    var fetchCode=`
 				var originalFetch=window.fetch;
@@ -6747,7 +6747,7 @@ function isTheirSameBrute(i1,i2){
 	for(var i of i1){for(var j of i2){if(i.name==j.name){return false}}}
 	return true
 }
-cl("CLANWAR",CLANWAR)
+//cl("CLANWAR",CLANWAR)
 async function genFights() {var pos1=0,pos2=0
 //cl(BACKUPS)
 //cl({ brutes:  true?structuredClone(TEAM1[pos1]):TEAM1[pos1]})

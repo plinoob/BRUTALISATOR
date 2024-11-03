@@ -1088,7 +1088,7 @@ async function getFightSourceCode(){if(!fightSourceCode){
 }
 }
 var iframe
-async function visualizeFight(fight){fightToVizualise = fight;cl(fight);if(LOCAL){return}
+async function visualizeFight(fight){fightToVizualise = fight;cl(fight,JSON.stringify(fight));if(LOCAL){return}
 			await getFightSourceCode()
 			    var fetchCode=`
 				var originalFetch=window.fetch;
