@@ -5781,7 +5781,7 @@ function afficheur(bilan){
 
 var statsHaved
 var statsNotHaved
-function potentiel(){
+async function potentiel(){
 	
 	var brute = bruteData
 	
