@@ -5581,6 +5581,11 @@ function analyse(){
 		rota2=archiRumble[0]
 		}
 	else{for(var b of rumble){if(!surpuissance || (surpuissance==1 && rota2.length<200) || (surpuissance==2 && rota2.length<42)){rota2.push([b])}}}
+	
+	var url=window.location.href.split("?")
+	if(url.length>1){url=url[1];if(url.includes("puissance=")){rota2=[[await getBrute(url.split("puissance=")[1].split("&")[0])]]}}
+	
+	
 	for(var pluses of brutesPlus){
 					var r1=pluses
 					if(surpuissance==3){r1=[]
