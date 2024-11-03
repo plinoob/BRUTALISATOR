@@ -755,7 +755,7 @@ var POWERSTEP
 var archiRumble
 var ENNEMY
 
-if(!local){
+if(!LOCAL){
 var urlennemy=window.location.href.split("?")
 if(urlennemy.length>1){urlennemy=urlennemy[1];if(urlennemy.includes("puissance=")){ENNEMY = urlennemy.split("puissance=")[1].split("&")[0]}}
 }
