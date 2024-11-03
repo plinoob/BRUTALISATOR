@@ -755,10 +755,7 @@ var POWERSTEP
 var archiRumble
 var ENNEMY
 
-if(!LOCAL){
-var urlennemy=window.location.href.split("?")
-if(urlennemy.length>1){urlennemy=urlennemy[1];if(urlennemy.includes("puissance=")){ENNEMY = urlennemy.split("puissance=")[1].split("&")[0]}}
-}
+
 	
 
 function resetBruteModifAc(){bruteModifAc=bruteData=POWERSTEP=archiRumble=surpuissance=undefined}
@@ -1274,7 +1271,10 @@ var shurikenDIV
 var SOMBRE
 if(typeof(document)!="undefined"){
 	
-	
+
+var urlennemy=window.location.href.split("?")
+if(urlennemy.length>1){urlennemy=urlennemy[1];if(urlennemy.includes("puissance=")){ENNEMY = urlennemy.split("puissance=")[1].split("&")[0]}}
+
 LOCAL = window.location.href.startsWith("file:")
 	
 	addStyle(`		#shuriken {
