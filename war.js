@@ -2591,7 +2591,8 @@ var shuffle = (array) => {
     return shuffledArray;
 };
 
-
+var WIN_G
+var WIN_D
 
 async function simulWar(){
 	
@@ -2603,6 +2604,15 @@ async function simulWar(){
 		clans[0] = JSON.parse(await clans[0].text());
 		
 		for(var at of ["defenses","attacks"]){for(var gu of clans[0][at]){if(gu.id==WAR){cl(gu,at)
+			
+				if(gu.status=="ongoing"){
+					var clanwar = await fetch("/api/clan/"+clan.id+"/war/"+clan[tp][i].id);
+					clanwar = JSON.parse(await clanwar.text());
+					if(at==="defenses"){WIN_G = clanwar.defenderWins;WIN_D = clanwar.attackerWins}else{WIN_D = clanwar.defenderWins;WIN_G = clanwar.attackerWins}}
+		
+		
+		
+		
 			clans[1]=await fetch("/api/clan/"+gu[at=="attacks"?"defender":"attacker"].id);
 			clans[1] = JSON.parse(await clans[1].text());
 			}}}
@@ -2685,7 +2695,8 @@ async function simulWar(){
 		$("#clanwarsim").remove()
 		var res={div:div({3:"power",1:"clanwarsim",18:0.8,9:{position:"relative",height:"50px"}})}
 		res.div.insertAfter($(findFirstTextInDOM("En cours","h3")).parent().children(":first"))
-		
+		div({17:WIN_G}).insertAfter($(findFirstTextInDOM("En cours","h3")).parent().children(":first"))
+		div({17:WIN_D}).insertAfter($(findFirstTextInDOM("En cours","h3")).parent().children(":first"))
 		
 		
 		var btn=res.btn=div({0:res.div,4:1,2:"button",9:{transform:"translate(-50%, -100%) scale(1.33)",
