@@ -2606,7 +2606,7 @@ async function simulWar(){
 		for(var at of ["defenses","attacks"]){for(var gu of clans[0][at]){if(gu.id==WAR){cl(gu,at)
 			
 				if(gu.status=="ongoing"){
-					var clanwar = await fetch("/api/clan/"+clan.id+"/war/"+clan[tp][i].id);
+					var clanwar = await fetch("/api/clan/"+CLAN+"/war/"+gu.id);
 					clanwar = JSON.parse(await clanwar.text());
 					if(at==="defenses"){WIN_G = clanwar.defenderWins;WIN_D = clanwar.attackerWins}else{WIN_D = clanwar.defenderWins;WIN_G = clanwar.attackerWins}}
 		
