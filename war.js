@@ -2593,7 +2593,7 @@ var shuffle = (array) => {
 
 var WIN_G
 var WIN_D
-
+cl("ahhbzjkahxnaz ce")
 async function simulWar(){
 	
 		var clans=[]
