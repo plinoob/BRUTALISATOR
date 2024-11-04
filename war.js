@@ -2689,11 +2689,11 @@ async function simulWar(){
 		
 		
 		$("#clanwarsim").remove()
-		var csim=div({0:div({}),1:"clanwarsim",9:{"align-items":"center",display:"flex","flex-direction":"row"}})
+		var csim=div({1:"clanwarsim",9:{width:"100%","align-items":"center",display:"flex","flex-direction":"row"}})
 		div({0:csim,24:20,17:"<b>"+WIN_G+"</b>",50:0})
 		var res={div:div({3:"power",0:csim,18:0.8,9:{position:"relative",height:"50px"}})}
 		div({0:csim,24:20,17:"<b>"+WIN_D+"</b>",50:0})
-		csim.parent().insertAfter($(findFirstTextInDOM("En cours","h3")).parent().children(":first"))
+		csim.insertAfter($(findFirstTextInDOM("En cours","h3")).parent().children(":first"))
 		
 		
 		var btn=res.btn=div({0:res.div,4:1,2:"button",9:{transform:"translate(-50%, -100%) scale(1.33)",
