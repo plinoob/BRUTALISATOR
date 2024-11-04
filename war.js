@@ -2593,7 +2593,7 @@ var shuffle = (array) => {
 
 var WIN_G
 var WIN_D
-cl("ffffffffffffff ce")
+cl("rrrrrrrrrrrrr ce")
 async function simulWar(){
 	
 		var clans=[]
@@ -2602,11 +2602,12 @@ async function simulWar(){
 		
 		clans[0] = await fetch("/api/clan/"+CLAN);
 		clans[0] = JSON.parse(await clans[0].text());
-		
+		var atac
 		for(var at of ["defenses","attacks"]){for(var gu of clans[0][at]){if(gu.id==WAR){cl(gu,at)
 	
 			clans[1]=await fetch("/api/clan/"+gu[at=="attacks"?"defender":"attacker"].id);
 			clans[1] = JSON.parse(await clans[1].text());
+			atac=at
 			}}}
 			
 			
@@ -2617,7 +2618,7 @@ async function simulWar(){
 		var used=await fetch("/api/clan/"+CLAN+"/war/"+WAR+"?")
 		used= JSON.parse(await used.text());
 		
-		if(at==="defenses"){WIN_G = used.defenderWins;WIN_D = used.attackerWins}else{WIN_D = used.defenderWins;WIN_G = used.attackerWins}
+		if(atac==="defenses"){WIN_G = used.defenderWins;WIN_D = used.attackerWins}else{WIN_D = used.defenderWins;WIN_G = used.attackerWins}
 		
 		
 		var fighterUsed=[]
@@ -2690,9 +2691,9 @@ async function simulWar(){
 		
 		$("#clanwarsim").remove()
 		var csim=div({1:"clanwarsim",9:{"justify-content": "center",width:"100%","align-items":"center",display:"flex","flex-direction":"row"}})
-		div({0:csim,24:33,17:"<b>"+WIN_G+"</b>",50:0})
+		div({0:csim,5:[0,"-5px"],24:33,17:"<b>"+WIN_G+"</b>",50:0})
 		var res={div:div({3:"power",0:csim,18:0.8,9:{width:"150px",position:"relative",height:"50px"}})}
-		div({0:csim,24:33,17:"<b>"+WIN_D+"</b>",50:0})
+		div({0:csim,24:33,5:[0,"-5px"],17:"<b>"+WIN_D+"</b>",50:0})
 		csim.insertAfter($(findFirstTextInDOM("En cours","h3")).parent().children(":first"))
 		
 		
