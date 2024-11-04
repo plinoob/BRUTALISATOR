@@ -2593,7 +2593,7 @@ var shuffle = (array) => {
 
 var WIN_G
 var WIN_D
-cl("ahhbzjkahxnaz ce")
+cl("fffffffffffffffff ce")
 async function simulWar(){
 	
 		var clans=[]
@@ -2693,10 +2693,11 @@ async function simulWar(){
 		
 		
 		$("#clanwarsim").remove()
-		var res={div:div({3:"power",1:"clanwarsim",18:0.8,9:{position:"relative",height:"50px"}})}
-		res.div.insertAfter($(findFirstTextInDOM("En cours","h3")).parent().children(":first"))
-		div({17:WIN_G}).insertAfter($(findFirstTextInDOM("En cours","h3")).parent().children(":first"))
-		div({17:WIN_D}).insertAfter($(findFirstTextInDOM("En cours","h3")).parent().children(":first"))
+		var csim=div({9:{1:"clanwarsim",display:"flex","flex-direction":"row"}})
+		div({0:csim,17:WIN_G,50:0})
+		var res={div:div({3:"power",0:csim,18:0.8,9:{position:"relative",height:"50px"}})}
+		div({0:csim,17:WIN_D,50:0})
+		csim.insertAfter($(findFirstTextInDOM("En cours","h3")).parent().children(":first"))
 		
 		
 		var btn=res.btn=div({0:res.div,4:1,2:"button",9:{transform:"translate(-50%, -100%) scale(1.33)",
