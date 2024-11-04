@@ -2593,7 +2593,7 @@ var shuffle = (array) => {
 
 var WIN_G
 var WIN_D
-cl("fffffffffffffffff ce")
+cl("ttttttttttttttttttt ce")
 async function simulWar(){
 	
 		var clans=[]
@@ -2605,10 +2605,7 @@ async function simulWar(){
 		
 		for(var at of ["defenses","attacks"]){for(var gu of clans[0][at]){if(gu.id==WAR){cl(gu,at)
 			
-				if(gu.status=="ongoing"){
-					var clanwar = await fetch("/api/clan/"+CLAN+"/war/"+gu.id);
-					clanwar = JSON.parse(await clanwar.text());
-					if(at==="defenses"){WIN_G = clanwar.defenderWins;WIN_D = clanwar.attackerWins}else{WIN_D = clanwar.defenderWins;WIN_G = clanwar.attackerWins}}
+
 		
 		
 		
@@ -2624,6 +2621,10 @@ async function simulWar(){
 			
 		var used=await fetch("/api/clan/"+CLAN+"/war/"+WAR+"?")
 		used= JSON.parse(await used.text());
+		
+		if(at==="defenses"){WIN_G = used.defenderWins;WIN_D = used.attackerWins}else{WIN_D = used.defenderWins;WIN_G = used.attackerWins}
+		
+		
 		var fighterUsed=[]
 		for(var f of used.fights){
 			var fight = await fetch("/api/clan/war/"+WAR+"/fight/"+f.id+"?")
@@ -2693,7 +2694,7 @@ async function simulWar(){
 		
 		
 		$("#clanwarsim").remove()
-		var csim=div({9:{1:"clanwarsim",display:"flex","flex-direction":"row"}})
+		var csim=div({1:"clanwarsim",9:{display:"flex","flex-direction":"row"}})
 		div({0:csim,17:WIN_G,50:0})
 		var res={div:div({3:"power",0:csim,18:0.8,9:{position:"relative",height:"50px"}})}
 		div({0:csim,17:WIN_D,50:0})
