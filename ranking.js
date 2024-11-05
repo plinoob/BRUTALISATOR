@@ -2592,7 +2592,7 @@ var shuffle = (array) => {
 };
 
 
-
+cl("aaaaaaaaaaaaaaaaaaaaa")
 async function ranking(){
 	
 	
