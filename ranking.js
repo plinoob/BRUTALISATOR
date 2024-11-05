@@ -2601,7 +2601,7 @@ async function ranking(){
 			ranks = JSON.parse(await ranks.text());
 			var brutesDivs = {}
 			var brutes=[BRUTE]
-			for(var b of ranks){
+			for(var b of ranks.topBrutes){
 				cl(findFirstTextInDOM(b.name, "p"))
 				brutesDivs[b.name] = makeInfoDiv(b.name)
 				$(findFirstTextInDOM(b.name, "p")).parent().parent().parent().next().prepend(brutesDivs[b.name].div)
