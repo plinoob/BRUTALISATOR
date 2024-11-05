@@ -2593,7 +2593,7 @@ var shuffle = (array) => {
 
 
 
-function ranking(){
+async function ranking(){
 	
 	
 			var ranks =await fetch("/brute/"+BRUTE+"/ranking-data/"+(RANKING=="event"?"-1":RANKING));
