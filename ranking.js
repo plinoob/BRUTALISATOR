@@ -2592,7 +2592,7 @@ var shuffle = (array) => {
 };
 
 
-cl("azzzzzzz")
+cl("tttttttttttttttttttttttt")
 async function ranking(){
 			$(".bruteArenaBtn").remove()
 			cl("/api/brute/"+BRUTE+"/ranking-data/"+(RANKING=="event"?"-1":RANKING))
