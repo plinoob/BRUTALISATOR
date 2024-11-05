@@ -3016,9 +3016,9 @@ var randomlyGetSuper = (fightData, fighter) => {
     let supers = fighter.skills.filter((skill) => skill.uses);
     if (!supers.length)
         return null;
-    // Filter out tamer if no valid target and lost less than 20% HP
+    // Filter out tamer if no valid target or lost less than 20% HP
     if (fightData.fighters.filter(skillTargetsFilter(SkillName.tamer)).length === 0
-        && fighter.hp > fighter.maxHp * 0.8) {
+        || fighter.hp > fighter.maxHp * 0.8) {
         supers = supers.filter((skill) => skill.name !== SkillName.tamer);
     }
     // Filter out thief if opponents have no weapons in hand
