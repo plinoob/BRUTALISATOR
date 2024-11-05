@@ -2645,9 +2645,10 @@ function makeInfoDiv(name){
 		
 		
 		
-		var btn=res.btn=div({0:res.div,4:1,5:[-50,-60],20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}},2:"button",9:{
+		var btn=res.btn=div({0:res.div,4:1,20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}},2:"button",9:{
 display: "block",
     margin: "8px auto",
+	transform:"scale(0.75)",
     "border-radius": "4px",
     "border-width": "1px",
     "border-style": "solid",
