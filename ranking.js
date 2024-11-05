@@ -2598,12 +2598,44 @@ async function ranking(){
 	
 			var ranks =await fetch("api/brute/"+BRUTE+"/ranking-data/"+(RANKING=="event"?"-1":RANKING));
 			ranks = JSON.parse(await ranks.text());
-			
+			var brutesDivs = {}
+			var brutes=[BRUTE]
 			for(var b of ranks){
 				cl(findFirstTextInDOM(b.name, "p"))
-				
-				
+				brutesDivs[b.name] = makeInfoDiv(b.name)
+				$(findFirstTextInDOM(b.name, "p")).parent().parent().parent().next().prepend(brutesDivs[b.name].div)
+				brutes.push(b.name)
 			}
+			
+			brutes = await getAllBrutes(brutes)
+			
+			rota2=[[brutes.shift()]]
+			rota1=[];for(var b of brutes){rota1.push([b])}
+			
+				simulFights({
+					fn:function(res,ended){stopLoading();
+					
+					
+					flag=false;for(var b of res){
+						var coef=1-b.v/b.j
+						var tx = (coef*1000).toFixed(0)+""
+						if(tx.startsWith("1000")){tx="1000"}
+						else if(tx == "0.0"){tx="0"}
+						brutesDivs[b.nom].tx.text(tx)
+						brutesDivs[b.nom].before.css({opacity:1,"background-color":beforePalette(coef)})
+						brutesDivs[b.nom].btn.css({opacity:1,"background-color":palette(coef)})
+					}
+					
+					},
+					rota1:rota1,
+					rota2:rota2,//number = boss
+					backups:false,
+					fight_per_rota:200,
+					fight_total:100000,
+					return_first_win:undefined,
+					loading:false,
+					modifiers:MODIFIERS
+					})
 	
 	
 function makeInfoDiv(name){
