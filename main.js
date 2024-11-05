@@ -3900,7 +3900,7 @@ if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alertAndStop(ERROR_
 var flag = false;for(version of VERSION){if(isTextInDOM(version,"p")){flag=true;break}};if(!flag && BRANCHE!=="dev"){alertAndStop(ERROR_VERSION);};
 
 parseURL()
-
+cl("length",url.length,url[2]=="ranking",url[2])
 if(combatIsOk()){launchFight()}
 else if(url.length==1){/*
 	
