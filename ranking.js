@@ -2592,9 +2592,9 @@ var shuffle = (array) => {
 };
 
 
-cl("fffffffffffffffffff")
+cl("azzzzzzz")
 async function ranking(){
-	
+			$(".bruteArenaBtn").remove()
 			cl("/api/brute/"+BRUTE+"/ranking-data/"+(RANKING=="event"?"-1":RANKING))
 			var ranks =await fetch("/api/brute/"+BRUTE+"/ranking-data/"+(RANKING=="event"?"-1":RANKING));
 			cl(ranks)
@@ -2605,7 +2605,7 @@ async function ranking(){
 				cl(findFirstTextInDOM(b.name, "p"))
 				brutesDivs[b.name] = makeInfoDiv(b.name)
 				$(findFirstTextInDOM(b.name, "p")).parent().parent().parent().next().prepend(brutesDivs[b.name].div)
-				brutes.push(b.name)
+				if(!brutes.includes(b.name)) brutes.push(b.name)
 			}
 			
 			brutes = await getAllBrutes(brutes)
@@ -2645,10 +2645,10 @@ function makeInfoDiv(name){
 		
 		
 		
-		var btn=res.btn=div({0:res.div,4:1,20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}},2:"button",9:{
+		var btn=res.btn=div({0:res.div,2:"span",4:1,20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}},2:"button",9:{
 display: "block",
     margin: "8px auto",
-	transform:"scale(0.75)",
+	transform:"translate(-50px,-20px) scale(0.75)",
     "border-radius": "4px",
     "border-width": "1px",
     "border-style": "solid",
