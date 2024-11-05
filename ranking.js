@@ -2595,9 +2595,7 @@ var shuffle = (array) => {
 cl("tttttttttttttttttttttttt")
 async function ranking(){
 			$(".bruteArenaBtn").remove()
-			cl("/api/brute/"+BRUTE+"/ranking-data/"+(RANKING=="event"?"-1":RANKING))
 			var ranks =await fetch("/api/brute/"+BRUTE+"/ranking-data/"+(RANKING=="event"?"-1":RANKING));
-			cl(ranks)
 			ranks = JSON.parse(await ranks.text());
 			var brutesDivs = {}
 			var brutes=[BRUTE]
