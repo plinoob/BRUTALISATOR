@@ -2600,10 +2600,10 @@ async function ranking(){
 			var brutesDivs = {}
 			var brutes=[BRUTE]
 			for(var b of ranks.topBrutes){
-				cl(b.name,$(findFirstTextInDOM(b.name, "p")).parent().parent().parent().next())
+				if(!brutes.includes(b.name)){
 				brutesDivs[b.name] = makeInfoDiv(b.name)
 				$(findFirstTextInDOM(b.name, "p")).parent().parent().parent().next().prepend(brutesDivs[b.name].div)
-				if(!brutes.includes(b.name)) brutes.push(b.name)
+				brutes.push(b.name)}
 			}
 			cl(brutes)
 			brutes = await getAllBrutes(brutes)
