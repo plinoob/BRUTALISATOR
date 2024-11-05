@@ -2592,11 +2592,11 @@ var shuffle = (array) => {
 };
 
 
-cl("aaaaaaaaaaaaaaaaaaaaa")
+cl("fffffffffffffffffff")
 async function ranking(){
 	
 	
-			var ranks =await fetch("/brute/"+BRUTE+"/ranking-data/"+(RANKING=="event"?"-1":RANKING));
+			var ranks =await fetch("api/brute/"+BRUTE+"/ranking-data/"+(RANKING=="event"?"-1":RANKING));
 			ranks = JSON.parse(await ranks.text());
 			
 			for(var b of ranks){
