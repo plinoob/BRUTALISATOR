@@ -2610,8 +2610,8 @@ async function ranking(){
 			
 			brutes = await getAllBrutes(brutes)
 			
-			rota2=[[brutes.shift()]]
-			rota1=[];for(var b of brutes){rota1.push([b])}
+			var rota2=[[brutes.shift()]]
+			var rota1=[];for(var b of brutes){rota1.push([b])}
 			
 				simulFights({
 					fn:function(res,ended){stopLoading();
