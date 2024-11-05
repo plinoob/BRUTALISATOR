@@ -2590,10 +2590,10 @@ var shuffle = (array) => {
     }
     return shuffledArray;
 };
-https://brute.eternaltwin.org/api/brute/MGE-Dieu/ranking-data/6
 
 
-async function ranking(){
+
+function ranking(){
 	
 	
 			var ranks =await fetch("/brute/"+BRUTE+"/ranking-data/"+(RANKING=="event"?"-1":RANKING));
