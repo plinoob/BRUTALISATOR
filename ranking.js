@@ -2640,12 +2640,12 @@ async function ranking(){
 	
 	
 function makeInfoDiv(name){
-		var res={div:div({3:"bruteArenaBtn",18:0.92,9:{position:"relative",height:"30px"}})}
+		var res={div:div({3:"bruteArenaBtn",2:"span",18:0.92,9:{position:"relative",height:"30px"}})}
 		
 		
 		
 		
-		var btn=res.btn=div({0:res.div,2:"span",4:1,20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}},2:"button",9:{
+		var btn=res.btn=div({0:res.div,4:1,20:"Visiter la cellule",6:{click:function(){openBruteCell(name)}},2:"button",9:{
 display: "block",
     margin: "8px auto",
 	transform:"translate(-50px,-20px) scale(0.75)",
