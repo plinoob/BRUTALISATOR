@@ -895,6 +895,7 @@ var FIGHT_TYPE
 var BRUTE
 var CLAN
 var WAR
+var RANKING
 
 var MODIFIERS
 var arenaRunning
@@ -3927,6 +3928,7 @@ else{window.location.href="/"+BRUTE+"/clan/"+MOLIEREID;}
 else if(url.length==3 && url[2]=="destiny"){BRUTE = url[1];addScript(BRUTALISATOR+"destiny.js")}
 else if(url.length==6 && url[2]=="clan" && url[4]=="war"){CLAN = url[3];WAR = url[5];BRUTE = url[1];addScript(BRUTALISATOR+"war.js")}
 else if(url.length==3 && url[2]=="level-up"){BRUTE = url[1];addScript(BRUTALISATOR+"level.js")}
+else if(url.length==3 && url[2]=="ranking"){BRUTE = url[1];RANKING=url[3];addScript(BRUTALISATOR+"ranking.js")}
 else if(url.length==3 && url[2]=="arena" /*&& BRANCHE=="dev"*/){BRUTE = url[1];arena()}
 else if(url.length==3 && url[2]=="cell" /*&& BRANCHE=="dev"*/){BRUTE = url[1];addScript(BRUTALISATOR+"puissance.js")}
 else if(url.length==4 && url[2]=="versus"){BRUTE = url[1];addScript(BRUTALISATOR+"fight.js")}
