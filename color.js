@@ -870,7 +870,7 @@ async function getRumble(level) {
 	//cl("unzip...")
 	rumble = unzipString(rumble);
 	cl(rumble,rumble.length)
-	if(true){cl("remove not scrapped");rumble = rumble.filter(item => ("scrapped" in item))}
+	if(true){cl("remove scrapped");rumble = rumble.filter(item => !("scrapped" in item))}
 	cl(rumble,rumble.length)
 	
 	return rumble
