@@ -58,42 +58,24 @@ function refreshStats (brute){
 
 var applySkillModifiers = (brute, skill) => {
     var updatedBrute = { ...brute };
-    // Vitality modifier
-    if (skill === 'vitality') {
-        updatedBrute.enduranceModifier *= 1.5;
-        updatedBrute.enduranceStat += 3;
-    }
-    // Immortality modifier
-    if (skill === 'immortality') {
-        updatedBrute.enduranceModifier *= 3.5;
-        updatedBrute.strengthModifier *= 0.75;
-        updatedBrute.agilityModifier *= 0.75;
-        updatedBrute.speedModifier *= 0.75;
-    }
-    // Herculean strength modifier
-    if (skill === 'herculeanStrength') {
-        updatedBrute.strengthModifier *= 1.5;
-        updatedBrute.strengthStat += 3;
-    }
-    // Feline agility modifier
-    if (skill === 'felineAgility') {
-        updatedBrute.agilityModifier *= 1.5;
-        updatedBrute.agilityStat += 3;
-    }
-    // Lightning bolt modifier
-    if (skill === 'lightningBolt') {
-        updatedBrute.speedModifier *= 1.5;
-        updatedBrute.speedStat += 3;
-    }
-    // Reconnaissance modifier
-    if (skill === 'reconnaissance') {
-        updatedBrute.speedModifier *= 2.5;
-        updatedBrute.speedStat += 5;
-    }
-    // Armor modifier
-    if (skill === 'armor') {
-        updatedBrute.speedModifier *= 0.9;
-    }
+    Object.entries(SkillModifiers[skill]).forEach(([unsafeStat, modifier]) => {
+        var stat = unsafeStat;
+        // Ignore every stat but endurance, strength, agility, and speed
+        if (stat !== FightStat.ENDURANCE
+            && stat !== FightStat.STRENGTH
+            && stat !== FightStat.AGILITY
+            && stat !== FightStat.SPEED) {
+            return;
+        }
+        // Flat modifier
+        if (modifier.flat) {
+            updatedBrute[`${stat}Stat`] += modifier.flat;
+        }
+        // Percent modifier
+        if (modifier.percent) {
+            updatedBrute[`${stat}Modifier`] *= (100 + modifier.percent) / 100;
+        }
+    });
     return updatedBrute;
 };
 
@@ -588,9 +570,9 @@ var weapons = [
         dexterity: 0.25,
         block: 0.3,
         accuracy: 0,
-        disarm: 1,
+        disarm: 0.75,
         combo: 0.3,
-        deflect: 0,
+        deflect: 0.25,
         damage: 8,
         toss: 5,
         reach: 0,
@@ -1608,126 +1590,128 @@ var skills = [
 ];
 var SKILLS_TOTAL_ODDS = skills.reduce((acc, skill) => acc + skill.odds, 0);
 var SkillModifiers = {
-    [SkillName.herculeanStrength]: [
-        { stat: FightStat.STRENGTH, value: 3 },
-        { stat: FightStat.STRENGTH, value: 50, percent: true },
-    ],
-    [SkillName.felineAgility]: [
-        { stat: FightStat.AGILITY, value: 3 },
-        { stat: FightStat.AGILITY, value: 50, percent: true },
-    ],
-    [SkillName.lightningBolt]: [
-        { stat: FightStat.SPEED, value: 3 },
-        { stat: FightStat.SPEED, value: 50, percent: true },
-    ],
-    [SkillName.vitality]: [
-        { stat: FightStat.ENDURANCE, value: 3 },
-        { stat: FightStat.ENDURANCE, value: 50, percent: true },
-    ],
-    [SkillName.immortality]: [
-        { stat: FightStat.ENDURANCE, value: 250, percent: true },
-        { stat: FightStat.STRENGTH, value: -25, percent: true },
-        { stat: FightStat.AGILITY, value: -25, percent: true },
-        { stat: FightStat.SPEED, value: -25, percent: true },
-    ],
-    [SkillName.weaponsMaster]: [
-        { stat: FightStat.DAMAGE, weaponType: WeaponType.SHARP, value: 50, percent: true },
-    ],
-    [SkillName.martialArts]: [
-        { stat: FightStat.DAMAGE, weaponType: null, value: 100, percent: true },
-    ],
-    [SkillName.sixthSense]: [
-        { stat: FightStat.COUNTER, value: 10, percent: true },
-    ],
-    [SkillName.hostility]: [
-        { stat: FightStat.REVERSAL, value: 30, percent: true },
-    ],
-    [SkillName.fistsOfFury]: [
-        { stat: FightStat.COMBO, value: 20, percent: true },
-    ],
-    [SkillName.shield]: [
-        { stat: FightStat.BLOCK, value: 45, percent: true },
-        { stat: FightStat.DAMAGE, value: -25, percent: true },
-    ],
-    [SkillName.armor]: [
-        { stat: FightStat.ARMOR, value: 25, percent: true },
-        { stat: FightStat.SPEED, value: -10, percent: true },
-    ],
-    [SkillName.toughenedSkin]: [
-        { stat: FightStat.ARMOR, value: 10, percent: true },
-    ],
-    [SkillName.untouchable]: [
-        { stat: FightStat.EVASION, value: 30, percent: true },
-    ],
-    [SkillName.sabotage]: [],
-    [SkillName.shock]: [
-        { stat: FightStat.DISARM, value: 50, percent: true },
-    ],
-    [SkillName.bodybuilder]: [
-        { stat: FightStat.HIT_SPEED, weaponType: WeaponType.HEAVY, value: 25, percent: true },
-        { stat: FightStat.DEXTERITY, weaponType: WeaponType.HEAVY, value: 10, percent: true },
-    ],
-    [SkillName.relentless]: [
-        { stat: FightStat.ACCURACY, value: 30, percent: true },
-    ],
-    [SkillName.survival]: [],
-    [SkillName.leadSkeleton]: [],
-    [SkillName.balletShoes]: [
-        { stat: FightStat.EVASION, value: 10, percent: true },
-    ],
-    [SkillName.determination]: [],
-    [SkillName.firstStrike]: [
-        { stat: FightStat.INITIATIVE, value: 200 },
-    ],
-    [SkillName.resistant]: [],
-    [SkillName.reconnaissance]: [
-        { stat: FightStat.INITIATIVE, value: -200 },
-        { stat: FightStat.SPEED, value: 5 },
-        { stat: FightStat.SPEED, value: 150, percent: true },
-    ],
-    [SkillName.counterAttack]: [
-        { stat: FightStat.BLOCK, value: 10, percent: true },
-        { stat: FightStat.REVERSAL, value: 90, percent: true, details: 'afterBlock' },
-    ],
-    [SkillName.ironHead]: [],
-    [SkillName.thief]: [],
-    [SkillName.fierceBrute]: [],
-    [SkillName.tragicPotion]: [],
-    [SkillName.net]: [],
-    [SkillName.bomb]: [],
-    [SkillName.hammer]: [],
-    [SkillName.cryOfTheDamned]: [],
-    [SkillName.hypnosis]: [],
-    [SkillName.flashFlood]: [],
-    [SkillName.tamer]: [],
-    [SkillName.regeneration]: [],
-    [SkillName.chef]: [],
-    [SkillName.spy]: [],
-    [SkillName.saboteur]: [],
-    [SkillName.backup]: [],
-    [SkillName.hideaway]: [
-        { stat: FightStat.BLOCK, value: 25, percent: true, details: 'againstThrows' },
-    ],
-    [SkillName.monk]: [
-        { stat: FightStat.COUNTER, value: 40, percent: true },
-        { stat: FightStat.INITIATIVE, value: -200 },
-        { stat: FightStat.HIT_SPEED, value: -100, percent: true },
-    ],
-    [SkillName.vampirism]: [],
-    [SkillName.chaining]: [],
-    [SkillName.haste]: [],
-    [SkillName.treat]: [],
-    [SkillName.repulse]: [
-        { stat: FightStat.DEFLECT, value: 30, percent: true },
-    ],
+    [SkillName.herculeanStrength]: {
+        [FightStat.STRENGTH]: { flat: 3, percent: 50 },
+    },
+    [SkillName.felineAgility]: {
+        [FightStat.AGILITY]: { flat: 3, percent: 50 },
+    },
+    [SkillName.lightningBolt]: {
+        [FightStat.SPEED]: { flat: 3, percent: 50 },
+    },
+    [SkillName.vitality]: {
+        [FightStat.ENDURANCE]: { flat: 3, percent: 50 },
+    },
+    [SkillName.immortality]: {
+        [FightStat.ENDURANCE]: { percent: 250 },
+        [FightStat.STRENGTH]: { percent: -25 },
+        [FightStat.AGILITY]: { percent: -25 },
+        [FightStat.SPEED]: { percent: -25 },
+    },
+    [SkillName.weaponsMaster]: {
+        [FightStat.DAMAGE]: { percent: 50, weaponType: WeaponType.SHARP },
+    },
+    [SkillName.martialArts]: {
+        [FightStat.DAMAGE]: { percent: 100, weaponType: null },
+    },
+    [SkillName.sixthSense]: {
+        [FightStat.COUNTER]: { percent: 10 },
+    },
+    [SkillName.hostility]: {
+        [FightStat.REVERSAL]: { percent: 30 },
+    },
+    [SkillName.fistsOfFury]: {
+        [FightStat.COMBO]: { percent: 20 },
+    },
+    [SkillName.shield]: {
+        [FightStat.BLOCK]: { percent: 45 },
+        [FightStat.DAMAGE]: { percent: -25 },
+    },
+    [SkillName.armor]: {
+        [FightStat.ARMOR]: { percent: 25 },
+        [FightStat.SPEED]: { percent: -10 },
+    },
+    [SkillName.toughenedSkin]: {
+        [FightStat.ARMOR]: { percent: 10 },
+    },
+    [SkillName.untouchable]: {
+        [FightStat.EVASION]: { percent: 30 },
+    },
+    [SkillName.sabotage]: {},
+    [SkillName.shock]: {
+        [FightStat.DISARM]: { percent: 50 },
+    },
+    [SkillName.bodybuilder]: {
+        [FightStat.HIT_SPEED]: { percent: 25, weaponType: WeaponType.HEAVY },
+        [FightStat.DEXTERITY]: { percent: 10, weaponType: WeaponType.HEAVY },
+    },
+    [SkillName.relentless]: {
+        [FightStat.ACCURACY]: { percent: 30 },
+    },
+    [SkillName.survival]: {},
+    [SkillName.leadSkeleton]: {
+        [FightStat.DAMAGE]: { percent: -30, weaponType: WeaponType.BLUNT, opponent: true },
+    },
+    [SkillName.balletShoes]: {
+        [FightStat.EVASION]: { percent: 10 },
+    },
+    [SkillName.determination]: {},
+    [SkillName.firstStrike]: {
+        [FightStat.INITIATIVE]: { flat: 200 },
+    },
+    [SkillName.resistant]: {},
+    [SkillName.reconnaissance]: {
+        [FightStat.INITIATIVE]: { flat: -200 },
+        [FightStat.SPEED]: { flat: 5, percent: 150 },
+    },
+    [SkillName.counterAttack]: {
+        [FightStat.BLOCK]: { percent: 10 },
+        [FightStat.REVERSAL]: { percent: 90, details: 'afterBlock' },
+    },
+    [SkillName.ironHead]: {},
+    [SkillName.thief]: {},
+    [SkillName.fierceBrute]: {},
+    [SkillName.tragicPotion]: {},
+    [SkillName.net]: {},
+    [SkillName.bomb]: {},
+    [SkillName.hammer]: {},
+    [SkillName.cryOfTheDamned]: {},
+    [SkillName.hypnosis]: {},
+    [SkillName.flashFlood]: {},
+    [SkillName.tamer]: {},
+    [SkillName.regeneration]: {},
+    [SkillName.chef]: {},
+    [SkillName.spy]: {},
+    [SkillName.saboteur]: {},
+    [SkillName.backup]: {},
+    [SkillName.hideaway]: {
+        [FightStat.BLOCK]: { percent: 25, details: 'againstThrows' },
+    },
+    [SkillName.monk]: {
+        [FightStat.COUNTER]: { percent: 40 },
+        [FightStat.INITIATIVE]: { flat: -200 },
+        [FightStat.HIT_SPEED]: { percent: -100 },
+    },
+    [SkillName.vampirism]: {},
+    [SkillName.chaining]: {},
+    [SkillName.haste]: {},
+    [SkillName.treat]: {},
+    [SkillName.repulse]: {
+        [FightStat.DEFLECT]: { percent: 30 },
+    },
 };
+var SkillDamageModifiers = Object.entries(SkillModifiers)
+    .filter(([_, modifiers]) => modifiers[FightStat.DAMAGE])
+    .map(([skill, modifiers]) => ({
+    skill: skill,
+    ...modifiers[FightStat.DAMAGE],
+}));
 
 var FIGHTS_PER_DAY = 6;
 var ARENA_OPPONENTS_COUNT = 6;
 var ARENA_OPPONENTS_MAX_GAP = 2;
 var BRUTE_STARTING_POINTS = 11;
 var PERKS_TOTAL_ODDS = WEAPONS_TOTAL_ODDS + PETS_TOTAL_ODDS + SKILLS_TOTAL_ODDS;
-var SHIELD_BLOCK_ODDS = 0.45;
 var NO_WEAPON_TOSS = 10;
 var Animations = [
     'arrive', 'attack', 'block', 'death', 'drink', 'eat',
@@ -1762,7 +1746,7 @@ var FIGHTER_HIT_ANCHOR = {
     [PetName.panther]: { x: 45, y: 45 },
     dog: { x: 30, y: 30 },
 };
-var MAX_FAVORITE_BRUTES = 3;
+var MAX_FAVORITE_BRUTES = 30;
 var BASE_FIGHTER_STATS = {
     reversal: 0,
     evasion: 0.1,
@@ -1816,6 +1800,10 @@ var ClanWarPointReward = 1000;
 var EventPauseDuration = 3;
 var EventFightsPerDay = 10;
 var EventFreeResets = 3;
+var DailyTournamentGoldReward = 100;
+var DailyTournamentXpReward = 1;
+var GlobalTournamentGoldReward = 150;
+var GlobalTournamentXpReward = 1;
 
 var BossName = /*exports.*//*$Enums.*/BossName = {
   GoldClaw: 'GoldClaw',
@@ -2715,6 +2703,8 @@ var FR = {
   "master": "Maitre",
   "ranking": "Classement",
   "victories": "Victoires",
+  "winrate": "Victoire",
+  "wins-losses": "{{wins}}V / {{losses}}D",
   "pupils": "Élèves",
   "weaponsBonuses": "Armes et bonus disponibles en combat",
   "inventory": "Inventaire",
@@ -2910,7 +2900,7 @@ var FR = {
   "flashFlood.effect": "Action (x{{uses}}) Votre Brute inflige instantanément des dégâts massifs à son adversaire avec 3 armes.",
   "leadSkeleton": "Squelette Plomb",
   "leadSkeleton.desc": "Pas toujours pratique pour se déplacer, le plombage intégral de la cage thoracique permet néanmoins de réduire considérablement les dégâts des armes contondantes.",
-  "leadSkeleton.effect": "Les armes contondantes t'infligent 30% de dégâts de moins",
+  "leadSkeleton.effect": "",
   "balletShoes": "Ballerines",
   "balletShoes.desc": "La danse des cygnes n'a aucun secret pour toi, impossible que ton adversaire t'atteigne, enfin, tant qu'ils ne pigent pas le truc !",
   "balletShoes.effect": "Le premier coup de chaque combat est automatiquement esquivé",
@@ -3036,6 +3026,7 @@ var FR = {
   "combo": "Combo",
   "deflect": "Renvoi",
   "damage": "Dégâts",
+  "opponent-damage": "Dégâts de l'adversaire",
   "drawChance": "Chance d'utilisation",
   "reach": "Portée",
   "account": "Compte",
@@ -3059,6 +3050,7 @@ var FR = {
   "allRead": "Tout lu",
   "newBrute": "Nouvelle brute",
   "gold": "Or",
+  "goldNeededForNewBrute": "Vous avez besoin de {{gold}} Or pour créer une nouvelle Brute.",
   "sacrifice": "Sacrifier",
   "sacrificeConfirm": "Voulez-vous vraiment sacrifier votre brute pour {{gold}} Or ? Cette action est irréversible.",
   "sacrificeSuccess": "Sacrifice réussi, vous avez gagné {{gold}} Or",
@@ -4121,21 +4113,21 @@ var FR = {
   "displayVersusPage": "Afficher la page versus",
   "wiki.howToRankup": "Comment monter de rang ?",
   "wiki.winDaily": "Gagner des tournois quotidiens",
-  "wiki.wins_one": "{{count}} win",
-  "wiki.wins_other": "{{count}} wins",
-  "wiki.restartAfterRankup": "You will then restart at lvl 1 with the same destiny, but with the possibility to make different level up choices if you want to.",
-  "wiki.previousDestiny": "The previous destiny will be highlighted in red when leveling up.",
-  "wiki.howToGetGold": "How to get gold?",
-  "wiki.sacrifice": "Sacrifice a brute",
-  "wiki.level": "lvl {{count}}",
-  "wiki.noSacrificeSameDay": "You can't sacrifice a brute the day of its creation.",
-  "wiki.sameNameAfterSacrifice": "Once sacrified, you can create a new brute using the same name.",
-  "wiki.winDailyTourney": "Win a daily tournament",
-  "wiki.winGlobalTourney": "Win a global tournament",
-  "wiki.beatClanBoss": "Beat the clan boss",
-  "wiki.howWork": "How do they work?",
-  "wiki.manualRegister": "Manual registration",
-  "wiki.allowRankUp": "Allows you to rank up",
+  "wiki.wins_one": "{{count}} victoire",
+  "wiki.wins_other": "{{count}} victoires",
+  "wiki.restartAfterRankup": "Vous redémarrez ensuite au niveau 1 avec la même destinée, mais avec la possibilité de faire des choix de niveau différents si vous le souhaitez.",
+  "wiki.previousDestiny": "La destinée précédente sera mise en évidence en rouge en montant de niveau.",
+  "wiki.howToGetGold": "Comment obtenir de l'or ?",
+  "wiki.sacrifice": "Sacrifier une brute",
+  "wiki.level": "niv {{count}}",
+  "wiki.noSacrificeSameDay": "Vous ne pouvez pas sacrifier une brute le jour de sa création.",
+  "wiki.sameNameAfterSacrifice": "Une fois sacrifiée, vous pouvez créer une nouvelle brute en utilisant le même nom.",
+  "wiki.winDailyTourney": "Gagner un tournoi quotidien",
+  "wiki.winGlobalTourney": "Gagner un tournoi global",
+  "wiki.beatClanBoss": "Battre le Boss de clan",
+  "wiki.howWork": "Comment fonctionnent-ils ?",
+  "wiki.manualRegister": "Inscription manuelle",
+  "wiki.allowRankUp": "Vous permet de monter de rang",
   "wiki.xpPerWin": "{{count}} XP par combat gagné",
   "wiki.autoRegister": "Inscription automatique",
   "wiki.activePreviousDay": "Doit avoir combattu le jour précédent",

@@ -121,42 +121,24 @@ function refreshStats (brute){
 
 var applySkillModifiers = (brute, skill) => {
     var updatedBrute = { ...brute };
-    // Vitality modifier
-    if (skill === 'vitality') {
-        updatedBrute.enduranceModifier *= 1.5;
-        updatedBrute.enduranceStat += 3;
-    }
-    // Immortality modifier
-    if (skill === 'immortality') {
-        updatedBrute.enduranceModifier *= 3.5;
-        updatedBrute.strengthModifier *= 0.75;
-        updatedBrute.agilityModifier *= 0.75;
-        updatedBrute.speedModifier *= 0.75;
-    }
-    // Herculean strength modifier
-    if (skill === 'herculeanStrength') {
-        updatedBrute.strengthModifier *= 1.5;
-        updatedBrute.strengthStat += 3;
-    }
-    // Feline agility modifier
-    if (skill === 'felineAgility') {
-        updatedBrute.agilityModifier *= 1.5;
-        updatedBrute.agilityStat += 3;
-    }
-    // Lightning bolt modifier
-    if (skill === 'lightningBolt') {
-        updatedBrute.speedModifier *= 1.5;
-        updatedBrute.speedStat += 3;
-    }
-    // Reconnaissance modifier
-    if (skill === 'reconnaissance') {
-        updatedBrute.speedModifier *= 2.5;
-        updatedBrute.speedStat += 5;
-    }
-    // Armor modifier
-    if (skill === 'armor') {
-        updatedBrute.speedModifier *= 0.9;
-    }
+    Object.entries(SkillModifiers[skill]).forEach(([unsafeStat, modifier]) => {
+        var stat = unsafeStat;
+        // Ignore every stat but endurance, strength, agility, and speed
+        if (stat !== FightStat.ENDURANCE
+            && stat !== FightStat.STRENGTH
+            && stat !== FightStat.AGILITY
+            && stat !== FightStat.SPEED) {
+            return;
+        }
+        // Flat modifier
+        if (modifier.flat) {
+            updatedBrute[`${stat}Stat`] += modifier.flat;
+        }
+        // Percent modifier
+        if (modifier.percent) {
+            updatedBrute[`${stat}Modifier`] *= (100 + modifier.percent) / 100;
+        }
+    });
     return updatedBrute;
 };
 
@@ -651,9 +633,9 @@ var weapons = [
         dexterity: 0.25,
         block: 0.3,
         accuracy: 0,
-        disarm: 1,
+        disarm: 0.75,
         combo: 0.3,
-        deflect: 0,
+        deflect: 0.25,
         damage: 8,
         toss: 5,
         reach: 0,
@@ -1671,126 +1653,128 @@ var skills = [
 ];
 var SKILLS_TOTAL_ODDS = skills.reduce((acc, skill) => acc + skill.odds, 0);
 var SkillModifiers = {
-    [SkillName.herculeanStrength]: [
-        { stat: FightStat.STRENGTH, value: 3 },
-        { stat: FightStat.STRENGTH, value: 50, percent: true },
-    ],
-    [SkillName.felineAgility]: [
-        { stat: FightStat.AGILITY, value: 3 },
-        { stat: FightStat.AGILITY, value: 50, percent: true },
-    ],
-    [SkillName.lightningBolt]: [
-        { stat: FightStat.SPEED, value: 3 },
-        { stat: FightStat.SPEED, value: 50, percent: true },
-    ],
-    [SkillName.vitality]: [
-        { stat: FightStat.ENDURANCE, value: 3 },
-        { stat: FightStat.ENDURANCE, value: 50, percent: true },
-    ],
-    [SkillName.immortality]: [
-        { stat: FightStat.ENDURANCE, value: 250, percent: true },
-        { stat: FightStat.STRENGTH, value: -25, percent: true },
-        { stat: FightStat.AGILITY, value: -25, percent: true },
-        { stat: FightStat.SPEED, value: -25, percent: true },
-    ],
-    [SkillName.weaponsMaster]: [
-        { stat: FightStat.DAMAGE, weaponType: WeaponType.SHARP, value: 50, percent: true },
-    ],
-    [SkillName.martialArts]: [
-        { stat: FightStat.DAMAGE, weaponType: null, value: 100, percent: true },
-    ],
-    [SkillName.sixthSense]: [
-        { stat: FightStat.COUNTER, value: 10, percent: true },
-    ],
-    [SkillName.hostility]: [
-        { stat: FightStat.REVERSAL, value: 30, percent: true },
-    ],
-    [SkillName.fistsOfFury]: [
-        { stat: FightStat.COMBO, value: 20, percent: true },
-    ],
-    [SkillName.shield]: [
-        { stat: FightStat.BLOCK, value: 45, percent: true },
-        { stat: FightStat.DAMAGE, value: -25, percent: true },
-    ],
-    [SkillName.armor]: [
-        { stat: FightStat.ARMOR, value: 25, percent: true },
-        { stat: FightStat.SPEED, value: -10, percent: true },
-    ],
-    [SkillName.toughenedSkin]: [
-        { stat: FightStat.ARMOR, value: 10, percent: true },
-    ],
-    [SkillName.untouchable]: [
-        { stat: FightStat.EVASION, value: 30, percent: true },
-    ],
-    [SkillName.sabotage]: [],
-    [SkillName.shock]: [
-        { stat: FightStat.DISARM, value: 50, percent: true },
-    ],
-    [SkillName.bodybuilder]: [
-        { stat: FightStat.HIT_SPEED, weaponType: WeaponType.HEAVY, value: 25, percent: true },
-        { stat: FightStat.DEXTERITY, weaponType: WeaponType.HEAVY, value: 10, percent: true },
-    ],
-    [SkillName.relentless]: [
-        { stat: FightStat.ACCURACY, value: 30, percent: true },
-    ],
-    [SkillName.survival]: [],
-    [SkillName.leadSkeleton]: [],
-    [SkillName.balletShoes]: [
-        { stat: FightStat.EVASION, value: 10, percent: true },
-    ],
-    [SkillName.determination]: [],
-    [SkillName.firstStrike]: [
-        { stat: FightStat.INITIATIVE, value: 200 },
-    ],
-    [SkillName.resistant]: [],
-    [SkillName.reconnaissance]: [
-        { stat: FightStat.INITIATIVE, value: -200 },
-        { stat: FightStat.SPEED, value: 5 },
-        { stat: FightStat.SPEED, value: 150, percent: true },
-    ],
-    [SkillName.counterAttack]: [
-        { stat: FightStat.BLOCK, value: 10, percent: true },
-        { stat: FightStat.REVERSAL, value: 90, percent: true, details: 'afterBlock' },
-    ],
-    [SkillName.ironHead]: [],
-    [SkillName.thief]: [],
-    [SkillName.fierceBrute]: [],
-    [SkillName.tragicPotion]: [],
-    [SkillName.net]: [],
-    [SkillName.bomb]: [],
-    [SkillName.hammer]: [],
-    [SkillName.cryOfTheDamned]: [],
-    [SkillName.hypnosis]: [],
-    [SkillName.flashFlood]: [],
-    [SkillName.tamer]: [],
-    [SkillName.regeneration]: [],
-    [SkillName.chef]: [],
-    [SkillName.spy]: [],
-    [SkillName.saboteur]: [],
-    [SkillName.backup]: [],
-    [SkillName.hideaway]: [
-        { stat: FightStat.BLOCK, value: 25, percent: true, details: 'againstThrows' },
-    ],
-    [SkillName.monk]: [
-        { stat: FightStat.COUNTER, value: 40, percent: true },
-        { stat: FightStat.INITIATIVE, value: -200 },
-        { stat: FightStat.HIT_SPEED, value: -100, percent: true },
-    ],
-    [SkillName.vampirism]: [],
-    [SkillName.chaining]: [],
-    [SkillName.haste]: [],
-    [SkillName.treat]: [],
-    [SkillName.repulse]: [
-        { stat: FightStat.DEFLECT, value: 30, percent: true },
-    ],
+    [SkillName.herculeanStrength]: {
+        [FightStat.STRENGTH]: { flat: 3, percent: 50 },
+    },
+    [SkillName.felineAgility]: {
+        [FightStat.AGILITY]: { flat: 3, percent: 50 },
+    },
+    [SkillName.lightningBolt]: {
+        [FightStat.SPEED]: { flat: 3, percent: 50 },
+    },
+    [SkillName.vitality]: {
+        [FightStat.ENDURANCE]: { flat: 3, percent: 50 },
+    },
+    [SkillName.immortality]: {
+        [FightStat.ENDURANCE]: { percent: 250 },
+        [FightStat.STRENGTH]: { percent: -25 },
+        [FightStat.AGILITY]: { percent: -25 },
+        [FightStat.SPEED]: { percent: -25 },
+    },
+    [SkillName.weaponsMaster]: {
+        [FightStat.DAMAGE]: { percent: 50, weaponType: WeaponType.SHARP },
+    },
+    [SkillName.martialArts]: {
+        [FightStat.DAMAGE]: { percent: 100, weaponType: null },
+    },
+    [SkillName.sixthSense]: {
+        [FightStat.COUNTER]: { percent: 10 },
+    },
+    [SkillName.hostility]: {
+        [FightStat.REVERSAL]: { percent: 30 },
+    },
+    [SkillName.fistsOfFury]: {
+        [FightStat.COMBO]: { percent: 20 },
+    },
+    [SkillName.shield]: {
+        [FightStat.BLOCK]: { percent: 45 },
+        [FightStat.DAMAGE]: { percent: -25 },
+    },
+    [SkillName.armor]: {
+        [FightStat.ARMOR]: { percent: 25 },
+        [FightStat.SPEED]: { percent: -10 },
+    },
+    [SkillName.toughenedSkin]: {
+        [FightStat.ARMOR]: { percent: 10 },
+    },
+    [SkillName.untouchable]: {
+        [FightStat.EVASION]: { percent: 30 },
+    },
+    [SkillName.sabotage]: {},
+    [SkillName.shock]: {
+        [FightStat.DISARM]: { percent: 50 },
+    },
+    [SkillName.bodybuilder]: {
+        [FightStat.HIT_SPEED]: { percent: 25, weaponType: WeaponType.HEAVY },
+        [FightStat.DEXTERITY]: { percent: 10, weaponType: WeaponType.HEAVY },
+    },
+    [SkillName.relentless]: {
+        [FightStat.ACCURACY]: { percent: 30 },
+    },
+    [SkillName.survival]: {},
+    [SkillName.leadSkeleton]: {
+        [FightStat.DAMAGE]: { percent: -30, weaponType: WeaponType.BLUNT, opponent: true },
+    },
+    [SkillName.balletShoes]: {
+        [FightStat.EVASION]: { percent: 10 },
+    },
+    [SkillName.determination]: {},
+    [SkillName.firstStrike]: {
+        [FightStat.INITIATIVE]: { flat: 200 },
+    },
+    [SkillName.resistant]: {},
+    [SkillName.reconnaissance]: {
+        [FightStat.INITIATIVE]: { flat: -200 },
+        [FightStat.SPEED]: { flat: 5, percent: 150 },
+    },
+    [SkillName.counterAttack]: {
+        [FightStat.BLOCK]: { percent: 10 },
+        [FightStat.REVERSAL]: { percent: 90, details: 'afterBlock' },
+    },
+    [SkillName.ironHead]: {},
+    [SkillName.thief]: {},
+    [SkillName.fierceBrute]: {},
+    [SkillName.tragicPotion]: {},
+    [SkillName.net]: {},
+    [SkillName.bomb]: {},
+    [SkillName.hammer]: {},
+    [SkillName.cryOfTheDamned]: {},
+    [SkillName.hypnosis]: {},
+    [SkillName.flashFlood]: {},
+    [SkillName.tamer]: {},
+    [SkillName.regeneration]: {},
+    [SkillName.chef]: {},
+    [SkillName.spy]: {},
+    [SkillName.saboteur]: {},
+    [SkillName.backup]: {},
+    [SkillName.hideaway]: {
+        [FightStat.BLOCK]: { percent: 25, details: 'againstThrows' },
+    },
+    [SkillName.monk]: {
+        [FightStat.COUNTER]: { percent: 40 },
+        [FightStat.INITIATIVE]: { flat: -200 },
+        [FightStat.HIT_SPEED]: { percent: -100 },
+    },
+    [SkillName.vampirism]: {},
+    [SkillName.chaining]: {},
+    [SkillName.haste]: {},
+    [SkillName.treat]: {},
+    [SkillName.repulse]: {
+        [FightStat.DEFLECT]: { percent: 30 },
+    },
 };
+var SkillDamageModifiers = Object.entries(SkillModifiers)
+    .filter(([_, modifiers]) => modifiers[FightStat.DAMAGE])
+    .map(([skill, modifiers]) => ({
+    skill: skill,
+    ...modifiers[FightStat.DAMAGE],
+}));
 
 var FIGHTS_PER_DAY = 6;
 var ARENA_OPPONENTS_COUNT = 6;
 var ARENA_OPPONENTS_MAX_GAP = 2;
 var BRUTE_STARTING_POINTS = 11;
 var PERKS_TOTAL_ODDS = WEAPONS_TOTAL_ODDS + PETS_TOTAL_ODDS + SKILLS_TOTAL_ODDS;
-var SHIELD_BLOCK_ODDS = 0.45;
 var NO_WEAPON_TOSS = 10;
 var Animations = [
     'arrive', 'attack', 'block', 'death', 'drink', 'eat',
@@ -1825,7 +1809,7 @@ var FIGHTER_HIT_ANCHOR = {
     [PetName.panther]: { x: 45, y: 45 },
     dog: { x: 30, y: 30 },
 };
-var MAX_FAVORITE_BRUTES = 3;
+var MAX_FAVORITE_BRUTES = 30;
 var BASE_FIGHTER_STATS = {
     reversal: 0,
     evasion: 0.1,
@@ -1879,6 +1863,10 @@ var ClanWarPointReward = 1000;
 var EventPauseDuration = 3;
 var EventFightsPerDay = 10;
 var EventFreeResets = 3;
+var DailyTournamentGoldReward = 100;
+var DailyTournamentXpReward = 1;
+var GlobalTournamentGoldReward = 150;
+var GlobalTournamentXpReward = 1;
 
 var BossName = /*exports.*//*$Enums.*/BossName = {
   GoldClaw: 'GoldClaw',
@@ -2850,9 +2838,10 @@ var getFighterStat = (fighter, stat, onlyStat) => {
             return 0;
         if (fighter.activeWeapon) {
             var weaponStat = fighter.activeWeapon[stat];
-            // +10% dexterity if `bodybuilder` and using a heavy weapon
+            // BODYBUILDER
             if (fighter.bodybuilder && fighter.activeWeapon.types.includes(WeaponType.HEAVY)) {
-                return weaponStat + 0.1;
+                return weaponStat
+                    + (SkillModifiers[SkillName.bodybuilder][FightStat.DEXTERITY]?.percent ?? 0) / 100;
             }
             return weaponStat;
         }
@@ -3095,12 +3084,16 @@ var increaseInitiative = (fighter) => {
         * fighter.tempo
         + (random / 100);
     // Reduce tempo lost if fighter has `bodybuilder` and is using a heavy weapon
-    if (fighter.activeWeapon && fighter.bodybuilder && fighter.activeWeapon.types.includes('heavy')) {
-        tempo *= 0.75;
+    if (fighter.activeWeapon
+        && fighter.bodybuilder
+        && fighter.activeWeapon.types.includes(WeaponType.HEAVY)) {
+        tempo *= (100 - (SkillModifiers[SkillName.bodybuilder][FightStat.HIT_SPEED]?.percent ?? 0))
+            / 100;
     }
     // Increase tempo lost if fighter has `monk`
     if (fighter.monk) {
-        tempo *= 2;
+        tempo *= (100 - (SkillModifiers[SkillName.monk][FightStat.HIT_SPEED]?.percent ?? 0))
+            / 100;
     }
     fighter.initiative += tempo;
 };
@@ -3679,6 +3672,11 @@ var activateSuper = (fightData, fighter, skill, stats, achievements) => {
             // HP healed (max 50%)
             var heal = Math.min(Math.floor(pet.maxHp * 0.5), pet.maxHp - pet.hp);
             pet.hp += heal;
+            let poisonHeal = false;
+            if (pet.poisoned) {
+                pet.poisoned = false;
+                poisonHeal = true;
+            }
             // Untrap pet
             if (pet.trapped) {
                 pet.trapped = false;
@@ -3695,12 +3693,16 @@ var activateSuper = (fightData, fighter, skill, stats, achievements) => {
                 s: 1,
             });
             // Add treat step
-            fightData.steps.push({
+            var step = {
                 a: StepType.Treat,
                 b: fighter.index,
                 t: pet.index,
                 h: heal,
-            });
+            };
+            if (poisonHeal) {
+                step.c = 1;
+            }
+            fightData.steps.push(step);
             // Add moveBack step
             fightData.steps.push({
                 a: StepType.MoveBack,
@@ -3815,12 +3817,12 @@ var block = ({ fighter, opponent, thrown = false, ease = 1, }) => {
     if (opponent.type === 'pet' || opponent.type === 'boss')
         return false;
     let opponentBlock = getFighterStat(opponent, 'block');
-    // +25% block if blocking a throwing a weapon with `Hideaway`
+    // increase block if blocking a throwing a weapon with `Hideaway`
     if (thrown && opponent.skills.find((sk) => sk.name === SkillName.hideaway)) {
-        opponentBlock += 0.25;
+        opponentBlock += (SkillModifiers[SkillName.hideaway][FightStat.BLOCK]?.percent ?? 0) / 100;
     }
     return Math.random() * ease
-        < (opponentBlock - getFighterStat(fighter, 'accuracy', 'weapon'));
+        < (opponentBlock - getFighterStat(fighter, 'accuracy'));
 };
 var evade = (fighter, opponent, difficulty = 1) => {
     // No evasion if opponent is dead
@@ -3844,7 +3846,7 @@ var evade = (fighter, opponent, difficulty = 1) => {
     return random * difficulty
         < Math.min((getFighterStat(opponent, 'evasion')
             + agilityDifference * 0.01
-            - getFighterStat(fighter, 'accuracy', 'fighter')
+            - getFighterStat(fighter, 'accuracy')
             - getFighterStat(fighter, 'dexterity')), 0.9);
 };
 var breakShield = (fighter, opponent) => {
@@ -3875,9 +3877,10 @@ var reversal = (opponent, blocked) => {
         return false;
     var random = Math.random();
     let reversalStat = getFighterStat(opponent, 'reversal');
-    // Special case when blocking with counterAttack (+90%)
+    // Incrase reversal when blocking with counterAttack
     if (blocked && opponent.skills.find((sk) => sk.name === SkillName.counterAttack)) {
-        reversalStat += 0.9;
+        reversalStat += (SkillModifiers[SkillName.counterAttack][FightStat.REVERSAL]?.percent ?? 0)
+            / 100;
     }
     return random < reversalStat;
 };
@@ -3937,7 +3940,8 @@ var attack = (fightData, fighter, opponent, stats, achievements, isCounter = fal
             fightData.steps.push(attemptStep);
             // Remove shield from opponent
             opponent.shield = false;
-            opponent.block -= SHIELD_BLOCK_ODDS;
+            opponent.skills = opponent.skills.filter((sk) => sk.name !== SkillName.shield);
+            opponent.block -= (SkillModifiers[SkillName.shield][FightStat.BLOCK]?.percent ?? 0) / 100;
         }
         else {
             // Add attempt step as is
@@ -4105,7 +4109,7 @@ var startAttack = (fightData, stats, achievements, fighter, opponent, isCounter)
             random = Math.random();
         }
         // Check if the opponent reverses the attack
-        if (!opponentWasTrapped && attackResult.reversed) {
+        if (!opponentWasTrapped && attackResult.reversed && opponent.hp > 0) {
             // Update reversal stat
             updateStats(stats, opponent.id, 'consecutiveReversals', 1);
             checkAchievements(stats, achievements);
@@ -4751,23 +4755,77 @@ var getDamage = (fighter, opponent, thrown) => {
     let skillsMultiplier = 1;
     // Using Piledriver ?
     var piledriver = fighter.activeSkills.find((sk) => sk.name === SkillName.hammer);
-    // +50% damage for `weaponsMaster` on sharp weapons
-    if (fighter.activeWeapon?.types.includes(WeaponType.SHARP)
-        && fighter.skills.find((sk) => sk.name === SkillName.weaponsMaster)
-        && !thrown) {
-        skillsMultiplier += 0.5;
-    }
-    if (!piledriver) {
-        // +100% damage for `martialArts` without a weapon or with a mug
-        if ((!fighter.activeWeapon || fighter.activeWeapon.name === WeaponName.mug)
-            && fighter.skills.find((sk) => sk.name === SkillName.martialArts)
-            && !thrown) {
-            skillsMultiplier += 1;
+    // Fighter skill damage modifiers
+    for (var modifier of SkillDamageModifiers) {
+        // Ignore if fighter doesn't have the skill
+        if (!fighter.skills.find((sk) => sk.name === modifier.skill)) {
+            continue;
+        }
+        // Ignore if the modifier is for the opponent
+        if (modifier.opponent) {
+            continue;
+        }
+        // Ignore weaponsMaser, martialArts if thrown
+        if (thrown) {
+            if (modifier.skill === SkillName.weaponsMaster || modifier.skill === SkillName.martialArts) {
+                continue;
+            }
+        }
+        // Ignore martialArts if piledriver is active
+        if (piledriver && modifier.skill === SkillName.martialArts) {
+            continue;
+        }
+        // Damage specific to weapon type
+        if (typeof modifier.weaponType !== 'undefined') {
+            // If weapon type is null, it means the modifier applies to empty hands (or mug)
+            if (modifier.weaponType === null) {
+                if (!fighter.activeWeapon || fighter.activeWeapon.name === WeaponName.mug) {
+                    skillsMultiplier += (modifier.percent ?? 0) / 100;
+                }
+            }
+            else if (fighter.activeWeapon?.types.includes(modifier.weaponType)) {
+                // If the weapon type is the same as the modifier, apply the damage
+                skillsMultiplier += (modifier.percent ?? 0) / 100;
+            }
+        }
+        else {
+            // Global damage modifier
+            skillsMultiplier *= (100 + (modifier.percent ?? 0)) / 100;
         }
     }
-    // -30% damage if opponent has `leadSkeleton` and weapon is blunt
-    if (opponent.skills.find((sk) => sk.name === 'leadSkeleton') && fighter.activeWeapon?.types.includes('blunt') && !thrown) {
-        skillsMultiplier -= 0.3;
+    // Opponent skill damage modifiers
+    for (var modifier of SkillDamageModifiers) {
+        // Ignore if opponent doesn't have the skill
+        if (!opponent.skills.find((sk) => sk.name === modifier.skill)) {
+            continue;
+        }
+        // Ignore if the modifier is not for the opponent
+        if (!modifier.opponent) {
+            continue;
+        }
+        // Ignore leadSkeleton if thrown
+        if (thrown) {
+            if (modifier.skill === SkillName.leadSkeleton) {
+                continue;
+            }
+        }
+        // Damage specific to weapon type
+        if (typeof modifier.weaponType !== 'undefined') {
+            // If weapon type is null, it means the modifier applies to empty hands (or mug)
+            if (modifier.weaponType === null) {
+                if (!fighter.activeWeapon || fighter.activeWeapon.name === WeaponName.mug) {
+                    skillsMultiplier += (modifier.percent ?? 0) / 100;
+                }
+            }
+            else if (fighter.activeWeapon?.types.includes(modifier.weaponType)) {
+                // If the weapon type is the same as the modifier, apply the damage
+                skillsMultiplier += (modifier.percent ?? 0) / 100;
+            }
+        }
+        else {
+            // Global damage modifier
+            skillsMultiplier *= (100 + (modifier.percent ?? 0)) / 100;
+        }
     }
     // x2 damage for if skill `fierceBrute` is active
     if (fighter.activeSkills.find((sk) => sk.name === 'fierceBrute')) {
@@ -4794,10 +4852,6 @@ var getDamage = (fighter, opponent, thrown) => {
     if (fighter.activeWeapon && fighter.damagedWeapons.includes(fighter.activeWeapon.name)) {
         damage = Math.floor(damage * 0.75);
     }
-    // -25% damage for `shield`
-    if (fighter.shield) {
-        damage = Math.floor(damage * 0.75);
-    }
     // Reduce damage with opponent's armor if not thrown
     if (!thrown) {
         damage = Math.ceil(damage * (1 - opponent.armor));
@@ -4810,105 +4864,65 @@ var getDamage = (fighter, opponent, thrown) => {
 };
 
 var handleSkills = (brute, fighter) => {
-    /* INITIATIVE */
-    // -2 initiative for `firstStrike`
-    if (brute.skills.includes(SkillName.firstStrike)) {
-        fighter.initiative -= 2;
-    }
-    // +2 initiative for `reconnaissance`
-    if (brute.skills.includes(SkillName.reconnaissance)) {
-        fighter.initiative += 2;
-    }
-    /* COUNTER */
-    // +10% counter for `sixthSense`
-    if (brute.skills.includes(SkillName.sixthSense)) {
-        fighter.counter += 0.1;
-    }
-    // +40% counter / +2 initiative for `monk`
-    if (brute.skills.includes(SkillName.monk)) {
-        fighter.counter += 0.4;
-        fighter.initiative += 2;
-    }
-    /* COMBO */
-    // +20% combo for `fistsOfFury`
-    if (brute.skills.includes(SkillName.fistsOfFury)) {
-        fighter.combo += 0.2;
-    }
-    /* REVERSAL */
-    // +30% reversal for `hostility`
-    if (brute.skills.includes(SkillName.hostility)) {
-        fighter.reversal += 0.30;
-    }
-    /* BLOCK */
-    // +XX% block for `shield`
-    if (brute.skills.includes(SkillName.shield)) {
-        fighter.block += SHIELD_BLOCK_ODDS;
-        fighter.shield = true;
-    }
-    // +10% block for `counterAttack`
-    if (brute.skills.includes(SkillName.counterAttack)) {
-        fighter.block += 0.1;
-    }
-    /* ACCURACY */
-    // +30% accuracy for `relentless`
-    if (brute.skills.includes(SkillName.relentless)) {
-        fighter.accuracy += 0.3;
-    }
-    /* ARMOR */
-    // +25% armor for `armor`
-    if (brute.skills.includes(SkillName.armor)) {
-        fighter.armor += 0.25;
-    }
-    // +10% armor for `toughenedSkin`
-    if (brute.skills.includes(SkillName.toughenedSkin)) {
-        fighter.armor += 0.1;
-    }
-    /* DISARM */
-    // +50% disarm for `shock`
-    if (brute.skills.includes(SkillName.shock)) {
-        fighter.disarm += 0.5;
-    }
-    /* EVASION */
-    // +30% evasion for `untouchable`
-    if (brute.skills.includes(SkillName.untouchable)) {
-        fighter.evasion += 0.3;
-    }
-    // +10% evasion for `balletShoes
-    if (brute.skills.includes(SkillName.balletShoes)) {
-        fighter.evasion += 0.1;
-    }
-    /* DEFLECT */
-    // +30% deflect for `repulse`
-    if (brute.skills.includes(SkillName.repulse)) {
-        fighter.deflect += 0.3;
-    }
-    /* PASSIVES */
-    if (brute.skills.includes(SkillName.saboteur)) {
-        fighter.saboteur = true;
-    }
-    if (brute.skills.includes(SkillName.sabotage)) {
-        fighter.sabotage = true;
-    }
-    if (brute.skills.includes(SkillName.bodybuilder)) {
-        fighter.bodybuilder = true;
-    }
-    if (brute.skills.includes(SkillName.survival)) {
-        fighter.survival = true;
-    }
-    if (brute.skills.includes(SkillName.balletShoes)) {
-        fighter.balletShoes = true;
-    }
-    if (brute.skills.includes(SkillName.determination)) {
-        fighter.determination = true;
-    }
-    if (brute.skills.includes(SkillName.ironHead)) {
-        fighter.ironHead = true;
-    }
-    if (brute.skills.includes(SkillName.resistant)) {
-        fighter.resistant = true;
-    }
-    if (brute.skills.includes(SkillName.monk)) {
-        fighter.monk = true;
+    for (var skill of brute.skills) {
+        // Stat changes
+        for (var [unsafeStat, modifier] of Object.entries(SkillModifiers[skill])) {
+            var stat = unsafeStat;
+            // Ignore conditional modifiers
+            if (modifier.details)
+                continue;
+            // Ignore some stats handled elsewhere
+            if (stat === FightStat.DEXTERITY
+                || stat === FightStat.DAMAGE
+                || stat === FightStat.HIT_SPEED
+                || stat === FightStat.ENDURANCE
+                || stat === FightStat.STRENGTH
+                || stat === FightStat.AGILITY
+                || stat === FightStat.SPEED)
+                continue;
+            if (modifier.flat) {
+                if (stat === FightStat.INITIATIVE) {
+                    fighter.initiative -= modifier.flat / 100;
+                }
+                else {
+                    fighter[stat] += modifier.flat;
+                }
+            }
+            if (modifier.percent) {
+                fighter[stat] += modifier.percent / 100;
+            }
+        }
+        // Passives
+        if (skill === SkillName.shield) {
+            fighter.shield = true;
+        }
+        if (skill === SkillName.saboteur) {
+            fighter.saboteur = true;
+        }
+        if (skill === SkillName.sabotage) {
+            fighter.sabotage = true;
+        }
+        if (skill === SkillName.bodybuilder) {
+            fighter.bodybuilder = true;
+        }
+        if (skill === SkillName.survival) {
+            fighter.survival = true;
+        }
+        if (skill === SkillName.balletShoes) {
+            fighter.balletShoes = true;
+        }
+        if (skill === SkillName.determination) {
+            fighter.determination = true;
+        }
+        if (skill === SkillName.ironHead) {
+            fighter.ironHead = true;
+        }
+        if (skill === SkillName.resistant) {
+            fighter.resistant = true;
+        }
+        if (skill === SkillName.monk) {
+            fighter.monk = true;
+        }
     }
 };
 var handleModifiers = (brute, modifiers) => {
