@@ -3846,7 +3846,6 @@ var evade = (fighter, opponent, difficulty = 1) => {
     return random * difficulty
         < Math.min((getFighterStat(opponent, 'evasion')
             + agilityDifference * 0.01
-            - getFighterStat(fighter, 'accuracy')
             - getFighterStat(fighter, 'dexterity')), 0.9);
 };
 var breakShield = (fighter, opponent) => {
