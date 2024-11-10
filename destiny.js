@@ -73,7 +73,7 @@ var applySkillModifiers = (brute, skill) => {
         }
         // Percent modifier
         if (modifier.percent) {
-            updatedBrute[`${stat}Modifier`] *= (100 + modifier.percent) / 100;
+            updatedBrute[`${stat}Modifier`] *= 1 + modifier.percent;
         }
     });
     return updatedBrute;
@@ -225,7 +225,7 @@ var weapons = [
         tempo: 2.3,
         reversal: -0.2,
         evasion: -0.4,
-        dexterity: -0.3,
+        dexterity: -0.8,
         block: -0.5,
         accuracy: 0.5,
         disarm: 0.1,
@@ -279,7 +279,7 @@ var weapons = [
         tempo: 2,
         reversal: -0.3,
         evasion: -0.3,
-        dexterity: -0.35,
+        dexterity: -0.65,
         block: -0.3,
         accuracy: 0.3,
         disarm: 0.1,
@@ -315,7 +315,7 @@ var weapons = [
         tempo: 2.2,
         reversal: 0,
         evasion: -0.3,
-        dexterity: -0.1,
+        dexterity: -1.6,
         block: -0.5,
         accuracy: 1.5,
         disarm: -0.2,
@@ -441,7 +441,7 @@ var weapons = [
         tempo: 1.1,
         reversal: 1,
         evasion: 0,
-        dexterity: 1,
+        dexterity: -1,
         block: -0.5,
         accuracy: 2,
         disarm: 0,
@@ -459,7 +459,7 @@ var weapons = [
         tempo: 1.6,
         reversal: 0,
         evasion: 0,
-        dexterity: 0,
+        dexterity: -0.5,
         block: 0,
         accuracy: 0.5,
         disarm: 0.1,
@@ -479,7 +479,7 @@ var weapons = [
         evasion: -0.1,
         block: 0,
         accuracy: 0.3,
-        dexterity: -0.05,
+        dexterity: -0.35,
         disarm: 0.1,
         combo: 0,
         deflect: 0,
@@ -621,7 +621,7 @@ var weapons = [
         tempo: 1.8,
         reversal: 0,
         evasion: -0.2,
-        dexterity: -0.1,
+        dexterity: 0.1,
         block: 0,
         accuracy: -0.2,
         disarm: 0.1,
@@ -657,7 +657,7 @@ var weapons = [
         tempo: 2.5,
         reversal: 0,
         evasion: 0,
-        dexterity: -0.1,
+        dexterity: -0.3,
         block: 0.2,
         accuracy: 0.2,
         disarm: 0.5,
@@ -675,7 +675,7 @@ var weapons = [
         tempo: 1.5,
         reversal: -0.1,
         evasion: 0.3,
-        dexterity: 0.3,
+        dexterity: 0.5,
         block: -0.2,
         accuracy: -0.2,
         disarm: 0.3,
@@ -1591,69 +1591,69 @@ var skills = [
 var SKILLS_TOTAL_ODDS = skills.reduce((acc, skill) => acc + skill.odds, 0);
 var SkillModifiers = {
     [SkillName.herculeanStrength]: {
-        [FightStat.STRENGTH]: { flat: 3, percent: 50 },
+        [FightStat.STRENGTH]: { flat: 3, percent: 0.5 },
     },
     [SkillName.felineAgility]: {
-        [FightStat.AGILITY]: { flat: 3, percent: 50 },
+        [FightStat.AGILITY]: { flat: 3, percent: 0.5 },
     },
     [SkillName.lightningBolt]: {
-        [FightStat.SPEED]: { flat: 3, percent: 50 },
+        [FightStat.SPEED]: { flat: 3, percent: 0.5 },
     },
     [SkillName.vitality]: {
-        [FightStat.ENDURANCE]: { flat: 3, percent: 50 },
+        [FightStat.ENDURANCE]: { flat: 3, percent: 0.5 },
     },
     [SkillName.immortality]: {
-        [FightStat.ENDURANCE]: { percent: 250 },
-        [FightStat.STRENGTH]: { percent: -25 },
-        [FightStat.AGILITY]: { percent: -25 },
-        [FightStat.SPEED]: { percent: -25 },
+        [FightStat.ENDURANCE]: { percent: 2.5 },
+        [FightStat.STRENGTH]: { percent: -0.25 },
+        [FightStat.AGILITY]: { percent: -0.25 },
+        [FightStat.SPEED]: { percent: -0.25 },
     },
     [SkillName.weaponsMaster]: {
-        [FightStat.DAMAGE]: { percent: 50, weaponType: WeaponType.SHARP },
+        [FightStat.DAMAGE]: { percent: 0.5, weaponType: WeaponType.SHARP },
     },
     [SkillName.martialArts]: {
-        [FightStat.DAMAGE]: { percent: 100, weaponType: null },
+        [FightStat.DAMAGE]: { percent: 1, weaponType: null },
     },
     [SkillName.sixthSense]: {
-        [FightStat.COUNTER]: { percent: 10 },
+        [FightStat.COUNTER]: { percent: 0.1 },
     },
     [SkillName.hostility]: {
-        [FightStat.REVERSAL]: { percent: 30 },
+        [FightStat.REVERSAL]: { percent: 0.3 },
     },
     [SkillName.fistsOfFury]: {
-        [FightStat.COMBO]: { percent: 20 },
+        [FightStat.COMBO]: { percent: 0.2 },
     },
     [SkillName.shield]: {
-        [FightStat.BLOCK]: { percent: 45 },
-        [FightStat.DAMAGE]: { percent: -25 },
+        [FightStat.BLOCK]: { percent: 0.45 },
+        [FightStat.DAMAGE]: { percent: -0.25 },
     },
     [SkillName.armor]: {
-        [FightStat.ARMOR]: { percent: 25 },
-        [FightStat.SPEED]: { percent: -10 },
+        [FightStat.ARMOR]: { percent: 0.25 },
+        [FightStat.SPEED]: { percent: -0.1 },
     },
     [SkillName.toughenedSkin]: {
-        [FightStat.ARMOR]: { percent: 10 },
+        [FightStat.ARMOR]: { percent: 0.1 },
     },
     [SkillName.untouchable]: {
-        [FightStat.EVASION]: { percent: 30 },
+        [FightStat.EVASION]: { percent: 0.3 },
     },
     [SkillName.sabotage]: {},
     [SkillName.shock]: {
-        [FightStat.DISARM]: { percent: 50 },
+        [FightStat.DISARM]: { percent: 0.5 },
     },
     [SkillName.bodybuilder]: {
-        [FightStat.HIT_SPEED]: { percent: 25, weaponType: WeaponType.HEAVY },
-        [FightStat.DEXTERITY]: { percent: 10, weaponType: WeaponType.HEAVY },
+        [FightStat.HIT_SPEED]: { percent: 0.25, weaponType: WeaponType.HEAVY },
+        [FightStat.DEXTERITY]: { percent: 0.1, weaponType: WeaponType.HEAVY },
     },
     [SkillName.relentless]: {
-        [FightStat.ACCURACY]: { percent: 30 },
+        [FightStat.ACCURACY]: { percent: 0.3 },
     },
     [SkillName.survival]: {},
     [SkillName.leadSkeleton]: {
-        [FightStat.DAMAGE]: { percent: -30, weaponType: WeaponType.BLUNT, opponent: true },
+        [FightStat.DAMAGE]: { percent: -0.3, weaponType: WeaponType.BLUNT, opponent: true },
     },
     [SkillName.balletShoes]: {
-        [FightStat.EVASION]: { percent: 10 },
+        [FightStat.EVASION]: { percent: 0.1 },
     },
     [SkillName.determination]: {},
     [SkillName.firstStrike]: {
@@ -1662,11 +1662,11 @@ var SkillModifiers = {
     [SkillName.resistant]: {},
     [SkillName.reconnaissance]: {
         [FightStat.INITIATIVE]: { flat: -200 },
-        [FightStat.SPEED]: { flat: 5, percent: 150 },
+        [FightStat.SPEED]: { flat: 5, percent: 1.5 },
     },
     [SkillName.counterAttack]: {
-        [FightStat.BLOCK]: { percent: 10 },
-        [FightStat.REVERSAL]: { percent: 90, details: 'afterBlock' },
+        [FightStat.BLOCK]: { percent: 0.1 },
+        [FightStat.REVERSAL]: { percent: 0.9, details: 'afterBlock' },
     },
     [SkillName.ironHead]: {},
     [SkillName.thief]: {},
@@ -1685,19 +1685,19 @@ var SkillModifiers = {
     [SkillName.saboteur]: {},
     [SkillName.backup]: {},
     [SkillName.hideaway]: {
-        [FightStat.BLOCK]: { percent: 25, details: 'againstThrows' },
+        [FightStat.BLOCK]: { percent: 0.25, details: 'againstThrows' },
     },
     [SkillName.monk]: {
-        [FightStat.COUNTER]: { percent: 40 },
+        [FightStat.COUNTER]: { percent: 0.4 },
         [FightStat.INITIATIVE]: { flat: -200 },
-        [FightStat.HIT_SPEED]: { percent: -100 },
+        [FightStat.HIT_SPEED]: { percent: -1 },
     },
     [SkillName.vampirism]: {},
     [SkillName.chaining]: {},
     [SkillName.haste]: {},
     [SkillName.treat]: {},
     [SkillName.repulse]: {
-        [FightStat.DEFLECT]: { percent: 30 },
+        [FightStat.DEFLECT]: { percent: 0.3 },
     },
 };
 var SkillDamageModifiers = Object.entries(SkillModifiers)
@@ -1815,7 +1815,7 @@ var availableBodyParts = {
     male: {
         p2: 7,
         p3: 11,
-        p4: 4,
+        p4: 5,
         p7: 6,
         p1: 1,
         p1a: 1,
@@ -3047,6 +3047,7 @@ var FR = {
   "wiki": "Wiki",
   "feed": "Flux",
   "notifications": "Notifications",
+  "noNotifications": "Tout est calme ici.",
   "allRead": "Tout lu",
   "newBrute": "Nouvelle brute",
   "gold": "Or",
@@ -3156,6 +3157,7 @@ var FR = {
   "fight.step.stun": "{{brute}} a été étourdi.",
   "fight.step.haste": "{{brute}} s'est précipité sur {{opponent}} et lui a infligé {{damage}} dégâts.",
   "fight.step.treat": "{{brute}} a donné une friandise à son familier {{target}} et l'a soigné de {{heal}}PV.",
+  "fight.step.dropShield": "{{brute}} a lâché son bouclier.",
   "fight.wonTheFight": "{{brute}} a gagné le match",
   "fight.play": "Jouer",
   "fight.pause": "Pause",
@@ -3168,6 +3170,7 @@ var FR = {
   "experience": "Expérience",
   "brute": "Brute",
   "destinyOf": "Destinée de",
+  "moderation": "Modération",
   "adminPanel": "Panneau d'administration",
   "disableSound": "Désactiver le son",
   "enableSound": "Activer le son",
@@ -4145,7 +4148,17 @@ var FR = {
   "wiki.pupils": "Élèves",
   "wiki.whatPupilBenefits": "Quels sont leurs avantages ?",
   "wiki.pupilBenefits": "Aucun (pour l'instant)",
-  "wiki.pupilExplanation": "Les élèves ne donnent pas d'XP comme dans les versions précédentes du jeu. Mais vous pouvez toujours obtenir des élèves en partageant le lien en haut à droite de votre cellule."
+  "wiki.pupilExplanation": "Les élèves ne donnent pas d'XP comme dans les versions précédentes du jeu. Mais vous pouvez toujours obtenir des élèves en partageant le lien en haut à droite de votre cellule.",
+  "bruteSetForDeletion": "Une de vos brutes a été marquée pour suppression.",
+  "reportAccepted": "Signalement accepté",
+  "reportRejected": "Signalement refusé",
+  "status": "Statut",
+  "pending": "En attente",
+  "accepted": "Accepté",
+  "rejected": "Refusé",
+  "unknown": "Inconnu",
+  "reportedBy": "Signalé par",
+  "handledBy": "Traité par"
 }
 ;/**
  * vis-network
