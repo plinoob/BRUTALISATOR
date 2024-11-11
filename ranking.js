@@ -2582,6 +2582,11 @@ var shuffle = (array) => {
 
 cl("tttttttttttttttttttttttt")
 async function ranking(){
+	        if(RANKING === undefined){
+				var br = await getBrute(BRUTE)
+				if(br.eventId) RANKING = -1
+				else RANKING = 11-br.ranking
+			}
 			$(".bruteArenaBtn").remove()
 			var ranks =await fetch("/api/brute/"+BRUTE+"/ranking-data/"+(RANKING=="event"?"-1":RANKING));
 			ranks = JSON.parse(await ranks.text());
