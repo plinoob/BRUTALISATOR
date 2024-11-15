@@ -3878,7 +3878,7 @@ var img_ours2 = "data:image/jpg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/4QBmRXhpZgAAT
 var img_arbitre = "/images/arena/referee.webp"
 var img_ours = "/images/arena/bear.webp"
 
-var VERSION = ["v2.72","v2.73","v2.74","v2.76"]
+var VERSION = ["v2.72","v2.73","v2.74","v2.76","v2.77"]
 var ERROR_VERSION = "Mauvaise version de 💪BRUTALISATOR : "+VERSION[VERSION.length-1]+")"
 var ERROR_WEBSITE = "Utilise 💪BRUTALISATOR sur une page Labrute !"
 var NOTHING_TO_DO = "💪BRUTALISATOR n'a pas encore de fonctionnalité pour cette page ! \n============== FONCTIONNALITÉS ================\n\n• CRÉATION : Customisation de l'apparence, choix du maître\n• COMBAT : Récapitulatif des dommages\n• ARÈNE : Voyance\n• TOURNOI : Affrontement avec un champion d'outre-monde\n• CELLULE : Estimation de la PUISSANCE d'une brute\n                   Puis évaluation de l'équipement\n                   Puis estimation du potentiel\n                   Personalisation fictive de l'équipement\n• LEVEL UP : Aide à la décision\n• RECHERCHE DE CLAN : Ouverture directe du clan MGE \n• CLAN : Estimation des dégâts journaliers\n• CLASSEMENT DE CLAN : Information sur les forces adverses\n• GUERRE DE CLAN : Optimisation des escouades\n• VERSUS : Génération et partage de combats entre brutes fictives\n• DESTINÉE : Meilleure visualisation"
