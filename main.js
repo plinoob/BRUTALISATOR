@@ -3885,7 +3885,7 @@ var NOTHING_TO_DO = "💪BRUTALISATOR n'a pas encore de fonctionnalité pour cet
 function alertAndStop(error){stopLoading();alert(error);throw new Error(error);}
 cl("START")
 if(!(window.location.href.startsWith("https://"+"b"+"rut"))){alertAndStop(ERROR_WEBSITE);}
-var flag = false;for(version of VERSION){if(isTextInDOM(version,"p")){flag=true;break}};if(!flag && BRANCHE!=="dev"){alertAndStop(ERROR_VERSION);};
+var flag = false;for(version of VERSION){if(isTextInDOM(version,"p")){flag=true;break}};
 
 parseURL()
 if(combatIsOk()){launchFight()}
